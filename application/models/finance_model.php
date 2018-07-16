@@ -9,6 +9,24 @@ class Finance_model extends CI_Model {
 		parent::__construct();
 	}
 
+  public function dashboard(){
+    $belum_bayar = $this->db->select('count(*) as total')
+                ->where('status_bayar','Proses Pengecekan')
+                ->get('tb_pendaftaran')
+                ->row();
+
+    $lunas = $this->db->select('count(*) as total')
+                ->where('status_bayar','Lunas')
+                ->get('tb_pendaftaran')
+                ->row();
+
+    return array(
+      'belum_bayar' => $belum_bayar->total,
+      'lunas' => $lunas->total
+
+      );
+  }
+
 	public function data_mahasiswa(){
 		return $this->db->where('status_bayar' , 'Proses Pengecekan')
 		->order_by('id_pendaftaran','ASC')

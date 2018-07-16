@@ -9,6 +9,13 @@ class Finance extends CI_Controller {
 		$this->load->model('finance_model');
 	}
 
+	public function dashboard_finance(){
+		$data['dashboard'] = $this->finance_model->dashboard();
+		$data['main_view'] = 'Finance/dashboard_finance_view';
+		$this->load->view('template', $data);
+
+	}
+
 		public function index()
 	{
 		$data['main_view'] = 'Finance/finance_view';

@@ -9,6 +9,8 @@ class Tamu_model extends CI_Model {
 		
 	}
 
+  
+
 	public function data_tamu(){
 		$this->db->select('*');
 		 $this->db->from('tb_pendaftaran');
