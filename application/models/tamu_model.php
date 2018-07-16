@@ -24,6 +24,14 @@ class Tamu_model extends CI_Model {
               ->row();
   }
 
+  public function detail_tamu($id_du){
+    return $this->db->join('tb_sekolah','tb_sekolah.id_sekolah=tb_pendaftaran.id_sekolah2')
+            ->join('tb_prodi','tb_prodi.id_prodi=tb_pendaftaran.id_prodi2')
+            ->where('id_pendaftaran', $id_du)
+            ->get('tb_pendaftaran')
+            ->row();
+  }
+
 	public function  buat_kode()   {
           $this->db->SELECT('RIGHT(tb_pendaftaran.id_pendaftaran,3) as kode', FALSE);
           $this->db->order_by('id_pendaftaran','DESC');    
@@ -126,6 +134,34 @@ class Tamu_model extends CI_Model {
       );
 
     $this->db->where('id_du2', $id_pendaftaran)
+        ->update('tb_pendaftaran', $data);
+
+    if ($this->db->affected_rows() > 0) {
+      return TRUE;
+    } else {
+      return FALSE;
+    }
+  }
+
+  public function save_edit_tamu($no_du){
+    $data = array(
+            'id_pendaftaran'      => $this->input->post('id_pendaftaran', TRUE),
+            'nama_pendaftar'      => $this->input->post('nama_pendaftar', TRUE),
+            'id_sekolah2'      => $this->input->post('id_sekolah', TRUE),
+            'jurusan'      => $this->input->post('jurusan', TRUE),
+            'alamat'     => $this->input->post('alamat', TRUE),
+            'email'     => $this->input->post('email', TRUE),
+            'no_telp'     => $this->input->post('no_telp', TRUE),
+            'tanggal_pendaftaran'     => date('Y-m-d'),
+            'waktu'     => $this->input->post('waktu', TRUE),
+            'jk_pendaftar' => $this->input->post('jk_pendaftar', TRUE),
+            'sumber' => $this->input->post('sumber', TRUE),
+            'id_prodi2' => $this->input->post('id_prodi', TRUE),
+            'ibu_kandung' => $this->input->post('ibu_kandung', TRUE),
+            'agama' => $this->input->post('agama', TRUE)
+      );
+
+    $this->db->where('id_pendaftaran', $no_du)
         ->update('tb_pendaftaran', $data);
 
     if ($this->db->affected_rows() > 0) {

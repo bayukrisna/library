@@ -29,6 +29,16 @@ class Tamu extends CI_Controller {
 
 	}
 
+	public function detail_tamu()
+	{
+			$id_du = $this->uri->segment(3);
+			$data['edit'] = $this->tamu_model->detail_tamu($id_du);
+			$data['getProdi'] = $this->daftar_ulang_model->getProdi();
+			$data['getPreschool'] = $this->daftar_ulang_model->getPreschool();
+			$data['main_view'] = 'Tamu/detail_tamu_view';
+			$this->load->view('template', $data);
+	}
+
 	public function save_tamu()
 	{
 			if($this->tamu_model->save_tamu() == TRUE){
@@ -60,7 +70,7 @@ class Tamu extends CI_Controller {
 		
 	}
 
-	
+
 	public function save_bukti_transfer(){
 	    $config['upload_path'] = './uploads/';
 	    $config['allowed_types'] = 'jpg|png|jpeg|pdf';
@@ -79,6 +89,18 @@ class Tamu extends CI_Controller {
 	        redirect('tamu/page_upload');
 	    }
 	  } 
+
+	  public function save_edit_tamu(){
+      $id_du = $this->uri->segment(3);
+          if ($this->tamu_model->save_edit_tamu($id_du) == TRUE) {
+            $data['message'] = 'Edit Tamu berhasil';
+            redirect('tamu');
+          } else {
+            $data['main_view'] = 'Tamu/detail_tamu_view';
+            $data['message'] = 'mahasiswa/detail_mahasiswa';
+            redirect('tamu/detail_tamu_view');
+          }
+        }
 
 	
 
