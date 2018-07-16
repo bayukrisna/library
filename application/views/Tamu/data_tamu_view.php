@@ -68,6 +68,7 @@
                   <td>
                      
                   <a href="'.base_url('daftar_ulang/page_du_pagi/'.$data->id_pendaftaran).'" class="btn btn-info btn-sm">Daftar Ulang</a>
+                  <a href="'.base_url('uploads/'.$data->bukti_transfer).'" class="btn btn-info btn-sm" target="_blank">Lihat Bukti</a>
 
                   </td>
                 </tr>
