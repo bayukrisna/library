@@ -1,12 +1,12 @@
 <div class="row"> 
-	<?php echo $this->session->flashdata('message');?>
-	<?php echo form_open('tamu/save_tamu'); ?>
-	<div class="col-md-12">
+  <?php echo $this->session->flashdata('message');?>
+  <?php echo form_open('tamu/save_tamu'); ?>
+  <div class="col-md-12">
 
-	<div class="box box-primary">
+  <div class="box box-primary">
 
-		<h3 style="text-align:center">Tambah Tamu</h3>
-	<div class="box-body">
+    <h3 style="text-align:center">Tambah Tamu</h3>
+  <div class="box-body">
     <div class="col-md-6">
             <!-- /.box-header -->
             <!-- form start -->
@@ -116,23 +116,24 @@
 
                 <div class="form-group">
                   <label for="major">Sumber Informasi</label>
-                <select id="sumber" name="sumber" class="form-control" ="">
+                <select id="sumber" name="sumber" class="form-control" ="" onchange="return get_student(this.value)">
                   <option value="">Pilih Sumber</option>
-                  <option value="ipa">Brosur</option>
-                  <option value="ips">Iklan</option>
-                  <option value="tkj">Marketing</option>
-                  <option value="rpl">Student get Student</option>
+                  <option value="brosur">Brosur</option>
+                  <option value="iklan">Iklan</option>
+                  <option value="marketing">Marketing</option>
+                  <option value="student_get_student">Student get Student</option>
                 </select>                                     
                 </div>
+                <div id="input_student" style="visibility: hidden;">
                 <label for="major">Student Get Student</label>
                 <div class="input-group" >
                
                 <!-- /btn-group -->
-                <input type="text" class="form-control" id="student" >
+                <input type="text" class="form-control" id="student" hidden="">
                  <div class="input-group-btn">
                   <button type="button" class="btn btn-danger" data-toggle="modal" data-target="#modal-default"><i class="fa fa-search"></i></button>
                 </div>
-              </div>
+                </div></div>
                 <br>
                  
                 <div class="modal fade" id="modal-default">
@@ -190,10 +191,10 @@
                 
 
                 <button type="submit" class="btn btn-info pull-right">Daftar</button>
-              		<?php echo form_close();?>
+                  <?php echo form_close();?>
             
           
-	</div>
+  </div>
             </form>
         </div></div>
           
@@ -204,6 +205,12 @@
 <script>
 function myFunction(name) {
     document.getElementById("student").value = name;
+}
+function get_student(param){
+if(param=="student_get_student")
+document.getElementById("input_student").style.visibility = 'visible';
+else
+document.getElementById("input_student").style.visibility = 'hidden';
 }
 </script>
        

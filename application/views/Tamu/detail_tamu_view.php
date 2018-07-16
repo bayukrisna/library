@@ -117,23 +117,24 @@
 
                 <div class="form-group">
                   <label for="major">Sumber Informasi</label>
-                <select id="sumber" name="sumber" class="form-control" ="">
+                <select id="sumber" name="sumber" class="form-control" ="" onchange="return get_student(this.value)">
                   <option value="<?php echo $edit->sumber; ?>"><?php echo $edit->sumber; ?></option>
-                  <option value="ipa">Brosur</option>
-                  <option value="ips">Iklan</option>
-                  <option value="tkj">Marketing</option>
-                  <option value="rpl">Student get Student</option>
+                  <option value="brosur">Brosur</option>
+                  <option value="iklan">Iklan</option>
+                  <option value="marketing">Marketing</option>
+                  <option value="student_get_student">Student get Student</option>
                 </select>                                     
                 </div>
+                <div id="input_student" style="visibility: hidden;">
                 <label for="major">Student Get Student</label>
                 <div class="input-group" >
                
                 <!-- /btn-group -->
-                <input type="text" class="form-control" id="student" >
+                <input type="text" class="form-control" id="student" hidden="">
                  <div class="input-group-btn">
                   <button type="button" class="btn btn-danger" data-toggle="modal" data-target="#modal-default"><i class="fa fa-search"></i></button>
                 </div>
-              </div>
+                </div></div>
                 <br>
                  
                 <div class="modal fade" id="modal-default">
@@ -203,8 +204,14 @@
 </div>
 </div>
 <script>
-function myFunction(name) {
-    document.getElementById("student").value = name;
-}
+    function myFunction(name) {
+        document.getElementById("student").value = name;
+    }
+    function get_student(param){
+        if(param=="student_get_student")
+        document.getElementById("input_student").style.visibility = 'visible';
+        else
+        document.getElementById("input_student").style.visibility = 'hidden';
+    }
 </script>
        
