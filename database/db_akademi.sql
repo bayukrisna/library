@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Jul 13, 2018 at 03:18 AM
+-- Generation Time: Jul 16, 2018 at 08:52 AM
 -- Server version: 10.1.33-MariaDB
 -- PHP Version: 7.1.18
 
@@ -86,7 +86,10 @@ CREATE TABLE `tb_biaya` (
 --
 
 INSERT INTO `tb_biaya` (`id_biaya`, `nama_biaya`, `jumlah_biaya`, `periode`) VALUES
-('BS001', 'Rangking 1', 360000, '2019/2022');
+('BS001', 'Ranking 1', 360000, '2019/2022'),
+('BS002', 'Ranking 2', 3900000, '2018/2019'),
+('BS003', 'Ranking 3', 4500000, '2018/2019'),
+('BS004', 'Non-Beasiswa', 6000000, '2018/2019');
 
 -- --------------------------------------------------------
 
@@ -115,21 +118,20 @@ CREATE TABLE `tb_du` (
   `tanggal_du` date NOT NULL,
   `kode_tes` varchar(15) NOT NULL,
   `nim` varchar(20) NOT NULL,
-  `id_pendaftaran2` varchar(6) NOT NULL,
-  `status_du` varchar(20) NOT NULL
+  `status_du` varchar(20) NOT NULL,
+  `kode_pos_du` varchar(20) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `tb_du`
 --
 
-INSERT INTO `tb_du` (`id_du`, `nama_du`, `jk_daftar_du`, `tpt_lahir_du`, `tgl_lahir_du`, `alamat_du`, `no_telp_du`, `no_telpm_du`, `email_du`, `agama_du`, `nik_du`, `ibu_kandung_du`, `id_sekolah2`, `id_prodi2`, `id_konsentrasi2`, `waktu`, `jurusan_du`, `tanggal_du`, `kode_tes`, `nim`, `id_pendaftaran2`, `status_du`) VALUES
-('DU001', 'Paris ', 'laki-laki', 'ege', '2018-07-12', 'Los Angeles', '9876', '8675', 'yoona@gmail.com', 'Kristen', '675', 'ELy', 'SE001', 'PR001', 'KO001', 'Pagi', 'ipa', '2018-07-12', 'TES001', '8675', '', 'Nilai Kosong'),
-('DU002', 'Ariana', 'laki-laki', 'Malang', '2018-07-12', 'Los Angeles', '546546', '89765', 'as@asd.sads', 'kristen', '89765', 'ELy', 'SE002', 'PR001', 'KO001', 'Sore', 'ips', '2018-07-12', '', '8765', 'TM002', 'b'),
-('DU003', 'Paris ', 'laki-laki', 'ijuy', '2018-07-11', 'Los Angeles', '9876', '98875', 'yoona@gmail.com', 'Kristen', '8785', 'ELy', 'SE001', 'PR002', 'KO003', 'Pagi', 'ipa', '2018-07-12', 'TES002', '9687', '', ''),
-('DU004', 'Paris ', 'laki-laki', 'Malang', '2018-07-08', 'Los Angeles', '9876', '9887', 'yoona@gmail.com', 'Kristen', '98765', 'ELy', 'SE001', 'PR003', 'KO005', 'Pagi', 'ipa', '2018-07-12', 'TES003', '8976', 'TM001', ''),
-('DU005', 'Paris ', 'laki-laki', 'Malang', '2018-07-27', 'Los Angeles', '9876', '7985', 'yoona@gmail.com', 'Kristen', '8765', 'ELy', 'SE001', 'PR003', 'KO005', 'Pagi', 'ipa', '2018-07-12', 'TES004', '8765', 'TM001', ''),
-('DU006', 'Jessica Jung', 'perempuan', 'Korea', '2018-07-04', 'Korea', '074875937', '645654', 'jessca@gmail.com', 'Konghuchu', '54656', 'ELy', 'SE001', 'PR001', 'KO001', 'Sore', 'ipa', '2018-07-12', '', '46546456', 'TM003', '');
+INSERT INTO `tb_du` (`id_du`, `nama_du`, `jk_daftar_du`, `tpt_lahir_du`, `tgl_lahir_du`, `alamat_du`, `no_telp_du`, `no_telpm_du`, `email_du`, `agama_du`, `nik_du`, `ibu_kandung_du`, `id_sekolah2`, `id_prodi2`, `id_konsentrasi2`, `waktu`, `jurusan_du`, `tanggal_du`, `kode_tes`, `nim`, `status_du`, `kode_pos_du`) VALUES
+('32678', 'Justin', 'laki-laki', 'Malang', '2018-07-17', 'France', '08976', '7856', 'as@asd.sads', 'Islam', '76567', 'ELy', 'SE001', 'PR001', 'KO001', 'Pagi', 'ips', '2018-07-13', 'TES004', '98765', 'Mahasiswa', ''),
+('907865', 'Jessica Jungs', 'perempuan', 'Malang', '2018-07-03', 'Los Angeles', '34646', '98765', 'yoona@gmail.com', 'kristen', '98765', 'ELy', 'SE001', 'PR001', 'KO001', 'Sore', 'ipa', '2018-07-13', '', '', 'Mahasiswa', '9786'),
+('9876', 'Paris ', 'laki-laki', 'erter', '2018-07-06', 'Los Angeles', '9876', '9876', 'yoona@gmail.com', 'Islam', '9876', 'ELy', 'SE001', 'PR001', 'KO001', 'Sore', '', '2018-07-16', '', '', 'Mahasiswa', '987'),
+('DU002', 'Ariana', 'laki-laki', 'Malang', '2018-07-12', 'Los Angeles', '546546', '89765', 'as@asd.sads', 'kristen', '89765', 'ELy', 'SE002', 'PR001', 'KO001', 'Sore', 'ips', '2018-07-12', '', '8765', 'Mahasiswa', ''),
+('DU123', 'Paris ', 'laki-laki', 'Malang', '2018-07-03', 'Los Angeles', '907876', '97865', 'as@asd.sads', 'kristen', '87765', 'ELy', 'SE002', 'PR001', 'KO001', 'Sore', 'ipa', '2018-07-13', 'TES002', '8676', 'Mahasiswa', '');
 
 -- --------------------------------------------------------
 
@@ -144,7 +146,7 @@ CREATE TABLE `tb_hasil_tes` (
   `nilai_psikotes` int(11) NOT NULL,
   `total_nilai` int(11) NOT NULL,
   `total_jawaban` int(11) NOT NULL,
-  `grade` varchar(1) NOT NULL,
+  `grade` varchar(20) NOT NULL,
   `tanggal_hasil_tes` date NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
@@ -153,11 +155,9 @@ CREATE TABLE `tb_hasil_tes` (
 --
 
 INSERT INTO `tb_hasil_tes` (`id_hasil_tes`, `nilai_mat`, `nilai_bing`, `nilai_psikotes`, `total_nilai`, `total_jawaban`, `grade`, `tanggal_hasil_tes`) VALUES
-('TES001', 4, 6, 3, 14, 13, 'D', '2018-07-11'),
-('TES002', 10, 30, 20, 67, 60, 'B', '2018-07-11'),
-('TES003', 21, 22, 20, 70, 63, 'B', '2018-07-11'),
-('TES004', 23, 30, 21, 82, 74, 'A', '2018-07-11'),
-('TES007', 23, 23, 23, 77, 69, 'A', '2018-07-11');
+('TES002', 21, 21, 23, 72, 65, 'Non-Beasiswa', '2018-07-13'),
+('TES003', 20, 30, 30, 89, 80, 'Ranking 2', '2018-07-13'),
+('TES004', 21, 30, 25, 84, 76, 'Ranking 2', '2018-07-13');
 
 -- --------------------------------------------------------
 
@@ -217,7 +217,13 @@ CREATE TABLE `tb_pendaftaran` (
 INSERT INTO `tb_pendaftaran` (`id_pendaftaran`, `tanggal_pendaftaran`, `nama_pendaftar`, `jk_pendaftar`, `id_sekolah2`, `jurusan`, `alamat`, `email`, `no_telp`, `waktu`, `status_bayar`, `id_prodi2`, `sumber`, `ibu_kandung`, `bukti_transfer`, `agama`, `id_du2`) VALUES
 ('TM001', '2018-07-12', 'Paris ', 'laki-laki', 'SE001', 'ipa', 'Los Angeles', 'yoona@gmail.com', '9876', 'Pagi', 'Lunas', 'PR001', 'ipa', 'ELy', 'IMG.jpg', 'Kristen', 'DU001'),
 ('TM002', '2018-07-12', 'Ariana', 'laki-laki', 'SE002', 'ips', 'Los Angeles', 'as@asd.sads', '546546', 'Sore', 'Lunas', 'PR001', 'ipa', 'ELy', 'IMG_00011.jpg', 'Budha', 'DU002'),
-('TM003', '2018-07-12', 'Jessica Jung', 'perempuan', 'SE001', 'ipa', 'Korea', 'jessca@gmail.com', '074875937', 'Sore', 'Lunas', 'PR001', 'ips', 'ELy', 'IMG_0009.jpg', 'Konghuchu', 'DU003');
+('TM003', '2018-07-12', 'Jessica Jung', 'perempuan', 'SE001', 'ipa', 'Korea', 'jessca@gmail.com', '074875937', 'Sore', 'Lunas', 'PR001', 'ips', 'ELy', 'IMG_0009.jpg', 'Konghuchu', 'DU003'),
+('TM004', '2018-07-13', 'Paris ', 'laki-laki', 'SE002', 'ipa', 'Los Angeles', 'as@asd.sads', '907876', 'Pagi', 'Lunas', 'PR001', 'ipa', 'ELy', 'IMG_00023.jpg', 'Kristen', 'DU123'),
+('TM005', '2018-07-13', 'Paris ', 'laki-laki', 'SE001', 'ips', 'Los Angeles', 'yoona@gmail.com', '9876', 'Sore', 'Lunas', 'PR001', 'ipa', 'ELy', 'IMG_0003.jpg', 'Islam', '7986t'),
+('TM007', '2018-07-13', 'Jessica Jung', 'perempuan', 'SE001', 'ipa', 'Los Angeles', 'yoona@gmail.com', '34646', 'Sore', 'Lunas', 'PR001', 'ipa', 'ELy', 'jic2.pdf', 'Budha', '98765'),
+('TM008', '2018-07-16', 'Sasa', 'perempuan', 'SE001', 'ipa', 'France', 'yoona@gmail.com', '8967', 'Pagi', 'Lunas', 'PR002', 'ips', 'ELy', 'IMG_00012.jpg', 'Budha', '343453'),
+('TM009', '2018-07-16', 'Paris ', 'laki-laki', 'SE001', 'ipa', 'Los Angeles', 'yoona@gmail.com', '9876', 'Pagi', 'Lunas', 'PR001', 'ipa', 'ELy', 'AdminLTE_2___General_Form_Elements.pdf', 'Budha', '89765'),
+('TM010', '2018-07-16', 'yaaa', 'laki-laki', 'SE001', 'ipa', 'Los Angeles', 'yoona@gmail.com', '98765', 'Pagi', 'Lunas', 'PR001', 'ipa', 'ELy', 'Hasil_Tes.pdf', 'Budha', '9786');
 
 -- --------------------------------------------------------
 
@@ -260,8 +266,8 @@ CREATE TABLE `tb_sekolah` (
 --
 
 INSERT INTO `tb_sekolah` (`id_sekolah`, `nama_sekolah`, `alamat_sekolah`, `jenis_sekolah`) VALUES
-('SE001', 'SMK Telkom Malang', 'Jl. Danau Ranau Sawojajar Malang', ''),
-('SE002', 'SMAN 3 Jakarta', 'Jl. Supriyadi No 47 jakarta', '');
+('SE001', 'SMK Telkom Malang', 'Jl. Danau Ranau Sawojajar Malang', 'SMK'),
+('SE002', 'SMAN 3 Jakarta', 'Jl. Supriyadi No 47 jakarta', 'SMA');
 
 --
 -- Indexes for dumped tables
