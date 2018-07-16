@@ -38,25 +38,11 @@
                   </td>
                   <td>'.$data->nama_pendaftar.'</td>
                   <td>'.$data->status_bayar.'</td>
-                  <td> <button type="button" class="btn btn-default" data-toggle="modal" data-target="#modal-default">
-                    Lihat
-              </button>
+                  <td> <a href="'.base_url('uploads/'.$data->bukti_transfer).'" class="btn btn-info btn-sm" target="_blank">Lihat Bukti</a>
                   </td>
                   <td>
                   
 
-                  
-                </tr>
-                <div class="modal fade" id="modal-default">
-          <div class="modal-dialog">
-              <div class="modal-body">
-                <img src= '.base_url('uploads/'.$data->bukti_transfer.''). '>
-              </div>
-            <!-- /.modal-content -->
-          </div>
-          <!-- /.modal-dialog -->
-        </div>
-        
        
                 ' ;
                 

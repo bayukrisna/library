@@ -60,21 +60,10 @@ class Tamu extends CI_Controller {
 		
 	}
 
-	public function lihatfile(){
-				$id_surat = $this->uri->segment(3);
-				$data['edit'] = $this->tamu_model->get_tamu_by_id($id_surat);
-				
-				$this->load->view('template', $data);
-	}
-
+	
 	public function save_bukti_transfer(){
 	    $config['upload_path'] = './uploads/';
-<<<<<<< HEAD
-	    $config['allowed_types'] = 'jpg|png|jpeg';
-	    $config['max_size']  = 2000;
-=======
 	    $config['allowed_types'] = 'jpg|png|jpeg|pdf';
->>>>>>> b6fcf0f6818ad2591b16225dd6c2ebf5accb2e4e
 	    $this->load->library('upload', $config);
 
 	    if($this->upload->do_upload('bukti_transfer')){
