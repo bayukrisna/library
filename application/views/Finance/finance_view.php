@@ -39,10 +39,9 @@
                   </td>
                   <td>'.$data->nama_pendaftar.'</td>
                   <td>'.$data->status_bayar.'</td>
-                  <td> <button type="button" class="btn btn-default" data-toggle="modal" data-target="#modal-default">
-                    Lihat
-              </button>
+                  <td>  <td> <a href="'.base_url('uploads/'.$data->bukti_transfer).'" class="btn btn-info btn-sm" target="_blank">Lihat Bukti</a>
                   </td>
+                  
                   <td>
                   <a type="button" class="btn btn-success btn-sm" data-toggle="modal" data-target="#modal-default2">
                     Konfirmasi

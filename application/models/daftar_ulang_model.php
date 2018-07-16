@@ -108,6 +108,7 @@ class Daftar_ulang_model extends CI_Model {
             'id_sekolah2'      => $this->input->post('id_sekolah', TRUE),
             'id_prodi2'      => $this->input->post('id_prodi', TRUE),
             'id_konsentrasi2'      => $this->input->post('concentrate', TRUE),
+            'kode_pos_du'      => $this->input->post('kode_pos_du', TRUE),
             'waktu'      => 'Pagi',
             'status_du'      => 'Nilai Kosong',
             'nim'      => $this->input->post('nim', TRUE),
@@ -153,6 +154,7 @@ class Daftar_ulang_model extends CI_Model {
             'id_sekolah2'      => $this->input->post('id_sekolah', TRUE),
             'id_prodi2'      => $this->input->post('id_prodi', TRUE),
             'id_konsentrasi2'      => $this->input->post('concentrate', TRUE),
+            'kode_pos_du'      => $this->input->post('kode_pos_du', TRUE),
             'waktu'      => 'Sore',
             'status_du'      => 'Mahasiswa',
             'nim'      => $this->input->post('nim', TRUE),
@@ -200,6 +202,7 @@ class Daftar_ulang_model extends CI_Model {
     public function save_edit_du($no_du){
     $data = array(
             'id_du'      => $this->input->post('id_du', TRUE),
+            'kode_tes'      => $this->input->post('kode_tes', TRUE),
             'nama_du'      => $this->input->post('nama_du', TRUE),
             'jk_daftar_du'      => $this->input->post('gender', TRUE),
             'tpt_lahir_du'      => $this->input->post('tpt_lahir_du', TRUE),
@@ -210,11 +213,12 @@ class Daftar_ulang_model extends CI_Model {
             'email_du'     => $this->input->post('email_du', TRUE),
             'agama_du'      => $this->input->post('agama_du', TRUE),
             'nik_du'      => $this->input->post('nik_du', TRUE),
-            'jurusan_du'      => $this->input->post('jurusan_du', TRUE),
+            'jurusan_du'      => $this->input->post('jurusan', TRUE),
             'ibu_kandung_du'      => $this->input->post('ibu_kandung_du', TRUE),
             'id_sekolah2'      => $this->input->post('id_sekolah', TRUE),
             'id_prodi2'      => $this->input->post('id_prodi', TRUE),
             'id_konsentrasi2'      => $this->input->post('concentrate', TRUE),
+            'kode_pos_du'      => $this->input->post('kode_pos_du', TRUE),
             'nim'      => $this->input->post('nim', TRUE),
       );
 

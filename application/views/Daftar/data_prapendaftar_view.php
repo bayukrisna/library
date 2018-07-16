@@ -38,9 +38,9 @@
                   <td>'.$data->email.'</td>
                   
                   <td>
-                     <a href="'.base_url('index.php/pendaftaran/print_pendaftaran/'.$data->id_pendaftaran).'" class="btn btn-warning btn-sm" >Print Soal</a>
+                     <a href="'.base_url('pendaftaran/print_pendaftaran/'.$data->id_pendaftaran).'" class="btn btn-warning btn-sm" >Print Soal</a>
                     
-                      <a href="'.base_url('index.php/hasil_tes/index/'.$data->id_pendaftaran).'" class="btn btn-info btn-sm" >Input Nilai</a>
+                      <a href="'.base_url('hasil_tes/index/'.$data->id_pendaftaran).'" class="btn btn-info btn-sm" >Input Nilai</a>
                   </td>
                 </tr>
                 ';
@@ -57,9 +57,9 @@
                   <td>'.$data->email.'</td>
                   
                   <td>
-                     <a href="'.base_url('index.php/hasil_tes/print_hasil_tes/'.$data->id_pendaftaran).'" class="btn btn-warning btn-sm" >Print Hasil Tes</a>
-                      <a href="'.base_url('index.php/hasil_tes/detail_tes/'.$data->id_pendaftaran).'" class="btn btn-danger btn-sm" >Detail</a>
-                     <a href="'.base_url('index.php/daftar_ulang/index/'.$data->id_pendaftaran).'" class="btn btn-info btn-sm" >Daftar Ulang</a>
+                     <a href="'.base_url('hasil_tes/print_hasil_tes/'.$data->id_pendaftaran).'" class="btn btn-warning btn-sm" >Print Hasil Tes</a>
+                      <a href="'.base_url('hasil_tes/detail_tes/'.$data->id_pendaftaran).'" class="btn btn-danger btn-sm" >Detail</a>
+                     <a href="'.base_url('daftar_ulang/index/'.$data->id_pendaftaran).'" class="btn btn-info btn-sm" >Daftar Ulang</a>
                      
                   </td>
                 </tr>

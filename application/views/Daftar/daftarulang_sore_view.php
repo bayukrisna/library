@@ -69,6 +69,10 @@
                   <label for="email">Email</label>
                   <input type="email" name="email_du" class="form-control" id="email_du" placeholder="Input Email" value="<?php echo $du_pagi->email; ?>" required="">
                 </div>
+                 <div class="form-group">
+                  <label for="email">Kode Pos</label>
+                  <input type="text" name="kode_pos_du" class="form-control" id="kode_pos_du" placeholder="Masukan Kode Pos"  required="">
+                </div>
                 <div class="form-group">
                   <label for="preschool">Asal Sekolah</label>
                   <select id="id_sekolah" name="id_sekolah"class="form-control" required="">

@@ -1,4 +1,4 @@
-<form  method="post" action="<?php echo base_url(); ?>index.php/daftar_ulang/save_edit_du/<?php echo $du->id_du; ?>" enctype="multipart/form-data">
+<form  method="post" action="<?php echo base_url(); ?>daftar_ulang/save_edit_du/<?php echo $du->id_du; ?>" enctype="multipart/form-data">
 <div class="row"> 
     <div class="col-md-12">
         <div>
@@ -66,6 +66,7 @@
                   <label for="email">Email</label>
                   <input type="email" name="email_du" class="form-control" id="email_du" placeholder="Input Email" required value="<?php echo $du->email_du; ?>">
                 </div>
+                 
                 <div class="form-group">
                   <label for="preschool">Asal Sekolah</label>
                   <select id="id_sekolah" name="id_sekolah"class="form-control">

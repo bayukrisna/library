@@ -103,10 +103,10 @@ class daftar_ulang extends CI_Controller {
       $id_du = $this->uri->segment(3);
           if ($this->daftar_ulang_model->save_edit_du($id_du) == TRUE) {
             $data['message'] = 'Edit Daftar Ulang berhasil';
-            redirect('daftar_ulang/data_du');
+            redirect('mahasiswa');
           } else {
-            $data['main_view'] = 'Prodi/master_konsentrasi_view';
-            $data['message'] = 'Edit Konsentrasi gagal';
+            $data['main_view'] = 'daftar_ulang/detail_view';
+            $data['message'] = 'mahasiswa/detail_mahasiswa';
             redirect('master_konsentrasi/edit_konsentrasi');
           }
         }

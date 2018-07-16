@@ -1,6 +1,6 @@
+<form  method="post" action="<?php echo base_url(); ?>hasil_tes/save_edit_hasil_tes/<?php echo $edit->id_hasil_tes; ?>" enctype="multipart/form-data">
 <div class="row"> 
   <?php echo $this->session->flashdata('message');?>
-  <?php echo form_open('edit/save_edit'); ?>
   <div class="col-md-12">
 
   <div class="box box-primary">
@@ -14,7 +14,7 @@
                   <label for="inputEmail3" class="control-label pull-left">No Daftar</label>
                 </div>
                   <div class="col-md-4">
-                    <input type="input" class="form-control input-sm" id="id_hasil_tes2" name="id_hasil_tes2" placeholder="Email" value="<?php echo $edit->kode_tes; ?>" readonly>
+                    <input type="input" class="form-control input-sm" id="id_hasil_tes2" name="id_hasil_tes2" placeholder="Email" value="<?php echo $edit->id_hasil_tes; ?>" readonly>
                   </div>
                 </div>
                 <div class="form-group">
@@ -51,7 +51,7 @@
                   <label for="inputEmail3" class="control-label pull-left">Kode Pos</label>
                 </div>
                   <div class="col-md-3">
-                    <input type="text" class="form-control input-sm" id="inputEmail3" placeholder="" >
+                    <input type="text" class="form-control input-sm" id="inputEmail3" placeholder="" value="<?php echo $edit->kode_pos_du; ?>">
                   </div>
                 </div>
                 <div class="form-group">
@@ -93,7 +93,7 @@
                     <input type="text" id="bing" name="bing" class="form-control input-sm"  placeholder="B.ing" onkeyup="sum()" value="<?php echo $edit->nilai_psikotes; ?>">
                   </div> 
                   <div class="col-md-2">
-                  <button  class=" btn pull-left input-sm ">Update</button></div>
+                </div>
                 </div>
                   
 
