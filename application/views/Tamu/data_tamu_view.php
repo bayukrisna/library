@@ -113,6 +113,7 @@
                   <td>'.$data->waktu.'</td>
                   <td>'.$data->status_bayar.'</td>
                   <td>
+                   <a href="'.base_url('uploads/'.$data->bukti_transfer).'" class="btn btn-success btn-sm" target="_blank">Bukti</a>
                    <a href="'.base_url('tamu/detail_tamu/'.$data->id_pendaftaran).'" class="btn btn-warning btn-sm">Detail</a>
                      
                   </td>
