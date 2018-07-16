@@ -11,7 +11,7 @@
                   <?php echo $this->session->flashdata('message');?>
                        <div class="form-group">
                             <label>Foto</label> <br>
-                            <img style="height:400px;" src="<?php echo base_url(); ?>uploads/<?php echo $edit->bukti_transfer; ?>">
+                            <img style="height:400px; width: 400px;" src="<?php echo base_url(); ?>uploads/<?php echo $edit->bukti_transfer; ?>">
                         </div>
                         <div class="form-group">
                                             <input type="file" id="bukti_transfer" name="bukti_transfer">
@@ -21,7 +21,7 @@
                       <div class="form-group mb-n">
                   <div class="col-sm-8">
                   <label for="exampleInputFile" class="">    </label>
-                    <input type="submit" name="submit" class="btn btn-default" background_color="orange" id="largeinput" placeholder="Large Input" value="Edit">
+                    <input type="submit" name="submit" class="btn btn-default" background_color="orange" id="largeinput" placeholder="Large Input" value="Upload">
                   </div>
                 </div>      
               </div></div>
