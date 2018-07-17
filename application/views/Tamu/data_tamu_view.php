@@ -42,7 +42,7 @@
                   <td>'.$data->status_bayar.'</td>
                   
                   <td>
-                     <a href="'.base_url('tamu/hapus_tamu/'.$data->id_pendaftaran).'" class="btn btn-danger btn-sm">Hapus</a>
+                     <a href="'.base_url('tamu/hapus_tamu/'.$data->id_pendaftaran).'" class="fa-trash-o" class="btn btn-danger btn-sm " >Hapus</a>
                      <a href="'.base_url('tamu/page_upload/'.$data->id_pendaftaran).'" class="btn btn-info btn-sm">Upload</a>
                      <a href="'.base_url('tamu/f1/'.$data->id_pendaftaran).'" class="btn btn-warning btn-sm">F1</a>
                      <a href="'.base_url('tamu/f2/'.$data->id_pendaftaran).'" class="btn btn-info btn-sm">F2</a>

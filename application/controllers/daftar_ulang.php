@@ -49,14 +49,24 @@ class daftar_ulang extends CI_Controller {
 
 	public function save_du_sore()
 	{
+		$this->form_validation->set_rules('id_du', 'ID DU', 'required|is_unique[tb_du.id_du]');
+		if ($this->form_validation->run() == TRUE) {
+
 			if($this->daftar_ulang_model->save_du_sore() == TRUE){
 				$nama_pendaftar = $this->input->post('nama_du');
 				$this->session->set_flashdata('message', '<div class="col-md-12 alert alert-success"> Data '.$nama_pendaftar.' berhasil didaftarkan. </div>');
             	redirect('daftar_ulang/data_du');
 			} else{
-				$this->session->set_flashdata('message', '<div class="col-md-12 alert alert-danger"> Username/password sudah ada. </div>');
-            	redirect('daftar_ulang');
-			} 
+				
+				$this->session->set_flashdata('message', 'message', '<div class="col-md-12 alert alert-danger"> Username/password sudah ada. </div>');
+				redirect('daftar_ulang/page_du_sore');
+            	
+			}
+		} else {
+			$data = $this->input->post('id_du');
+			$this->session->set_flashdata('notif', validation_errors());
+			redirect('daftar_ulang/page_du_sore/'.$data.'');	
+		}
 	} 
 
 	public function data_du()

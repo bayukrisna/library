@@ -19,7 +19,11 @@ class Finance extends CI_Controller {
 		public function index()
 	{
 		$data['main_view'] = 'Finance/finance_view';
+<<<<<<< HEAD
 		$data['data']=$this->finance_model->data_mahasiswa();
+=======
+		$data['edit'] = $this->finance_model->data_mahasiswa();
+>>>>>>> fe9412ade7919069f3bbf3c16d047e2df5b23380
 		$this->load->view('template', $data);
 	}
 
@@ -31,7 +35,11 @@ class Finance extends CI_Controller {
 	}
 
 	public function konfirmasi(){				
+<<<<<<< HEAD
 				$id_pendaftaran = $this->input->post('id_pendaftaran');
+=======
+				$id_pendaftaran = $this->uri->segment(3);
+>>>>>>> fe9412ade7919069f3bbf3c16d047e2df5b23380
 				if ($this->finance_model->save_konfirmasi($id_pendaftaran) == TRUE) {
 						$this->session->set_flashdata('message', '<div class="alert alert-success"> konfirmasi Berhasil </div>');
 						redirect('finance');

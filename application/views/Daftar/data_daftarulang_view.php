@@ -14,8 +14,6 @@
                 <tr>
                   <th>No</th>
                   <th>Nama</th>
-                 
-                 
                   <th>Asal Sekolah</th>
                   <th>Nama Prodi</th>
                   <th>Nama Konsentrasi</th>
