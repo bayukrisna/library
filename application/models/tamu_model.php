@@ -132,7 +132,7 @@ class Tamu_model extends CI_Model {
 
   public function save_update_status2($id_pendaftaran){
     $data = array(
-       'status_bayar'     => 'Daftar Ulang'
+       'status_bayar'     => 'Aktif'
       );
 
     $this->db->where('id_du2', $id_pendaftaran)

@@ -1,5 +1,5 @@
 <div class="row"> 
-  <?php echo $this->session->flashdata('message');?>
+  
   <?php echo form_open('daftar_ulang/save_du_sore'); ?>
   <div class="col-md-12">
 
@@ -8,7 +8,14 @@
     <h3 style="text-align:center">Daftar Ulang</h3>
   <div class="box-body">
     <div class="col-md-6">
-      <?php echo $this->session->flashdata('message');?>
+       <?php 
+                    $notif = $this->session->flashdata('notif');
+                    if($notif != NULL){
+                        echo '
+                            <div class="alert alert-info">'.$notif.'</div>
+                        ';
+                    }
+                ?>
             <!-- /.box-header -->
             <!-- form start -->
                 <div class="form-group">
