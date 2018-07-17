@@ -21,88 +21,68 @@
                   <th>Aksi</th>
                 </tr>
                 </thead>
-                <tbody>
+    <tbody>
+      <?php 
+        $no = 0;
+        foreach($data as $i):
+        ;
+      ?>
+      <tr>
+        <td><?php echo ++$no; ?></td>
+        <td><?php echo $i->id_pendaftaran;?></td>
+        <td><?php echo $i->nama_pendaftar;?></td>
+        <td><?php echo $i->status_bayar;?></td>
+        <td><a href="<?php echo base_url().'uploads/'.$i->bukti_transfer;?>" class="btn btn-info btn-sm" target="_blank">Lihat Bukti</a></td>
+                <td><a class="btn btn-sm btn-info" data-toggle="modal" data-target="#modal_edit<?php echo $i->id_pendaftaran;?>"> Konfirmasi</a></td>              
+      </tr>
+      <?php endforeach;?>
+    </tbody>
+  </table>
+  
+</div>
 
-                <?php 
-                $no = 0;
-                foreach ($mahasiswa as $data) {
-                  $form_konfirmasi = '';
-                $form_close = '';
-                $form_konfirmasi .= form_open('finance/konfirmasi/'.$data->id_pendaftaran);
-                $form_close .= form_close();
 
-                  echo '
-                  
-                <tr>
-                  <td>'.++$no.'</td>
-                  <td name="id_pendaftaran">'.$data->id_pendaftaran.'
-                  </td>
-                  <td>'.$data->nama_pendaftar.'</td>
-                  <td>'.$data->status_bayar.'</td>
-                  <td>  <td> <a href="'.base_url('uploads/'.$data->bukti_transfer).'" class="btn btn-info btn-sm" target="_blank">Lihat Bukti</a>
-                  </td>
-                  
-                  <td>
-                  <a type="button" class="btn btn-success btn-sm" data-toggle="modal" data-target="#modal-default2">
-                    Konfirmasi
-              </a>
-                  <a href="'.base_url('finance/konfirmasi_gagal/'.$data->id_pendaftaran).'" class="btn btn-success btn-sm" >Data Tidak Valid </a>
-                  
-                </tr>
-                <div class="modal fade" id="modal-default">
-          <div class="modal-dialog">
-              <div class="modal-body">
-                <img src= '.base_url('uploads/'.$data->bukti_transfer.''). '>
-              </div>
-            <!-- /.modal-content -->
-          </div>
-          <!-- /.modal-dialog -->
-        </div>
+    <!-- ============ MODAL ADD BARANG =============== -->
         
-        <div class="modal fade" id="modal-default2">
-          <div class="modal-dialog">
-          '.$form_konfirmasi.'
+    <!--END MODAL ADD BARANG-->
+
+    <!-- ============ MODAL EDIT BARANG =============== -->
+    <?php 
+        foreach($data as $i):
+        ?>
+        <div class="modal fade" id="modal_edit<?php echo $i->id_pendaftaran;?>" >
+            <div class="modal-dialog">
             <div class="modal-content">
-              <div class="modal-header">
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                  <span aria-hidden="true">&times;</span></button>
-                <h4 class="modal-title">Default Modal</h4>
-              </div>
-              <div class="modal-body">
-              <div class="form-horizontal">
-                <div class="form-group">
-                  <div class="col-md-3">
-                  <label for="inputEmail3" class="control-label pull-left">ID Daftar Ulang</label>
-                </div>
-                  <div class="col-md-3">
-                    <input type="text" name="id_daftar_ulang" class="form-control input-sm pull-left" id="inputEmail3" placeholder="" required="">
-                  </div>
-                </div>
-              </div>
-              </div>
-              <div class="modal-footer">
-                <button type="button" class="btn btn-default pull-left" data-dismiss="modal">Close</button>
-                <button type="submit" class="btn btn-info pull-right">Konfirmasi</button>
-              </div>
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">x</button>
+                <h3 class="modal-title" id="myModalLabel">Edit Barang</h3>
             </div>
-            '.$form_close.'
-            <!-- /.modal-content -->
-          </div>
-          <!-- /.modal-dialog -->
-        </div>
-                ' ;
-                
-              }
-              ?>
-                </tbody>
-              </table>
+            <?php echo form_open('finance/konfirmasi/'.$i->id_pendaftaran); ?>
+                <div class="modal-body">
+
+                    <div class="form-group">
+                      <input type="hidden" name="id_pendaftaran" class="form-control" id="alamat" placeholder="Input Home Address" required="" value="<?php echo $i->id_pendaftaran;?>">
+                        <label class="control-label col-xs-3" >ID Daftar Ulang</label>
+                        <div class="col-xs-8">
+                            <input type="text" name="id_daftar_ulang" class="form-control input-sm pull-left" id="inputEmail3" placeholder="" required="">
+                        </div>
+                    </div>
+
+                </div>
+
+                <div class="modal-footer">
+                    <button class="btn" data-dismiss="modal" aria-hidden="true">Tutup</button>
+                    <button class="btn btn-info">Update</button>
+                </div>
+            <?php echo form_close();?>
             </div>
-            
-            <!-- /.box-body -->
-          </div>
-          <!-- /.box -->
+            </div>
         </div>
-        <!-- /.col -->
-      </div>
-      <!-- /.row -->
-    </section>
+
+    <?php endforeach;?>
+    <!--END MODAL ADD BARANG-->
+<script>
+  $(document).ready(function(){
+    $('#mydata').DataTable();
+  });
+</script>
