@@ -110,8 +110,8 @@
             </span>
           </a>
           <ul class="treeview-menu">
-            <li><a href="<?php echo base_url(); ?>finance/dashboard_finance"><i class="fa fa-circle-o"></i>Dashboard</a></li>
-            
+            <li><a href="<?php echo base_url(); ?>finance"><i class="fa fa-circle-o"></i>Konfirmasi Registrasi</a></li>
+            <li><a href="<?php echo base_url(); ?>finance/data_lunas"><i class="fa fa-circle-o"></i>Data Lunas</a></li>
           </ul>
         </li>
       </ul>
