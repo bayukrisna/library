@@ -83,7 +83,7 @@ class Tamu_model extends CI_Model {
             'email'     => $this->input->post('email', TRUE),
             'no_telp'     => $this->input->post('no_telp', TRUE),
             'tanggal_pendaftaran'     => date('Y-m-d'),
-            'status_bayar'     => 'Belum bayar',
+            'status_bayar'     => 'Tamu',
             'waktu'     => $this->input->post('waktu', TRUE),
             'jk_pendaftar' => $this->input->post('jk_pendaftar', TRUE),
             'sumber' => $this->input->post('sumber', TRUE),
@@ -161,6 +161,54 @@ class Tamu_model extends CI_Model {
             'id_prodi2' => $this->input->post('id_prodi', TRUE),
             'ibu_kandung' => $this->input->post('ibu_kandung', TRUE),
             'agama' => $this->input->post('agama', TRUE)
+      );
+
+    $this->db->where('id_pendaftaran', $no_du)
+        ->update('tb_pendaftaran', $data);
+
+    if ($this->db->affected_rows() > 0) {
+      return TRUE;
+    } else {
+      return FALSE;
+    }
+  }
+
+  public function save_f1($no_du){
+    $data = array(
+            'f1'      => $this->input->post('f1', TRUE),
+            'status_bayar'      => 'F1'
+      );
+
+    $this->db->where('id_pendaftaran', $no_du)
+        ->update('tb_pendaftaran', $data);
+
+    if ($this->db->affected_rows() > 0) {
+      return TRUE;
+    } else {
+      return FALSE;
+    }
+  }
+
+  public function save_f2($no_du){
+    $data = array(
+            'f2'      => $this->input->post('f2', TRUE),
+            'status_bayar'      => 'F2'
+      );
+
+    $this->db->where('id_pendaftaran', $no_du)
+        ->update('tb_pendaftaran', $data);
+
+    if ($this->db->affected_rows() > 0) {
+      return TRUE;
+    } else {
+      return FALSE;
+    }
+  }
+
+  public function save_f3($no_du){
+    $data = array(
+            'f3'      => $this->input->post('f3', TRUE),
+            'status_bayar'      => 'F3'
       );
 
     $this->db->where('id_pendaftaran', $no_du)

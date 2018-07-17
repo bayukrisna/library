@@ -84,13 +84,13 @@
                   <label for="inputEmail3" class="control-label pull-left">Nilai</label>
                 </div>
                   <div class="col-md-2">
-                    <input type="text" id="mtk" name="mtk" class="form-control input-sm"  placeholder="MTK" onkeyup="sum();" >
+                    <input type="text" id="mtk" name="mtk" class="form-control input-sm"  placeholder="MTK" onkeyup="sum();" required="">
                   </div>
                   <div class="col-md-2">
-                    <input type="text" id="psikotes" name="psikotes" class="form-control input-sm"  placeholder="PSIKOTES" onkeyup="sum()" >
+                    <input type="text" id="psikotes" name="psikotes" class="form-control input-sm"  placeholder="PSIKOTES" onkeyup="sum()" required="">
                   </div>
                   <div class="col-md-2">
-                    <input type="text" id="bing" name="bing" class="form-control input-sm"  placeholder="B.ing" onkeyup="sum()" >
+                    <input type="text" id="bing" name="bing" class="form-control input-sm"  placeholder="B.ing" onkeyup="sum()" required="">
                   </div> 
                   <div class="col-md-2">
                   <button  class=" btn pull-left input-sm ">Input Nilai</button></div>

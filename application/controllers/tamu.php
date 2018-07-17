@@ -102,6 +102,69 @@ class Tamu extends CI_Controller {
           }
         }
 
+        public function f1(){
+        		$id_du = $this->uri->segment(3);
+        		$data['main_view'] = 'Tamu/f1_view';
+				$data['edit'] = $this->tamu_model->get_tamu_by_id($id_du);
+				
+				$this->load->view('template', $data);
+		
+		}
+
+		  public function save_f1(){
+      	  $id_du = $this->uri->segment(3);
+          if ($this->tamu_model->save_f1($id_du) == TRUE) {
+            $data['message'] = 'Tambah Follow Up 1 berhasil';
+            redirect('tamu');
+          } else {
+            $data['main_view'] = 'Tamu/f1_view';
+            $data['message'] = 'Tamu/f1_view';
+            redirect('tamu/detail_tamu_view');
+          }
+        }
+
+        public function f2(){
+        		$id_du = $this->uri->segment(3);
+        		$data['main_view'] = 'Tamu/f2_view';
+				$data['edit'] = $this->tamu_model->get_tamu_by_id($id_du);
+				
+				$this->load->view('template', $data);
+		
+		}
+
+		  public function save_f2(){
+      	  $id_du = $this->uri->segment(3);
+          if ($this->tamu_model->save_f2($id_du) == TRUE) {
+            $data['message'] = 'Tambah Follow Up 2 berhasil';
+            redirect('tamu');
+          } else {
+            $data['main_view'] = 'Tamu/f2_view';
+            $data['message'] = 'Tamu/f2_view';
+            redirect('Tamu/f2_view');
+          }
+        }
+
+        public function f3(){
+        		$id_du = $this->uri->segment(3);
+        		$data['main_view'] = 'Tamu/f3_view';
+				$data['edit'] = $this->tamu_model->get_tamu_by_id($id_du);
+				
+				$this->load->view('template', $data);
+		
+		}
+
+		  public function save_f3(){
+      	  $id_du = $this->uri->segment(3);
+          if ($this->tamu_model->save_f3($id_du) == TRUE) {
+            $data['message'] = 'Tambah Follow Up 3 berhasil';
+            redirect('tamu');
+          } else {
+            $data['main_view'] = 'Tamu/f3_view';
+            $data['message'] = 'Tamu/f3_view';
+            redirect('Tamu/f3_view');
+          }
+        }
+
 	
 
 		
