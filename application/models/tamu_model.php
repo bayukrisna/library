@@ -198,7 +198,7 @@ $this->db->where('sumber','student_get_student');
             'f2'      => $this->input->post('f2', TRUE),
             'f3'      => $this->input->post('f3', TRUE),
             'notes'      => $this->input->post('notes', TRUE),
-            'status_bayar'      => $this->input->post('status_bayar',TRUE)
+            'status_bayar'      => $this->input->post('status_bayar')
       );
 
     $this->db->where('id_pendaftaran', $no_du)

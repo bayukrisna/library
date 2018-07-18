@@ -34,7 +34,8 @@
                 <tr>
                   <td>
 
-                    <input type="checkbox" name="status_bayar" id="status_bayar" value="Non Aktif">
+                    <input type="checkbox" id="myCheck"  onclick="myFunction()" value="Tamu">
+                    <input type="hidden" id="status_bayar" name="status_bayar" value="Tamu">
                   </td>
                   <td>
                     Non Aktif
@@ -62,7 +63,17 @@
           </div>
 </div>
 </div>
-
+<script>
+function myFunction() {
+    var checkBox = document.getElementById("myCheck");
+    var text = document.getElementById("status_bayar");
+    if (checkBox.checked == true){
+        document.getElementById("status_bayar").value = "Non Aktif";
+    } else {
+       document.getElementById("status_bayar").value = "none";
+    }
+}
+</script>
 
 
 
