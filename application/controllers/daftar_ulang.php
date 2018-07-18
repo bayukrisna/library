@@ -108,6 +108,10 @@ class daftar_ulang extends CI_Controller {
 		echo $option;
 
 	}
+	public function cek_nim(){
+		$nim = $this->input->post('nim');
+		$this->daftar_ulang_model->cek_nim($nim);
+	}
 
 	 public function save_edit_du(){
       $id_du = $this->uri->segment(3);

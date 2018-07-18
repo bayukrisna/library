@@ -47,6 +47,18 @@ class Daftar_ulang_model extends CI_Model {
     }
 
   
+    function cek_nim($nim){
+      $query = $this->db->select('*')
+                ->from('tb_du')
+                ->where('nim', $nim)
+                ->get();
+                if ($query->num_rows() > 0)
+                {
+                    echo '<span class="status-available"> NIM Not Available.</span>';
+                } else{
+                echo '<span class="status-available"> NIM  Available.</span>';
+                }
+    }
 
      function getProdi()
     {
