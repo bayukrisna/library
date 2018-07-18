@@ -34,12 +34,8 @@
                 <tr>
                   <td>
 
-<<<<<<< HEAD
                     <input type="checkbox" id="myCheck"  onclick="myFunction()" value="Tamu">
                     <input type="hidden" id="status_bayar" name="status_bayar" value="Tamu">
-=======
-                    <input type="checkbox" name="status_cek" id="status_cek" value="Non Aktif">
->>>>>>> 58c3704acc91c67e735c5c09d5d4752b02a30d1c
                   </td>
                   <td>
                     Non Aktif
