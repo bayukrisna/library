@@ -12,10 +12,10 @@
                                   $alert = "'Apakah anda yakin mengapus data ini ?'";
 
                                   ?>
-                                    <?php echo form_open('login/login'); ?>
+                                    <?php echo form_open('login/cek_login'); ?>
                                                               <div class="form-group">
-                                              <label for="email">Alamat Email</label><label for="daftar"></label> <a href="registration"><i>Belum punya akun? daftar DISINI</i></a>
-                                              <input type="email" name="email" class="form-control" id="email" placeholder="Masukkan Email Anda" required>
+                                              <label for="email">Username</label><label for="daftar"></label> <a href="registration"></a>
+                                              <input type="text" name="username" class="form-control" id="username" placeholder="Masukkan Username Anda" required>
                                           </div>
                                           <div class="form-group">
                                               <label for="password">Kata Sandi</label> <a href="login/lupa"><i>Lupa?</i></a>

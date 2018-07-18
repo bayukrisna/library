@@ -42,8 +42,8 @@
                   <td>'.$data->status_du.'</td>
                   <td>
                     
-                     <a href="'.base_url('daftar_ulang/print_ljk/'.$data->id_du).'" target="_blank" class="btn btn-warning btn-sm" ><i class="glyphicon glyphicon-print" ></i></a>
-                     <a href="'.base_url('hasil_tes/page_input_nilai/'.$data->id_du).'" class="btn btn-success  btn-sm" ><i class="glyphicon glyphicon-pencil"></i></a>
+                     <a href="'.base_url('daftar_ulang/print_ljk/'.$data->id_du).'" target="_blank" class="btn btn-warning btn-sm" title="Print Lembar Jawaban"><i class="glyphicon glyphicon-print" ></i><span class="tooltiptext">Print LJK</span></a>
+                     <a href="'.base_url('hasil_tes/page_input_nilai/'.$data->id_du).'" class="btn btn-success  btn-sm" title="Input Nilai Tes"><i class="glyphicon glyphicon-pencil"></i><span class="tooltiptext">Input Nilai Tes</span></a>
                   </td>
                 </tr>
                 ';
@@ -63,8 +63,8 @@
                   <td>'.$data->waktu.'</td>
                   <td>'.$data->status_du.'</td>
                   <td>
-                    <a href="'.base_url('daftar_ulang/detail_nilai/'.$data->id_du).'" class="btn btn-warning btn-sm" >Detail</a>
-                     <a href="'.base_url('hasil_tes/print_hasil_tes/'.$data->id_du).'" target="_blank" class="btn btn-info btn-sm" >Hasil Tes</a>
+                    <a href="'.base_url('daftar_ulang/detail_nilai/'.$data->id_du).'" class="btn btn-warning btn-sm" title="Detail"><i class="glyphicon glyphicon-list-alt"></i><span class="tooltiptext">Detail</span></a>
+                     <a href="'.base_url('hasil_tes/print_hasil_tes/'.$data->id_du).'" target="_blank" class="btn btn-info btn-sm" title="Print Hasil Tes"><i class="fa fa-print"></i><span class="tooltiptext">Print Hasil Tes</span></a>
                   </td>
                 </tr>
                 ';

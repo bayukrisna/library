@@ -71,7 +71,7 @@
                   
                   <td>
                      <a href="'.base_url('uploads/'.$data->bukti_transfer).'" class="btn btn-success btn-sm" target="_blank"><i class="fa fa-file-image-o"></i><span class="tooltiptext">Lihat Bukti</span></a>
-                     <a href="'.base_url('tamu/detail_tamu/'.$data->id_pendaftaran).'" class="btn btn-warning btn-sm"><i class="fa fa-database"></i><span class="tooltiptext">Detail Tamu</span></a>
+                     <a href="'.base_url('tamu/detail_tamu/'.$data->id_pendaftaran).'" class="btn btn-warning btn-sm"><i class="glyphicon glyphicon-list-alt"></i><span class="tooltiptext">Detail Tamu</span></a>
                   <a href="'.base_url('daftar_ulang/page_du_pagi/'.$data->id_pendaftaran).'" class="btn btn-info btn-sm"><i class="fa fa-sign-in"></i><span class="tooltiptext">Daftar Ulang</span></a>
 
 
@@ -95,7 +95,7 @@
                   
                   <td>
                    <a href="'.base_url('uploads/'.$data->bukti_transfer).'" class="btn btn-success btn-sm" target="_blank"><i class="fa fa-file-image-o"></i><span class="tooltiptext">Lihat Bukti</span></a>
-                   <a href="'.base_url('tamu/detail_tamu/'.$data->id_pendaftaran).'" class="btn btn-warning btn-sm"><i class="fa fa-database"></i><span class="tooltiptext">Detail Tamu</span></a>
+                   <a href="'.base_url('tamu/detail_tamu/'.$data->id_pendaftaran).'" class="btn btn-warning btn-sm"><i class="glyphicon glyphicon-list-alt"></i><span class="tooltiptext">Detail Tamu</span></a>
                       <a href="'.base_url('daftar_ulang/page_du_sore/'.$data->id_pendaftaran).'" class="btn btn-info btn-sm"><i class="fa fa-sign-in"></i><span class="tooltiptext">Daftar Ulang</span></a>
                      
                   </td>
@@ -120,7 +120,7 @@
                   <td>'.$data->status_bayar.'</td>
                   <td>
                    <a href="'.base_url('uploads/'.$data->bukti_transfer).'" class="btn btn-success btn-sm" target="_blank"><i class="fa fa-file-image-o"></i><span class="tooltiptext">Lihat Bukti</span></a>
-                   <a href="'.base_url('tamu/detail_tamu/'.$data->id_pendaftaran).'" class="btn btn-warning btn-sm"><i class="fa fa-sign-in"></i><span class="tooltiptext">Detail Tamu</span></a>
+                   <a href="'.base_url('tamu/detail_tamu/'.$data->id_pendaftaran).'" class="btn btn-warning btn-sm"><i class="glyphicon glyphicon-list-alt"></i><span class="tooltiptext">Detail Tamu</span></a>
                      
                   </td>
 
