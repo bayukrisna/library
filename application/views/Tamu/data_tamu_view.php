@@ -27,7 +27,7 @@
 
                 <?php 
                 foreach ($tamu as $data) {
-                  if ($data->status_bayar == 'Tamu' OR $data->status_bayar == '') {
+                  if ($data->status_bayar == 'Tamu') {
                   
                   echo '
                   
@@ -45,7 +45,7 @@
                   
                      <a href="'.base_url('tamu/f1/'.$data->id_pendaftaran).'" class="btn btn-warning btn-sm" >FU<span class="tooltiptext">Follow UP</span></a>
                      
-                     <a href="'.base_url('tamu/out/'.$data->id_pendaftaran).'" class="btn btn-danger btn-sm " ><i class="fa fa-trash"></i><span class="tooltiptext">Hapus</span></a>
+                     
                       <a href="'.base_url('tamu/page_upload/'.$data->id_pendaftaran).'" class="btn btn-info btn-sm"><i class="fa fa-file-image-o"></i><span class="tooltiptext">Unggah Gambar</span></a>
                   
 
@@ -105,7 +105,7 @@
               ?>
 
               <?php
-            } else if ($data->status_bayar != 'Non Aktif' AND $data->status_bayar != 'Daftar Ulang') {
+            } else if ($data->status_bayar != 'Non Aktif' AND $data->status_bayar != 'Aktif') {
                    echo '
                 <tr>
                 
