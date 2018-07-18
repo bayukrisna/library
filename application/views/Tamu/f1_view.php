@@ -29,7 +29,7 @@
                 </div>
                 <div class="form-group">
                   <label for="no">Catatan</label>
-                  <input type="text" name="notes" class="form-control" id="notes" placeholder=""  .input-sm value="<?php echo $edit->notes; ?>" >
+                  <textarea type="text" class="form-control input-sm" id="notes" name="notes" placeholder=""><?php echo $edit->notes; ?></textarea>
                 </div>
                 <tr>
                   <td>
