@@ -13,7 +13,8 @@
                 <tr>
                   <th>No</th>
                   <th>Nama Pendaftar</th>
-                  <th>Nama Narasumber</th>
+                  <th>Mahasiswa Narasumber</th>
+                  <th>NIM</th>
                   <th>Tanggal Pendaftaran</th>
                   <th>Aksi</th>
                 </tr>
@@ -34,6 +35,7 @@
                   <td>'.$data->nama_pendaftar.'
                   </td>
                   <td>'.$data->nama_du.'</td> 
+                  <td>'.$data->nim.'</td> 
                   <td>'.$data->tanggal_pendaftaran.'</td>
                   <td>
                        

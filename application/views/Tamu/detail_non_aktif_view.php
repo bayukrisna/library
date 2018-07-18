@@ -1,4 +1,4 @@
-<form  method="post" action="<?php echo base_url(); ?>tamu/save_f1/<?php echo $edit->id_pendaftaran; ?>" enctype="multipart/form-data">
+
 <div class="row"> 
   <?php echo $this->session->flashdata('message');?>
 
@@ -6,7 +6,7 @@
 
   <div class="box box-primary">
 
-    <h3 style="text-align:center">Follow Up 1</h3>
+    <h3 style="text-align:center">Detail Tamu Non Aktif</h3>
   <div class="box-body">
     <div class="col-md-6">
             <!-- /.box-header -->
@@ -29,24 +29,10 @@
                 </div>
                 <div class="form-group">
                   <label for="no">Catatan</label>
-                  <input type="text" name="notes" class="form-control" id="notes" placeholder=""  .input-sm value="<?php echo $edit->notes; ?>" >
+                 <textarea type="text" class="form-control input-sm" id="inputEmail3" placeholder=""><?php echo $edit->notes; ?></textarea>
                 </div>
-                <tr>
-                  <td>
-
-<<<<<<< HEAD
-                    <input type="checkbox" id="myCheck"  onclick="myFunction()" value="Tamu">
-                    <input type="hidden" id="status_bayar" name="status_bayar" value="Tamu">
-=======
-                    <input type="checkbox" name="status_cek" id="status_cek" value="Non Aktif">
->>>>>>> 58c3704acc91c67e735c5c09d5d4752b02a30d1c
-                  </td>
-                  <td>
-                    Non Aktif
-                  </td>
-                </tr>
                 
-               <button type="submit" class="btn btn-info pull-right">Update</button>
+               
             </div>
             <!-- /.modal-content -->
           </div>
@@ -56,7 +42,7 @@
                 
 
                
-                  <?php echo form_close();?>
+                 
             
           
   </div>
@@ -67,17 +53,7 @@
           </div>
 </div>
 </div>
-<script>
-function myFunction() {
-    var checkBox = document.getElementById("myCheck");
-    var text = document.getElementById("status_bayar");
-    if (checkBox.checked == true){
-        document.getElementById("status_bayar").value = "Non Aktif";
-    } else {
-       document.getElementById("status_bayar").value = "none";
-    }
-}
-</script>
+
 
 
 

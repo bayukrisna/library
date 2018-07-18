@@ -12,12 +12,13 @@
              
                 <thead>
                 <tr>
-                  <th>No</th>
+                  <th>NIM</th>
                   <th>Nama</th>
                   <th>Asal Sekolah</th>
                   <th>Nama Prodi</th>
                   <th>Nama Konsentrasi</th>
                   <th>Waktu</th>
+                  <th>Tgl. Daftar Ulang</th>
                   <th>Status</th>
                   <th>Aksi</th>
                 </tr>
@@ -25,20 +26,21 @@
                 <tbody>
 
                 <?php 
-                $no = 0;
+               
                 foreach ($du as $data) {
                   if ($data->waktu == 'Pagi') {
                     if ($data->status_du == 'Nilai Kosong') {
                        echo '
                   
                 <tr>
-                  <td>'.++$no.'</td>
+                  <td>'.$data->nim.'</td>
                   <td>'.$data->nama_du.'
                   </td>
                   <td>'.$data->nama_sekolah.'</td>
                   <td>'.$data->nama_prodi.'</td>
                   <td>'.$data->nama_konsentrasi.'</td>
                   <td>'.$data->waktu.'</td>
+                  <td>'.$data->tanggal_du.'</td>
                   <td>'.$data->status_du.'</td>
                   <td>
                     
@@ -52,7 +54,7 @@
                       echo '
                   
                 <tr>
-                  <td>'.++$no.'</td>
+                  <td>'.$data->nim.'</td>
                   <td>'.$data->nama_du.'
                   </td>
                  
@@ -61,6 +63,7 @@
                   <td>'.$data->nama_prodi.'</td>
                   <td>'.$data->nama_konsentrasi.'</td>
                   <td>'.$data->waktu.'</td>
+                  <td>'.$data->tanggal_du.'</td>
                   <td>'.$data->status_du.'</td>
                   <td>
                     <a href="'.base_url('daftar_ulang/detail_nilai/'.$data->id_du).'" class="btn btn-warning btn-sm" title="Detail"><i class="glyphicon glyphicon-list-alt"></i><span class="tooltiptext">Detail</span></a>
@@ -74,7 +77,7 @@
                   echo '               
                     }
                 <tr>
-                  <td>'.++$no.'</td>
+                  <td>'.$data->nim.'</td>
                   <td>'.$data->nama_du.'
                   </td>
                  
@@ -82,6 +85,7 @@
                   <td>'.$data->nama_prodi.'</td>
                   <td>'.$data->nama_konsentrasi.'</td>
                   <td>'.$data->waktu.'</td>
+                  <td>'.$data->tanggal_du.'</td>
                   <td>'.$data->status_du.'</td>
                   <td>
                   
