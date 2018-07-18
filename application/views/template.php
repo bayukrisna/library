@@ -31,6 +31,32 @@
   <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
   <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
   <![endif]-->
+<style>
+a {
+    position: relative;
+    display: inline-block;
+}
+
+a .tooltiptext {
+    visibility: hidden;
+    width: 100px;
+    background-color: #5f5f5f;
+    color: #f1f1f1;
+    text-align: center;
+    border-radius: 6px;
+    padding: 5px 0;
+    
+    /* Position the tooltip */
+    position: absolute;
+    z-index: 1;
+    bottom: 120%;
+    margin-left: -60px;
+}
+
+a:hover .tooltiptext {
+    visibility: visible;
+}
+</style>
 </head>
 <body class="hold-transition skin-blue sidebar-mini">
 <div class="wrapper">
