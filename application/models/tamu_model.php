@@ -9,8 +9,6 @@ class Tamu_model extends CI_Model {
 		
 	}
 
-  
-
 	public function data_tamu(){
 		$this->db->select('*');
 		 $this->db->from('tb_pendaftaran');
@@ -19,6 +17,16 @@ class Tamu_model extends CI_Model {
 		 $query = $this->db->get();
 		 return $query->result();
 	}
+
+  public function data_tamu_out(){
+    $this->db->select('*');
+     $this->db->from('tb_pendaftaran');
+     $this->db->join('tb_sekolah','tb_sekolah.id_sekolah=tb_pendaftaran.id_sekolah2');
+     $this->db->join('tb_prodi','tb_prodi.id_prodi=tb_pendaftaran.id_prodi2');
+     $this->db->where('status_bayar','Non Aktif');
+     $query = $this->db->get();
+     return $query->result();
+  }
 
   public function get_tamu_by_id($id_pendaftaran){
       return $this->db->where('id_pendaftaran', $id_pendaftaran)
@@ -209,6 +217,22 @@ class Tamu_model extends CI_Model {
     $data = array(
             'f3'      => $this->input->post('f3', TRUE),
             'status_bayar'      => 'F3'
+      );
+
+    $this->db->where('id_pendaftaran', $no_du)
+        ->update('tb_pendaftaran', $data);
+
+    if ($this->db->affected_rows() > 0) {
+      return TRUE;
+    } else {
+      return FALSE;
+    }
+  }
+
+  public function save_out($no_du){
+    $data = array(
+            'notes'      => $this->input->post('notes', TRUE),
+            'status_bayar'      => 'Non Aktif'
       );
 
     $this->db->where('id_pendaftaran', $no_du)

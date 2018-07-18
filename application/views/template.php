@@ -100,6 +100,7 @@
             <li><a href="<?php echo base_url(); ?>tamu"><i class="fa fa-circle-o"></i>Data Tamu</a></li>
             <li><a href="<?php echo base_url(); ?>daftar_ulang/data_du"><i class="fa fa-circle-o"></i>Data Peserta Tes</a></li>
             <li><a href="<?php echo base_url(); ?>mahasiswa"><i class="fa fa-circle-o"></i>Data Mahasiswa</a></li>
+            <li><a href="<?php echo base_url(); ?>tamu/data_out"><i class="fa fa-circle-o"></i>Data Non Aktif</a></li>
           </ul>
         </li>
         <li class="treeview">
@@ -110,8 +111,9 @@
             </span>
           </a>
           <ul class="treeview-menu">
+            <li><a href="<?php echo base_url(); ?>finance/dashboard_finance"><i class="fa fa-circle-o"></i>MAIN</a></li>
             <li><a href="<?php echo base_url(); ?>finance"><i class="fa fa-circle-o"></i>Konfirmasi Registrasi</a></li>
-            <li><a href="<?php echo base_url(); ?>finance/data_lunas"><i class="fa fa-circle-o"></i>Data Lunas</a></li>
+            <li><a href="<?php echo base_url(); ?>finance/data_lunas"><i class="fa fa-circle-o"></i>Data Registrasi Lunas</a></li>
           </ul>
         </li>
       </ul>

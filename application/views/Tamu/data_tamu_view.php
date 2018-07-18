@@ -42,11 +42,12 @@
                   <td>'.$data->status_bayar.'</td>
                   
                   <td>
-                     <a href="'.base_url('tamu/hapus_tamu/'.$data->id_pendaftaran).'" class="fa-trash-o" class="btn btn-danger btn-sm " >Hapus</a>
-                     <a href="'.base_url('tamu/page_upload/'.$data->id_pendaftaran).'" class="btn btn-info btn-sm">Upload</a>
+                  
                      <a href="'.base_url('tamu/f1/'.$data->id_pendaftaran).'" class="btn btn-warning btn-sm">F1</a>
                      <a href="'.base_url('tamu/f2/'.$data->id_pendaftaran).'" class="btn btn-info btn-sm">F2</a>
                      <a href="'.base_url('tamu/f3/'.$data->id_pendaftaran).'" class="btn btn-success btn-sm">F3</a>
+                     <a href="'.base_url('tamu/out/'.$data->id_pendaftaran).'" class="btn btn-danger btn-sm " ><i class="fa fa-trash"></i></a>
+                      <a href="'.base_url('tamu/page_upload/'.$data->id_pendaftaran).'" class="btn btn-info btn-sm"><i class="fa fa-file-image-o"></i></a>
                   
 
                   </td>
@@ -69,9 +70,9 @@
                   <td>'.$data->status_bayar.'</td>
                   
                   <td>
-                     <a href="'.base_url('uploads/'.$data->bukti_transfer).'" class="btn btn-success btn-sm" target="_blank">Bukti</a>
-                     <a href="'.base_url('tamu/detail_tamu/'.$data->id_pendaftaran).'" class="btn btn-warning btn-sm">Detail</a>
-                  <a href="'.base_url('daftar_ulang/page_du_pagi/'.$data->id_pendaftaran).'" class="btn btn-info btn-sm">Daftar Ulang</a>
+                     <a href="'.base_url('uploads/'.$data->bukti_transfer).'" class="btn btn-success btn-sm" target="_blank"><i class="fa fa-file-image-o"></i></a>
+                     <a href="'.base_url('tamu/detail_tamu/'.$data->id_pendaftaran).'" class="btn btn-warning btn-sm"><i class="fa fa-database"></i></a>
+                  <a href="'.base_url('daftar_ulang/page_du_pagi/'.$data->id_pendaftaran).'" class="btn btn-info btn-sm"><i class="fa fa-sign-in"></i></a>
 
 
                   </td>
@@ -93,9 +94,9 @@
                   <td>'.$data->status_bayar.'</td>
                   
                   <td>
-                   <a href="'.base_url('uploads/'.$data->bukti_transfer).'" class="btn btn-success btn-sm" target="_blank">Bukti</a>
-                   <a href="'.base_url('tamu/detail_tamu/'.$data->id_pendaftaran).'" class="btn btn-warning btn-sm">Detail</a>
-                      <a href="'.base_url('daftar_ulang/page_du_sore/'.$data->id_pendaftaran).'" class="btn btn-info btn-sm">Daftar Ulang</a>
+                   <a href="'.base_url('uploads/'.$data->bukti_transfer).'" class="btn btn-success btn-sm" target="_blank"><i class="fa fa-file-image-o"></i></a>
+                   <a href="'.base_url('tamu/detail_tamu/'.$data->id_pendaftaran).'" class="btn btn-warning btn-sm"><i class="fa fa-database"></i></a>
+                      <a href="'.base_url('daftar_ulang/page_du_sore/'.$data->id_pendaftaran).'" class="btn btn-info btn-sm"><i class="fa fa-sign-in"></i></a>
                      
                   </td>
                 </tr>
@@ -105,7 +106,7 @@
               ?>
 
               <?php
-            } else {
+            } else if ($data->status_bayar != 'Non Aktif' AND $data->status_bayar != 'Daftar Ulang') {
                    echo '
                 <tr>
                 
@@ -118,8 +119,8 @@
                   <td>'.$data->tanggal_pendaftaran.'</td>
                   <td>'.$data->status_bayar.'</td>
                   <td>
-                   <a href="'.base_url('uploads/'.$data->bukti_transfer).'" class="btn btn-success btn-sm" target="_blank">Bukti</a>
-                   <a href="'.base_url('tamu/detail_tamu/'.$data->id_pendaftaran).'" class="btn btn-warning btn-sm">Detail</a>
+                   <a href="'.base_url('uploads/'.$data->bukti_transfer).'" class="btn btn-success btn-sm" target="_blank"><i class="fa fa-file-image-o"></i></a>
+                   <a href="'.base_url('tamu/detail_tamu/'.$data->id_pendaftaran).'" class="btn btn-warning btn-sm"><i class="fa fa-sign-in"></i></a>
                      
                   </td>
 

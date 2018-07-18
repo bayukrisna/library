@@ -51,7 +51,7 @@
                   <label for="inputEmail3" class="control-label pull-left">Kode Pos</label>
                 </div>
                   <div class="col-md-3">
-                    <input type="text" class="form-control input-sm" id="inputEmail3" placeholder="" >
+                    <input type="text" class="form-control input-sm" id="inputEmail3" placeholder="" value="<?php echo $hasil_tes->kode_pos_du; ?>">
                   </div>
                 </div>
                 <div class="form-group">
@@ -87,10 +87,10 @@
                     <input type="text" id="mtk" name="mtk" class="form-control input-sm"  placeholder="MTK" onkeyup="sum();" required="">
                   </div>
                   <div class="col-md-2">
-                    <input type="text" id="psikotes" name="psikotes" class="form-control input-sm"  placeholder="PSIKOTES" onkeyup="sum()" required="">
+                    <input type="text" id="psikotes" name="psikotes" class="form-control input-sm"  placeholder="Psiko" onkeyup="sum()" required="">
                   </div>
                   <div class="col-md-2">
-                    <input type="text" id="bing" name="bing" class="form-control input-sm"  placeholder="B.ing" onkeyup="sum()" required="">
+                    <input type="text" id="bing" name="bing" class="form-control input-sm"  placeholder="BIG" onkeyup="sum()" required="">
                   </div> 
                   <div class="col-md-2">
                   <button  class=" btn pull-left input-sm ">Input Nilai</button></div>

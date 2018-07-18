@@ -16,7 +16,7 @@ class Finance_model extends CI_Model {
                 ->row();
 
     $lunas = $this->db->select('count(*) as total')
-                ->where('status_bayar','Lunas')
+                ->where('status_bayar','Lunas') 
                 ->get('tb_pendaftaran')
                 ->row();
 
@@ -35,7 +35,7 @@ class Finance_model extends CI_Model {
 	}
 
   public function data_lunas(){
-    $query = $this->db->query("SELECT * FROM tb_pendaftaran WHERE status_bayar = 'Lunas' OR status_bayar = 'Daftar Ulang'")->result();
+    $query = $this->db->query("SELECT * FROM tb_pendaftaran WHERE status_bayar = 'Lunas' OR status_bayar = 'Aktif'")->result();
     return $query;
   }
 
@@ -43,7 +43,8 @@ class Finance_model extends CI_Model {
     $data = array(
        'id_pendaftaran'     => $id_pendaftaran,
        'id_du2'            => $this->input->post('id_daftar_ulang', TRUE),
-        'status_bayar'  => 'Lunas'
+        'status_bayar'  => 'Lunas',
+        'tanggal_konfirmasi'  => date('Y-m-d')
       );
 
     $this->db->where('id_pendaftaran', $id_pendaftaran)

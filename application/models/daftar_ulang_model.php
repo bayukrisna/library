@@ -83,6 +83,7 @@ class Daftar_ulang_model extends CI_Model {
   public function page_du_pagi($id_pendaftaran){
       return $this->db->join('tb_prodi','tb_prodi.id_prodi=tb_pendaftaran.id_prodi2')
               ->join('tb_sekolah','tb_sekolah.id_sekolah=tb_pendaftaran.id_sekolah2')
+             
               ->where('id_pendaftaran', $id_pendaftaran)
               ->get('tb_pendaftaran')
               ->row();
@@ -319,6 +320,6 @@ class Daftar_ulang_model extends CI_Model {
   }
 
 }
-   // return $this->db->where('status', 'Tersedia')->where($data)->get('service')->result();
+   
 /* End of file dosen_model.php */
 /* Location: ./application/models/dosen_model.php */

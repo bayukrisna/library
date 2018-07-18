@@ -2033,7 +2033,7 @@ function lI1IllI111IlI1I1llll1lIIl()
 <BODY onload="lI1IllI111IlI1I1llll1lIIl()" id="page-wrapper">
 <DIV id="page_1">
 <DIV id="p1dimg1">
-<IMG src="coba1_images/coba11x1.jpg" id="p1img1">
+<IMG src="<?php echo base_url(); ?>assets/img/coba11x1.jpg" id="p1img1">
 </DIV>
 
 
