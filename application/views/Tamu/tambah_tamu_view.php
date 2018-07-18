@@ -50,7 +50,7 @@
                 </div>
                 <div class="form-group">
                   <label for="religion">Agama</label>
-                <select id="agama" name="agama" class="form-control" ="">
+                <select id="agama" name="agama" class="form-control" required="">
                   <option value="">Pilih Agama</option>
                   <option value="Kristen">Kristen</option>
                   <option value="Islam">Islam</option>
@@ -89,7 +89,7 @@
                 </div>
                 <div class="form-group">
                   <label for="major">Jurusan di Sekolah Sebelumnya</label>
-                <select id="jurusan" name="jurusan" class="form-control" ="">
+                <select id="jurusan" name="jurusan" class="form-control" required="">
                   <option value="">Pilih Jurusan</option>
                   <option value="ipa">IPA</option>
                   <option value="ips">IPS</option>
@@ -102,7 +102,7 @@
 
                 <div class="form-group">
                   <label for="prodi">Program Studi</label>
-                  <select id="id_prodi" class="form-control" name="id_prodi" ="" onchange="return get_concentrate(this.value)">
+                  <select id="id_prodi" class="form-control" name="id_prodi" ="" onchange="return get_concentrate(this.value)" required="">
                     <option value="">Pilih Program Studi</option>   
                     <?php 
 
@@ -116,7 +116,7 @@
 
                 <div class="form-group">
                   <label for="major">Sumber Informasi</label>
-                <select id="sumber" name="sumber" class="form-control" ="" onchange="return get_student(this.value)">
+                <select id="sumber" name="sumber" class="form-control" ="" onchange="return get_student(this.value)" required="">
                   <option value="">Pilih Sumber</option>
                   <option value="brosur">Brosur</option>
                   <option value="iklan">Iklan</option>
@@ -169,7 +169,7 @@
                   <td>'.$data->nama_du.'</td>
                   <td>'.$data->nama_prodi.'</td>
                   <td>'.$data->waktu.'</td>
-                  <td><p class="btn btn-default btn-sm" onclick="myFunction('.$data->nim.')">Pilih</p></td>
+                  <td><p class="btn btn-default btn-sm" data-dismiss="modal" onclick="myFunction('.$data->nim.')">Pilih</p></td>
                 </tr>
                 ';
                 

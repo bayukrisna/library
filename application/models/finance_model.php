@@ -15,10 +15,7 @@ class Finance_model extends CI_Model {
                 ->get('tb_pendaftaran')
                 ->row();
 
-    $lunas = $this->db->select('count(*) as total')
-                ->where('status_bayar','Lunas') 
-                ->get('tb_pendaftaran')
-                ->row();
+    $lunas = $this->db->query("SELECT COUNT(*) AS total FROM tb_pendaftaran WHERE status_bayar = 'Lunas' OR status_bayar = 'Aktif'")->row();
 
     return array(
       'belum_bayar' => $belum_bayar->total,
