@@ -28,6 +28,15 @@ class Tamu_model extends CI_Model {
      return $query->result();
   }
 
+  public function data_sgs(){
+    $this->db->select('*');
+     $this->db->from('tb_pendaftaran');
+    $this->db->join('tb_du','tb_du.nim=tb_pendaftaran.sgs');
+$this->db->where('sumber','student_get_student');
+     $query = $this->db->get();
+     return $query->result();
+  }
+
   public function get_tamu_by_id($id_pendaftaran){
       return $this->db->where('id_pendaftaran', $id_pendaftaran)
               ->get('tb_pendaftaran')
@@ -97,7 +106,8 @@ class Tamu_model extends CI_Model {
             'sumber' => $this->input->post('sumber', TRUE),
             'id_prodi2' => $this->input->post('id_prodi', TRUE),
             'ibu_kandung' => $this->input->post('ibu_kandung', TRUE),
-            'agama' => $this->input->post('agama', TRUE)
+            'agama' => $this->input->post('agama', TRUE),
+            'sgs' => $this->input->post('student')
             
         );
     

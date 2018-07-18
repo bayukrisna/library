@@ -192,6 +192,14 @@ class Tamu extends CI_Controller {
           }
         }
 
+        public function data_sgs(){
+				$data['edit'] = $this->tamu_model->data_sgs();
+				$data['main_view'] = 'Tamu/sgs_view';
+				$this->load->view('template', $data);
+			
+		
+	}
+
 	
 
 		
