@@ -16,9 +16,30 @@
                   <input type="text" name="id_pendaftaran" class="form-control" id="id_pendaftaran" placeholder=""  .input-sm value="<?php echo $edit->id_pendaftaran; ?>" readonly required>
                 </div>
                 <div class="form-group">
-                  <label for="no">Catatan</label>
-                  <input type="text" name="f1" class="form-control" id="f1" placeholder=""  .input-sm value="<?php echo $edit->f1; ?>" required>
+                  <label for="no">Follow Up 1</label>
+                  <input type="text" name="f1" class="form-control" id="f1" placeholder=""  .input-sm value="<?php echo $edit->f1; ?>" >
                 </div>
+                <div class="form-group">
+                  <label for="no">Follow Up 2</label>
+                  <input type="text" name="f2" class="form-control" id="f2" placeholder=""  .input-sm value="<?php echo $edit->f2; ?>" >
+                </div>
+                <div class="form-group">
+                  <label for="no">Follow Up 3</label>
+                  <input type="text" name="f3" class="form-control" id="f3" placeholder=""  .input-sm value="<?php echo $edit->f3; ?>" >
+                </div>
+                <div class="form-group">
+                  <label for="no">Catatan</label>
+                  <input type="text" name="notes" class="form-control" id="notes" placeholder=""  .input-sm value="<?php echo $edit->notes; ?>" >
+                </div>
+                <tr>
+                  <td>
+
+                    <input type="checkbox" name="status_bayar" id="status_bayar" value="Non Aktif">
+                  </td>
+                  <td>
+                    Non Aktif
+                  </td>
+                </tr>
                 
                <button type="submit" class="btn btn-info pull-right">Update</button>
             </div>
@@ -41,5 +62,7 @@
           </div>
 </div>
 </div>
+
+
 
 

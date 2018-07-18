@@ -192,9 +192,13 @@ $this->db->where('sumber','student_get_student');
   }
 
   public function save_f1($no_du){
+
     $data = array(
             'f1'      => $this->input->post('f1', TRUE),
-            'status_bayar'      => 'F1'
+            'f2'      => $this->input->post('f2', TRUE),
+            'f3'      => $this->input->post('f3', TRUE),
+            'notes'      => $this->input->post('notes', TRUE),
+            'status_bayar'      => $this->input->post('status_bayar',TRUE)
       );
 
     $this->db->where('id_pendaftaran', $no_du)

@@ -27,7 +27,7 @@
 
                 <?php 
                 foreach ($tamu as $data) {
-                  if ($data->status_bayar == 'Tamu' OR $data->status_bayar == 'F1' OR $data->status_bayar == 'F2' OR $data->status_bayar == 'F3') {
+                  if ($data->status_bayar == 'Tamu' OR $data->status_bayar == '') {
                   
                   echo '
                   
@@ -43,9 +43,8 @@
                   
                   <td>
                   
-                     <a href="'.base_url('tamu/f1/'.$data->id_pendaftaran).'" class="btn btn-warning btn-sm" >F1 <span class="tooltiptext">Follow UP 1</span></a>
-                     <a href="'.base_url('tamu/f2/'.$data->id_pendaftaran).'" class="btn btn-info btn-sm">F2<span class="tooltiptext">Follow UP 2</span></a>
-                     <a href="'.base_url('tamu/f3/'.$data->id_pendaftaran).'" class="btn btn-success btn-sm">F3<span class="tooltiptext">Follow UP 3</span></a>
+                     <a href="'.base_url('tamu/f1/'.$data->id_pendaftaran).'" class="btn btn-warning btn-sm" >FU<span class="tooltiptext">Follow UP</span></a>
+                     
                      <a href="'.base_url('tamu/out/'.$data->id_pendaftaran).'" class="btn btn-danger btn-sm " ><i class="fa fa-trash"></i><span class="tooltiptext">Hapus</span></a>
                       <a href="'.base_url('tamu/page_upload/'.$data->id_pendaftaran).'" class="btn btn-info btn-sm"><i class="fa fa-file-image-o"></i><span class="tooltiptext">Unggah Gambar</span></a>
                   

@@ -120,6 +120,7 @@ class Tamu extends CI_Controller {
             $data['main_view'] = 'Tamu/f1_view';
             $data['message'] = 'Tamu/f1_view';
             redirect('tamu/detail_tamu_view');
+        	
           }
         }
 
