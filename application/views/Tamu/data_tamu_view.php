@@ -43,11 +43,11 @@
                   
                   <td>
                   
-                     <a href="'.base_url('tamu/f1/'.$data->id_pendaftaran).'" class="btn btn-warning btn-sm">F1</a>
-                     <a href="'.base_url('tamu/f2/'.$data->id_pendaftaran).'" class="btn btn-info btn-sm">F2</a>
-                     <a href="'.base_url('tamu/f3/'.$data->id_pendaftaran).'" class="btn btn-success btn-sm">F3</a>
-                     <a href="'.base_url('tamu/out/'.$data->id_pendaftaran).'" class="btn btn-danger btn-sm " ><i class="fa fa-trash"></i></a>
-                      <a href="'.base_url('tamu/page_upload/'.$data->id_pendaftaran).'" class="btn btn-info btn-sm"><i class="fa fa-file-image-o"></i></a>
+                     <a href="'.base_url('tamu/f1/'.$data->id_pendaftaran).'" class="btn btn-warning btn-sm" >F1 <span class="tooltiptext">Follow UP 1</span></a>
+                     <a href="'.base_url('tamu/f2/'.$data->id_pendaftaran).'" class="btn btn-info btn-sm">F2<span class="tooltiptext">Follow UP 2</span></a>
+                     <a href="'.base_url('tamu/f3/'.$data->id_pendaftaran).'" class="btn btn-success btn-sm">F3<span class="tooltiptext">Follow UP 3</span></a>
+                     <a href="'.base_url('tamu/out/'.$data->id_pendaftaran).'" class="btn btn-danger btn-sm " ><i class="fa fa-trash"></i><span class="tooltiptext">Hapus</span></a>
+                      <a href="'.base_url('tamu/page_upload/'.$data->id_pendaftaran).'" class="btn btn-info btn-sm"><i class="fa fa-file-image-o"></i><span class="tooltiptext">Unggah Gambar</span></a>
                   
 
                   </td>
@@ -70,9 +70,9 @@
                   <td>'.$data->status_bayar.'</td>
                   
                   <td>
-                     <a href="'.base_url('uploads/'.$data->bukti_transfer).'" class="btn btn-success btn-sm" target="_blank"><i class="fa fa-file-image-o"></i></a>
-                     <a href="'.base_url('tamu/detail_tamu/'.$data->id_pendaftaran).'" class="btn btn-warning btn-sm"><i class="fa fa-database"></i></a>
-                  <a href="'.base_url('daftar_ulang/page_du_pagi/'.$data->id_pendaftaran).'" class="btn btn-info btn-sm"><i class="fa fa-sign-in"></i></a>
+                     <a href="'.base_url('uploads/'.$data->bukti_transfer).'" class="btn btn-success btn-sm" target="_blank"><i class="fa fa-file-image-o"></i><span class="tooltiptext">Lihat Bukti</span></a>
+                     <a href="'.base_url('tamu/detail_tamu/'.$data->id_pendaftaran).'" class="btn btn-warning btn-sm"><i class="fa fa-database"></i><span class="tooltiptext">Detail Tamu</span></a>
+                  <a href="'.base_url('daftar_ulang/page_du_pagi/'.$data->id_pendaftaran).'" class="btn btn-info btn-sm"><i class="fa fa-sign-in"></i><span class="tooltiptext">Daftar Ulang</span></a>
 
 
                   </td>
@@ -94,9 +94,9 @@
                   <td>'.$data->status_bayar.'</td>
                   
                   <td>
-                   <a href="'.base_url('uploads/'.$data->bukti_transfer).'" class="btn btn-success btn-sm" target="_blank"><i class="fa fa-file-image-o"></i></a>
-                   <a href="'.base_url('tamu/detail_tamu/'.$data->id_pendaftaran).'" class="btn btn-warning btn-sm"><i class="fa fa-database"></i></a>
-                      <a href="'.base_url('daftar_ulang/page_du_sore/'.$data->id_pendaftaran).'" class="btn btn-info btn-sm"><i class="fa fa-sign-in"></i></a>
+                   <a href="'.base_url('uploads/'.$data->bukti_transfer).'" class="btn btn-success btn-sm" target="_blank"><i class="fa fa-file-image-o"></i><span class="tooltiptext">Lihat Bukti</span></a>
+                   <a href="'.base_url('tamu/detail_tamu/'.$data->id_pendaftaran).'" class="btn btn-warning btn-sm"><i class="fa fa-database"></i><span class="tooltiptext">Detail Tamu</span></a>
+                      <a href="'.base_url('daftar_ulang/page_du_sore/'.$data->id_pendaftaran).'" class="btn btn-info btn-sm"><i class="fa fa-sign-in"></i><span class="tooltiptext">Daftar Ulang</span></a>
                      
                   </td>
                 </tr>
@@ -119,8 +119,8 @@
                   <td>'.$data->tanggal_pendaftaran.'</td>
                   <td>'.$data->status_bayar.'</td>
                   <td>
-                   <a href="'.base_url('uploads/'.$data->bukti_transfer).'" class="btn btn-success btn-sm" target="_blank"><i class="fa fa-file-image-o"></i></a>
-                   <a href="'.base_url('tamu/detail_tamu/'.$data->id_pendaftaran).'" class="btn btn-warning btn-sm"><i class="fa fa-sign-in"></i></a>
+                   <a href="'.base_url('uploads/'.$data->bukti_transfer).'" class="btn btn-success btn-sm" target="_blank"><i class="fa fa-file-image-o"></i><span class="tooltiptext">Lihat Bukti</span></a>
+                   <a href="'.base_url('tamu/detail_tamu/'.$data->id_pendaftaran).'" class="btn btn-warning btn-sm"><i class="fa fa-sign-in"></i><span class="tooltiptext">Detail Tamu</span></a>
                      
                   </td>
 
