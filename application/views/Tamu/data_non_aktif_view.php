@@ -32,7 +32,7 @@
                    <td>'.$data->nama_sekolah.'</td>
                   <td>'.$data->notes.'</td>
                   <td>
-                      
+                      <a href="'.base_url('tamu/detail_out/'.$data->id_pendaftaran).'" class="btn btn-warning btn-sm"><i class="glyphicon glyphicon-list-alt"></i><span class="tooltiptext">Detail </span></a>
                   </td>
                 </tr>
                 ';

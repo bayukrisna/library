@@ -1,4 +1,4 @@
-<form  method="post" action="<?php echo base_url(); ?>tamu/save_f1/<?php echo $edit->id_pendaftaran; ?>" enctype="multipart/form-data">
+
 <div class="row"> 
   <?php echo $this->session->flashdata('message');?>
 
@@ -6,7 +6,7 @@
 
   <div class="box box-primary">
 
-    <h3 style="text-align:center">Follow Up 1</h3>
+    <h3 style="text-align:center">Detail Tamu Non Aktif</h3>
   <div class="box-body">
     <div class="col-md-6">
             <!-- /.box-header -->
@@ -29,19 +29,10 @@
                 </div>
                 <div class="form-group">
                   <label for="no">Catatan</label>
-                  <input type="text" name="notes" class="form-control" id="notes" placeholder=""  .input-sm value="<?php echo $edit->notes; ?>" >
+                 <textarea type="text" class="form-control input-sm" id="inputEmail3" placeholder=""><?php echo $edit->notes; ?></textarea>
                 </div>
-                <tr>
-                  <td>
-
-                    <input type="checkbox" name="status_cek" id="status_cek" value="Non Aktif">
-                  </td>
-                  <td>
-                    Non Aktif
-                  </td>
-                </tr>
                 
-               <button type="submit" class="btn btn-info pull-right">Update</button>
+               
             </div>
             <!-- /.modal-content -->
           </div>
@@ -51,7 +42,7 @@
                 
 
                
-                  <?php echo form_close();?>
+                 
             
           
   </div>

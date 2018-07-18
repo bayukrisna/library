@@ -18,7 +18,7 @@
                   <th>Asal Sekolah</th>
                   <th>Minat Prodi</th>
                   <th>Waktu</th>
-                  <th>Tanggal Daftar</th>
+                  <th>Tgl. Daftar Tamu</th>
                   <th>Status</th>
                   <th>Aksi</th>
                 </tr>
