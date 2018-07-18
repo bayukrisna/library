@@ -1,4 +1,4 @@
-<form  method="post" action="<?php echo base_url(); ?>tamu/save_bukti_transfer/<?php echo $edit->id_pendaftaran; ?>" enctype="multipart/form-data">
+<form  method="post" runat="server" action="<?php echo base_url(); ?>tamu/save_bukti_transfer/<?php echo $edit->id_pendaftaran; ?>" enctype="multipart/form-data">
 <div class="row"> 
     <div class="col-md-12">
         <div>
@@ -11,10 +11,10 @@
                   <?php echo $this->session->flashdata('message');?>
                        <div class="form-group">
                             <label>Foto</label> <br>
-                            <img style="height:400px; width: 400px;" src="<?php echo base_url(); ?>uploads/<?php echo $edit->bukti_transfer; ?>">
+                            <img id="output"/>
                         </div>
                         <div class="form-group">
-                                            <input type="file" id="bukti_transfer" name="bukti_transfer">
+                                            <input type="file" id="bukti_transfer" name="bukti_transfer" onchange="loadFile(event)">
                                           </div>
                                         <div>
                       
@@ -31,3 +31,9 @@
           </div>
         </div>
         </form>
+<script>
+  var loadFile = function(event) {
+    var output = document.getElementById('output');
+    output.src = URL.createObjectURL(event.target.files[0]);
+  };
+</script>

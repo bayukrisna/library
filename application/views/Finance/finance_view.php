@@ -33,7 +33,10 @@
         <td><?php echo $i->nama_pendaftar;?></td>
         <td><?php echo $i->status_bayar;?></td>
         <td><a href="<?php echo base_url().'uploads/'.$i->bukti_transfer;?>" class="btn btn-info btn-sm" target="_blank">Lihat Bukti</a></td>
-                <td><a class="btn btn-sm btn-info" data-toggle="modal" data-target="#modal_edit<?php echo $i->id_pendaftaran;?>"> Konfirmasi</a></td>              
+                <td>
+                  <a class="btn btn-sm btn-success" data-toggle="modal" data-target="#modal_edit<?php echo $i->id_pendaftaran;?>"> Konfirmasi</a>
+                  <a href="<?php echo base_url().'finance/konfirmasi_gagal/'.$i->id_pendaftaran;?>" class="btn btn-danger btn-sm" >Data Tidak Valid </a>
+                </td>              
       </tr>
       <?php endforeach;?>
     </tbody>
