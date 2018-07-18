@@ -133,7 +133,7 @@
                 </div> 
                  <div class="form-group">
                   <label for="mother">NIM</label>
-                  <input type="text" name="nim" class="form-control" id="nim" placeholder="Masukan NIM" value="" required="">
+                 <input type="text" name="nim" class="form-control" id="nim" placeholder="Masukan NIM" value="" required="" onBlur="checkAvailability()"><span id="user-availability-status"></span>  
                 </div>           
                 <button type="submit" class="btn btn-info pull-right">Daftar</button>
                   <?php echo form_close();?>
@@ -179,21 +179,16 @@
                     }
                 });
             }
-            // function get_price(p) {
-            //     var produk = p;
-
-            //     $.ajax({
-            //         url: 'order/order_price/'+produk,
-            //         data: 'produk='+produk,
-            //         type: 'GET',
-            //         dataType: 'html',
-            //         success: function(msg) {
-            //             var data = msg.split("|");
-            //             var harga = data[0] * 1000;
-            //             $("#js_hts").html(harga);
-            //             $("#js_min").html(data[1]);
-            //             $("#js_max").html(data[2]);
-            //         }
-            //     });
-            // };
+            function checkAvailability() {
+                $.ajax({
+                    url: '<?php echo base_url(); ?>daftar_ulang/cek_nim/',
+                    data: 'nim='+$("#nim").val(),
+                    type: 'POST',
+                    dataType: 'html',
+                    success:function(data){
+                    $("#user-availability-status").html(data);
+                    },
+                    error:function (){}
+                });
+            }
         </script>

@@ -57,6 +57,7 @@ class Daftar_ulang_model extends CI_Model {
                     echo '<span class="status-available"> NIM Not Available.</span>';
                 } else{
                 echo '<span class="status-available"> NIM  Available.</span>';
+                
                 }
     }
 
