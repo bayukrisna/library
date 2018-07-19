@@ -68,6 +68,21 @@ class Finance_model extends CI_Model {
       return FALSE;
     }
   }
+  function cek_id_daftar_ulang($id){
+      $query = $this->db->select('*')
+                ->from('tb_du')
+                ->where('id_du', $id)
+                ->get();
+                if ($query->num_rows() > 0)
+                {
+                    echo '<span class="callout callout-danger"> No Registrasi Sudah Terdaftar.</span>';
+                    return true;
+                } else{
+                echo '<span class="status-available"> No Registrasi Tersedia.</span>';
+                return false;
+                
+                }
+    }
 }
 
 /* End of file prodi_model.php */
