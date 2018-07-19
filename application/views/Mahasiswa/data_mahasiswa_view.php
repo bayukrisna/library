@@ -16,7 +16,7 @@
                   <th>Nama Prodi</th>
                   <th>Nama Konsentrasi</th>
                   <th>Waktu</th>
-                  <th>Tgl. Daftar Ulang</th>
+                  <th>Tgl. Registrasi</th>
                   <th>Aksi</th>
                 </tr>
                 </thead>

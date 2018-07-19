@@ -19,7 +19,7 @@
             <!-- /.box-header -->
             <!-- form start -->
                 <div class="form-group">
-                  <label for="no">No. Daftar Ulang</label>
+                  <label for="no">No. Registrasi</label>
                   <input type="text" name="id_du" class="form-control" id="id_du" placeholder=""  .input-sm value="<?php echo $du_pagi->id_du2; ?>" readonly >
                 </div>
                  <input type="hidden" name="id_pendaftaran2" class="form-control" id="id_pendaftaran2" placeholder=""  .input-sm value="<?php echo $du_pagi->id_pendaftaran; ?>" readonly >
