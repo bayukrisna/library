@@ -36,7 +36,7 @@
         <td><a href="<?php echo base_url().'uploads/'.$i->bukti_transfer;?>" class="btn btn-info btn-sm" target="_blank">Lihat Bukti</a></td>
                 <td>
                   <a class="btn btn-sm btn-success" data-toggle="modal" data-target="#modal_edit<?php echo $i->id_pendaftaran;?>"> Konfirmasi</a>
-                  <a href="<?php echo base_url().'finance/konfirmasi_gagal/'.$i->id_pendaftaran;?>" onclick="return confirm(<?php echo $alert?)" class="btn btn-danger btn-sm" >Data Tidak Valid </a>
+                  <a href="<?php echo base_url().'finance/konfirmasi_gagal/'.$i->id_pendaftaran;?>" onclick="return confirm('.$alert.')" class="btn btn-danger btn-sm" >Data Tidak Valid </a>
                 </td>              
       </tr>
       <?php endforeach;?>
@@ -68,8 +68,9 @@
                       <input type="hidden" name="id_pendaftaran" class="form-control" id="alamat" placeholder="Input Home Address" required="" value="<?php echo $i->id_pendaftaran;?>">
                         <label class="control-label col-xs-3" >No. Registrasi</label>
                         <div class="col-xs-8">
-                            <input type="text" name="id_daftar_ulang" class="form-control input-sm pull-left" id="inputEmail3" placeholder="" required="">
+                            <input type="text" name="id_daftar_ulang" class="form-control input-sm pull-left" id="id_daftar_ulang" placeholder="" required="" onKeyup="checkAvailability()"><span id="user-availability-status"></span>  
                         </div>
+                        <br>
                     </div>
 
                 </div>
@@ -89,4 +90,18 @@
   $(document).ready(function(){
     $('#mydata').DataTable();
   });
+</script>
+<script type="text/javascript">
+  function checkAvailability() {
+                $.ajax({
+                    url: '<?php echo base_url(); ?>finance/cek_id_daftar_ulang/',
+                    data: 'id_daftar_ulang='+$("#id_daftar_ulang").val(),
+                    type: 'POST',
+                    dataType: 'html',
+                    success:function(data){
+                    $("#user-availability-status").html(data);
+                    },
+                    error:function (){}
+                });
+            }
 </script>

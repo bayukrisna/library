@@ -32,13 +32,19 @@ class Finance extends CI_Controller {
 
 	public function konfirmasi(){				
 				$id_pendaftaran = $this->input->post('id_pendaftaran');
-				if ($this->finance_model->save_konfirmasi($id_pendaftaran) == TRUE) {
+				if( $this->cek_id_daftar_ulang == TRUE){
+					if ($this->finance_model->save_konfirmasi($id_pendaftaran) == TRUE) {
 						$this->session->set_flashdata('message', '<div class="alert alert-success"> konfirmasi Berhasil </div>');
 						redirect('finance');
-					} else {
+					} else  {
 						$this->session->set_flashdata('message', '<div class="alert alert-danger"> Konfirmasi Gagal </div>');
 						redirect('finance');
-					}
+					} 	
+				} else {
+					$this->session->set_flashdata('message', '<div class="alert alert-danger"> No Registrasi sudah terdaftar  </div>');
+						redirect('finance');
+				}
+				
 			}
 	public function konfirmasi_gagal($id_pendaftaran){				
 				$id_pendaftaran = $this->uri->segment(3);
@@ -50,4 +56,8 @@ class Finance extends CI_Controller {
 						redirect('finance');
 					}
 			}
+	public function cek_id_daftar_ulang(){
+		$id = $this->input->post('id_daftar_ulang');
+		$this->finance_model->cek_id_daftar_ulang($id);
+	}
 }
