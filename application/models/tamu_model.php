@@ -105,8 +105,6 @@ $this->db->where('sumber','student_get_student');
             'jk_pendaftar' => $this->input->post('jk_pendaftar', TRUE),
             'sumber' => $this->input->post('sumber', TRUE),
             'id_prodi2' => $this->input->post('id_prodi', TRUE),
-            'ibu_kandung' => $this->input->post('ibu_kandung', TRUE),
-            'agama' => $this->input->post('agama', TRUE),
             'sgs' => $this->input->post('student')
             
         );

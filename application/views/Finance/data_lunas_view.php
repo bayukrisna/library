@@ -14,7 +14,7 @@
                 <thead>
                 <tr>
                   <th>No</th>
-                  <th>No Tamu</th>
+                  <th>No. Tamu</th>
 
                   <th>Nama Pendaftar</th>
                   <th>Tanggal Konfirmasi</th>

@@ -4,7 +4,7 @@
           <?php echo $this->session->flashdata('message');?>
           <div class="box">
             <div class="box-header">
-              <h3 class="box-title">Data Pendaftar</h3>
+              <h3 class="box-title">Data Transfer Masuk</h3>
             </div>
 
             
@@ -14,7 +14,7 @@
                 <thead>
                 <tr>
                   <th>No</th>
-                  <th>Id Pendaftaran</th>
+                  <th>No Tamu</th>
                   <th>Nama Pendaftar</th>
                   <th>Status Pendaftar</th>
                   <th>Gambar</th>
@@ -66,7 +66,7 @@
 
                     <div class="form-group">
                       <input type="hidden" name="id_pendaftaran" class="form-control" id="alamat" placeholder="Input Home Address" required="" value="<?php echo $i->id_pendaftaran;?>">
-                        <label class="control-label col-xs-3" >ID Daftar Ulang</label>
+                        <label class="control-label col-xs-3" >No. Registrasi</label>
                         <div class="col-xs-8">
                             <input type="text" name="id_daftar_ulang" class="form-control input-sm pull-left" id="id_daftar_ulang" placeholder="" required="" onKeyup="checkAvailability()"><span id="user-availability-status"></span>  
                         </div>

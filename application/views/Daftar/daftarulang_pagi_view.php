@@ -12,7 +12,7 @@
             <!-- /.box-header -->
             <!-- form start -->
                 <div class="form-group">
-                  <label for="no">No. Daftar Ulang</label>
+                  <label for="no">No. Registrasi</label>
                   <input type="text" name="id_du" class="form-control" id="id_du" placeholder=""  .input-sm value="<?php echo $du_pagi->id_du2; ?>" readonly>
                 </div>
              
@@ -45,12 +45,12 @@
                 <div class="form-group">
                   <label for="religion">Agama</label>
                 <select id="agama_du" name="agama_du" class="form-control" required="">
-                  <option value="<?php echo $du_pagi->agama; ?>"><?php echo $du_pagi->agama; ?></option>
-                  <option value="kristen">Kristen</option>
-                  <option value="islam">Islam</option>
-                  <option value="hindu">Hindu</option>
-                  <option value="buddha">Buddha</option>
-                  <option value="konghuchu">Konghuchu</option>
+                  <option value="">Pilih Agama</option>
+                  <option value="Kristen">Kristen</option>
+                  <option value="Islam">Islam</option>
+                  <option value="Hindu">Hindu</option>
+                  <option value="Buddha">Buddha</option>
+                  <option value="Konghuchu">Konghuchu</option>
 
                 </select>                                     
                 </div>
@@ -107,7 +107,7 @@
                 </div>
                 <div class="form-group">
                   <label for="mother">Nama Ibu</label>
-                  <input type="text" name="ibu_kandung_du" class="form-control" id="ibu_kandung_du" placeholder="Input your mother Name" value="<?php echo $du_pagi->ibu_kandung; ?>" required="">
+                  <input type="text" name="ibu_kandung_du" class="form-control" id="ibu_kandung_du" placeholder="Input your mother Name" required="">
                 </div>
                 <div class="form-group">
                   <label for="prodi">Program Studi</label>
