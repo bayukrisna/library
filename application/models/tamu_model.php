@@ -12,8 +12,8 @@ class Tamu_model extends CI_Model {
 	public function data_tamu(){
 		$this->db->select('*');
 		 $this->db->from('tb_pendaftaran');
-     $this->db->join('tb_sekolah','tb_sekolah.id_sekolah=tb_pendaftaran.id_sekolah2');
-		 $this->db->join('tb_prodi','tb_prodi.id_prodi=tb_pendaftaran.id_prodi2');
+     $this->db->join('tb_sekolah','tb_sekolah.id_sekolah=tb_pendaftaran.id_sekolah');
+		 $this->db->join('tb_prodi','tb_prodi.id_prodi=tb_pendaftaran.id_prodi');
 		 $query = $this->db->get();
 		 return $query->result();
 	}
@@ -21,8 +21,8 @@ class Tamu_model extends CI_Model {
   public function data_tamu_out(){
     $this->db->select('*');
      $this->db->from('tb_pendaftaran');
-     $this->db->join('tb_sekolah','tb_sekolah.id_sekolah=tb_pendaftaran.id_sekolah2');
-     $this->db->join('tb_prodi','tb_prodi.id_prodi=tb_pendaftaran.id_prodi2');
+     $this->db->join('tb_sekolah','tb_sekolah.id_sekolah=tb_pendaftaran.id_sekolah');
+     $this->db->join('tb_prodi','tb_prodi.id_prodi=tb_pendaftaran.id_prodi');
      $this->db->where('status_bayar','Non Aktif');
      $query = $this->db->get();
      return $query->result();
@@ -44,8 +44,8 @@ $this->db->where('sumber','student_get_student');
   }
 
   public function detail_tamu($id_du){
-    return $this->db->join('tb_sekolah','tb_sekolah.id_sekolah=tb_pendaftaran.id_sekolah2')
-            ->join('tb_prodi','tb_prodi.id_prodi=tb_pendaftaran.id_prodi2')
+    return $this->db->join('tb_sekolah','tb_sekolah.id_sekolah=tb_pendaftaran.id_sekolah')
+            ->join('tb_prodi','tb_prodi.id_prodi=tb_pendaftaran.id_prodi')
             ->where('id_pendaftaran', $id_du)
             ->get('tb_pendaftaran')
             ->row();
@@ -66,13 +66,13 @@ $this->db->where('sumber','student_get_student');
            $kode = 1;    
           }
           $kodemax = str_pad($kode, 3, "0", STR_PAD_LEFT); // angka 4 menunjukkan jumlah digit angka 0
-          $kodejadi = "TM".$kodemax;    // hasilnya ODJ-9921-0001 dst.
+          $kodejadi = "TM".$kodemax;    // hasilnya ODJ-991-0001 dst.
           return $kodejadi; 
     }
 
     public function  buat_kode_du()   {
-          $this->db->SELECT('RIGHT(tb_pendaftaran.id_du2,3) as kode', FALSE);
-          $this->db->order_by('id_du2','DESC');    
+          $this->db->SELECT('RIGHT(tb_pendaftaran.id_du,3) as kode', FALSE);
+          $this->db->order_by('id_du','DESC');    
           $this->db->limit(1);    
           $query = $this->db->get('tb_pendaftaran');      //cek dulu apakah ada sudah ada kode di tabel.    
           if($query->num_rows() <> 0){      
@@ -85,7 +85,7 @@ $this->db->where('sumber','student_get_student');
            $kode = 1;    
           }
           $kodemax = str_pad($kode, 3, "0", STR_PAD_LEFT); // angka 4 menunjukkan jumlah digit angka 0
-          $kodejadi = "DU".$kodemax;    // hasilnya ODJ-9921-0001 dst.
+          $kodejadi = "DU".$kodemax;    // hasilnya ODJ-991-0001 dst.
           return $kodejadi; 
     }
 
@@ -94,7 +94,7 @@ $this->db->where('sumber','student_get_student');
         $data = array(
             'id_pendaftaran'      => $this->input->post('id_pendaftaran', TRUE),
             'nama_pendaftar'      => $this->input->post('nama_pendaftar', TRUE),
-            'id_sekolah2'      => $this->input->post('id_sekolah', TRUE),
+            'id_sekolah'      => $this->input->post('id_sekolah', TRUE),
             'jurusan'      => $this->input->post('jurusan', TRUE),
             'alamat'     => $this->input->post('alamat', TRUE),
             'email'     => $this->input->post('email', TRUE),
@@ -104,7 +104,7 @@ $this->db->where('sumber','student_get_student');
             'waktu'     => $this->input->post('waktu', TRUE),
             'jk_pendaftar' => $this->input->post('jk_pendaftar', TRUE),
             'sumber' => $this->input->post('sumber', TRUE),
-            'id_prodi2' => $this->input->post('id_prodi', TRUE),
+            'id_prodi' => $this->input->post('id_prodi', TRUE),
             'sgs' => $this->input->post('student')
             
         );
@@ -151,7 +151,7 @@ $this->db->where('sumber','student_get_student');
        'status_bayar'     => 'Aktif'
       );
 
-    $this->db->where('id_du2', $id_pendaftaran)
+    $this->db->where('id_du', $id_pendaftaran)
         ->update('tb_pendaftaran', $data);
 
     if ($this->db->affected_rows() > 0) {
@@ -165,7 +165,7 @@ $this->db->where('sumber','student_get_student');
     $data = array(
             'id_pendaftaran'      => $this->input->post('id_pendaftaran', TRUE),
             'nama_pendaftar'      => $this->input->post('nama_pendaftar', TRUE),
-            'id_sekolah2'      => $this->input->post('id_sekolah', TRUE),
+            'id_sekolah'      => $this->input->post('id_sekolah', TRUE),
             'jurusan'      => $this->input->post('jurusan', TRUE),
             'alamat'     => $this->input->post('alamat', TRUE),
             'email'     => $this->input->post('email', TRUE),
@@ -174,7 +174,7 @@ $this->db->where('sumber','student_get_student');
             'waktu'     => $this->input->post('waktu', TRUE),
             'jk_pendaftar' => $this->input->post('jk_pendaftar', TRUE),
             'sumber' => $this->input->post('sumber', TRUE),
-            'id_prodi2' => $this->input->post('id_prodi', TRUE),
+            'id_prodi' => $this->input->post('id_prodi', TRUE),
             'ibu_kandung' => $this->input->post('ibu_kandung', TRUE),
             'agama' => $this->input->post('agama', TRUE)
       );
@@ -209,10 +209,10 @@ $this->db->where('sumber','student_get_student');
     }
   }
 
-  public function save_f2($no_du){
+  public function save_f($no_du){
     $data = array(
-            'f2'      => $this->input->post('f2', TRUE),
-            'status_bayar'      => 'F2'
+            'f'      => $this->input->post('f', TRUE),
+            'status_bayar'      => 'F'
       );
 
     $this->db->where('id_pendaftaran', $no_du)

@@ -23,7 +23,7 @@ class Daftar_ulang_model extends CI_Model {
            $kode = 1;    
           }
           $kodemax = str_pad($kode, 3, "0", STR_PAD_LEFT); // angka 4 menunjukkan jumlah digit angka 0
-          $kodejadi = "TES".$kodemax;    // hasilnya ODJ-9921-0001 dst.
+          $kodejadi = "TES".$kodemax;    // hasilnya ODJ-991-0001 dst.
           return $kodejadi; 
     }
 
@@ -42,7 +42,7 @@ class Daftar_ulang_model extends CI_Model {
            $kode = 1;    
           }
           $kodemax = str_pad($kode, 3, "0", STR_PAD_LEFT); // angka 4 menunjukkan jumlah digit angka 0
-          $kodejadi = "DU".$kodemax;    // hasilnya ODJ-9921-0001 dst.
+          $kodejadi = "DU".$kodemax;    // hasilnya ODJ-991-0001 dst.
           return $kodejadi; 
     }
 
@@ -68,14 +68,23 @@ class Daftar_ulang_model extends CI_Model {
                     ->result();
 
     }
-    public function getConcentrate($data){
+    /*public function get_concentrate($data){
     $this->db->select('tb_prodi.id_prodi, tb_konsentrasi.id_konsentrasi, tb_konsentrasi.nama_konsentrasi');
     $this->db->from('tb_prodi'); //dari tabel data_users
     $this->db->join('tb_konsentrasi', 'tb_prodi.id_prodi = tb_konsentrasi.id_prodi2');
     $this->db->where($data); //menyatukan tabel users menggunakan left join
     $data = $this->db->get(); //mengambil seluruh data
     return $data->result(); //mengembalikan data
-    }
+    } */
+
+    public function get_concentrate($data){
+      return $this->db->join('tb_konsentrasi','tb_konsentrasi.id_prodi=tb_prodi.id_prodi')
+              ->where('tb_prodi.id_prodi',$data)
+              ->get('tb_prodi')
+              ->result();
+  }
+
+  
 
   
     function getPreschool()
@@ -86,17 +95,17 @@ class Daftar_ulang_model extends CI_Model {
     }
 
     public function data_du(){
-      return $this->db->join('tb_prodi','tb_prodi.id_prodi=tb_du.id_prodi2')
-              ->join('tb_sekolah','tb_sekolah.id_sekolah=tb_du.id_sekolah2')
-              ->join('tb_konsentrasi','tb_konsentrasi.id_konsentrasi=tb_du.id_konsentrasi2')
+      return $this->db->join('tb_prodi','tb_prodi.id_prodi=tb_du.id_prodi')
+              ->join('tb_sekolah','tb_sekolah.id_sekolah=tb_du.id_sekolah')
+              ->join('tb_konsentrasi','tb_konsentrasi.id_konsentrasi=tb_du.id_konsentrasi')
               ->where('waktu','Pagi')
               ->get('tb_du')
               ->result();
   }
 
   public function page_du_pagi($id_pendaftaran){
-      return $this->db->join('tb_prodi','tb_prodi.id_prodi=tb_pendaftaran.id_prodi2')
-              ->join('tb_sekolah','tb_sekolah.id_sekolah=tb_pendaftaran.id_sekolah2')
+      return $this->db->join('tb_prodi','tb_prodi.id_prodi=tb_pendaftaran.id_prodi')
+              ->join('tb_sekolah','tb_sekolah.id_sekolah=tb_pendaftaran.id_sekolah')
              
               ->where('id_pendaftaran', $id_pendaftaran)
               ->get('tb_pendaftaran')
@@ -120,9 +129,9 @@ class Daftar_ulang_model extends CI_Model {
             'nik_du'      => $this->input->post('nik_du', TRUE),
             'jurusan_du'      => $this->input->post('jurusan', TRUE),
             'ibu_kandung_du'      => $this->input->post('ibu_kandung_du', TRUE),
-            'id_sekolah2'      => $this->input->post('id_sekolah', TRUE),
-            'id_prodi2'      => $this->input->post('id_prodi', TRUE),
-            'id_konsentrasi2'      => $this->input->post('concentrate', TRUE),
+            'id_sekolah'      => $this->input->post('id_sekolah', TRUE),
+            'id_prodi'      => $this->input->post('id_prodi', TRUE),
+            'id_konsentrasi'      => $this->input->post('concentrate', TRUE),
             'kode_pos_du'      => $this->input->post('kode_pos_du', TRUE),
             'waktu'      => 'Pagi',
             'status_du'      => 'Nilai Kosong',
@@ -143,8 +152,8 @@ class Daftar_ulang_model extends CI_Model {
     }
 
     public function page_du_sore($id_pendaftaran){
-      return $this->db->join('tb_prodi','tb_prodi.id_prodi=tb_pendaftaran.id_prodi2')
-              ->join('tb_sekolah','tb_sekolah.id_sekolah=tb_pendaftaran.id_sekolah2')
+      return $this->db->join('tb_prodi','tb_prodi.id_prodi=tb_pendaftaran.id_prodi')
+              ->join('tb_sekolah','tb_sekolah.id_sekolah=tb_pendaftaran.id_sekolah')
               ->where('id_pendaftaran', $id_pendaftaran)
               ->get('tb_pendaftaran')
               ->row();
@@ -166,9 +175,9 @@ class Daftar_ulang_model extends CI_Model {
             'nik_du'      => $this->input->post('nik_du', TRUE),
             'jurusan_du'      => $this->input->post('jurusan', TRUE),
             'ibu_kandung_du'      => $this->input->post('ibu_kandung_du', TRUE),
-            'id_sekolah2'      => $this->input->post('id_sekolah', TRUE),
-            'id_prodi2'      => $this->input->post('id_prodi', TRUE),
-            'id_konsentrasi2'      => $this->input->post('concentrate', TRUE),
+            'id_sekolah'      => $this->input->post('id_sekolah', TRUE),
+            'id_prodi'      => $this->input->post('id_prodi', TRUE),
+            'id_konsentrasi'      => $this->input->post('concentrate', TRUE),
             'kode_pos_du'      => $this->input->post('kode_pos_du', TRUE),
             'waktu'      => 'Sore',
             'status_du'      => 'Mahasiswa',
@@ -189,26 +198,27 @@ class Daftar_ulang_model extends CI_Model {
     }
 
   public function detail_nilai($id_du){
-      return $this->db->join('tb_prodi','tb_prodi.id_prodi=tb_du.id_prodi2')
-              ->join('tb_sekolah','tb_sekolah.id_sekolah=tb_du.id_sekolah2')
-              ->join('tb_konsentrasi','tb_konsentrasi.id_konsentrasi=tb_du.id_konsentrasi2')
-              ->join('tb_hasil_tes','tb_hasil_tes.id_hasil_tes=tb_du.kode_tes')
+      return $this->db->join('tb_prodi','tb_prodi.id_prodi=tb_du.id_prodi')
+              ->join('tb_sekolah','tb_sekolah.id_sekolah=tb_du.id_sekolah')
+              ->join('tb_konsentrasi','tb_konsentrasi.id_konsentrasi=tb_du.id_konsentrasi') 
+              ->join('tb_hasil_tes','tb_hasil_tes.id_hasil_tes=tb_du.kode_tes')             
               ->where('id_du', $id_du)
               ->get('tb_du')
               ->row();
   }
 
   public function detail_du($id_du){
-      return $this->db->join('tb_prodi','tb_prodi.id_prodi=tb_du.id_prodi2')
-              ->join('tb_sekolah','tb_sekolah.id_sekolah=tb_du.id_sekolah2')
-              ->join('tb_konsentrasi','tb_konsentrasi.id_konsentrasi=tb_du.id_konsentrasi2')
+      return $this->db->join('tb_prodi','tb_prodi.id_prodi=tb_du.id_prodi')
+              ->join('tb_sekolah','tb_sekolah.id_sekolah=tb_du.id_sekolah')
+              ->join('tb_konsentrasi','tb_konsentrasi.id_konsentrasi=tb_du.id_konsentrasi')
               ->where('id_du', $id_du)
               ->get('tb_du')
               ->row();
   }
+  
 
   public function get_data_pagi($id_pendaftaran){
-      return $this->db->join('tb_sekolah','tb_sekolah.id_sekolah=tb_pendaftaran.id_sekolah2')
+      return $this->db->join('tb_sekolah','tb_sekolah.id_sekolah=tb_pendaftaran.id_sekolah')
               ->where('id_pendaftaran', $id_pendaftaran)
               ->get('tb_pendaftaran')
               ->row();
@@ -216,7 +226,7 @@ class Daftar_ulang_model extends CI_Model {
 
     public function save_edit_du($no_du){
     $data = array(
-            'id_du'      => $this->input->post('id_du', TRUE),
+            
             'kode_tes'      => $this->input->post('kode_tes', TRUE),
             'nama_du'      => $this->input->post('nama_du', TRUE),
             'jk_daftar_du'      => $this->input->post('gender', TRUE),
@@ -230,9 +240,9 @@ class Daftar_ulang_model extends CI_Model {
             'nik_du'      => $this->input->post('nik_du', TRUE),
             'jurusan_du'      => $this->input->post('jurusan', TRUE),
             'ibu_kandung_du'      => $this->input->post('ibu_kandung_du', TRUE),
-            'id_sekolah2'      => $this->input->post('id_sekolah', TRUE),
-            'id_prodi2'      => $this->input->post('id_prodi', TRUE),
-            'id_konsentrasi2'      => $this->input->post('concentrate', TRUE),
+            'id_sekolah'      => $this->input->post('id_sekolah', TRUE),
+            'id_prodi'      => $this->input->post('id_prodi', TRUE),
+            'id_konsentrasi'      => $this->input->post('concentrate', TRUE),
             'kode_pos_du'      => $this->input->post('kode_pos_du', TRUE),
             'nim'      => $this->input->post('nim', TRUE),
       );
@@ -248,8 +258,8 @@ class Daftar_ulang_model extends CI_Model {
   }
 
   public function get_du_by_id($id_du){
-    return $this->db->join('tb_sekolah','tb_sekolah.id_sekolah=tb_du.id_sekolah2')
-            ->join('tb_prodi','tb_prodi.id_prodi=tb_du.id_prodi2')
+    return $this->db->join('tb_sekolah','tb_sekolah.id_sekolah=tb_du.id_sekolah')
+            ->join('tb_prodi','tb_prodi.id_prodi=tb_du.id_prodi')
             ->where('id_du', $id_du)
             ->get('tb_du')
             ->row();
@@ -282,7 +292,7 @@ class Daftar_ulang_model extends CI_Model {
     }
 
     public function get_hasil_tes($id_du){
-      return $this->db->join('tb_sekolah','tb_sekolah.id_sekolah=tb_du.id_sekolah2')
+      return $this->db->join('tb_sekolah','tb_sekolah.id_sekolah=tb_du.id_sekolah')
               ->join('tb_hasil_tes','tb_hasil_tes.id_hasil_tes=tb_du.kode_tes')
               ->where('id_du', $id_du)
               ->get('tb_du')

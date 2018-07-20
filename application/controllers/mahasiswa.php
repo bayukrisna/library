@@ -29,17 +29,16 @@ class Mahasiswa extends CI_Controller {
 
 	public function tambah_mahasiswa()
 	{
+		$data['kodeunik'] = $this->mahasiswa_model->buat_kode();
 			$id_du = $this->uri->segment(3);
 			$data['mahasiswa'] = $this->mahasiswa_model->get_mahasiswa_by_du($id_du);
-			$data['main_view'] = 'Mahasiswa/tambah_mahasiswa_view';
+			$data['main_view'] = 'Mahasiswa/detil_mahasiswa_view';
 			$this->load->view('template', $data);
 	}
 
 	public function save_mahasiswa()
 	{
-			if($this->mahasiswa_model->save_mahasiswa() == TRUE && $this->mahasiswa_model->save_orang_tua() == TRUE && $this->mahasiswa_model->save_alamat() == TRUE && $this->mahasiswa_model->save_wali() == TRUE && $this->mahasiswa_model->save_kependudukan() == TRUE){
-				$id_pendaftaran = $this->input->post('id_du');
-				$this->tamu_model->save_update_status2($id_pendaftaran);
+			if($this->mahasiswa_model->save_mahasiswa() == TRUE && $this->mahasiswa_model->save_orang_tua() == TRUE && $this->mahasiswa_model->save_alamat() == TRUE && $this->mahasiswa_model->save_wali() == TRUE && $this->mahasiswa_model->save_kependudukan() == TRUE && $this->mahasiswa_model->save_jenis_tinggal() == TRUE){
 				$nama_du = $this->input->post('nama_mahasiswa');
 				$this->session->set_flashdata('message', '<div class="col-md-12 alert alert-success"> Data '.$nama_du.' berhasil didaftarkan. </div>');
             	redirect('daftar_ulang/data_du');
@@ -48,5 +47,12 @@ class Mahasiswa extends CI_Controller {
             	redirect('daftar_ulang/page_du_pagi');
 			} 
 	} 
+
+	public function data_mahasiswa()
+	{
+			$data['mahasiswa'] = $this->mahasiswa_model->data_mahasiswa_dikti();
+			$data['main_view'] = 'Mahasiswa/mahasiswa_view';
+			$this->load->view('template', $data);
+	}
 		
 }

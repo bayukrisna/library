@@ -13,7 +13,7 @@
             <!-- form start -->
                 <div class="form-group">
                   <label for="no">No. Registrasi</label>
-                  <input type="text" name="id_du" class="form-control" id="id_du" placeholder=""  .input-sm value="<?php echo $du_pagi->id_du2; ?>" readonly>
+                  <input type="text" name="id_du" class="form-control" id="id_du" placeholder=""  .input-sm value="<?php echo $du_pagi->id_du; ?>" readonly>
                 </div>
              
                 <div class="form-group">
@@ -80,7 +80,7 @@
                 <div class="form-group">
                   <label for="preschool">Asal Sekolah</label>
                   <select id="id_sekolah" name="id_sekolah"class="form-control" required="">
-                  <option value="<?php echo $du_pagi->id_sekolah2; ?>"><?php echo $du_pagi->nama_sekolah; ?></option>
+                  <option value="<?php echo $du_pagi->id_sekolah; ?>"><?php echo $du_pagi->nama_sekolah; ?></option>
                   <?php 
 
                   foreach($getPreschool as $row)
@@ -163,11 +163,11 @@
 
         <script type="text/javascript">
             function get_concentrate(p) {
-                var prodi = p;
+                var id_prodi = p;
 
                 $.ajax({
-                    url: '<?php echo base_url(); ?>daftar_ulang/get_concentrate/'+prodi,
-                    data: 'prodi='+prodi,
+                    url: '<?php echo base_url(); ?>daftar_ulang/get_concentrate/'+id_prodi,
+                    data: 'id_prodi='+id_prodi,
                     type: 'GET',
                     dataType: 'html',
                     success: function(msg) {

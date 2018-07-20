@@ -12,14 +12,14 @@ class Konsentrasi_model extends CI_Model {
 	public function data_konsentrasi(){
 		$this->db->select('*');
 		 $this->db->from('tb_konsentrasi');
-		 $this->db->join('tb_prodi','tb_prodi.id_prodi=tb_konsentrasi.id_prodi2');
+		 $this->db->join('tb_prodi','tb_prodi.id_prodi=tb_konsentrasi.id_prodi');
 		 $query = $this->db->get();
 		 return $query->result();
 	}
 
    public function get_konsentrasi_by_id($id_konsentrasi){
-      return $this->db->join('tb_prodi','tb_prodi.id_prodi=tb_konsentrasi.id_prodi2')
-              ->where('id_konsentrasi', $id_konsentrasi)
+      return $this->db->join('tb_prodi','tb_prodi.id_prodi=tb_konsentrasi.id_prodi')
+              ->where('tb_konsentrasi.id_konsentrasi', $id_konsentrasi)
               ->get('tb_konsentrasi')
               ->row();
   }
@@ -54,7 +54,7 @@ class Konsentrasi_model extends CI_Model {
         $data = array(
             'id_konsentrasi'        => $this->input->post('id_konsentrasi'),
             'nama_konsentrasi'      	=> $this->input->post('nama_konsentrasi'),
-            'id_prodi2'      		=> $this->input->post('id_prodi')
+            'id_prodi'      		=> $this->input->post('id_prodi')
             
         );
     
@@ -88,7 +88,7 @@ class Konsentrasi_model extends CI_Model {
     $data = array(
        'id_konsentrasi'     => $this->input->post('id_konsentrasi'),
         'nama_konsentrasi'  => $this->input->post('nama_konsentrasi'),
-        'id_prodi2'         => $this->input->post('id_prodi')
+        'id_prodi'         => $this->input->post('id_prodi')
       );
 
     $this->db->where('id_konsentrasi', $id_sekolah)
