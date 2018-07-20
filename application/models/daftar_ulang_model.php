@@ -54,10 +54,10 @@ class Daftar_ulang_model extends CI_Model {
                 ->get();
                 if ($query->num_rows() > 0)
                 {
-                    echo '<span class="status-available"> NIM Not Available.</span><script>document.getElementById("myBtn").disabled = true;</script>';
+                    echo '<span class="label label-danger">NIM Not Available</span><script>document.getElementById("myBtn").disabled = true;</script>';
 
                 } else{
-                echo '<span class="status-available"> NIM  Available.</span><script>document.getElementById("myBtn").disabled = false;</script>';
+                echo '<span class="label label-success"> NIM  Available.</span><script>document.getElementById("myBtn").disabled = false;</script>';
                 
                 }
     }

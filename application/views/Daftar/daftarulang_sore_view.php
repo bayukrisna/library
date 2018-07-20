@@ -133,9 +133,9 @@
                 </div> 
                  <div class="form-group">
                   <label for="mother">NIM</label>
-                 <input type="text" name="nim" class="form-control" id="nim" placeholder="Masukan NIM" value="" required="" onBlur="checkAvailability()"><span id="user-availability-status"></span>  
+                 <input type="text" name="nim" class="form-control" id="nim" placeholder="Masukan NIM" value="" required="" onkeyup="checkAvailability()"><span id="user-availability-status"></span>  
                 </div>           
-                <button type="submit" class="btn btn-info pull-right">Daftar</button>
+                <button type="submit" id="myBtn" class="btn btn-info pull-right">Daftar</button>
                   <?php echo form_close();?>
             
           
