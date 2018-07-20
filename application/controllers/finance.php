@@ -32,7 +32,8 @@ class Finance extends CI_Controller {
 
 	public function konfirmasi(){				
 				$id_pendaftaran = $this->input->post('id_pendaftaran');
-				if( $this->cek_id_daftar_ulang == TRUE){
+				$id = $this->input->post('id_daftar_ulang');
+				if( $this->finance_model->cek_id_daftar_ulang($id) == TRUE){
 					if ($this->finance_model->save_konfirmasi($id_pendaftaran) == TRUE) {
 						$this->session->set_flashdata('message', '<div class="alert alert-success"> konfirmasi Berhasil </div>');
 						redirect('finance');

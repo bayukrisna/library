@@ -97,10 +97,9 @@ class daftar_ulang extends CI_Controller {
 	public function get_concentrate($param = NULL) {
 		// $layanan =$this->input->post('layanan');
 		$prodi = $param;
-		$dt = array('id_prodi' => $prodi);
-		$result = $this->daftar_ulang_model->getConcentrate($dt);
+		$result = $this->daftar_ulang_model->get_concentrate($prodi);
 		$option = "";
-		$option .= '<option value="">Pilih Produk</option>';
+		$option .= '<option value="">Pilih Konsentrasi</option>';
 		foreach ($result as $data) {
 			$option .= "<option value='".$data->id_konsentrasi."' >".$data->nama_konsentrasi."</option>";
 			

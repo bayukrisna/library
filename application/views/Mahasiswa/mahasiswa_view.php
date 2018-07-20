@@ -78,25 +78,24 @@
                 <tbody>
 
                 <?php 
-               
+               $no = 0;
                 foreach ($mahasiswa as $data) {
-                  echo '
                   
+                  echo '
                 <tr>
+                  <td>'.++$no.'</td>
+                  <td>'.$data->nama_mahasiswa.'</td>
                   <td>'.$data->nim.'</td>
-                  <td>'.$data->nama_du.'
-                  </td>
+                  <td>'.$data->jenis_kelamin.'</td>
+                  <td>'.$data->agama.'</td>
+                  <td>'.$data->tanggal_lahir.'</td>
                   <td>'.$data->nama_prodi.'</td>
-                  <td>'.$data->nama_konsentrasi.'</td>
-                  <td>'.$data->waktu.'</td>
-                  <td>'.$data->tanggal_du.'</td>
+                  <td>'.$data->status_mahasiswa.'</td>
+                  <td>'.$data->id_angkatan.'</td>
                   <td>
-                       <a href="'.base_url('mahasiswa/detail_mahasiswa/'.$data->id_du).'" class="btn btn-info btn-sm">Detail</a>
 
                   </td>
-                  <td></td>
-                  <td></td>
-                  <td></td>
+                  
                 </tr>
                 ';
                 

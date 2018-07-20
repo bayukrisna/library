@@ -20,9 +20,9 @@
             <!-- form start -->
                 <div class="form-group">
                   <label for="no">No. Registrasi</label>
-                  <input type="text" name="id_du" class="form-control" id="id_du" placeholder=""  .input-sm value="<?php echo $du_pagi->id_du2; ?>" readonly >
+                  <input type="text" name="id_du" class="form-control" id="id_du" placeholder=""  .input-sm value="<?php echo $du_pagi->id_du; ?>" readonly >
                 </div>
-                 <input type="hidden" name="id_pendaftaran2" class="form-control" id="id_pendaftaran2" placeholder=""  .input-sm value="<?php echo $du_pagi->id_pendaftaran; ?>" readonly >
+                
                 <div class="form-group">
                   <label for="email">Nama Lengkap</label>
                   <input type="text" name="nama_du" class="form-control" id="nama_du" placeholder="Input Full Name" value="<?php echo $du_pagi->nama_pendaftar; ?>" required="">
@@ -83,7 +83,7 @@
                 <div class="form-group">
                   <label for="preschool">Asal Sekolah</label>
                   <select id="id_sekolah" name="id_sekolah"class="form-control" required="">
-                  <option value="<?php echo $du_pagi->id_sekolah2; ?>"><?php echo $du_pagi->nama_sekolah; ?></option>
+                  <option value="<?php echo $du_pagi->id_sekolah; ?>"><?php echo $du_pagi->nama_sekolah; ?></option>
                   <?php 
 
                   foreach($getPreschool as $row)
@@ -115,7 +115,7 @@
                 <div class="form-group">
                   <label for="prodi">Program Studi</label>
                   <select id="id_prodi" class="form-control" required="" name="id_prodi" ="" onchange="return get_concentrate(this.value)">
-                    <option value="<?php echo $du_pagi->id_prodi2; ?>"><?php echo $du_pagi->nama_prodi; ?></option>   
+                    <option value="<?php echo $du_pagi->id_prodi; ?>"><?php echo $du_pagi->nama_prodi; ?></option>   
                     <?php 
 
                   foreach($getProdi as $row)

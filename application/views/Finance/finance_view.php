@@ -77,7 +77,7 @@
 
                 <div class="modal-footer">
                     <button class="btn" data-dismiss="modal" aria-hidden="true">Tutup</button>
-                    <button class="btn btn-info">Update</button>
+                    <button class="btn btn-info">Konfirmasi</button>
                 </div>
             <?php echo form_close();?>
             </div>

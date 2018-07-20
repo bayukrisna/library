@@ -15,6 +15,7 @@
                   <th>Kode Dosen</th>
                   <th>No. HP</th>
                   <th>Keterangan</th>
+                   <th>Aksi</th>
                 </tr>
                 </thead>
                 <tbody>
@@ -31,6 +32,9 @@
                   <td>'.$data->kode_dosen.'</td>
                   <td>'.$data->no_hp.'</td>
                   <td>'.$data->keterangan.'</td>
+                  <td>   <a href="'.base_url('/detail_tamu/'.$data->id_pendaftaran).'" class="btn btn-warning btn-sm"><i class="glyphicon glyphicon-list-alt"></i><span class="tooltiptext">Detail Tamu</span></a>
+                  <a href="'.base_url('daftar_ulang/page_du_pagi/'.$data->id_pendaftaran).'" class="btn btn-info btn-sm"><i class="fa fa-sign-in"></i><span class="tooltiptext">Daftar Ulang</span></a>
+                  </td>
                 </tr>
                 ';
                 

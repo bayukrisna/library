@@ -9,9 +9,10 @@
               <div class="row">
                 <div class="col-lg-6">
                   <?php echo $this->session->flashdata('message');?>
-      <div class="form-group">
+                
+                <div class="form-group">
                   <label for="no">NIM</label>
-                  <input type="text" name="id_du" class="form-control" id="id_du" placeholder="" required .input-sm value="<?php echo $du->nim; ?>" readonly>
+                  <input type="text" name="nim" class="form-control" id="nim" placeholder="" required .input-sm value="<?php echo $du->nim; ?>" readonly>
                 </div>
                 <div class="form-group">
                   <label for="email">Nama Lengkap</label>

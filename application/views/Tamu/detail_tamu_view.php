@@ -77,7 +77,7 @@
                 <div class="form-group">
                   <label for="preschool">Asal Sekolah</label>
                   <select id="id_sekolah" name="id_sekolah"class="form-control" required="">
-                  <option value="<?php echo $edit->id_sekolah2; ?>"><?php echo $edit->nama_sekolah; ?></option>
+                  <option value="<?php echo $edit->id_sekolah; ?>"><?php echo $edit->nama_sekolah; ?></option>
                   <?php 
 
                   foreach($getPreschool as $row)
@@ -104,7 +104,7 @@
                 <div class="form-group">
                   <label for="prodi">Program Studi</label>
                   <select id="id_prodi" class="form-control" name="id_prodi" ="" onchange="return get_concentrate(this.value)">
-                    <option value="<?php echo $edit->id_prodi2; ?>"><?php echo $edit->nama_prodi; ?></option>   
+                    <option value="<?php echo $edit->id_prodi; ?>"><?php echo $edit->nama_prodi; ?></option>   
                     <?php 
 
                   foreach($getProdi as $row)
