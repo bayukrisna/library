@@ -33,10 +33,6 @@ class Finance extends CI_Controller {
 	public function konfirmasi(){				
 				$id_pendaftaran = $this->input->post('id_pendaftaran');
 				if ($this->input->post('reg') == 'No Registrasi Tersedia'){
-
-				$id = $this->input->post('id_daftar_ulang');
-				if( $this->finance_model->cek_id_daftar_ulang($id) == TRUE){
-
 					if ($this->finance_model->save_konfirmasi($id_pendaftaran) == TRUE) {
 						$this->session->set_flashdata('message', '<div class="alert alert-success"> konfirmasi Berhasil </div>');
 						redirect('finance');
@@ -44,11 +40,10 @@ class Finance extends CI_Controller {
 						$this->session->set_flashdata('message', '<div class="alert alert-danger"> Konfirmasi Gagal </div>');
 						redirect('finance');
 					} 	
-				} else {$this->session->set_flashdata('message', '<div class="alert alert-danger"> Konfirmasi Gagal </div>');
+				} else {
+					$this->session->set_flashdata('message', '<div class="alert alert-danger"> Konfirmasi Gagal </div>');
 						redirect('finance');}
-					
-					
-			}
+		}
 	public function konfirmasi_gagal($id_pendaftaran){				
 				$id_pendaftaran = $this->uri->segment(3);
 				if ($this->finance_model->gagal_konfirmasi($id_pendaftaran) == TRUE) {

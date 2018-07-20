@@ -39,7 +39,7 @@ class Finance_model extends CI_Model {
 	public function save_konfirmasi($id_pendaftaran){
     $data = array(
        'id_pendaftaran'     => $id_pendaftaran,
-       'id_du2'            => $this->input->post('id_daftar_ulang', TRUE),
+       'id_du'            => $this->input->post('id_daftar_ulang', TRUE),
         'status_bayar'  => 'Lunas',
         'tanggal_konfirmasi'  => date('Y-m-d')
       );
