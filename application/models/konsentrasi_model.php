@@ -91,14 +91,14 @@ class Konsentrasi_model extends CI_Model {
         'id_prodi'         => $this->input->post('id_prodi')
       );
 
-    $this->db->where('id_konsentrasi', $id_sekolah)
+    if (!empty($data)) {
+            $this->db->where('id_konsentrasi', $id_sekolah)
         ->update('tb_konsentrasi', $data);
 
-    if ($this->db->affected_rows() > 0) {
-      return TRUE;
-    } else {
-      return FALSE;
-    }
+          return true;
+        } else {
+            return null;
+        }
   }
 
 }

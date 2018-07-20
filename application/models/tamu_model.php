@@ -179,14 +179,14 @@ $this->db->where('sumber','student_get_student');
             'agama' => $this->input->post('agama', TRUE)
       );
 
-    $this->db->where('id_pendaftaran', $no_du)
+    if (!empty($data)) {
+            $this->db->where('id_pendaftaran', $no_du)
         ->update('tb_pendaftaran', $data);
 
-    if ($this->db->affected_rows() > 0) {
-      return TRUE;
-    } else {
-      return FALSE;
-    }
+          return true;
+        } else {
+            return null;
+        }
   }
 
   public function save_f1($no_du){
@@ -199,63 +199,17 @@ $this->db->where('sumber','student_get_student');
             'status_bayar'      => $this->input->post('status_bayar')
       );
 
-    $this->db->where('id_pendaftaran', $no_du)
+    if (!empty($data)) {
+            $this->db->where('id_pendaftaran', $no_du)
         ->update('tb_pendaftaran', $data);
 
-    if ($this->db->affected_rows() > 0) {
-      return TRUE;
-    } else {
-      return FALSE;
-    }
+          return true;
+        } else {
+            return null;
+        }
   }
 
-  public function save_f($no_du){
-    $data = array(
-            'f'      => $this->input->post('f', TRUE),
-            'status_bayar'      => 'F'
-      );
-
-    $this->db->where('id_pendaftaran', $no_du)
-        ->update('tb_pendaftaran', $data);
-
-    if ($this->db->affected_rows() > 0) {
-      return TRUE;
-    } else {
-      return FALSE;
-    }
-  }
-
-  public function save_f3($no_du){
-    $data = array(
-            'f3'      => $this->input->post('f3', TRUE),
-            'status_bayar'      => 'F3'
-      );
-
-    $this->db->where('id_pendaftaran', $no_du)
-        ->update('tb_pendaftaran', $data);
-
-    if ($this->db->affected_rows() > 0) {
-      return TRUE;
-    } else {
-      return FALSE;
-    }
-  }
-
-  public function save_out($no_du){
-    $data = array(
-            'notes'      => $this->input->post('notes', TRUE),
-            'status_bayar'      => 'Non Aktif'
-      );
-
-    $this->db->where('id_pendaftaran', $no_du)
-        ->update('tb_pendaftaran', $data);
-
-    if ($this->db->affected_rows() > 0) {
-      return TRUE;
-    } else {
-      return FALSE;
-    }
-  }
+  
 
 
 }

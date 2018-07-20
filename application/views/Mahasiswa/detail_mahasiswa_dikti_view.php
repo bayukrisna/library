@@ -1,4 +1,4 @@
-        <?php echo form_open('mahasiswa/save_mahasiswa'); ?>
+<form  method="post" action="<?php echo base_url(); ?>mahasiswa/save_edit_mahasiswa/<?php echo $mahasiswa->id_mahasiswa; ?>" enctype="multipart/form-data">
 
         <div class="box box-info">
             <div class="box-header with-border">
@@ -9,37 +9,29 @@
               <table class="table">
         <tr>
 
-          
-                  <label for="no">Data Mahasiswa</label>
-                  <input type="hidden" name="id_mahasiswa" class="form-control" id="id_mahasiswa" placeholder="" required .input-sm value="<?php echo $kodeunik ?>" readonly>
-                
-              <input type="hidden" name="id_prodi" id="id_prodi" class="text-input" size="10" style="width:70%" value="<?php echo $mahasiswa->id_prodi; ?>" readonly>    </td>
-               <input type="hidden" name="id_konsentrasi" id="id_konsentrasi" class="text-input" size="10" style="width:70%" value="<?php echo $mahasiswa->id_konsentrasi; ?>" readonly>    </td>
-               <input type="hidden" name="nim" id="nim" class="text-input" size="10" style="width:70%" value="<?php echo $mahasiswa->nim; ?>" readonly>    </td>
-
             <td width="15%" class="left_column">Nama <font color="#FF0000">*</font></td>
             <td>:
-                <input type="text" name="nama_mahasiswa" id="nama_mahasiswa" class="text-input" size="10" style="width:70%" value="<?php echo $mahasiswa->nama_du; ?>" readonly>    </td>
+                <input type="text" name="nama_mahasiswa" id="nama_mahasiswa" class="text-input" size="10" style="width:70%" value="<?php echo $mahasiswa->nama_mahasiswa; ?>" readonly>    </td>
       
             <td class="left_column">Nama Ibu <font color="#FF0000">*</font></td>
-            <td>:  <input type="text" name="nama_ibu" id="nama_ibu" class="text-input" size="10" style="width:70%" value="<?php echo $mahasiswa->ibu_kandung_du; ?>" readonly>
+            <td>:  <input type="text" name="" id="" class="text-input" size="10" style="width:70%" value="<?php echo $mahasiswa->nama_ibu; ?>" readonly>
                                   
             <input type="hidden" name="stat_pd" value="A">
             </td>
         </tr>
         <tr>
             <td class="left_column" width="15%" value=>Tempat Lahir <font color="#FF0000">*</font></td>
-            <td width="35%">: <input type="text" name="tempat_lahir" id="tempat_lahir" class="text-input" size="10" style="width:70%" value="<?php echo $mahasiswa->tpt_lahir_du; ?>" readonly>          </td>
+            <td width="35%">: <input type="text" name="tempat_lahir" id="tempat_lahir" class="text-input" size="10" style="width:70%" value="<?php echo $mahasiswa->tempat_lahir; ?>" readonly>          </td>
             <td class="left_column" width="15%">Tanggal Lahir <font color="#FF0000">*</font></td>
             <td>:
-                <input type="date" name="tanggal_lahir" id="tanggal_lahir" class="text-input" size="10" style="width:70%" value="<?php echo $mahasiswa->tgl_lahir_du; ?>" readonly>                           </td>
+                <input type="date" name="tanggal_lahir" id="tanggal_lahir" class="text-input" size="10" style="width:70%" value="<?php echo $mahasiswa->tanggal_lahir; ?>" readonly>                           </td>
         </tr>
         <tr>
             <td class="left_column">Jenis Kelamin</td>
-            <td>: <input type="text" name="jenis_kelamin" id="jenis_kelamin" class="text-input" size="10" style="width:70%" value="<?php echo $mahasiswa->jk_daftar_du; ?>" readonly></td>
+            <td>: <input type="text" name="jenis_kelamin" id="jenis_kelamin" class="text-input" size="10" style="width:70%" value="<?php echo $mahasiswa->jenis_kelamin; ?>" readonly></td>
             <td class="left_column">Agama <font color="#FF0000">*</font></td>
             <td>:  <select name="agama" id="agama">
-            <option value="<?php echo $mahasiswa->agama_du; ?>"><?php echo $mahasiswa->agama_du; ?></option>
+            <option value="<?php echo $mahasiswa->agama; ?>"><?php echo $mahasiswa->agama; ?></option>
             <option value="Islam">Islam</option>
             <option value="Katholik">Katholik</option>
              <option value="Kristen">Kristen</option>
@@ -61,7 +53,6 @@
               <li><a href="#tab_2" data-toggle="tab">Orang Tua</a></li>
               <li><a href="#tab_3" data-toggle="tab">Wali</a></li>
               <li><a href="#tab_4" data-toggle="tab">Kebutuhan Khusus</a></li>
-          
               <li class="pull-right"><button class="btn btn-sm btn-success" >Simpan</button> </li>
             </ul>
             <div class="tab-content">
@@ -69,51 +60,51 @@
                 <table width="90%" class="table">
                 <tr>
                     <td class="left_column" width="15%">NIK <font color="#FF0000">*</font></td>
-                    <td colspan="4">:  <input type="text" name="nik" id="nik" value="<?php echo $mahasiswa->nik_du; ?>" class="validate[required] text-input" maxlength="16" size="50" style="width:40%" required>                            <font color="grey"><em> ( Nomor NIK tanpa tanda baca ) </em></font>
+                    <td colspan="4">:  <input type="text" name="nik" id="nik" value="<?php echo $mahasiswa->nik; ?>" class="validate[required] text-input" maxlength="16" size="50" style="width:40%">                            <font color="grey"><em> ( Nomor NIK tanpa tanda baca ) </em></font>
                     </td>
                 </tr>
         <tr>
                     <td class="left_column" width="15%">NISN</td>
-                    <td colspan="5">: <input type="text" name="nisn" id="nisn" class="text-input" maxlength="10" size="10" style="width:70%"></td>
+                    <td colspan="5">: <input type="text" name="nisn" id="nisn" class="text-input" maxlength="10" size="10" style="width:70%" value="<?php echo $mahasiswa->nisn; ?>"></td>
                 </tr>
         <tr>
                     <td class="left_column" width="15%">NPWP</td>
-                    <td colspan="5">: <input type="text" name="npwp" id="npwp" class="text-input" maxlength="15" size="15" style="width:70%"></td>
+                    <td colspan="5">: <input type="text" name="npwp" id="npwp" class="text-input" maxlength="15" size="15" style="width:70%" value="<?php echo $mahasiswa->npwp; ?>"></td>
                 </tr>
                 <tr>
                     <td class="left_column">Kewarganegaraan <font color="#FF0000">*</font></td>
                     <td colspan="5">: 
-                    <input type="text" name="kewarganegaraan" id="kewarganegaraan" class="validate[required] text-input" style="width:70%">          
+                    <input type="text" name="kewarganegaraan" id="kewarganegaraan" class="validate[required] text-input" style="width:70%" value="<?php echo $mahasiswa->kewarganegaraan; ?>"> 
                     </td>
                 </tr>
                 <tr>
                     <td class="left_column" width="15%">Jalan</td>
-                    <td colspan="5">: <input type="text" name="jalan" id="jalan" class="text-input" maxlength="80" size="80" style="width:70%"></td>
+                    <td colspan="5">: <input type="text" name="jalan" id="jalan" class="text-input" maxlength="80" size="80" style="width:70%" value="<?php echo $mahasiswa->jalan; ?>"></td>
                 </tr>
                 <tr>
                     <td class="left_column">Dusun</td>
-                    <td>: <input type="text" name="dusun" id="dusun" class="text-input" maxlength="60" size="60" style="width:80%"></td>
+                    <td>: <input type="text" name="dusun" id="dusun" class="text-input" maxlength="60" size="60" style="width:80%" value="<?php echo $mahasiswa->dusun; ?>"></td>
                     <td class="left_column">RT</td>
-                    <td >: <input type="text" name="rt" id="rt" class="text-input" maxlength="2" size="2" style="width:50%" onkeydown="return onlyNumber(event,this,false,false)">  </td>
+                    <td >: <input type="text" name="rt" id="rt" class="text-input" maxlength="2" size="2" style="width:50%" onkeydown="return onlyNumber(event,this,false,false)" value="<?php echo $mahasiswa->rt; ?>">  </td>
                     <td class="left_column">RW</td>
-                    <td>: <input type="text" name="rw" id="rw" class="text-input" maxlength="2" size="2" style="width:50%" onkeydown="return onlyNumber(event,this,false,false)"></td>
+                    <td>: <input type="text" name="rw" id="rw" class="text-input" maxlength="2" size="2" style="width:50%" onkeydown="return onlyNumber(event,this,false,false)" value="<?php echo $mahasiswa->rw; ?>"></td>
                 </tr>
                 <tr>
                     <td class="left_column">Kelurahan <font color="#FF0000">*</font></td>
-                    <td>: <input type="text" name="kelurahan" id="kelurahan" class="validate[required] text-input" maxlength="60" size="60" style="width:80%" required=""></td>
+                    <td>: <input type="text" name="kelurahan" id="kelurahan" class="validate[required] text-input" maxlength="60" size="60" style="width:80%" value="<?php echo $mahasiswa->kelurahan; ?>"></td>
                     <td class="left_column">Kodepos</td>
-                    <td colspan="4">: <input type="text" name="kode_pos" id="kode_pos" class="text-input" maxlength="5" size="5" style="width:30%" onkeydown="return onlyNumber(event,this,false,false)"></td>
+                    <td colspan="4">: <input type="text" name="kode_pos" id="kode_pos" class="text-input" maxlength="5" size="5" style="width:30%" onkeydown="return onlyNumber(event,this,false,false)" value="<?php echo $mahasiswa->kode_pos; ?>"></td>
                 </tr>
                 <tr>
                     <td class="left_column">Kecamatan <font color="#FF0000">*</font></td>
                     <td colspan="5">: 
-                    <input type="text" name="kecamatan" id="kecamatan" class="validate[required] text-input" style="width:70%" required="">
+                    <input type="text" name="kecamatan" id="kecamatan" class="validate[required] text-input" style="width:70%" value="<?php echo $mahasiswa->kecamatan; ?>">
                     </td>
                 </tr>
                 <tr>
                     <td class="left_column">Jenis Tinggal</td>
                     <td colspan="5">: <select name="jenis_tinggal" id="jenis_tinggal">
-                    <option value="">-- Pilih Jenis Tinggal --</option>
+                    <option value="<?php echo $mahasiswa->jenis_tinggal; ?>"><?php echo $mahasiswa->jenis_tinggal; ?></option>
                     <option value="Bersama orang tua">Bersama orang tua</option>
                     <option value="Wali">Wali</option>
                     <option value="Kost">Kost</option>
@@ -125,7 +116,7 @@
                  <tr>
                     <td class="left_column">Alat Transportasi</td>
                     <td colspan="5">: <select name="alat_transportasi" id="alat_transportasi">
-                    <option value="">-- Pilih Alat Transportasi --</option>
+                    <option value="<?php echo $mahasiswa->alat_transportasi; ?>"><?php echo $mahasiswa->alat_transportasi; ?></option>
                     <option value="Jalan kaki">Jalan kaki</option>
                     <option value="Angkutan umum/bus/pete-pete">Angkutan umum/bus/pete-pete</option>
                     <option value="Mobil/bus antar jemput">Mobil/bus antar jemput</option>
@@ -142,22 +133,22 @@
                 </tr>
                 <tr>
                     <td class="left_column">Telepon</td>
-                    <td>: <input type="text" name="no_telepon" id="no_telepon" class="text-input" maxlength="20" size="20" style="width:30%" value="<?php echo $mahasiswa->no_telp_du; ?>"></td>
+                    <td>: <input type="text" name="no_telepon" id="no_telepon" class="text-input" maxlength="20" size="20" style="width:30%" value="<?php echo $mahasiswa->no_telepon; ?>"></td>
                     <td class="left_column">HP</td>
-                    <td colspan="4">: <input type="text" name="no_hp" id="no_hp" class="text-input" maxlength="20" size="20" style="width:30%" value="<?php echo $mahasiswa->no_telpm_du; ?>"></td>
+                    <td colspan="4">: <input type="text" name="no_hp" id="no_hp" class="text-input" maxlength="20" size="20" style="width:30%" value="<?php echo $mahasiswa->no_hp; ?>"></td>
                 </tr>
                 <tr>
                     <td class="left_column">Email</td>
-                    <td colspan="5">: <input type="text" name="email" id="email" class="text-input" maxlength="60" size="60" style="width:30%"></td>
+                    <td colspan="5">: <input type="text" name="email" id="email" class="text-input" maxlength="60" size="60" style="width:30%" value="<?php echo $mahasiswa->email; ?>"></td>
                 </tr>
                 <tr>
                     <td class="left_column">Penerima KPS ? <font color="#FF0000">*</font></td>
                     <td>: 
-                    <label class="radio-inline"><input type="radio" name="kps" id="kps" value="Tidak" checked="" onclick="disableTxt()"> Tidak</label> &nbsp; 
-                <label class="radio-inline"><input type="radio" name="kps" id="kps" value="Ya" onclick="undisableTxt()"> Ya</label> &nbsp; 
+                    <label class="radio-inline"><input type="radio" name="kps" value="Tidak" > Tidak</label> &nbsp; 
+                <label class="radio-inline"><input type="radio" name="kps" value="Ya" > Ya</label> &nbsp; 
                 </td>
                     <td class="left_column">No KPS</td>
-                    <td colspan = '4'>: <input type="text" name="no_kps" id="myText" class="text-input" maxlength="80" size="80" style="width:50%"></td>
+                    <td colspan = '4'>: <input type="text" name="no_kps" id="no_kps" class="text-input" maxlength="80" size="80" disabled style="width:50%" value="<?php echo $mahasiswa->no_kps; ?>"></td>
                 </tr>
 
 
@@ -173,22 +164,22 @@
                 </tr>
                 <tr>
                     <td class="left_column" width="15%">NIK</td>
-                    <td>:  <input type="text" name="nik_ayah" id="nik_ayah" class="text-input" maxlength="16" size="50" style="width:40%" onkeydown="return onlyNumber(event,this,false,false)">                            <font color="grey"><em> ( Nomor KTP tanpa tanda baca ) </em></font>
+                    <td>:  <input type="text" name="nik_ayah" id="nik_ayah" class="text-input" maxlength="16" size="50" style="width:40%" onkeydown="return onlyNumber(event,this,false,false)" value="<?php echo $mahasiswa->nik_ayah; ?>">                            <font color="grey"><em> ( Nomor KTP tanpa tanda baca ) </em></font>
                     </td>
                 </tr>
                 <tr>
                     <td class="left_column" width="15%">Nama</td>
-                    <td>: <input type="text" name="nama_ayah" id="nama_ayah" class="text-input" maxlength="100" size="100" style="width:50%"></td>
+                    <td>: <input type="text" name="nama_ayah" id="nama_ayah" class="text-input" maxlength="100" size="100" style="width:50%" value="<?php echo $mahasiswa->nama_ayah; ?>"></td>
                 </tr>
                 <tr>
                     <td class="left_column">Tanggal Lahir</td>
                     <td>:
-                        <input type="date" name="tanggal_lahir_ayah" id="tanggal_lahir_ayah" class="text-input" maxlength="50" size="50" style="width:20%">                                                                    </td>
+                        <input type="date" name="tanggal_lahir_ayah" id="tanggal_lahir_ayah" class="text-input" maxlength="50" size="50" style="width:20%" value="<?php echo $mahasiswa->tanggal_lahir_ayah; ?>">                                                                    </td>
                 </tr>
                 <tr>
                     <td class="left_column">Pendidikan</td>
                     <td>: <select name="pendidikan_ayah" id="pendidikan_ayah">
-                        <option value="">-- Pilih Jenjang --</option>
+                        <option value="<?php echo $mahasiswa->pendidikan_ayah; ?>"><?php echo $mahasiswa->pendidikan_ayah; ?></option>
                         <option value="Tidak sekolah">Tidak sekolah</option>
                         <option value="PAUD">PAUD</option>
                         <option value="TK / sederajat">TK / sederajat</option>
@@ -219,7 +210,7 @@
                 <tr>
                     <td class="left_column">Pekerjaan</td>
                     <td>: <select name="pekerjaan_ayah" id="pekerjaan_ayah">
-                        <option value="">-- Pilih Pekerjaan --</option>
+                        <option value="<?php echo $mahasiswa->pekerjaan_ayah; ?>"><?php echo $mahasiswa->pekerjaan_ayah; ?></option>
                         <option value="Tidak bekerja">Tidak bekerja</option>
                         <option value="Nelayan">Nelayan</option>
                         <option value="Petani">Petani</option>
@@ -239,7 +230,7 @@
                 <tr>
                     <td class="left_column">Penghasilan</td>
                     <td>: <select name="penghasilan_ayah" id="penghasilan_ayah">
-                        <option value="">-- Pilih Penghasilan --</option>
+                        <option value="<?php echo $mahasiswa->penghasilan_ayah; ?>"><?php echo $mahasiswa->penghasilan_ayah; ?></option>
                         <option value="Kurang dari Rp. 500,000">Kurang dari Rp. 500,000</option>
                         <option value="Rp. 500,000 - Rp. 999,999">Rp. 500,000 - Rp. 999,999</option>
                         <option value="Rp. 1,000,000 - Rp. 1,999,999">Rp. 1,000,000 - Rp. 1,999,999</option>
@@ -253,24 +244,24 @@
                 </tr>
                 <tr>
                     <td class="left_column" width="15%">NIK</td>
-                    <td>:  <input type="text" name="nik_ibu" id="nik_ibu" class="text-input" maxlength="16" size="50" style="width:40%" onkeydown="return onlyNumber(event,this,false,false)">                            <font color="grey"><em> ( Nomor KTP tanpa tanda baca ) </em></font>
+                    <td>:  <input type="text" name="nik_ibu" id="nik_ibu" class="text-input" maxlength="16" size="50" style="width:40%" onkeydown="return onlyNumber(event,this,false,false)" value="<?php echo $mahasiswa->nik_ibu; ?>">                            <font color="grey"><em> ( Nomor KTP tanpa tanda baca ) </em></font>
                     </td>
                 </tr>
                 
                 <tr>
                     <td class="left_column">Nama</td>
                     <td>:
-            <input type="text" name="" id="" class="text-input" size="10" style="width:70%" value="<?php echo $mahasiswa->ibu_kandung_du; ?>" readonly></td>
+            <input type="text" name="nama_ibu" id="nama_ibu" class="text-input" size="10" style="width:70%" value="<?php echo $mahasiswa->nama_ibu; ?>" readonly></td>
                 </tr>
                 <tr>
                     <td class="left_column">Tanggal Lahir</td>
                     <td>:
-                        <input type="date" name="tanggal_lahir_ibu" id="tanggal_lahir_ibu" class="text-input" maxlength="60" size="60" style="width:20%">                    </td>
+                        <input type="date" name="tanggal_lahir_ibu" id="tanggal_lahir_ibu" class="text-input" maxlength="60" size="60" style="width:20%" value="<?php echo $mahasiswa->tanggal_lahir_ibu; ?>">                    </td>
                 </tr>
                 <tr>
                     <td class="left_column">Pendidikan</td>
                     <td>: <select name="pendidikan_ibu" id="pendidikan_ibu">
-                        <option value="">-- Pilih Jenjang --</option>
+                        <option value="<?php echo $mahasiswa->pendidikan_ibu; ?>"><?php echo $mahasiswa->pekerjaan_ibu; ?></option>
                         <option value="Tidak sekolah">Tidak sekolah</option>
                         <option value="PAUD">PAUD</option>
                         <option value="TK / sederajat">TK / sederajat</option>
@@ -301,7 +292,7 @@
                 <tr>
                     <td class="left_column">Pekerjaan</td>
                     <td>: <select name="pekerjaan_ibu" id="pekerjaan_ibu">
-                        <option value="">-- Pilih Pekerjaan --</option>
+                        <option value="<?php echo $mahasiswa->pekerjaan_ibu; ?>"><?php echo $mahasiswa->pekerjaan_ibu; ?></option>
                         <option value="Tidak bekerja">Tidak bekerja</option>
                         <option value="Nelayan">Nelayan</option>
                         <option value="Petani">Petani</option>
@@ -321,7 +312,7 @@
                 <tr>
                     <td class="left_column">Penghasilan</td>
                     <td>: <select name="penghasilan_ibu" id="penghasilan_ibu">
-                    <option value="">-- Pilih Penghasilan --</option>
+                    <option value="<?php echo $mahasiswa->penghasilan_ibu; ?>"><?php echo $mahasiswa->penghasilan_ibu; ?></option>
                      <option value="Kurang dari Rp. 500,000">Kurang dari Rp. 500,000</option>
                         <option value="Rp. 500,000 - Rp. 999,999">Rp. 500,000 - Rp. 999,999</option>
                         <option value="Rp. 1,000,000 - Rp. 1,999,999">Rp. 1,000,000 - Rp. 1,999,999</option>
@@ -341,17 +332,17 @@
                 </tr>
                 <tr>
                     <td class="left_column" width="15%">Nama</td>
-                    <td>: <input type="text" name="nama_wali" id="nama_wali" class="text-input" maxlength="100" size="100" style="width:50%"></td>
+                    <td>: <input type="text" name="nama_wali" id="nama_wali" class="text-input" maxlength="100" size="100" style="width:50%" value="<?php echo $mahasiswa->nama_wali; ?>"></td>
                 </tr>
                 <tr>
                     <td class="left_column">Tanggal Lahir</td>
                     <td>:
-                        <input type="date" name="tanggal_lahir_wali" id="tanggal_lahir_wali" class="text-input" maxlength="50" size="50" style="width:20%">                                                                    </td>
+                        <input type="date" name="tanggal_lahir_wali" id="tanggal_lahir_wali" class="text-input" maxlength="50" size="50" style="width:20%" value="<?php echo $mahasiswa->tanggal_lahir_wali; ?>">                                                                    </td>
                 </tr>
                 <tr>
                     <td class="left_column">Pendidikan</td>
                     <td>: <select name="pendidikan_wali" id="pendidikan_wali">
-                        <option value="">-- Pilih Jenjang --</option>
+                        <option value="<?php echo $mahasiswa->pendidikan_wali; ?>"><?php echo $mahasiswa->pendidikan_wali; ?></option>
                         <option value="Tidak sekolah">Tidak sekolah</option>
                         <option value="PAUD">PAUD</option>
                         <option value="TK / sederajat">TK / sederajat</option>
@@ -382,7 +373,7 @@
                 <tr>
                     <td class="left_column">Pekerjaan</td>
                     <td>: <select name="pekerjaan_wali" id="pekerjaan_wali">
-                        <option value="">-- Pilih Pekerjaan --</option>
+                        <option value="<?php echo $mahasiswa->pekerjaan_wali; ?>"><?php echo $mahasiswa->pekerjaan_wali; ?></option>
                         <option value="Tidak bekerja">Tidak bekerja</option>
                         <option value="Nelayan">Nelayan</option>
                         <option value="Petani">Petani</option>
@@ -402,7 +393,7 @@
                 <tr>
                     <td class="left_column">Penghasilan</td>
                     <td>: <select name="penghasilan_wali" id="penghasilan_wali">
-                        <option value="">-- Pilih Penghasilan --</option>
+                        <option value="<?php echo $mahasiswa->penghasilan_wali; ?>"><?php echo $mahasiswa->penghasilan_wali; ?></option>
                         <option value="Kurang dari Rp. 500,000">Kurang dari Rp. 500,000</option>
                         <option value="Rp. 500,000 - Rp. 999,999">Rp. 500,000 - Rp. 999,999</option>
                         <option value="Rp. 1,000,000 - Rp. 1,999,999">Rp. 1,000,000 - Rp. 1,999,999</option>
@@ -450,7 +441,7 @@
                     </td>
                 </tr>
             </table>
-            <?php echo form_close();?>
+            </form>
 
               </div>
               <!-- /.tab-pane -->
@@ -459,16 +450,4 @@
           </div>
           <!-- nav-tabs-custom -->
         </div>
-
-
-        <script>
-            document.getElementById("myText").disabled = true;
-function disableTxt() {
-    document.getElementById("myText").disabled = true;
-}
-
-function undisableTxt() {
-    document.getElementById("myText").disabled = false;
-  }
-</script>
         <!-- /.col -->

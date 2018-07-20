@@ -78,14 +78,14 @@ class Asal_sekolah_model extends CI_Model {
         'jenis_sekolah'         => $this->input->post('jenis_sekolah'),
       );
 
-    $this->db->where('id_sekolah', $id_sekolah)
+    if (!empty($data)) {
+            $this->db->where('id_sekolah', $id_sekolah)
         ->update('tb_sekolah', $data);
 
-    if ($this->db->affected_rows() > 0) {
-      return TRUE;
-    } else {
-      return FALSE;
-    }
+          return true;
+        } else {
+            return null;
+        }
   }
 
     

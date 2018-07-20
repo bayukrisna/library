@@ -80,14 +80,14 @@ class Prodi_model extends CI_Model {
         'ketua_prodi'     => $this->input->post('ketua_prodi')
       );
 
-    $this->db->where('id_prodi', $id_prodi)
+    if (!empty($data)) {
+            $this->db->where('id_prodi', $id_prodi)
         ->update('tb_prodi', $data);
 
-    if ($this->db->affected_rows() > 0) {
-      return TRUE;
-    } else {
-      return FALSE;
-    }
+          return true;
+        } else {
+            return null;
+        }
   }
 }
 

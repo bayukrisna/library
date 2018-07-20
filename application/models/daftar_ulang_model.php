@@ -333,14 +333,14 @@ class Daftar_ulang_model extends CI_Model {
             'tanggal_hasil_tes'     => date('Y-m-d')
       );
 
-    $this->db->where('id_hasil_tes', $no_tes)
+    if (!empty($data)) {
+            $this->db->where('id_hasil_tes', $id_tes)
         ->update('tb_hasil_tes', $data);
 
-    if ($this->db->affected_rows() > 0) {
-      return TRUE;
-    } else {
-      return FALSE;
-    }
+          return true;
+        } else {
+            return null;
+        }
   }
 
 }

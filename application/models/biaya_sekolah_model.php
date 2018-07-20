@@ -79,21 +79,22 @@ class Biaya_sekolah_model extends CI_Model {
 
 
   public function save_edit_biaya_sekolah($id_biaya){
+
     $data = array(
        'id_biaya'        => $this->input->post('id_biaya'),
         'nama_biaya'        => $this->input->post('nama_biaya'),
         'jumlah_biaya'          => $this->input->post('jumlah_biaya'),
         'periode'          => $this->input->post('periode')
       );
-
-    $this->db->where('id_biaya', $id_biaya)
+    if (!empty($data)) {
+            $this->db->where('id_biaya', $id_biaya)
         ->update('tb_biaya', $data);
 
-    if ($this->db->affected_rows() > 0) {
-      return TRUE;
-    } else {
-      return FALSE;
-    }
+          return true;
+        } else {
+            return null;
+        }
+    
   }
 
 }
