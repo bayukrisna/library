@@ -67,11 +67,13 @@
                     <div class="form-group">
                       <input type="hidden" name="id_pendaftaran" class="form-control" id="alamat" placeholder="Input Home Address" required="" value="<?php echo $i->id_pendaftaran;?>">
                         <label class="control-label col-xs-3" >No. Registrasi</label>
-                        <div class="col-xs-8">
-                            <input type="text" name="id_daftar_ulang" class="form-control input-sm pull-left" id="id_daftar_ulang" placeholder="" required="" onKeyup="checkAvailability()"><span id="user-availability-status"></span>  
+                        <div class="col-xs-6">
+                            <input type="text" name="id_daftar_ulang" class="form-control input-sm pull-left" id="id_daftar_ulang" placeholder="" required="" onKeyup="checkAvailability()">
                         </div>
-                        <br>
-                    </div>
+                        <div class="col-xs-1">
+                        <span id="user-availability-status"></span> 
+                      </div>
+                    </div><br>
 
                 </div>
 

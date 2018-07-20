@@ -13,7 +13,7 @@ class Data_mahasiswa extends CI_Controller {
 	public function index()
 	{
 			$data['mahasiswa'] = $this->mahasiswa_model->data_mahasiswa();
-			$data['main_view'] = 'Mahasiswa/detil_mahasiswa_view';
+			$data['main_view'] = 'Mahasiswa/mahasiswa_view';
 			$this->load->view('template', $data);
 	}
 
