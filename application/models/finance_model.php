@@ -75,11 +75,11 @@ class Finance_model extends CI_Model {
                 ->get();
                 if ($query->num_rows() > 0)
                 {
-                    echo '<span class="callout callout-danger"> No Registrasi Sudah Terdaftar.</span>';
-                    return true;
+                    echo '<span class="label label-danger">No Registrasi Tidak Tersedia</span>
+                    <input type="hidden" name="reg" class="callout callout-danger" id="reg" value="No Regristrasi Tidak Tersedia">';
                 } else{
-                echo '<span class="status-available"> No Registrasi Tersedia.</span>';
-                return false;
+                echo '<span class="label label-success">No Registrasi Tersedia</span>
+                      <input type="hidden" name="reg" class="btn btn-info" id="reg" value="No Registrasi Tersedia" readonly="">';
                 
                 }
     }
