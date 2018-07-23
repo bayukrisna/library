@@ -96,7 +96,7 @@
                   echo '
                 <tr>
                   <td>'.++$no.'</td>
-                  <td><a href="'.base_url('mahasiswa/detail_mahasiswa_dikti/'.$data->id_mahasiswa).'")>'.$data->nama_mahasiswa.'</a></td>
+                  <td><a href="'.base_url('mahasiswa/lihat_mahasiswa_dikti/'.$data->id_mahasiswa).'")>'.$data->nama_mahasiswa.'</a></td>
                   <td>'.$data->nim.'</td>
                   <td>'.$data->jenis_kelamin.'</td>
                   <td>'.$data->agama.'</td>
