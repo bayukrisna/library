@@ -19,7 +19,7 @@
                     <td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
                       
                       <select name="id_prodi">
-                        <option value="">-- PILIH PRODI--</option>
+                        <option>-- PILIH PRODI--</option>
                         <?php 
 
                                         foreach($drop_down_prodi as $row)
@@ -33,7 +33,7 @@
                     <td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Agama</td>     
                     <td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
                       <select name="agama">
-                        <option value="">-- PILIH AGAMA--</option>
+                        <option>-- PILIH AGAMA--</option>
                         <option value="Islam">Islam</option>
                         <option value="Kristen">Kristen</option>
                         <option value="Katholik">Katholik</option>
@@ -45,19 +45,24 @@
                     </td>                                              
                   </tr>
                   <tr>
-                    <td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Jenis Kelamin</td>     
+                    <td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Program Studi</td>     
                     <td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                      <select name="jenis_kelamin">
-                        <option value="">-- PILIH JENIS KELAMIN--</option>
-                        <option value="laki-laki">Laki-Laki</option>
-                        <option value="perempuan">Perempuan</option>
+                      <select name="kota">
+                        <option value="">-- PILIH --</option>
+                        <option value="010100">KAB. KEPULAUAN SERIBU</option>
+                        <option value="016000">KOTA JAKARTA PUSAT</option>
+                        <option value="016100">KOTA JAKARTA UTARA</option>
+                        <option value="016200">KOTA JAKARTA BARAT</option>
                       </select>
                     </td>           
-                    <td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Angkatan</td>     
+                    <td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Program Studi</td>     
                     <td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                      <select name="angkatan">
-                        <option value="">-- PILIH ANGKATAN--</option>
-                        
+                      <select name="kota">
+                        <option value="">-- PILIH --</option>
+                        <option value="010100">KAB. KEPULAUAN SERIBU</option>
+                        <option value="016000">KOTA JAKARTA PUSAT</option>
+                        <option value="016100">KOTA JAKARTA UTARA</option>
+                        <option value="016200">KOTA JAKARTA BARAT</option>
                       </select>
                     </td>                                                         
                   </tr>
