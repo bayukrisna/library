@@ -31,6 +31,18 @@
             <td class="">Periode</td>
             <td >: <input  type="text" name="jenis_kelamin" id="jenis_kelamin" class="text-input" value="" style="width:90%"></td>
         </tr>
+        <tr>
+            <td class="left_column">Kelas </td>
+            <td colspan="3">: 
+            <input type="text" name="kelas" id="kelas" class="validate[required] text-input">            <input type="hidden" name="id_kls" id="id_kls" />
+            &nbsp; &nbsp;
+                <button type="button" class="btn btn-sm btn-primary" onclick="goSaveKRS()">
+                <i class="icon-plus icon-white"></i> KRS</button>
+            &nbsp;
+            
+                        </td>
+
+        </tr>
         </table>
             </div>
             <!-- /.box-body -->
