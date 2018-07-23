@@ -1,4 +1,5 @@
-        <a class="btn btn-sm btn-primary">Detail Mahasiswa</a>
+        
+        <a class="btn btn-sm btn-primary" href="<?php echo base_url();?>mahasiswa/detail_mahasiswa_dikti/<?php echo $mahasiswa->id_mahasiswa; ?>">Detail Mahasiswa</a>
         <a class="btn btn-sm btn-info" href="<?php echo base_url();?>mahasiswa/history_pendidikan">History Pendidikan</a>
         <a class="btn btn-sm btn-primary">KRS Mahasiswa</a>
         <a class="btn btn-sm btn-info">History Nilai</a>
@@ -13,28 +14,26 @@
         <tr>
 
             <td width="15%" class="left_column">Nama <font color="#FF0000">*</font></td>
-            <td>:
-                <input type="text" name="nama_mahasiswa" id="nama_mahasiswa" class="text-input" size="10" style="width:70%" value="" readonly>    </td>
+            <td>: <?php echo $mahasiswa->nama_mahasiswa; ?>   </td>
       
-            <td class="left_column">Nama Ibu <font color="#FF0000">*</font></td>
-            <td>:  <input type="text" name="" id="" class="text-input" size="10" style="width:70%" value="" readonly>
+           
                                   
             <input type="hidden" name="stat_pd" value="A">
             </td>
         </tr>
         <tr>
             <td class="left_column" width="15%" value=>Tempat Lahir <font color="#FF0000">*</font></td>
-            <td width="35%">: <input type="text" name="tempat_lahir" id="tempat_lahir" class="text-input" size="10" style="width:70%" value="" readonly>          </td>
+            <td width="35%">: <?php echo $mahasiswa->tempat_lahir; ?>        </td>
             <td class="left_column" width="15%">Tanggal Lahir <font color="#FF0000">*</font></td>
             <td>:
-                <input type="date" name="tanggal_lahir" id="tanggal_lahir" class="text-input" size="10" style="width:70%" value="" readonly>                           </td>
+               <?php echo $mahasiswa->tanggal_lahir; ?>                        </td>
         </tr>
         <tr>
             <td class="left_column">Jenis Kelamin</td>
-            <td>: <input type="text" name="jenis_kelamin" id="jenis_kelamin" class="text-input" size="10" style="width:70%" value="" readonly></td>
+            <td>: <?php echo $mahasiswa->jenis_kelamin; ?></td>
             <td class="left_column">Agama <font color="#FF0000">*</font></td>
             <td>:
-            <input type="text"  class="text-input" size="10" style="width:70%" value="" readonly>                           </td>
+            <?php echo $mahasiswa->agama; ?>
         </table>
             </div>
             <!-- /.box-body -->
@@ -58,6 +57,12 @@
   </tr>
   </thead>
   <tbody>
+    <?php 
+      $alert = "'Apakah anda yakin mengapus data ini ?'";
+        $no = 0;
+        foreach($data as $i):
+        ;
+      ?>
       <tr>
       <td>1</td>
         <td style="text-align:center">171612120765</td>

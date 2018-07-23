@@ -17,11 +17,7 @@ class Mahasiswa extends CI_Controller {
 			$data['main_view'] = 'Mahasiswa/data_mahasiswa_view';
 			$this->load->view('template', $data);
 	}
-	public function history_pendidikan()
-	{
-			$data['main_view'] = 'Mahasiswa/history_pendidikan_view';
-			$this->load->view('template', $data);
-	}
+	
 
 	public function detail_mahasiswa()
 	{
@@ -77,6 +73,14 @@ class Mahasiswa extends CI_Controller {
 			$id_mahasiswa = $this->uri->segment(3);
 			$data['mahasiswa'] = $this->mahasiswa_model->detail_mahasiswa_dikti($id_mahasiswa);
 			$data['main_view'] = 'Mahasiswa/detail_mahasiswa_dikti_view';
+			$this->load->view('template', $data);
+	}
+
+	public function history_pendidikan()
+	{
+			$id_mahasiswa = $this->uri->segment(3);
+			$data['mahasiswa'] = $this->mahasiswa_model->detail_mahasiswa_dikti($id_mahasiswa);
+			$data['main_view'] = 'Mahasiswa/history_pendidikan_view';
 			$this->load->view('template', $data);
 	}
 
