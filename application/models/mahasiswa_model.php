@@ -80,6 +80,19 @@ class Mahasiswa_model extends CI_Model {
               ->row();
   }
 
+  public function history_pendidikan($history){
+      return $this->db->join('tb_prodi','tb_prodi.id_prodi=tb_mahasiswa.id_prodi')
+              ->join('tb_konsentrasi','tb_konsentrasi.id_konsentrasi=tb_mahasiswa.id_konsentrasi')
+              ->join('tb_orang_tua','tb_orang_tua.id_mahasiswa=tb_mahasiswa.id_mahasiswa')
+              ->join('tb_alamat','tb_alamat.id_mahasiswa=tb_mahasiswa.id_mahasiswa')
+              ->join('tb_kependudukan','tb_kependudukan.id_mahasiswa=tb_mahasiswa.id_mahasiswa')
+              ->join('tb_jenis_tinggal','tb_jenis_tinggal.id_mahasiswa=tb_mahasiswa.id_mahasiswa')
+              ->join('tb_wali','tb_wali.id_mahasiswa=tb_mahasiswa.id_mahasiswa')
+              ->where('tb_mahasiswa.id_mahasiswa', $history)
+              ->get('tb_mahasiswa')
+              ->result();
+  }
+
 
   public function get_mahasiswa_by_du($id_du){
        return $this->db->join('tb_prodi','tb_prodi.id_prodi=tb_du.id_prodi')

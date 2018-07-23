@@ -80,6 +80,8 @@ class Mahasiswa extends CI_Controller {
 	{
 			$id_mahasiswa = $this->uri->segment(3);
 			$data['mahasiswa'] = $this->mahasiswa_model->detail_mahasiswa_dikti($id_mahasiswa);
+			$history = $this->uri->segment(3);
+			$data['history'] = $this->mahasiswa_model->history_pendidikan($history);
 			$data['main_view'] = 'Mahasiswa/history_pendidikan_view';
 			$this->load->view('template', $data);
 	}

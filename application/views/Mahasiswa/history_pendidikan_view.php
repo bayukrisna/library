@@ -13,6 +13,7 @@
               <table class="table">
         <tr>
 
+
             <td width="15%" class="left_column">Nama <font color="#FF0000">*</font></td>
             <td>: <?php echo $mahasiswa->nama_mahasiswa; ?>   </td>
       
@@ -58,24 +59,23 @@
   </thead>
   <tbody>
     <?php 
-      $alert = "'Apakah anda yakin mengapus data ini ?'";
         $no = 0;
-        foreach($data as $i):
+        foreach($history as $data):
         ;
       ?>
       <tr>
-      <td>1</td>
-        <td style="text-align:center">171612120765</td>
-        <td style="text-align:center">Peserta didik baru</td>
-        <td style="text-align:center">2017/2018 Ganjil</td>
-        <td style="text-align:center">11-09-2017</td>
-        <td style="text-align:center">STIE Jakarta International College</td>
-        <td style="text-align:center">S1 Akuntansi        </td >
+      <td><?php echo ++$no;?></td>
+        <td style="text-align:center"><?php echo $data->nama_mahasiswa;?></td>
+        <td style="text-align:center"><?php echo $data->nama_mahasiswa;?></td>
+        <td style="text-align:center"><?php echo $data->nama_mahasiswa;?></td>
+        <td style="text-align:center"><?php echo $data->nama_mahasiswa;?></td>
+        <td style="text-align:center"><?php echo $data->nama_mahasiswa;?></td>
+        <td style="text-align:center"><?php echo $data->nama_mahasiswa;?></td >
         <td style="text-align:center">
                 <button id="" type="button" class="btn btn-xs"   data-toggle="modal" data-target="#modal_detil"><i class="fa fa-pencil"></i></button>
                         </td>
     </tr>
-    
+<?php endforeach; ?>
   
   </tbody>
 </table>
