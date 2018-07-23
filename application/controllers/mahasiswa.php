@@ -8,6 +8,7 @@ class Mahasiswa extends CI_Controller {
 		parent::__construct();
 		$this->load->model('mahasiswa_model');
 		$this->load->model('daftar_ulang_model');
+		$this->load->model('konsentrasi_model');
 	}
 
 	public function index()
@@ -51,6 +52,16 @@ class Mahasiswa extends CI_Controller {
 	public function data_mahasiswa()
 	{
 			$data['mahasiswa'] = $this->mahasiswa_model->data_mahasiswa_dikti();
+			$data['drop_down_prodi'] = $this->konsentrasi_model->get_prodi();
+			$data['main_view'] = 'Mahasiswa/mahasiswa_view';
+			$this->load->view('template', $data);
+	}
+
+	public function filter_prodi()
+	{
+			$data['drop_down_prodi'] = $this->konsentrasi_model->get_prodi();
+			$id_prodi=$this->input->get('id_prodi');
+			$data['mahasiswa'] = $this->mahasiswa_model->filter_prodi($id_prodi);
 			$data['main_view'] = 'Mahasiswa/mahasiswa_view';
 			$this->load->view('template', $data);
 	}

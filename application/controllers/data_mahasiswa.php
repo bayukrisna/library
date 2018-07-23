@@ -10,12 +10,7 @@ class Data_mahasiswa extends CI_Controller {
 		$this->load->model('daftar_ulang_model');
 	}
 
-	public function index()
-	{
-			$data['mahasiswa'] = $this->mahasiswa_model->data_mahasiswa();
-			$data['main_view'] = 'Mahasiswa/mahasiswa_view';
-			$this->load->view('template', $data);
-	}
+	
 
 	public function detail_mahasiswa()
 	{

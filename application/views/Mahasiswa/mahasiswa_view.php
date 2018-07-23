@@ -16,12 +16,15 @@
                   <tr>                                                                    
                     <td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Program Studi</td>     
                     <td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                      <select name="kota">
-                        <option value="">-- PILIH --</option>
-                        <option value="010100">KAB. KEPULAUAN SERIBU</option>
-                        <option value="016000">KOTA JAKARTA PUSAT</option>
-                        <option value="016100">KOTA JAKARTA UTARA</option>
-                        <option value="016200">KOTA JAKARTA BARAT</option>
+                      <select name="id_prodi">
+                        <option value="">-- PILIH PRODI--</option>
+                        <?php 
+
+                                        foreach($drop_down_prodi as $row)
+                                        { 
+                                          echo '<option value="'.$row->id_prodi.'">'.$row->nama_prodi.'</option>';
+                                        }
+                                    ?>
                       </select>
                     </td>                                            
                     <td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Program Studi</td>     
@@ -59,6 +62,8 @@
                   </tr>
                 </tbody>
               </table>
+               <a href="<?php echo base_url(); ?>mahasiswa/filter_prodi/" class="btn btn-success  btn-sm">Filter</a>
+              <br>
               <br>
               <table id="example1" class="table table-bordered table-striped">
                 <thead>
@@ -84,7 +89,7 @@
                   echo '
                 <tr>
                   <td>'.++$no.'</td>
-                  <td>'.$data->nama_mahasiswa.'</td>
+                  <td><a href="'.base_url('mahasiswa/detail_mahasiswa_dikti/'.$data->id_mahasiswa).'")>'.$data->nama_mahasiswa.'</a></td>
                   <td>'.$data->nim.'</td>
                   <td>'.$data->jenis_kelamin.'</td>
                   <td>'.$data->agama.'</td>

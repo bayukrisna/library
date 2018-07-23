@@ -46,6 +46,16 @@ class Mahasiswa_model extends CI_Model {
      return $query->result();
   }
 
+  public function filter_prodi($id_prodi){
+    $this->db->select('*');
+     $this->db->from('tb_mahasiswa');
+     $this->db->join('tb_konsentrasi','tb_konsentrasi.id_konsentrasi=tb_mahasiswa.id_konsentrasi');
+     $this->db->join('tb_prodi','tb_prodi.id_prodi=tb_mahasiswa.id_prodi');
+     $this->db->where('tb_prodi.id_prodi', $id_prodi);
+     $query = $this->db->get();
+     return $query->result();
+  }
+
 	public function detail_mahasiswa($id_du){
       return $this->db->join('tb_prodi','tb_prodi.id_prodi=tb_du.id_prodi')
               ->join('tb_sekolah','tb_sekolah.id_sekolah=tb_du.id_sekolah')
@@ -68,6 +78,7 @@ class Mahasiswa_model extends CI_Model {
               ->get('tb_mahasiswa')
               ->row();
   }
+
 
   public function get_mahasiswa_by_du($id_du){
        return $this->db->join('tb_prodi','tb_prodi.id_prodi=tb_du.id_prodi')
@@ -207,8 +218,6 @@ class Mahasiswa_model extends CI_Model {
 
     public function save_edit_mahasiswa($id_tes){
     $data = array(
-            'nama_mahasiswa'      => $this->input->post('nama_mahasiswa', TRUE),
-            'nim'      => $this->input->post('nim', TRUE),
             'agama'     => $this->input->post('agama', TRUE),
             'email'     => $this->input->post('email', TRUE),
             'no_telepon'     => $this->input->post('no_telepon', TRUE),

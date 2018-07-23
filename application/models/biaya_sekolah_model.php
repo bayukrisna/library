@@ -6,7 +6,6 @@ class Biaya_sekolah_model extends CI_Model {
 	public function __construct()
 	{
 		parent::__construct();
-		
 	}
 
 	public function data_biaya(){
@@ -94,7 +93,6 @@ class Biaya_sekolah_model extends CI_Model {
         } else {
             return null;
         }
-    
   }
 
 }
