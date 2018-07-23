@@ -46,12 +46,13 @@ class Mahasiswa_model extends CI_Model {
      return $query->result();
   }
 
-  public function filter_prodi($id_prodi){
+  public function filter_mahasiswa($id_prodi, $agama){
     $this->db->select('*');
      $this->db->from('tb_mahasiswa');
      $this->db->join('tb_konsentrasi','tb_konsentrasi.id_konsentrasi=tb_mahasiswa.id_konsentrasi');
      $this->db->join('tb_prodi','tb_prodi.id_prodi=tb_mahasiswa.id_prodi');
      $this->db->where('tb_prodi.id_prodi', $id_prodi);
+     $this->db->where('tb_mahasiswa.agama', $agama);
      $query = $this->db->get();
      return $query->result();
   }
