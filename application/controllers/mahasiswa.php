@@ -75,6 +75,26 @@ class Mahasiswa extends CI_Controller {
 			$data['main_view'] = 'Mahasiswa/detail_mahasiswa_dikti_view';
 			$this->load->view('template', $data);
 	}
+	public function krs_mahasiswa()
+	{
+			$data['main_view'] = 'Mahasiswa/krs_mahasiswa_view';
+			$this->load->view('template', $data);
+	}
+	public function history_nilai()
+	{
+			$data['main_view'] = 'Mahasiswa/history_nilai_view';
+			$this->load->view('template', $data);
+	}
+	public function aktivasi_perkuliahan()
+	{
+			$data['main_view'] = 'Mahasiswa/aktivasi_perkuliahan_view';
+			$this->load->view('template', $data);
+	}
+	public function prestasi()
+	{
+			$data['main_view'] = 'Mahasiswa/prestasi_view';
+			$this->load->view('template', $data);
+	}
 
 	public function history_pendidikan()
 	{
