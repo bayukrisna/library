@@ -298,3 +298,10 @@
             </div></div>
             </div>
         </div>
+        <div class="callout callout-info">
+        <strong>Keterangan :</strong>
+            <br />
+            - Fitur ini digunakan untuk menampilkan history pendidikan setiap mahasiswa
+            <br />
+            - Data yang dapat di ubah hanya data pada periode aktif
+         </div>
