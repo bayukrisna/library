@@ -46,13 +46,14 @@ class Mahasiswa_model extends CI_Model {
      return $query->result();
   }
 
-  public function filter_mahasiswa($id_prodi, $agama){
+  public function filter_mahasiswa($id_prodi, $agama, $jenis_kelamin){
     $this->db->select('*');
      $this->db->from('tb_mahasiswa');
      $this->db->join('tb_konsentrasi','tb_konsentrasi.id_konsentrasi=tb_mahasiswa.id_konsentrasi');
      $this->db->join('tb_prodi','tb_prodi.id_prodi=tb_mahasiswa.id_prodi');
-     $this->db->where('tb_prodi.id_prodi', $id_prodi);
-     $this->db->where('tb_mahasiswa.agama', $agama);
+     $this->db->like('tb_prodi.id_prodi',$id_prodi);
+     $this->db->like('tb_mahasiswa.agama',$agama);
+     $this->db->like('tb_mahasiswa.jenis_kelamin',$jenis_kelamin);
      $query = $this->db->get();
      return $query->result();
   }
@@ -89,8 +90,7 @@ class Mahasiswa_model extends CI_Model {
               ->join('tb_jenis_tinggal','tb_jenis_tinggal.id_mahasiswa=tb_mahasiswa.id_mahasiswa')
               ->join('tb_wali','tb_wali.id_mahasiswa=tb_mahasiswa.id_mahasiswa')
               ->where('tb_mahasiswa.id_mahasiswa', $history)
-              ->get('tb_mahasiswa')
-              ->result();
+              ->get('tb_mahasiswa');
   }
 
 

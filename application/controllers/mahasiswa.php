@@ -63,7 +63,9 @@ class Mahasiswa extends CI_Controller {
 			$data['drop_down_prodi'] = $this->konsentrasi_model->get_prodi();
 			$id_prodi=$this->input->get('id_prodi');
 			$agama=$this->input->get('agama');
-			$data['mahasiswa'] = $this->mahasiswa_model->filter_mahasiswa($id_prodi,$agama);
+			$jenis_kelamin=$this->input->get('jenis_kelamin');
+			$angkatan=$this->input->get('tanggal_du');
+			$data['mahasiswa'] = $this->mahasiswa_model->filter_mahasiswa($id_prodi,$agama,$jenis_kelamin,$angkatan);
 			$data['main_view'] = 'Mahasiswa/mahasiswa_view';
 			$this->load->view('template', $data);
 	}
