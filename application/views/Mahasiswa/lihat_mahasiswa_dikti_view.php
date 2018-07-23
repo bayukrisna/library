@@ -1,4 +1,10 @@
-
+<a class="btn btn-sm btn-primary" href="<?php echo base_url();?>mahasiswa/lihat_mahasiswa_dikti/<?php echo $mahasiswa->id_mahasiswa; ?>">Detail Mahasiswa</a>
+        <a class="btn btn-sm btn-info" href="<?php echo base_url();?>mahasiswa/history_pendidikan/<?php echo $mahasiswa->id_mahasiswa; ?>">History Pendidikan</a>
+        <a class="btn btn-sm btn-primary">KRS Mahasiswa</a>
+        <a class="btn btn-sm btn-info">History Nilai</a>
+        <a class="btn btn-sm btn-primary">Aktivasi Perkuliahan</a>
+        <a class="btn btn-sm btn-info">Prestasi</a>
+        <br><br>
       
         <div class="box box-info">
             
@@ -34,15 +40,13 @@
             </div>
             <!-- /.box-body -->
           </div>
-
-
           <div class="nav-tabs-custom">
             <ul class="nav nav-tabs">
               <li class="active"><a href="#tab_1" data-toggle="tab">Alamat</a></li>
               <li><a href="#tab_2" data-toggle="tab">Orang Tua</a></li>
               <li><a href="#tab_3" data-toggle="tab">Wali</a></li>
               <li><a href="#tab_4" data-toggle="tab">Kebutuhan Khusus</a></li>
-              <li class="pull-right"><button class="btn btn-sm btn-success" >Simpan</button> </li>
+              <a class="btn btn-success pull-right" href="<?php echo base_url();?>mahasiswa/detail_mahasiswa_dikti/<?php echo $mahasiswa->id_mahasiswa; ?>">Ubah</a>
             </ul>
             <div class="tab-content">
               <div class="tab-pane active" id="tab_1">

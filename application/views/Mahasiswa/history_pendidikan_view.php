@@ -1,5 +1,5 @@
         
-        <a class="btn btn-sm btn-primary" href="<?php echo base_url();?>mahasiswa/detail_mahasiswa_dikti/<?php echo $mahasiswa->id_mahasiswa; ?>">Detail Mahasiswa</a>
+        <a class="btn btn-sm btn-primary" href="<?php echo base_url();?>mahasiswa/lihat_mahasiswa_dikti/<?php echo $mahasiswa->id_mahasiswa; ?>">Detail Mahasiswa</a>
         <a class="btn btn-sm btn-info" href="<?php echo base_url();?>mahasiswa/history_pendidikan">History Pendidikan</a>
         <a class="btn btn-sm btn-primary">KRS Mahasiswa</a>
         <a class="btn btn-sm btn-info">History Nilai</a>

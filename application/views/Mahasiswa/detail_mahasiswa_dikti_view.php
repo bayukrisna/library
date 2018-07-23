@@ -1,11 +1,5 @@
 <form  method="post" action="<?php echo base_url(); ?>mahasiswa/save_edit_mahasiswa/<?php echo $mahasiswa->id_mahasiswa; ?>" enctype="multipart/form-data">
-        <a class="btn btn-sm btn-primary" href="<?php echo base_url();?>mahasiswa/detail_mahasiswa_dikti/<?php echo $mahasiswa->id_mahasiswa; ?>">Detail Mahasiswa</a>
-        <a class="btn btn-sm btn-info" href="<?php echo base_url();?>mahasiswa/history_pendidikan/<?php echo $mahasiswa->id_mahasiswa; ?>">History Pendidikan</a>
-        <a class="btn btn-sm btn-primary">KRS Mahasiswa</a>
-        <a class="btn btn-sm btn-info">History Nilai</a>
-        <a class="btn btn-sm btn-primary">Aktivasi Perkuliahan</a>
-        <a class="btn btn-sm btn-info">Prestasi</a>
-        <br><br>
+        
         <div class="box box-info">
             
             <!-- /.box-header -->
