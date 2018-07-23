@@ -10,14 +10,16 @@
             <div class="box-body">
               <table class="">
                 <tbody>
+                  <form method="get" action="<?php echo base_url("mahasiswa/filter_mahasiswa/")?>">
                   <tr>
                     <th>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Filter</th>
                   </tr>
                   <tr>                                                                    
                     <td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Program Studi</td>     
                     <td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                      
                       <select name="id_prodi">
-                        <option value="">-- PILIH PRODI--</option>
+                        <option>-- PILIH PRODI--</option>
                         <?php 
 
                                         foreach($drop_down_prodi as $row)
@@ -26,15 +28,19 @@
                                         }
                                     ?>
                       </select>
+
                     </td>                                            
-                    <td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Program Studi</td>     
+                    <td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Agama</td>     
                     <td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                      <select name="kota">
-                        <option value="">-- PILIH --</option>
-                        <option value="010100">KAB. KEPULAUAN SERIBU</option>
-                        <option value="016000">KOTA JAKARTA PUSAT</option>
-                        <option value="016100">KOTA JAKARTA UTARA</option>
-                        <option value="016200">KOTA JAKARTA BARAT</option>
+                      <select name="agama">
+                        <option>-- PILIH AGAMA--</option>
+                        <option value="Islam">Islam</option>
+                        <option value="Kristen">Kristen</option>
+                        <option value="Katholik">Katholik</option>
+                        <option value="Konghucu">Konghucu</option>
+                        <option value="Budha">Budha</option>
+                        <option value="Hindu">Hindu</option>
+                        <option value="Lainnya">Lainya</option>
                       </select>
                     </td>                                              
                   </tr>
@@ -62,7 +68,8 @@
                   </tr>
                 </tbody>
               </table>
-               <a href="<?php echo base_url(); ?>mahasiswa/filter_prodi/" class="btn btn-success  btn-sm">Filter</a>
+               <input type="submit" class="btn btn-primary" value="Cari">         
+               </form>
               <br>
               <br>
               <table id="example1" class="table table-bordered table-striped">
