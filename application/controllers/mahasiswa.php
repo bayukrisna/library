@@ -17,20 +17,7 @@ class Mahasiswa extends CI_Controller {
 			$data['main_view'] = 'Mahasiswa/data_mahasiswa_view';
 			$this->load->view('template', $data);
 	}
-<<<<<<< HEAD
 	
-=======
-	public function history_pendidikan()
-	{
-			$data['main_view'] = 'Mahasiswa/history_pendidikan_view';
-			$this->load->view('template', $data);
-	}
-	public function krs_mahasiswa()
-	{
-			$data['main_view'] = 'Mahasiswa/krs_mahasiswa_view';
-			$this->load->view('template', $data);
-	}
->>>>>>> 7fc4db506a287f3c5718b729b12fe6122b6a176e
 
 	public function detail_mahasiswa()
 	{
