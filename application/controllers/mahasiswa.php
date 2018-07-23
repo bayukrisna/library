@@ -76,6 +76,14 @@ class Mahasiswa extends CI_Controller {
 			$this->load->view('template', $data);
 	}
 
+	public function lihat_mahasiswa_dikti()
+	{
+			$id_mahasiswa = $this->uri->segment(3);
+			$data['mahasiswa'] = $this->mahasiswa_model->detail_mahasiswa_dikti($id_mahasiswa);
+			$data['main_view'] = 'Mahasiswa/lihat_mahasiswa_dikti_view';
+			$this->load->view('template', $data);
+	}
+
 	public function history_pendidikan()
 	{
 			$id_mahasiswa = $this->uri->segment(3);
