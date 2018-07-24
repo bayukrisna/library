@@ -174,9 +174,7 @@ $this->db->where('sumber','student_get_student');
             'waktu'     => $this->input->post('waktu', TRUE),
             'jk_pendaftar' => $this->input->post('jk_pendaftar', TRUE),
             'sumber' => $this->input->post('sumber', TRUE),
-            'id_prodi' => $this->input->post('id_prodi', TRUE),
-            'ibu_kandung' => $this->input->post('ibu_kandung', TRUE),
-            'agama' => $this->input->post('agama', TRUE)
+            'id_prodi' => $this->input->post('id_prodi', TRUE)
       );
 
     if (!empty($data)) {

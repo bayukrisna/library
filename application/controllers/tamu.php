@@ -132,74 +132,7 @@ class Tamu extends CI_Controller {
           }
         }
 
-        public function f2(){
-        		$id_du = $this->uri->segment(3);
-        		$data['main_view'] = 'Tamu/f2_view';
-				$data['edit'] = $this->tamu_model->get_tamu_by_id($id_du);
-				
-				$this->load->view('template', $data);
-		
-		}
-
-		  public function save_f2(){
-      	  $id_du = $this->uri->segment(3);
-          if ($this->tamu_model->save_f2($id_du) == TRUE) {
-            $data['message'] = 'Tambah Follow Up 2 berhasil';
-            redirect('tamu');
-          } else {
-            $data['main_view'] = 'Tamu/f2_view';
-            $data['message'] = 'Tamu/f2_view';
-            redirect('Tamu/f2_view');
-          }
-        }
-
-        public function f3(){
-        		$id_du = $this->uri->segment(3);
-        		$data['main_view'] = 'Tamu/f3_view';
-				$data['edit'] = $this->tamu_model->get_tamu_by_id($id_du);
-				
-				$this->load->view('template', $data);
-		
-		}
-
-		  public function save_f3(){
-      	  $id_du = $this->uri->segment(3);
-          if ($this->tamu_model->save_f3($id_du) == TRUE) {
-            $data['message'] = 'Tambah Follow Up 3 berhasil';
-            redirect('tamu');
-          } else {
-            $data['main_view'] = 'Tamu/f3_view';
-            $data['message'] = 'Tamu/f3_view';
-            redirect('Tamu/f3_view');
-          }
-        }
-
-        public function out(){
-        		$id_du = $this->uri->segment(3);
-        		$data['main_view'] = 'Tamu/out_view';
-				$data['edit'] = $this->tamu_model->get_tamu_by_id($id_du);
-				$this->load->view('template', $data);
-		
-		}
-
-		 public function data_out(){
-        		$data['main_view'] = 'Tamu/data_non_aktif_view';
-				$data['edit'] = $this->tamu_model->data_tamu_out();
-				$this->load->view('template', $data);
-		
-		}
-
-		  public function save_out(){
-      	  $id_du = $this->uri->segment(3);
-          if ($this->tamu_model->save_out($id_du) == TRUE) {
-            $data['message'] = 'Data Sudah Non Aktif';
-            redirect('tamu');
-          } else {
-            $data['main_view'] = 'Tamu/f3_view';
-            $data['message'] = 'Gagal ';
-            redirect('tamu');
-          }
-        }
+        
 
         public function data_sgs(){
 				$data['edit'] = $this->tamu_model->data_sgs();

@@ -49,18 +49,7 @@
                   </select>                                     
                   
                 </div>
-                <div class="form-group">
-                  <label for="religion">Agama</label>
-                <select id="agama" name="agama" class="form-control" ="">
-                  <option value="<?php echo $edit->agama; ?>"><?php echo $edit->agama; ?></option>
-                  <option value="Kristen">Kristen</option>
-                  <option value="Islam">Islam</option>
-                  <option value="Hindu">Hindu</option>
-                  <option value="Budha">Buddha</option>
-                  <option value="Konghuchu">Konghuchu</option>
-
-                </select>                                     
-                </div>
+                
 
               </div>
               <div class="col-md-6">
@@ -69,10 +58,6 @@
                   <input type="email" name="email" class="form-control" id="email" placeholder="Input Email" required="" value="<?php echo $edit->email; ?>">
                 </div>
 
-                 <div class="form-group">
-                  <label for="mother">Nama Ibu</label>
-                  <input type="text" name="ibu_kandung" class="form-control" id="ibu_kandung" placeholder="Masukan nama ibu" required="" value="<?php echo $edit->ibu_kandung; ?>">
-                </div>
 
                 <div class="form-group">
                   <label for="preschool">Asal Sekolah</label>

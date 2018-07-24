@@ -247,14 +247,14 @@ class Daftar_ulang_model extends CI_Model {
             'nim'      => $this->input->post('nim', TRUE),
       );
 
-    $this->db->where('id_du', $no_du)
+    if (!empty($data)) {
+            $this->db->where('id_du', $no_du)
         ->update('tb_du', $data);
 
-    if ($this->db->affected_rows() > 0) {
-      return TRUE;
-    } else {
-      return FALSE;
-    }
+          return true;
+        } else {
+            return null;
+        }
   }
 
   public function get_du_by_id($id_du){

@@ -65,9 +65,9 @@
                     <td class="left_column" width="15%">NIK</td>
                     <td colspan="3">:  <input type="text" name="nik_ayah" id="nik_ayah" class="text-input" maxlength="16" size="50" style="width:40%" onkeydown="return onlyNumber(event,this,false,false)" value="<?php echo $mahasiswa->nik_ayah; ?>">                            <font color="grey"><em> ( Nomor KTP tanpa tanda baca ) </em></font>
                     </td>
-                    <td rowspan="8"><div class="btn btn-file">
-                  <input type="file" name="attachment"  onchange="loadFile(event)">
-                  <img id="output" height="200" width="150" class="pull-right" width="40%" src="https://adminlte.io/themes/AdminLTE/dist/img/photo2.png" alt="Photo">
+                    <td rowspan="8"><div class="btn btn-file" >
+                  <input type="file"   onchange="loadFile(event)" name="foto_mahasiswa" id="foto_mahasiswa">
+                  <img id="output" height="200" width="150" class="pull-right" width="40%" src="<?php echo base_url(); ?>uploads/<?php echo $mahasiswa->foto_mahasiswa; ?>" alt="Photo" onerror="this.src='<?php echo base_url();?>uploads/user.jpg'" src="#" alt="Your Image">
                 </div></td>
                 </tr>
                 <tr>
