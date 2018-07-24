@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 4.8.1
+-- version 4.8.2
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Jul 12, 2018 at 05:18 AM
--- Server version: 10.1.33-MariaDB
--- PHP Version: 7.1.18
+-- Generation Time: Jul 24, 2018 at 11:34 AM
+-- Server version: 10.1.34-MariaDB
+-- PHP Version: 7.2.7
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET AUTOCOMMIT = 0;
@@ -40,7 +40,10 @@ CREATE TABLE `tb_biaya` (
 --
 
 INSERT INTO `tb_biaya` (`id_biaya`, `nama_biaya`, `jumlah_biaya`, `periode`) VALUES
-('BS001', 'Rangking 1', 360000, '2019/2022');
+('BS001', 'Ranking 1', 360000, '2019/2022'),
+('BS002', 'Ranking 2', 3900000, '2018/2019'),
+('BS003', 'Ranking 3', 4500000, '2018/2019'),
+('BS004', 'Non-Beasiswa', 6000000, '2018/2019');
 
 --
 -- Indexes for dumped tables
