@@ -57,6 +57,14 @@ class Mahasiswa extends CI_Controller {
 			$data['main_view'] = 'Mahasiswa/mahasiswa_view';
 			$this->load->view('template', $data);
 	}
+	public function get_filter() {
+		
+		$option = "";
+			$option.='<p>kelas pagi</p>';
+		echo $option;
+
+
+	}
 
 	public function filter_mahasiswa()
 	{
