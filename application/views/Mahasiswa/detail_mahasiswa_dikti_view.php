@@ -65,7 +65,10 @@
                     <td class="left_column" width="15%">NIK</td>
                     <td colspan="3">:  <input type="text" name="nik_ayah" id="nik_ayah" class="text-input" maxlength="16" size="50" style="width:40%" onkeydown="return onlyNumber(event,this,false,false)" value="<?php echo $mahasiswa->nik_ayah; ?>">                            <font color="grey"><em> ( Nomor KTP tanpa tanda baca ) </em></font>
                     </td>
-                    <td rowspan="8"><a href="https://www.facebook.com"><img height="200" width="150" class="pull-right" width="40%" src="https://adminlte.io/themes/AdminLTE/dist/img/photo2.png" alt="Photo"></a></td>
+                    <td rowspan="8"><div class="btn btn-file">
+                  <input type="file" name="attachment"  onchange="loadFile(event)">
+                  <img id="output" height="200" width="150" class="pull-right" width="40%" src="https://adminlte.io/themes/AdminLTE/dist/img/photo2.png" alt="Photo">
+                </div></td>
                 </tr>
                 <tr>
                     <td class="left_column" width="15%">Nama</td>
@@ -537,3 +540,9 @@
           <!-- nav-tabs-custom -->
         </div>
         <!-- /.col -->
+<script>
+  var loadFile = function(event) {
+    var output = document.getElementById('output');
+    output.src = URL.createObjectURL(event.target.files[0]);
+  };
+</script>
