@@ -76,6 +76,17 @@ class nilai_model extends CI_Model {
         }
   }
 
+   public function hapus_skala_nilai($id_skala_nilai){
+        $this->db->where('id_skala_nilai', $id_skala_nilai)
+          ->delete('tb_skala_nilai');
+
+    if ($this->db->affected_rows() > 0) {
+      return TRUE;
+      } else {
+        return FALSE;
+      }
+    }
+
 
 }
 

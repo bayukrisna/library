@@ -4,6 +4,7 @@
         <a class="btn btn-sm btn-info">History Nilai</a>
         <a class="btn btn-sm btn-primary">Aktivasi Perkuliahan</a>
         <a class="btn btn-sm btn-info">Prestasi</a>
+        <a class="btn btn-sm btn-primary" href="<?php echo base_url(); ?>mahasiswa/data_mahasiswa">Kembali</a>
         <br><br>
       
         <div class="box box-info">
@@ -22,6 +23,7 @@
                                   
             <input type="hidden" name="stat_pd" value="A">
             </td>
+
         </tr>
         <tr>
             <td class="left_column" width="15%" value=>Tempat Lahir <font color="#FF0000">*</font></td>

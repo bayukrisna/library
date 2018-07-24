@@ -16,6 +16,7 @@
                                   
             <input type="hidden" name="stat_pd" value="A">
             </td>
+           
         </tr>
         <tr>
             <td class="left_column" width="15%" value=>Tempat Lahir <font color="#FF0000">*</font></td>

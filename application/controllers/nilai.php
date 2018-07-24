@@ -79,5 +79,15 @@ class Nilai extends CI_Controller {
             	redirect('nilai');
 			} 
 	} 
+
+	public function hapus_skala_nilai($id_skala_nilai){
+		if ($this->nilai_model->hapus_skala_nilai($id_skala_nilai) == TRUE) {
+			$this->session->set_flashdata('message', '<div class="col-md-12 alert alert-success"> Hapus Skala Nilai Berhasil </div>');
+			redirect('nilai');
+		} else {
+			$this->session->set_flashdata('message', '<div class="col-md-12 alert alert-success"> Hapus Skala Nilai Gagal </div>');
+			redirect('nilai');
+		}
+	}
 		
 }

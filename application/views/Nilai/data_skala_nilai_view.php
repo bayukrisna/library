@@ -51,8 +51,8 @@
                   <th>Nilai Indeks</th>
                   <th>Bobot Minimum</th>
                   <th>Bobot Maksimum</th>
-                  <th>Tanggal Mulai Efektif</th>
-                  <th>Tanggal Akhir Efektif</th>
+                  <th>Tgl MulaiEfektif</th>
+                  <th>Tgl Akhir Efektif</th>
                   <th>Aksi</th>
                 </tr>
                 </thead>
@@ -74,6 +74,8 @@
                   <td>'.$data->tanggal_akhir_efektif.'</td>
                   <td>
                     <a href="'.base_url('nilai/detail_skala_nilai/'.$data->id_skala_nilai).'" class="btn btn-success  btn-sm"><i class="glyphicon glyphicon-pencil"></i><span class="tooltiptext">Ubah Skala Nilai</span></a>
+
+                     <a href="'.base_url('nilai/hapus_skala_nilai/'.$data->id_skala_nilai).'" class="btn btn-danger  btn-sm"><i class="fa fa-trash"></i><span class="tooltiptext">Hapus Skala Nilai</span></a>
 
                   </td>
                   
