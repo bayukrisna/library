@@ -12,41 +12,47 @@
     	<tr>
         	<td class="left_column" width="20%">Program Studi <font color="#FF0000">*</font></td>
             <td>: 
-			 <select name="id_sms" id="id_sms" class="validate[required]">
-				<option value="">-- Program Studi --</option>
-				<option value="681d9cf5-ecc1-4b67-a3a7-ecc045ea5a8b">S1 Akuntansi</option>
-				<option value="854f9922-ca37-4ec9-9027-e5bfa194af34">S1 Manajemen</option>
-			</select></td>
+			 <select id="id_prodi" required="" name="id_prodi">
+                    <option value="">Pilih Prodi</option>   
+                    <?php 
+
+                  foreach($getProdi as $row)
+                  { 
+                    echo '<option value="'.$row->id_prodi.'">'.$row->nama_prodi.'</option>';
+                  }
+                  ?>
+                  </select> 
+             </td>
         </tr>
         <tr>
         	<td class="left_column">Target Mahasiswa Baru</td>
-            <td>: <input type="text" name="target_mhs_baru" id="target_mhs_baru" class="text-input" maxlength="6" size="6" style="width:50px" onkeydown="return onlyNumber(event,this,false,false)"></td>
+            <td>: <input type="number" name="target_mhs_baru" id="target_mhs_baru" class="text-input" style="width:50px"></td>
         </tr> 
         <tr>
         	<td class="left_column">Pendaftar Ikut Seleksi</td>
-            <td>: <input type="text" name="calon_ikut_seleksi" id="calon_ikut_seleksi" class="text-input" maxlength="6" size="6" style="width:50px" onkeydown="return onlyNumber(event,this,false,false)"></td>
+            <td>: <input type="number" name="pendaftar_ikut_seleksi" id="pendaftar_ikut_seleksi" class="text-input" style="width:50px"></td>
         </tr> 
         <tr>
         	<td class="left_column">Pendaftar Lulus Seleksi</td>
-            <td>: <input type="text" name="calon_lulus_seleksi" id="calon_lulus_seleksi" class="text-input" maxlength="6" size="6" style="width:50px" onkeydown="return onlyNumber(event,this,false,false)"></td>
+            <td>: <input type="number" name="pendaftar_lulus_seleksi" id="target_mhs_baru" class="text-input" style="width:50px"></td>
         </tr> 
         <tr>
         	<td class="left_column">Daftar Ulang</td>
-            <td>: <input type="text" name="daftar_sbg_mhs" id="daftar_sbg_mhs" class="text-input" maxlength="6" size="6" style="width:50px" onkeydown="return onlyNumber(event,this,false,false)"></td>
+            <td>: <input type="number" name="daftar_ulang" id="target_mhs_baru" class="text-input" style="width:50px"></td>
         </tr>
         <tr>
         	<td class="left_column">Mengundurkan Diri</td>
-            <td>: <input type="text" name="pst_undur_diri" id="pst_undur_diri" class="text-input" maxlength="5" size="5" style="width:50px" onkeydown="return onlyNumber(event,this,false,false)"></td>
+            <td>: <input type="number" name="mengundurkan_diri" id="target_mhs_baru" class="text-input" style="width:50px"></td>
         </tr> 
         <tr>
          <td class="left_column">Tanggal Perkuliahan  <font color="#FF0000">*</font></td>
             <td>:
-				<input type="text" name="tgl_awal_kul" id="tgl_awal_kul" class="validate[required] text-input" maxlength="50" size="50" style="width:20%">           		<strong>s/d</strong>
-				<input type="text" name="tgl_akhir_kul" id="tgl_akhir_kul" class="validate[required] text-input" maxlength="50" size="50" style="width:20%">            </td>
+				<input type="date" name="tgl_awal_kul" id="tgl_awal_kul"  maxlength="50" size="50" style="width:20%">           		<strong>s/d</strong>
+				<input type="date" name="tgl_akhir_kul" id="tgl_akhir_kul"  text-input" maxlength="50" size="50" style="width:20%">            </td>
         </tr>
         <tr>
         	<td class="left_column">Jumlah Minggu Pertemuan </td>
-            <td>: <input type="text" name="jml_mgu_kul" id="jml_mgu_kul" class="text-input" maxlength="2" size="2" style="width:50px" onkeydown="return onlyNumber(event,this,false,false)"></td>
+            <td>: <input type="number" name="jumlah_minggu_pertemuan" id="target_mhs_baru" class="text-input" style="width:50px"></td>
         </tr> 
         <tr>
         	<td colspan="4"><button type="submit" class="btn btn-info">Tambah</button>
