@@ -36,6 +36,8 @@
                   <td>'.$data->tanggal_du.'</td>
                   <td>
                        <a href="'.base_url('mahasiswa/detail_mahasiswa/'.$data->id_du).'" class="btn btn-info btn-sm">Detail</a>
+                       <a href="'.base_url('mahasiswa/tambah_mahasiswa/'.$data->id_du).'" class="btn btn-info btn-sm">Dikti</a>
+
                   </td>
                 </tr>
                 ';

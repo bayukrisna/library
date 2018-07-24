@@ -19,7 +19,7 @@
                     <td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
                       
                       <select name="id_prodi">
-                        <option value="">-- PILIH PRODI--</option>
+                        <option value="">-- Semua --</option>
                         <?php 
 
                                         foreach($drop_down_prodi as $row)
@@ -33,7 +33,7 @@
                     <td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Agama</td>     
                     <td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
                       <select name="agama">
-                        <option value="">-- PILIH AGAMA--</option>
+                        <option value="">-- Semua --</option>
                         <option value="Islam">Islam</option>
                         <option value="Kristen">Kristen</option>
                         <option value="Katholik">Katholik</option>
@@ -42,13 +42,18 @@
                         <option value="Hindu">Hindu</option>
                         <option value="Lainnya">Lainya</option>
                       </select>
-                    </td>                                              
+                    </td>
+                    <td>
+                      &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<input type="submit" class="btn btn-primary" value="Cari">  
+                    </td>
+
                   </tr>
+                  
                   <tr>
                     <td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Jenis Kelamin</td>     
                     <td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
                       <select name="jenis_kelamin">
-                        <option value="">-- PILIH JENIS KELAMIN--</option>
+                        <option value="">-- Semua --</option>
                         <option value="laki-laki">Laki-Laki</option>
                         <option value="perempuan">Perempuan</option>
                       </select>
@@ -56,14 +61,14 @@
                     <td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Angkatan</td>     
                     <td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
                       <select name="angkatan">
-                        <option value="">-- PILIH ANGKATAN--</option>
+                        <option value="">-- Semua --</option>
                         
                       </select>   
                     </td>                                                         
                   </tr>
                 </tbody>
               </table>
-               <input type="submit" class="btn btn-primary" value="Cari">         
+                      
                </form>
               <br>
               <br>
