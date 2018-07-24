@@ -144,6 +144,30 @@ a:hover .tooltiptext {
             <li><a href="<?php echo base_url(); ?>finance/data_lunas"><i class="fa fa-circle-o"></i>Data Registrasi Lunas</a></li>
           </ul>
         </li>
+         <li class="treeview">
+          <a href="#">
+            <i class="fa fa-share"></i> <span>Akademi</span>
+            <span class="pull-right-container">
+              <i class="fa fa-angle-left pull-right"></i>
+            </span>
+          </a>
+          <ul class="treeview-menu">
+             <li><a href="<?php echo base_url(); ?>mahasiswa/mahasiswa2"><i class="fa fa-circle-o"></i>Mahasiswa</a></li>
+            <li><a href="<?php echo base_url(); ?>mahasiswa/data_mahasiswa"><i class="fa fa-circle-o"></i>Mahasiswa Dikti</a></li>
+            <li class="treeview">
+              <a href="#"><i class="fa fa-circle-o"></i>Pelengkap
+                <span class="pull-right-container">
+                  <i class="fa fa-angle-left pull-right"></i>
+                </span>
+              </a>
+              <ul class="treeview-menu">
+                <li><a href="<?php echo base_url(); ?>nilai"><i class="fa fa-circle-o"></i>Skala Nilai</a></li>
+                <li><a href="<?php echo base_url(); ?>setting_periode"><i class="fa fa-circle-o"></i>Setting Periode</a></li>
+              </ul>
+            </li>
+            
+          </ul>
+        </li>
       </ul>
     </section>
     <!-- /.sidebar -->
