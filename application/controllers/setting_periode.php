@@ -6,6 +6,7 @@ class Setting_periode extends CI_Controller {
 	public function __construct()
 	{
 		parent::__construct();
+		$this->load->model('daftar_ulang_model');
 	}
 
 	public function index()
@@ -16,6 +17,7 @@ class Setting_periode extends CI_Controller {
 	}
 	public function tambah_periode()
 	{
+			$data['getProdi'] = $this->daftar_ulang_model->getProdi();
 			$data['main_view'] = 'akademi/tambah_periode_view';
 			$this->load->view('template', $data);
 		// }
