@@ -3,11 +3,11 @@
             <i class="fa fa-user-plus"></i> Tambah Prodi</div>
             <div class="panel-body">
               <div class="row">
-
-<table class="table">
+         <?php echo form_open('setting_periode/simpan_periode'); ?>
+		<table class="table">
     	<tr>
         	<td>Semester <font color="#FF0000">*</font></td>
-            <td colspan="9">:  2018/2019 Ganjil            <input type="hidden" name="id_smt" id="id_smt" value="20181" />
+            <td colspan="9">:  <input type="text" name="semester" id="id_smt" value="2018/2019 Ganjil"  readonly="" />
         </tr>
     	<tr>
         	<td class="left_column" width="20%">Program Studi <font color="#FF0000">*</font></td>
@@ -59,4 +59,5 @@
             <button type="reset" class="btn btn-default">Reset</button></td>
         </tr>
     </table>
+    <?php echo form_close();?>
 </div>
