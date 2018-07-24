@@ -90,9 +90,9 @@ class Mahasiswa_model extends CI_Model {
               ->join('tb_jenis_tinggal','tb_jenis_tinggal.id_mahasiswa=tb_mahasiswa.id_mahasiswa')
               ->join('tb_wali','tb_wali.id_mahasiswa=tb_mahasiswa.id_mahasiswa')
               ->where('tb_mahasiswa.id_mahasiswa', $history)
-              ->get('tb_mahasiswa');
+              ->get('tb_mahasiswa')
+              ->result();
   }
-
 
   public function get_mahasiswa_by_du($id_du){
        return $this->db->join('tb_prodi','tb_prodi.id_prodi=tb_du.id_prodi')
