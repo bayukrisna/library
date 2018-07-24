@@ -48,101 +48,14 @@
 
           <div class="nav-tabs-custom">
             <ul class="nav nav-tabs">
-              <li class="active"><a href="#tab_0" data-toggle="tab">Profil</a></li>
-              <li><a href="#tab_1" data-toggle="tab">Alamats</a></li>
+              <li class="active"><a href="#tab_1" data-toggle="tab">Alamat</a></li>
               <li><a href="#tab_2" data-toggle="tab">Orang Tua</a></li>
               <li><a href="#tab_3" data-toggle="tab">Wali</a></li>
               <li><a href="#tab_4" data-toggle="tab">Kebutuhan Khusus</a></li>
               <li class="pull-right"><button class="btn btn-sm btn-success" >Simpan</button> </li>
             </ul>
             <div class="tab-content">
-                <div class="tab-pane active" id="tab_0">
-                <table width="90%" class="table">
-                <tr>
-                    <td colspan="2"><strong>Ayah</strong></td>
-                </tr>
-                <tr>
-                    <td class="left_column" width="15%">NIK</td>
-                    <td colspan="3">:  <input type="text" name="nik_ayah" id="nik_ayah" class="text-input" maxlength="16" size="50" style="width:40%" onkeydown="return onlyNumber(event,this,false,false)" value="<?php echo $mahasiswa->nik_ayah; ?>">                            <font color="grey"><em> ( Nomor KTP tanpa tanda baca ) </em></font>
-                    </td>
-                    <td rowspan="8"><a href="https://www.facebook.com"><img height="200" width="150" class="pull-right" width="40%" src="https://adminlte.io/themes/AdminLTE/dist/img/photo2.png" alt="Photo"></a></td>
-                </tr>
-                <tr>
-                    <td class="left_column" width="15%">Nama</td>
-                    <td>: <input type="text" name="nama_ayah" id="nama_ayah" class="text-input" maxlength="100" size="100" style="width:50%" value="<?php echo $mahasiswa->nama_ayah; ?>"></td>
-                </tr>
-                <tr>
-                    <td class="left_column">Tanggal Lahir</td>
-                    <td>:
-                        <input type="date" name="tanggal_lahir_ayah" id="tanggal_lahir_ayah" class="text-input" maxlength="50" size="50" style="width:20%" value="<?php echo $mahasiswa->tanggal_lahir_ayah; ?>">                                                                    </td>
-                </tr>
-                <tr>
-                    <td class="left_column">Pendidikan</td>
-                    <td>: <select name="pendidikan_ayah" id="pendidikan_ayah">
-                        <option value="<?php echo $mahasiswa->pendidikan_ayah; ?>"><?php echo $mahasiswa->pendidikan_ayah; ?></option>
-                        <option value="Tidak sekolah">Tidak sekolah</option>
-                        <option value="PAUD">PAUD</option>
-                        <option value="TK / sederajat">TK / sederajat</option>
-                        <option value="Putus SD">Putus SD</option>
-                        <option value="SD / sederajat">SD / sederajat</option>
-                        <option value="SMP / sederajat">SMP / sederajat</option>
-                        <option value="SMA / sederajat">SMA / sederajat</option>
-                        <option value="Paket A">Paket A</option>
-                        <option value="Paket B">Paket B</option>
-                        <option value="Paket C">Paket C</option>
-                        <option value="D1">D1</option>
-                        <option value="D2">D2</option>
-                        <option value="D3">D3</option>
-                        <option value="D4">D4</option>
-                        <option value="S1">S1</option>
-                        <option value="Profesi">Profesi</option>
-                        <option value="Sp-1">Sp-1</option>
-                        <option value="S2">S2</option>
-                        <option value="S2 Terapan">S2 Terapan</option>
-                        <option value="Sp-2">Sp-2</option>
-                        <option value="S3">S3</option>
-                        <option value="S3 Terapan">S3 Terapan</option>
-                        <option value="Non formal">Non formal</option>
-                        <option value="Informal">Informal</option>
-                        <option value="Lainnya">Lainnya</option>
-                        </select></td>
-                </tr>
-                <tr>
-                    <td class="left_column">Pekerjaan</td>
-                    <td>: <select name="pekerjaan_ayah" id="pekerjaan_ayah">
-                        <option value="<?php echo $mahasiswa->pekerjaan_ayah; ?>"><?php echo $mahasiswa->pekerjaan_ayah; ?></option>
-                        <option value="Tidak bekerja">Tidak bekerja</option>
-                        <option value="Nelayan">Nelayan</option>
-                        <option value="Petani">Petani</option>
-                        <option value="Peternak">Peternak</option>
-                        <option value="PNS/TNI/Polri">PNS/TNI/Polri</option>
-                        <option value="Karyawan Swasta">Karyawan Swasta</option>
-                        <option value="Pedagang Kecil">Pedagang Kecil</option>
-                        <option value="Pedagang Besar">Pedagang Besar</option>
-                        <option value="Wiraswasta">Wiraswasta</option>
-                        <option value="Wirausaha">Wirausaha</option>
-                        <option value="Buruh">Buruh</option>
-                        <option value="Pensiunan">Pensiunan</option>
-                        <option value="Sudah Meninggal">Sudah Meninggal</option>
-                        <option value="Lainnya">Lainnya</option>
-                        </select></td>
-                </tr>
-                <tr>
-                    <td class="left_column">Penghasilan</td>
-                    <td>: <select name="penghasilan_ayah" id="penghasilan_ayah">
-                        <option value="<?php echo $mahasiswa->penghasilan_ayah; ?>"><?php echo $mahasiswa->penghasilan_ayah; ?></option>
-                        <option value="Kurang dari Rp. 500,000">Kurang dari Rp. 500,000</option>
-                        <option value="Rp. 500,000 - Rp. 999,999">Rp. 500,000 - Rp. 999,999</option>
-                        <option value="Rp. 1,000,000 - Rp. 1,999,999">Rp. 1,000,000 - Rp. 1,999,999</option>
-                        <option value="Rp. 2,000,000 - Rp. 4,999,999">Rp. 2,000,000 - Rp. 4,999,999</option>
-                        <option value="Rp. 5,000,000 - Rp. 20,000,000">Rp. 5,000,000 - Rp. 20,000,000</option>
-                        <option value="Lebih dari Rp. 20,000,000">Lebih dari Rp. 20,000,000</option>
-                        </select></td>
-                </tr>
-            </table>
-
-              </div>
-              <div class="tab-pane" id="tab_1">
+              <div class="tab-pane active" id="tab_1">
                 <table width="90%" class="table">
                 <tr>
                     <td class="left_column" width="15%">NIK <font color="#FF0000">*</font></td>

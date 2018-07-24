@@ -102,7 +102,7 @@ class Mahasiswa_model extends CI_Model {
               ->row();
   }
 
-  public function save_mahasiswa()
+  public function save_mahasiswa($foto_mahasiswa)
     {        
         $data = array(
             'id_mahasiswa'      => $this->input->post('id_mahasiswa', TRUE),
@@ -118,6 +118,7 @@ class Mahasiswa_model extends CI_Model {
             'status_mahasiswa'      => 'Aktif',
             'id_prodi'      => $this->input->post('id_prodi', TRUE),
             'id_konsentrasi'      => $this->input->post('id_konsentrasi', TRUE)
+            'foto_mahasiswa' => $foto_mahasiswa['file_name'] )
         );
     
         $this->db->insert('tb_mahasiswa', $data);
