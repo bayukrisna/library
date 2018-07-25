@@ -44,9 +44,13 @@
                   <td>
                   
                      <a href="'.base_url('tamu/f1/'.$data->id_pendaftaran).'" class="btn btn-warning btn-sm" >FU<span class="tooltiptext">Follow UP</span></a>
+
+                     <a href="'.base_url('tamu/detail_tamu/'.$data->id_pendaftaran).'" class="btn btn-warning btn-sm"><i class="glyphicon glyphicon-list-alt"></i><span class="tooltiptext">Detail Tamu</span></a>
                      
                      
                       <a href="'.base_url('tamu/page_upload/'.$data->id_pendaftaran).'" class="btn btn-info btn-sm"><i class="fa fa-file-image-o"></i><span class="tooltiptext">Unggah Gambar</span></a>
+
+
                   
 
                   </td>
