@@ -115,7 +115,7 @@
                 <div class="input-group" >
                
                 <!-- /btn-group -->
-                <input type="text" class="form-control" id="student" hidden="">
+                <input type="text" class="form-control" id="student" hidden="" value="<?php echo $edit->sgs; ?>" readonly>
                  <div class="input-group-btn">
                   <button type="button" class="btn btn-danger" data-toggle="modal" data-target="#modal-default"><i class="fa fa-search"></i></button>
                 </div>
