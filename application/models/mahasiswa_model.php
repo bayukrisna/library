@@ -102,7 +102,7 @@ class Mahasiswa_model extends CI_Model {
               ->row();
   }
 
-  public function save_mahasiswa($foto_mahasiswa)
+  public function save_mahasiswa()
     {        
         $data = array(
             'id_mahasiswa'      => $this->input->post('id_mahasiswa', TRUE),
@@ -118,7 +118,6 @@ class Mahasiswa_model extends CI_Model {
             'status_mahasiswa'      => 'Aktif',
             'id_prodi'      => $this->input->post('id_prodi', TRUE),
             'id_konsentrasi'      => $this->input->post('id_konsentrasi', TRUE)
-            'foto_mahasiswa' => $foto_mahasiswa['file_name'] )
         );
     
         $this->db->insert('tb_mahasiswa', $data);
@@ -231,12 +230,29 @@ class Mahasiswa_model extends CI_Model {
         }
     }
 
+    public function save_edit_foto_mahasiswa($foto_mahasiswa, $id_mahasiswa)
+   {
+    $data = array('foto_mahasiswa' => $foto_mahasiswa['file_name'] )
+                  ;
+
+    if (!empty($data)) {
+            $this->db->where('id_mahasiswa', $id_mahasiswa)
+        ->update('tb_mahasiswa', $data);
+
+          return true;
+        } else {
+            return null;
+        }
+  }
+
     public function save_edit_mahasiswa($id_tes){
     $data = array(
+         
             'agama'     => $this->input->post('agama', TRUE),
             'email'     => $this->input->post('email', TRUE),
             'no_telepon'     => $this->input->post('no_telepon', TRUE),
             'no_hp'     => $this->input->post('no_hp', TRUE)
+
       );
 
     if (!empty($data)) {

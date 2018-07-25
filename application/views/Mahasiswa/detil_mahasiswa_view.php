@@ -83,7 +83,7 @@
                 <tr>
                     <td class="left_column">Kewarganegaraan <font color="#FF0000">*</font></td>
                     <td colspan="5">: 
-                    <input type="text" name="kewarganegaraan" id="kewarganegaraan" class="validate[required] text-input" style="width:70%">          
+                    <input type="text" name="kewarganegaraan" id="kewarganegaraan" class="validate[required] text-input" style="width:70%" required="">          
                     </td>
                 </tr>
                 <tr>
@@ -157,7 +157,7 @@
                 <label class="radio-inline"><input type="radio" name="kps" id="kps" value="Ya" onclick="undisableTxt()"> Ya</label> &nbsp; 
                 </td>
                     <td class="left_column">No KPS</td>
-                    <td colspan = '4'>: <input type="text" name="no_kps" id="myText" class="text-input" maxlength="80" size="80" style="width:50%"></td>
+                    <td colspan = '4'>: <input type="text" name="no_kps" id="myText" class="text-input" maxlength="80" size="80" style="width:50%" value=""></td>
                 </tr>
 
 
@@ -462,13 +462,13 @@
 
 
         <script>
-            document.getElementById("myText").disabled = true;
+            document.getElementById("myText").readonly = true;
 function disableTxt() {
-    document.getElementById("myText").disabled = true;
+    document.getElementById("myText").readOnly = true;
 }
 
 function undisableTxt() {
-    document.getElementById("myText").disabled = false;
+    document.getElementById("myText").readonly = false;
   }
 </script>
         <!-- /.col -->

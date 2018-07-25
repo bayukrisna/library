@@ -64,14 +64,7 @@ class Mahasiswa extends CI_Controller {
 			$data['main_view'] = 'Mahasiswa/mahasiswa_view';
 			$this->load->view('template', $data);
 	}
-	public function get_filter() {
-		
-		$option = "";
-			$option.='<p>kelas pagi</p>';
-		echo $option;
-
-
-	}
+	
 
 	public function filter_mahasiswa()
 	{
@@ -139,7 +132,7 @@ class Mahasiswa extends CI_Controller {
 
 	    if($this->upload->do_upload('foto_mahasiswa')){
 		 $id_mahasiswa = $this->uri->segment(3);
-			if($this->mahasiswa_model->save_edit_mahasiswa($this->upload->data(), $id_mahasiswa) == TRUE && $this->mahasiswa_model->save_edit_orang_tua($id_mahasiswa) == TRUE && $this->mahasiswa_model->save_edit_alamat($id_mahasiswa) == TRUE && $this->mahasiswa_model->save_edit_wali($id_mahasiswa) == TRUE && $this->mahasiswa_model->save_edit_kependudukan($id_mahasiswa) == TRUE && $this->mahasiswa_model->save_edit_jenis_tinggal($id_mahasiswa) == TRUE){
+			if($this->mahasiswa_model->save_edit_mahasiswa($id_mahasiswa) == TRUE && $this->mahasiswa_model->save_edit_foto_mahasiswa($this->upload->data(), $this->uri->segment(3)) == TRUE && $this->mahasiswa_model->save_edit_orang_tua($id_mahasiswa) == TRUE && $this->mahasiswa_model->save_edit_alamat($id_mahasiswa) == TRUE && $this->mahasiswa_model->save_edit_wali($id_mahasiswa) == TRUE && $this->mahasiswa_model->save_edit_kependudukan($id_mahasiswa) == TRUE && $this->mahasiswa_model->save_edit_jenis_tinggal($id_mahasiswa) == TRUE){
 				$nama_du = $this->input->post('nama_mahasiswa');
 				$this->session->set_flashdata('message', '<div class="col-md-12 alert alert-success"> Data '.$nama_du.' berhasil didaftarkan. </div>');
             	redirect('mahasiswa/data_mahasiswa');
@@ -148,7 +141,7 @@ class Mahasiswa extends CI_Controller {
             	redirect('mahasiswa/data_mahasiswa');
 			} 
 		}else {
-
+			echo 'f';
 		}
 	} 
 		
