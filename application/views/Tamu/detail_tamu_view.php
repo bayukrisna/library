@@ -189,7 +189,7 @@
 </div>
 </div>
 <script>
-    if(document.getElementById("input_student").value=="student_get_student")
+    if(document.getElementById("sumber").value=="student_get_student")
         document.getElementById("input_student").style.visibility = 'visible';
         else
         document.getElementById("input_student").style.visibility = 'hidden';
