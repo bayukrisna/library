@@ -34,6 +34,7 @@ class Tamu extends CI_Controller {
 			$id_du = $this->uri->segment(3);
 			$data['edit'] = $this->tamu_model->detail_tamu($id_du);
 			$data['getProdi'] = $this->daftar_ulang_model->getProdi();
+			$data['mahasiswa'] = $this->mahasiswa_model->data_mahasiswa();
 			$data['getPreschool'] = $this->daftar_ulang_model->getPreschool();
 			$data['main_view'] = 'Tamu/detail_tamu_view';
 			$this->load->view('template', $data);
