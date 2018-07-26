@@ -59,11 +59,8 @@
                 <div class="tab-pane active" id="tab_0">
                 <table width="90%" class="table">
                 <tr>
-                    <td colspan="2"><strong>Ayah</strong></td>
-                </tr>
-                <tr>
-                    <td class="left_column" width="15%">NIK</td>
-                    <td colspan="3">:  <input type="text" name="nik_ayah" id="nik_ayah" class="text-input" maxlength="16" size="50" style="width:40%" onkeydown="return onlyNumber(event,this,false,false)" value="<?php echo $mahasiswa->nik_ayah; ?>">                            <font color="grey"><em> ( Nomor KTP tanpa tanda baca ) </em></font>
+                    <td class="left_column" width="15%">NIM</td>
+                    <td colspan="3">:  <input type="text" name="nim" id="nim" class="text-input" maxlength="16" size="50" style="width:40%" onkeydown="return onlyNumber(event,this,false,false)" value="<?php echo $mahasiswa->nim; ?>">                            
                     </td>
                     <td rowspan="8"><div class="btn btn-file" >
                   <input type="file"   onchange="loadFile(event)" name="foto_mahasiswa" id="foto_mahasiswa">
@@ -541,8 +538,22 @@
         </div>
         <!-- /.col -->
 <script>
-  var loadFile = function(event) {
-    var output = document.getElementById('output');
-    output.src = URL.createObjectURL(event.target.files[0]);
-  };
+    function loadFile(event) {
+                var output = document.getElementById('output');
+                output.src = URL.createObjectURL(event.target.files[0]);
+                var foto_mahasiswa = event.target.files;
+                $.ajax({
+                    url: '<?php echo base_url(); ?>mahasiswa/save_edit_foto_mahasiswa/',
+                    type:"post",
+                     data:new FormData(this),
+                     processData:false,
+                     contentType:false,
+                     cache:false,
+                     async:false,
+                      success: function(data){
+                          alert("Upload Image Berhasil.");
+
+                    }
+                });
+            }
 </script>

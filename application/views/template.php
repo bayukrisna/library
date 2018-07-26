@@ -154,6 +154,7 @@ a:hover .tooltiptext {
           <ul class="treeview-menu">
              <li><a href="<?php echo base_url(); ?>mahasiswa/mahasiswa2"><i class="fa fa-circle-o"></i>Mahasiswa</a></li>
             <li><a href="<?php echo base_url(); ?>mahasiswa/data_mahasiswa"><i class="fa fa-circle-o"></i>Mahasiswa Dikti</a></li>
+             <li><a href="<?php echo base_url(); ?>mata_kuliah"><i class="fa fa-circle-o"></i>Mata Kuliah</a></li>
             <li class="treeview">
               <a href="#"><i class="fa fa-circle-o"></i>Pelengkap
                 <span class="pull-right-container">
