@@ -8,6 +8,28 @@ class Finance_model extends CI_Model {
 	{
 		parent::__construct();
 	}
+  public function autocomplete($nama){
+
+    // $this->db->like('nama_mahasiswa' , $nama, 'BOTH');
+    // $this->db->order_by('id_mahasiswa', 'asc');
+    // $this->db->limit(5);
+    // return $this->db->get('tb_mahasiswa')->result();
+     $this->db->select('*');
+     $this->db->from('tb_mahasiswa');
+     // $this->db->join('tb_pembayaran','tb_mahasiswa.id_mahasiswa=tb_pembayaran.id_mahasiswa');
+     $this->db->like('tb_mahasiswa.nama_mahasiswa',$nama);
+     $query = $this->db->get();
+     return $query->result();
+  }
+
+   public function riwayat_pembayaran($id_mahasiswa){
+    $this->db->select('*');
+     $this->db->from('tb_pembayaran');
+
+     $this->db->where('tb_pembayaran.id_mahasiswa', $id_mahasiswa);
+     $query = $this->db->get();
+     return $query->result();
+  }
 
   public function dashboard(){
     $belum_bayar = $this->db->select('count(*) as total')
@@ -30,6 +52,7 @@ class Finance_model extends CI_Model {
 		->get('tb_pendaftaran')
 		->result();
 	}
+ 
 
   public function data_lunas(){
     $query = $this->db->query("SELECT * FROM tb_pendaftaran WHERE status_bayar = 'Lunas' OR status_bayar = 'Aktif'")->result();

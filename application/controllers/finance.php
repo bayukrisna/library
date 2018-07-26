@@ -22,6 +22,45 @@ class Finance extends CI_Controller {
 		$data['data']=$this->finance_model->data_mahasiswa();
 		$this->load->view('template', $data);
 	}
+	public function pembayaran()
+	{
+
+		$id_mahasiswa = $this->input->get('id_mahasiswa');
+		$data['nama'] = $this->input->get('nama_mhs');
+		$data['riwayat'] = $this->finance_model->riwayat_pembayaran($id_mahasiswa);
+		$data['main_view'] = 'Finance/pembayaran_view';
+		$this->load->view('template', $data);
+	}
+	public function oke()
+	{
+		$this->load->view('Finance/pembayaran_view');
+	}
+	function autocomplete(){
+		$searchTerm = $_GET['term'];
+		//mendapatkan data yang sesuai dari tabel daftar_kota
+		$query = $this->db->query("SELECT * FROM tb_biaya WHERE nama_biaya LIKE '%".$searchTerm."%' ORDER BY nama_biaya ASC");
+		foreach($query->result_array() as $row){
+		    $data[] = $row['nama_biaya'];
+		    $data[] = $row['id_biaya'];
+		}
+		//return data json
+		echo json_encode($data);
+	}
+	public function get_autocomplete(){
+		if(isset($_GET['term'])){
+			$result = $this->finance_model->autocomplete($_GET['term']);
+			if(count($result) > 0){
+				foreach ($result as $row) 
+					$result_array[] = array(
+						'label' => $row->nama_mahasiswa,
+						'id' => $row->id_mahasiswa);
+				echo json_encode($result_array);
+			
+			}
+		}
+	}
+
+
 
 	public function data_lunas()
 	{
