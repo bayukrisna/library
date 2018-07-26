@@ -128,7 +128,7 @@
               <div class="modal-header">
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                   <span aria-hidden="true">&times;</span></button>
-                <h4 class="modal-title">Default Modal</h4>
+                <h4 class="modal-title">Data Mahasiswa</h4>
               </div>
               <div class="modal-body">
                 <div class="box-body">
@@ -155,7 +155,7 @@
                   <td>'.$data->nama_du.'</td>
                   <td>'.$data->nama_prodi.'</td>
                   <td>'.$data->waktu.'</td>
-                  <td><p class="btn btn-default btn-sm" onclick="myFunction('.$data->nim.')">Pilih</p></td>
+                  <td><p class="btn btn-default btn-sm" data-dismiss="modal" onclick="myFunction('.$data->nim.')">Pilih</p></td>
                 </tr>
                 ';
                 

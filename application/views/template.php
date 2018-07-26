@@ -20,6 +20,8 @@
 
   <link rel="stylesheet" href="<?php echo base_url(); ?>assets/plugins/select2/select2.min.css">
 
+  <link rel="stylesheet" href="<?php echo base_url(); ?>assets/css/styleku.css">
+
   <!-- Font Awesome -->
   <!-- DataTables -->
   <link rel="stylesheet" href="<?php echo base_url(); ?>assets/plugins/datatables/dataTables.bootstrap.css">
@@ -152,8 +154,10 @@ a:hover .tooltiptext {
             </span>
           </a>
           <ul class="treeview-menu">
+            <li><a href="<?php echo base_url(); ?>kurikulum"><i class="fa fa-circle-o"></i>Kurikulum</a></li>
              <li><a href="<?php echo base_url(); ?>mahasiswa/mahasiswa2"><i class="fa fa-circle-o"></i>Mahasiswa</a></li>
             <li><a href="<?php echo base_url(); ?>mahasiswa/data_mahasiswa"><i class="fa fa-circle-o"></i>Mahasiswa Dikti</a></li>
+             <li><a href="<?php echo base_url(); ?>mata_kuliah"><i class="fa fa-circle-o"></i>Mata Kuliah</a></li>
             <li class="treeview">
               <a href="#"><i class="fa fa-circle-o"></i>Pelengkap
                 <span class="pull-right-container">
@@ -221,6 +225,14 @@ a:hover .tooltiptext {
       "lengthChange": false,
       "searching": false,
       "ordering": true,
+      "info": true,
+      "autoWidth": false
+    });
+    $('#example3').DataTable({
+      "paging": true,
+      "lengthChange": true,
+      "searching": true,
+      "ordering": false,
       "info": true,
       "autoWidth": false
     });

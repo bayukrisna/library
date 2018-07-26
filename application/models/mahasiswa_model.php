@@ -251,7 +251,8 @@ class Mahasiswa_model extends CI_Model {
             'agama'     => $this->input->post('agama', TRUE),
             'email'     => $this->input->post('email', TRUE),
             'no_telepon'     => $this->input->post('no_telepon', TRUE),
-            'no_hp'     => $this->input->post('no_hp', TRUE)
+            'no_hp'     => $this->input->post('no_hp', TRUE),
+            'nim'     => $this->input->post('nim', TRUE)
 
       );
 

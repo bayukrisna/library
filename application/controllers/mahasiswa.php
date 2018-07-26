@@ -126,13 +126,8 @@ class Mahasiswa extends CI_Controller {
 
 	public function save_edit_mahasiswa()
 	{
-		$config['upload_path'] = './uploads/';
-	    $config['allowed_types'] = 'jpg|png|jpeg';
-	    $this->load->library('upload', $config);
-
-	    if($this->upload->do_upload('foto_mahasiswa')){
 		 $id_mahasiswa = $this->uri->segment(3);
-			if($this->mahasiswa_model->save_edit_mahasiswa($id_mahasiswa) == TRUE && $this->mahasiswa_model->save_edit_foto_mahasiswa($this->upload->data(), $this->uri->segment(3)) == TRUE && $this->mahasiswa_model->save_edit_orang_tua($id_mahasiswa) == TRUE && $this->mahasiswa_model->save_edit_alamat($id_mahasiswa) == TRUE && $this->mahasiswa_model->save_edit_wali($id_mahasiswa) == TRUE && $this->mahasiswa_model->save_edit_kependudukan($id_mahasiswa) == TRUE && $this->mahasiswa_model->save_edit_jenis_tinggal($id_mahasiswa) == TRUE){
+			if($this->mahasiswa_model->save_edit_mahasiswa($id_mahasiswa) == TRUE && $this->mahasiswa_model->save_edit_orang_tua($id_mahasiswa) == TRUE && $this->mahasiswa_model->save_edit_alamat($id_mahasiswa) == TRUE && $this->mahasiswa_model->save_edit_wali($id_mahasiswa) == TRUE && $this->mahasiswa_model->save_edit_kependudukan($id_mahasiswa) == TRUE && $this->mahasiswa_model->save_edit_jenis_tinggal($id_mahasiswa) == TRUE){
 				$nama_du = $this->input->post('nama_mahasiswa');
 				$this->session->set_flashdata('message', '<div class="col-md-12 alert alert-success"> Data '.$nama_du.' berhasil didaftarkan. </div>');
             	redirect('mahasiswa/data_mahasiswa');
@@ -140,9 +135,15 @@ class Mahasiswa extends CI_Controller {
 				$this->session->set_flashdata('message', '<div class="col-md-12 alert alert-danger"> Gagal </div>');
             	redirect('mahasiswa/data_mahasiswa');
 			} 
-		}else {
-			echo 'f';
-		}
 	} 
+
+	public function save_edit_foto_mahasiswa($foto_mahasiswa){
+		$config['upload_path'] = './uploads/';
+	    $config['allowed_types'] = 'jpg|png|jpeg';
+	    $this->load->library('upload', $config);
+
+	    $this->upload->do_upload($foto_mahasiswa);
+	      $this->mahasiswa_model->save_edit_foto_mahasiswa($this->upload->data(), $this->uri->segment(3));
+	}
 		
 }

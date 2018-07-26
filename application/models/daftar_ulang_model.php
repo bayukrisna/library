@@ -68,6 +68,20 @@ class Daftar_ulang_model extends CI_Model {
                     ->result();
 
     }
+
+    function getJenisMatkul()
+    {
+        return $this->db->get('tb_jenis_matkul')
+                    ->result();
+
+    }
+
+    function getPeriode()
+    {
+        return $this->db->get('tb_periode')
+                    ->result();
+
+    }
     /*public function get_concentrate($data){
     $this->db->select('tb_prodi.id_prodi, tb_konsentrasi.id_konsentrasi, tb_konsentrasi.nama_konsentrasi');
     $this->db->from('tb_prodi'); //dari tabel data_users
