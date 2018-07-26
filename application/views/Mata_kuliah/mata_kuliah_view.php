@@ -10,11 +10,12 @@
             
             <!-- /.box-header -->
             <div class="box-body">
-              <table id="example1" class="table table-bordered table-striped">
+              <table id="example3" class="table2 table-bordered table-striped">
                 <a href="<?php echo base_url(); ?>mata_kuliah/tambah_matkul" class="btn btn-info btn-sm" ><i class="fa fa-plus"></i> Tambah</a> <br> <br>
                 <thead>
                 <tr>
                   <th>No</th>
+                  <th>Kode MK</th>
                   <th>Nama MK</th>
                   <th>Bobot MK (sks)</th>
                   <th>Program Studi</th>
@@ -26,17 +27,21 @@
 
                 <?php 
                 $no = 0;
+                $alert = "'Apakah anda yakin mengapus data ini ?'";
                 foreach ($matkul as $data) {
                   echo '
                   
                 <tr>
                   <td>'.++$no.'</td>
-            <td><a href="" data-toggle="modal" data-target="#modal_view'.$data->kode_matkul.'">'.$data->nama_matkul.'</a></td>
+                  <td><a href="" data-toggle="modal" data-target="#modal_view'.$data->kode_matkul.'">'.$data->kode_matkul.'</a></td>
+                  <td>'.$data->nama_matkul.'</a></td>
                   <td>'.$data->bobot_matkul.'</td>
                   <td>'.$data->nama_prodi.'</td>
                   <td>'.$data->nama_jenis_matkul.'</td>
                   <td> 
                   <a href="'.base_url('mata_kuliah/detail_matkul/'.$data->kode_matkul).'" class="btn btn-success  btn-sm"><i class="glyphicon glyphicon-pencil"></i><span class="tooltiptext">Detail Mata Kuliah</span></a>
+
+                   <a href="'.base_url('mata_kuliah/hapus_matkul/'.$data->kode_matkul).'" class="btn btn-danger  btn-sm" onclick="return confirm('.$alert.')"><i class="glyphicon glyphicon-trash"></i><span class="tooltiptext">Hapus Mata Kuliah</span></a>
                 ' ;
                 
               }

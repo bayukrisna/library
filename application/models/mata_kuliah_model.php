@@ -42,6 +42,7 @@ class Mata_kuliah_model extends CI_Model {
   public function data_matkul(){
    return $this->db->join('tb_prodi','tb_prodi.id_prodi=tb_matkul.id_prodi')
               ->join('tb_jenis_matkul','tb_jenis_matkul.id_jenis_matkul=tb_matkul.jenis_matkul')
+              ->order_by('nama_matkul')
               ->get('tb_matkul')
               ->result();
   }
@@ -79,6 +80,17 @@ class Mata_kuliah_model extends CI_Model {
             return null;
         }
   }
+
+  public function hapus_matkul($kode_matkul){
+        $this->db->where('kode_matkul', $kode_matkul)
+          ->delete('tb_matkul');
+
+    if ($this->db->affected_rows() > 0) {
+      return TRUE;
+      } else {
+        return FALSE;
+      }
+    }
     
 }
 

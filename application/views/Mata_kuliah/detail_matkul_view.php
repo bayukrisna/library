@@ -43,7 +43,7 @@
             <tr>
           <td class="left_column">Bobot Mata Kuliah (sks)</td>
             <td>: 
-      <input type="text" name="bobot_matkul" id="bobot_matkul" class="text-input" maxlength="2" size="2" readonly style="width:10%" value="<?php echo $matkul->bobot_matkul;?>">            
+      <input type="text" name="bobot_matkul" id="bobot_matkul" class="text-input" maxlength="2" size="2" readonly style="width:10%; background-color:#E0E0E0" value="<?php echo $matkul->bobot_matkul;?>">            
             </td>
         </tr>
         <tr>

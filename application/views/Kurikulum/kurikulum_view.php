@@ -110,7 +110,7 @@
         <tr>
             <td class="left_column">Jumlah SKS</td>
             <td>: 
-            <input type="text" name="jumlah_sks" id="jumlah_sks" class="text-input" maxlength="2" size="2" readonly style="width:10%" value="0">            <font color="#999999"><em> ( sks Jumlah bobot mata kuliah wajib + sks Jumlah bobot mata kuliah pilihan)</em></font>
+            <input type="text" name="jumlah_sks" id="jumlah_sks" class="text-input" maxlength="2" size="2" readonly style="width:10%; background-color:#E0E0E0" value="0">            <font color="#999999"><em> ( sks Jumlah bobot mata kuliah wajib + sks Jumlah bobot mata kuliah pilihan)</em></font>
             </td>
         </tr>
         <tr>

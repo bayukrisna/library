@@ -41,7 +41,7 @@
                 <tr>
             <td class="left_column">Bobot Mata Kuliah (sks)</td>
             <td>: 
-            <input type="text" name="bobot_matkul" id="bobot_matkul" class="text-input" maxlength="2" size="2" readonly style="width:5%" readonly="" value="0">            <font color="#999999"><em> ( sks Tatap Muka + sks Praktikum + sks Praktek Lapangan + sks Simulasi )</em></font>
+            <input type="text" name="bobot_matkul" id="bobot_matkul" class="text-input" maxlength="2" size="2" readonly style="width:5%; background-color:#E0E0E0" readonly="" value="0">            <font color="#999999"><em> ( sks Tatap Muka + sks Praktikum + sks Praktek Lapangan + sks Simulasi )</em></font>
             </td>
         </tr>
         <tr>

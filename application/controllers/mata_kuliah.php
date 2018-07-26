@@ -59,4 +59,14 @@ class Mata_kuliah extends CI_Controller {
             			redirect('mata_kuliah');
 					}
 		}
+
+	public function hapus_matkul($kode_matkul){
+		if ($this->mata_kuliah_model->hapus_matkul($kode_matkul) == TRUE) {
+			$this->session->set_flashdata('message', '<div class="alert alert-success"> Hapus Mata Kuliah Berhasil </div>');
+			redirect('mata_kuliah');
+		} else {
+			$this->session->set_flashdata('message', '<div class="alert alert-success"> Hapus Mata Kuliah Gagal </div>');
+			redirect('mata_kuliah');
+		}
+	}
 }
