@@ -57,8 +57,17 @@ a .tooltiptext {
 
 a:hover .tooltiptext {
     visibility: visible;
+
+
 }
 </style>
+
+<style type="text/css">
+    .ui-autocomplete {
+  z-index: 215000000 !important;
+}
+</style>  
+
 </head>
 <body class="hold-transition skin-blue sidebar-mini">
 <div class="wrapper">

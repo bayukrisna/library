@@ -25,29 +25,34 @@
                   <th>Wajib</th>
                   <th>Pilihan</th>
                 </thead>
+
                 <tbody>
 
                 <?php 
                 $no = 0;
                 foreach ($kurikulum as $data) {
+
+                  
                   echo '
                   
                 <tr>
                   <td>'.++$no.'</td>
-                  <td><a href="" data-toggle="modal" data-target="#modal_view">'.$data->nama_kurikulum.'</a></td>
+                  <td><a href="'.base_url('kurikulum/detail_kurikulum/'.$data->id_kurikulum).'">'.$data->nama_kurikulum.'</a></td>
                   <td>'.$data->nama_prodi.'</td>
                   <td>'.$data->semester.'</td>
                   <td>'.$data->jumlah_sks.'</td>
                   <td>'.$data->bobot_matkul_wajib.'</td>
                   <td>'.$data->bobot_matkul_pilihan.'</td>
-                  <td>'.$data->bobot_matkul_wajib.'</td>
+                  <td></td>
                   <td>'.$data->bobot_matkul_wajib.'</td>
                   <td></td>
 
                 ' ;
                 
+                
               }
               ?>
+        
                 </tbody>
               </table>
             </div>
@@ -149,7 +154,7 @@ function sum() {
       }
 }
 </script>
-    
+
 
     
 
