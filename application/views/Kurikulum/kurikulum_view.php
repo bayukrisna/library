@@ -43,7 +43,7 @@
                   <td>'.$data->jumlah_sks.'</td>
                   <td>'.$data->bobot_matkul_wajib.'</td>
                   <td>'.$data->bobot_matkul_pilihan.'</td>
-                  <td></td>
+                  <td>'.$bobot.'</td>
                   <td>'.$data->bobot_matkul_wajib.'</td>
                   <td></td>
 

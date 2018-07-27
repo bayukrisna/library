@@ -41,7 +41,7 @@ class Kurikulum_model extends CI_Model {
     $bobot_bp = $this->db->query("SELECT SUM(bp) AS total FROM tb_detail_kurikulum WHERE id_kurikulum = $id_kurikulum")->row();
     $bobot_bpl = $this->db->query("SELECT SUM(bpl) AS total FROM tb_detail_kurikulum WHERE id_kurikulum = $id_kurikulum")->row();
     $bobot_bs = $this->db->query("SELECT SUM(bs) AS total FROM tb_detail_kurikulum WHERE id_kurikulum = $id_kurikulum")->row();
-    $bobot_wajib = $this->db->query("SELECT SUM(bobot_matkul) AS total FROM tb_detail_kurikulum WHERE wajib = 'Y'")->row();
+    $bobot_wajib = $this->db->query("SELECT SUM(bobot_matkul) AS total FROM tb_detail_kurikulum WHERE wajib LIKE 'Y' AND id_kurikulum LIKE $id_kurikulum")->row();
     $bobot_pilihan = $this->db->query("SELECT SUM(bobot_matkul) AS total FROM tb_detail_kurikulum WHERE wajib = 'T'")->row();
 
 
@@ -54,6 +54,20 @@ class Kurikulum_model extends CI_Model {
       'bobot_wajib' => $bobot_wajib->total,
       'bobot_pilihan' => $bobot_pilihan->total,
       );
+
+     $data = array(
+          'bobot_wajib'         => $bobot_wajib
+      );
+
+    if (!empty($data)) {
+            $this->db->where('id_kurikulum', $id_kurikulum)
+        ->update('tb_kurikulum', $data);
+
+          return true;
+        } else {
+            return null;
+        }
+  
 
     //return $matkul_wajib = $eek;
       
@@ -99,6 +113,15 @@ class Kurikulum_model extends CI_Model {
               ->join('tb_periode','tb_periode.id_periode=tb_kurikulum.id_periode')
               ->get('tb_kurikulum')
               ->result();
+
+  
+
+  
+
+  }
+  function bobot_wajib(){
+  return "he";
+
   }
 
   public function detail_kurikulum($id_kurikulum){

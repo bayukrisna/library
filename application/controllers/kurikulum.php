@@ -15,7 +15,7 @@ class Kurikulum extends CI_Controller {
 			$data['getProdi'] = $this->daftar_ulang_model->getProdi();
 			$data['getPeriode'] = $this->daftar_ulang_model->getPeriode();
 			$data['kurikulum'] = $this->kurikulum_model->data_kurikulum();
-			$matkul_wajib = $this->kurikulum_model->bobot();
+			$data['bobot'] = $this->kurikulum_model->bobot_wajib();
 			$data['main_view'] = 'kurikulum/kurikulum_view';
 			$this->load->view('template', $data);
 		
