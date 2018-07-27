@@ -7,6 +7,7 @@ class Finance extends CI_Controller {
 	{
 		parent::__construct();
 		$this->load->model('finance_model');
+		$this->load->model('biaya_sekolah_model');
 	}
 
 	public function dashboard_finance(){
@@ -24,12 +25,27 @@ class Finance extends CI_Controller {
 	}
 	public function pembayaran()
 	{
-
-		$id_mahasiswa = $this->input->get('id_mahasiswa');
-		$data['nama'] = $this->input->get('nama_mhs');
-		$data['riwayat'] = $this->finance_model->riwayat_pembayaran($id_mahasiswa);
+		$data['getJenisPembayaran'] = $this->biaya_sekolah_model->getJenisPembayaran();
 		$data['main_view'] = 'Finance/pembayaran_view';
 		$this->load->view('template', $data);
+	}
+	function data_pembayaran_mahasiswa(){
+		$id=$this->input->get('id_mahasiswa');
+		$data2=$this->finance_model->coba_mahasiswa($id);
+		// echo json_encode($data);
+		$option = "";
+		foreach ($data2 as $data) {
+			$option .= "<tr>
+		                  <td>".$data->id_mahasiswa."</td>
+		                   <td>".$data->total_biaya."</td>
+		                        <td>".$data->id_mahasiswa."</td>
+		                   <td>".$data->total_biaya."</td>
+		                   <td>".$data->id_mahasiswa."</td>
+		                   <td>".$data->total_biaya."</td>
+		                        </tr>";
+			
+		}
+		echo $option;
 	}
 	public function oke()
 	{
@@ -96,5 +112,32 @@ class Finance extends CI_Controller {
 	public function cek_id_daftar_ulang(){
 		$id = $this->input->post('id_daftar_ulang');
 		$this->finance_model->cek_id_daftar_ulang($id);
+	}
+	public function get_dropdown_pembayaran($param = NULL) {
+		// $layanan =$this->input->post('layanan');
+		$jenis_biaya = urldecode($param);
+		$result = $this->finance_model->get_dropdown_pembayaran($jenis_biaya);
+		$option = "";
+		$option .= '<option value="">Pilih Pembayaran</option>';
+		foreach ($result as $data) {
+			$option .= "<option value='".$data->id_biaya."' >".$data->nama_biaya."</option>";
+			
+		}
+		echo $option;
+
+	}
+	public function get_biaya_pembayaran($param = NULL) {
+		// $layanan =$this->input->post('layanan');
+		$id_biaya = $param;
+		$result = $this->finance_model->get_biaya_pembayaran($id_biaya);
+		$option = "";
+		$option .= "<input readonly='' type='text' class='form-control' name='biaya' id='biayaa' value='".$result->jumlah_biaya."' >";
+		echo $option;
+
+	}
+	public function tambah_pembayaran()
+	{
+		//set rule di setiap form input
+			$this->finance_model->tambah_pembayaran();
 	}
 }

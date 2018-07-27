@@ -21,6 +21,14 @@ class Finance_model extends CI_Model {
      $query = $this->db->get();
      return $query->result();
   }
+  function coba_mahasiswa($id){
+    $this->db->select('*');
+     $this->db->from('tb_pembayaran');
+
+     $this->db->where('tb_pembayaran.id_mahasiswa', $id);
+     $query = $this->db->get();
+     return $query->result();
+  }
 
    public function riwayat_pembayaran($id_mahasiswa){
     $this->db->select('*');
@@ -105,6 +113,37 @@ class Finance_model extends CI_Model {
                       <input type="hidden" name="reg" class="btn btn-info" id="reg" value="No Registrasi Tersedia" readonly="">';
                 
                 }
+    }
+     public function get_dropdown_pembayaran($data){
+      return $this->db->where('jenis_biaya',$data)
+              ->get('tb_biaya')
+              ->result();
+  }
+  public function get_biaya_pembayaran($data){
+      return $this->db->where('id_biaya',$data)
+              ->get('tb_biaya')
+              ->row();
+  }
+  public function tambah_pembayaran()
+    {
+        $data = array(
+            'id_mahasiswa'                        => $this->input->post('id_mhsa'),
+            'id_biaya'                        => $this->input->post('pembayaran'),
+            'total_biaya'                 => $this->input->post('biaya'),
+            'tanggal_pembayaran'          => $this->input->post('tanggal_pembayaran')
+            
+        );
+    
+        $this->db->insert('tb_pembayaran', $data);
+
+        if($this->db->affected_rows() > 0){
+            
+                return true;
+        } else {
+            return false;
+            
+        }
+
     }
 }
 

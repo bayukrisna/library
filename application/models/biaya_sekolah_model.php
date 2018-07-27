@@ -21,6 +21,11 @@ class Biaya_sekolah_model extends CI_Model {
 	public function get_prodi(){
 		return $this->db->get('tb_prodi')->result();
 	}
+  public function getJenisPembayaran(){
+    $ya = "SELECT DISTINCT jenis_biaya  FROM tb_biaya";
+    return  $this->db->query($ya)->result();
+
+  }
 
 	public function  buat_kode()   {
           $this->db->SELECT('RIGHT(tb_biaya.id_biaya,3) as kode', FALSE);
