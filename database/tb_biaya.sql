@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Jul 24, 2018 at 11:34 AM
+-- Generation Time: Jul 27, 2018 at 11:51 AM
 -- Server version: 10.1.34-MariaDB
 -- PHP Version: 7.2.7
 
@@ -30,6 +30,7 @@ SET time_zone = "+00:00";
 
 CREATE TABLE `tb_biaya` (
   `id_biaya` varchar(6) NOT NULL,
+  `jenis_biaya` varchar(20) NOT NULL,
   `nama_biaya` varchar(25) NOT NULL,
   `jumlah_biaya` int(10) NOT NULL,
   `periode` varchar(10) NOT NULL
@@ -39,11 +40,13 @@ CREATE TABLE `tb_biaya` (
 -- Dumping data for table `tb_biaya`
 --
 
-INSERT INTO `tb_biaya` (`id_biaya`, `nama_biaya`, `jumlah_biaya`, `periode`) VALUES
-('BS001', 'Ranking 1', 360000, '2019/2022'),
-('BS002', 'Ranking 2', 3900000, '2018/2019'),
-('BS003', 'Ranking 3', 4500000, '2018/2019'),
-('BS004', 'Non-Beasiswa', 6000000, '2018/2019');
+INSERT INTO `tb_biaya` (`id_biaya`, `jenis_biaya`, `nama_biaya`, `jumlah_biaya`, `periode`) VALUES
+('BS001', '', 'Ranking 1', 360000, '2019/2022'),
+('BS002', '', 'Ranking 2', 3900000, '2018/2019'),
+('BS003', '', 'Ranking 3', 4500000, '2018/2019'),
+('BS004', '', 'Non-Beasiswa', 6000000, '2018/2019'),
+('BS005', 'ANG 1', 'Angsuran 1', 2070000, '2018'),
+('BS006', 'ANG 1', 'Angsuran 2', 600000, '2018');
 
 --
 -- Indexes for dumped tables
