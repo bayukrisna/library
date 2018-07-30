@@ -8,6 +8,10 @@ class Finance_model extends CI_Model {
 	{
 		parent::__construct();
 	}
+  function barang_gg(){
+    $hasil=$this->db->query("SELECT * FROM tb_pembayaran");
+    return $hasil->result();
+  }
   public function autocomplete($nama){
 
     // $this->db->like('nama_mahasiswa' , $nama, 'BOTH');

@@ -23,29 +23,47 @@ class Finance extends CI_Controller {
 		$data['data']=$this->finance_model->data_mahasiswa();
 		$this->load->view('template', $data);
 	}
-	public function pembayaran()
+	public function detail_pembayaran()
 	{
+		$ea = $this->input->post('nama_mhs');
+		if ($ea == null){
+			redirect('finance/gg');
+		} else {
+			$data['mahasiswa']=$ea;
+			$data['id_mahasiswa']= $this->input->post('id_mahasiswa');
 		$data['getJenisPembayaran'] = $this->biaya_sekolah_model->getJenisPembayaran();
-		$data['main_view'] = 'Finance/pembayaran_view';
-		$this->load->view('template', $data);
+		$data['main_view'] = 'Finance/detail_pembayaran_view';
+		$this->load->view('template', $data);	
+		}
+		
 	}
 	function data_pembayaran_mahasiswa(){
-		$id=$this->input->get('id_mahasiswa');
-		$data2=$this->finance_model->coba_mahasiswa($id);
-		// echo json_encode($data);
-		$option = "";
-		foreach ($data2 as $data) {
-			$option .= "<tr>
-		                  <td>".$data->id_mahasiswa."</td>
-		                   <td>".$data->total_biaya."</td>
-		                        <td>".$data->id_mahasiswa."</td>
-		                   <td>".$data->total_biaya."</td>
-		                   <td>".$data->id_mahasiswa."</td>
-		                   <td>".$data->total_biaya."</td>
-		                        </tr>";
+		
+		$id = $this->input->get('id_mahasiswa');
+		$data=$this->finance_model->coba_mahasiswa($id);
+		echo json_encode($data);
+		// // echo json_encode($data);
+		// $option = "";
+		// foreach ($data2 as $data) {
+		// 	$option .= "<tr>
+		//                   <td>".$data->id_mahasiswa."</td>
+		//                    <td>".$data->total_biaya."</td>
+		//                         <td>".$data->id_mahasiswa."</td>
+		//                    <td>".$data->total_biaya."</td>
+		//                    <td>".$data->id_mahasiswa."</td>
+		//                    <td>".$data->total_biaya."</td>
+		//                         </tr>";
 			
-		}
-		echo $option;
+		// }
+		// echo $option;
+	}
+	function pembayaran(){
+		$data['main_view'] = 'finance/pembayaran_view';
+		$this->load->view('template', $data);
+	}
+	function data_gg(){
+		$data=$this->finance_model->barang_gg();
+		echo json_encode($data);
 	}
 	public function oke()
 	{
