@@ -1,10 +1,11 @@
       
-       
+       <?php echo $this->session->flashdata('message');?>
         <div class="box box-info">
             
-            <!-- /.box-header -->
+            <!-- /.box-header --> 
             <div class="box-body">
               <table class="table">
+
         <tr>
 
 
@@ -48,6 +49,7 @@
               <i class="fa fa-plus"></i> Tambah Mata Kuliah</a> <br><br>
             
           </div>
+
 
           <div class="box box-info">
             <table class="table2 table-bordered table-striped">
@@ -102,8 +104,7 @@
         <td style="text-align:center">
                 <a href="<?php echo base_url(); ?>kurikulum/hapus_matkul_kurikulum/<?php echo $data->id_detail_kurikulum; ?>" onclick="return confirm(<?php echo $alert; ?>)" class="btn btn-danger btn-sm"><i class="glyphicon glyphicon-trash"></i><span class="tooltiptext">Hapus Matkul</span></a>
 
-                <a data-toggle="modal" data-target="#modal_edit<?php echo $data->id_detail_kurikulum;?>" class="btn btn-warning btn-sm"><i class="glyphicon glyphicon-pencil"></i><span class="tooltiptext" >Edit Matkul</span></a>
-                        </td>
+                <a href="<?php echo base_url(); ?>kurikulum/detail_matkul_kurikulum/<?php echo $data->id_detail_kurikulum; ?>" class="btn btn-warning btn-sm"><i class="glyphicon glyphicon-pencil"></i><span class="tooltiptext">Detail Matkul</span></a>
 
     </tr>
 <?php endforeach; ?>
@@ -125,13 +126,7 @@
 
           </div>
           
-        <div class="callout callout-info">
-        <strong>Keterangan :</strong>
-            <br />
-            - Fitur ini digunakan untuk menampilkan history pendidikan setiap kurikulum
-            <br />
-            - Data yang dapat di ubah hanya data pada periode aktif
-         </div>
+       
 
          <div class="modal fade" id="modal_tambah" >
             <div class="modal-dialog">
@@ -204,18 +199,20 @@
                 <div class="modal-body">
 
                     <div class="form-group">
-                      <?php echo form_open('kurikulum/simpan_detail_kurikulum'); ?>
+                      <?php echo form_open('kurikulum/edit_detail_kurikulum/'.$i->id_detail_kurikulum); ?>
                       <table class="table">
                          <tr>
             <td class="left_column">Nama Mata Kuliah <font color="#FF0000">*</font></td>
-            <td>: <input type="text" name="nama_matkul" id="nama_matkul" class="validate[required] text-input" maxlength="20" size="40" style="width:80%" value="<?php echo $i->nama_matkul; ?>">
+            <td>: <input type="text" name="nama_matkul2" id="nama_matkul2" class="validate[required] text-input" maxlength="20" size="40" style="width:80%" value="<?php echo $i->nama_matkul; ?>">
             </td>
         </tr> 
           
        <input type="hidden" name="kode_matkul" id="kode_matkul" class="validate[required] text-input" maxlength="20" size="40" style="width:80%" required="" value="<?php echo $i->kode_matkul; ?>">
          
         
-            <input type="hidden" name="id_kurikulum" id="nama_kurikulum" class="validate[required] text-input" maxlength="20" size="40" style="width:80%" required="" value="<?php echo $i->id_kurikulum; ?>">
+            <input type="hidden" name="id_kurikulum" id="id_kurikulum" class="validate[required] text-input" maxlength="20" size="40" style="width:80%" required="" value="<?php echo $i->id_kurikulum; ?>">
+
+            <input type="hidden" name="id_detail_kurikulum" id="id_detail_kurikulum" class="validate[required] text-input" maxlength="20" size="40" style="width:80%" required="" value="<?php echo $i->id_detail_kurikulum; ?>">
 
             <input type="hidden" name="bobot_matkul" id="bobot_matkul" class="validate[required] text-input" maxlength="20" size="40" style="width:80%" required="" value="<?php echo $i->bobot_matkul; ?>">
 
@@ -282,5 +279,6 @@
   });
 
   </script>
-    
+
+  
 

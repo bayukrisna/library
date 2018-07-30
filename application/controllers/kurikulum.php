@@ -72,6 +72,14 @@ class Kurikulum extends CI_Controller {
 			$this->load->view('template', $data);
 	}
 
+	public function detail_matkul_kurikulum()
+	{
+			$detail_dk = $this->uri->segment(3);
+			$data['kurikulum'] = $this->kurikulum_model->detail_matkul($detail_dk);
+			$data['main_view'] = 'kurikulum/edit_detail_kurikulum_view';
+			$this->load->view('template', $data);
+	}
+
 	 function autocomplete(){
 		$searchTerm = $_GET['term'];
 		//mendapatkan data yang sesuai dari tabel daftar_kota
@@ -134,6 +142,18 @@ class Kurikulum extends CI_Controller {
 					if ($this->kurikulum_model->edit_kurikulum($id_kurikulum) == TRUE) {
 						$this->session->set_flashdata('message', '<div class="alert alert-success"> Edit Kurikulum berhasil </div>');
             			redirect('kurikulum');
+					} else {
+						$this->session->set_flashdata('message', '<div class="alert alert-danger"> Edit Kurikulum Gagal </div>');
+            			redirect('kurikulum');
+					}
+		} 
+
+	public function edit_detail_kurikulum(){
+			$id_detail_kurikulum = $this->uri->segment(3);
+					if ($this->kurikulum_model->edit_detail_kurikulum($id_detail_kurikulum) == TRUE) {
+						$this->session->set_flashdata('message', '<div class="alert alert-success"> Edit Kurikulum berhasil </div>');
+            			$data = $this->input->post('id_kurikulum');
+            			redirect('kurikulum/detail_kurikulum/'.$data);
 					} else {
 						$this->session->set_flashdata('message', '<div class="alert alert-danger"> Edit Kurikulum Gagal </div>');
             			redirect('kurikulum');
