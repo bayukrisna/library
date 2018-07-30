@@ -32,7 +32,7 @@
             </form>
           </div>
       </div>
-      <div class="col-md-12" id="riwayat"  style="visibility: hidden;">
+      <div class="col-md-12" id="riwayat"  style="visibility: ;">
       	<div class="box">
           <div><div class="box-header">
               <h3 class="box-title">Riwayat Pembayaran</h3>
@@ -56,7 +56,7 @@
                 </tr>
                 </thead>
                 <tbody id="show_data">
-
+                  
                 <!-- <?php 
                 $no = 0;
                 foreach ($riwayat as $data) {

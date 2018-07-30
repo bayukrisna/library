@@ -42,7 +42,7 @@ class Kurikulum_model extends CI_Model {
     $bobot_bpl = $this->db->query("SELECT SUM(bpl) AS total FROM tb_detail_kurikulum WHERE id_kurikulum = $id_kurikulum")->row();
     $bobot_bs = $this->db->query("SELECT SUM(bs) AS total FROM tb_detail_kurikulum WHERE id_kurikulum = $id_kurikulum")->row();
     $bobot_wajib = $this->db->query("SELECT SUM(bobot_matkul) AS total FROM tb_detail_kurikulum WHERE wajib LIKE 'Y' AND id_kurikulum LIKE $id_kurikulum")->row();
-    $bobot_pilihan = $this->db->query("SELECT SUM(bobot_matkul) AS total FROM tb_detail_kurikulum WHERE wajib = 'T'")->row();
+    $bobot_pilihan = $this->db->query("SELECT SUM(bobot_matkul) AS total FROM tb_detail_kurikulum WHERE wajib = 'T'  AND id_kurikulum LIKE $id_kurikulum")->row();
 
 
     return array(
@@ -54,22 +54,6 @@ class Kurikulum_model extends CI_Model {
       'bobot_wajib' => $bobot_wajib->total,
       'bobot_pilihan' => $bobot_pilihan->total,
       );
-
-     $data = array(
-          'bobot_wajib'         => $bobot_wajib
-      );
-
-    if (!empty($data)) {
-            $this->db->where('id_kurikulum', $id_kurikulum)
-        ->update('tb_kurikulum', $data);
-
-          return true;
-        } else {
-            return null;
-        }
-  
-
-    //return $matkul_wajib = $eek;
       
     }
 
@@ -114,14 +98,6 @@ class Kurikulum_model extends CI_Model {
               ->get('tb_kurikulum')
               ->result();
 
-  
-
-  
-
-  }
-  function bobot_wajib(){
-  return "he";
-
   }
 
   public function detail_kurikulum($id_kurikulum){
@@ -140,9 +116,9 @@ class Kurikulum_model extends CI_Model {
               ->result();
   }
 
-  public function edit_kurikulum($id_periode){
+  public function edit_kurikulum($id_kurikulum){
     $data = array(
-          'id_kurikulum'         => $this->input->post('id_kurikulum'),
+            'id_kurikulum'         => $this->input->post('id_kurikulum'),
             'nama_kurikulum'      => $this->input->post('nama_kurikulum'),
             'id_prodi'                 => $this->input->post('id_prodi'),
             'id_periode'                 => $this->input->post('id_periode'),
@@ -152,7 +128,7 @@ class Kurikulum_model extends CI_Model {
       );
 
     if (!empty($data)) {
-            $this->db->where('id_kurikulum', $id_periode)
+            $this->db->where('id_kurikulum', $id_kurikulum)
         ->update('tb_kurikulum', $data);
 
           return true;
@@ -160,6 +136,39 @@ class Kurikulum_model extends CI_Model {
             return null;
         }
   }
+
+  public function hapus_kurikulum($id_kurikulum){
+        $this->db->where('id_kurikulum', $id_kurikulum)
+          ->delete('tb_kurikulum');
+
+    if ($this->db->affected_rows() > 0) {
+      return TRUE;
+      } else {
+        return FALSE;
+      }
+    }
+
+    public function hapus_detail_kurikulum($id_kurikulum){
+        $this->db->where('id_kurikulum', $id_kurikulum)
+          ->delete('tb_detail_kurikulum');
+
+    if ($this->db->affected_rows() > 0) {
+      return TRUE;
+      } else {
+        return FALSE;
+      }
+    }
+
+     public function hapus_matkul_kurikulum($id_detail_kurikulum){
+        $this->db->where('id_detail_kurikulum', $id_detail_kurikulum)
+          ->delete('tb_detail_kurikulum');
+
+    if ($this->db->affected_rows() > 0) {
+      return TRUE;
+      } else {
+        return FALSE;
+      }
+    }
     
 }
 
