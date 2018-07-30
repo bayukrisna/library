@@ -7,7 +7,7 @@
               <h3 class="box-title">Data Kurikulum</h3>
             </div>
             <div class="box-body">
-              <table id="example1" class="table table-bordered table-striped">
+              <table id="example3" class="table2 table-bordered table-striped">
                 <a class="btn btn-info btn-sm" href="" data-toggle="modal" data-target="#modal_view"><i class="fa fa-plus"></i> Tambah</a> <br> <br>
                 <thead>
                 <tr>
@@ -16,20 +16,18 @@
                   <th rowspan="2">Program Studi</th>
                   <th rowspan="2">Mulai Berlaku</th>
                   <th colspan="3">Aturan Jumlah SKS</th>
-                  <th colspan="2">Jumlah SKS Kuliah</th>
                   <th rowspan="2">Aksi</th>
                 </tr>
                   <th>Lulus</th>
                   <th>Wajib</th>
                   <th>Pilhan</th>
-                  <th>Wajib</th>
-                  <th>Pilihan</th>
                 </thead>
 
                 <tbody>
 
                 <?php 
                 $no = 0;
+                 $alert = "'Apakah anda yakin menghapus data ini ?'";
                 foreach ($kurikulum as $data) {
 
                   
@@ -43,9 +41,10 @@
                   <td>'.$data->jumlah_sks.'</td>
                   <td>'.$data->bobot_matkul_wajib.'</td>
                   <td>'.$data->bobot_matkul_pilihan.'</td>
-                  <td>'.$bobot.'</td>
-                  <td>'.$data->bobot_matkul_wajib.'</td>
-                  <td></td>
+                  <td>
+                        <a href="'.base_url('kurikulum/hapus_kurikulum/'.$data->id_kurikulum).'" class="btn btn-danger  btn-sm" onclick="return confirm('.$alert.')"><i class="glyphicon glyphicon-trash"></i><span class="tooltiptext">Hapus Kurikulum</span></a>
+                         <a href="'.base_url('kurikulum/detail_kurikulum2/'.$data->id_kurikulum).'" class="btn btn-warning  btn-sm"><i class="glyphicon glyphicon-pencil"></i><span class="tooltiptext">Edit Kurikulum</span></a>
+                  </td>
 
                 ' ;
                 

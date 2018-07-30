@@ -15,7 +15,7 @@ class Kurikulum extends CI_Controller {
 			$data['getProdi'] = $this->daftar_ulang_model->getProdi();
 			$data['getPeriode'] = $this->daftar_ulang_model->getPeriode();
 			$data['kurikulum'] = $this->kurikulum_model->data_kurikulum();
-			$data['bobot'] = $this->kurikulum_model->bobot_wajib();
+			
 			$data['main_view'] = 'kurikulum/kurikulum_view';
 			$this->load->view('template', $data);
 		
@@ -62,6 +62,24 @@ class Kurikulum extends CI_Controller {
 			$this->load->view('template', $data);
 	}
 
+	public function detail_kurikulum2()
+	{
+			$id_kurikulum = $this->uri->segment(3);
+			$data['kurikulum'] = $this->kurikulum_model->detail_kurikulum($id_kurikulum);
+			$data['getPeriode'] = $this->daftar_ulang_model->getPeriode();
+			$data['getProdi'] = $this->daftar_ulang_model->getProdi();
+			$data['main_view'] = 'kurikulum/edit_kurikulum_view';
+			$this->load->view('template', $data);
+	}
+
+	public function detail_matkul_kurikulum()
+	{
+			$detail_dk = $this->uri->segment(3);
+			$data['kurikulum'] = $this->kurikulum_model->detail_matkul($detail_dk);
+			$data['main_view'] = 'kurikulum/edit_detail_kurikulum_view';
+			$this->load->view('template', $data);
+	}
+
 	 function autocomplete(){
 		$searchTerm = $_GET['term'];
 		//mendapatkan data yang sesuai dari tabel daftar_kota
@@ -84,7 +102,7 @@ class Kurikulum extends CI_Controller {
 			if(count($result) > 0){
 				foreach ($result as $row) 
 					$result_array[] = array(
-						'label' => $row->nama_matkul,
+						'label' => $row->kode_matkul.' - '.$row->nama_matkul.' - (sks) '.$row->bobot_matkul,
 						'bobot' => $row->bobot_matkul,
 						'bp' => $row->bobot_praktikum,
 						'btm' => $row->bobot_tatap_muka,
@@ -97,17 +115,48 @@ class Kurikulum extends CI_Controller {
 		}
 	}
 
+	public function hapus_kurikulum(){
+		$id_kurikulum = $this->uri->segment(3);
+		if ($this->kurikulum_model->hapus_kurikulum($id_kurikulum) == TRUE && $this->kurikulum_model->hapus_detail_kurikulum($id_kurikulum) == TRUE) {
+			$this->session->set_flashdata('message', 'Hapus kurikulum Berhasil');
+			redirect('kurikulum');
+		} else {
+			$this->session->set_flashdata('message', 'Hapus kurikulum Berhasil');
+			redirect('kurikulum');
+		}
+	}
 
+	public function hapus_matkul_kurikulum(){
+		$id_detail_kurikulum = $this->uri->segment(3);
+		if ($this->kurikulum_model->hapus_matkul_kurikulum($id_detail_kurikulum) == TRUE) {
+			$this->session->set_flashdata('message', 'Hapus Mata Kuliah Berhasil');
+            	redirect('kurikulum');
+		} else {
+			$this->session->set_flashdata('message', 'Hapus Mata Kuliah Berhasil');
+            	redirect('kurikulum');
+		}
+	}
 
-	/*
 	public function edit_kurikulum(){
-			$id_periode = $this->input->post('id_kurikulum');
-					if ($this->kurikulum_model->edit_kurikulum($id_periode) == TRUE) {
-						$this->session->set_flashdata('message', '<div class="alert alert-success"> Edit '.$id_periode.' berhasil . </div>');
+			$id_kurikulum = $this->uri->segment(3);
+					if ($this->kurikulum_model->edit_kurikulum($id_kurikulum) == TRUE) {
+						$this->session->set_flashdata('message', '<div class="alert alert-success"> Edit Kurikulum berhasil </div>');
             			redirect('kurikulum');
 					} else {
-						$this->session->set_flashdata('message', '<div class="alert alert-danger"> Edit '.$id_periode.' gagal . </div>');
+						$this->session->set_flashdata('message', '<div class="alert alert-danger"> Edit Kurikulum Gagal </div>');
             			redirect('kurikulum');
 					}
-		} */
+		} 
+
+	public function edit_detail_kurikulum(){
+			$id_detail_kurikulum = $this->uri->segment(3);
+					if ($this->kurikulum_model->edit_detail_kurikulum($id_detail_kurikulum) == TRUE) {
+						$this->session->set_flashdata('message', '<div class="alert alert-success"> Edit Kurikulum berhasil </div>');
+            			$data = $this->input->post('id_kurikulum');
+            			redirect('kurikulum/detail_kurikulum/'.$data);
+					} else {
+						$this->session->set_flashdata('message', '<div class="alert alert-danger"> Edit Kurikulum Gagal </div>');
+            			redirect('kurikulum');
+					}
+		} 
 }
