@@ -1,7 +1,7 @@
 <?php
 defined('BASEPATH') OR exit('No direct script access allowed');
 
-class Setting_periode extends CI_Controller {
+class Anyar extends CI_Controller {
 
 	public function __construct()
 	{
@@ -10,7 +10,7 @@ class Setting_periode extends CI_Controller {
 
 	public function index()
 	{
-			$data['main_view'] = 'akademi/setting_periode_view';
+			$data['main_view'] = 'kelas_perkuliahan';
 			$this->load->view('template', $data);
 		// }
 	}
