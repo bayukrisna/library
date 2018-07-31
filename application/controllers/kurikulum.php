@@ -15,7 +15,6 @@ class Kurikulum extends CI_Controller {
 			$data['getProdi'] = $this->daftar_ulang_model->getProdi();
 			$data['getPeriode'] = $this->daftar_ulang_model->getPeriode();
 			$data['kurikulum'] = $this->kurikulum_model->data_kurikulum();
-			
 			$data['main_view'] = 'kurikulum/kurikulum_view';
 			$this->load->view('template', $data);
 		
@@ -159,4 +158,18 @@ class Kurikulum extends CI_Controller {
             			redirect('kurikulum');
 					}
 		} 
+
+
+	public function get_prodi_periode($param = NULL) {
+		$prodi = $param;
+		$result = $this->kurikulum_model->get_prodi_periode($prodi);
+		$option = "";
+		$option .= '<option value="">Pilih Semester</option>';
+		foreach ($result as $data) {
+			$option .= "<option value='".$data->id_periode."' >".$data->semester."</option>";
+			
+		}
+		echo $option;
+
+	}
 }

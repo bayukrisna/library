@@ -83,7 +83,7 @@
         </tr> 
         <tr>
             <td class="left_column">Program Studi <font color="#FF0000">*</font></td>
-            <td>:  <select name="id_prodi" id="id_prodi" class="validate[required]" required="">
+            <td>:  <select name="id_prodi" id="id_prodi" class="validate[required]" required="" onchange="return get_prodi_periode(this.value)">
             <option value="">Pilih Prodi</option>   
                     <?php 
 
@@ -99,14 +99,8 @@
         <tr>
             <td class="left_column">Mulai Berlaku <font color="#FF0000">*</font></td>
             <td>:  <select name="id_periode" id="id_periode" class="validate[required]" required="">
-            <option value="">Pilih Semester</option>   
-                    <?php 
-
-                  foreach($getPeriode as $row)
-                  { 
-                    echo '<option value="'.$row->id_periode.'">'.$row->semester.'</option>';
-                  }
-                  ?>
+            <option value="">Pilih Prodi Dulu</option>   
+                    
               </select>
 
         </td>
@@ -114,19 +108,19 @@
         <tr>
             <td class="left_column">Jumlah SKS</td>
             <td>: 
-            <input type="text" name="jumlah_sks" id="jumlah_sks" class="text-input" maxlength="2" size="2" readonly style="width:10%; background-color:#E0E0E0" value="0">            <font color="#999999"><em> ( sks Jumlah bobot mata kuliah wajib + sks Jumlah bobot mata kuliah pilihan)</em></font>
+            <input type="text" name="jumlah_sks" id="jumlah_sks" class="text-input" maxlength="3" size="2" readonly style="width:10%; background-color:#E0E0E0" value="0">            <font color="#999999"><em> ( sks Jumlah bobot mata kuliah wajib + sks Jumlah bobot mata kuliah pilihan)</em></font>
             </td>
         </tr>
         <tr>
             <td class="left_column">Jumlah Bobot Mata Kuliah Wajib (sks)</td>
             <td>: 
-            <input type="text" name="bobot_matkul_wajib" id="bobot_matkul_wajib" class="text-input" maxlength="2" size="2" style="width:10%" value="0" onkeyup="sum();">  
+            <input type="text" name="bobot_matkul_wajib" id="bobot_matkul_wajib" class="text-input" maxlength="3" size="2" style="width:10%" value="0" onkeyup="sum();">  
             </td>
         </tr>
         <tr>
             <td class="left_column">Jumlah Bobot Mata Kuliah Pilihan (sks)</td>
             <td>: 
-            <input type="text" name="bobot_matkul_pilihan" id="bobot_matkul_pilihan" class="text-input" maxlength="2" size="2"  style="width:10%" value="0" onkeyup="sum();">         
+            <input type="text" name="bobot_matkul_pilihan" id="bobot_matkul_pilihan" class="text-input" maxlength="3" size="2"  style="width:10%" value="0" onkeyup="sum();">         
             </td>
         </tr>
                   <tr>
@@ -152,6 +146,21 @@ function sum() {
          document.getElementById('jumlah_sks').value = result;
       }
 }
+</script>
+<script type="text/javascript">
+            function get_prodi_periode(p) {
+                var id_prodi = p;
+
+                $.ajax({
+                    url: '<?php echo base_url(); ?>kurikulum/get_prodi_periode/'+id_prodi,
+                    data: 'id_prodi='+id_prodi,
+                    type: 'GET',
+                    dataType: 'html',
+                    success: function(msg) {
+                        $("#id_periode").html(msg);
+                    }
+                });
+            }
 </script>
 
 
