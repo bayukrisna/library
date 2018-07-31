@@ -19,6 +19,15 @@ class Kelas_perkuliahan_model extends CI_Model {
 		 return $query->result();
 	}
 
+  public function data_kelas_dosen($id_dosen){
+    $this->db->select('*');
+     $this->db->from('tb_kelas_dosen');
+     $this->db->join('tb_dosen','tb_dosen.id_dosen=tb_kelas_dosen.id_dosen');
+     $this->db->where('tb_kelas_dosen.id_kp', $id_dosen);
+     $query = $this->db->get();
+     return $query->result();
+  }
+
   public function detail_kp($id_kp){
       return $this->db->join('tb_prodi','tb_prodi.id_prodi=tb_kp.id_prodi')
               ->join('tb_periode','tb_periode.id_periode=tb_kp.id_periode')
@@ -26,6 +35,14 @@ class Kelas_perkuliahan_model extends CI_Model {
               ->where('id_kp', $id_kp)
               ->get('tb_kp')
               ->row();
+  }
+
+  public function autocomplete($nama){
+     $this->db->select('*');
+     $this->db->from('tb_dosen');
+     $this->db->like('tb_dosen.nama_dosen',$nama);
+     $query = $this->db->get();
+     return $query->result();
   }
 
   public function save_kp()
@@ -85,6 +102,28 @@ class Kelas_perkuliahan_model extends CI_Model {
             return null;
         }
   }
+
+  public function simpan_kelas_dosen()
+    {
+        $data = array(
+            'id_kp'        => $this->input->post('id_kp'),
+            'id_dosen'        => $this->input->post('id_dosen'),
+            'rencana'          => $this->input->post('rencana'),
+            'realisasi'          => $this->input->post('realisasi'),
+            'bobot_dosen'          => $this->input->post('bobot_dosen'),
+            'jenis_evaluasi'          => $this->input->post('jenis_evaluasi')
+        );
+    
+        $this->db->insert('tb_kelas_dosen', $data);
+
+        if($this->db->affected_rows() > 0){
+            
+                return true;
+        } else {
+            return false;
+        }
+
+    }
 
 }
 

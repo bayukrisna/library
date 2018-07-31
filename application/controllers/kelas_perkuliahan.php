@@ -27,6 +27,17 @@ class Kelas_perkuliahan extends CI_Controller {
 				$this->load->view('template', $data);
 	}
 
+	public function detail_kelas(){
+				$id_kp = $this->uri->segment(3);
+				$data['getProdi'] = $this->daftar_ulang_model->getProdi();
+				$data['getPeriode'] = $this->daftar_ulang_model->getPeriode();
+				$data['kp'] = $this->kelas_perkuliahan_model->detail_kp($id_kp);
+				$id_dosen = $this->uri->segment(3);
+				$data['dosen'] = $this->kelas_perkuliahan_model->data_kelas_dosen($id_dosen);
+				$data['main_view'] = 'Kelas_perkuliahan/detail_kelas_perkuliahan_view';
+				$this->load->view('template', $data);
+	}
+
 	public function save_kp()
 	{
 			if($this->kelas_perkuliahan_model->save_kp() == TRUE){
@@ -58,7 +69,42 @@ class Kelas_perkuliahan extends CI_Controller {
 					}
 			}
 
-	
+	public function simpan_kelas_dosen()
+	{
+			if($this->kelas_perkuliahan_model->simpan_kelas_dosen() == TRUE){
+				$this->session->set_flashdata('message', '<div class="alert alert-success"> Tambah Dosen Berhasil </div>');
+				$id_kp = $this->input->post('id_kp');
+            	redirect('kelas_perkuliahan/detail_kelas/'.$id_kp);
+			} 
+	}
+
+	function autocomplete(){
+		$searchTerm = $_GET['term'];
+		//mendapatkan data yang sesuai dari tabel daftar_kota
+		$query = $this->db->query("SELECT * FROM tb_dosen WHERE nama_dosen LIKE '%".$searchTerm."%' ORDER BY nama_dosen ASC");
+		foreach($query->result_array() as $row){
+		    $data[] = $row['nama_dosen'];
+		    $data[] = $row['id_dosen'];
+		}
+		//return data json
+		echo json_encode($data);
+	}
+	public function get_autocomplete(){
+		if(isset($_GET['term'])){
+			$result = $this->kelas_perkuliahan_model->autocomplete($_GET['term']);
+			if(count($result) > 0){
+				foreach ($result as $row) 
+					$result_array[] = array(
+						'label' => $row->id_dosen.' - '.$row->nama_dosen,
+						'id' => $row->id_dosen);
+				echo json_encode($result_array);
+			
+			}
+		}
+	}
+
+
+
 }
 
 /* End of file kelas_perkuliahan.php */

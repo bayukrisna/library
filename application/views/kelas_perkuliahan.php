@@ -60,6 +60,9 @@
         </tr>
     </tbody></table>
 </div>
+<div class="">
+            <a class="btn btn-primary pull-right"  data-toggle="modal" data-target="#modal_edit"><i class="fa fa-plus"></i> Tambah Pendidikan</a><br><br>
+          </div> <br>
     <div class="nav-tabs-custom">
             <ul class="nav nav-tabs">
               <li class="active"><a href="#tab_1" data-toggle="tab">Dosen Pengajar</a></li>
