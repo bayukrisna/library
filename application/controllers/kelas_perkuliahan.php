@@ -11,8 +11,19 @@ class Kelas_perkuliahan extends CI_Controller {
 	}
 
 	public function index(){
+				$data['getProdi'] = $this->daftar_ulang_model->getProdi();
+				$data['getPeriode'] = $this->daftar_ulang_model->getPeriode();
 				$data['kp'] = $this->kelas_perkuliahan_model->data_kp();
 				$data['main_view'] = 'Kelas_perkuliahan/kelas_perkuliahan_view';
+				$this->load->view('template', $data);
+	}
+
+	public function detail_kp(){
+				$id_kp = $this->uri->segment(3);
+				$data['getProdi'] = $this->daftar_ulang_model->getProdi();
+				$data['getPeriode'] = $this->daftar_ulang_model->getPeriode();
+				$data['kp'] = $this->kelas_perkuliahan_model->detail_kp($id_kp);
+				$data['main_view'] = 'Kelas_perkuliahan/edit_kelas_perkuliahan_view';
 				$this->load->view('template', $data);
 	}
 
@@ -46,6 +57,8 @@ class Kelas_perkuliahan extends CI_Controller {
 						redirect('kelas_perkuliahan/edit_kp');
 					}
 			}
+
+	
 }
 
 /* End of file kelas_perkuliahan.php */
