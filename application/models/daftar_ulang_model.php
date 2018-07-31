@@ -82,14 +82,6 @@ class Daftar_ulang_model extends CI_Model {
                     ->result();
 
     }
-    /*public function get_concentrate($data){
-    $this->db->select('tb_prodi.id_prodi, tb_konsentrasi.id_konsentrasi, tb_konsentrasi.nama_konsentrasi');
-    $this->db->from('tb_prodi'); //dari tabel data_users
-    $this->db->join('tb_konsentrasi', 'tb_prodi.id_prodi = tb_konsentrasi.id_prodi2');
-    $this->db->where($data); //menyatukan tabel users menggunakan left join
-    $data = $this->db->get(); //mengambil seluruh data
-    return $data->result(); //mengembalikan data
-    } */
 
     public function get_concentrate($data){
       return $this->db->join('tb_konsentrasi','tb_konsentrasi.id_prodi=tb_prodi.id_prodi')
@@ -97,9 +89,6 @@ class Daftar_ulang_model extends CI_Model {
               ->get('tb_prodi')
               ->result();
   }
-
-  
-
   
     function getPreschool()
     {
