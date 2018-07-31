@@ -28,7 +28,17 @@ class Finance_model extends CI_Model {
   function coba_mahasiswa($id){
     $this->db->select('*');
      $this->db->from('tb_pembayaran');
-
+     $this->db->join('tb_mahasiswa','tb_mahasiswa.id_mahasiswa=tb_pembayaran.id_mahasiswa');
+     $this->db->join('tb_biaya','tb_biaya.id_biaya=tb_pembayaran.id_biaya');
+     $this->db->where('tb_pembayaran.id_mahasiswa', $id);
+     $query = $this->db->get();
+     return $query->result();
+  }
+  function get_data_ranking($id){
+    $this->db->select('*');
+     $this->db->from('tb_mahasiswa');
+     $this->db->join('tb_mahasiswa','tb_mahasiswa.id_mahasiswa=tb_pembayaran.id_mahasiswa');
+     $this->db->join('tb_biaya','tb_biaya.id_biaya=tb_pembayaran.id_biaya');
      $this->db->where('tb_pembayaran.id_mahasiswa', $id);
      $query = $this->db->get();
      return $query->result();
@@ -126,6 +136,14 @@ class Finance_model extends CI_Model {
   public function get_biaya_pembayaran($data){
       return $this->db->where('id_biaya',$data)
               ->get('tb_biaya')
+              ->row();
+  }
+  function get_data_detail_mahasiswa($ya){
+    return $this->db->select('id_mahasiswa, jenis_kelamin, no_telepon')
+                    
+
+              ->where('id_mahasiswa',$ya)
+              ->get('tb_mahasiswa')
               ->row();
   }
   public function tambah_pembayaran()

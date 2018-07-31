@@ -36,12 +36,18 @@ class Periode_model extends CI_Model {
         }
 
     }
-
   public function data_periode(){
-    return $this->db
-    ->get('tb_periode')
-    ->result();
-  }
+    $this->db->select('*');
+     $this->db->from('tb_periode');
+     $this->db->join('tb_prodi','tb_periode.id_prodi=tb_prodi.id_prodi');
+     $query = $this->db->get();
+     return $query->result();
+    }
+  // public function data_periode(){
+  //   return $this->db
+  //   ->get('tb_periode')
+  //   ->result();
+  // }
 
   public function edit_periode($id_periode){
     $data = array(

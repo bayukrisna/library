@@ -35,7 +35,7 @@
                   <td>'.++$no.'</td>
 
                   <td><a href="" data-toggle="modal" data-target="#modal_view'.$data->id_periode.'">'.$data->semester.'</a></td>
-                  <td>'.$data->id_prodi.'</td>
+                  <td>'.$data->nama_prodi.'</td>
                   <td>'.$data->target_mhs_baru.'</td>
                   <td>'.$data->tgl_awal_kul.'</td>
                   <td>'.$data->tgl_akhir_kul.'</td>
@@ -80,7 +80,7 @@
                           <tr>
                               <td class="left_column" width="20%">Program Studi</td>
                                 <td>: 
-                           <?php echo $i->id_prodi ?></td>
+                           <?php echo $i->nama_prodi ?></td>
                             </tr>
                             <tr>
                               <td class="left_column">Target Mahasiswa Baru</td>
@@ -146,7 +146,7 @@
           <td class="left_column" width="40%">Program Studi <font color="#FF0000">*</font></td>
             <td>: 
        <select id="id_prodi" required="" name="id_prodi">
-                    <option value="<?php echo $i->id_prodi ?>"><?php echo $i->id_prodi; ?></option>   
+                    <option value="<?php echo $i->id_prodi ?>"><?php echo $i->nama_prodi; ?></option>   
                     <?php 
 
                   foreach($getProdi as $row)

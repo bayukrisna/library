@@ -26,11 +26,19 @@ class Finance extends CI_Controller {
 	public function detail_pembayaran()
 	{
 		$ea = $this->input->post('nama_mhs');
+		$ya = $this->input->post('id_mahasiswa');
+		$dataku = $this->finance_model->get_data_detail_mahasiswa($ya);
+		if($dataku->id_mahasiswa == null){
+			$ku = "Non Beasiswa";
+		} else {
+			$ku = $dataku->id_mahasiswa;
+		}
 		if ($ea == null){
 			redirect('finance/gg');
 		} else {
 			$data['mahasiswa']=$ea;
-			$data['id_mahasiswa']= $this->input->post('id_mahasiswa');
+			$data['data']= $dataku;
+			$data['dataku']= $ku;
 		$data['getJenisPembayaran'] = $this->biaya_sekolah_model->getJenisPembayaran();
 		$data['main_view'] = 'Finance/detail_pembayaran_view';
 		$this->load->view('template', $data);	
@@ -42,20 +50,6 @@ class Finance extends CI_Controller {
 		$id = $this->input->get('id_mahasiswa');
 		$data=$this->finance_model->coba_mahasiswa($id);
 		echo json_encode($data);
-		// // echo json_encode($data);
-		// $option = "";
-		// foreach ($data2 as $data) {
-		// 	$option .= "<tr>
-		//                   <td>".$data->id_mahasiswa."</td>
-		//                    <td>".$data->total_biaya."</td>
-		//                         <td>".$data->id_mahasiswa."</td>
-		//                    <td>".$data->total_biaya."</td>
-		//                    <td>".$data->id_mahasiswa."</td>
-		//                    <td>".$data->total_biaya."</td>
-		//                         </tr>";
-			
-		// }
-		// echo $option;
 	}
 	function pembayaran(){
 		$data['main_view'] = 'finance/pembayaran_view';

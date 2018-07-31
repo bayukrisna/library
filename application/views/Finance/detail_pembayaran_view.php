@@ -9,7 +9,7 @@
             <td>:  <?php echo $mahasiswa ?> </td>
       
            <td class="left_column" width="25%">NIM <font color="#FF0000">*</font></td>
-            <td>:  <?php echo $id_mahasiswa ?>
+            <td>:  <?php echo $data->id_mahasiswa ?>
                                      </td>
                                   
            
@@ -17,14 +17,14 @@
         </tr>
         <tr>
             <td class="left_column" width="15%" value=>Jenis Kelamin <font color="#FF0000">*</font></td>
-            <td width="25%">:       </td>
+            <td width="25%">: <?php echo $data->jenis_kelamin ?>       </td>
             <td class="left_column" width="15%">Ranking <font color="#FF0000">*</font></td>
-            <td>:
+            <td>: <?php echo $dataku ?>
                                      </td>
         </tr>
         <tr>
             <td class="left_column">Nomor Telephone</td>
-            <td>: </td>
+            <td>: <?php echo $data->no_telepon ?></td>
             <td class="left_column">Program Studi <font color="#FF0000">*</font></td>
             <td>:
            
@@ -32,7 +32,7 @@
             </div>
             <!-- /.box-body -->
           </div>
-          <input type="hidden" name="id_mahasiswa" id="id_mahasiswa" value="<?php echo $id_mahasiswa ?>"> 
+          <input type="hidden" name="id_mahasiswa" id="id_mahasiswa" value="<?php echo $data->id_mahasiswa ?>"> 
     <section class="content">
       <div class="row">
         
@@ -55,7 +55,7 @@
                   <th>Nama Pembayaran</th>
                   <th>Total Biaya</th>
                   <th>Tanggal Pembayaran</th>
-                  <th>Aksi</th>
+                  <!-- <th>Aksi</th> -->
                 </tr>
                 </thead>
                 <tbody id="show_data"> 
@@ -88,7 +88,7 @@
                       <label for="inputEmail3" class="col-sm-3 control-label">ID Mahasiswa</label>
 
                       <div class="col-sm-8">
-                        <input type="text" class="form-control" id="id_mhsa" name="id_mhsa" value="<?php echo $id_mahasiswa ?>" placeholder="" readonly="">
+                        <input type="text" class="form-control" id="id_mhsa" name="id_mhsa" value="<?php echo $data->id_mahasiswa ?>" placeholder="" readonly="">
                       </div>
                     </div>
                     <div class="form-group">
@@ -172,14 +172,14 @@
                         html += '<tr>'+
                                 '<td>'+o+++'</td>'+
                                 '<td>'+data[i].id_mahasiswa+'</td>'+
-                                '<td>'+data[i].id_mahasiswa+'</td>'+
-                                '<td>'+data[i].id_mahasiswa+'</td>'+
+                                '<td>'+data[i].jenis_biaya+'</td>'+
+                                '<td>'+data[i].nama_biaya+'</td>'+
                                 '<td>'+data[i].total_biaya+'</td>'+
                                 '<td>'+data[i].tanggal_pembayaran+'</td>'+
-                                '<td style="text-align:right;">'+
-                                    '<a  class="btn btn-info btn-xs item_edit" data="'+data[i].id_mahasiswa+'">Edit</a>'+' '+
-                                    '<a  class="btn btn-danger btn-xs item_hapus" data="'+data[i].id_mahasiswa+'">Hapus</a>'+
-                                '</td>'+
+                                // '<td style="text-align:right;">'+
+                                //     '<a  class="btn btn-info btn-xs item_edit" data="'+data[i].id_mahasiswa+'">Edit</a>'+' '+
+                                //     '<a  class="btn btn-danger btn-xs item_hapus" data="'+data[i].id_mahasiswa+'">Hapus</a>'+
+                                // '</td>'+
                                 '</tr>';
                     }
                     $('#show_data').html(html);
