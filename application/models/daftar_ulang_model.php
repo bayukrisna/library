@@ -110,7 +110,7 @@ class Daftar_ulang_model extends CI_Model {
               ->join('tb_kontak','tb_kontak.id_mahasiswa=tb_mahasiswa.id_mahasiswa')
               ->join('tb_waktu','tb_waktu.id_waktu=tb_mahasiswa.id_waktu') 
               ->join('tb_tgl_du','tb_tgl_du.id_mahasiswa=tb_mahasiswa.id_mahasiswa')
-              ->where('tb_waktu.waktu', 'Pagi')
+              ->where('tb_mahasiswa.id_waktu', '1')
               ->get('tb_mahasiswa')
               ->result();
   }
@@ -213,16 +213,6 @@ class Daftar_ulang_model extends CI_Model {
 
 
   /*
-
-  
-  
-
-  public function get_data_pagi($id_pendaftaran){
-      return $this->db->join('tb_sekolah','tb_sekolah.id_sekolah=tb_pendaftaran.id_sekolah')
-              ->where('id_pendaftaran', $id_pendaftaran)
-              ->get('tb_pendaftaran')
-              ->row();
-  }
 
 
 

@@ -10,8 +10,6 @@ class Data_mahasiswa extends CI_Controller {
 		$this->load->model('daftar_ulang_model');
 	}
 
-	
-
 	public function detail_mahasiswa()
 	{
 			$id_du = $this->uri->segment(3);
