@@ -58,7 +58,15 @@
     </tbody></table>
 </div>
 <div class="">
-            <a class="btn btn-primary pull-right"  data-toggle="modal" data-target="#modal_tambah"><i class="fa fa-plus"></i> Tambah Dosen</a><br><br>
+
+            <?php if( $dsn['dosen'] != 1 OR 0) echo '
+             <a class="btn btn-primary pull-right"  data-toggle="modal" data-target="#modal_tambah"><i class="fa fa-plus"></i> Tambah Dosen</a><br><br>
+            
+            '; else echo '
+             
+            ';
+            ?>
+
           </div> <br>
     <div class="nav-tabs-custom">
             <ul class="nav nav-tabs">
@@ -74,7 +82,7 @@
           <div class="box box-primary">
             <!-- /.box-header -->
             <div class="box-body">
-              <table id="example1" class="table table-bordered table-striped">
+              <table class="table table-bordered table-striped">
                 <thead>
                 <tr>
                     <th  rowspan="2" style="text-align:center">No</th>
@@ -106,9 +114,9 @@
                   <td>'.++$no.'</td>
                   <td>'.$data->id_dosen.'</a></td>
                   <td>'.$data->nama_dosen.'</td>
-                  <td>'.$data->bobot_dosen.'</td>
-                  <td>'.$data->rencana.'</td>
-                  <td>'.$data->realisasi.'</td>
+                  <td id="bobot_dosen">'.$data->bobot_dosen.'</td>
+                  <td id="rencana">'.$data->rencana.'</td>
+                  <td id="realisasi">'.$data->realisasi.'</td>
                   <td>'.$data->jenis_evaluasi.'</td>
                   <td>
                         <a href="'.base_url('kurikulum/hapus_kurikulum/'.$data->id_kelas_dosen).'" class="btn btn-danger  btn-sm" onclick="return confirm('.$alert.')"><i class="glyphicon glyphicon-trash"></i><span class="tooltiptext">Hapus Kurikulum</span></a>
@@ -116,12 +124,15 @@
                   </td>
 
                 ' ;
-                
-                
               }
               ?>
+            </tr>
+            <tr>
+              <th colspan="3"> Jumlah SKS</th>
+              <td id="jumlah_sks">
 
-
+               </td>
+              <td colspan="4"></td>
             </tr>
                 </tbody>
               </table>
@@ -273,3 +284,14 @@
   });
 
   </script>
+
+  <script>
+
+      var rencana = document.getElementById('rencana').innerHTML;
+      var realisasi = document.getElementById('realisasi').innerHTML;
+      var bobot_dosen = document.getElementById('bobot_dosen').innerHTML;
+      var result = parseInt(rencana) / parseInt(realisasi) * parseInt(bobot_dosen);
+      if (!isNaN(result)) {
+         document.getElementById('jumlah_sks').innerHTML = result;
+      }
+</script>

@@ -122,7 +122,33 @@ class Kelas_perkuliahan_model extends CI_Model {
         } else {
             return false;
         }
+    }
 
+    /*public function jumlah_sks($id_kp){
+
+    $jumlah_dosen = $this->db->query("SELECT count(*) FROM tb_kelas_dosen WHERE id_kp = $id_kp")->row();
+    if ($jumlah_dosen = null) {
+
+      $jumlah_sks = $this->db->query("SELECT (rencana)/(realisasi)*(bobot_dosen) AS total FROM tb_kelas_dosen WHERE id_kp = $id_kp")->row();
+
+       return array(     
+          'jumlah_sks' => "s"
+
+      );
+
+    } else {
+      return array('jumlah_sks' => "as");
+    }
+    
+    } */
+
+    public function jumlah_dosen($id_kp){
+
+    $dosen = $this->db->query("SELECT count(*) AS total FROM tb_kelas_dosen WHERE id_kp = $id_kp")->row();
+    return array(     
+          'dosen' => $dosen->total
+
+      );
     }
 
 }

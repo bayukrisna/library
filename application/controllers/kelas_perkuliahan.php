@@ -32,6 +32,8 @@ class Kelas_perkuliahan extends CI_Controller {
 				$data['getProdi'] = $this->daftar_ulang_model->getProdi();
 				$data['getPeriode'] = $this->daftar_ulang_model->getPeriode();
 				$data['kp'] = $this->kelas_perkuliahan_model->detail_kp($id_kp);
+				
+				$data['dsn'] = $this->kelas_perkuliahan_model->jumlah_dosen($id_kp);
 				$id_dosen = $this->uri->segment(3);
 				$data['dosen'] = $this->kelas_perkuliahan_model->data_kelas_dosen($id_dosen);
 				$data['main_view'] = 'Kelas_perkuliahan/detail_kelas_perkuliahan_view';
