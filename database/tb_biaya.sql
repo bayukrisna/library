@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Jul 27, 2018 at 11:51 AM
+-- Generation Time: Aug 01, 2018 at 04:58 AM
 -- Server version: 10.1.34-MariaDB
 -- PHP Version: 7.2.7
 
@@ -46,7 +46,8 @@ INSERT INTO `tb_biaya` (`id_biaya`, `jenis_biaya`, `nama_biaya`, `jumlah_biaya`,
 ('BS003', '', 'Ranking 3', 4500000, '2018/2019'),
 ('BS004', '', 'Non-Beasiswa', 6000000, '2018/2019'),
 ('BS005', 'ANG 1', 'Angsuran 1', 2070000, '2018'),
-('BS006', 'ANG 1', 'Angsuran 2', 600000, '2018');
+('BS006', 'ANG 1', 'Angsuran 2', 600000, '2018'),
+('BS007', 'ANG 1', 'Angsuran 3', 600000, '2018/2019');
 
 --
 -- Indexes for dumped tables
