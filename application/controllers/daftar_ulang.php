@@ -26,6 +26,8 @@ class daftar_ulang extends CI_Controller {
 	public function save_mahasiswa_pagi()
 	{
 			if($this->mahasiswa_model->save_mahasiswa_pagi() == TRUE && $this->mahasiswa_model->save_ayah() == TRUE  && $this->mahasiswa_model->save_ibu() == TRUE && $this->mahasiswa_model->save_alamat() == TRUE && $this->mahasiswa_model->save_wali() == TRUE && $this->mahasiswa_model->save_kependudukan() == TRUE && $this->mahasiswa_model->save_jenis_tinggal() == TRUE && $this->mahasiswa_model->save_bio() == TRUE && $this->mahasiswa_model->save_kontak() == TRUE && $this->mahasiswa_model->save_tgl_du() == TRUE){
+				$id_du = $this->input->post('id_mahasiswa');
+				$this->tamu_model->save_update_status2($id_du);
 				$nama_du = $this->input->post('nama_mahasiswa');
 				$this->session->set_flashdata('message', '<div class="col-md-12 alert alert-success"> Data '.$nama_du.' berhasil didaftarkan. </div>');
             	redirect('daftar_ulang/data_peserta_tes');
@@ -50,6 +52,8 @@ class daftar_ulang extends CI_Controller {
 	public function save_mahasiswa_sore()
 	{
 			if($this->mahasiswa_model->save_mahasiswa_sore() == TRUE && $this->mahasiswa_model->save_ayah() == TRUE  && $this->mahasiswa_model->save_ibu() == TRUE && $this->mahasiswa_model->save_alamat() == TRUE && $this->mahasiswa_model->save_wali() == TRUE && $this->mahasiswa_model->save_kependudukan() == TRUE && $this->mahasiswa_model->save_jenis_tinggal() == TRUE && $this->mahasiswa_model->save_bio() == TRUE && $this->mahasiswa_model->save_kontak() == TRUE && $this->mahasiswa_model->save_tgl_du() == TRUE && $this->mahasiswa_model->save_tes_sore() == TRUE){
+				$id_du = $this->input->post('id_mahasiswa');
+				$this->tamu_model->save_update_status2($id_du);
 				$nama_du = $this->input->post('nama_mahasiswa');
 				$this->session->set_flashdata('message', '<div class="col-md-12 alert alert-success"> Data '.$nama_du.' berhasil didaftarkan. </div>');
             	redirect('mahasiswa/data_mahasiswa');

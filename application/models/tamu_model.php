@@ -151,7 +151,7 @@ $this->db->where('sumber','student_get_student');
        'status_bayar'     => 'Aktif'
       );
 
-    $this->db->where('id_mahasiswa', $id_pendaftaran)
+    $this->db->where('id_du', $id_pendaftaran)
         ->update('tb_pendaftaran', $data);
 
     if ($this->db->affected_rows() > 0) {

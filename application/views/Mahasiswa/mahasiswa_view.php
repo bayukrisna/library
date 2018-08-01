@@ -54,8 +54,8 @@
                     <td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
                       <select name="jenis_kelamin">
                         <option value="">-- Semua --</option>
-                        <option value="laki-laki">Laki-Laki</option>
-                        <option value="perempuan">Perempuan</option>
+                        <option value="L">Laki-Laki</option>
+                        <option value="P">Perempuan</option>
                       </select>
                     </td>           
                     <td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Angkatan</td>     
@@ -103,7 +103,7 @@
                   <td>'.$data->tanggal_lahir.'</td>
                   <td>'.$data->nama_prodi.'</td>
                   <td>'.$data->status_mahasiswa.'</td>
-                  <td>'.$data->id_angkatan.'</td>
+                  <td>'.$data->angkatan.'</td>
                   <td>
                     <a href="'.base_url('mahasiswa/detail_mahasiswa_dikti/'.$data->id_mahasiswa).'" class="btn btn-success  btn-sm"><i class="glyphicon glyphicon-pencil"></i><span class="tooltiptext">Detail Mahasiswa</span></a>
 

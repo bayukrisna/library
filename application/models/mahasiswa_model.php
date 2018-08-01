@@ -48,6 +48,7 @@ class Mahasiswa_model extends CI_Model {
      $this->db->join('tb_konsentrasi','tb_konsentrasi.id_konsentrasi=tb_mahasiswa.id_konsentrasi');
      $this->db->join('tb_prodi','tb_prodi.id_prodi=tb_mahasiswa.id_prodi');
      $this->db->join('tb_bio','tb_bio.id_mahasiswa=tb_mahasiswa.id_mahasiswa');
+      $this->db->join('tb_angkatan','tb_angkatan.id_angkatan=tb_mahasiswa.id_angkatan');
      $query = $this->db->get();
      return $query->result();
   }
@@ -57,9 +58,11 @@ class Mahasiswa_model extends CI_Model {
      $this->db->from('tb_mahasiswa');
      $this->db->join('tb_konsentrasi','tb_konsentrasi.id_konsentrasi=tb_mahasiswa.id_konsentrasi');
      $this->db->join('tb_prodi','tb_prodi.id_prodi=tb_mahasiswa.id_prodi');
+     $this->db->join('tb_bio','tb_bio.id_mahasiswa=tb_mahasiswa.id_mahasiswa');
+     $this->db->join('tb_angkatan','tb_angkatan.id_angkatan=tb_mahasiswa.id_angkatan');
      $this->db->like('tb_prodi.id_prodi',$id_prodi);
-     $this->db->like('tb_mahasiswa.agama',$agama);
-     $this->db->like('tb_mahasiswa.jenis_kelamin',$jenis_kelamin);
+     $this->db->like('tb_bio.agama',$agama);
+     $this->db->like('tb_bio.jenis_kelamin',$jenis_kelamin);
      $query = $this->db->get();
      return $query->result();
   }
@@ -77,11 +80,14 @@ class Mahasiswa_model extends CI_Model {
   public function detail_mahasiswa_dikti($id_mahasiswa){
       return $this->db->join('tb_prodi','tb_prodi.id_prodi=tb_mahasiswa.id_prodi')
               ->join('tb_konsentrasi','tb_konsentrasi.id_konsentrasi=tb_mahasiswa.id_konsentrasi')
-              ->join('tb_orang_tua','tb_orang_tua.id_mahasiswa=tb_mahasiswa.id_mahasiswa')
+              ->join('tb_ayah','tb_ayah.id_mahasiswa=tb_mahasiswa.id_mahasiswa')
+              ->join('tb_ibu','tb_ibu.id_mahasiswa=tb_mahasiswa.id_mahasiswa')
               ->join('tb_alamat','tb_alamat.id_mahasiswa=tb_mahasiswa.id_mahasiswa')
               ->join('tb_kependudukan','tb_kependudukan.id_mahasiswa=tb_mahasiswa.id_mahasiswa')
               ->join('tb_jenis_tinggal','tb_jenis_tinggal.id_mahasiswa=tb_mahasiswa.id_mahasiswa')
               ->join('tb_wali','tb_wali.id_mahasiswa=tb_mahasiswa.id_mahasiswa')
+              ->join('tb_kontak','tb_kontak.id_mahasiswa=tb_mahasiswa.id_mahasiswa')
+              ->join('tb_bio','tb_bio.id_mahasiswa=tb_mahasiswa.id_mahasiswa')
               ->where('tb_mahasiswa.id_mahasiswa', $id_mahasiswa)
               ->get('tb_mahasiswa')
               ->row();
@@ -90,11 +96,14 @@ class Mahasiswa_model extends CI_Model {
   public function history_pendidikan($history){
       return $this->db->join('tb_prodi','tb_prodi.id_prodi=tb_mahasiswa.id_prodi')
               ->join('tb_konsentrasi','tb_konsentrasi.id_konsentrasi=tb_mahasiswa.id_konsentrasi')
-              ->join('tb_orang_tua','tb_orang_tua.id_mahasiswa=tb_mahasiswa.id_mahasiswa')
+              ->join('tb_ayah','tb_ayah.id_mahasiswa=tb_mahasiswa.id_mahasiswa')
+              ->join('tb_ibu','tb_ibu.id_mahasiswa=tb_mahasiswa.id_mahasiswa')
               ->join('tb_alamat','tb_alamat.id_mahasiswa=tb_mahasiswa.id_mahasiswa')
               ->join('tb_kependudukan','tb_kependudukan.id_mahasiswa=tb_mahasiswa.id_mahasiswa')
               ->join('tb_jenis_tinggal','tb_jenis_tinggal.id_mahasiswa=tb_mahasiswa.id_mahasiswa')
               ->join('tb_wali','tb_wali.id_mahasiswa=tb_mahasiswa.id_mahasiswa')
+              ->join('tb_kontak','tb_kontak.id_mahasiswa=tb_mahasiswa.id_mahasiswa')
+              ->join('tb_bio','tb_bio.id_mahasiswa=tb_mahasiswa.id_mahasiswa')
               ->where('tb_mahasiswa.id_mahasiswa', $history)
               ->get('tb_mahasiswa')
               ->result();
@@ -107,6 +116,32 @@ class Mahasiswa_model extends CI_Model {
               ->get('tb_mahasiswa')
               ->row();
   }
+
+  public function save_mahasiswa()
+    {        
+        $data = array(
+            'id_mahasiswa'      => $this->input->post('id_mahasiswa', TRUE),
+            'nama_mahasiswa'      => $this->input->post('nama_mahasiswa', TRUE),
+            'nim'      => $this->input->post('nim', TRUE),
+            'status_mahasiswa'      => 'Aktif',
+            'id_prodi'      => $this->input->post('id_prodi', TRUE),
+            'id_konsentrasi'      => $this->input->post('concentrate', TRUE),
+            'id_hasil_tes'      => $this->input->post('id_hasil_tes', TRUE),
+            'id_sekolah'      => $this->input->post('id_sekolah', TRUE),
+            'id_angkatan'      => $this->input->post('id_angkatan', TRUE),
+            'id_waktu'      => $this->input->post('id_waktu', TRUE)
+        );
+    
+        $this->db->insert('tb_mahasiswa', $data);
+
+        if($this->db->affected_rows() > 0){
+            
+                return true;
+        } else {
+            return false;
+            
+        }
+    }
 
   public function save_mahasiswa_pagi()
     {        
@@ -166,15 +201,11 @@ class Mahasiswa_model extends CI_Model {
             'id_hasil_tes'      => $this->input->post('id_hasil_tes', TRUE),
             'grade'      => 'Non-Beasiswa',
         );
-    
         $this->db->insert('tb_hasil_tes', $data);
-
         if($this->db->affected_rows() > 0){
-            
                 return true;
         } else {
             return false;
-            
         }
     }
 
@@ -373,11 +404,6 @@ class Mahasiswa_model extends CI_Model {
     $data = array(
             'nama_mahasiswa'      => $this->input->post('nama_mahasiswa', TRUE),
             'nim'      => $this->input->post('nim', TRUE),
-            'id_prodi'      => $this->input->post('id_prodi', TRUE),
-            'id_konsentrasi'      => $this->input->post('concentrate', TRUE),
-            'id_sekolah'      => $this->input->post('id_sekolah', TRUE),
-            'id_angkatan'      => $this->input->post('id_angkatan', TRUE),
-
       );
 
     if (!empty($data)) {
@@ -460,7 +486,6 @@ class Mahasiswa_model extends CI_Model {
     if (!empty($data)) {
             $this->db->where('id_mahasiswa', $id_tes)
         ->update('tb_ibu', $data);
-
           return true;
         } else {
             return null;
