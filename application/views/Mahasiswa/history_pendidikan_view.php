@@ -44,7 +44,7 @@
           </div>
 
           <div class="box box-info">
-            <table class="table table-bordered table-striped">
+            <table class="table table-bordered table-striped" id="example3">
   <thead>
   <tr>
     <th style="width:5%" style="text-align:center">No.</th>

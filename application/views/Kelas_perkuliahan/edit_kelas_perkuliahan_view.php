@@ -33,6 +33,8 @@
 
       <input type="hidden" name="kode_matkul" id="kode_matkul" value="<?php echo $kp->kode_matkul; ?>" > 
             </td>
+             <input type="hidden" name="id_kp" id="id_kp" value="<?php echo $kp->id_kp; ?>" > 
+            </td>
     </tr>
         <tr>
           <td class="left_column">Nama Kelas <font color="#FF0000">*</font>

@@ -12,7 +12,7 @@ class Dosen_model extends CI_Model {
 
 	public function data_dosen(){
 		return $this->db->order_by('id_dosen','ASC')
-		->get('dosen')
+		->get('tb_dosen')
 		->result();
 	}
 

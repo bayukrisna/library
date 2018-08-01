@@ -35,7 +35,7 @@
                   
                 <tr>
                   <td>'.++$no.'</td>
-                  <td><a href="'.base_url('kelas_perkuliahan/detail_kp/'.$data->id_kp).'">'.$data->kode_matkul.'</a></td>
+                  <td><a href="'.base_url('kelas_perkuliahan/detail_kelas/'.$data->id_kp).'">'.$data->kode_matkul.'</a></td>
                   <td>'.$data->nama_matkul.'</td>
                   <td>'.$data->nama_kelas.'</td>
                   <td>'.$data->bobot_matkul.'</td>
@@ -144,7 +144,7 @@
                 var id_prodi = p;
 
                 $.ajax({
-                    url: '<?php echo base_url(); ?>kelas_perkuliahan/get_prodi_periode/'+id_prodi,
+                    url: '<?php echo base_url(); ?>kurikulum/get_prodi_periode/'+id_prodi,
                     data: 'id_prodi='+id_prodi,
                     type: 'GET',
                     dataType: 'html',
@@ -162,7 +162,7 @@
 
     jQuery(document).ready(function($){
     $('#nama_matkul').autocomplete({
-      source:'<?php echo base_url(); ?>kelas_perkuliahan/get_autocomplete', 
+      source:'<?php echo base_url(); ?>kurikulum/get_autocomplete', 
       minLength:1,
       select: function(event, ui){
         $('#nama_matkul').val(ui.item.label)  ;

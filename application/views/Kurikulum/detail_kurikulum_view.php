@@ -185,76 +185,7 @@
             </div>
         </div>
 
-        <?php 
-        foreach($dk as $i):
-        ?>
-
-        <div class="modal fade" id="modal_edit<?php echo $i->id_detail_kurikulum;?>" >
-            <div class="modal-dialog">
-            <div class="modal-content">
-            <div class="modal-header">
-                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">x</button>
-                <h3 class="modal-title" id="myModalLabel">Edit Mata Kuliah</h3>
-            </div>
-                <div class="modal-body">
-
-                    <div class="form-group">
-                      <?php echo form_open('kurikulum/edit_detail_kurikulum/'.$i->id_detail_kurikulum); ?>
-                      <table class="table">
-                         <tr>
-            <td class="left_column">Nama Mata Kuliah <font color="#FF0000">*</font></td>
-            <td>: <input type="text" name="nama_matkul2" id="nama_matkul2" class="validate[required] text-input" maxlength="20" size="40" style="width:80%" value="<?php echo $i->nama_matkul; ?>">
-            </td>
-        </tr> 
-          
-       <input type="hidden" name="kode_matkul" id="kode_matkul" class="validate[required] text-input" maxlength="20" size="40" style="width:80%" required="" value="<?php echo $i->kode_matkul; ?>">
-         
         
-            <input type="hidden" name="id_kurikulum" id="id_kurikulum" class="validate[required] text-input" maxlength="20" size="40" style="width:80%" required="" value="<?php echo $i->id_kurikulum; ?>">
-
-            <input type="hidden" name="id_detail_kurikulum" id="id_detail_kurikulum" class="validate[required] text-input" maxlength="20" size="40" style="width:80%" required="" value="<?php echo $i->id_detail_kurikulum; ?>">
-
-            <input type="hidden" name="bobot_matkul" id="bobot_matkul" class="validate[required] text-input" maxlength="20" size="40" style="width:80%" required="" value="<?php echo $i->bobot_matkul; ?>">
-
-            <input type="hidden" name="bobot_praktikum" id="bobot_praktikum" class="validate[required] text-input" maxlength="20" size="40" style="width:80%" required="" value="<?php echo $i->bp; ?>">
-            <input type="hidden" name="bobot_simulasi" id="bobot_simulasi" class="validate[required] text-input" maxlength="20" size="40" style="width:80%" required="" value="<?php echo $i->bs; ?>">
-            <input type="hidden" name="bobot_praktik_lapangan" id="bobot_praktik_lapangan" class="validate[required] text-input" maxlength="20" size="40" style="width:80%" required="" value="<?php echo $i->bpl; ?>">
-            <input type="hidden" name="bobot_tatap_muka" id="bobot_tatap_muka" class="validate[required] text-input" maxlength="20" size="40" style="width:80%" required="" value="<?php echo $i->btm; ?>">
-            
-       
-        <tr>
-            <td class="left_column">Semester <font color="#FF0000">*</font></td>
-            <td>: <input type="text" name="semester_kurikulum" id="semester_kurikulum" class="validate[required] text-input" maxlength="20" size="40" style="width:80%" required="" value="<?php echo $i->semester_kurikulum; ?>"></td>
-        </tr> 
-        <tr>
-          <td class="left_column">Wajib <font color="#FF0000">*</font></td>
-          <td>: 
-
-          <?php if($i->wajib =='Y'){
-          echo '<label class="radio-inline"><input type="radio" name="wajib" id="wajib" value="Y" checked="" > Ya</label> &nbsp; 
-          <label class="radio-inline"><input type="radio" name="wajib" id="wajib" value="T"> Tidak</label> &nbsp; ';
-        }else{
-        echo '<label class="radio-inline"><input type="radio" name="wajib" id="wajib" value="Y"> Ya</label> &nbsp; 
-          <label class="radio-inline"><input type="radio" name="wajib" id="wajib" value="T"  checked="" > Tidak</label> &nbsp; ';
-          }
-          ?>
-          </td>
-          </tr>
-        
-                  <tr>
-                    <td colspan="4"><button type="submit" class="btn btn-info">Simpan</button></td>
-                  </tr>
-              <?php echo form_close();?>
-
-                        </table>
-
-                    </div>
-
-                </div>
-            </div>
-            </div>
-        </div>
-        <?php endforeach;?>
 
 <link rel="stylesheet" href="//code.jquery.com/ui/1.12.0/themes/smoothness/jquery-ui.css">
   <script src="//code.jquery.com/jquery-1.12.4.min.js"></script>
