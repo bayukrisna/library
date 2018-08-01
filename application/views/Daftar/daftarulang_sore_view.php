@@ -1,6 +1,6 @@
 <div class="row"> 
-  
-  <?php echo form_open('daftar_ulang/save_du_sore'); ?>
+  <?php echo $this->session->flashdata('message');?>
+  <?php echo form_open('daftar_ulang/save_mahasiswa_sore'); ?>
   <div class="col-md-12">
 
   <div class="box box-primary">
@@ -8,77 +8,73 @@
     <h3 style="text-align:center">Daftar Ulang</h3>
   <div class="box-body">
     <div class="col-md-6">
-       <?php 
-                    $notif = $this->session->flashdata('notif');
-                    if($notif != NULL){
-                        echo '
-                            <div class="alert alert-info">'.$notif.'</div>
-                        ';
-                    }
-                ?>
+      <?php echo $this->session->flashdata('message');?>
             <!-- /.box-header -->
             <!-- form start -->
                 <div class="form-group">
                   <label for="no">No. Registrasi</label>
-                  <input type="text" name="id_du" class="form-control" id="id_du" placeholder=""  .input-sm value="<?php echo $du_pagi->id_du; ?>" readonly >
+                  <input type="text" name="id_mahasiswa" class="form-control" id="id_mahasiswa" placeholder=""  .input-sm value="<?php echo $du_pagi->id_du; ?>" readonly>
                 </div>
-                
+             
+               
+                  <input type="hidden" name="id_hasil_tes" class="form-control" id="id_hasil_tes" placeholder=""  .input-sm value="<?php echo $kodeunik; ?>" readonly>
+                  
                 <div class="form-group">
                   <label for="email">Nama Lengkap</label>
-                  <input type="text" name="nama_du" class="form-control" id="nama_du" placeholder="Input Full Name" value="<?php echo $du_pagi->nama_pendaftar; ?>" required="">
+                  <input type="text" name="nama_mahasiswa" class="form-control" id="nama_mahasiswa" placeholder="Input Full Name" value="<?php echo $du_pagi->nama_pendaftar; ?>" required="">
                 </div>
                 <div class="form-group">
                   <label for="gender">Jenis Kelamin</label>
-                  <select id="gender" name="gender" class="form-control" required="">
+                  <select id="jenis_kelamin" name="jenis_kelamin" class="form-control" required="">
             <option value="<?php echo $du_pagi->jk_pendaftar; ?>"><?php echo $du_pagi->jk_pendaftar; ?></option>
-            <option value="laki-laki">Laki - laki</option>
-            <option value="perempuan">Perempuan</option>
+            <option value="L">Laki - laki</option>
+            <option value="P">Perempuan</option>
 
           </select>                                     
                   
                 </div>
                 <div class="form-group">
                   <label for="email">Tanggal Lahir</label>
-                  <input type="date" name="tgl_lahir_du" class="form-control" id="tgl_lahir_du" required="">
+                  <input type="date" name="tanggal_lahir" class="form-control" id="tanggal_lahir" required="">
                 </div>
                 <div class="form-group">
                   <label for="place">Tempat Lahir</label>
-                  <input type="text" name="tpt_lahir_du" class="form-control" id="tpt_lahir_du" placeholder="Input Birth Place" required="">
+                  <input type="text" name="tempat_lahir" class="form-control" id="tempat_lahir" placeholder="Input Birth Place" required="">
                 </div>
                 <div class="form-group">
                   <label for="religion">Agama</label>
-                <select id="agama_du" name="agama_du" class="form-control" required="">
-                  <option value="<?php echo $du_pagi->agama; ?>"><?php echo $du_pagi->agama; ?></option>
-                  <option value="kristen">Kristen</option>
-                  <option value="islam">Islam</option>
-                  <option value="hindu">Hindu</option>
-                  <option value="buddha">Buddha</option>
-                  <option value="konghuchu">Konghuchu</option>
+                <select id="agama" name="agama" class="form-control" required="">
+                  <option value="">Pilih Agama</option>
+                  <option value="Kristen">Kristen</option>
+                  <option value="Islam">Islam</option>
+                  <option value="Hindu">Hindu</option>
+                  <option value="Buddha">Buddha</option>
+                  <option value="Konghuchu">Konghuchu</option>
 
                 </select>                                     
                 </div>
                 <div class="form-group">
                   <label for="address">Alamat Rumah</label>
-                  <input type="text" name="alamat_du" class="form-control" id="alamat_du" placeholder="Input Home Address" value="<?php echo $du_pagi->alamat; ?>" required="">
+                  <input type="text" name="alamat_mhs" class="form-control" id="alamat_mhs" placeholder="Input Home Address" value="<?php echo $du_pagi->alamat; ?>" required="">
                 </div>
                 <div class="form-group">
                   <label for="phone">Nomor Telepon</label>
-                  <input type="number" name="no_telp_du" class="form-control" id="no_telp_du" placeholder="Input Phone Number" value="<?php echo $du_pagi->no_telp; ?>" required="">
+                  <input type="number" name="no_telepon" class="form-control" id="no_telepon" placeholder="Input Phone Number" value="<?php echo $du_pagi->no_telp; ?>" required="">
                 </div>
                 <div class="form-group">
                   <label for="phone">Nomor HP</label>
-                  <input type="number" name="no_telpm_du" class="form-control" id="no_telpm_du" placeholder="Input Mobile Phone Number" required="">
+                  <input type="number" name="no_hp" class="form-control" id="no_hp" placeholder="Input Mobile Phone Number" required="">
                 </div>
 
               </div>
               <div class="col-md-6">
                 <div class="form-group">
                   <label for="email">Email</label>
-                  <input type="email" name="email_du" class="form-control" id="email_du" placeholder="Input Email" value="<?php echo $du_pagi->email; ?>" required="">
+                  <input type="email" name="email" class="form-control" id="email" placeholder="Input Email" value="<?php echo $du_pagi->email; ?>" required="">
                 </div>
                  <div class="form-group">
                   <label for="email">Kode Pos</label>
-                  <input type="text" name="kode_pos_du" class="form-control" id="kode_pos_du" placeholder="Masukan Kode Pos"  required="">
+                  <input type="text" name="kode_pos" class="form-control" id="kode_pos" placeholder="Masukan Kode Pos"  required="">
                 </div>
                 <div class="form-group">
                   <label for="preschool">Asal Sekolah</label>
@@ -102,20 +98,21 @@
                   <option value="IPS">IPS</option>
                   <option value="TKJ">TKJ</option>
                   <option value="RPL">RPL</option>
+                  <option value="Lainnya">Lainnya</option>
                 </select>                                     
                 </div>
                 <div class="form-group">
                   <label for="nik">NIK</label>
-                  <input type="number" name="nik_du" class="form-control" id="nik_du" placeholder="Input NIK" required="">
+                  <input type="number" name="nik" class="form-control" id="nik" placeholder="Input NIK" required="">
                 </div>
                 <div class="form-group">
                   <label for="mother">Nama Ibu</label>
-                  <input type="text" name="ibu_kandung_du" class="form-control" id="ibu_kandung_du" placeholder="Input your mother Name" value="<?php echo $du_pagi->ibu_kandung; ?>" required="">
+                  <input type="text" name="nama_ibu" class="form-control" id="nama_ibu" placeholder="Input your mother Name" required="">
                 </div>
                 <div class="form-group">
                   <label for="prodi">Program Studi</label>
                   <select id="id_prodi" class="form-control" required="" name="id_prodi" ="" onchange="return get_concentrate(this.value)">
-                    <option value="<?php echo $du_pagi->id_prodi; ?>"><?php echo $du_pagi->nama_prodi; ?></option>   
+                    <option value="">Pilih Prodi</option>   
                     <?php 
 
                   foreach($getProdi as $row)
@@ -133,8 +130,58 @@
                 </div> 
                  <div class="form-group">
                   <label for="mother">NIM</label>
-                 <input type="text" name="nim" class="form-control" id="nim" placeholder="Masukan NIM" value="" required="" onkeyup="checkAvailability()"><span id="user-availability-status"></span>  
-                </div>           
+                  <input type="text" name="nim" class="form-control" id="nim" placeholder="Masukan NIM" value="" required="" onkeyup="checkAvailability()"><span id="user-availability-status"></span>  
+                </div>   
+                <div class="form-group">
+                  <label for="prodi">Angkatan</label>
+                  <select id="id_angkatan" class="form-control" required="" name="id_angkatan">
+                    <option value="">Pilih Angkatan</option>   
+                    <?php 
+
+                  foreach($getAngkatan as $row)
+                  { 
+                    echo '<option value="'.$row->id_angkatan.'">'.$row->angkatan.'</option>';
+                  }
+                  ?>
+                  </select>                                     
+                </div>       
+                 <input type="hidden" name="nama_ayah" class="form-control" value="">
+                 <input type="hidden" name="nik_ayah" class="form-control" value="">
+                 <input type="hidden" name="tanggal_lahir_ayah" class="form-control" value="">
+                 <input type="hidden" name="pendidikan_ayah" class="form-control" value="">
+                 <input type="hidden" name="pekerjaan_ayah" class="form-control" value="">
+                 <input type="hidden" name="penghasilan_ayah" class="form-control" value="">
+
+                  <input type="hidden" name="nik_ibu" class="form-control" value="">
+                 <input type="hidden" name="tanggal_lahir_ibu" class="form-control" value="">
+                 <input type="hidden" name="pendidikan_ibu" class="form-control" value="">
+                 <input type="hidden" name="pekerjaan_ibu" class="form-control" value="">
+                 <input type="hidden" name="penghasilan_ibu" class="form-control" value="">
+
+                 <input type="hidden" name="nama_wali" class="form-control" value="">
+                 <input type="hidden" name="tanggal_lahir_wali" class="form-control" value="">
+                 <input type="hidden" name="pendidikan_wali" class="form-control" value="">
+                 <input type="hidden" name="pekerjaan_wali" class="form-control" value="">
+                 <input type="hidden" name="penghasilan_wali" class="form-control" value="">
+
+                 <input type="hidden" name="jalan" class="form-control" value="">
+                 <input type="hidden" name="dusun" class="form-control" value="">
+                 <input type="hidden" name="kelurahan" class="form-control" value="">
+                 <input type="hidden" name="kecamatan" class="form-control" value="">
+                 <input type="hidden" name="rt" class="form-control" value="">
+                 <input type="hidden" name="rw" class="form-control" value="">
+
+                 <input type="hidden" name="nisn" class="form-control" value="">
+                 <input type="hidden" name="npwp" class="form-control" value="">
+                 <input type="hidden" name="kps" class="form-control" value="">
+                 <input type="hidden" name="no_kps" class="form-control" value="">
+                 <input type="hidden" name="kewarganegaraan" class="form-control" value="">
+
+                 <input type="hidden" name="jenis_tinggal" class="form-control" value="">
+                 <input type="hidden" name="alat_transportasi" class="form-control" value="">
+
+                 <input type="hidden" name="foto_mhs" class="form-control" value="">
+
                 <button type="submit" id="myBtn" class="btn btn-info pull-right">Daftar</button>
                   <?php echo form_close();?>
             
@@ -166,11 +213,11 @@
 
         <script type="text/javascript">
             function get_concentrate(p) {
-                var prodi = p;
+                var id_prodi = p;
 
                 $.ajax({
-                    url: '<?php echo base_url(); ?>daftar_ulang/get_concentrate/'+prodi,
-                    data: 'prodi='+prodi,
+                    url: '<?php echo base_url(); ?>daftar_ulang/get_concentrate/'+id_prodi,
+                    data: 'id_prodi='+id_prodi,
                     type: 'GET',
                     dataType: 'html',
                     success: function(msg) {
@@ -191,4 +238,32 @@
                     error:function (){}
                 });
             }
+            // function get_price(p) {
+            //     var produk = p;
+
+            //     $.ajax({
+            //         url: 'order/order_price/'+produk,
+            //         data: 'produk='+produk,
+            //         type: 'GET',
+            //         dataType: 'html',
+            //         success: function(msg) {
+            //             var data = msg.split("|");
+            //             var harga = data[0] * 1000;
+            //             $("#js_hts").html(harga);
+            //             $("#js_min").html(data[1]);
+            //             $("#js_max").html(data[2]);
+            //         }
+            //     });
+            // };
+            // function checkAvailability() {
+            // jQuery.ajax({
+            // url: '<?php echo base_url(); ?>daftar_ulang/cek_nim/',
+            // data:'nim='+$("#nim").val(),
+            // type: "POST",
+            // success:function(data){
+            // $("#user-availability-status").html(data);
+            // },
+            // error:function (){}
+            // });
+            // }
         </script>

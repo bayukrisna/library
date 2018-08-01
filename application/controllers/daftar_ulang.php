@@ -38,13 +38,26 @@ class daftar_ulang extends CI_Controller {
 	public function page_du_sore()
 	{
 			$id_pendaftaran = $this->uri->segment(3);
-			$data['du_pagi'] = $this->daftar_ulang_model->page_du_sore($id_pendaftaran);
-			$data['kodeunik2'] = $this->daftar_ulang_model->buat_kode2();
+			$data['du_pagi'] = $this->daftar_ulang_model->page_du_pagi($id_pendaftaran);
+			$data['kodeunik'] = $this->daftar_ulang_model->buat_kode();
 			$data['getProdi'] = $this->daftar_ulang_model->getProdi();
 			$data['getPreschool'] = $this->daftar_ulang_model->getPreschool();
+			$data['getAngkatan'] = $this->daftar_ulang_model->getAngkatan();
 			$data['main_view'] = 'Daftar/daftarulang_sore_view';
 			$this->load->view('template', $data);
 	}
+
+	public function save_mahasiswa_sore()
+	{
+			if($this->mahasiswa_model->save_mahasiswa_sore() == TRUE && $this->mahasiswa_model->save_ayah() == TRUE  && $this->mahasiswa_model->save_ibu() == TRUE && $this->mahasiswa_model->save_alamat() == TRUE && $this->mahasiswa_model->save_wali() == TRUE && $this->mahasiswa_model->save_kependudukan() == TRUE && $this->mahasiswa_model->save_jenis_tinggal() == TRUE && $this->mahasiswa_model->save_bio() == TRUE && $this->mahasiswa_model->save_kontak() == TRUE && $this->mahasiswa_model->save_tgl_du() == TRUE && $this->mahasiswa_model->save_tes_sore() == TRUE){
+				$nama_du = $this->input->post('nama_mahasiswa');
+				$this->session->set_flashdata('message', '<div class="col-md-12 alert alert-success"> Data '.$nama_du.' berhasil didaftarkan. </div>');
+            	redirect('mahasiswa/data_mahasiswa');
+			} else{
+				$this->session->set_flashdata('message', '<div class="col-md-12 alert alert-danger"> Data  '.$nama_pendaftar.' Sudah Ada </div>');
+            	redirect('daftar_ulang/page_du_pagi');
+			} 
+	} 
 
 	public function data_peserta_tes()
 	{

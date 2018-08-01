@@ -134,6 +134,50 @@ class Mahasiswa_model extends CI_Model {
         }
     }
 
+     public function save_mahasiswa_sore()
+    {        
+        $data = array(
+            'id_mahasiswa'      => $this->input->post('id_mahasiswa', TRUE),
+            'nama_mahasiswa'      => $this->input->post('nama_mahasiswa', TRUE),
+            'nim'      => $this->input->post('nim', TRUE),
+            'status_mahasiswa'      => 'Aktif',
+            'id_prodi'      => $this->input->post('id_prodi', TRUE),
+            'id_konsentrasi'      => $this->input->post('concentrate', TRUE),
+            'id_hasil_tes'      => $this->input->post('id_hasil_tes', TRUE),
+            'id_sekolah'      => $this->input->post('id_sekolah', TRUE),
+            'id_angkatan'      => $this->input->post('id_angkatan', TRUE),
+            'id_waktu'      => '2',
+        );
+    
+        $this->db->insert('tb_mahasiswa', $data);
+
+        if($this->db->affected_rows() > 0){
+            
+                return true;
+        } else {
+            return false;
+            
+        }
+    }
+
+    public function save_tes_sore()
+    {        
+        $data = array(
+            'id_hasil_tes'      => $this->input->post('id_hasil_tes', TRUE),
+            'grade'      => 'Non-Beasiswa',
+        );
+    
+        $this->db->insert('tb_hasil_tes', $data);
+
+        if($this->db->affected_rows() > 0){
+            
+                return true;
+        } else {
+            return false;
+            
+        }
+    }
+
     public function save_bio()
     {        
         $data = array(
