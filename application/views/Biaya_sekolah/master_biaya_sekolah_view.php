@@ -14,6 +14,7 @@
                 <tr>
                   <th>No</th>
                   <th>Id Biaya</th>
+                  <th>Jenis Biaya</th>
                   <th>Nama Biaya</th>
                   <th>Jumlah Biaya</th>
                   <th>Tahun Akademik</th>
@@ -32,6 +33,7 @@
                   <td>'.++$no.'</td>
                   <td>'.$data->id_biaya.'
                   </td>
+                  <td>'.$data->jenis_biaya.'</td>
                   <td>'.$data->nama_biaya.'</td>
                   <td>'.$data->jumlah_biaya.'</td>
                   <td>'.$data->periode.'</td>
