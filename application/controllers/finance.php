@@ -19,8 +19,8 @@ class Finance extends CI_Controller {
 
 		public function index()
 	{
-		$data['main_view'] = 'Finance/finance_view';
-		$data['data']=$this->finance_model->data_mahasiswa();
+		$data['main_view'] = 'finance_view';
+		// $data['data']=$this->finance_model->data_mahasiswa();
 		$this->load->view('template', $data);
 	}
 	public function detail_pembayaran()
@@ -114,7 +114,7 @@ class Finance extends CI_Controller {
 	public function konfirmasi_gagal($id_pendaftaran){				
 				$id_pendaftaran = $this->uri->segment(3);
 				if ($this->finance_model->gagal_konfirmasi($id_pendaftaran) == TRUE) {
-						$this->session->set_flashdata('message', '<div class="alert alert-success"> Data tidak valid </div>');
+						$this->session->set_flashdata('message', '<div class="alert alert-success"> Data tidak valid '.$id_pendaftaran.'</div>');
 						redirect('finance');
 					} else {
 						$this->session->set_flashdata('message', '<div class="alert alert-danger"> Konfirmasi Gagal </div>');
@@ -151,5 +151,38 @@ class Finance extends CI_Controller {
 	{
 		//set rule di setiap form input
 			$this->finance_model->tambah_pembayaran();
+	}
+	//////////////////////////////////////////////////////////////
+	function data_barang(){
+		$data=$this->finance_model->data_mahasiswa();
+		echo json_encode($data);
+	}
+
+	function get_barang(){
+		$kobar=$this->input->get('id');
+		$data=$this->finance_model->get_barang_by_kode($kobar);
+		echo json_encode($data);
+	}
+
+	function simpan_barang(){
+		$kobar=$this->input->post('kobar');
+		$nabar=$this->input->post('nabar');
+		$harga=$this->input->post('harga');
+		$data=$this->m_barang->simpan_barang($kobar,$nabar,$harga);
+		echo json_encode($data);
+	}
+
+	function update_barang(){
+		$kobar=$this->input->post('kobar');
+		$nabar=$this->input->post('nabar');
+		$harga=$this->input->post('harga');
+		$data=$this->m_barang->update_barang($kobar,$nabar,$harga);
+		echo json_encode($data);
+	}
+
+	function hapus_barang(){
+		$kobar=$this->input->post('kode');
+		$data=$this->m_barang->hapus_barang($kobar);
+		echo json_encode($data);
 	}
 }

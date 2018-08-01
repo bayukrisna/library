@@ -88,6 +88,7 @@ class Biaya_sekolah_model extends CI_Model {
     $data = array(
        'id_biaya'        => $this->input->post('id_biaya'),
         'nama_biaya'        => $this->input->post('nama_biaya'),
+        'jenis_biaya'        => $this->input->post('jenis_biaya'),
         'jumlah_biaya'          => $this->input->post('jumlah_biaya'),
         'periode'          => $this->input->post('periode')
       );
