@@ -45,17 +45,6 @@ class Mahasiswa extends CI_Controller {
 			$this->load->view('template', $data);
 	}
 
-	public function save_mahasiswa()
-	{
-			if($this->mahasiswa_model->save_mahasiswa() == TRUE && $this->mahasiswa_model->save_orang_tua() == TRUE && $this->mahasiswa_model->save_alamat() == TRUE && $this->mahasiswa_model->save_wali() == TRUE && $this->mahasiswa_model->save_kependudukan() == TRUE && $this->mahasiswa_model->save_jenis_tinggal() == TRUE){
-				$nama_du = $this->input->post('nama_mahasiswa');
-				$this->session->set_flashdata('message', '<div class="col-md-12 alert alert-success"> Data '.$nama_du.' berhasil didaftarkan. </div>');
-            	redirect('mahasiswa/data_mahasiswa');
-			} else{
-				$this->session->set_flashdata('message', '<div class="col-md-12 alert alert-danger"> Data  '.$nama_pendaftar.' Sudah Ada </div>');
-            	redirect('daftar_ulang/page_du_pagi');
-			} 
-	} 
 
 	public function data_mahasiswa()
 	{

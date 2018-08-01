@@ -34,7 +34,7 @@
                   <label for="inputEmail3" class="control-label pull-left">Nama</label>
                 </div>
                   <div class="col-md-9">
-                    <input type="text" class="form-control input-sm" id="inputEmail3" placeholder="" value="<?php echo $edit->nama_du; ?>">
+                    <input type="text" class="form-control input-sm" id="inputEmail3" placeholder="" value="<?php echo $edit->nama_mahasiswa; ?>">
                   </div>
                 </div>
                 <div class="form-group">
@@ -42,7 +42,7 @@
                   <label for="inputEmail3" class="control-label pull-left">Alamat</label>
                 </div>
                   <div class="col-md-9">
-                    <textarea type="text" class="form-control input-sm" id="inputEmail3" placeholder=""><?php echo $edit->alamat_du; ?>
+                    <textarea type="text" class="form-control input-sm" id="inputEmail3" placeholder=""><?php echo $edit->alamat_mhs; ?>
                       </textarea>
                   </div>
                 </div>
@@ -51,7 +51,7 @@
                   <label for="inputEmail3" class="control-label pull-left">Kode Pos</label>
                 </div>
                   <div class="col-md-3">
-                    <input type="text" class="form-control input-sm" id="inputEmail3" placeholder="" value="<?php echo $edit->kode_pos_du; ?>">
+                    <input type="text" class="form-control input-sm" id="inputEmail3" placeholder="" value="<?php echo $edit->kode_pos; ?>">
                   </div>
                 </div>
                 <div class="form-group">
@@ -59,7 +59,7 @@
                   <label for="inputEmail3" class="control-label pull-left">Email</label>
                 </div>
                   <div class="col-md-9">
-                    <input type="email" class="form-control input-sm" id="inputEmail3" placeholder="" value="<?php echo $edit->email_du; ?>">
+                    <input type="email" class="form-control input-sm" id="inputEmail3" placeholder="" value="<?php echo $edit->email; ?>">
                   </div>
                 </div>
                 <div class="form-group">
@@ -67,7 +67,7 @@
                   <label for="inputEmail3" class="control-label pull-left">No. Telp</label>
                 </div>
                   <div class="col-md-6">
-                    <input type="number" class="form-control input-sm" id="inputEmail3" placeholder="" value="<?php echo $edit->no_telp_du; ?>">
+                    <input type="number" class="form-control input-sm" id="inputEmail3" placeholder="" value="<?php echo $edit->no_telepon; ?>">
                   </div>
                 </div>
                 <div class="box-header with-border">

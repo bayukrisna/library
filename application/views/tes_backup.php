@@ -988,8 +988,8 @@ function lI1IllI111IlI1I1llll1lIIl()
 	IIlIl1lI1lI1lIl11IlI1IlII.innerHTML = "<P class=\"p3 ft2\">&nbsp;</P>";
 	IlIIIIl1I111I1l1IlI1I111l.innerHTML = "<P class=\"p9 ft7\">C</P>";
 	I11l1lll1lI1I1lIl1I1Il11l.innerHTML = "<P class=\"p9 ft7\">A</P>";
-	ll11IIl1II11l11l11lI11IlI.innerHTML = "<P class=\"p4 ft1\">: <?php echo $edit->alamat_du; ?></P>";
-	l111l1Il1IlIlIl1l11lI1ll1.innerHTML = "<P class=\"p4 ft1\">: <?php echo $edit->email_du; ?></P>";
+	ll11IIl1II11l11l11lI11IlI.innerHTML = "<P class=\"p4 ft1\">: <?php echo $edit->alamat_mhs; ?></P>";
+	l111l1Il1IlIlIl1l11lI1ll1.innerHTML = "<P class=\"p4 ft1\">: <?php echo $edit->email; ?></P>";
 	I1II111IIIl11lIIl1III1IlI.innerHTML = "<P class=\"p9 ft7\">B</P>";
 	lIlIlIIlII1IlIl1II1l1IIlI.innerHTML = "<P class=\"p9 ft7\">C</P>";
 	I111ll1lIIl11l1l1l11111lI.innerHTML = "<P class=\"p9 ft7\">D</P>";
@@ -1038,7 +1038,7 @@ function lI1IllI111IlI1I1llll1lIIl()
 	llIlllII11ll1IIlI1I1l11II.innerHTML = "<P class=\"p3 ft2\">&nbsp;</P>";
 	I1l1lI1l1Il1lI1I11II1IlI1.innerHTML = "<P class=\"p10 ft7\">B</P>";
 	lI1llIIllI11I1lII111ll1l1.innerHTML = "<P class=\"p6 ft7\">B</P>";
-	lI1I11lIIII11llI1II1l11II.innerHTML = "<P class=\"p4 ft1\">: <?php echo $edit->kode_tes; ?></P>";
+	lI1I11lIIII11llI1II1l11II.innerHTML = "<P class=\"p4 ft1\">: <?php echo $edit->id_hasil_tes; ?></P>";
 	llIlI1lll11lll1I1llIIl111.innerHTML = "<P class=\"p6 ft7\">A</P>";
 	ll111IlI1Illllll11IlI1II1.innerHTML = "<P class=\"p9 ft7\">C</P>";
 	llI1ll1lll1ll1I111I1IlIlI.innerHTML = "<P class=\"p3 ft2\">&nbsp;</P>";
@@ -1259,7 +1259,7 @@ function lI1IllI111IlI1I1llll1lIIl()
 	II1I11Ill11lIlIIl1lII1l1l.innerHTML = "<P class=\"p9 ft7\">24.</P>";
 	llll1lIlIIlIII11111IIlI11.innerHTML = "<P class=\"p9 ft7\">D</P>";
 	Ill11l1lIIlIlIll1lIlI11lI.innerHTML = "<P class=\"p9 ft7\">C</P>";
-	Il11I1lI1l1lIIll111l1IIlI.innerHTML = "<P class=\"p4 ft1\">: <?php echo $edit->nama_du; ?></P>";
+	Il11I1lI1l1lIIll111l1IIlI.innerHTML = "<P class=\"p4 ft1\">: <?php echo $edit->nama_mahasiswa; ?></P>";
 	l1lI11lll1I11I1llIIl1I1II.innerHTML = "<P class=\"p3 ft2\">&nbsp;</P>";
 	lI11l1I1l1I1l11Ill1111IIl.innerHTML = "<P class=\"p9 ft7\">2.</P>";
 	I1ll1111I1IlllI111IIIlI1I.innerHTML = "<P class=\"p9 ft7\">C</P>";
@@ -1319,7 +1319,7 @@ function lI1IllI111IlI1I1llll1lIIl()
 	II1l1I1IllIIl1lIlIllIlII1.innerHTML = "<P class=\"p3 ft2\">&nbsp;</P>";
 	lIlIl1llIII11I1Illl11I1lI.innerHTML = "<P class=\"p3 ft5\">&nbsp;</P>";
 	llIlI1IIIlIlIl1Ill1Il11I1.innerHTML = "<P class=\"p9 ft7\">A</P>";
-	l11111l1I1111llI1IlIllI1I.innerHTML = "<P class=\"p4 ft1\">: <?php echo $edit->jurusan_du; ?></P>";
+	l11111l1I1111llI1IlIllI1I.innerHTML = "<P class=\"p4 ft1\">: <?php echo $edit->jurusan; ?></P>";
 	IlIIIll1llIlI1111l11ll1II.innerHTML = "<P class=\"p9 ft7\">C</P>";
 	l1Il11Il1l1lI1llI1lI1lII1.innerHTML = "<P class=\"p9 ft7\">C</P>";
 	lI1lIlIl11l11lIll1Il1IIIl.innerHTML = "<P class=\"p9 ft7\">A</P>";
@@ -1352,7 +1352,7 @@ function lI1IllI111IlI1I1llll1lIIl()
 	llIIlI1IllllI1I1II1III11I.innerHTML = "<P class=\"p9 ft7\">D</P>";
 	llI1IllI1llIlIIl1l1I1II11.innerHTML = "<P class=\"p9 ft7\">2.</P>";
 	llIIIll11IlIl1III11l1IIl1.innerHTML = "<P class=\"p9 ft7\">C</P>";
-	I1IlIlIl1IIlI1IlII1l1I1l1.innerHTML = "<P class=\"p4 ft1\">: <?php echo $edit->no_telp_du; ?></P>";
+	I1IlIlIl1IIlI1IlII1l1I1l1.innerHTML = "<P class=\"p4 ft1\">: <?php echo $edit->no_telepon; ?></P>";
 	II11Ill1Ill111111I1lIl1l1.innerHTML = "<P class=\"p6 ft7\">B</P>";
 	I11III11l1lllIllI1Il1ll1I.innerHTML = "<P class=\"p3 ft2\">&nbsp;</P>";
 	IlI1IlI11IIl1l1lI1Illl11l.innerHTML = "<P class=\"p9 ft7\">C</P>";

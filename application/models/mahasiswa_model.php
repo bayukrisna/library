@@ -29,11 +29,16 @@ class Mahasiswa_model extends CI_Model {
     }
 
 	public function data_mahasiswa(){
-		return $this->db->join('tb_prodi','tb_prodi.id_prodi=tb_du.id_prodi')
-              ->join('tb_sekolah','tb_sekolah.id_sekolah=tb_du.id_sekolah')
-              ->join('tb_konsentrasi','tb_konsentrasi.id_konsentrasi=tb_du.id_konsentrasi')
-              ->where('status_du', 'Mahasiswa')
-              ->get('tb_du')
+		return $this->db->join('tb_prodi','tb_prodi.id_prodi=tb_mahasiswa.id_prodi')
+              ->join('tb_sekolah','tb_sekolah.id_sekolah=tb_mahasiswa.id_sekolah')
+              ->join('tb_konsentrasi','tb_konsentrasi.id_konsentrasi=tb_mahasiswa.id_konsentrasi')
+              ->join('tb_alamat','tb_alamat.id_mahasiswa=tb_mahasiswa.id_mahasiswa')  
+              ->join('tb_bio','tb_bio.id_mahasiswa=tb_mahasiswa.id_mahasiswa') 
+              ->join('tb_kontak','tb_kontak.id_mahasiswa=tb_mahasiswa.id_mahasiswa')
+              ->join('tb_waktu','tb_waktu.id_waktu=tb_mahasiswa.id_waktu') 
+              ->join('tb_tgl_du','tb_tgl_du.id_mahasiswa=tb_mahasiswa.id_mahasiswa')
+              ->where('status_mahasiswa', 'Aktif')
+              ->get('tb_mahasiswa')
               ->result();
 	}
 
@@ -42,6 +47,7 @@ class Mahasiswa_model extends CI_Model {
      $this->db->from('tb_mahasiswa');
      $this->db->join('tb_konsentrasi','tb_konsentrasi.id_konsentrasi=tb_mahasiswa.id_konsentrasi');
      $this->db->join('tb_prodi','tb_prodi.id_prodi=tb_mahasiswa.id_prodi');
+     $this->db->join('tb_bio','tb_bio.id_mahasiswa=tb_mahasiswa.id_mahasiswa');
      $query = $this->db->get();
      return $query->result();
   }
@@ -58,13 +64,13 @@ class Mahasiswa_model extends CI_Model {
      return $query->result();
   }
 
-	public function detail_mahasiswa($id_du){
-      return $this->db->join('tb_prodi','tb_prodi.id_prodi=tb_du.id_prodi')
-              ->join('tb_sekolah','tb_sekolah.id_sekolah=tb_du.id_sekolah')
-              ->join('tb_konsentrasi','tb_konsentrasi.id_konsentrasi=tb_du.id_konsentrasi')
-              ->join('tb_hasil_tes','tb_hasil_tes.id_hasil_tes=tb_du.kode_tes')
-              ->where('id_du', $id_du)
-              ->get('tb_du')
+	public function detail_mahasiswa($id_mahasiswa){
+      return $this->db->join('tb_prodi','tb_prodi.id_prodi=tb_mahasiswa.id_prodi')
+              ->join('tb_sekolah','tb_sekolah.id_sekolah=tb_mahasiswa.id_sekolah')
+              ->join('tb_konsentrasi','tb_konsentrasi.id_konsentrasi=tb_mahasiswa.id_konsentrasi')
+              ->join('tb_hasil_tes','tb_hasil_tes.id_hasil_tes=tb_mahasiswa.kode_tes')
+              ->where('id_mahasiswa', $id_mahasiswa)
+              ->get('tb_mahasiswa')
               ->row();
   }
 
@@ -94,30 +100,26 @@ class Mahasiswa_model extends CI_Model {
               ->result();
   }
 
-  public function get_mahasiswa_by_du($id_du){
-       return $this->db->join('tb_prodi','tb_prodi.id_prodi=tb_du.id_prodi')
-              ->join('tb_konsentrasi','tb_konsentrasi.id_konsentrasi=tb_du.id_konsentrasi')
-              ->where('id_du', $id_du)
-              ->get('tb_du')
+  public function get_mahasiswa_by_du($id_mahasiswa){
+       return $this->db->join('tb_prodi','tb_prodi.id_prodi=tb_mahasiswa.id_prodi')
+              ->join('tb_konsentrasi','tb_konsentrasi.id_konsentrasi=tb_mahasiswa.id_konsentrasi')
+              ->where('id_mahasiswa', $id_mahasiswa)
+              ->get('tb_mahasiswa')
               ->row();
   }
 
-  public function save_mahasiswa()
+  public function save_mahasiswa_pagi()
     {        
         $data = array(
             'id_mahasiswa'      => $this->input->post('id_mahasiswa', TRUE),
-            'nama_mahasiswa'      => $this->input->post('nama_mahasiswa', TRUE),
             'nim'      => $this->input->post('nim', TRUE),
-            'jenis_kelamin'      => $this->input->post('jenis_kelamin', TRUE),
-            'tanggal_lahir'      => $this->input->post('tanggal_lahir', TRUE),
-            'tempat_lahir'     => $this->input->post('tempat_lahir', TRUE),
-            'agama'     => $this->input->post('agama', TRUE),
-            'email'     => $this->input->post('email', TRUE),
-            'no_telepon'     => $this->input->post('no_telepon', TRUE),
-            'no_hp'     => $this->input->post('no_hp', TRUE),
-            'status_mahasiswa'      => 'Aktif',
+            'status_mahasiswa'      => 'Nilai Kosong',
             'id_prodi'      => $this->input->post('id_prodi', TRUE),
-            'id_konsentrasi'      => $this->input->post('id_konsentrasi', TRUE)
+            'id_konsentrasi'      => $this->input->post('concentrate', TRUE),
+            'id_hasil_tes'      => $this->input->post('id_hasil_tes', TRUE),
+            'id_sekolah'      => $this->input->post('id_sekolah', TRUE),
+            'id_angkatan'      => $this->input->post('id_angkatan', TRUE),
+            'id_waktu'      => '1',
         );
     
         $this->db->insert('tb_mahasiswa', $data);
@@ -129,10 +131,72 @@ class Mahasiswa_model extends CI_Model {
             return false;
             
         }
+    }
+
+    public function save_bio()
+    {        
+        $data = array(
+            'id_mahasiswa'      => $this->input->post('id_mahasiswa', TRUE),
+            'nama_mahasiswa'      => $this->input->post('nama_mahasiswa', TRUE),
+            'jenis_kelamin'      => $this->input->post('jenis_kelamin', TRUE),
+            'tanggal_lahir'      => $this->input->post('tanggal_lahir', TRUE),
+            'tempat_lahir'     => $this->input->post('tempat_lahir', TRUE),
+            'agama'     => $this->input->post('agama', TRUE)
+        );
+    
+        $this->db->insert('tb_bio', $data);
+
+        if($this->db->affected_rows() > 0){
+            
+                return true;
+        } else {
+            return false;
+            
+        }
 
     }
 
-     public function save_orang_tua()
+    public function save_tgl_du()
+    {        
+        $data = array(
+            'id_mahasiswa'      => $this->input->post('id_mahasiswa', TRUE),
+            'tgl_du'     => date('Y-m-d')
+        );
+    
+        $this->db->insert('tb_tgl_du', $data);
+
+        if($this->db->affected_rows() > 0){
+            
+                return true;
+        } else {
+            return false;
+            
+        }
+
+    }
+
+    public function save_kontak()
+    {        
+        $data = array(
+            'id_mahasiswa'      => $this->input->post('id_mahasiswa', TRUE),
+            'email'     => $this->input->post('email', TRUE),
+            'no_telepon'     => $this->input->post('no_telepon', TRUE),
+            'no_hp'     => $this->input->post('no_hp', TRUE)
+        );
+    
+        $this->db->insert('tb_kontak', $data);
+
+        if($this->db->affected_rows() > 0){
+            
+                return true;
+        } else {
+            return false;
+            
+        }
+
+    }
+
+     public function save_ayah()
     {        
         $data = array(
             'id_mahasiswa'      => $this->input->post('id_mahasiswa', TRUE),
@@ -141,7 +205,21 @@ class Mahasiswa_model extends CI_Model {
             'tanggal_lahir_ayah'      => $this->input->post('tanggal_lahir_ayah', TRUE),
             'pendidikan_ayah'      => $this->input->post('pendidikan_ayah', TRUE),
             'pekerjaan_ayah'     => $this->input->post('pekerjaan_ayah', TRUE),
-            'penghasilan_ayah'     => $this->input->post('penghasilan_ayah', TRUE),
+            'penghasilan_ayah'     => $this->input->post('penghasilan_ayah', TRUE)
+            
+        );
+        $this->db->insert('tb_ayah', $data);
+        if($this->db->affected_rows() > 0){
+                return true;
+        } else {
+            return false;
+        }
+    }
+
+     public function save_ibu()
+    {        
+        $data = array(
+            'id_mahasiswa'      => $this->input->post('id_mahasiswa', TRUE),
             'nama_ibu'     => $this->input->post('nama_ibu', TRUE),
             'nik_ibu'     => $this->input->post('nik_ibu', TRUE),
             'tanggal_lahir_ibu'     => $this->input->post('tanggal_lahir_ibu', TRUE),
@@ -150,7 +228,7 @@ class Mahasiswa_model extends CI_Model {
             'penghasilan_ibu'      => $this->input->post('penghasilan_ibu', TRUE)
             
         );
-        $this->db->insert('tb_orang_tua', $data);
+        $this->db->insert('tb_ibu', $data);
         if($this->db->affected_rows() > 0){
                 return true;
         } else {
@@ -186,7 +264,9 @@ class Mahasiswa_model extends CI_Model {
             'kecamatan'     => $this->input->post('kecamatan', TRUE),
             'rt'     => $this->input->post('rt', TRUE),
             'rw'     => $this->input->post('rw', TRUE),
-            'kode_pos'     => $this->input->post('kode_pos', TRUE)
+            'kode_pos'     => $this->input->post('kode_pos', TRUE),
+            'alamat_mhs'     => $this->input->post('alamat_mhs', TRUE),
+            'jurusan'     => $this->input->post('jurusan', TRUE),
         );
         $this->db->insert('tb_alamat', $data);
         if($this->db->affected_rows() > 0){
@@ -266,19 +346,14 @@ class Mahasiswa_model extends CI_Model {
         }
   }
 
-  public function save_edit_orang_tua($id_tes){
+  public function save_edit_ayah($id_tes){
     $data = array(
             'nama_ayah'      => $this->input->post('nama_ayah', TRUE),
             'nik_ayah'      => $this->input->post('nik_ayah', TRUE),
             'tanggal_lahir_ayah'      => $this->input->post('tanggal_lahir_ayah', TRUE),
             'pendidikan_ayah'      => $this->input->post('pendidikan_ayah', TRUE),
             'pekerjaan_ayah'     => $this->input->post('pekerjaan_ayah', TRUE),
-            'penghasilan_ayah'     => $this->input->post('penghasilan_ayah', TRUE),
-            'nik_ibu'     => $this->input->post('nik_ibu', TRUE),
-            'tanggal_lahir_ibu'     => $this->input->post('tanggal_lahir_ibu', TRUE),
-            'pendidikan_ibu'      => $this->input->post('pendidikan_ibu', TRUE),
-            'pekerjaan_ibu'      => $this->input->post('pekerjaan_ibu', TRUE),
-            'penghasilan_ibu'      => $this->input->post('penghasilan_ibu', TRUE)
+            'penghasilan_ayah'     => $this->input->post('penghasilan_ayah', TRUE)
       );
 
     if (!empty($data)) {

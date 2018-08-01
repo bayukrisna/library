@@ -9,10 +9,10 @@ class Daftar_ulang_model extends CI_Model {
     }
 
      public function  buat_kode()   {
-          $this->db->SELECT('RIGHT(tb_du.kode_tes,3) as kode', FALSE); 
-          $this->db->order_by('kode_tes','DESC');    
+          $this->db->SELECT('RIGHT(tb_mahasiswa.id_hasil_tes,4) as kode', FALSE); 
+          $this->db->order_by('id_hasil_tes','DESC');    
           $this->db->limit(1);    
-          $query = $this->db->get('tb_du');      //cek dulu apakah ada sudah ada kode di tabel.    
+          $query = $this->db->get('tb_mahasiswa');      //cek dulu apakah ada sudah ada kode di tabel.    
           if($query->num_rows() <> 0){      
            //jika kode ternyata sudah ada.      
            $data = $query->row();      
@@ -22,16 +22,16 @@ class Daftar_ulang_model extends CI_Model {
            //jika kode belum ada      
            $kode = 1;    
           }
-          $kodemax = str_pad($kode, 3, "0", STR_PAD_LEFT); // angka 4 menunjukkan jumlah digit angka 0
+          $kodemax = str_pad($kode, 4, "0", STR_PAD_LEFT); // angka 4 menunjukkan jumlah digit angka 0
           $kodejadi = "TES".$kodemax;    // hasilnya ODJ-991-0001 dst.
           return $kodejadi; 
     }
 
      public function  buat_kode2()   {
-          $this->db->SELECT('RIGHT(tb_du.id_du,3) as kode', FALSE);
-          $this->db->order_by('id_du','DESC');    
+          $this->db->SELECT('RIGHT(tb_mahasiswa.id_mahasiswa,4) as kode', FALSE);
+          $this->db->order_by('id_mahasiswa','DESC');    
           $this->db->limit(1);    
-          $query = $this->db->get('tb_du');      //cek dulu apakah ada sudah ada kode di tabel.    
+          $query = $this->db->get('tb_mahasiswa');      //cek dulu apakah ada sudah ada kode di tabel.    
           if($query->num_rows() <> 0){      
            //jika kode ternyata sudah ada.      
            $data = $query->row();      
@@ -41,15 +41,15 @@ class Daftar_ulang_model extends CI_Model {
            //jika kode belum ada      
            $kode = 1;    
           }
-          $kodemax = str_pad($kode, 3, "0", STR_PAD_LEFT); // angka 4 menunjukkan jumlah digit angka 0
-          $kodejadi = "DU".$kodemax;    // hasilnya ODJ-991-0001 dst.
+          $kodemax = str_pad($kode, 4, "0", STR_PAD_LEFT); // angka 4 menunjukkan jumlah digit angka 0
+          $kodejadi = "MHS".$kodemax;    // hasilnya ODJ-991-0001 dst.
           return $kodejadi; 
     }
 
   
     function cek_nim($nim){
       $query = $this->db->select('*')
-                ->from('tb_du')
+                ->from('tb_mahasiswa')
                 ->where('nim', $nim)
                 ->get();
                 if ($query->num_rows() > 0)
@@ -65,6 +65,13 @@ class Daftar_ulang_model extends CI_Model {
      function getProdi()
     {
         return $this->db->get('tb_prodi')
+                    ->result();
+
+    }
+
+    function getAngkatan()
+    {
+        return $this->db->get('tb_angkatan')
                     ->result();
 
     }
@@ -97,62 +104,13 @@ class Daftar_ulang_model extends CI_Model {
 
     }
 
-    public function data_du(){
-      return $this->db->join('tb_prodi','tb_prodi.id_prodi=tb_du.id_prodi')
-              ->join('tb_sekolah','tb_sekolah.id_sekolah=tb_du.id_sekolah')
-              ->join('tb_konsentrasi','tb_konsentrasi.id_konsentrasi=tb_du.id_konsentrasi')
-              ->where('waktu','Pagi')
-              ->get('tb_du')
-              ->result();
-  }
-
   public function page_du_pagi($id_pendaftaran){
       return $this->db->join('tb_prodi','tb_prodi.id_prodi=tb_pendaftaran.id_prodi')
               ->join('tb_sekolah','tb_sekolah.id_sekolah=tb_pendaftaran.id_sekolah')
-             
               ->where('id_pendaftaran', $id_pendaftaran)
               ->get('tb_pendaftaran')
               ->row();
   }
-
-  public function save_du_pagi()
-    {        
-        $data = array(
-            'id_du'      => $this->input->post('id_du', TRUE),
-            'kode_tes'      => $this->input->post('kode_tes', TRUE),
-            'nama_du'      => $this->input->post('nama_du', TRUE),
-            'jk_daftar_du'      => $this->input->post('gender', TRUE),
-            'tpt_lahir_du'      => $this->input->post('tpt_lahir_du', TRUE),
-            'tgl_lahir_du'     => $this->input->post('tgl_lahir_du', TRUE),
-            'alamat_du'     => $this->input->post('alamat_du', TRUE),
-            'no_telp_du'     => $this->input->post('no_telp_du', TRUE),
-            'no_telpm_du'     => $this->input->post('no_telpm_du', TRUE),
-            'email_du'     => $this->input->post('email_du', TRUE),
-            'agama_du'      => $this->input->post('agama_du', TRUE),
-            'nik_du'      => $this->input->post('nik_du', TRUE),
-            'jurusan_du'      => $this->input->post('jurusan', TRUE),
-            'ibu_kandung_du'      => $this->input->post('ibu_kandung_du', TRUE),
-            'id_sekolah'      => $this->input->post('id_sekolah', TRUE),
-            'id_prodi'      => $this->input->post('id_prodi', TRUE),
-            'id_konsentrasi'      => $this->input->post('concentrate', TRUE),
-            'kode_pos_du'      => $this->input->post('kode_pos_du', TRUE),
-            'waktu'      => 'Pagi',
-            'status_du'      => 'Nilai Kosong',
-            'nim'      => $this->input->post('nim', TRUE),
-            'tanggal_du'      => date('Y-m-d')
-        );
-    
-        $this->db->insert('tb_du', $data);
-
-        if($this->db->affected_rows() > 0){
-            
-                return true;
-        } else {
-            return false;
-            
-        }
-
-    }
 
     public function page_du_sore($id_pendaftaran){
       return $this->db->join('tb_prodi','tb_prodi.id_prodi=tb_pendaftaran.id_prodi')
@@ -162,111 +120,27 @@ class Daftar_ulang_model extends CI_Model {
               ->row();
   }
 
-  public function save_du_sore()
-    {        
-        $data = array(
-            'id_du'      => $this->input->post('id_du', TRUE),
-            'nama_du'      => $this->input->post('nama_du', TRUE),
-            'jk_daftar_du'      => $this->input->post('gender', TRUE),
-            'tpt_lahir_du'      => $this->input->post('tpt_lahir_du', TRUE),
-            'tgl_lahir_du'     => $this->input->post('tgl_lahir_du', TRUE),
-            'alamat_du'     => $this->input->post('alamat_du', TRUE),
-            'no_telp_du'     => $this->input->post('no_telp_du', TRUE),
-            'no_telpm_du'     => $this->input->post('no_telpm_du', TRUE),
-            'email_du'     => $this->input->post('email_du', TRUE),
-            'agama_du'      => $this->input->post('agama_du', TRUE),
-            'nik_du'      => $this->input->post('nik_du', TRUE),
-            'jurusan_du'      => $this->input->post('jurusan', TRUE),
-            'ibu_kandung_du'      => $this->input->post('ibu_kandung_du', TRUE),
-            'id_sekolah'      => $this->input->post('id_sekolah', TRUE),
-            'id_prodi'      => $this->input->post('id_prodi', TRUE),
-            'id_konsentrasi'      => $this->input->post('concentrate', TRUE),
-            'kode_pos_du'      => $this->input->post('kode_pos_du', TRUE),
-            'waktu'      => 'Sore',
-            'status_du'      => 'Mahasiswa',
-            'nim'      => $this->input->post('nim', TRUE),
-            'tanggal_du'      => date('Y-m-d')
-        );
-    
-        $this->db->insert('tb_du', $data);
+  public function data_peserta_tes(){
+      return $this->db->join('tb_prodi','tb_prodi.id_prodi=tb_mahasiswa.id_prodi')
+              ->join('tb_sekolah','tb_sekolah.id_sekolah=tb_mahasiswa.id_sekolah')
+              ->join('tb_waktu','tb_waktu.id_waktu=tb_mahasiswa.id_waktu')
+              ->join('tb_bio','tb_bio.id_mahasiswa=tb_bio.id_mahasiswa')
+              ->join('tb_konsentrasi','tb_konsentrasi.id_konsentrasi=tb_mahasiswa.id_konsentrasi')
+              ->join('tb_tgl_du','tb_tgl_du.id_mahasiswa=tb_mahasiswa.id_mahasiswa')
+              ->get('tb_mahasiswa')
+              ->result();
+  }
 
-        if($this->db->affected_rows() > 0){
-            
-                return true;
-        } else {
-            return false;
-            
-        }
-
-    }
-
-  public function detail_nilai($id_du){
-      return $this->db->join('tb_prodi','tb_prodi.id_prodi=tb_du.id_prodi')
-              ->join('tb_sekolah','tb_sekolah.id_sekolah=tb_du.id_sekolah')
-              ->join('tb_konsentrasi','tb_konsentrasi.id_konsentrasi=tb_du.id_konsentrasi') 
-              ->join('tb_hasil_tes','tb_hasil_tes.id_hasil_tes=tb_du.kode_tes')             
-              ->where('id_du', $id_du)
-              ->get('tb_du')
+  public function get_du_by_id($id_mahasiswa){
+      return $this->db->join('tb_sekolah','tb_sekolah.id_sekolah=tb_mahasiswa.id_sekolah')
+              ->join('tb_bio','tb_bio.id_mahasiswa=tb_mahasiswa.id_mahasiswa')
+              ->join('tb_kontak','tb_kontak.id_mahasiswa=tb_mahasiswa.id_mahasiswa')
+              ->join('tb_alamat','tb_alamat.id_mahasiswa=tb_mahasiswa.id_mahasiswa')
+              ->where('tb_mahasiswa.id_mahasiswa', $id_mahasiswa)
+              ->get('tb_mahasiswa')
               ->row();
   }
 
-  public function detail_du($id_du){
-      return $this->db->join('tb_prodi','tb_prodi.id_prodi=tb_du.id_prodi')
-              ->join('tb_sekolah','tb_sekolah.id_sekolah=tb_du.id_sekolah')
-              ->join('tb_konsentrasi','tb_konsentrasi.id_konsentrasi=tb_du.id_konsentrasi')
-              ->where('id_du', $id_du)
-              ->get('tb_du')
-              ->row();
-  }
-  
-
-  public function get_data_pagi($id_pendaftaran){
-      return $this->db->join('tb_sekolah','tb_sekolah.id_sekolah=tb_pendaftaran.id_sekolah')
-              ->where('id_pendaftaran', $id_pendaftaran)
-              ->get('tb_pendaftaran')
-              ->row();
-  }
-
-    public function save_edit_du($no_du){
-    $data = array(
-            
-            'kode_tes'      => $this->input->post('kode_tes', TRUE),
-            'nama_du'      => $this->input->post('nama_du', TRUE),
-            'jk_daftar_du'      => $this->input->post('gender', TRUE),
-            'tpt_lahir_du'      => $this->input->post('tpt_lahir_du', TRUE),
-            'tgl_lahir_du'     => $this->input->post('tgl_lahir_du', TRUE),
-            'alamat_du'     => $this->input->post('alamat_du', TRUE),
-            'no_telp_du'     => $this->input->post('no_telp_du', TRUE),
-            'no_telpm_du'     => $this->input->post('no_telpm_du', TRUE),
-            'email_du'     => $this->input->post('email_du', TRUE),
-            'agama_du'      => $this->input->post('agama_du', TRUE),
-            'nik_du'      => $this->input->post('nik_du', TRUE),
-            'jurusan_du'      => $this->input->post('jurusan', TRUE),
-            'ibu_kandung_du'      => $this->input->post('ibu_kandung_du', TRUE),
-            'id_sekolah'      => $this->input->post('id_sekolah', TRUE),
-            'id_prodi'      => $this->input->post('id_prodi', TRUE),
-            'id_konsentrasi'      => $this->input->post('concentrate', TRUE),
-            'kode_pos_du'      => $this->input->post('kode_pos_du', TRUE),
-            'nim'      => $this->input->post('nim', TRUE),
-      );
-
-    if (!empty($data)) {
-            $this->db->where('id_du', $no_du)
-        ->update('tb_du', $data);
-
-          return true;
-        } else {
-            return null;
-        }
-  }
-
-  public function get_du_by_id($id_du){
-    return $this->db->join('tb_sekolah','tb_sekolah.id_sekolah=tb_du.id_sekolah')
-            ->join('tb_prodi','tb_prodi.id_prodi=tb_du.id_prodi')
-            ->where('id_du', $id_du)
-            ->get('tb_du')
-            ->row();
-  }
 
   public function save_hasil_tes()
     {        
@@ -294,28 +168,13 @@ class Daftar_ulang_model extends CI_Model {
 
     }
 
-    public function get_hasil_tes($id_du){
-      return $this->db->join('tb_sekolah','tb_sekolah.id_sekolah=tb_du.id_sekolah')
-              ->join('tb_hasil_tes','tb_hasil_tes.id_hasil_tes=tb_du.kode_tes')
-              ->where('id_du', $id_du)
-              ->get('tb_du')
-              ->row();
-  }
-
-    public function get_biaya($cek){
-      return $this->db->where('nama_biaya', $cek)
-              ->get('tb_biaya')
-              ->row();
-  }
-
-
     public function save_update_status($id_tes){
     $data = array(
-       'status_du'     => 'Mahasiswa'
+       'status_mahasiswa'     => 'Aktif'
       );
 
-    $this->db->where('kode_tes', $id_tes)
-        ->update('tb_du', $data);
+    $this->db->where('id_hasil_tes', $id_tes)
+        ->update('tb_mahasiswa', $data);
 
     if ($this->db->affected_rows() > 0) {
       return TRUE;
@@ -323,6 +182,72 @@ class Daftar_ulang_model extends CI_Model {
       return FALSE;
     }
   }
+
+  public function detail_nilai($id_mahasiswa){
+      return $this->db->join('tb_prodi','tb_prodi.id_prodi=tb_mahasiswa.id_prodi')
+              ->join('tb_sekolah','tb_sekolah.id_sekolah=tb_mahasiswa.id_sekolah')
+              ->join('tb_konsentrasi','tb_konsentrasi.id_konsentrasi=tb_mahasiswa.id_konsentrasi') 
+              ->join('tb_hasil_tes','tb_hasil_tes.id_hasil_tes=tb_mahasiswa.id_hasil_tes')  
+              ->join('tb_alamat','tb_alamat.id_mahasiswa=tb_mahasiswa.id_mahasiswa')  
+              ->join('tb_bio','tb_bio.id_mahasiswa=tb_mahasiswa.id_mahasiswa') 
+              ->join('tb_kontak','tb_kontak.id_mahasiswa=tb_mahasiswa.id_mahasiswa')             
+              ->where('tb_mahasiswa.id_mahasiswa', $id_mahasiswa)
+              ->get('tb_mahasiswa')
+              ->row();
+  }
+
+   public function get_hasil_tes($id_mahasiswa){
+      return $this->db->join('tb_sekolah','tb_sekolah.id_sekolah=tb_mahasiswa.id_sekolah')
+              ->join('tb_bio','tb_bio.id_mahasiswa=tb_mahasiswa.id_mahasiswa') 
+              ->join('tb_alamat','tb_alamat.id_mahasiswa=tb_mahasiswa.id_mahasiswa')  
+              ->join('tb_hasil_tes','tb_hasil_tes.id_hasil_tes=tb_mahasiswa.id_hasil_tes')
+              ->where('tb_mahasiswa.id_mahasiswa', $id_mahasiswa)
+              ->get('tb_mahasiswa')
+              ->row();
+  }
+
+  public function get_biaya($cek){
+      return $this->db->where('nama_biaya', $cek)
+              ->get('tb_biaya')
+              ->row();
+  }
+
+  public function detail_du($id_mahasiswa){
+      return $this->db->join('tb_prodi','tb_prodi.id_prodi=tb_mahasiswa.id_prodi')
+              ->join('tb_sekolah','tb_sekolah.id_sekolah=tb_mahasiswa.id_sekolah')
+              ->join('tb_bio','tb_bio.id_mahasiswa=tb_mahasiswa.id_mahasiswa') 
+              ->join('tb_alamat','tb_alamat.id_mahasiswa=tb_mahasiswa.id_mahasiswa') 
+              ->join('tb_kontak','tb_kontak.id_mahasiswa=tb_mahasiswa.id_mahasiswa') 
+              ->join('tb_kependudukan','tb_kependudukan.id_mahasiswa=tb_mahasiswa.id_mahasiswa')
+              ->join('tb_konsentrasi','tb_konsentrasi.id_konsentrasi=tb_mahasiswa.id_konsentrasi')
+              ->join('tb_ibu','tb_ibu.id_mahasiswa=tb_mahasiswa.id_mahasiswa')
+              ->where('tb_mahasiswa.id_mahasiswa', $id_mahasiswa)
+              ->get('tb_mahasiswa')
+              ->row();
+  }
+
+
+
+  /*
+
+  
+  
+
+  public function get_data_pagi($id_pendaftaran){
+      return $this->db->join('tb_sekolah','tb_sekolah.id_sekolah=tb_pendaftaran.id_sekolah')
+              ->where('id_pendaftaran', $id_pendaftaran)
+              ->get('tb_pendaftaran')
+              ->row();
+  }
+
+
+
+   
+
+    
+
+
+    
 
   public function save_edit_hasil_tes($id_tes){
     $data = array(
@@ -344,7 +269,7 @@ class Daftar_ulang_model extends CI_Model {
         } else {
             return null;
         }
-  }
+  } */
 
 }
    

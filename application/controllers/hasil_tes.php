@@ -33,7 +33,7 @@ class Hasil_tes extends CI_Controller {
 				$this->daftar_ulang_model->save_update_status($id_tes);
 				$hasil_tes = $this->input->post('nama_du');
 				$this->session->set_flashdata('message', '<div class="col-md-12 alert alert-success">Hasil '.$hasil_tes.' berhasil didaftarkan. </div>');
-            	redirect('daftar_ulang/data_du');
+            	redirect('daftar_ulang/data_peserta_tes');
 			} else{
 				$this->session->set_flashdata('message', '<div class="col-md-12 alert alert-danger"> Kode Tes Sudah Ada </div>');
             	redirect('hasil_tes/page_input_nilai');
@@ -64,7 +64,7 @@ class Hasil_tes extends CI_Controller {
       $id_du = $this->uri->segment(3);
           if ($this->daftar_ulang_model->save_edit_hasil_tes($id_du) == TRUE) {
             $data['message'] = 'Edit Hasil Tes berhasil';
-            redirect('daftar_ulang/data_du');
+            redirect('daftar_ulang/data_peserta_tes');
           } else {
             $data['main_view'] = 'Prodi/master_konsentrasi_view';
             $data['message'] = 'Edit Konsentrasi gagal';

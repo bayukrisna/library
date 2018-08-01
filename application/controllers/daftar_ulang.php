@@ -18,9 +18,22 @@ class daftar_ulang extends CI_Controller {
 			$data['kodeunik2'] = $this->daftar_ulang_model->buat_kode2();
 			$data['getProdi'] = $this->daftar_ulang_model->getProdi();
 			$data['getPreschool'] = $this->daftar_ulang_model->getPreschool();
+			$data['getAngkatan'] = $this->daftar_ulang_model->getAngkatan();
 			$data['main_view'] = 'Daftar/daftarulang_pagi_view';
 			$this->load->view('template', $data);
 	}
+
+	public function save_mahasiswa_pagi()
+	{
+			if($this->mahasiswa_model->save_mahasiswa_pagi() == TRUE && $this->mahasiswa_model->save_ayah() == TRUE  && $this->mahasiswa_model->save_ibu() == TRUE && $this->mahasiswa_model->save_alamat() == TRUE && $this->mahasiswa_model->save_wali() == TRUE && $this->mahasiswa_model->save_kependudukan() == TRUE && $this->mahasiswa_model->save_jenis_tinggal() == TRUE && $this->mahasiswa_model->save_bio() == TRUE && $this->mahasiswa_model->save_kontak() == TRUE && $this->mahasiswa_model->save_tgl_du() == TRUE){
+				$nama_du = $this->input->post('nama_mahasiswa');
+				$this->session->set_flashdata('message', '<div class="col-md-12 alert alert-success"> Data '.$nama_du.' berhasil didaftarkan. </div>');
+            	redirect('data_peserta_tes');
+			} else{
+				$this->session->set_flashdata('message', '<div class="col-md-12 alert alert-danger"> Data  '.$nama_pendaftar.' Sudah Ada </div>');
+            	redirect('daftar_ulang/page_du_pagi');
+			} 
+	} 
 
 	public function page_du_sore()
 	{
@@ -33,45 +46,9 @@ class daftar_ulang extends CI_Controller {
 			$this->load->view('template', $data);
 	}
 
-	public function save_du_pagi()
+	public function data_peserta_tes()
 	{
-			if($this->daftar_ulang_model->save_du_pagi() == TRUE){
-				$id_pendaftaran = $this->input->post('id_du');
-				$this->tamu_model->save_update_status2($id_pendaftaran);
-				$nama_pendaftar = $this->input->post('nama_du');
-				$this->session->set_flashdata('message', '<div class="col-md-12 alert alert-success"> Data '.$nama_pendaftar.' berhasil didaftarkan. </div>');
-            	redirect('daftar_ulang/data_du');
-			} else{
-				$this->session->set_flashdata('message', '<div class="col-md-12 alert alert-danger"> Data  '.$nama_pendaftar.' Sudah Ada </div>');
-            	redirect('daftar_ulang/page_du_pagi');
-			} 
-	} 
-
-	public function save_du_sore()
-	{
-		$this->form_validation->set_rules('id_du', 'ID DU', 'required|is_unique[tb_du.id_du]');
-		if ($this->form_validation->run() == TRUE) {
-
-			if($this->daftar_ulang_model->save_du_sore() == TRUE){
-				$nama_pendaftar = $this->input->post('nama_du');
-				$this->session->set_flashdata('message', '<div class="col-md-12 alert alert-success"> Data '.$nama_pendaftar.' berhasil didaftarkan. </div>');
-            	redirect('mahasiswa');
-			} else{
-				
-				$this->session->set_flashdata('message', 'message', '<div class="col-md-12 alert alert-danger"> Username/password sudah ada. </div>');
-				redirect('daftar_ulang/page_du_sore');
-            	
-			}
-		} else {
-			$data = $this->input->post('id_pendaftaran');
-			$this->session->set_flashdata('notif', validation_errors());
-			redirect('daftar_ulang/page_du_sore/'.$data.'');	
-		}
-	} 
-
-	public function data_du()
-	{
-			$data['du'] = $this->daftar_ulang_model->data_du();
+			$data['du'] = $this->daftar_ulang_model->data_peserta_tes();
 			$data['main_view'] = 'Daftar/data_daftarulang_view';
 			$this->load->view('template', $data);
 	}
@@ -88,8 +65,8 @@ class daftar_ulang extends CI_Controller {
 
 	public function print_ljk(){
         
-        $id_du= $this->uri->segment(3);
-        $data['edit'] = $this->daftar_ulang_model->get_du_by_id($id_du);
+        $id_mahasiswa= $this->uri->segment(3);
+        $data['edit'] = $this->daftar_ulang_model->get_du_by_id($id_mahasiswa);
         $data['main_view'] = 'tes_backup';
         $this->load->view('template', $data);
    }

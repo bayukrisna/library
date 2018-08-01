@@ -1,10 +1,10 @@
-<form  method="post" action="<?php echo base_url(); ?>daftar_ulang/save_edit_du/<?php echo $du->id_du; ?>" enctype="multipart/form-data">
+<form  method="post" action="<?php echo base_url(); ?>daftar_ulang/save_edit/<?php echo $du->id_mahasiswa; ?>" enctype="multipart/form-data">
 <div class="row"> 
     <div class="col-md-12">
         <div>
           <div class="panel panel-primary">
             <div class="panel-heading">
-            <i class="fa fa-user-plus"></i> Detail Mahasiswa <?php echo $du->nama_du; ?></div>
+            <i class="fa fa-user-plus"></i> Detail Mahasiswa <?php echo $du->nama_mahasiswa; ?></div>
             <div class="panel-body">
               <div class="row">
                 <div class="col-lg-6">
@@ -16,30 +16,30 @@
                 </div>
                 <div class="form-group">
                   <label for="email">Nama Lengkap</label>
-                  <input type="text" name="nama_du" class="form-control" id="nama_du" placeholder="Input Full Name" required value="<?php echo $du->nama_du; ?>">
+                  <input type="text" name="nama_mahasiswa" class="form-control" id="nama_mahasiswa" placeholder="Input Full Name" required value="<?php echo $du->nama_mahasiswa; ?>">
                 </div>
                 <div class="form-group">
                   <label for="gender">Jenis Kelamin</label>
                   <select id="gender" name="gender" class="form-control">
-            <option value="<?php echo $du->jk_daftar_du; ?>"><?php echo $du->jk_daftar_du; ?></option>
-            <option value="laki-laki">Laki - laki</option>
-            <option value="perempuan">Perempuan</option>
+            <option value="<?php echo $du->jenis_kelamin; ?>"><?php echo $du->jenis_kelamin; ?></option>
+            <option value="L">Laki-laki</option>
+            <option value="P">Perempuan</option>
 
           </select>                                     
                   
                 </div>
                 <div class="form-group">
                   <label for="email">Tanggal Lahir</label>
-                  <input type="date" name="tgl_lahir_du" class="form-control" id="tgl_lahir_du" required value="<?php echo $du->tgl_lahir_du; ?>">
+                  <input type="date" name="tanggal_lahir" class="form-control" id="tanggal_lahir" required value="<?php echo $du->tanggal_lahir; ?>">
                 </div>
                 <div class="form-group">
                   <label for="place">Tempat Lahir</label>
-                  <input type="text" name="tpt_lahir_du" class="form-control" id="tpt_lahir_du" placeholder="Input Birth Place" required value="<?php echo $du->tpt_lahir_du; ?>">
+                  <input type="text" name="tempat_lahir" class="form-control" id="tempat_lahir" placeholder="Input Birth Place" required value="<?php echo $du->tempat_lahir; ?>">
                 </div>
                 <div class="form-group">
                   <label for="religion">Agama</label>
-                <select id="agama_du" name="agama_du" class="form-control">
-                  <option value="<?php echo $du->agama_du; ?>"><?php echo $du->agama_du; ?></option>
+                <select id="agama" name="agama" class="form-control">
+                  <option value="<?php echo $du->agama; ?>"><?php echo $du->agama; ?></option>
                   <option value="kristen">Kristen</option>
                   <option value="islam">Islam</option>
                   <option value="hindu">Hindu</option>
@@ -50,26 +50,26 @@
                 </div>
                 <div class="form-group">
                   <label for="address">Alamat Rumah</label>
-                  <input type="text" name="alamat_du" class="form-control" id="alamat_du" placeholder="Input Home Address" required value="<?php echo $du->alamat_du; ?>">
+                  <input type="text" name="alamat_mhs" class="form-control" id="alamat_mhs" placeholder="Input Home Address" required value="<?php echo $du->alamat_mhs; ?>">
                 </div>
                 <div class="form-group">
                   <label for="phone">Nomor Telepon</label>
-                  <input type="number" name="no_telp_du" class="form-control" id="no_telp_du" placeholder="Input Phone Number" required value="<?php echo $du->no_telp_du; ?>">
+                  <input type="number" name="no_telepon" class="form-control" id="no_telepon" placeholder="Input Phone Number" required value="<?php echo $du->no_telepon; ?>">
                 </div>
                 <div class="form-group">
                   <label for="phone">Nomor HP</label>
-                  <input type="number" name="no_telpm_du" class="form-control" id="no_telpm_du" placeholder="Input Mobile Phone Number" required value="<?php echo $du->no_telpm_du; ?>">
+                  <input type="number" name="no_hp" class="form-control" id="no_hp" placeholder="Input Mobile Phone Number" required value="<?php echo $du->no_hp; ?>">
                 </div>
 
               </div>
               <div class="col-md-6">
                 <div class="form-group">
                   <label for="email">Email</label>
-                  <input type="email" name="email_du" class="form-control" id="email_du" placeholder="Input Email" required value="<?php echo $du->email_du; ?>">
+                  <input type="email" name="email" class="form-control" id="email" placeholder="Input Email" required value="<?php echo $du->email; ?>">
                 </div>
                 <div class="form-group">
                   <label for="email">Kode Pos</label>
-                  <input type="text" name="kode_pos_du" class="form-control" id="kode_pos_du" placeholder="Input Email" required value="<?php echo $du->kode_pos_du; ?>">
+                  <input type="text" name="kode_pos" class="form-control" id="kode_pos" placeholder="Input Email" required value="<?php echo $du->kode_pos; ?>">
                 </div>
                 <div class="form-group">
                   <label for="preschool">Asal Sekolah</label>
@@ -88,7 +88,7 @@
                 <div class="form-group">
                   <label for="major">Jurusan Asal Sekolah</label>
                 <select id="jurusan" name="jurusan" class="form-control" >
-                  <option value="<?php echo $du->jurusan_du; ?>"><?php echo $du->jurusan_du; ?></option>
+                  <option value="<?php echo $du->jurusan; ?>"><?php echo $du->jurusan; ?></option>
                   <option value="ipa">IPA</option>
                   <option value="ips">IPS</option>
                   <option value="tkj">TKJ</option>
@@ -97,11 +97,11 @@
                 </div>
                 <div class="form-group">
                   <label for="nik">NIK</label>
-                  <input type="number" name="nik_du" class="form-control" id="nik_du" placeholder="Input NIK" required value="<?php echo $du->nik_du; ?>">
+                  <input type="number" name="nik" class="form-control" id="nik" placeholder="Input NIK" required value="<?php echo $du->nik; ?>">
                 </div>
                 <div class="form-group">
                   <label for="mother">Nama Ibu</label>
-                  <input type="text" name="ibu_kandung_du" class="form-control" id="ibu_kandung_du" placeholder="Input your mother Name" required value="<?php echo $du->ibu_kandung_du; ?>">
+                  <input type="text" name="nama_ibu" class="form-control" id="nama_ibu" placeholder="Input your mother Name" required value="<?php echo $du->nama_ibu; ?>">
                 </div>
                 <div class="form-group">
                   <label for="prodi">Program Studi</label>

@@ -28,14 +28,14 @@
                   echo '
                 <tr>
                   <td>'.$data->nim.'</td>
-                  <td>'.$data->nama_du.'
+                  <td>'.$data->nama_mahasiswa.'
                   </td>
                   <td>'.$data->nama_prodi.'</td>
                   <td>'.$data->nama_konsentrasi.'</td>
                   <td>'.$data->waktu.'</td>
-                  <td>'.$data->tanggal_du.'</td>
+                  <td>'.$data->tgl_du.'</td>
                   <td>
-                       <a href="'.base_url('mahasiswa/detail_mahasiswa/'.$data->id_du).'" class="btn btn-info btn-sm">Detail</a>
+                       <a href="'.base_url('mahasiswa/detail_mahasiswa/'.$data->id_mahasiswa).'" class="btn btn-info btn-sm">Detail</a>
                   </td>
                 </tr>
                 ';
