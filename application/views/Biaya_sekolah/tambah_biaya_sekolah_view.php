@@ -14,6 +14,10 @@
                         <input type="text" name="id_biaya" class="form-control" id="id_biaya" placeholder="Masukkan Id Konsentrasi" value="<?= $kodeunik; ?>" readonly>
                       </div>
                       <div class="form-group">
+                        <label for="email">Jenis Biaya</label>
+                        <input type="text" name="jenis_biaya" class="form-control" id="jenis_biaya" placeholder="">
+                      </div>
+                      <div class="form-group">
                         <label for="email">Nama Biaya</label>
                         <input type="text" name="nama_biaya" class="form-control" id="nama_biaya" placeholder="">
                       </div>
