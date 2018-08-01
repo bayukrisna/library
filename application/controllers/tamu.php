@@ -40,6 +40,13 @@ class Tamu extends CI_Controller {
 			$this->load->view('template', $data);
 	}
 
+	public function data_out()
+	{
+			$data['edit'] = $this->tamu_model->data_tamu_out();
+			$data['main_view'] = 'Tamu/data_non_aktif_view';
+			$this->load->view('template', $data);
+	}
+
 	public function detail_out()
 	{
 			$id_du = $this->uri->segment(3);

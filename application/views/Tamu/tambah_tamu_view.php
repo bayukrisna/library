@@ -22,8 +22,8 @@
                   <label for="gender">Jenis Kelamin</label>
                   <select id="jk_pendaftar" name="jk_pendaftar" class="form-control" ="" required="">
             <option value="">Select Gender</option>
-            <option value="laki-laki">Laki - laki</option>
-            <option value="perempuan">Perempuan</option>
+            <option value="L">Laki-laki</option>
+            <option value="P">Perempuan</option>
 
           </select>                                     
                   
@@ -149,7 +149,7 @@
                 <tr>
                   <td id="nim">'.$data->nim.'
                   </td>
-                  <td>'.$data->nama_du.'</td>
+                  <td>'.$data->nama_mahasiswa.'</td>
                   <td>'.$data->nama_prodi.'</td>
                   <td>'.$data->waktu.'</td>
                   <td><p class="btn btn-default btn-sm" data-dismiss="modal" onclick="myFunction('.$data->nim.')">Pilih</p></td>

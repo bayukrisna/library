@@ -34,7 +34,7 @@
                   <td>'.++$no.'</td>
                   <td>'.$data->nama_pendaftar.'
                   </td>
-                  <td>'.$data->nama_du.'</td> 
+                  <td>'.$data->nama_mahasiswa.'</td> 
                   <td>'.$data->nim.'</td> 
                   <td>'.$data->tanggal_pendaftaran.'</td>
                   <td>

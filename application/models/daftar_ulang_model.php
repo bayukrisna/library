@@ -27,25 +27,6 @@ class Daftar_ulang_model extends CI_Model {
           return $kodejadi; 
     }
 
-     public function  buat_kode2()   {
-          $this->db->SELECT('RIGHT(tb_mahasiswa.id_mahasiswa,4) as kode', FALSE);
-          $this->db->order_by('id_mahasiswa','DESC');    
-          $this->db->limit(1);    
-          $query = $this->db->get('tb_mahasiswa');      //cek dulu apakah ada sudah ada kode di tabel.    
-          if($query->num_rows() <> 0){      
-           //jika kode ternyata sudah ada.      
-           $data = $query->row();      
-           $kode = intval($data->kode) + 1;    
-          }
-          else {      
-           //jika kode belum ada      
-           $kode = 1;    
-          }
-          $kodemax = str_pad($kode, 4, "0", STR_PAD_LEFT); // angka 4 menunjukkan jumlah digit angka 0
-          $kodejadi = "MHS".$kodemax;    // hasilnya ODJ-991-0001 dst.
-          return $kodejadi; 
-    }
-
   
     function cek_nim($nim){
       $query = $this->db->select('*')
@@ -121,12 +102,15 @@ class Daftar_ulang_model extends CI_Model {
   }
 
   public function data_peserta_tes(){
-      return $this->db->join('tb_prodi','tb_prodi.id_prodi=tb_mahasiswa.id_prodi')
+    return $this->db->join('tb_prodi','tb_prodi.id_prodi=tb_mahasiswa.id_prodi')
               ->join('tb_sekolah','tb_sekolah.id_sekolah=tb_mahasiswa.id_sekolah')
-              ->join('tb_waktu','tb_waktu.id_waktu=tb_mahasiswa.id_waktu')
-              ->join('tb_bio','tb_bio.id_mahasiswa=tb_bio.id_mahasiswa')
               ->join('tb_konsentrasi','tb_konsentrasi.id_konsentrasi=tb_mahasiswa.id_konsentrasi')
+              ->join('tb_alamat','tb_alamat.id_mahasiswa=tb_mahasiswa.id_mahasiswa')  
+              ->join('tb_bio','tb_bio.id_mahasiswa=tb_mahasiswa.id_mahasiswa') 
+              ->join('tb_kontak','tb_kontak.id_mahasiswa=tb_mahasiswa.id_mahasiswa')
+              ->join('tb_waktu','tb_waktu.id_waktu=tb_mahasiswa.id_waktu') 
               ->join('tb_tgl_du','tb_tgl_du.id_mahasiswa=tb_mahasiswa.id_mahasiswa')
+              ->where('tb_waktu.waktu', 'Pagi')
               ->get('tb_mahasiswa')
               ->result();
   }

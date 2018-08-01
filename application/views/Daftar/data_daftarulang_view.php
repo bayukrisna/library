@@ -28,7 +28,6 @@
                 <?php 
                
                 foreach ($du as $data) {
-                  if ($data->waktu == 'Pagi') {
                     if ($data->status_mahasiswa == 'Nilai Kosong') {
                        echo '
                   
@@ -57,8 +56,6 @@
                   <td>'.$data->nim.'</td>
                   <td>'.$data->nama_mahasiswa.'
                   </td>
-                 
-                
                   <td>'.$data->nama_sekolah.'</td>
                   <td>'.$data->nama_prodi.'</td>
                   <td>'.$data->nama_konsentrasi.'</td>
@@ -72,28 +69,6 @@
                 </tr>
                 ';
                 }
-
-                 } else {
-                  echo '               
-                    
-                <tr>
-                  <td>'.$data->nim.'</td>
-                  <td>'.$data->nama_mahasiswa.'
-                  </td>
-                 
-                  <td>'.$data->nama_sekolah.'</td>
-                  <td>'.$data->nama_prodi.'</td>
-                  <td>'.$data->nama_konsentrasi.'</td>
-                  <td>'.$data->waktu.'</td>
-                  <td>'.$data->tgl_du.'</td>
-                  <td>'.$data->status_mahasiswa.'</td>
-                  <td>
-                   
-                  </td>
-                </tr>
-                ';
-                  
-               }
                 }
               
               ?>

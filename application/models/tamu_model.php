@@ -31,7 +31,7 @@ class Tamu_model extends CI_Model {
   public function data_sgs(){
     $this->db->select('*');
      $this->db->from('tb_pendaftaran');
-    $this->db->join('tb_du','tb_du.nim=tb_pendaftaran.sgs');
+    $this->db->join('tb_mahasiswa','tb_mahasiswa.nim=tb_pendaftaran.sgs');
 $this->db->where('sumber','student_get_student');
      $query = $this->db->get();
      return $query->result();
@@ -43,10 +43,10 @@ $this->db->where('sumber','student_get_student');
               ->row();
   }
 
-  public function detail_tamu($id_du){
+  public function detail_tamu($id_mahasiswa){
     return $this->db->join('tb_sekolah','tb_sekolah.id_sekolah=tb_pendaftaran.id_sekolah')
             ->join('tb_prodi','tb_prodi.id_prodi=tb_pendaftaran.id_prodi')
-            ->where('id_pendaftaran', $id_du)
+            ->where('id_pendaftaran', $id_mahasiswa)
             ->get('tb_pendaftaran')
             ->row();
   }
@@ -71,8 +71,8 @@ $this->db->where('sumber','student_get_student');
     }
 
     public function  buat_kode_du()   {
-          $this->db->SELECT('RIGHT(tb_pendaftaran.id_du,3) as kode', FALSE);
-          $this->db->order_by('id_du','DESC');    
+          $this->db->SELECT('RIGHT(tb_pendaftaran.id_mahasiswa,3) as kode', FALSE);
+          $this->db->order_by('id_mahasiswa','DESC');    
           $this->db->limit(1);    
           $query = $this->db->get('tb_pendaftaran');      //cek dulu apakah ada sudah ada kode di tabel.    
           if($query->num_rows() <> 0){      
@@ -151,7 +151,7 @@ $this->db->where('sumber','student_get_student');
        'status_bayar'     => 'Aktif'
       );
 
-    $this->db->where('id_du', $id_pendaftaran)
+    $this->db->where('id_mahasiswa', $id_pendaftaran)
         ->update('tb_pendaftaran', $data);
 
     if ($this->db->affected_rows() > 0) {

@@ -8,6 +8,7 @@ class daftar_ulang extends CI_Controller {
 		parent::__construct();
 		$this->load->model('daftar_ulang_model');
 		$this->load->model('tamu_model');
+		$this->load->model('mahasiswa_model');
 	}
 
 	public function page_du_pagi()
@@ -15,7 +16,6 @@ class daftar_ulang extends CI_Controller {
 			$id_pendaftaran = $this->uri->segment(3);
 			$data['du_pagi'] = $this->daftar_ulang_model->page_du_pagi($id_pendaftaran);
 			$data['kodeunik'] = $this->daftar_ulang_model->buat_kode();
-			$data['kodeunik2'] = $this->daftar_ulang_model->buat_kode2();
 			$data['getProdi'] = $this->daftar_ulang_model->getProdi();
 			$data['getPreschool'] = $this->daftar_ulang_model->getPreschool();
 			$data['getAngkatan'] = $this->daftar_ulang_model->getAngkatan();
@@ -28,7 +28,7 @@ class daftar_ulang extends CI_Controller {
 			if($this->mahasiswa_model->save_mahasiswa_pagi() == TRUE && $this->mahasiswa_model->save_ayah() == TRUE  && $this->mahasiswa_model->save_ibu() == TRUE && $this->mahasiswa_model->save_alamat() == TRUE && $this->mahasiswa_model->save_wali() == TRUE && $this->mahasiswa_model->save_kependudukan() == TRUE && $this->mahasiswa_model->save_jenis_tinggal() == TRUE && $this->mahasiswa_model->save_bio() == TRUE && $this->mahasiswa_model->save_kontak() == TRUE && $this->mahasiswa_model->save_tgl_du() == TRUE){
 				$nama_du = $this->input->post('nama_mahasiswa');
 				$this->session->set_flashdata('message', '<div class="col-md-12 alert alert-success"> Data '.$nama_du.' berhasil didaftarkan. </div>');
-            	redirect('data_peserta_tes');
+            	redirect('daftar_ulang/data_peserta_tes');
 			} else{
 				$this->session->set_flashdata('message', '<div class="col-md-12 alert alert-danger"> Data  '.$nama_pendaftar.' Sudah Ada </div>');
             	redirect('daftar_ulang/page_du_pagi');
@@ -89,15 +89,16 @@ class daftar_ulang extends CI_Controller {
 		$this->daftar_ulang_model->cek_nim($nim);
 	}
 
-	 public function save_edit_du(){
-      $id_du = $this->uri->segment(3);
-          if ($this->daftar_ulang_model->save_edit_du($id_du) == TRUE) {
-            $data['message'] = 'Edit Daftar Ulang berhasil';
-            redirect('mahasiswa');
-          } else {
-            $data['main_view'] = 'daftar_ulang/detail_view';
-            $data['message'] = 'mahasiswa/detail_mahasiswa';
-            redirect('master_konsentrasi/edit_konsentrasi');
-          }
-        }
+	 public function save_edit_du()
+      {
+		 $id_mahasiswa = $this->uri->segment(3);
+			if($this->mahasiswa_model->save_edit_mahasiswa($id_mahasiswa) == TRUE && $this->mahasiswa_model->save_edit_ayah($id_mahasiswa) == TRUE && $this->mahasiswa_model->save_edit_bio($id_mahasiswa) == TRUE && $this->mahasiswa_model->save_edit_alamat($id_mahasiswa) == TRUE && $this->mahasiswa_model->save_edit_wali($id_mahasiswa) == TRUE && $this->mahasiswa_model->save_edit_kependudukan($id_mahasiswa) == TRUE && $this->mahasiswa_model->save_edit_jenis_tinggal($id_mahasiswa) == TRUE && $this->mahasiswa_model->save_edit_kontak($id_mahasiswa) == TRUE && $this->mahasiswa_model->save_edit_ibu($id_mahasiswa) == TRUE){
+				$nama_du = $this->input->post('nama_mahasiswa');
+				$this->session->set_flashdata('message', '<div class="col-md-12 alert alert-success"> Data '.$nama_du.' berhasil didaftarkan. </div>');
+            	redirect('mahasiswa');
+			} else{
+				$this->session->set_flashdata('message', '<div class="col-md-12 alert alert-danger"> Gagal </div>');
+            	redirect('mahasiswa/data_mahasiswa');
+			} 
+	} 
 }
