@@ -18,6 +18,10 @@
                         <input type="text" name="nama_biaya" class="form-control" id="nama_biaya" placeholder="Masukkan Nama konsentrasi" value="<?php echo $edit->nama_biaya; ?>">
                       </div>
                       <div class="form-group">
+                        <label for="email">Jenis Biaya</label>
+                        <input type="text" name="jenis_biaya" class="form-control" id="jenis_biaya" placeholder="Masukkan Nama konsentrasi" value="<?php echo $edit->jenis_biaya; ?>">
+                      </div>
+                      <div class="form-group">
                         <label for="email">Jumlah Biaya</label>
                         <input type="text" name="jumlah_biaya" class="form-control" id="jumlah_biaya" placeholder="Masukkan Nama konsentrasi" value="<?php echo $edit->jumlah_biaya; ?>">
                       </div>
