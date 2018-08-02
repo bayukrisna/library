@@ -28,6 +28,18 @@ class Kelas_perkuliahan_model extends CI_Model {
      return $query->result();
   }
 
+   public function data_kelas_mhs($id_dosen){
+    $this->db->select('*');
+     $this->db->from('tb_kelas_mhs');
+     $this->db->join('tb_mahasiswa','tb_mahasiswa.id_mahasiswa=tb_kelas_mhs.id_mahasiswa');
+     $this->db->join('tb_bio','tb_bio.id_mahasiswa=tb_kelas_mhs.id_mahasiswa');
+     $this->db->join('tb_prodi','tb_prodi.id_prodi=tb_mahasiswa.id_prodi');
+     $this->db->join('tb_angkatan','tb_angkatan.id_angkatan=tb_mahasiswa.id_angkatan');
+     $this->db->where('tb_kelas_mhs.id_kp', $id_dosen);
+     $query = $this->db->get();
+     return $query->result();
+  }
+
   public function detail_kp($id_kp){
       return $this->db->join('tb_prodi','tb_prodi.id_prodi=tb_kp.id_prodi')
               ->join('tb_periode','tb_periode.id_periode=tb_kp.id_periode')
@@ -43,6 +55,17 @@ class Kelas_perkuliahan_model extends CI_Model {
      $this->db->like('tb_dosen.nama_dosen',$nama);
      $query = $this->db->get();
      return $query->result();
+  }
+
+  public function autocomplete2($nama){
+    $this->db->select('*');
+     $this->db->from('tb_mahasiswa');
+     $this->db->join('tb_bio','tb_bio.id_mahasiswa=tb_mahasiswa.id_mahasiswa');
+     $this->db->join('tb_prodi','tb_prodi.id_prodi=tb_mahasiswa.id_prodi');
+     $this->db->join('tb_angkatan','tb_angkatan.id_angkatan=tb_mahasiswa.id_angkatan');
+     $this->db->like('tb_mahasiswa.nama_mahasiswa', $nama);
+     $query = $this->db->get();
+     return $query->row();
   }
 
   public function save_kp()
@@ -135,17 +158,33 @@ class Kelas_perkuliahan_model extends CI_Model {
       }
     }
 
+     public function hapus_kelas_mhs($id_detail_kurikulum){
+        $this->db->where('id_kelas_mhs', $id_detail_kurikulum)
+          ->delete('tb_kelas_mhs');
+
+    if ($this->db->affected_rows() > 0) {
+      return TRUE;
+      } else {
+        return FALSE;
+      }
+    }
+
+
     public function jumlah_dosen($id_kp){
 
     $dosen = $this->db->query("SELECT count(*) AS total FROM tb_kelas_dosen WHERE id_kp = $id_kp")->row();
+    $jumlah_mhs = $this->db->query("SELECT count(*) AS total FROM tb_kelas_mhs WHERE id_kp = $id_kp")->row();
     return array(     
-          'dosen' => $dosen->total
+          'dosen' => $dosen->total,
+          'jumlah_mhs' => $jumlah_mhs->total
+
 
       );
     }
 
     public function edit_kelas_dosen($id_detail_kurikulum){
     $data = array(
+      'id_kp'        => $this->input->post('id_kp'),
            'id_dosen'        => $this->input->post('id_dosen'),
             'rencana'          => $this->input->post('rencana'),
             'realisasi'          => $this->input->post('realisasi'),
@@ -162,6 +201,23 @@ class Kelas_perkuliahan_model extends CI_Model {
             return null;
         }
   }
+
+   public function simpan_kelas_mhs()
+    {
+        $data = array(
+            'id_kp'        => $this->input->post('id_kp'),
+            'id_mahasiswa'        => $this->input->post('id_mahasiswa')
+        );
+    
+        $this->db->insert('tb_kelas_mhs', $data);
+
+        if($this->db->affected_rows() > 0){
+            
+                return true;
+        } else {
+            return false;
+        }
+    }
 
 }
 

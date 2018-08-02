@@ -67,15 +67,6 @@ class Mahasiswa_model extends CI_Model {
      return $query->result();
   }
 
-	public function detail_mahasiswa($id_mahasiswa){
-      return $this->db->join('tb_prodi','tb_prodi.id_prodi=tb_mahasiswa.id_prodi')
-              ->join('tb_sekolah','tb_sekolah.id_sekolah=tb_mahasiswa.id_sekolah')
-              ->join('tb_konsentrasi','tb_konsentrasi.id_konsentrasi=tb_mahasiswa.id_konsentrasi')
-              ->join('tb_hasil_tes','tb_hasil_tes.id_hasil_tes=tb_mahasiswa.kode_tes')
-              ->where('id_mahasiswa', $id_mahasiswa)
-              ->get('tb_mahasiswa')
-              ->row();
-  }
 
   public function detail_mahasiswa_dikti($id_mahasiswa){
       return $this->db->join('tb_prodi','tb_prodi.id_prodi=tb_mahasiswa.id_prodi')

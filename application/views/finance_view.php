@@ -156,7 +156,7 @@
                     for(i=0; i<data.length; i++){
                         html += '<tr>'+
                                 '<td>'+data[i].id_pendaftaran+'</td>'+
-                                '<td>'+data[i].id_pendaftaran+'</td>'+
+                                '<td>'+data[i].nama_pendaftar+'</td>'+
                                 '<td>'+data[i].id_pendaftaran+'</td>'+
                                 '<td>'+data[i].id_pendaftaran+'</td>'+
                                 '<td><a href="<?php echo base_url()?>uploads/'+data[i].bukti_transfer+'" class="btn btn-info btn-sm" target="_blank">Lihat Bukti</a></td>'+
