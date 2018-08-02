@@ -115,7 +115,7 @@ class Finance_model extends CI_Model {
   }
   function cek_id_daftar_ulang($id){
       $query = $this->db->select('*')
-                ->from('tb_du')
+                ->from('tb_pendaftaran')
                 ->where('id_du', $id)
                 ->get();
                 if ($query->num_rows() > 0)
