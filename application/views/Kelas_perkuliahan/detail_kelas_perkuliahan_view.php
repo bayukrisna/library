@@ -119,8 +119,8 @@
                   <td id="realisasi">'.$data->realisasi.'</td>
                   <td>'.$data->jenis_evaluasi.'</td>
                   <td>
-                        <a href="'.base_url('kurikulum/hapus_kurikulum/'.$data->id_kelas_dosen).'" class="btn btn-danger  btn-sm" onclick="return confirm('.$alert.')"><i class="glyphicon glyphicon-trash"></i><span class="tooltiptext">Hapus Kurikulum</span></a>
-                         <a href="'.base_url('kurikulum/detail_kurikulum2/'.$data->id_kelas_dosen).'" class="btn btn-warning  btn-sm"><i class="glyphicon glyphicon-pencil"></i><span class="tooltiptext">Edit Kurikulum</span></a>
+                        <a href="'.base_url('kelas_perkuliahan/hapus_kelas_dosen/'.$data->id_kelas_dosen).'" class="btn btn-danger  btn-sm" onclick="return confirm('.$alert.')"><i class="glyphicon glyphicon-trash"></i><span class="tooltiptext">Hapus Kurikulum</span></a>
+                         <a class="btn btn-warning  btn-sm" data-toggle="modal" data-target="#modal_edit"><i class="glyphicon glyphicon-pencil"></i><span class="tooltiptext">Edit Kurikulum</span></a>
                   </td>
 
                 ' ;
@@ -295,3 +295,65 @@
          document.getElementById('jumlah_sks').innerHTML = result;
       }
 </script>
+
+<?php 
+        foreach($dosen as $i):
+        ?>
+
+
+<div class="modal fade" id="modal_edit<?php echo $i->id_kelas_dosen;?>" >
+            <div class="modal-dialog">
+            <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">x</button>
+                <h3 class="modal-title" id="myModalLabel">Tambah Kurikulum</h3>
+            </div>
+                <div class="modal-body">
+
+                    <div class="form-group">
+                      <?php echo form_open('kelas_perkuliahan/simpan_kelas_dosen/'.$i->id_kelas_dosen); ?>
+                      <table class="table">
+                         <tr>
+            <td class="left_column">Nama Dosen <font color="#FF0000">*</font></td>
+            <td>: <input type="text" name="nama_dosen" id="nama_dosen" class="validate[required] text-input" maxlength="50" size="50" style="width:80%" required="" value="<?php echo $i->nama_dosen; ?>">
+              <input type="hidden" name="id_dosen" id="id_dosen" class="validate[required] text-input" maxlength="20" size="40" style="width:80%" required=""></td>
+        </tr> 
+        <tr>
+            <td class="left_column">Rencana</td>
+            <td>: 
+            <input type="text" name="rencana" id="rencana" class="text-input" maxlength="3" size="2"  style="width:10%" value="<?php echo $i->rencana; ?>" onkeyup="sum();">       
+            </td>
+        </tr>
+        <tr>
+            <td class="left_column">Realisasi</td>
+            <td>: 
+            <input type="text" name="realisasi" id="realisasi" class="text-input" maxlength="3" size="2" style="width:10%" value="<?php echo $i->realisasi; ?>">  
+            </td>
+        </tr>
+        <tr>
+            <td class="left_column">Bobot (sks)</td>
+            <td>: 
+            <input type="text" name="bobot_dosen" id="bobot_dosen" class="text-input" maxlength="3" size="2"  style="width:10%" value="<?php echo $i->bobot_dosen; ?>">         
+            </td>
+        </tr>
+        <tr>
+            <td class="left_column">Jenis Evaluasi</td>
+            <td>: 
+            <input type="text" name="jenis_evaluasi" id="jenis_evaluasi" class="text-input" size="2"  style="width:40%" value="<?php echo $i->jenis_evaluasi; ?>">         
+            </td>
+           
+            
+        </tr>
+                  <tr>
+                    <td colspan="4"><button type="submit" class="btn btn-info">Simpan</button></td>
+                  </tr>
+              <?php echo form_close();?>
+
+                        </table>
+
+                    </div>
+
+                </div>
+            </div>
+            </div>
+        </div>

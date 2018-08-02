@@ -105,6 +105,30 @@ class Kelas_perkuliahan extends CI_Controller {
 		}
 	}
 
+	public function hapus_kelas_dosen(){
+		$id_detail_kurikulum = $this->uri->segment(3);
+		if ($this->kelas_perkuliahan_model->hapus_kelas_dosen($id_detail_kurikulum) == TRUE) {
+			$this->session->set_flashdata('message', 'Hapus Mata Kuliah Berhasil');
+            	redirect('kelas_perkuliahan');
+		} else {
+			$this->session->set_flashdata('message', 'Hapus Mata Kuliah Berhasil');
+            	redirect('kurikulum');
+		}
+	}
+
+	public function edit_kelas_dosen(){
+			$id_detail_kurikulum = $this->uri->segment(3);
+					if ($this->kelas_perkuliahan_model->edit_kelas_dosen($id_detail_kurikulum) == TRUE) {
+						$this->session->set_flashdata('message', '<div class="alert alert-success"> Edit dosen berhasil </div>');
+            			$data = $this->input->post('id_kp');
+            			redirect('kurikulum/detail_kurikulum/'.$data);
+					} else {
+						$this->session->set_flashdata('message', '<div class="alert alert-danger"> Edit Dosen Gagal </div>');
+            			redirect('kurikulum');
+					}
+		} 
+
+
 
 
 }

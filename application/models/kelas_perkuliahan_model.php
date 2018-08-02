@@ -124,23 +124,16 @@ class Kelas_perkuliahan_model extends CI_Model {
         }
     }
 
-    /*public function jumlah_sks($id_kp){
+    public function hapus_kelas_dosen($id_detail_kurikulum){
+        $this->db->where('id_kelas_dosen', $id_detail_kurikulum)
+          ->delete('tb_kelas_dosen');
 
-    $jumlah_dosen = $this->db->query("SELECT count(*) FROM tb_kelas_dosen WHERE id_kp = $id_kp")->row();
-    if ($jumlah_dosen = null) {
-
-      $jumlah_sks = $this->db->query("SELECT (rencana)/(realisasi)*(bobot_dosen) AS total FROM tb_kelas_dosen WHERE id_kp = $id_kp")->row();
-
-       return array(     
-          'jumlah_sks' => "s"
-
-      );
-
-    } else {
-      return array('jumlah_sks' => "as");
+    if ($this->db->affected_rows() > 0) {
+      return TRUE;
+      } else {
+        return FALSE;
+      }
     }
-    
-    } */
 
     public function jumlah_dosen($id_kp){
 
@@ -150,6 +143,25 @@ class Kelas_perkuliahan_model extends CI_Model {
 
       );
     }
+
+    public function edit_kelas_dosen($id_detail_kurikulum){
+    $data = array(
+           'id_dosen'        => $this->input->post('id_dosen'),
+            'rencana'          => $this->input->post('rencana'),
+            'realisasi'          => $this->input->post('realisasi'),
+            'bobot_dosen'          => $this->input->post('bobot_dosen'),
+            'jenis_evaluasi'          => $this->input->post('jenis_evaluasi')
+      );
+
+    if (!empty($data)) {
+            $this->db->where('id_kelas_dosen', $id_detail_kurikulum)
+        ->update('tb_kelas_dosen', $data);
+
+          return true;
+        } else {
+            return null;
+        }
+  }
 
 }
 
