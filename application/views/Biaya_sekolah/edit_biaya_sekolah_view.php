@@ -26,6 +26,19 @@
                         <input type="text" name="jumlah_biaya" class="form-control" id="jumlah_biaya" placeholder="Masukkan Nama konsentrasi" value="<?php echo $edit->jumlah_biaya; ?>">
                       </div>
                       <div class="form-group">
+                        <label for="email">Waktu Kuliah</label>
+                          <select id="id_waktu" name="id_waktu"class="form-control" required="">
+                            <option value="<?php echo $edit->id_waktu; ?>"><?php echo $edit->waktu; ?></option>
+                            <?php 
+
+                                foreach($getWaktu as $row)
+                                { 
+                                  echo '<option value="'.$row->id_waktu.'">'.$row->waktu.'</option>';
+                                }
+                            ?>
+                          </select>   
+                      </div>
+                      <div class="form-group">
                         <label for="email">Tahun Akademik</label>
                         <input type="text" name="periode" class="form-control" id="periode" placeholder="Masukkan Nama konsentrasi" value="<?php echo $edit->periode; ?>">
                       </div>

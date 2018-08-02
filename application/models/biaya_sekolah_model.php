@@ -9,13 +9,20 @@ class Biaya_sekolah_model extends CI_Model {
 	}
 
 	public function data_biaya(){
-		return $this->db->get('tb_biaya')->result();
+     $this->db->select('*');
+     $this->db->from('tb_biaya');
+     $this->db->join('tb_waktu','tb_waktu.id_waktu=tb_biaya.id_waktu');
+     $query = $this->db->get();
+     return $query->result();
 	}
 
    public function get_biaya_by_id($id_biaya){
-      return $this->db->where('id_biaya', $id_biaya)
-              ->get('tb_biaya')
-              ->row();
+    $this->db->select('*');
+     $this->db->from('tb_biaya');
+     $this->db->join('tb_waktu','tb_waktu.id_waktu=tb_biaya.id_waktu');
+     $this->db->where('tb_biaya.id_biaya', $id_biaya);
+     $query = $this->db->get();
+     return $query->row();
   }
 
 	public function get_prodi(){
@@ -53,6 +60,7 @@ class Biaya_sekolah_model extends CI_Model {
             'jenis_biaya'        => $this->input->post('jenis_biaya'),
             'nama_biaya'      	=> $this->input->post('nama_biaya'),
             'jumlah_biaya'      		=> $this->input->post('jumlah_biaya'),
+            'id_waktu'          => $this->input->post('id_waktu'),
             'periode'          => $this->input->post('periode')
             
         );
@@ -80,7 +88,10 @@ class Biaya_sekolah_model extends CI_Model {
       }
     }
 
-   
+   public function getWaktu(){
+    return $this->db->get('tb_waktu')
+                    ->result();
+   }
 
 
   public function save_edit_biaya_sekolah($id_biaya){
@@ -90,6 +101,7 @@ class Biaya_sekolah_model extends CI_Model {
         'nama_biaya'        => $this->input->post('nama_biaya'),
         'jenis_biaya'        => $this->input->post('jenis_biaya'),
         'jumlah_biaya'          => $this->input->post('jumlah_biaya'),
+        'id_waktu'          => $this->input->post('id_waktu'),
         'periode'          => $this->input->post('periode')
       );
     if (!empty($data)) {

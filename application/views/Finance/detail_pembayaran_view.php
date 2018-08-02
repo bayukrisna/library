@@ -19,15 +19,19 @@
             <td class="left_column" width="15%" value=>Jenis Kelamin <font color="#FF0000">*</font></td>
             <td width="25%">: <?php echo $data->jenis_kelamin ?>       </td>
             <td class="left_column" width="15%">Ranking <font color="#FF0000">*</font></td>
-            <td>: <?php echo $dataku ?>
+            <td>: <?php echo $data->grade; ?>
                                      </td>
         </tr>
         <tr>
             <td class="left_column">Nomor Telephone</td>
             <td>: <?php echo $data->no_telepon ?></td>
             <td class="left_column">Program Studi <font color="#FF0000">*</font></td>
-            <td>:
-           
+            <td>: <?php echo $data->nama_prodi; ?></td>
+          </tr>
+           <tr>
+            <td class="left_column">Kelas </td>
+            <td>: <?php echo $data->waktu ?></td>
+          </tr>
         </table>
             </div>
             <!-- /.box-body -->
@@ -85,6 +89,21 @@
                 <form method="post" class="form-pembayaran">
                   <div class="box-body">
                     <div class="form-group">
+                      <label for="inputEmail3" class="col-sm-3 control-label">Tgl Pembayaran</label>
+
+                      <div class="col-sm-8">
+                        <input type="text" class="form-control" name="tanggal_pembayaran" id="tanggal_pembayaran" placeholder="" 
+                        value="<?php echo date('d-m-Y'); ?>" readonly>
+                      </div>
+                    </div>
+                    <div class="form-group">
+                      <label for="inputEmail3" class="col-sm-3 control-label">Kode Pembayaran</label>
+
+                      <div class="col-sm-8">
+                        <input type="text" class="form-control" id="id_mhsa" name="id_mhsa" value="<?= $kodeunik; ?>" placeholder="" readonly="">
+                      </div>
+                    </div>
+                    <div class="form-group">
                       <label for="inputEmail3" class="col-sm-3 control-label">ID Mahasiswa</label>
 
                       <div class="col-sm-8">
@@ -128,14 +147,6 @@
 
                       <div class="col-sm-8" id="biaya">
                         <input type="text" class="form-control" readonly="" id="biayaa" required="">
-                      </div>
-                    </div>
-                    <div class="form-group">
-                      <label for="inputEmail3" class="col-sm-3 control-label">Tgl Pembayaran</label>
-
-                      <div class="col-sm-8">
-                        <input type="text" class="form-control" name="tanggal_pembayaran" id="tanggal_pembayaran" placeholder="" 
-                        value="<?php echo date('d-m-Y'); ?>">
                       </div>
                     </div>
                     <a class="tombol-simpan btn btn-info" >Simpan</a>

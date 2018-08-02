@@ -39,6 +39,7 @@ class Finance extends CI_Controller {
 			$data['mahasiswa']=$ea;
 			$data['data']= $dataku;
 			$data['dataku']= $ku;
+			$data['kodeunik'] = $this->finance_model->buat_kode();
 		$data['getJenisPembayaran'] = $this->biaya_sekolah_model->getJenisPembayaran();
 		$data['main_view'] = 'Finance/detail_pembayaran_view';
 		$this->load->view('template', $data);	

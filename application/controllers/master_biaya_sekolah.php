@@ -18,6 +18,7 @@ class Master_biaya_sekolah extends CI_Controller {
 	}
 
 	public function page_tambah_biaya_sekolah(){
+				$data['getWaktu'] = $this->biaya_sekolah_model->getWaktu();
 				$data['kodeunik'] = $this->biaya_sekolah_model->buat_kode();
 				$data['main_view'] = 'Biaya_sekolah/tambah_biaya_sekolah_view';
 				$this->load->view('template', $data);
@@ -54,6 +55,7 @@ class Master_biaya_sekolah extends CI_Controller {
 	}
 
 	public function edit_biaya_sekolah(){
+				$data['getWaktu'] = $this->biaya_sekolah_model->getWaktu();
 				$data['data_biaya'] = $this->biaya_sekolah_model->data_biaya();
 				$data['main_view'] = 'Biaya_sekolah/edit_biaya_sekolah_view';
 				$id_biaya = $this->uri->segment(3);

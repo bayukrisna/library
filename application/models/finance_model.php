@@ -53,6 +53,24 @@ class Finance_model extends CI_Model {
      return $query->result();
   }
 
+  public function  buat_kode()   {
+          $this->db->SELECT('RIGHT(tb_pembayaran.kode_pembayaran,3) as kode', FALSE);
+          $this->db->order_by('kode_pembayaran','DESC');    
+          $this->db->limit(1);    
+          $query = $this->db->get('tb_pembayaran');      //cek dulu apakah ada sudah ada kode di tabel.    
+          if($query->num_rows() <> 0){      
+           //jika kode ternyata sudah ada.      
+           $data = $query->row();      
+           $kode = intval($data->kode) + 1;    
+          }
+          else {      
+           //jika kode belum ada      
+           $kode = 1;    
+          }
+          $kodemax = str_pad($kode, 3, "0", STR_PAD_LEFT); // angka 4 menunjukkan jumlah digit angka 0
+          $kodejadi = "KP".$kodemax;    // hasilnya ODJ-9921-0001 dst.
+          return $kodejadi; 
+    }
   public function dashboard(){
     $belum_bayar = $this->db->select('count(*) as total')
                 ->where('status_bayar','Proses Pengecekan')
@@ -142,11 +160,14 @@ class Finance_model extends CI_Model {
               ->row();
   }
   function get_data_detail_mahasiswa($ya){
-    return $this->db->select('id_mahasiswa, jenis_kelamin, no_telepon')
-                    
-
-              ->where('id_mahasiswa',$ya)
+    return $this->db->join('tb_bio','tb_bio.id_mahasiswa=tb_mahasiswa.id_mahasiswa')
+              ->join('tb_kontak','tb_kontak.id_mahasiswa=tb_mahasiswa.id_mahasiswa')
+              ->join('tb_prodi','tb_prodi.id_prodi=tb_mahasiswa.id_prodi')
+              ->join('tb_waktu','tb_waktu.id_waktu=tb_mahasiswa.id_waktu')
+              ->join('tb_grade','tb_grade.id_grade=tb_mahasiswa.id_grade')
+              ->where('tb_mahasiswa.id_mahasiswa', $ya)
               ->get('tb_mahasiswa')
+
               ->row();
   }
   public function tambah_pembayaran()

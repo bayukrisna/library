@@ -25,6 +25,20 @@
                         <label for="email">Jumlah Biaya</label>
                         <input type="number" name="jumlah_biaya" class="form-control" id="jumlah_biaya" placeholder="">
                       </div>
+
+                      <div class="form-group">
+                        <label for="email">Waktu Kuliah</label>
+                          <select id="id_waktu" name="id_waktu"class="form-control" required="">
+                            <option value="">Pilih Waktu</option>
+                            <?php 
+
+                                foreach($getWaktu as $row)
+                                { 
+                                  echo '<option value="'.$row->id_waktu.'">'.$row->waktu.'</option>';
+                                }
+                            ?>
+                          </select>   
+                      </div>
                       <div class="form-group">
                         <label for="email">Tahun Akademik</label>
                         <input type="text" name="periode" class="form-control" id="periode" placeholder="ex 2000/2001">

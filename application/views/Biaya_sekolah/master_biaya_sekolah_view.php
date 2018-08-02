@@ -18,6 +18,7 @@
                   <th>Nama Biaya</th>
                   <th>Jumlah Biaya</th>
                   <th>Tahun Akademik</th>
+                  <th>Waktu Kuliah</th>
                   <th>Aksi</th>
                 </tr>
                 </thead>
@@ -37,6 +38,7 @@
                   <td>'.$data->nama_biaya.'</td>
                   <td>'.$data->jumlah_biaya.'</td>
                   <td>'.$data->periode.'</td>
+                  <td>'.$data->waktu.'</td>
                   <td>
                       <a href="'.base_url('master_biaya_sekolah/edit_biaya_sekolah/'.$data->id_biaya).'" class="btn btn-warning btn-sm" >Edit </a>
                       <a href="'.base_url('master_biaya_sekolah/hapus_biaya_sekolah/'.$data->id_biaya).'" class="btn btn-danger btn-sm" onclick="return confirm('.$alert.')">Hapus</a>
