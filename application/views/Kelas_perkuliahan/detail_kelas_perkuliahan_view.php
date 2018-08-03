@@ -83,7 +83,7 @@
             <ul class="nav nav-tabs">
               <li class="active"><a href="#tab_1" data-toggle="tab">Dosen Pengajar</a></li>
               <li><a href="#tab_2" data-toggle="tab">Mahasiswa KRS / Peserta Kelas</a></li>
-              <li><a href="#tab_3" data-toggle="tab">Tab 3</a></li>
+              <!-- <li><a href="#tab_3" data-toggle="tab">Tab 3</a></li> -->
             </ul>
             <div class="tab-content">
               <div class="tab-pane active" id="tab_1">
@@ -197,9 +197,9 @@
                   <td>'.$data->nama_prodi.'</td>
                   <td>'.$data->angkatan.'</td>
                   <td>
-                        <a href="'.base_url('kelas_perkuliahan/hapus_kelas_mhs/'.$data->id_kelas_mhs).'" class="btn btn-danger  btn-sm" onclick="return confirm('.$alert.')"><i class="glyphicon glyphicon-trash"></i><span class="tooltiptext">Hapus Kurikulum</span></a>
+                        <a href="'.base_url('kelas_perkuliahan/hapus_kelas_mhs/'.$data->id_kelas_mhs).'" class="btn btn-danger  btn-sm" onclick="return confirm('.$alert.')"><i class="glyphicon glyphicon-trash"></i><span class="tooltiptext">Hapus</span></a>
 
-                         <a class="btn btn-warning  btn-sm" data-toggle="modal" data-target="#modal_edit'.$data->id_kelas_mhs.'"><i class="glyphicon glyphicon-pencil"></i><span class="tooltiptext">Edit Kurikulum</span></a>
+                         <a href="'.base_url('kelas_perkuliahan/page_edit_kelas_mhs/'.$data->id_kelas_mhs).'" class="btn btn-warning btn-sm"><i class="glyphicon glyphicon-pencil"></i><span class="tooltiptext">Edit</span></a>
                   </td>
 
                 ' ;
@@ -220,7 +220,7 @@
     </section>
               </div>
               <!-- /.tab-pane -->
-              <div class="tab-pane" id="tab_3">
+              <!--<div class="tab-pane" id="tab_3">
                 Lorem Ipsum is simply dummy text of the printing and typesetting industry.
                 Lorem Ipsum has been the industry's standard dummy text ever since the 1500s,
                 when an unknown printer took a galley of type and scrambled it to make a type specimen book.
@@ -228,7 +228,7 @@
                 remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset
                 sheets containing Lorem Ipsum passages, and more recently with desktop publishing software
                 like Aldus PageMaker including versions of Lorem Ipsum.
-              </div>
+              </div> 
               <!-- /.tab-pane -->
             </div>
             <!-- /.tab-content -->

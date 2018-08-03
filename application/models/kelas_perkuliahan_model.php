@@ -49,6 +49,21 @@ class Kelas_perkuliahan_model extends CI_Model {
               ->row();
   }
 
+   function cek_id_mahasiswa($nim){
+      $query = $this->db->select('*')
+                ->from('tb_kelas_mhs')
+                ->where('id_mahasiswa', $nim)
+                ->get();
+                if ($query->num_rows() > 0)
+                {
+                    echo '<span class="label label-danger">NIM Not Available</span><script>document.getElementById("myBtn").disabled = true;</script>';
+
+                } else{
+                echo '<span class="label label-success"> NIM  Available.</span><script>document.getElementById("myBtn").disabled = false;</script>';
+                
+                }
+    }
+
   public function autocomplete($nama){
      $this->db->select('*');
      $this->db->from('tb_dosen');
@@ -64,6 +79,18 @@ class Kelas_perkuliahan_model extends CI_Model {
      $this->db->join('tb_prodi','tb_prodi.id_prodi=tb_mahasiswa.id_prodi');
      $this->db->join('tb_angkatan','tb_angkatan.id_angkatan=tb_mahasiswa.id_angkatan');
      $this->db->like('tb_mahasiswa.nama_mahasiswa', $nama);
+     $query = $this->db->get();
+     return $query->result();
+  }
+
+  public function detail_kelas_mhs($nama){
+    $this->db->select('*');
+     $this->db->from('tb_kelas_mhs');
+     $this->db->join('tb_mahasiswa','tb_mahasiswa.id_mahasiswa=tb_kelas_mhs.id_mahasiswa');
+     $this->db->join('tb_bio','tb_bio.id_mahasiswa=tb_mahasiswa.id_mahasiswa');
+     $this->db->join('tb_prodi','tb_prodi.id_prodi=tb_mahasiswa.id_prodi');
+     $this->db->join('tb_angkatan','tb_angkatan.id_angkatan=tb_mahasiswa.id_angkatan');
+     $this->db->where('tb_kelas_mhs.id_kelas_mhs', $nama);
      $query = $this->db->get();
      return $query->row();
   }
@@ -147,6 +174,7 @@ class Kelas_perkuliahan_model extends CI_Model {
         }
     }
 
+
     public function hapus_kelas_dosen($id_detail_kurikulum){
         $this->db->where('id_kelas_dosen', $id_detail_kurikulum)
           ->delete('tb_kelas_dosen');
@@ -195,6 +223,22 @@ class Kelas_perkuliahan_model extends CI_Model {
     if (!empty($data)) {
             $this->db->where('id_kelas_dosen', $id_detail_kurikulum)
         ->update('tb_kelas_dosen', $data);
+
+          return true;
+        } else {
+            return null;
+        }
+  }
+
+  public function edit_kelas_mhs($id_detail_kurikulum){
+    $data = array(
+      'id_kp'        => $this->input->post('id_kp'),
+           'id_mahasiswa'        => $this->input->post('id_mahasiswa')
+      );
+
+    if (!empty($data)) {
+            $this->db->where('id_kelas_mhs', $id_detail_kurikulum)
+        ->update('tb_kelas_mhs', $data);
 
           return true;
         } else {

@@ -40,6 +40,13 @@ class Kelas_perkuliahan extends CI_Controller {
 				$this->load->view('template', $data);
 	}
 
+	public function page_edit_kelas_mhs(){
+				$id_kp = $this->uri->segment(3);
+				$data['mhs'] = $this->kelas_perkuliahan_model->detail_kelas_mhs($id_kp);
+				$data['main_view'] = 'Kelas_perkuliahan/edit_kelas_mhs_view';
+				$this->load->view('template', $data);
+	}
+
 	public function save_kp()
 	{
 			if($this->kelas_perkuliahan_model->save_kp() == TRUE){
@@ -128,6 +135,19 @@ class Kelas_perkuliahan extends CI_Controller {
 					}
 		}
 
+		public function save_edit_kelas_mhs(){
+			$id_detail_kurikulum = $this->uri->segment(3);
+					if ($this->kelas_perkuliahan_model->edit_kelas_mhs($id_detail_kurikulum) == TRUE) {
+						$this->session->set_flashdata('message', '<div class="alert alert-success"> Edit Mahasiswa berhasil </div>');
+            			$id_kp = $this->input->post('id_kp');
+            			redirect('kelas_perkuliahan/detail_kelas/'.$id_kp);
+					} else {
+						$this->session->set_flashdata('message', '<div class="alert alert-danger"> Edit Mahasiswa Gagal </div>');
+            			redirect('kelas_perkuliahan');
+					}
+		}
+
+
 		function autocomplete2(){
 		$searchTerm = $_GET['term'];
 		//mendapatkan data yang sesuai dari tabel daftar_kota
@@ -164,10 +184,10 @@ class Kelas_perkuliahan extends CI_Controller {
 					$result_array[] = array(
 						'label' => $row->nama_mahasiswa,
 						'id' => $row->id_mahasiswa,
-						'angkatan' => $row->id_angkatan,
+						'angkatan' => $row->angkatan,
 						'nim' => $row->nim,
 						'jenis_kelamin' => $row->jenis_kelamin,
-						'id_prodi' => $row->id_prodi);
+						'id_prodi' => $row->nama_prodi);
 				echo json_encode($result_array);
 			
 			}
@@ -186,11 +206,10 @@ class Kelas_perkuliahan extends CI_Controller {
 	public function hapus_kelas_mhs(){
 		$id_detail_kurikulum = $this->uri->segment(3);
 		if ($this->kelas_perkuliahan_model->hapus_kelas_mhs($id_detail_kurikulum) == TRUE) {
-			$this->session->set_flashdata('message', 'Hapus Mahasiswa Berhasil');
+			$this->session->set_flashdata('message', '<div class="alert alert-success"> Hapus Mahasiswa Berhasil </div>');
             	redirect('kelas_perkuliahan');
 		} else {
-			$this->session->set_flashdata('message', 'Hapus Mahasiswa Berhasil');
-            	redirect('kelas_perkuliahan');
+			$this->session->set_flashdata('message', '<div class="alert alert-danger"> Hapus Mahasiswa Gagal </div>');
 		}
 	}
 
