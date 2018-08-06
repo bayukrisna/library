@@ -244,7 +244,7 @@ class Finance_model extends CI_Model {
      $this->db->join('tb_detail_pembayaran','tb_detail_pembayaran.id_mahasiswa=tb_mahasiswa.id_mahasiswa');
      $this->db->join('tb_biaya','tb_biaya.id_biaya=tb_detail_pembayaran.id_biaya');
      $this->db->join('tb_pembayaran','tb_pembayaran.kode_pembayaran=tb_detail_pembayaran.kode_pembayaran');
-     
+     $this->db->where('tb_mahasiswa.id_mahasiswa', $ya);
      $query = $this->db->get();
      return $query->result();
     }
