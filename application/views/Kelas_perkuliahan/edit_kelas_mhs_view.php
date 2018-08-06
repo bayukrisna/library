@@ -7,34 +7,34 @@
     <table class="table">
        <tr>
             <td class="left_column">Nama Mahasiswa <font color="#FF0000">*</font></td>
-            <td>: <input type="text" name="nama_mahasiswa" id="nama_mahasiswa" class="validate[required] text-input" maxlength="50" size="50" style="width:80%" required="" value="<?php echo $mhs->nama_mahasiswa; ?>">
+            <td>: <input type="text" name="nama_mahasiswa" id="nama_mahasiswa" class="validate[required] text-input" size="50" style="width:80%" required="" value="<?php echo $mhs->nama_mahasiswa; ?>">
               <input type="hidden" name="id_mahasiswa" id="id_mahasiswa" class="text-input" maxlength="3" size="2"  style="width:10%" value="">
              </td>
         </tr> 
         <tr>
             <td class="left_column">NIM</td>
             <td>: 
-            <input type="text" name="nim" id="nim" class="text-input" maxlength="3" size="2"  style="width:10%" value="<?php echo $mhs->nim; ?>" onkeyup="sum();">   
+            <input type="text" name="nim" id="nim" class="text-input" maxlength="3" size="2"  style="width:20%; background-color:#E0E0E0;" value="<?php echo $mhs->nim; ?>" onkeyup="sum();" readonly >   
 
-            <input type="hidden" name="id_kp" id="id_kp" class="text-input" maxlength="3" size="2"  style="width:10%" value="<?php echo $mhs->id_kp; ?>">      
+            <input type="hidden" name="id_kp" id="id_kp" class="text-input" maxlength="3" size="2"  style="width:10%; background-color:#E0E0E0;" value="<?php echo $mhs->id_kp; ?>" >      
             </td>
         </tr>
         <tr>
             <td class="left_column">L/P</td>
             <td>: 
-            <input type="text" name="jenis_kelamin" id="jenis_kelamin" class="text-input" maxlength="3" size="2" style="width:10%" value="<?php echo $mhs->jenis_kelamin; ?>">  
+            <input type="text" name="jenis_kelamin" id="jenis_kelamin" class="text-input" maxlength="3" size="2" style="width:5%; background-color:#E0E0E0;" value="<?php echo $mhs->jenis_kelamin; ?>" readonly>  
             </td>
         </tr>
         <tr>
             <td class="left_column">Prodi</td>
             <td>: 
-            <input type="text" name="id_prodi" id="id_prodi" class="text-input" maxlength="3" size="2"  style="width:10%" value="<?php echo $mhs->nama_prodi; ?>">         
+            <input type="text" name="id_prodi" id="id_prodi" class="text-input" maxlength="3" size="2"  style="width:20%; background-color:#E0E0E0;" value="<?php echo $mhs->nama_prodi; ?>" readonly>         
             </td>
         </tr>
         <tr>
             <td class="left_column">Angkatan</td>
             <td>: 
-            <input type="text" name="angkatan" id="angkatan" class="text-input" size="2"  style="width:40%" value="<?php echo $mhs->angkatan; ?>">         
+            <input type="text" name="angkatan" id="angkatan" class="text-input" size="2"  style="width:10%; background-color:#E0E0E0;" value="<?php echo $mhs->angkatan; ?>" readonly>         
             </td>
            
             

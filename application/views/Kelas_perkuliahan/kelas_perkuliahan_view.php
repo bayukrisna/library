@@ -1,23 +1,84 @@
-      <section class="content">
+<!-- <script src="//code.jquery.com/jquery-1.12.4.min.js"></script>
+  <script src="//code.jquery.com/ui/1.12.0/jquery-ui.min.js"></script>
+<script type="text/javascript">
+     function total(id){
+      var id_kp = id;
+         $.ajax({
+                    url: '<?php echo base_url(); ?>kelas_perkuliahan/get_total_mhs/'+id_kp,
+                    data: 'id_kp='+id_kp,
+                    type: 'GET',
+                    success: function(data) {
+                      console.log('poop', data)
+                    }
+                });
+       };
+       window.get_total_mhs=total;
+    get_total_mhs(10);
+</script> -->
+
+    <section class="content">
+
       <div class="row">
         <div class="col-xs-12">
           <?php echo $this->session->flashdata('message');?>
           <div class="box">
+
             <div class="box-header">
               <h3 class="box-title">Data Kelas Perkuliahan</h3>
             </div>
             <div class="box-body">
+              <table class="">
+                <tbody>
+                  <form method="get" action="<?php echo base_url("kelas_perkuliahan/filter_kp/")?>">
+                  <tr>
+                    <th>Filter</th>
+                  </tr>
+                  <tr>                                                                    
+                    <td>Program Studi</td>     
+                    <td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                      
+                      <select name="id_prodi" onchange="return get_prodi_periode2(this.value)">
+                        <option value="">-- Semua --</option>
+                        <?php 
+
+                                        foreach($getProdi as $row)
+                                        { 
+                                          echo '<option value="'.$row->id_prodi.'">'.$row->nama_prodi.'</option>';
+                                        }
+                                    ?>
+                      </select>
+
+                    </td>                                            
+                    <td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Semester</td>     
+                    <td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                      <select name="id_periode" id="id_periode2">
+                        <option value="">-- Semua --</option>
+              
+                      </select>
+                    </td>
+                    <td>
+                      &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<input type="submit" class="btn btn-primary" value="Cari">  
+                    </td>
+
+                  </tr>
+                  
+                </tbody>
+              </table>
+                      
+               </form>
+               <br>
+
               <table id="example3" class="table2 table-bordered table-striped">
-                <a class="btn btn-info btn-sm" href="" data-toggle="modal" data-target="#modal_view"><i class="fa fa-plus"></i> Tambah</a> <br> <br>
+                <a class="btn btn-info btn-sm" href="<?php echo base_url(); ?>kelas_perkuliahan/page_tambah"><i class="fa fa-plus"></i> Tambah Kelas</a> <br> <br>
                 <thead>
                 <tr>
                   <th>No</th>
                   <th>Kode MK</th>
                   <th>Nama MK</th>
                   <th>Nama Kelas</th>
-                  <th>Bobot MK (SKS)</th>
-                  <th>Dosen Pengajar</th>
-                  <th>Peserta Kelas</th>
+                  <th style="width: 15px;">SKS</th>
+                  <th>Nama Dosen</th>
+                  <th>Jumlah Mahasiswa</th>
                   <th>Aksi</th>
                 </tr>
                  
@@ -28,24 +89,25 @@
                 <?php 
                 $no = 0;
                  $alert = "'Apakah anda yakin menghapus data ini ?'";
-                foreach ($kp as $data) {
-
-                  
-                  echo '
-                  
+                foreach ($kp as $data) { ?>
+                   <script type="text/javascript" > 
+                      get_total_mhs(10);
+                   </script>                  
+                 <?php 
+                  echo '                  
                 <tr>
                   <td>'.++$no.'</td>
                   <td><a href="'.base_url('kelas_perkuliahan/detail_kelas/'.$data->id_kp).'">'.$data->kode_matkul.'</a></td>
                   <td>'.$data->nama_matkul.'</td>
                   <td>'.$data->nama_kelas.'</td>
                   <td>'.$data->bobot_matkul.'</td>
-                  <td>'.$data->bobot_matkul.'</td>
-                  <td>'.$data->bobot_matkul.'</td>
+                  <td>'.$data->nama_dosen.'</td>
+                  <td>'.$data->total_mhs.'</td>
                   <td>
                         <a href="'.base_url('kelas_perkuliahan/hapus_kp/'.$data->id_kp).'" class="btn btn-danger  btn-sm" onclick="return confirm('.$alert.')"><i class="glyphicon glyphicon-trash"></i><span class="tooltiptext">Hapus Kelas</span></a>
                          <a href="'.base_url('kelas_perkuliahan/detail_kp/'.$data->id_kp).'" class="btn btn-warning  btn-sm"><i class="glyphicon glyphicon-pencil"></i><span class="tooltiptext">Edit Kelas </span></a>
                   </td>
-
+                  </tr>
                 ' ;
                 
                 
@@ -104,6 +166,7 @@
       <input type="text" name="nama_matkul" id="nama_matkul" class="validate[required] text-input ui-autocomplete-input" size="20"  style="width: 50%;" required=""><span role="status" aria-live="polite" class="ui-helper-hidden-accessible"></span>            <input type="hidden" name="kode_matkul" id="kode_matkul" value="" > 
             </td>
     </tr>
+
         <tr>
           <td class="left_column">Nama Kelas <font color="#FF0000">*</font>
             </td>
@@ -114,6 +177,37 @@
           <td class="left_column">Bahasan</td>
             <td colspan="9">: 
       <textarea wrap="soft" name="bahasan" id="bahasan" class="text-input" rows="5" cols="50" maxlength="200"></textarea></td>
+        </tr>
+         <tr>
+            <td class="left_column">Nama Dosen <font color="#FF0000">*</font></td>
+            <td>: <input type="text" name="nama_dosen" id="nama_dosen" class="validate[required] text-input" maxlength="50" size="50" style="width:80%" required="">
+              <input type="hidden" name="id_dosen" id="id_dosen" class="validate[required] text-input" maxlength="20" size="40" style="width:80%" required=""></td>
+        </tr> 
+        <tr>
+            <td class="left_column">Rencana</td>
+            <td>: 
+            <input type="text" name="rencana" id="rencana" class="text-input" maxlength="3" size="2"  style="width:10%" value="0" onkeyup="sum();">       
+            </td>
+        </tr>
+        <tr>
+            <td class="left_column">Realisasi</td>
+            <td>: 
+            <input type="text" name="realisasi" id="realisasi" class="text-input" maxlength="3" size="2" style="width:10%" value="0">  
+            </td>
+        </tr>
+        <tr>
+            <td class="left_column">Bobot (sks)</td>
+            <td>: 
+            <input type="text" name="bobot_dosen" id="bobot_dosen" class="text-input" maxlength="3" size="2"  style="width:10%; background-color: #E0E0E0;"  readonly>         
+            </td>
+        </tr>
+        <tr>
+            <td class="left_column">Jenis Evaluasi</td>
+            <td>: 
+            <input type="text" name="jenis_evaluasi" id="jenis_evaluasi" class="text-input" size="2"  style="width:40%" >         
+            </td>
+            <input type="hidden" name="id_kp" id="id_kp" class="text-input" maxlength="3" size="2"  style="width:10%" value="<?php echo $this->uri->segment(3); ?>"> 
+            
         </tr>
         <tr>
          <td class="left_column">Tanggal Mulai Efektif</td>
@@ -154,9 +248,22 @@
                 });
             }
 </script>
+<script type="text/javascript">
+            function get_prodi_periode2(p) {
+                var id_prodi = p;
+
+                $.ajax({
+                    url: '<?php echo base_url(); ?>kurikulum/get_prodi_periode/'+id_prodi,
+                    data: 'id_prodi='+id_prodi,
+                    type: 'GET',
+                    dataType: 'html',
+                    success: function(msg) {
+                        $("#id_periode2").html(msg);
+                    }
+                });
+            }
+</script>
 <link rel="stylesheet" href="//code.jquery.com/ui/1.12.0/themes/smoothness/jquery-ui.css">
-  <script src="//code.jquery.com/jquery-1.12.4.min.js"></script>
-  <script src="//code.jquery.com/ui/1.12.0/jquery-ui.min.js"></script>
   <script>
        document.getElementById("nama_matkul").style.visibility = 'visible';
 
@@ -177,7 +284,3 @@
   });
 
   </script>
-
-
-    
-

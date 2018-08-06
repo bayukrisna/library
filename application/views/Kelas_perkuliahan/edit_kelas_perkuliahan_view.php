@@ -83,21 +83,18 @@
 <link rel="stylesheet" href="//code.jquery.com/ui/1.12.0/themes/smoothness/jquery-ui.css">
   <script src="//code.jquery.com/jquery-1.12.4.min.js"></script>
   <script src="//code.jquery.com/ui/1.12.0/jquery-ui.min.js"></script>
-  <script>
+ <script>
        document.getElementById("nama_matkul").style.visibility = 'visible';
 
     jQuery(document).ready(function($){
     $('#nama_matkul').autocomplete({
-      source:'<?php echo base_url(); ?>kurikulum/get_autocomplete', 
+      source:'<?php echo base_url(); ?>kelas_perkuliahan/get_autocomplete_mk', 
       minLength:1,
       select: function(event, ui){
         $('#nama_matkul').val(ui.item.label)  ;
         $('#kode_matkul').val(ui.item.id);
-        $('#bobot_matkul').val(ui.item.bobot);
-        $('#bobot_tatap_muka').val(ui.item.btm);
-        $('#bobot_praktikum').val(ui.item.bp);
-        $('#bobot_simulasi').val(ui.item.bs);
-        $('#bobot_praktik_lapangan').val(ui.item.bpl);
+        $('#bobot_dosen').val(ui.item.bobot);
+        $('#nama_kurikulum').val(ui.item.kurikulum);
       }
     });    
   });
