@@ -223,6 +223,34 @@
             document.getElementById('total_jawaban').value = result;
             document.getElementById('nilai').value = pembulatan;
             document.getElementById("grade").value = grade;
+
             }
           }
         </script>
+
+         <script type="text/javascript">
+            
+            function sum() {
+            var mtk = document.getElementById('mtk').value;
+            var bing = document.getElementById('bing').value;
+            var psikotes = document.getElementById('psikotes').value;
+            var result = parseInt(mtk) + parseInt(psikotes) + parseInt(bing);
+            var nilai = result / 9 * 10;
+            var pembulatan = nilai.toFixed(1);
+            var id_grade = ""
+            if (nilai <= 75){
+              id_grade = "4"
+            } else if(nilai <= 79.9){
+              id_grade = "3"
+            } else if(nilai <= 89.9){
+              id_grade = "2"
+            } else {
+              id_grade = "1"
+            }
+            if (!isNaN(result)) {
+            document.getElementById("id_grade").value = id_grade;
+            }
+          }
+        </script>
+        
+

@@ -96,7 +96,6 @@ class daftar_ulang extends CI_Controller {
 		$option .= '<option value="">Pilih Konsentrasi</option>';
 		foreach ($result as $data) {
 			$option .= "<option value='".$data->id_konsentrasi."' >".$data->nama_konsentrasi."</option>";
-			
 		}
 		echo $option;
 

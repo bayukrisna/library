@@ -27,41 +27,39 @@
           <td colspan="3">: 
       <?php echo $kp->nama_kelas; ?> </td>
 
-      <td class="left_column">Bobot Tatap Muka</td>
-            <td colspan="3">: <?php echo $kp->bobot_tatap_muka; ?>   sks</td>
+      
+            <td class="left_column">Bahasan</td>
+            <td colspan="3">: 
+      <?php echo $kp->bahasan; ?> </td>
           
     </tr>
          <tr>
-          <td class="left_column">Bahasan</td>
-            <td colspan="3">: 
-      &nbsp;<?php echo $kp->bahasan; ?> </td>
-      <td class="left_column">Bobot Praktikum</td>
-            <td colspan="3">: <?php echo $kp->bobot_praktikum; ?>   sks</td>
-
-        </tr>
-        <tr>
-           <td class="left_column">Tanggal Mulai Efektif</td>
+          <td class="left_column">Tanggal Mulai Efektif</td>
             <td colspan="3">:
-        &nbsp;    <?php echo $kp->tgl_mulai; ?>          </td>
-        <td class="left_column">Bobot Praktek Lapangan</td>
-            <td colspan="3">: <?php echo $kp->bobot_praktik_lapangan; ?>   sks</td>
+          <?php echo $kp->tgl_mulai; ?>          </td>
+
+        <td class="left_column">Total Mahasiswa</td>
+            <td colspan="3">: <b> <?php echo $dsn['jumlah_mhs']; ?>  </b> mahasiswa</td>
+        
+         
 
         </tr>
         <tr>
-          <td class="left_column">Tanggal Akhir Efektif 
+            <td class="left_column">Tanggal Akhir Efektif 
          </td>
-         <td colspan="3">:
-        &nbsp;     <?php echo $kp->tgl_akhir; ?>        </td>
-        <td class="left_column">Bobot Simulasi</td>
-            <td colspan="3">: <?php echo $kp->bobot_simulasi; ?>   sks</td>
+         <td colspan="9">:
+             <?php echo $kp->tgl_akhir; ?>        </td>
+    
+
         </tr>
+       
        
     </tbody></table>
 </div>
 <div class="">
 
             <?php if( $dsn['dosen'] != 1 OR 0) echo '
-             <a class="btn btn-primary pull-right"  data-toggle="modal" data-target="#modal_tambah"><i class="fa fa-plus"></i> Tambah Dosen</a>
+             <a class="btn btn-primary pull-right" style="margin-right: 10px" data-toggle="modal" data-target="#modal_tambah"><i class="fa fa-plus"></i> Tambah Dosen</a>
             
             '; else echo '
              
@@ -69,7 +67,7 @@
             ?>
 
              <?php if( $dsn['jumlah_mhs'] <= 39) echo '
-             <a class="btn btn-primary pull-right"  data-toggle="modal" data-target="#modal_tambah_mhs"><i class="fa fa-plus"></i> Tambah Mahasiswa</a>
+             <a class="btn btn-primary pull-right"  data-toggle="modal" style="margin-right: 10px"data-target="#modal_tambah_mhs"><i class="fa fa-plus"></i> Tambah Mahasiswa</a>
             
             '; else echo '
              
@@ -130,9 +128,8 @@
                   <td id="realisasi">'.$data->realisasi.'</td>
                   <td>'.$data->jenis_evaluasi.'</td>
                   <td>
-                        <a href="'.base_url('kelas_perkuliahan/hapus_kelas_dosen/'.$data->id_kelas_dosen).'" class="btn btn-danger  btn-sm" onclick="return confirm('.$alert.')"><i class="glyphicon glyphicon-trash"></i><span class="tooltiptext">Hapus Kurikulum</span></a>
 
-                         <a class="btn btn-warning  btn-sm" data-toggle="modal" data-target="#modal_edit'.$data->id_kelas_dosen.'"><i class="glyphicon glyphicon-pencil"></i><span class="tooltiptext">Edit Kurikulum</span></a>
+                         <a class="btn btn-warning  btn-sm" data-toggle="modal" data-target="#modal_edit'.$data->id_kelas_dosen.'"><i class="glyphicon glyphicon-pencil"></i><span class="tooltiptext">Edit Dosen</span></a>
                   </td>
 
                 ' ;
@@ -214,6 +211,7 @@
           </div>
           <!-- /.box -->
         </div>
+
         <!-- /.col -->
       
       <!-- /.row -->
@@ -233,15 +231,29 @@
             </div>
             <!-- /.tab-content -->
           </div>
+           <div class="callout callout-info">
+        
+            <strong>Keterangan :</strong>
+      <br />
+      - Perkuliahan Reguler<br />
+      &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Tanggal mulai efektif = Tanggal mulai perkuliahan dalam satu semester<br />
+      &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Tanggal akhir efektif = Tanggal akhir perkuliahan dalam satu semester
+      <br />
+          - Fasilitas hitung sks disediakan untuk membantu perhitungan sks dosen secara otomatis.
+      <br />
+      - Rumus Perhitungan sks dosen = ( Rencana Pertemuan : Jumlah Seluruh Rencana Pertemuan Seluruh Dosen ) x sks Matakuliah.
+
+         </div>
 
 </div>
+
 
 <div class="modal fade" id="modal_tambah" >
             <div class="modal-dialog">
             <div class="modal-content">
             <div class="modal-header">
                 <button type="button" class="close" data-dismiss="modal" aria-hidden="true">x</button>
-                <h3 class="modal-title" id="myModalLabel">Tambah Kurikulum</h3>
+                <h3 class="modal-title" id="myModalLabel">Tambah Dosen</h3>
             </div>
                 <div class="modal-body">
 
@@ -268,7 +280,7 @@
         <tr>
             <td class="left_column">Bobot (sks)</td>
             <td>: 
-            <input type="text" name="bobot_dosen" id="bobot_dosen" class="text-input" maxlength="3" size="2"  style="width:10%" value="<?php echo $kp->bobot_matkul;?>">         
+            <input type="text" name="bobot_dosen" id="bobot_dosen" class="text-input" maxlength="3" size="2"  style="width:10%; background-color: #E0E0E0;" value="<?php echo $kp->bobot_matkul;?>" readonly>         
             </td>
         </tr>
         <tr>
@@ -343,7 +355,7 @@
                          <tr>
             <td class="left_column">Nama Dosen <font color="#FF0000">*</font></td>
             <td>: <input type="text" name="nama_dosen" id="nama_dosen2" class="validate[required] text-input" maxlength="50" size="50" style="width:80%" required="" value="<?php echo $i->nama_dosen; ?>">
-              <input type="hidden" name="id_dosen" id="id_dosen2" class="validate[required] text-input" maxlength="20" size="40" style="width:80%" required=""></td>
+              <input type="hidden" name="id_dosen" id="id_dosen2" class="validate[required] text-input" maxlength="20" size="40" style="width:80%" required="" value="<?php echo $i->id_dosen; ?>"></td>
         </tr> 
         <tr>
             <td class="left_column">Rencana</td>
@@ -427,6 +439,10 @@
               <input type="hidden" name="prodi" id="prodi" class="validate[required] text-input" maxlength="20" size="40" style="width:80%" required="">
 
             <input type="hidden" name="id_kp" id="id_kp" class="validate[required] text-input" maxlength="20" size="40" style="width:80%" value="<?php echo $this->uri->segment(3); ?>">
+
+            <input type="hidden" name="total_mhs" id="total_mhs" class="validate[required] text-input" maxlength="20" size="40" style="width:80%" value="<?php echo $dsn['jumlah_mhs'] + 1; ?>">
+
+            
           </td>
                   <tr>
                     <td colspan="4"><button type="submit" class="btn btn-info">Simpan</button></td>
