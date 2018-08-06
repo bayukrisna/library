@@ -232,9 +232,9 @@
                       <label for="inputEmail3" class="col-sm-3 control-label">Mata Kuliah</label>
 
                       <div class="col-sm-8">
-                        <input type="text" class="form-control"  name="krs_mengulang" id="krs_mengulang" required="" value="" placeholder="Input Nama Mata Kuliah">
-                        <input type="hidden" class="form-control" readonly="" name="krs_id" id="krs_id" required="" value="">
-                        <input type="hidden" class="form-control" readonly="" name="kode_matkul" id="kode_matkul" required="" value="">
+                        <input type="text" class="form-control"  name="krs_mengulang" id="krs_mengulang" value="" placeholder="Input Nama Mata Kuliah">
+                        <input type="hidden" class="form-control" readonly="" name="krs_id" id="krs_id"  value="">
+                        <input type="hidden" class="form-control" readonly="" name="kode_matkul" id="kode_matkul" value="">
                       </div>
                     </div>
                     <div class="form-group">
