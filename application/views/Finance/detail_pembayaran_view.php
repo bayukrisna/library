@@ -265,27 +265,34 @@
         function get_biaya(p) {
                 var id_biaya = p;
                 var grade = document.getElementById('js_ranking').value;
+                var kategori = document.getElementById('jenis_pembayaran').value;
                 $.ajax({
                     url: '<?php echo base_url(); ?>finance/get_biaya_pembayaran/'+id_biaya,
                     data: 'id_biaya='+id_biaya,
                     type: 'GET',
                     dataType: 'html',
                     success: function(msg) {
-                      if(grade == 'Ranking 1'){
-                        var ea = parseInt(msg) * 0.40;
-                        var ae = parseInt(msg) - ea;
-                        document.getElementById('biayaa').value = ae;
-                      } else if(grade == 'Ranking 2'){
-                        var ea = parseInt(msg) * 0.40;
-                        var ae = parseInt(msg) - ea;
-                        document.getElementById('biayaa').value = ae;
-                      } else if(grade == 'Ranking 3'){
-                        var ea = parseInt(msg) * 0.25;
-                        var ae = parseInt(msg) - ea;
-                        document.getElementById('biayaa').value = ae;
+                      if (kategori == 'Angsuran Tahun 1'){
+                          if(grade == 'Ranking 1'){
+                          var ea = parseInt(msg) * 0.40;
+                          var ae = parseInt(msg) - ea;
+                          document.getElementById('biayaa').value = ae;
+                        } else if(grade == 'Ranking 2'){
+                          var ea = parseInt(msg) * 0.40;
+                          var ae = parseInt(msg) - ea;
+                          document.getElementById('biayaa').value = ae;
+                        } else if(grade == 'Ranking 3'){
+                          var ea = parseInt(msg) * 0.25;
+                          var ae = parseInt(msg) - ea;
+                          document.getElementById('biayaa').value = ae;
+                        } else {
+                          document.getElementById('biayaa').value = msg;
+                        }
                       } else {
                         document.getElementById('biayaa').value = msg;
                       }
+
+                      
 
                     }
                 });
