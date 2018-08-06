@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 4.8.1
+-- version 4.8.2
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Aug 02, 2018 at 05:22 AM
--- Server version: 10.1.33-MariaDB
--- PHP Version: 7.1.18
+-- Generation Time: Aug 02, 2018 at 11:21 AM
+-- Server version: 10.1.34-MariaDB
+-- PHP Version: 7.2.7
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET AUTOCOMMIT = 0;
@@ -135,21 +135,28 @@ CREATE TABLE `tb_biaya` (
   `jenis_biaya` varchar(20) NOT NULL,
   `nama_biaya` varchar(25) NOT NULL,
   `jumlah_biaya` int(10) NOT NULL,
-  `periode` varchar(10) NOT NULL
+  `periode` varchar(10) NOT NULL,
+  `id_waktu` varchar(2) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `tb_biaya`
 --
 
-INSERT INTO `tb_biaya` (`id_biaya`, `jenis_biaya`, `nama_biaya`, `jumlah_biaya`, `periode`) VALUES
-('BS001', '', 'Ranking 1', 360000, '2019/2022'),
-('BS002', '', 'Ranking 2', 3900000, '2018/2019'),
-('BS003', '', 'Ranking 3', 4500000, '2018/2019'),
-('BS004', '', 'Non-Beasiswa', 6000000, '2018/2019'),
-('BS005', 'ANG 1', 'Angsuran 1', 2070000, '2018'),
-('BS006', 'ANG 1', 'Angsuran 2', 600000, '2018'),
-('BS007', 'ANG 1', 'Angsuran 3', 600000, '2018/2019');
+INSERT INTO `tb_biaya` (`id_biaya`, `jenis_biaya`, `nama_biaya`, `jumlah_biaya`, `periode`, `id_waktu`) VALUES
+('BS001', '', 'Ranking 1', 360000, '2019/2022', '1'),
+('BS002', '', 'Ranking 2', 3900000, '2018/2019', '1'),
+('BS003', '', 'Ranking 3', 4500000, '2018/2019', '1'),
+('BS004', '', 'Non-Beasiswa', 6000000, '2018/2019', '1'),
+('BS005', 'Angsuran Tahun 1', 'Angsuran 1', 2070000, '2018', '1'),
+('BS006', 'Angsuran Tahun 1', 'Angsuran 2', 600000, '2018', '1'),
+('BS007', 'Angsuran Tahun 1', 'Angsuran 3', 600000, '2018/2019', '1'),
+('BS008', 'Angsuran Tahun 1', 'Angsuran 4', 600000, '2018/2019', '1'),
+('BS009', 'Angsuran Tahun 1', 'Angsuran 5', 600000, '2018/2019', '1'),
+('BS010', 'Angsuran Tahun 1', 'Angsuran 6', 600000, '2018/2019', '1'),
+('BS011', 'Angsuran Tahun 1', 'Angsuran 7', 600000, '2018/2019', '1'),
+('BS012', 'Angsuran Tahun 1', 'Angsuran 8', 600000, '2018/2019', '1'),
+('BS013', 'Angsuran Tahun 1', 'Angsuran 9', 600000, '2018/2019', '1');
 
 -- --------------------------------------------------------
 
@@ -237,6 +244,28 @@ CREATE TABLE `tb_dosen` (
 INSERT INTO `tb_dosen` (`id_dosen`, `nama_dosen`, `kode_dosen`, `no_hp`, `keterangan`) VALUES
 (1, 'Dr. Ir. Agus Susanto, MM', 'AS', '2147483647', 'Keterangan saja'),
 (2, 'bella swan', 'bs', '876', 'wdwd');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `tb_grade`
+--
+
+CREATE TABLE `tb_grade` (
+  `id_grade` int(11) NOT NULL,
+  `grade` varchar(10) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `tb_grade`
+--
+
+INSERT INTO `tb_grade` (`id_grade`, `grade`) VALUES
+(1, 'Ranking 1'),
+(2, 'Ranking 2'),
+(3, 'Ranking 3'),
+(4, 'Grade A'),
+(5, 'Grade B');
 
 -- --------------------------------------------------------
 
@@ -536,19 +565,20 @@ CREATE TABLE `tb_mahasiswa` (
   `id_angkatan` varchar(7) NOT NULL,
   `id_hasil_tes` varchar(20) NOT NULL,
   `id_sekolah` varchar(10) NOT NULL,
-  `id_waktu` int(11) NOT NULL
+  `id_waktu` int(11) NOT NULL,
+  `id_grade` varchar(12) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `tb_mahasiswa`
 --
 
-INSERT INTO `tb_mahasiswa` (`id_mahasiswa`, `nama_mahasiswa`, `nim`, `status_mahasiswa`, `id_prodi`, `id_konsentrasi`, `id_angkatan`, `id_hasil_tes`, `id_sekolah`, `id_waktu`) VALUES
-('436546', 'Hiltons', '4', 'Aktif', 'PR001', 'KO003', '1', 'TES0002', 'SE002', 1),
-('4546', 'Lala', '354', 'Nilai Kosong', 'PR002', 'KO006', '1', 'TES0005', 'SE001', 1),
-('5435', 'Taeyeon', '32424', 'Aktif', 'PR001', 'KO003', '1', 'TES0003', 'SE001', 2),
-('876543', 'Cris', '798', 'Aktif', 'PR001', 'KO003', '1', 'TES0004', 'SE002', 2),
-('97865', 'Ariana', '3253', 'Aktif', 'PR002', 'KO006', '2', 'TES0001', 'SE002', 1);
+INSERT INTO `tb_mahasiswa` (`id_mahasiswa`, `nama_mahasiswa`, `nim`, `status_mahasiswa`, `id_prodi`, `id_konsentrasi`, `id_angkatan`, `id_hasil_tes`, `id_sekolah`, `id_waktu`, `id_grade`) VALUES
+('436546', 'Hiltons', '4', 'Aktif', 'PR001', 'KO003', '1', 'TES0002', 'SE002', 1, ''),
+('4546', 'Lala', '354', 'Nilai Kosong', 'PR002', 'KO006', '1', 'TES0005', 'SE001', 1, ''),
+('5435', 'Taeyeon', '32424', 'Aktif', 'PR001', 'KO003', '1', 'TES0003', 'SE001', 2, ''),
+('876543', 'Cris', '798', 'Aktif', 'PR001', 'KO003', '1', 'TES0004', 'SE002', 2, '2'),
+('97865', 'Ariana', '3253', 'Aktif', 'PR002', 'KO006', '2', 'TES0001', 'SE002', 1, '');
 
 -- --------------------------------------------------------
 
@@ -587,61 +617,11 @@ INSERT INTO `tb_matkul` (`kode_matkul`, `nama_matkul`, `id_prodi`, `jenis_matkul
 --
 
 CREATE TABLE `tb_pembayaran` (
+  `kode_pembayaran` int(2) NOT NULL,
   `id_mahasiswa` varchar(7) NOT NULL,
-  `id_biaya` varchar(6) NOT NULL,
   `total_biaya` varchar(10) NOT NULL,
   `tanggal_pembayaran` varchar(20) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
-
---
--- Dumping data for table `tb_pembayaran`
---
-
-INSERT INTO `tb_pembayaran` (`id_mahasiswa`, `id_biaya`, `total_biaya`, `tanggal_pembayaran`) VALUES
-('MHS001', '412123', '300000', '25-01-2000'),
-('MHS001', '1231', '1231321', '25-01-2000'),
-('MHS001', 'BS005', '2070000', '27-07-2018'),
-('MHS001', 'BS005', '2070000', '27-07-2018'),
-('MHS001', 'BS006', '600000', '27-07-2018'),
-('MHS001', 'BS005', '2070000', '27-07-2018'),
-('MHS001', 'BS001', '360000', '27-07-2018'),
-('MHS001', 'BS006', '600000', '27-07-2018'),
-('MHS001', 'BS006', '600000', '27-07-2018'),
-('MHS001', 'BS005', '2070000', '27-07-2018'),
-('MHS001', 'BS001', '360000', '27-07-2018'),
-('MHS002', 'BS005', '2070000', '27-07-2018'),
-('MHS002', 'BS006', '600000', '27-07-2018'),
-('MHS005', '', '', '27-07-2018'),
-('MHS005', '', '', '27-07-2018'),
-('MHS002', '', '', '27-07-2018'),
-('MHS002', 'BS006', '600000', '27-07-2018'),
-('MHS003', 'BS005', '2070000', '27-07-2018'),
-('MHS005', 'BS005', '2070000', '27-07-2018'),
-('MHS001', 'BS005', '2070000', '27-07-2018'),
-('MHS005', 'BS006', '600000', '27-07-2018'),
-('MHS001', 'BS006', '600000', '27-07-2018'),
-('MHS002', 'BS006', '600000', '27-07-2018'),
-('MHS005', 'BS006', '600000', '27-07-2018'),
-('MHS005', 'BS006', '600000', '27-07-2018'),
-('MHS003', 'BS005', '2070000', '27-07-2018'),
-('MHS005', 'BS006', '600000', '27-07-2018'),
-('MHS003', 'BS005', '2070000', '27-07-2018'),
-('MHS003', 'BS001', '360000', '27-07-2018'),
-('MHS002', 'BS005', '2070000', '30-07-2018'),
-('MHS002', 'BS005', '2070000', '30-07-2018'),
-('MHS002', 'BS006', '600000', '30-07-2018'),
-('MHS002', '', '', '30-07-2018'),
-('MHS002', 'BS005', '2070000', '30-07-2018'),
-('MHS002', 'BS006', '600000', '30-07-2018'),
-('MHS003', 'BS006', '600000', '30-07-2018'),
-('MHS002', 'BS005', '2070000', '30-07-2018'),
-('MHS001', 'BS005', '2070000', '30-07-2018'),
-('MHS005', 'BS005', '2070000', '30-07-2018'),
-('MHS005', '', '', '30-07-2018'),
-('MHS005', 'BS005', '2070000', '30-07-2018'),
-('MHS005', '', '', '30-07-2018'),
-('MHS005', '', '', '30-07-2018'),
-('MHS001', 'BS005', '2070000', '30-07-2018');
 
 -- --------------------------------------------------------
 
@@ -847,8 +827,7 @@ CREATE TABLE `tb_waktu` (
 
 INSERT INTO `tb_waktu` (`id_waktu`, `waktu`) VALUES
 (1, 'Pagi'),
-(2, 'Pagi'),
-(3, 'Sore');
+(2, 'Sore');
 
 -- --------------------------------------------------------
 
@@ -928,6 +907,12 @@ ALTER TABLE `tb_detail_kurikulum`
 ALTER TABLE `tb_dosen`
   ADD PRIMARY KEY (`id_dosen`),
   ADD UNIQUE KEY `nama_dosen` (`nama_dosen`);
+
+--
+-- Indexes for table `tb_grade`
+--
+ALTER TABLE `tb_grade`
+  ADD PRIMARY KEY (`id_grade`);
 
 --
 -- Indexes for table `tb_hasil_tes`
@@ -1089,6 +1074,12 @@ ALTER TABLE `tb_detail_kurikulum`
 --
 ALTER TABLE `tb_dosen`
   MODIFY `id_dosen` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+
+--
+-- AUTO_INCREMENT for table `tb_grade`
+--
+ALTER TABLE `tb_grade`
+  MODIFY `id_grade` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 
 --
 -- AUTO_INCREMENT for table `tb_kelas_dosen`

@@ -8,6 +8,7 @@ class Kelas_perkuliahan extends CI_Controller {
 		parent::__construct();
 		$this->load->model('kelas_perkuliahan_model');
 		$this->load->model('daftar_ulang_model');
+		$this->load->model('finance_model');
 	}
 
 	public function index(){
@@ -32,11 +33,17 @@ class Kelas_perkuliahan extends CI_Controller {
 				$data['getProdi'] = $this->daftar_ulang_model->getProdi();
 				$data['getPeriode'] = $this->daftar_ulang_model->getPeriode();
 				$data['kp'] = $this->kelas_perkuliahan_model->detail_kp($id_kp);
-				
 				$data['dsn'] = $this->kelas_perkuliahan_model->jumlah_dosen($id_kp);
-				$id_dosen = $this->uri->segment(3);
-				$data['dosen'] = $this->kelas_perkuliahan_model->data_kelas_dosen($id_dosen);
+				$data['dosen'] = $this->kelas_perkuliahan_model->data_kelas_dosen($id_kp);
+				$data['mhs'] = $this->kelas_perkuliahan_model->data_kelas_mhs($id_kp);
 				$data['main_view'] = 'Kelas_perkuliahan/detail_kelas_perkuliahan_view';
+				$this->load->view('template', $data);
+	}
+
+	public function page_edit_kelas_mhs(){
+				$id_kp = $this->uri->segment(3);
+				$data['mhs'] = $this->kelas_perkuliahan_model->detail_kelas_mhs($id_kp);
+				$data['main_view'] = 'Kelas_perkuliahan/edit_kelas_mhs_view';
 				$this->load->view('template', $data);
 	}
 
@@ -112,7 +119,7 @@ class Kelas_perkuliahan extends CI_Controller {
             	redirect('kelas_perkuliahan');
 		} else {
 			$this->session->set_flashdata('message', 'Hapus Mata Kuliah Berhasil');
-            	redirect('kurikulum');
+            	redirect('kelas_perkuliahan');
 		}
 	}
 
@@ -120,13 +127,91 @@ class Kelas_perkuliahan extends CI_Controller {
 			$id_detail_kurikulum = $this->uri->segment(3);
 					if ($this->kelas_perkuliahan_model->edit_kelas_dosen($id_detail_kurikulum) == TRUE) {
 						$this->session->set_flashdata('message', '<div class="alert alert-success"> Edit dosen berhasil </div>');
-            			$data = $this->input->post('id_kp');
-            			redirect('kurikulum/detail_kurikulum/'.$data);
+            			$id_kp = $this->input->post('id_kp');
+            			redirect('kelas_perkuliahan/detail_kelas/'.$id_kp);
 					} else {
 						$this->session->set_flashdata('message', '<div class="alert alert-danger"> Edit Dosen Gagal </div>');
-            			redirect('kurikulum');
+            			redirect('kelas_perkuliahan');
 					}
-		} 
+		}
+
+		public function save_edit_kelas_mhs(){
+			$id_detail_kurikulum = $this->uri->segment(3);
+					if ($this->kelas_perkuliahan_model->edit_kelas_mhs($id_detail_kurikulum) == TRUE) {
+						$this->session->set_flashdata('message', '<div class="alert alert-success"> Edit Mahasiswa berhasil </div>');
+            			$id_kp = $this->input->post('id_kp');
+            			redirect('kelas_perkuliahan/detail_kelas/'.$id_kp);
+					} else {
+						$this->session->set_flashdata('message', '<div class="alert alert-danger"> Edit Mahasiswa Gagal </div>');
+            			redirect('kelas_perkuliahan');
+					}
+		}
+
+
+		function autocomplete2(){
+		$searchTerm = $_GET['term'];
+		//mendapatkan data yang sesuai dari tabel daftar_kota
+		$query = $this->db->query("SELECT * FROM tb_mahasiswa WHERE nama_mahasiswa LIKE '%".$searchTerm."%' ORDER BY nama_mahasiswa ASC");
+		foreach($query->result_array() as $row){
+		    $data[] = $row['nama_mahasiswa'];
+		    $data[] = $row['id_mahasiswa'];
+		    $data[] = $row['id_prodi'];
+
+		}
+		//return data json
+		echo json_encode($data);
+	}
+	public function get_autocomplete2(){
+		if(isset($_GET['term'])){
+			$result = $this->finance_model->autocomplete($_GET['term']);
+			if(count($result) > 0){
+				foreach ($result as $row) 
+					$result_array[] = array(
+						'label' => $row->nama_mahasiswa,
+						'id' => $row->id_mahasiswa,
+						'prodi' => $row->id_prodi);
+				echo json_encode($result_array);
+			
+			}
+		}
+	}
+
+	public function get_autocomplete3(){
+		if(isset($_GET['term'])){
+			$result = $this->kelas_perkuliahan_model->autocomplete2($_GET['term']);
+			if(count($result) > 0){
+				foreach ($result as $row) 
+					$result_array[] = array(
+						'label' => $row->nama_mahasiswa,
+						'id' => $row->id_mahasiswa,
+						'angkatan' => $row->angkatan,
+						'nim' => $row->nim,
+						'jenis_kelamin' => $row->jenis_kelamin,
+						'id_prodi' => $row->nama_prodi);
+				echo json_encode($result_array);
+			
+			}
+		}
+	}  
+
+	public function simpan_kelas_mhs()
+	{
+			if($this->kelas_perkuliahan_model->simpan_kelas_mhs() == TRUE){
+				$this->session->set_flashdata('message', '<div class="alert alert-success"> Tambah Mahasiswa Berhasil </div>');
+				$id_kp = $this->input->post('id_kp');
+            	redirect('kelas_perkuliahan/detail_kelas/'.$id_kp);
+			} 
+	}
+
+	public function hapus_kelas_mhs(){
+		$id_detail_kurikulum = $this->uri->segment(3);
+		if ($this->kelas_perkuliahan_model->hapus_kelas_mhs($id_detail_kurikulum) == TRUE) {
+			$this->session->set_flashdata('message', '<div class="alert alert-success"> Hapus Mahasiswa Berhasil </div>');
+            	redirect('kelas_perkuliahan');
+		} else {
+			$this->session->set_flashdata('message', '<div class="alert alert-danger"> Hapus Mahasiswa Gagal </div>');
+		}
+	}
 
 
 

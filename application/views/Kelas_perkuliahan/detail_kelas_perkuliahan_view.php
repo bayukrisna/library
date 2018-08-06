@@ -1,9 +1,10 @@
+        <?php echo $this->session->flashdata('message');?>
         <div class="box">
         <table class="table">
         <tbody><tr>
             <td class="left_column" width="20%">Program Studi <font color="#FF0000">*</font></td>
             <td colspan="3" width="20%">:  
-			<?php echo $kp->nama_prodi; ?>			</td>
+      <?php echo $kp->nama_prodi; ?>      </td>
 
       <td class="left_column">Mata Kuliah  <font color="#FF0000">*</font></td>
             <td colspan="3">: 
@@ -28,10 +29,10 @@
 
       <td class="left_column">Bobot Tatap Muka</td>
             <td colspan="3">: <?php echo $kp->bobot_tatap_muka; ?>   sks</td>
-        	
-		</tr>
-				 <tr>
-        	<td class="left_column">Bahasan</td>
+          
+    </tr>
+         <tr>
+          <td class="left_column">Bahasan</td>
             <td colspan="3">: 
       &nbsp;<?php echo $kp->bahasan; ?> </td>
       <td class="left_column">Bobot Praktikum</td>
@@ -39,7 +40,7 @@
 
         </tr>
         <tr>
-        	 <td class="left_column">Tanggal Mulai Efektif</td>
+           <td class="left_column">Tanggal Mulai Efektif</td>
             <td colspan="3">:
         &nbsp;    <?php echo $kp->tgl_mulai; ?>          </td>
         <td class="left_column">Bobot Praktek Lapangan</td>
@@ -47,7 +48,7 @@
 
         </tr>
         <tr>
-        	<td class="left_column">Tanggal Akhir Efektif 
+          <td class="left_column">Tanggal Akhir Efektif 
          </td>
          <td colspan="3">:
         &nbsp;     <?php echo $kp->tgl_akhir; ?>        </td>
@@ -60,19 +61,29 @@
 <div class="">
 
             <?php if( $dsn['dosen'] != 1 OR 0) echo '
-             <a class="btn btn-primary pull-right"  data-toggle="modal" data-target="#modal_tambah"><i class="fa fa-plus"></i> Tambah Dosen</a><br><br>
+             <a class="btn btn-primary pull-right"  data-toggle="modal" data-target="#modal_tambah"><i class="fa fa-plus"></i> Tambah Dosen</a>
             
             '; else echo '
              
             ';
             ?>
 
+             <?php if( $dsn['jumlah_mhs'] <= 39) echo '
+             <a class="btn btn-primary pull-right"  data-toggle="modal" data-target="#modal_tambah_mhs"><i class="fa fa-plus"></i> Tambah Mahasiswa</a>
+            
+            '; else echo '
+             
+            ';
+            ?>
+
+             <a class="btn btn-primary pull-right" style="margin-right: 10px"  href="<?php echo base_url('kelas_perkuliahan'); ?>"></i> Kembali </a> <br> <br>
+
           </div> <br>
     <div class="nav-tabs-custom">
             <ul class="nav nav-tabs">
               <li class="active"><a href="#tab_1" data-toggle="tab">Dosen Pengajar</a></li>
               <li><a href="#tab_2" data-toggle="tab">Mahasiswa KRS / Peserta Kelas</a></li>
-              <li><a href="#tab_3" data-toggle="tab">Tab 3</a></li>
+              <!-- <li><a href="#tab_3" data-toggle="tab">Tab 3</a></li> -->
             </ul>
             <div class="tab-content">
               <div class="tab-pane active" id="tab_1">
@@ -120,7 +131,8 @@
                   <td>'.$data->jenis_evaluasi.'</td>
                   <td>
                         <a href="'.base_url('kelas_perkuliahan/hapus_kelas_dosen/'.$data->id_kelas_dosen).'" class="btn btn-danger  btn-sm" onclick="return confirm('.$alert.')"><i class="glyphicon glyphicon-trash"></i><span class="tooltiptext">Hapus Kurikulum</span></a>
-                         <a class="btn btn-warning  btn-sm" data-toggle="modal" data-target="#modal_edit"><i class="glyphicon glyphicon-pencil"></i><span class="tooltiptext">Edit Kurikulum</span></a>
+
+                         <a class="btn btn-warning  btn-sm" data-toggle="modal" data-target="#modal_edit'.$data->id_kelas_dosen.'"><i class="glyphicon glyphicon-pencil"></i><span class="tooltiptext">Edit Kurikulum</span></a>
                   </td>
 
                 ' ;
@@ -162,22 +174,37 @@
                     <th width="10%">NIM</th>
                     <th>Nama Mahasiwa</th>
                     <th>L/P</th>
-                    <th>Jurusan</th>
+                    <th>Prodi</th>
                     <th>Angkatan</th>
-                    <th></th>
+                    <th>Aksi</th>
                   <!-- <th>Aksi</th> -->
                 </tr>
                 </thead>
                 <tbody> 
-                    <tr>
-                        <td style="text-align:center">1</td>
-                        <td>171711120731</td>
-                        <td>GITA SAFITRI</td>
-                        <td>P</td>
-                        <td>Akuntansi</td>
-                        <td>2017</td>
-                        <td>
-                        </td>
+                    <?php 
+                $no = 0;
+                 $alert = "'Apakah anda yakin menghapus data ini ?'";
+                foreach ($mhs as $data) {
+
+                  
+                  echo '
+                  
+                <tr>
+                  <td>'.++$no.'</td>
+                  <td>'.$data->nim.'</a></td>
+                  <td>'.$data->nama_mahasiswa.'</td>
+                  <td>'.$data->jenis_kelamin.'</td>
+                  <td>'.$data->nama_prodi.'</td>
+                  <td>'.$data->angkatan.'</td>
+                  <td>
+                        <a href="'.base_url('kelas_perkuliahan/hapus_kelas_mhs/'.$data->id_kelas_mhs).'" class="btn btn-danger  btn-sm" onclick="return confirm('.$alert.')"><i class="glyphicon glyphicon-trash"></i><span class="tooltiptext">Hapus</span></a>
+
+                         <a href="'.base_url('kelas_perkuliahan/page_edit_kelas_mhs/'.$data->id_kelas_mhs).'" class="btn btn-warning btn-sm"><i class="glyphicon glyphicon-pencil"></i><span class="tooltiptext">Edit</span></a>
+                  </td>
+
+                ' ;
+              }
+              ?>
                         
                     </tr>
                 </tbody>
@@ -193,7 +220,7 @@
     </section>
               </div>
               <!-- /.tab-pane -->
-              <div class="tab-pane" id="tab_3">
+              <!--<div class="tab-pane" id="tab_3">
                 Lorem Ipsum is simply dummy text of the printing and typesetting industry.
                 Lorem Ipsum has been the industry's standard dummy text ever since the 1500s,
                 when an unknown printer took a galley of type and scrambled it to make a type specimen book.
@@ -201,7 +228,7 @@
                 remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset
                 sheets containing Lorem Ipsum passages, and more recently with desktop publishing software
                 like Aldus PageMaker including versions of Lorem Ipsum.
-              </div>
+              </div> 
               <!-- /.tab-pane -->
             </div>
             <!-- /.tab-content -->
@@ -311,17 +338,19 @@
                 <div class="modal-body">
 
                     <div class="form-group">
-                      <?php echo form_open('kelas_perkuliahan/simpan_kelas_dosen/'.$i->id_kelas_dosen); ?>
+                      <?php echo form_open('kelas_perkuliahan/edit_kelas_dosen/'.$i->id_kelas_dosen); ?>
                       <table class="table">
                          <tr>
             <td class="left_column">Nama Dosen <font color="#FF0000">*</font></td>
-            <td>: <input type="text" name="nama_dosen" id="nama_dosen" class="validate[required] text-input" maxlength="50" size="50" style="width:80%" required="" value="<?php echo $i->nama_dosen; ?>">
-              <input type="hidden" name="id_dosen" id="id_dosen" class="validate[required] text-input" maxlength="20" size="40" style="width:80%" required=""></td>
+            <td>: <input type="text" name="nama_dosen" id="nama_dosen2" class="validate[required] text-input" maxlength="50" size="50" style="width:80%" required="" value="<?php echo $i->nama_dosen; ?>">
+              <input type="hidden" name="id_dosen" id="id_dosen2" class="validate[required] text-input" maxlength="20" size="40" style="width:80%" required=""></td>
         </tr> 
         <tr>
             <td class="left_column">Rencana</td>
             <td>: 
-            <input type="text" name="rencana" id="rencana" class="text-input" maxlength="3" size="2"  style="width:10%" value="<?php echo $i->rencana; ?>" onkeyup="sum();">       
+            <input type="text" name="rencana" id="rencana" class="text-input" maxlength="3" size="2"  style="width:10%" value="<?php echo $i->rencana; ?>" onkeyup="sum();">   
+
+            <input type="hidden" name="id_kp" id="id_kp" class="text-input" maxlength="3" size="2"  style="width:10%" value="<?php echo $i->id_kp; ?>" onkeyup="sum();">      
             </td>
         </tr>
         <tr>
@@ -347,6 +376,7 @@
                   <tr>
                     <td colspan="4"><button type="submit" class="btn btn-info">Simpan</button></td>
                   </tr>
+                   <?php endforeach;?>
               <?php echo form_close();?>
 
                         </table>
@@ -357,3 +387,74 @@
             </div>
             </div>
         </div>
+
+        <link rel="stylesheet" href="//code.jquery.com/ui/1.12.0/themes/smoothness/jquery-ui.css">
+  <script src="//code.jquery.com/jquery-1.12.4.min.js"></script>
+  <script src="//code.jquery.com/ui/1.12.0/jquery-ui.min.js"></script>
+  <script>
+       document.getElementById("nama_dosen2").style.visibility = 'visible';
+
+    jQuery(document).ready(function($){
+    $('#nama_dosen2').autocomplete({
+      source:'<?php echo base_url(); ?>kelas_perkuliahan/get_autocomplete', 
+      minLength:1,
+      select: function(event, ui){
+        $('#nama_dosen2').val(ui.item.label)  ;
+        $('#id_dosen2').val(ui.item.id);
+      }
+    });    
+  });
+
+  </script>
+
+  <div class="modal fade" id="modal_tambah_mhs" >
+            <div class="modal-dialog">
+            <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">x</button>
+                <h3 class="modal-title" id="myModalLabel">Tambah Mahasiswa</h3>
+            </div>
+                <div class="modal-body">
+
+                    <div class="form-group">
+                      <?php echo form_open('kelas_perkuliahan/simpan_kelas_mhs'); ?>
+                      <table class="table">
+                         <tr>
+            <td class="left_column">Nama Mahasiswa <font color="#FF0000">*</font></td>
+            <td>: <input type="text" name="nama_mahasiswa" id="nama_mahasiswa" class="validate[required] text-input" maxlength="50" size="50" style="width:80%" required="">
+              <input type="hidden" name="id_mahasiswa" id="id_mahasiswa" class="validate[required] text-input" maxlength="20" size="40" style="width:80%" required="">
+
+              <input type="hidden" name="prodi" id="prodi" class="validate[required] text-input" maxlength="20" size="40" style="width:80%" required="">
+
+            <input type="hidden" name="id_kp" id="id_kp" class="validate[required] text-input" maxlength="20" size="40" style="width:80%" value="<?php echo $this->uri->segment(3); ?>">
+          </td>
+                  <tr>
+                    <td colspan="4"><button type="submit" class="btn btn-info">Simpan</button></td>
+                  </tr>
+              <?php echo form_close();?>
+
+                        </table>
+
+                    </div>
+
+                </div>
+            </div>
+            </div>
+        </div>
+
+         <script>
+
+       document.getElementById("nama_mahasiswa").style.visibility = 'visible';
+    jQuery(document).ready(function($){
+    $('#nama_mahasiswa').autocomplete({
+      source:'<?php echo base_url(); ?>kelas_perkuliahan/get_autocomplete2', 
+      minLength:1,
+      select: function(event, ui){
+        $('#nama_mahasiswa').val(ui.item.label);
+        $('#id_mahasiswa').val(ui.item.id);
+        $('#prodi').val(ui.item.prodi);
+      }
+    });    
+  });
+  
+  </script>
