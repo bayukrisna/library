@@ -77,7 +77,7 @@
                   <td>'.++$no.'</td>
                   <td>'.$data->nama_mahasiswa.'</td>
                   <td>'.$data->jenis_biaya.'</td>
-                  <td>'.$data->nama_biaya.'</td>
+                  <td>'.$data->nama_biaya.' '.$data->kode_matkul.'</td>
                   <td>'.$data->total_biaya.'</td>
                   <td>'.$data->tanggal_pembayaran.'</td>
                   
