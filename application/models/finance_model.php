@@ -266,6 +266,7 @@ class Finance_model extends CI_Model {
             'id_mahasiswa'    => $item['idmhsa'],
             'id_biaya'    => $item['id'],
             'kode_matkul'    => $item['kdmatkul'],
+            't_biaya'    => $item['price'],
             'tanggal_pembayaran'       => $item['tgl']
           );
           $this->db->insert('tb_detail_pembayaran', $data);
