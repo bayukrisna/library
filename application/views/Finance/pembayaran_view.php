@@ -7,17 +7,17 @@
           <div class="box box-info">
             <!-- /.box-header -->
             <!-- form start --><br>
-            <?php echo form_open('finance/detail_pembayaran'); ?>
+            <form>
             <div class="form-horizontal">
               <div class="box-body">
                 <div class="form-group">
-                  <label for="inputEmail3" class="col-sm-2 control-label">Nama Mahasiswa</label>
+                  <label for="inputEmail3" class="col-sm-2 control-label">NIM</label>
 
                   <div class="col-sm-6">
                     <div class="input-group input-group-sm">
                         <input type="text" class="form-control" id="nama_mhs" name="nama_mhs" value="">
                     <span class="input-group-btn">
-                        <button type="submit" class="btn btn-info">Cari</button>
+                        <p class="btn btn-info" onclick="cari()">Cari</p>
                     </span>
                     </div>
                     <input type="hidden" id="id_mahasiswa" name="id_mahasiswa" >
@@ -31,8 +31,12 @@
               <!-- /.box-footer -->
 
             </form>
+           
           </div>
       </div>
+       <div class="box" id="show_data">
+            </div>
+
   <script>
 
   	   document.getElementById("nama_mhs").style.visibility = 'visible';
@@ -43,10 +47,23 @@
 	    select: function(event, ui){
 	      $('#nama_mhs').val(ui.item.label);
 	      $('#id_mahasiswa').val(ui.item.id);
+        
 	    }
 	  });    
 	});
-  
+
+    function cari(){
+      $.ajax({
+                    url: '<?php echo base_url(); ?>finance/cek_mahasiswa/',
+                    data: 'id_mahasiswa='+$("#id_mahasiswa").val(),
+                    type: 'GET',
+                    dataType: 'html',
+                    success:function(data){
+                    $("#show_data").html(data);
+                    },
+                    error:function (){}
+                });
+    }
   </script>
     
         

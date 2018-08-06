@@ -21,7 +21,7 @@ class Finance_model extends CI_Model {
      $this->db->select('*');
      $this->db->from('tb_mahasiswa');
      // $this->db->join('tb_pembayaran','tb_mahasiswa.id_mahasiswa=tb_pembayaran.id_mahasiswa');
-     $this->db->like('tb_mahasiswa.nama_mahasiswa',$nama);
+     $this->db->like('tb_mahasiswa.nim',$nama);
      $query = $this->db->get();
      return $query->result();
   }
@@ -190,6 +190,138 @@ class Finance_model extends CI_Model {
             
         }
 
+    }
+
+    public function all(){
+    //query semua record di table products
+    $hasil = $this->db->get('tb_biaya');
+    if($hasil->num_rows() > 0){
+      return $hasil->result();
+    } else {
+      return array();
+    }
+  }
+  
+  public function find($id){
+    //Query mencari record berdasarkan ID-nya
+    $hasil = $this->db->where('id_biaya', $id)
+              ->limit(1)
+              ->get('tb_biaya');
+    if($hasil->num_rows() > 0){
+      return $hasil->row();
+    } else {
+      return array();
+    }
+  }
+  public function simpan_cart()
+    {
+        $data = array(
+             'kode_pembayaran'      => $this->input->post('kode_pembayaran'),
+             'id_mahasiswa'   => $this->input->post('id_mhsa'),
+             'id_biaya'   => $this->input->post('pembayaran'),
+             'tanggal_pembayaran'    => $this->input->post('tanggal_pembayaran')
+            
+        );
+    
+        $this->db->insert('tb_detail_pembayaran', $data);
+
+        if($this->db->affected_rows() > 0){
+            
+                return true;
+        } else {
+            return false;
+            
+        }
+
+    }
+    public function data_pembayaran_mahasiswa($ya){
+    $this->db->select('*');
+     $this->db->from('tb_mahasiswa');
+     $this->db->join('tb_detail_pembayaran','tb_detail_pembayaran.id_mahasiswa=tb_mahasiswa.id_mahasiswa');
+     $this->db->join('tb_biaya','tb_biaya.id_biaya=tb_detail_pembayaran.id_biaya');
+     $this->db->join('tb_pembayaran','tb_pembayaran.kode_pembayaran=tb_detail_pembayaran.kode_pembayaran');
+     $query = $this->db->get();
+     return $query->result();
+    }
+
+    public function simpan_pembayaran()
+    {
+          $invoice = array(
+             'kode_pembayaran'      => $this->input->post('kodeku_pembayaran'),
+             'id_mahasiswa'   => $this->input->post('id_mhsa'),
+             'total_biaya'   => $this->input->post('total_biaya'),
+             'tanggal_pembayaran'    => $this->input->post('tanggal_pembayaran')
+            
+        );
+        $this->db->insert('tb_pembayaran', $invoice);
+        
+        // put ordered items in orders table
+        foreach($this->cart->contents() as $item){
+          $data = array(
+            'kode_pembayaran'    => $item['kode'],
+            'id_mahasiswa'    => $item['idmhsa'],
+            'id_biaya'    => $item['id'],
+            'tanggal_pembayaran'       => $item['tgl']
+          );
+          $this->db->insert('tb_detail_pembayaran', $data);
+        }
+        
+        return TRUE;
+
+    }
+    function cek_mahasiswa($id_mahasiswa){
+      $query = $this->db->select('*')
+                ->from('tb_mahasiswa')
+                ->join('tb_bio','tb_bio.id_mahasiswa=tb_mahasiswa.id_mahasiswa')
+                ->join('tb_kontak','tb_kontak.id_mahasiswa=tb_mahasiswa.id_mahasiswa')
+                ->join('tb_prodi','tb_prodi.id_prodi=tb_mahasiswa.id_prodi')
+                ->join('tb_grade','tb_grade.id_grade=tb_mahasiswa.id_grade')
+                ->join('tb_waktu','tb_waktu.id_waktu=tb_mahasiswa.id_waktu')
+                ->where('tb_mahasiswa.id_mahasiswa', $id_mahasiswa)
+                ->get();
+      $row = $query->row();
+                if ($query->num_rows() > 0)
+                {
+                    echo '<div class="box-body">
+              <table class="table">
+        <tr>
+
+
+            <td width="15%" class="left_column">Nama Mahasiswa <font color="#FF0000">*</font></td>
+            <td>:  '.$row->nama_mahasiswa.' </td>
+      
+           <td class="left_column" width="25%">NIM <font color="#FF0000">*</font></td>
+            <td>:  '.$row->nim.'
+                                     </td>
+                                  
+           
+            </td>
+        </tr>
+        <tr>
+            <td class="left_column" width="15%" value=>Jenis Kelamin <font color="#FF0000">*</font></td>
+            <td width="25%">: '.$row->jenis_kelamin.'       </td>
+            <td class="left_column" width="15%">Ranking <font color="#FF0000">*</font></td>
+            <td>: '.$row->grade.'
+                                     </td>
+        </tr>
+        <tr>
+            <td class="left_column">Nomor Telephone</td>
+            <td>: '.$row->no_telepon.'</td>
+            <td class="left_column">Program Studi <font color="#FF0000">*</font></td>
+            <td>: '.$row->nama_prodi.'</td>
+          </tr>
+           <tr>
+            <td class="left_column">Kelas </td>
+            <td>: '.$row->waktu.'</td>
+            <td colspan="2"><a href="'.base_url('finance/detail_pembayaran/'.$row->id_mahasiswa).'" class="btn btn-warning btn-sm">Lihat</a></td>
+          </tr>
+        </table>
+            </div>';
+
+                } else{
+                echo '<span class="label label-success"> NIM  Available.</span>';
+                
+                }
     }
 }
 

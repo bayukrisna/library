@@ -25,26 +25,68 @@ class Finance extends CI_Controller {
 	}
 	public function detail_pembayaran()
 	{
-		$ea = $this->input->post('nama_mhs');
-		$ya = $this->input->post('id_mahasiswa');
+		$ea = $this->uri->segment(3);
+		$ya = $this->uri->segment(3);
 		$dataku = $this->finance_model->get_data_detail_mahasiswa($ya);
-		if($dataku->id_mahasiswa == null){
-			$ku = "Non Beasiswa";
-		} else {
-			$ku = $dataku->id_mahasiswa;
-		}
-		if ($ea == null){
-			redirect('finance/gg');
-		} else {
-			$data['mahasiswa']=$ea;
-			$data['data']= $dataku;
-			$data['dataku']= $ku;
-			$data['kodeunik'] = $this->finance_model->buat_kode();
+		$data['mahasiswa']=$ea;
+		$data['data']= $dataku;
+		$data['data_pembayaran']= $this->finance_model->data_pembayaran_mahasiswa($ya);
+		$data['kodeunik'] = $this->finance_model->buat_kode();
 		$data['getJenisPembayaran'] = $this->biaya_sekolah_model->getJenisPembayaran();
 		$data['main_view'] = 'Finance/detail_pembayaran_view';
 		$this->load->view('template', $data);	
-		}
 		
+		
+	}
+	public function cek_mahasiswa(){
+    $id_mahasiswa = $this->input->get('id_mahasiswa');
+    $this->finance_model->cek_mahasiswa($id_mahasiswa);
+  }
+  public function add_to_cart()
+	{
+		$ea = $this->uri->segment(3);
+		$product_id = $this->input->post('pembayaran');
+		$product = $this->finance_model->find($product_id);
+		$data = array(
+					   'id'      => $this->input->post('pembayaran'),
+					   'qty'     => 1,
+					   'price'   => $this->input->post('biaya'),
+					   'name'    => $this->input->post('nama_mhsa'),
+					   'idmhsa'    => $this->input->post('id_mhsa'),
+					   'tgl'    => $this->input->post('tanggal_pembayaran'),
+					   'pembayaran'    => $product->nama_biaya,
+					   'jp'    => $this->input->post('jenis_pembayaran'),
+					   'kode'    => $this->input->post('kode_pembayaran')
+					);
+
+		$this->cart->insert($data);
+		redirect(base_url('finance/detail_pembayaran/'.$ea));
+	}
+	public function simpan_pembayaran()
+	{
+			if($this->finance_model->simpan_pembayaran() == TRUE){
+				$this->cart->destroy();
+				$ea = $this->uri->segment(3);
+            	redirect(base_url('finance/detail_pembayaran/'.$ea));
+			} 
+	}
+	public function clear_cart()
+	{
+		$this->cart->destroy();
+
+		$ea = $this->uri->segment(3);
+		redirect(base_url('finance/detail_pembayaran/'.$ea));
+	}
+	public function tambah_cart()
+	{
+		$data = array(
+            'id_mahasiswa'                        => $this->input->post('id_mhsa'),
+            'kode_pembayaran'                        => $this->input->post('kode_pembayaran'),
+            'total_biaya'                 => $this->input->post('biaya'),
+            'tanggal_pembayaran'          => $this->input->post('tanggal_pembayaran')
+            
+        );
+		$this->cart->insert($data);
 	}
 	function data_pembayaran_mahasiswa(){
 		
@@ -81,7 +123,7 @@ class Finance extends CI_Controller {
 			if(count($result) > 0){
 				foreach ($result as $row) 
 					$result_array[] = array(
-						'label' => $row->nama_mahasiswa,
+						'label' => $row->nim.' - '.$row->nama_mahasiswa,
 						'id' => $row->id_mahasiswa);
 				echo json_encode($result_array);
 			
@@ -143,9 +185,9 @@ class Finance extends CI_Controller {
 		// $layanan =$this->input->post('layanan');
 		$id_biaya = $param;
 		$result = $this->finance_model->get_biaya_pembayaran($id_biaya);
-		$option = "";
-		$option .= "<input readonly='' type='text' class='form-control' name='biaya' id='biayaa' value='".$result->jumlah_biaya."' >";
-		echo $option;
+		// $option = "";
+		// $option .= "<input readonly='' type='text' class='form-control' name='biaya' id='biayaa' value='".$result->jumlah_biaya."' >";
+		echo $result->jumlah_biaya;
 
 	}
 	public function tambah_pembayaran()
