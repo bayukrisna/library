@@ -1,3 +1,6 @@
+      <link rel="stylesheet" href="//code.jquery.com/ui/1.12.0/themes/smoothness/jquery-ui.css">
+      <script src="//code.jquery.com/jquery-1.12.4.min.js"></script>
+      <script src="//code.jquery.com/ui/1.12.0/jquery-ui.min.js"></script>
 <div class="box box-info">
             
             <div class="box-body">
@@ -32,6 +35,7 @@
            <tr>
             <td class="left_column">Kelas </td>
             <td>: <?php echo $data->waktu ?></td>
+            <input type="hidden" name="waktu" id="waktu" value="<?php echo $data->waktu ?>">
           </tr>
         </table>
             </div>
@@ -224,11 +228,21 @@
                         </select>
                       </div>
                     </div>
+                    <div class="form-group" id="myText2" style="display: none;">
+                      <label for="inputEmail3" class="col-sm-3 control-label">Mata Kuliah</label>
+
+                      <div class="col-sm-8">
+                        <input type="text" class="form-control"  name="krs_mengulang" id="krs_mengulang" required="" value="" placeholder="Input Nama Mata Kuliah">
+                        <input type="hidden" class="form-control" readonly="" name="krs_id" id="krs_id" required="" value="">
+                        <input type="hidden" class="form-control" readonly="" name="kode_matkul" id="kode_matkul" required="" value="">
+                      </div>
+                    </div>
                     <div class="form-group">
                       <label for="inputEmail3" class="col-sm-3 control-label">Biaya</label>
 
                       <div class="col-sm-8" id="biaya">
                         <input type="text" class="form-control" readonly="" name="biaya" id="biayaa" required="" value="">
+                        <input type="hidden" class="form-control" readonly="" name="biayaku" id="biayaku" required="" value="">
                       </div>
                     </div>
                     <button type="submit">Simpan</button>
@@ -246,14 +260,29 @@
           <!-- /.modal-dialog -->
         </div>
     
-<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+<!-- <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script> -->
 <script type="text/javascript">
+            jQuery(document).ready(function($){
+    $('#krs_mengulang').autocomplete({
+      source:'<?php echo base_url(); ?>kurikulum/get_autocomplete', 
+      minLength:1,
+      select: function(event, ui){
+        $('#krs_mengulang').val(ui.item.label)  ;
+        $('#krs_id').val(ui.item.bobot);
+        $('#kode_matkul').val(ui.item.id);
+        var ea = document.getElementById('biayaku').value ;
+        var ae = document.getElementById('krs_id').value;
+        var result = parseInt(ea) * parseInt(ae);
+        document.getElementById('biayaa').value = result;
+      }
+    });    
+  });
   function get_pembayaran(p) {
                 var jenis_biaya = p;
-
+                var waktu = document.getElementById("waktu").value;
                 $.ajax({
-                    url: '<?php echo base_url(); ?>finance/get_dropdown_pembayaran/'+jenis_biaya,
-                    data: 'jenis_biaya='+jenis_biaya,
+                    url: '<?php echo base_url(); ?>finance/get_dropdown_pembayaran/',
+                    data: 'jenis_biaya='+jenis_biaya+'&waktu='+waktu,
                     type: 'GET',
                     dataType: 'html',
                     success: function(msg) {
@@ -266,6 +295,11 @@
                 var id_biaya = p;
                 var grade = document.getElementById('js_ranking').value;
                 var kategori = document.getElementById('jenis_pembayaran').value;
+                if (kategori == 'KRS'){
+                  document.getElementById("myText2").style.display = "";
+                } else {
+                  document.getElementById("myText2").style.display = "none";
+                }
                 $.ajax({
                     url: '<?php echo base_url(); ?>finance/get_biaya_pembayaran/'+id_biaya,
                     data: 'id_biaya='+id_biaya,
@@ -288,8 +322,8 @@
                         } else {
                           document.getElementById('biayaa').value = msg;
                         }
-                      } else {
-                        document.getElementById('biayaa').value = msg;
+                      } else if(kategori == 'KRS'){
+                        document.getElementById('biayaku').value = msg;
                       }
 
                       

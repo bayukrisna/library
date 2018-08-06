@@ -149,10 +149,14 @@ class Finance_model extends CI_Model {
                 
                 }
     }
-     public function get_dropdown_pembayaran($data){
-      return $this->db->where('jenis_biaya',$data)
-              ->get('tb_biaya')
-              ->result();
+     public function get_dropdown_pembayaran($data, $waktu){
+      $this->db->select('*');
+     $this->db->from('tb_biaya');
+     $this->db->join('tb_waktu','tb_waktu.id_waktu=tb_biaya.id_waktu');
+     $this->db->where('tb_waktu.waktu', $waktu);
+     $this->db->where('tb_biaya.jenis_biaya', $data);
+     $query = $this->db->get();
+     return $query->result();
   }
   public function get_biaya_pembayaran($data){
       return $this->db->where('id_biaya',$data)
@@ -254,13 +258,13 @@ class Finance_model extends CI_Model {
             
         );
         $this->db->insert('tb_pembayaran', $invoice);
-        
         // put ordered items in orders table
         foreach($this->cart->contents() as $item){
           $data = array(
             'kode_pembayaran'    => $item['kode'],
             'id_mahasiswa'    => $item['idmhsa'],
             'id_biaya'    => $item['id'],
+            'kode_matkul'    => $item['kdmatkul'],
             'tanggal_pembayaran'       => $item['tgl']
           );
           $this->db->insert('tb_detail_pembayaran', $data);

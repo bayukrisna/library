@@ -55,7 +55,7 @@
     function cari(){
       $.ajax({
                     url: '<?php echo base_url(); ?>finance/cek_mahasiswa/',
-                    data: 'id_mahasiswa='+$("#id_mahasiswa").val(),
+                    data: 'id_mahasiswa='+document.getElementById("id_mahasiswa").value,
                     type: 'GET',
                     dataType: 'html',
                     success:function(data){

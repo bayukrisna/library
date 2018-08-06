@@ -32,7 +32,7 @@ class Finance extends CI_Controller {
 		$data['data']= $dataku;
 		$data['data_pembayaran']= $this->finance_model->data_pembayaran_mahasiswa($ya);
 		$data['kodeunik'] = $this->finance_model->buat_kode();
-		$data['getJenisPembayaran'] = $this->biaya_sekolah_model->getJenisPembayaran();
+		$data['getJenisPembayaran'] = $this->biaya_sekolah_model->getJenisPembayaran($dataku->waktu);
 		$data['main_view'] = 'Finance/detail_pembayaran_view';
 		$this->load->view('template', $data);	
 		
@@ -56,6 +56,7 @@ class Finance extends CI_Controller {
 					   'tgl'    => $this->input->post('tanggal_pembayaran'),
 					   'pembayaran'    => $product->nama_biaya,
 					   'jp'    => $this->input->post('jenis_pembayaran'),
+					   'kdmatkul'    => $this->input->post('kode_matkul'),
 					   'kode'    => $this->input->post('kode_pembayaran')
 					);
 
@@ -132,7 +133,6 @@ class Finance extends CI_Controller {
 	}
 
 
-
 	public function data_lunas()
 	{
 		$data['main_view'] = 'Finance/data_lunas_view';
@@ -168,10 +168,12 @@ class Finance extends CI_Controller {
 		$id = $this->input->post('id_daftar_ulang');
 		$this->finance_model->cek_id_daftar_ulang($id);
 	}
-	public function get_dropdown_pembayaran($param = NULL) {
+	public function get_dropdown_pembayaran() {
 		// $layanan =$this->input->post('layanan');
+		$param = $this->input->get('jenis_biaya');
+		$waktu = $this->input->get('waktu');
 		$jenis_biaya = urldecode($param);
-		$result = $this->finance_model->get_dropdown_pembayaran($jenis_biaya);
+		$result = $this->finance_model->get_dropdown_pembayaran($jenis_biaya, $waktu);
 		$option = "";
 		$option .= '<option value="">Pilih Pembayaran</option>';
 		foreach ($result as $data) {
