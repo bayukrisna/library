@@ -1,4 +1,4 @@
-        <div class="box box-info">
+<div class="box box-info">
             
             <div class="box-body">
               <table class="table">
@@ -6,11 +6,12 @@
 
 
             <td width="15%" class="left_column">Nama Mahasiswa <font color="#FF0000">*</font></td>
-            <td>:  <?php echo $mahasiswa ?> </td>
+            <td>:  <?php echo $data->nama_mahasiswa ?> </td>
       
            <td class="left_column" width="25%">NIM <font color="#FF0000">*</font></td>
             <td>:  <?php echo $data->id_mahasiswa ?>
                                      </td>
+                                     <input type="hidden" name="js_ranking" id="js_ranking" value="<?php echo $data->grade; ?>">
                                   
            
             </td>
@@ -62,8 +63,26 @@
                   <!-- <th>Aksi</th> -->
                 </tr>
                 </thead>
-                <tbody id="show_data"> 
+                <tbody> 
+                  <?php 
+                $no = 0;
+                foreach ($data_pembayaran as $data) {
+                  echo '
+                  
+                <tr>
+                  <td>'.++$no.'</td>
+                  <td>'.$data->nama_mahasiswa.'</td>
+                  <td>'.$data->jenis_biaya.'</td>
+                  <td>'.$data->nama_biaya.'</td>
+                  <td>'.$data->total_biaya.'</td>
+                  <td>'.$data->tanggal_pembayaran.'</td>
+                  
 
+       
+                ' ;
+                
+              }
+              ?>
                 </tbody>
               </table>
             </div>
@@ -75,6 +94,68 @@
       
       <!-- /.row -->
     </section>
+    <table class="table table-bordered table-striped table-hover">
+      <thead>
+        <tr>
+          <th>#</th>
+          <th>Nama Mahasiswa</th>
+          <th>Jenis Pembayaran</th>
+          <th>Pembayaran</th>
+          <th>Price</th>
+          <th>Subtotal</th>
+        </tr>
+      </thead>
+      <tbody>
+        <?php 
+          $i=0;
+          foreach ($this->cart->contents() as $items) : 
+          $i++;
+        ?>
+        <tr>
+          <td><?= $i?></td>
+          <td><?= $items['name'] ?></td>
+          <td><?= $items['jp'] ?></td>
+          <td><?= $items['pembayaran'] ?></td>
+          <td align="right"><?= number_format($items['price'],0,',','.') ?></td>
+          <td align="right"><?= number_format($items['subtotal'],0,',','.') ?></td>
+        </tr>
+        
+        <?php endforeach; ?>
+
+      </tbody>
+      <tfoot>
+        <tr>
+          <td align="right" colspan="5">Total </td>
+          <td align="right"><?= number_format($this->cart->total(),0,',','.'); ?></td>
+        </tr>
+      </tfoot>
+
+    </table>
+
+    <div align="center">
+        <?php echo form_open('finance/simpan_pembayaran/'.$this->uri->segment(3));?>
+                <?php 
+          $i=0;
+          foreach ($this->cart->contents() as $items) : 
+          $i++;
+        ?>
+                        <input type="hidden" class="form-control" id="kodeku_pembayaran" name="kodeku_pembayaran" value="<?= $items['kode'] ?>">
+                        <input type="hidden" class="form-control" id="id_mhsa" name="id_mhsa" value="<?= $items['idmhsa'] ?>">
+                        <input type="hidden" class="form-control" id="tanggal_pembayaran" name="tanggal_pembayaran" value="<?= $items['tgl'] ?>">
+                        <input type="hidden" class="form-control" id="total_biaya" name="total_biaya" value="<?= $this->cart->total() ?>">
+                <?php endforeach; ?>
+                <?php $cart_check = $this->cart->contents();
+                if(empty($cart_check)) {
+                echo '<button type="submit" class="btn btn-success" disabled>Simpan & Cetak</button>';
+                } else {
+                  echo '<button type="submit" class="btn btn-success">Simpan & Cetak</button>';
+                } ?> 
+                
+                <?= anchor('finance/clear_cart/'.$this->uri->segment(3),'Reset',['class'=>'btn btn-danger']) ?>         
+            <?php echo form_close();?>
+      
+    </div>
+
     <div class="modal fade" id="modal-default" >
           <div class="modal-dialog">
             <div class="modal-content">
@@ -86,8 +167,9 @@
               <div class="modal-body">
                 
                 <div class="form-horizontal">
-                <form method="post" class="form-pembayaran">
+                <?php echo form_open('finance/add_to_cart/'.$this->uri->segment(3));?>
                   <div class="box-body">
+                    <div class="box-body">
                     <div class="form-group">
                       <label for="inputEmail3" class="col-sm-3 control-label">Tgl Pembayaran</label>
 
@@ -100,21 +182,21 @@
                       <label for="inputEmail3" class="col-sm-3 control-label">Kode Pembayaran</label>
 
                       <div class="col-sm-8">
-                        <input type="text" class="form-control" id="id_mhsa" name="id_mhsa" value="<?= $kodeunik; ?>" placeholder="" readonly="">
+                        <input type="text" class="form-control" id="kode_pembayaran" name="kode_pembayaran" value="<?= $kodeunik; ?>" placeholder="" readonly="">
                       </div>
                     </div>
                     <div class="form-group">
                       <label for="inputEmail3" class="col-sm-3 control-label">ID Mahasiswa</label>
 
                       <div class="col-sm-8">
-                        <input type="text" class="form-control" id="id_mhsa" name="id_mhsa" value="<?php echo $data->id_mahasiswa ?>" placeholder="" readonly="">
+                        <input type="text" class="form-control" id="id_mhsa" name="id_mhsa" value="<?php echo $data->id_mahasiswa ?>" placeholder="" readonly >
                       </div>
                     </div>
                     <div class="form-group">
                       <label for="inputEmail3" class="col-sm-3 control-label">Nama Mahasiswa</label>
 
                       <div class="col-sm-8">
-                        <input type="text" class="form-control" id="nama_mhsa" value="<?php echo $mahasiswa ?>" placeholder="" readonly="">
+                        <input type="text" class="form-control" id="nama_mhsa" name="nama_mhsa" value="<?php echo $data->nama_mahasiswa ?>" placeholder="" readonly>
                       </div>
                     </div>
                     <div class="form-group">
@@ -146,14 +228,15 @@
                       <label for="inputEmail3" class="col-sm-3 control-label">Biaya</label>
 
                       <div class="col-sm-8" id="biaya">
-                        <input type="text" class="form-control" readonly="" id="biayaa" required="">
+                        <input type="text" class="form-control" readonly="" name="biaya" id="biayaa" required="" value="">
                       </div>
                     </div>
-                    <a class="tombol-simpan btn btn-info" >Simpan</a>
+                    <button type="submit">Simpan</button>
                   </div>
                   <!-- /.box-body -->
                   <!-- /.box-footer -->
-                  </form>
+                  <?php echo form_close();?>
+
                 </div>
           </div>
               </div>
@@ -164,70 +247,8 @@
         </div>
     
 <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
-
-<script>
-    tampil_data_mahasiswa();
-        function tampil_data_mahasiswa(){
-            var id_mahasiswa = document.getElementById("id_mahasiswa").value;
-            $.ajax({
-                type  : 'GET',
-                url   : '<?php echo base_url()?>finance/data_pembayaran_mahasiswa',
-                async : false,
-                data : {id_mahasiswa:id_mahasiswa},
-                dataType : 'json',
-                success : function(data){
-                    var html = '';
-                    var i;
-                    var o=1;
-                    for(i=0; i<data.length; i++){
-                        html += '<tr>'+
-                                '<td>'+o+++'</td>'+
-                                '<td>'+data[i].id_mahasiswa+'</td>'+
-                                '<td>'+data[i].jenis_biaya+'</td>'+
-                                '<td>'+data[i].nama_biaya+'</td>'+
-                                '<td>'+data[i].total_biaya+'</td>'+
-                                '<td>'+data[i].tanggal_pembayaran+'</td>'+
-                                // '<td style="text-align:right;">'+
-                                //     '<a  class="btn btn-info btn-xs item_edit" data="'+data[i].id_mahasiswa+'">Edit</a>'+' '+
-                                //     '<a  class="btn btn-danger btn-xs item_hapus" data="'+data[i].id_mahasiswa+'">Hapus</a>'+
-                                // '</td>'+
-                                '</tr>';
-                    }
-                    $('#show_data').html(html);
-                }
-
-            });
-        }
-        $(document).ready(function(){
-        $(".tombol-simpan").click(function(){
-            var pembayaran = document.getElementById("pembayaran").value;
-            var jenis_pembayaran = document.getElementById("jenis_pembayaran").value;
-            var data = $('.form-pembayaran').serialize();
-            if (pembayaran != "" && jenis_pembayaran!="" ) {
-                $.ajax({
-                type: 'POST',
-                url: '<?php echo base_url()?>finance/tambah_pembayaran',
-                data: data,
-                success: function() {
-                    tampil_data_mahasiswa();
-                    myahai();
-                    $('#modal-default').modal('hide');
-
-                }
-            });
-            }else{
-                alert('Anda harus mengisi data dengan lengkap !');
-            }
-            
-            
-        });
-    });
-        function myahai(){
-             $('#biayaa').val('');
-             $('#pembayaran').val('');
-             $('#jenis_pembayaran').val('');
-        }
-        function get_pembayaran(p) {
+<script type="text/javascript">
+  function get_pembayaran(p) {
                 var jenis_biaya = p;
 
                 $.ajax({
@@ -243,16 +264,30 @@
             }
         function get_biaya(p) {
                 var id_biaya = p;
-
+                var grade = document.getElementById('js_ranking').value;
                 $.ajax({
                     url: '<?php echo base_url(); ?>finance/get_biaya_pembayaran/'+id_biaya,
                     data: 'id_biaya='+id_biaya,
                     type: 'GET',
                     dataType: 'html',
                     success: function(msg) {
-                        $("#biaya").html(msg);
+                      if(grade == 'Ranking 1'){
+                        var ea = parseInt(msg) * 0.40;
+                        var ae = parseInt(msg) - ea;
+                        document.getElementById('biayaa').value = ae;
+                      } else if(grade == 'Ranking 2'){
+                        var ea = parseInt(msg) * 0.40;
+                        var ae = parseInt(msg) - ea;
+                        document.getElementById('biayaa').value = ae;
+                      } else if(grade == 'Ranking 3'){
+                        var ea = parseInt(msg) * 0.25;
+                        var ae = parseInt(msg) - ea;
+                        document.getElementById('biayaa').value = ae;
+                      } else {
+                        document.getElementById('biayaa').value = msg;
+                      }
 
                     }
                 });
             }
-  </script>
+</script>
