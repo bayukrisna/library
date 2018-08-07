@@ -32,6 +32,12 @@ class Nilai_perkuliahan extends CI_Controller {
 			$this->load->view('template', $data);
 	}
 
+	public function get_skala() {
+		$id_prodi = $this->input->get('id_prodi');
+		$nilai = $this->input->post('nilai');
+	    $this->nilai_perkuliahan_model->get_skala($nilai, $id_prodi);	
+	}
+
 	public function detail_nilai(){
 				$id_kp = $this->uri->segment(3);
 				$data['kp'] = $this->nilai_perkuliahan_model->detail_nilai($id_kp);
@@ -39,6 +45,26 @@ class Nilai_perkuliahan extends CI_Controller {
 				$data['main_view'] = 'Nilai_perkuliahan/detail_nilai_perkuliahan_view';
 				$this->load->view('template', $data);
 	}
+
+	public function edit_nilai(){
+				$id_kp = $this->uri->segment(3);
+				$data['dnilai'] = $this->nilai_perkuliahan_model->edit_nilai($id_kp);
+				$data['skala'] = $this->nilai_perkuliahan_model->data_skala_nilai();
+				$data['main_view'] = 'Nilai_perkuliahan/input_nilai_view';
+				$this->load->view('template', $data);
+	}
+
+	public function save_edit_nilai(){
+			$id_kelas_mhs = $this->uri->segment(3);
+					if ($this->nilai_perkuliahan_model->save_edit_nilai($id_kelas_mhs) == TRUE) {
+						$this->session->set_flashdata('message', '<div class="alert alert-success"> Edit Mahasiswa berhasil </div>');
+            			$id_kp = $this->input->post('id_kp');
+            			redirect('nilai_perkuliahan/detail_nilai/'.$id_kp);
+					} else {
+						$this->session->set_flashdata('message', '<div class="alert alert-danger"> Edit Mahasiswa Gagal </div>');
+            			redirect('kelas_perkuliahan');
+					}
+		}
 
 	/*public function page_tambah(){
 				$data['getProdi'] = $this->daftar_ulang_model->getProdi();
