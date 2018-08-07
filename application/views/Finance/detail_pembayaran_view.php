@@ -190,12 +190,8 @@
 </div>
                 <?php $cart_check = $this->cart->contents();
                 if(empty($cart_check)) {
-<<<<<<< HEAD
-                echo '<button type="submit" class="btn btn-success" disabled>Simpan</button>';
-=======
                 echo '<button type="submit" class="btn btn-success" disabled>Simpan & Cetak</button>';
                 
->>>>>>> 73b90ca45f72a9eb34b4b9be5774583fe0d3243c
                 } else {
                   echo '<button type="submit" class="btn btn-success" > Simpan </button>';
                   echo '&nbsp;<p class="btn btn-primary" onclick="print1()"> Cetak </p>';
