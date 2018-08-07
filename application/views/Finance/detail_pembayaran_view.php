@@ -98,6 +98,7 @@
       
       <!-- /.row -->
     </section>
+    
     <table class="table table-bordered table-striped table-hover">
       <thead>
         <tr>
@@ -148,18 +149,64 @@
                         <input type="hidden" class="form-control" id="tanggal_pembayaran" name="tanggal_pembayaran" value="<?= $items['tgl'] ?>">
                         <input type="hidden" class="form-control" id="total_biaya" name="total_biaya" value="<?= $this->cart->total() ?>">
                 <?php endforeach; ?>
+                <div id="yoyo" style="display: none">
+  <table class="table table-bordered table-striped table-hover">
+      <thead>
+        <tr>
+          <th>#</th>
+          <th>Nama Mahasiswa</th>
+          <th>Jenis Pembayaran</th>
+          <th>Pembayaran</th>
+          <th>Price</th>
+          <th>Subtotal</th>
+        </tr>
+      </thead>
+      <tbody>
+        <?php 
+          $i=0;
+          foreach ($this->cart->contents() as $items) : 
+          $i++;
+        ?>
+        <tr>
+          <td><?= $i?></td>
+          <td><?= $items['name'] ?></td>
+          <td><?= $items['jp'] ?></td>
+          <td><?= $items['pembayaran'] ?></td>
+          <td align="right"><?= number_format($items['price'],0,',','.') ?></td>
+          <td align="right"><?= number_format($items['subtotal'],0,',','.') ?></td>
+        </tr>
+        
+        <?php endforeach; ?>
+
+      </tbody>
+      <tfoot>
+        <tr>
+          <td align="right" colspan="5">Total </td>
+          <td align="right"><?= number_format($this->cart->total(),0,',','.'); ?></td>
+        </tr>
+      </tfoot>
+
+    </table>
+</div>
                 <?php $cart_check = $this->cart->contents();
                 if(empty($cart_check)) {
+<<<<<<< HEAD
                 echo '<button type="submit" class="btn btn-success" disabled>Simpan</button>';
+=======
+                echo '<button type="submit" class="btn btn-success" disabled>Simpan & Cetak</button>';
+                
+>>>>>>> 73b90ca45f72a9eb34b4b9be5774583fe0d3243c
                 } else {
-                  echo '<button type="submit" class="btn btn-success">Simpan & Cetak</button>';
+                  echo '<button type="submit" class="btn btn-success" > Simpan </button>';
+                  echo '&nbsp;<p class="btn btn-primary" onclick="print1()"> Cetak </p>';
+
                 } ?> 
                 
                 <?= anchor('finance/clear_cart/'.$this->uri->segment(3),'Reset',['class'=>'btn btn-danger']) ?>         
             <?php echo form_close();?>
       
     </div>
-
+   
     <div class="modal fade" id="modal-default" >
           <div class="modal-dialog">
             <div class="modal-content">
@@ -324,6 +371,8 @@
                         }
                       } else if(kategori == 'KRS'){
                         document.getElementById('biayaku').value = msg;
+                      } else {
+                        document.getElementById('biayaa').value = msg;
                       }
 
                       
@@ -332,3 +381,12 @@
                 });
             }
 </script>
+ <script>
+    function print1(){
+     var printContents = document.getElementById("yoyo").innerHTML;
+      var originalContents = document.body.innerHTML;
+      document.body.innerHTML = printContents;
+      window.print();
+      document.body.innerHTML = originalContents; 
+    }
+  </script>
