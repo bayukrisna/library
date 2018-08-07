@@ -23,7 +23,7 @@
         </tr> 
        <tr>
             <td class="left_column">Nilai <font color="#FF0000">*</font></td>
-            <td>: <input type="text" name="nilai" id="nilai" class="validate[required] text-input" size="50" style="width:5%" maxlength="5" required="" value="<?php echo $dnilai->nilai_d; ?>" onkeyup="return get_skala(this.value)">  <input type="hidden" name="id_skala_nilai" id="ee" value="">
+            <td>: <input type="text" name="nilai" id="nilai" class="validate[required] text-input" size="50" style="width:5%" maxlength="5" required="" value="<?php echo $dnilai->nilai_d; ?>" onkeyup="return get_skala(this.value)">  <input type="text" name="id_skala_nilai" id="ee" value="">
               <input type="hidden" name="id_kp" id="kp" value="<?php echo $dnilai->id_kp; ?>">
                <input type="text" name="id_prodi" id="id_prodi" value="<?php echo $dnilai->id_prodi; ?>">
              </td>
@@ -58,10 +58,11 @@
 <script type="text/javascript">
             function get_skala(p) {
                 var nilai = document.getElementById('nilai').value;
+                var id_prodi = document.getElementById('id_prodi').value;
 
                 $.ajax({
-                    url: '<?php echo base_url(); ?>nilai_perkuliahan/get_skala/'+nilai,
-                    data: 'nilai='+nilai,
+                    url: '<?php echo base_url(); ?>nilai_perkuliahan/get_skala/',
+                    data: 'nilai='+nilai+'&id_prodi='+id_prodi,
                     type: 'POST',
                     dataType: 'html',
                     success: function(data) {

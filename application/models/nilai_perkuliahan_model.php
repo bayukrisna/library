@@ -65,7 +65,7 @@ class Nilai_perkuliahan_model extends CI_Model {
   }
 
   public function get_skala($nilai, $id_prodi){
-      $query = $this->db->query("SELECT * FROM tb_skala_nilai WHERE '$nilai' BETWEEN bobot_nilai_minimum AND bobot_nilai_maksimum" )->row();
+      $query = $this->db->query("SELECT * FROM tb_skala_nilai WHERE '$nilai' BETWEEN bobot_nilai_minimum AND bobot_nilai_maksimum AND id_prodi LIKE '$id_prodi'")->row();
 
      //print_r($query);
 

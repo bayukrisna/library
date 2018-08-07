@@ -33,8 +33,9 @@ class Nilai_perkuliahan extends CI_Controller {
 	}
 
 	public function get_skala() {
-		$id_prodi = $this->input->get('id_prodi');
+		
 		$nilai = $this->input->post('nilai');
+		$id_prodi = $this->input->post('id_prodi');
 	    $this->nilai_perkuliahan_model->get_skala($nilai, $id_prodi);	
 	}
 
@@ -56,6 +57,7 @@ class Nilai_perkuliahan extends CI_Controller {
 
 	public function save_edit_nilai(){
 			$id_kelas_mhs = $this->uri->segment(3);
+
 					if ($this->nilai_perkuliahan_model->save_edit_nilai($id_kelas_mhs) == TRUE) {
 						$this->session->set_flashdata('message', '<div class="alert alert-success"> Edit Mahasiswa berhasil </div>');
             			$id_kp = $this->input->post('id_kp');
