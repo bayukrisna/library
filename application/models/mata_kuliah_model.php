@@ -12,8 +12,8 @@ class Mata_kuliah_model extends CI_Model {
 	 public function simpan_matkul()
     {
         $data = array(
-            'kode_matkul'                        => $this->input->post('kode_matkul'),
-            'nama_matkul'                        => $this->input->post('nama_matkul'),
+            'kode_matkul'           => $this->input->post('kode_matkul'),
+            'nama_matkul'           => $this->input->post('nama_matkul'),
             'id_prodi'                 => $this->input->post('id_prodi'),
             'jenis_matkul'      	  => $this->input->post('jenis_matkul'),
             'bobot_matkul'      		=> $this->input->post('bobot_matkul'),

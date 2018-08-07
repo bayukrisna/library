@@ -10,7 +10,7 @@
 .table2 > thead > tr > td,
 .table2 > tbody > tr > td,
 .table2 > tfoot > tr > td {
-  padding: 2px;
+  padding: 3px;
   line-height: 1.42857143;
   vertical-align: top;
   border-top: 1px solid #ddd;
@@ -31,5 +31,40 @@
   border-top: 2px solid #ddd;
 }
 .table2 .table2 {
+  background-color: #fff;
+}
+
+.table3 {
+  width: 100%;
+  max-width: 100%;
+  margin-bottom: 20px;
+}
+.table3 > thead > tr > th,
+.table3 > tbody > tr > th,
+.table3 > tfoot > tr > th,
+.table3 > thead > tr > td,
+.table3 > tbody > tr > td,
+.table3 > tfoot > tr > td {
+  padding: 3px;
+  line-height: 1.42857143;
+  vertical-align: top;
+  border-top: 1px solid #ddd;
+}
+.table3 > thead > tr > th {
+  vertical-align: bottom;
+  border-bottom: 2px solid #ddd;
+}
+.table3 > caption + thead > tr:first-child > th,
+.table3 > colgroup + thead > tr:first-child > th,
+.table3 > thead:first-child > tr:first-child > th,
+.table3 > caption + thead > tr:first-child > td,
+.table3 > colgroup + thead > tr:first-child > td,
+.table3 > thead:first-child > tr:first-child > td {
+  border-top: 0;
+}
+.table3 > tbody + tbody {
+  border-top: 2px solid #ddd;
+}
+.table3 .table3 {
   background-color: #fff;
 }

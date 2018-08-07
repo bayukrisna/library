@@ -66,3 +66,5 @@ class Anyar extends CI_Controller {
 		redirect(base_url('finance/detail_pembayaran/'.$ea));
 	}
 }
+
+

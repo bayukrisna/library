@@ -150,7 +150,7 @@
                 <?php endforeach; ?>
                 <?php $cart_check = $this->cart->contents();
                 if(empty($cart_check)) {
-                echo '<button type="submit" class="btn btn-success" disabled>Simpan & Cetak</button>';
+                echo '<button type="submit" class="btn btn-success" disabled>Simpan</button>';
                 } else {
                   echo '<button type="submit" class="btn btn-success">Simpan & Cetak</button>';
                 } ?> 
