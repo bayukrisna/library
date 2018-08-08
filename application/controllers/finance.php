@@ -31,6 +31,7 @@ class Finance extends CI_Controller {
 		$data['mahasiswa']=$ea;
 		$data['data']= $dataku;
 		$data['data_pembayaran']= $this->finance_model->data_pembayaran_mahasiswa($ya);
+		$data['data_pembayaran2']= $this->finance_model->data_pembayaran_mahasiswa($ya);
 		$data['kodeunik'] = $this->finance_model->buat_kode();
 		$data['getJenisPembayaran'] = $this->biaya_sekolah_model->getJenisPembayaran($dataku->waktu);
 		$data['main_view'] = 'Finance/detail_pembayaran_view';
@@ -183,13 +184,28 @@ class Finance extends CI_Controller {
 		echo $option;
 
 	}
-	public function get_biaya_pembayaran($param = NULL) {
+	public function get_biaya_pembayaran() {
 		// $layanan =$this->input->post('layanan');
+		$param = $this->input->get('id_biaya');
+		$pae = $this->input->get('id_grade');
+		$par = $this->input->get('kategori');
 		$id_biaya = $param;
 		$result = $this->finance_model->get_biaya_pembayaran($id_biaya);
 		// $option = "";
 		// $option .= "<input readonly='' type='text' class='form-control' name='biaya' id='biayaa' value='".$result->jumlah_biaya."' >";
-		echo $result->jumlah_biaya;
+
+		if ($pae != null && $par == 'Angsuran Tahun 1'){
+			$yaya = $this->finance_model->get_yaya($pae);
+			$ee = $result->jumlah_biaya * $yaya->diskon / 100;		
+		} else {
+			$ee = 0;
+		}
+		
+		
+		
+		
+		$ea = $result->jumlah_biaya - $ee;
+		echo $ea;
 
 	}
 	public function tambah_pembayaran()

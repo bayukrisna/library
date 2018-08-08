@@ -14,8 +14,7 @@
            <td class="left_column" width="25%">NIM <font color="#FF0000">*</font></td>
             <td>:  <?php echo $data->id_mahasiswa ?>
                                      </td>
-                                     <input type="hidden" name="js_ranking" id="js_ranking" value="<?php echo $data->grade; ?>">
-                                  
+                                     <input type="hidden" name="js_ranking" id="js_ranking" value="<?php echo $data->id_grade; ?>">
            
             </td>
         </tr>
@@ -71,6 +70,13 @@
                   <?php 
                 $no = 0;
                 foreach ($data_pembayaran as $data) {
+                  
+                  if ($data->jenis_biaya == 'Angsuran Tahun 1'){
+                    $dataea = $data->jumlah_biaya * $data->diskon / 100;
+                    $data->jumlah_biaya = $data->jumlah_biaya - $dataea;
+                  } else if($data->jenis_biaya == 'KRS'){
+                    $data->jumlah_biaya = $data->jumlah_biaya * $data->bobot_matkul;
+                  }
                   echo '
                   
                 <tr>
@@ -78,7 +84,7 @@
                   <td>'.$data->nama_mahasiswa.'</td>
                   <td>'.$data->jenis_biaya.'</td>
                   <td>'.$data->nama_biaya.' '.$data->kode_matkul.'</td>
-                  <td>'.$data->t_biaya.'</td>
+                  <td>'.$data->jumlah_biaya.'</td>
                   <td>'.$data->tanggal_pembayaran.'</td>
                   
 
@@ -256,7 +262,7 @@
 
                                 foreach($getJenisPembayaran as $row)
                           { 
-                            echo '<option value="'.$row->jenis_biaya.'">'.$row->jenis_biaya.'</option>';
+                            echo '<option value="'.$row->jenis_biaya.'">'.$row->jenis_biaya.' - '.$row->periode.'</option>';
                           }
                           ?>
                   </select>
@@ -336,7 +342,7 @@
             }
         function get_biaya(p) {
                 var id_biaya = p;
-                var grade = document.getElementById('js_ranking').value;
+                var id_grade = document.getElementById('js_ranking').value;
                 var kategori = document.getElementById('jenis_pembayaran').value;
                 if (kategori == 'KRS'){
                   document.getElementById("myText2").style.display = "";
@@ -344,27 +350,28 @@
                   document.getElementById("myText2").style.display = "none";
                 }
                 $.ajax({
-                    url: '<?php echo base_url(); ?>finance/get_biaya_pembayaran/'+id_biaya,
-                    data: 'id_biaya='+id_biaya,
+                    url: '<?php echo base_url(); ?>finance/get_biaya_pembayaran/',
+                    data: 'id_biaya='+id_biaya+'&id_grade='+id_grade+'&kategori='+kategori,
                     type: 'GET',
                     dataType: 'html',
                     success: function(msg) {
                       if (kategori == 'Angsuran Tahun 1'){
-                          if(grade == 'Ranking 1'){
-                          var ea = parseInt(msg) * 0.40;
-                          var ae = parseInt(msg) - ea;
-                          document.getElementById('biayaa').value = ae;
-                        } else if(grade == 'Ranking 2'){
-                          var ea = parseInt(msg) * 0.40;
-                          var ae = parseInt(msg) - ea;
-                          document.getElementById('biayaa').value = ae;
-                        } else if(grade == 'Ranking 3'){
-                          var ea = parseInt(msg) * 0.25;
-                          var ae = parseInt(msg) - ea;
-                          document.getElementById('biayaa').value = ae;
-                        } else {
-                          document.getElementById('biayaa').value = msg;
-                        }
+                        //   if(id_grade == 'Ranking 1'){
+                        //   var ea = parseInt(msg) * 0.40;
+                        //   var ae = parseInt(msg) - ea;
+                        //   document.getElementById('biayaa').value = ae;
+                        // } else if(id_grade == '2'){
+                        //   // var ea = parseInt(msg) * 0.35;
+                        //   // var ae = parseInt(msg) - ea;
+                        //   document.getElementById('biayaa').value = msg;
+                        // } else if(id_grade == 'Ranking 3'){
+                        //   var ea = parseInt(msg) * 0.25;
+                        //   var ae = parseInt(msg) - ea;
+                        //   document.getElementById('biayaa').value = ae;
+                        // } else {
+                        //   document.getElementById('biayaa').value = msg;
+                        // }
+                        document.getElementById('biayaa').value = msg;
                       } else if(kategori == 'KRS'){
                         document.getElementById('biayaku').value = msg;
                       } else {

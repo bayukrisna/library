@@ -163,6 +163,11 @@ class Finance_model extends CI_Model {
               ->get('tb_biaya')
               ->row();
   }
+  public function get_yaya($data){
+      return $this->db->where('id_grade',$data)
+              ->get('tb_grade')
+              ->row();
+  }
   function get_data_detail_mahasiswa($ya){
     return $this->db->join('tb_bio','tb_bio.id_mahasiswa=tb_mahasiswa.id_mahasiswa')
               ->join('tb_kontak','tb_kontak.id_mahasiswa=tb_mahasiswa.id_mahasiswa')
@@ -240,9 +245,12 @@ class Finance_model extends CI_Model {
     }
     public function data_pembayaran_mahasiswa($ya){
     $this->db->select('*');
+    
      $this->db->from('tb_mahasiswa');
      $this->db->join('tb_detail_pembayaran','tb_detail_pembayaran.id_mahasiswa=tb_mahasiswa.id_mahasiswa');
      $this->db->join('tb_biaya','tb_biaya.id_biaya=tb_detail_pembayaran.id_biaya');
+     $this->db->join('tb_grade','tb_grade.id_grade=tb_mahasiswa.id_grade', 'left');
+     $this->db->join('tb_matkul','tb_matkul.kode_matkul=tb_detail_pembayaran.kode_matkul' ,'left');
      $this->db->join('tb_pembayaran','tb_pembayaran.kode_pembayaran=tb_detail_pembayaran.kode_pembayaran');
      $this->db->where('tb_mahasiswa.id_mahasiswa', $ya);
      $query = $this->db->get();
