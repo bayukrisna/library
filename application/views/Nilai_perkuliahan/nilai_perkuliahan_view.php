@@ -29,7 +29,7 @@
             <div class="box-body">
               <table class="">
                 <tbody>
-                  <form method="get" action="<?php echo base_url("kelas_perkuliahan/filter_kp/")?>">
+                  <form method="get" action="<?php echo base_url("nilai_perkuliahan/filter_kp/")?>">
                   <tr>
                     <th>Filter</th>
                   </tr>

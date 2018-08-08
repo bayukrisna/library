@@ -436,6 +436,10 @@
             <td>: <input type="text" name="nama_mahasiswa" id="nama_mahasiswa" class="validate[required] text-input" maxlength="50" size="50" style="width:80%" required="">
               <input type="hidden" name="id_mahasiswa" id="id_mahasiswa" class="validate[required] text-input" maxlength="20" size="40" style="width:80%" required="">
 
+              <input type="text" name="id_kelas_mhs" id="id_kelas_mhs" class="validate[required] text-input" maxlength="20" size="40" style="width:80%" required="" value="<?php echo $kodeunik; ?>">
+
+
+              
               <input type="hidden" name="prodi" id="prodi" class="validate[required] text-input" maxlength="20" size="40" style="width:80%" required="">
 
             <input type="hidden" name="id_kp" id="id_kp" class="validate[required] text-input" maxlength="20" size="40" style="width:80%" value="<?php echo $this->uri->segment(3); ?>">

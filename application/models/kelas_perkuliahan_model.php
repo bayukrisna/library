@@ -143,6 +143,14 @@ class Kelas_perkuliahan_model extends CI_Model {
           return $kodejadi; 
     }
 
+    public function  buat_kode_mhs()   {
+          $this->db->select("MAX(id_kelas_mhs)+1 AS id");
+          $this->db->from("tb_kelas_mhs");
+          $query = $this->db->get();
+
+          return $query->row()->id;
+    }
+
   public function save_kp()
     {
         $data = array(
@@ -350,6 +358,7 @@ class Kelas_perkuliahan_model extends CI_Model {
    public function simpan_kelas_mhs()
     {
         $data = array(
+            'id_kelas_mhs'        => $this->input->post('id_kelas_mhs'),
             'id_kp'        => $this->input->post('id_kp'),
             'id_mahasiswa'        => $this->input->post('id_mahasiswa')
         );

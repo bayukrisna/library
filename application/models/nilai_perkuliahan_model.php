@@ -38,13 +38,43 @@ class Nilai_perkuliahan_model extends CI_Model {
               ->row();
   }
 
-  public function data_nilai($id_kp){
-      return $this->db->join('tb_prodi','tb_prodi.id_prodi=tb_kp.id_prodi')
-              ->join('tb_periode','tb_periode.id_periode=tb_kp.id_periode')
+  public function edit_nilai($id_kp){
+      return $this->db->join('tb_mahasiswa','tb_mahasiswa.id_mahasiswa=tb_kelas_mhs.id_mahasiswa')
+              ->join('tb_kp','tb_kp.id_kp=tb_kelas_mhs.id_kp')
               ->join('tb_matkul','tb_matkul.kode_matkul=tb_kp.kode_matkul')
-              ->where('id_kp', $id_kp)
-              ->get('tb_detail_nilai')
+              ->join('tb_prodi','tb_prodi.id_prodi=tb_kp.id_prodi')
+              ->where('id_kelas_mhs', $id_kp)
+              ->get('tb_kelas_mhs')
+              ->row();
+  }
+
+  public function data_nilai($id_kp){
+      return $this->db->join('tb_mahasiswa','tb_mahasiswa.id_mahasiswa=tb_kelas_mhs.id_mahasiswa','left')
+              ->join('tb_kp','tb_kp.id_kp=tb_kelas_mhs.id_kp','left')
+              ->join('tb_prodi','tb_prodi.id_prodi=tb_kp.id_prodi')
+              ->join('tb_angkatan','tb_angkatan.id_angkatan=tb_mahasiswa.id_angkatan','left')
+              ->join('tb_skala_nilai','tb_skala_nilai.id_skala_nilai=tb_kelas_mhs.id_skala_nilai','left')
+              ->where('tb_kelas_mhs.id_kp', $id_kp)
+              ->get('tb_kelas_mhs')
               ->result();
+  }
+
+  public function data_skala_nilai(){
+      return $this->db->get('tb_skala_nilai')
+              ->result();
+  }
+
+  public function get_skala($nilai, $id_prodi){
+      $query = $this->db->query("SELECT * FROM tb_skala_nilai WHERE '$nilai' BETWEEN bobot_nilai_minimum AND bobot_nilai_maksimum AND id_prodi LIKE '$id_prodi'")->row();
+
+     //print_r($query);
+
+     $data = array(
+            'ea'        => $query->id_skala_nilai,
+            
+        );
+     print_r($data['ea']) ;
+     // print_r($ea['query']);
   }
 
 
@@ -196,8 +226,22 @@ class Nilai_perkuliahan_model extends CI_Model {
         }
   }
 
-  
+  public function save_edit_nilai($id_kp){
+    $data = array(
+            'id_skala_nilai'        => $this->input->post('id_skala_nilai'),
+            'nilai_d'       => $this->input->post('nilai'),
+            'id_kp'       => $this->input->post('id_kp'),
+        );
 
+    if (!empty($data)) {
+            $this->db->where('id_kelas_mhs', $id_kp)
+        ->update('tb_kelas_mhs', $data);
+
+          return true;
+        } else {
+            return null;
+        }
+  }
 
     public function hapus_kelas_dosen($id_detail_kurikulum){
         $this->db->where('id_kp', $id_detail_kurikulum)

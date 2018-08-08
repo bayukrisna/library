@@ -56,6 +56,7 @@ class Kelas_perkuliahan extends CI_Controller {
 	public function detail_kelas(){
 				$id_kp = $this->uri->segment(3);
 				$data['getProdi'] = $this->daftar_ulang_model->getProdi();
+				$data['kodeunik'] = $this->kelas_perkuliahan_model->buat_kode_mhs();
 				$data['getPeriode'] = $this->daftar_ulang_model->getPeriode();
 				$data['kp'] = $this->kelas_perkuliahan_model->detail_kp($id_kp);
 				$data['dsn'] = $this->kelas_perkuliahan_model->jumlah_dosen($id_kp);
@@ -155,7 +156,6 @@ class Kelas_perkuliahan extends CI_Controller {
 					}
 		}
 
-
 		
 	public function get_autocomplete2(){
 		if(isset($_GET['term'])){
@@ -163,7 +163,7 @@ class Kelas_perkuliahan extends CI_Controller {
 			if(count($result) > 0){
 				foreach ($result as $row) 
 					$result_array[] = array(
-						'label' => $row->nama_mahasiswa,
+						'label' => $row->nim.' - '.$row->nama_mahasiswa,
 						'id' => $row->id_mahasiswa,
 						'prodi' => $row->id_prodi);
 				echo json_encode($result_array);
