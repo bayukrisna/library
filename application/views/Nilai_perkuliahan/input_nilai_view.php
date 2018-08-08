@@ -23,9 +23,9 @@
         </tr> 
        <tr>
             <td class="left_column">Nilai <font color="#FF0000">*</font></td>
-            <td>: <input type="text" name="nilai" id="nilai" class="validate[required] text-input" size="50" style="width:5%" maxlength="5" required="" value="<?php echo $dnilai->nilai_d; ?>" onkeyup="return get_skala(this.value)">  <input type="text" name="id_skala_nilai" id="ee" value="">
+            <td>: <input type="text" name="nilai" id="nilai" class="validate[required] text-input" size="50" style="width:5%" maxlength="5" required="" value="<?php echo $dnilai->nilai_d; ?>" onkeyup="return get_skala(this.value)">  <input type="hidden" name="id_skala_nilai" id="ee" value="">
               <input type="hidden" name="id_kp" id="kp" value="<?php echo $dnilai->id_kp; ?>">
-               <input type="text" name="id_prodi" id="id_prodi" value="<?php echo $dnilai->id_prodi; ?>">
+               <input type="hidden" name="id_prodi" id="id_prodi" value="<?php echo $dnilai->id_prodi; ?>">
              </td>
         </tr> 
 

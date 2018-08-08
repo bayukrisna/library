@@ -34,6 +34,9 @@ class Kelas_perkuliahan_model extends CI_Model {
   }
 
 	public function data_kp(){
+
+    //$jumlah_mhs = $this->db->query("SELECT count(*) AS total FROM tb_kelas_mhs WHERE id_kp = '$id_kp'")->row();
+
 		$this->db->select('*');
 		 $this->db->from('tb_kp');
 		 $this->db->join('tb_prodi','tb_prodi.id_prodi=tb_kp.id_prodi');
@@ -87,7 +90,7 @@ class Kelas_perkuliahan_model extends CI_Model {
       return $this->db->join('tb_prodi','tb_prodi.id_prodi=tb_kp.id_prodi')
               ->join('tb_periode','tb_periode.id_periode=tb_kp.id_periode')
               ->join('tb_matkul','tb_matkul.kode_matkul=tb_kp.kode_matkul')
-              ->where('id_kp', $id_kp)
+              ->where('tb_kp.id_kp', $id_kp)
               ->get('tb_kp')
               ->row();
   }
@@ -143,13 +146,13 @@ class Kelas_perkuliahan_model extends CI_Model {
           return $kodejadi; 
     }
 
-    public function  buat_kode_mhs()   {
+    /*public function  buat_kode_mhs()   {
           $this->db->select("MAX(id_kelas_mhs)+1 AS id");
           $this->db->from("tb_kelas_mhs");
           $query = $this->db->get();
 
           return $query->row()->id;
-    }
+    } */
 
   public function save_kp()
     {
@@ -307,6 +310,12 @@ class Kelas_perkuliahan_model extends CI_Model {
         }
   }
 
+  public function update_total_mhs(){
+
+        $this->db->query("UPDATE tb_total_mhs SET total_mhs = total_mhs - 1 WHERE id_kp = 'KP004'");
+
+    }
+
   public function edit_id_dosen($id_detail_kurikulum){
     $data = array(
             'id_kp'        => $this->input->post('id_kp'),
@@ -358,7 +367,6 @@ class Kelas_perkuliahan_model extends CI_Model {
    public function simpan_kelas_mhs()
     {
         $data = array(
-            'id_kelas_mhs'        => $this->input->post('id_kelas_mhs'),
             'id_kp'        => $this->input->post('id_kp'),
             'id_mahasiswa'        => $this->input->post('id_mahasiswa')
         );

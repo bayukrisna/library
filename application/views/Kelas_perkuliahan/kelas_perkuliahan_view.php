@@ -89,11 +89,9 @@
                 <?php 
                 $no = 0;
                  $alert = "'Apakah anda yakin menghapus data ini ?'";
-                foreach ($kp as $data) { ?>
-                   <script type="text/javascript" > 
-                      get_total_mhs(10);
-                   </script>                  
-                 <?php 
+                foreach ($kp as $data) { 
+                  
+
                   echo '                  
                 <tr>
                   <td>'.++$no.'</td>

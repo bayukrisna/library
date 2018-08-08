@@ -1,4 +1,4 @@
-       <a class="btn btn-sm btn-primary" href="<?php echo base_url();?>mahasiswa/lihat_mahasiswa_dikti/<?php echo $mahasiswa->id_mahasiswa; ?>">Detail Mahasiswa</a>
+        <a class="btn btn-sm btn-primary" href="<?php echo base_url();?>mahasiswa/lihat_mahasiswa_dikti/<?php echo $mahasiswa->id_mahasiswa; ?>">Detail Mahasiswa</a>
         <a class="btn btn-sm btn-info" href="<?php echo base_url();?>mahasiswa/history_pendidikan/<?php echo $mahasiswa->id_mahasiswa; ?>">History Pendidikan</a>
         <a class="btn btn-sm btn-primary" href="<?php echo base_url();?>mahasiswa/krs_mahasiswa/<?php echo $mahasiswa->id_mahasiswa; ?>">KRS Mahasiswa</a>
         <a class="btn btn-sm btn-info" href="<?php echo base_url();?>mahasiswa/history_nilai/<?php echo $mahasiswa->id_mahasiswa; ?>">History Nilai</a>
@@ -21,74 +21,89 @@
             <td class="left_column" width="15%">Angkatan</td>
             <td>: <?php echo $mahasiswa->angkatan; ?>           </td>
         </tr>
-        <tr>
-            <td class="left_column">Periode </td>
-            <td colspan="3">: </td>
-        </tr>
-                <tr>
-            <!-- <td class="left_column">Kelas </td>
-            
-            <input type="text" name="kelas" id="kelas" class="text-input"> -->
-            <td colspan="3">
-            
-                <button type="button" class="btn btn-sm btn-primary">
-                <i class="fa fa-plus"></i> KRS</button>
-            &nbsp;
-            
-                        </td>
-        </tr>
+        
+               
 
         </table>
             </div>
             <!-- /.box-body -->
           </div>
-        <a class="btn btn-primary pull-right"><i class="fa fa-file"></i> Cetak KRS</a>
-        <a class="btn pull-right">[ KRS Kolektif ]</a><br><br>
+        <br><br>
         <div class="box">
-        <table class="table table-striped table-bordered">
+        <table id="table1" class="table table-striped table-bordered" >
     <thead>
     <tr>
-        <th style="width:5%;text-align:center">No.</th>
-        <th style="text-align:center">Kode MK</th>
-        <th style="text-align:center">Nama MK</th>
-        <th style="text-align:center">Kelas</th>
-        <th style="text-align:center">Bobot MK<br />(sks)</th>
+        <th style="width:5%;text-align:center" rowspan="2">No.</th>
+        <th style="text-align:center" rowspan="2">Kode MK</th>
+        <th style="text-align:center" rowspan="2">Nama MK</th>
+        <th style="text-align:center" rowspan="2">Bobot MK<br />(sks)</th>
+         <th style="text-align:center" colspan="3">Nilai<br />(sks)</th>
+         <th style="text-align:center" rowspan="2">sks * N.indeks</th>
+        <th rowspan="2"></th>
+    </tr>
+    <tr>
+        <th style="width:5%;text-align:center">Angka</th>
+        <th style="text-align:center">Huruf</th>
+        <th style="text-align:center">Indeks</th>
         <th ></th>
     </tr>
     </thead>
     <tbody>
     <?php 
+
         $no = 0;
-        foreach($krs as $data):
+        foreach($nilai as $data):
+             $dataee = $data->bobot_matkul * $data->nilai_indeks;
         ;
       ?>
       <tr>
       <td><?php echo ++$no;?></td>
         <td style="text-align:center"><?php echo $data->kode_matkul;?></td>
         <td style="text-align:center"><?php echo $data->nama_matkul;?></td>
-        <td style="text-align:center"><?php echo $data->nama_kelas;?></td>
         <td style="text-align:center"><?php echo $data->bobot_matkul;?></td>
-        
+        <td style="text-align:center"><?php echo $data->nilai_d;?></td>
+        <td style="text-align:center"><?php echo $data->nilai_huruf;?></td>
+        <td style="text-align:center"><?php echo $data->nilai_indeks;?></td>
+        <td style="text-align:center"><?php echo $dataee;?></td>
+        <input type="text" name="ee" id="ee" value="<?php echo $dataee;?>">
         <td style="text-align:center">
                 <button id="" type="button" class="btn btn-xs"   data-toggle="modal" data-target="#modal_detil"><i class="fa fa-pencil"></i></button>
                         </td>
     </tr>
+   
 <?php endforeach; ?>
+
+    <tr>
+        <td colspan="9"> <span id="val"></span></td>
+
+    </tr>
+
   
   </tbody>
     </table>
+    <input type="text" name="ea" id="ea">
     </div>
     <div class="callout callout-info">
         <strong>Keterangan :</strong>
             <br />
-            - Fitur ini di gunakan untuk menampilkan dan mengelola KRS per mahasiswa pada periode berlaku
+            - Fitur ini di gunakan untuk menampilkan nilai perkuliahan mahasiswa setiap periode 
             <br />
-            - Fitur ini cocok di gunakan apabila sumber data yang digunakan adalah daftar KRS per mahasiswa
+            - Perhitungan IPS = Jumlah ( N.Indeks * sks ) / Jumlah sks
             <br />
-            - Bila sumber data yang digunakan adalah daftar absensi , silahkan ke menu <a href="http://10.10.0.4:8082/kelaskuliah">[ Kelas Perkuliahan ]</a>            <br />
-            - Untuk menambahkan Kelas yang di tawarkan, silahkan ke menu <a href="http://10.10.0.4:8082/kelaskuliah">[ Kelas Perkuliahan ]</a>          <br />
-            - Anda dapat menambahkan KRS secara kolektif pada mahasiswa ini, klik pada 
-            <a style="cursor:pointer" onclick="return showKelas(this)" title="Menampilkan Kelas yang ditawarkan">[ KRS Kolektif ]</a>
+            - Untuk mengisikan nilai , silahkan ke menu [ Nilai Perkuliahan ]   
             <br />
             
     </div>
+<script type="text/javascript">
+   
+      /* var table = document.getElementById("table1"), sumVal = 0;
+      for (var i = 1; i < table.rows.length; i++)
+      {
+         sumVal = sumVal + parseInt(table.rows[i].cells[7].innerHTML);
+      }
+      document.getElementById("val").innerHTML = "Sum Value = " + sumVal;
+     console.log(sumVal);
+     /*var ee = document.getElementById('ee').value;
+     var hasil = parseInt(ee) + parseInt(ee);
+     document.getElementById('ea').value = hasil; */
+</script>

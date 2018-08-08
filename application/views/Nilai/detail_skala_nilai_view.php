@@ -16,7 +16,7 @@
                               <option value="<?php echo $nilai->id_prodi; ?>"><?php echo $nilai->nama_prodi; ?></option>
                                   <?php 
 
-                                        foreach($drop_down_prodi as $row)
+                                        foreach($getProdi as $row)
                                         { 
                                           echo '<option value="'.$row->id_prodi.'">'.$row->nama_prodi.'</option>';
                                         }

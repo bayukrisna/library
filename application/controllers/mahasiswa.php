@@ -76,11 +76,17 @@ class Mahasiswa extends CI_Controller {
 	}
 	public function krs_mahasiswa()
 	{
+			$id_mahasiswa = $this->uri->segment(3);
+			$data['mahasiswa'] = $this->mahasiswa_model->detail_krs_mahasiswa($id_mahasiswa);
+			$data['krs'] = $this->mahasiswa_model->data_krs_mhs($id_mahasiswa);
 			$data['main_view'] = 'Mahasiswa/krs_mahasiswa_view';
 			$this->load->view('template', $data);
 	}
 	public function history_nilai()
 	{
+			$id_mahasiswa = $this->uri->segment(3);
+			$data['mahasiswa'] = $this->mahasiswa_model->detail_krs_mahasiswa($id_mahasiswa);
+			$data['nilai'] = $this->mahasiswa_model->data_nilai_mhs($id_mahasiswa);
 			$data['main_view'] = 'Mahasiswa/history_nilai_view';
 			$this->load->view('template', $data);
 	}

@@ -266,6 +266,9 @@ class Nilai_perkuliahan_model extends CI_Model {
     }
 
 
+   
+
+
     public function jumlah_dosen($id_kp){
 
     $dosen = $this->db->query("SELECT count(*) AS total FROM tb_kelas_dosen WHERE id_kp = '$id_kp'")->row();
