@@ -11,12 +11,6 @@ class Kelas_perkuliahan extends CI_Controller {
 		$this->load->model('finance_model');
 	}
 
-	public function get_total_mhs($id)
-	{
-			$total_mhs = $this->kelas_perkuliahan_model->get_total_mhs($id);
-			json_encode($total_mhs); 
-	}
-
 	public function filter_kp()
 	{
 			$data['getProdi'] = $this->daftar_ulang_model->getProdi();
@@ -80,6 +74,12 @@ class Kelas_perkuliahan extends CI_Controller {
 				$this->session->set_flashdata('message', '<div class="alert alert-success"> Kelas berhasil ditambahkan. </div>');
             	redirect('kelas_perkuliahan');
 			} 
+	}
+
+	public function cek_mahasiswa(){
+		$id_mahasiswa = $this->input->post('id_mahasiswa');
+		$id_kp = $this->input->post('id_kp2');
+		$this->kelas_perkuliahan_model->cek_mahasiswa($id_mahasiswa, $id_kp);
 	}
 
 	public function hapus_kp($id_kp){
@@ -219,30 +219,15 @@ class Kelas_perkuliahan extends CI_Controller {
 
 	public function hapus_kelas_mhs(){
 		$id_detail_kurikulum = $this->uri->segment(3);
-		$id_kp = $this->input->post('id_kp');
+		$id_kp = $this->uri->segment(4);
 		if ($this->kelas_perkuliahan_model->hapus_kelas_mhs($id_detail_kurikulum) == TRUE && $this->kelas_perkuliahan_model->update_total_mhs($id_kp) == TRUE) {
 			$this->session->set_flashdata('message', '<div class="alert alert-success"> Hapus Mahasiswa Berhasil </div>');
-            	$id_kp = $this->input->post('id_kp');
             	redirect('kelas_perkuliahan/detail_kelas/'.$id_kp);
 		} else {
 			$this->session->set_flashdata('message', '<div class="alert alert-danger"> Hapus Mahasiswa Gagal </div>');
 			redirect('Mahasiswa');
 		}
 	}
-
-	public function edit_total(){
-		$id_kp = $this->input->post('id_kp');
-		if ($this->kelas_perkuliahan_model->update_total_mhs($id_kp) == TRUE) {
-			$this->session->set_flashdata('message', '<div class="alert alert-success"> Edit Mahasiswa Berhasil </div>');
-            	redirect('kelas_perkuliahan');
-		} else {
-			$this->session->set_flashdata('message', '<div class="alert alert-danger"> Hapus Mahasiswa Gagal </div>');
-			redirect('Mahasiswa');
-		}
-	}
-
-
-
 
 }
 

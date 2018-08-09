@@ -36,24 +36,6 @@
     </form>
 </div>
 
-<script type="text/javascript">
-  function get_skala2() {
-                var nilai = document.getElementById('nilai').value;
-                $.ajax({
-                    url: '<?php echo base_url(); ?>nilai_perkuliahan/get_skala/'+nilai,
-                    data: 'nilai='+nilai,
-                    type: 'POST',
-                    dataType: 'html',
-                    success:function(data){
-                      console.log(data);
-                    document.getElementById('ee').value = data;
-                    },
-                    error:function (){}
-                }); 
-              }
-               
-            
-</script>
 
 <script type="text/javascript">
             function get_skala(p) {

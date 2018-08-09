@@ -126,6 +126,23 @@ class Kelas_perkuliahan_model extends CI_Model {
      return $query->row();
   }
 
+  function cek_mahasiswa($id_mahasiswa, $id_kp){
+      $query = $this->db->select('*')
+                ->from('tb_kelas_mhs')
+                ->where('id_mahasiswa', $id_mahasiswa)
+                ->where('id_kp', $id_kp)
+                ->get();
+                if ($query->num_rows() > 0)
+                {
+                    echo '<span class="label label-success"> Tidak aman</span><script>document.getElementById("myBtn").disabled = true;</script>';
+
+                } else{
+                echo '<span class="label label-success"> Aman broo</span><script>document.getElementById("myBtn").disabled = false;</script>';
+                
+                }
+    }
+
+
   public function  buat_kode()   {
           $this->db->SELECT('RIGHT(tb_kp.id_kp,3) as kode', FALSE); 
           $this->db->order_by('id_kp','DESC');    
@@ -327,8 +344,7 @@ class Kelas_perkuliahan_model extends CI_Model {
 
   public function update_total_mhs($id_kp){
     $data = array(
-            'id_kp'        => $this->input->post('id_kp'),
-            'total_mhs'        => $this->input->post('total_mhs2'),
+            'total_mhs'        => $this->input->post('total_mhs2')
       );
 
     if (!empty($data)) {

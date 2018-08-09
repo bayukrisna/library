@@ -67,6 +67,15 @@ class Mahasiswa extends CI_Controller {
 			$this->load->view('template', $data);
 	}
 
+	public function filter_nilai(){
+			$id_mahasiswa = $this->uri->segment(3);
+			$id_periode=$this->input->get('id_periode');
+			$data['mahasiswa'] = $this->mahasiswa_model->detail_krs_mahasiswa($id_mahasiswa);
+			$data['nilai'] = $this->mahasiswa_model->filter_nilai($id_periode);
+			$data['main_view'] = 'Mahasiswa/history_nilai_view';
+			$this->load->view('template', $data);
+	}
+
 	public function detail_mahasiswa_dikti()
 	{
 			$id_mahasiswa = $this->uri->segment(3);
@@ -90,6 +99,8 @@ class Mahasiswa extends CI_Controller {
 			$data['main_view'] = 'Mahasiswa/history_nilai_view';
 			$this->load->view('template', $data);
 	}
+
+
 	public function aktivasi_perkuliahan()
 	{
 			$data['main_view'] = 'Mahasiswa/aktivasi_perkuliahan_view';
