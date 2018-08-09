@@ -149,12 +149,23 @@ class Finance_model extends CI_Model {
                 
                 }
     }
-     public function get_dropdown_pembayaran($data, $waktu){
+     public function get_dropdown_pembayaran($data, $waktu, $periode){
       $this->db->select('*');
      $this->db->from('tb_biaya');
      $this->db->join('tb_waktu','tb_waktu.id_waktu=tb_biaya.id_waktu');
      $this->db->where('tb_waktu.waktu', $waktu);
      $this->db->where('tb_biaya.jenis_biaya', $data);
+     $this->db->where('tb_biaya.periode', $periode);
+     $query = $this->db->get();
+     return $query->result();
+  }
+  public function get_ta($data, $waktu){
+      $this->db->distinct();
+      $this->db->select('tb_biaya.jenis_biaya');
+     $this->db->from('tb_biaya');
+     $this->db->join('tb_waktu','tb_waktu.id_waktu=tb_biaya.id_waktu');
+     $this->db->where('tb_waktu.waktu', $waktu);
+     $this->db->where('tb_biaya.periode', $data);
      $query = $this->db->get();
      return $query->result();
   }
@@ -173,11 +184,36 @@ class Finance_model extends CI_Model {
               ->join('tb_kontak','tb_kontak.id_mahasiswa=tb_mahasiswa.id_mahasiswa')
               ->join('tb_prodi','tb_prodi.id_prodi=tb_mahasiswa.id_prodi')
               ->join('tb_waktu','tb_waktu.id_waktu=tb_mahasiswa.id_waktu')
-              ->join('tb_grade','tb_grade.id_grade=tb_mahasiswa.id_grade')
+              ->join('tb_grade','tb_grade.id_grade=tb_mahasiswa.id_grade', 'left')
               ->where('tb_mahasiswa.id_mahasiswa', $ya)
               ->get('tb_mahasiswa')
 
               ->row();
+  }
+  function get_data_detail_mahasiswa2($ya , $id){
+    if ($id <= '2'){
+
+     return $this->db->join('tb_bio','tb_bio.id_mahasiswa=tb_mahasiswa.id_mahasiswa')
+              ->join('tb_kontak','tb_kontak.id_mahasiswa=tb_mahasiswa.id_mahasiswa')
+              ->join('tb_prodi','tb_prodi.id_prodi=tb_mahasiswa.id_prodi')
+              ->join('tb_waktu','tb_waktu.id_waktu=tb_mahasiswa.id_waktu')
+              ->join('tb_grade','tb_grade.id_grade=tb_mahasiswa.id_grade', 'left')
+              ->where('tb_mahasiswa.id_mahasiswa', $ya)
+              ->get('tb_mahasiswa')
+
+              ->row();
+    } else {
+      return $this->db->join('tb_bio','tb_bio.id_mahasiswa=tb_mahasiswa.id_mahasiswa')
+              ->join('tb_kontak','tb_kontak.id_mahasiswa=tb_mahasiswa.id_mahasiswa')
+              ->join('tb_prodi','tb_prodi.id_prodi=tb_mahasiswa.id_prodi')
+              ->join('tb_waktu','tb_waktu.id_waktu=tb_mahasiswa.id_waktu')
+              ->join('tb_grade','tb_grade.id_grade=tb_mahasiswa.id_grade2', 'left')
+              ->where('tb_mahasiswa.id_mahasiswa', $ya)
+              ->get('tb_mahasiswa')
+
+              ->row();
+    }
+    
   }
   public function tambah_pembayaran()
     {
@@ -274,7 +310,6 @@ class Finance_model extends CI_Model {
             'id_mahasiswa'    => $item['idmhsa'],
             'id_biaya'    => $item['id'],
             'kode_matkul'    => $item['kdmatkul'],
-            't_biaya'    => $item['price'],
             'tanggal_pembayaran'       => $item['tgl']
           );
           $this->db->insert('tb_detail_pembayaran', $data);
@@ -337,6 +372,7 @@ class Finance_model extends CI_Model {
                 
                 }
     }
+    
 }
 
 /* End of file prodi_model.php */

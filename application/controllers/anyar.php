@@ -12,13 +12,14 @@ class Anyar extends CI_Controller {
 
 	public function index()
 	{
-		$data['kodeunik'] = $this->finance_model->buat_kode();
-		$data['getJenisPembayaran'] = $this->biaya_sekolah_model->getJenisPembayaran();
-		$data['products'] = $this->finance_model->all();
 		$data['main_view'] = 'cart';
 		$this->load->view('template', $data);
 	}
-	
+	public function laporan_tamuku(){
+    $tanggal_pendaftaran = $this->input->get('tanggal_pendaftaran');
+    $tanggal_pendaftaran2 = $this->input->get('tanggal_pendaftaran2');
+    $this->finance_model->laporan_tamu($tanggal_pendaftaran, $tanggal_pendaftaran2);
+  }
 	public function add_to_cart()
 	{
 		$ea = $this->uri->segment(3);

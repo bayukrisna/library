@@ -30,10 +30,20 @@ class Biaya_sekolah_model extends CI_Model {
 	}
   public function getJenisPembayaran($id){
     $this->db->distinct();
-    $this->db->select('tb_biaya.jenis_biaya, tb_biaya.periode');
+    $this->db->select('tb_biaya.jenis_biaya');
      $this->db->from('tb_biaya');
      $this->db->join('tb_waktu','tb_waktu.id_waktu=tb_biaya.id_waktu');
      $this->db->where('tb_waktu.waktu', $id);
+     $query = $this->db->get();
+     return $query->result();
+
+    
+
+  }
+  public function getTA(){
+    $this->db->distinct();
+    $this->db->select('periode');
+     $this->db->from('tb_biaya');
      $query = $this->db->get();
      return $query->result();
 

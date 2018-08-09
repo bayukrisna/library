@@ -14,7 +14,13 @@
            <td class="left_column" width="25%">NIM <font color="#FF0000">*</font></td>
             <td>:  <?php echo $data->id_mahasiswa ?>
                                      </td>
-                                     <input type="hidden" name="js_ranking" id="js_ranking" value="<?php echo $data->id_grade; ?>">
+                                     <input type="hidden" name="js_ranking" id="js_ranking" value="
+                                     <?php 
+              if ($data->semester_aktif >= '3'){
+                echo $grade->id_grade;
+              } else {
+                echo $grade->id_grade;
+            } ?>  ">
            
             </td>
         </tr>
@@ -22,7 +28,14 @@
             <td class="left_column" width="15%" value=>Jenis Kelamin <font color="#FF0000">*</font></td>
             <td width="25%">: <?php echo $data->jenis_kelamin ?>       </td>
             <td class="left_column" width="15%">Ranking <font color="#FF0000">*</font></td>
-            <td>: <?php echo $data->grade; ?>
+            <td>: 
+              <?php 
+              if ($data->semester_aktif >= '3'){
+                echo $grade->grade;
+              } else {
+                echo $grade->grade;
+            } ?>  
+              
                                      </td>
         </tr>
         <tr>
@@ -35,6 +48,8 @@
             <td class="left_column">Kelas </td>
             <td>: <?php echo $data->waktu ?></td>
             <input type="hidden" name="waktu" id="waktu" value="<?php echo $data->waktu ?>">
+            <td class="left_column">Semester <font color="#FF0000">*</font></td>
+            <td>:  <?php echo $data->semester_aktif; ?></td>
           </tr>
         </table>
             </div>
@@ -69,6 +84,11 @@
                 <tbody> 
                   <?php 
                 $no = 0;
+                if ($data->semester_aktif >= '3'){
+                $grade->diskon;
+                  } else {
+                $grade->diskon;
+                }
                 foreach ($data_pembayaran as $data) {
                   
                   if ($data->jenis_biaya == 'Angsuran Tahun 1'){
@@ -76,6 +96,9 @@
                     $data->jumlah_biaya = $data->jumlah_biaya - $dataea;
                   } else if($data->jenis_biaya == 'KRS'){
                     $data->jumlah_biaya = $data->jumlah_biaya * $data->bobot_matkul;
+                  }  else if($data->jenis_biaya == 'Angsuran Tahun 2' or $data->jenis_biaya == 'Angsuran Tahun 3' or $data->jenis_biaya == 'Angsuran Tahun 4'){
+                    $dataea = $data->jumlah_biaya * $grade->diskon / 100;
+                    $data->jumlah_biaya = $data->jumlah_biaya - $dataea;
                   }
                   echo '
                   
@@ -155,7 +178,8 @@
                         <input type="hidden" class="form-control" id="tanggal_pembayaran" name="tanggal_pembayaran" value="<?= $items['tgl'] ?>">
                         <input type="hidden" class="form-control" id="total_biaya" name="total_biaya" value="<?= $this->cart->total() ?>">
                 <?php endforeach; ?>
-                <div id="yoyo" style="display: none">
+                <div id="yoyo" style="display: ">
+  <h1 align="left"> STIE</h1>
   <table class="table table-bordered table-striped table-hover">
       <thead>
         <tr>
@@ -253,18 +277,36 @@
                       </div>
                     </div>
                     <div class="form-group">
+                      <label for="inputEmail3" class="col-sm-3 control-label">Tahun Akademik</label>
+
+                      <div class="col-sm-8">
+                         <select id="tahun_akademik" class="form-control" required="" name="tahun_akademik" onchange="return get_ta(this.value)">
+                         <option value="">Pilih Tahun Akademik</option>   
+                            <?php 
+
+                                foreach($getTA as $row)
+                          { 
+                            echo '<option value="'.$row->periode.'">'.$row->periode.'</option>';
+
+                          }
+                          ?>
+                  </select>
+                      </div>
+                    </div>
+                    <div class="form-group">
                       <label for="inputEmail3" class="col-sm-3 control-label">Jenis Pembayaran</label>
 
                       <div class="col-sm-8">
                          <select id="jenis_pembayaran" class="form-control" required="" name="jenis_pembayaran" onchange="return get_pembayaran(this.value)">
-                         <option value="">Pilih Jenis Pembayaran</option>   
+                         <!-- <option value="">Pilih Jenis Pembayaran</option>   
                             <?php 
 
                                 foreach($getJenisPembayaran as $row)
                           { 
-                            echo '<option value="'.$row->jenis_biaya.'">'.$row->jenis_biaya.' - '.$row->periode.'</option>';
+                            echo '<option value="'.$row->jenis_biaya.'">'.$row->jenis_biaya.'</option>';
+
                           }
-                          ?>
+                          ?> -->
                   </select>
                       </div>
                     </div>
@@ -329,13 +371,30 @@
   function get_pembayaran(p) {
                 var jenis_biaya = p;
                 var waktu = document.getElementById("waktu").value;
+                var periode = document.getElementById('tahun_akademik').value;
                 $.ajax({
                     url: '<?php echo base_url(); ?>finance/get_dropdown_pembayaran/',
-                    data: 'jenis_biaya='+jenis_biaya+'&waktu='+waktu,
+                    data: 'jenis_biaya='+jenis_biaya+'&waktu='+waktu+'&periode='+periode,
                     type: 'GET',
                     dataType: 'html',
                     success: function(msg) {
+                      console.log(jenis_biaya);
                         $("#pembayaran").html(msg);
+
+                    }
+                });
+            }
+            function get_ta(p) {
+                var periode = p;
+                var waktu = document.getElementById("waktu").value;
+                $.ajax({
+                    url: '<?php echo base_url(); ?>finance/get_ta/',
+                    data: 'periode='+periode+'&waktu='+waktu,
+                    type: 'GET',
+                    dataType: 'html',
+                    success: function(msg) {
+                      console.log(periode);
+                        $("#jenis_pembayaran").html(msg);
 
                     }
                 });

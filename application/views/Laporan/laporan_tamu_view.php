@@ -38,7 +38,7 @@
 <script type="text/javascript">
   function tampil(){
       $.ajax({
-                    url: '<?php echo base_url(); ?>anyar/laporan_tamu/',
+                    url: '<?php echo base_url(); ?>laporan/laporan_tamuku/',
                     data: 'tanggal_pendaftaran='+document.getElementById("ss").value+'&tanggal_pendaftaran2='+document.getElementById("sa").value,
                     type: 'GET',
                     dataType: 'html',

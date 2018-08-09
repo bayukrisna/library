@@ -30,10 +30,12 @@ class Finance extends CI_Controller {
 		$dataku = $this->finance_model->get_data_detail_mahasiswa($ya);
 		$data['mahasiswa']=$ea;
 		$data['data']= $dataku;
+		$data['grade']= $this->finance_model->get_data_detail_mahasiswa2($ya, $dataku->semester_aktif);
 		$data['data_pembayaran']= $this->finance_model->data_pembayaran_mahasiswa($ya);
 		$data['data_pembayaran2']= $this->finance_model->data_pembayaran_mahasiswa($ya);
 		$data['kodeunik'] = $this->finance_model->buat_kode();
-		$data['getJenisPembayaran'] = $this->biaya_sekolah_model->getJenisPembayaran($dataku->waktu);
+		// $data['getJenisPembayaran'] = $this->biaya_sekolah_model->getJenisPembayaran($dataku->waktu);
+		$data['getTA'] = $this->biaya_sekolah_model->getTA();
 		$data['main_view'] = 'Finance/detail_pembayaran_view';
 		$this->load->view('template', $data);	
 		
@@ -173,12 +175,27 @@ class Finance extends CI_Controller {
 		// $layanan =$this->input->post('layanan');
 		$param = $this->input->get('jenis_biaya');
 		$waktu = $this->input->get('waktu');
+		$periode = $this->input->get('periode');
 		$jenis_biaya = urldecode($param);
-		$result = $this->finance_model->get_dropdown_pembayaran($jenis_biaya, $waktu);
+		$result = $this->finance_model->get_dropdown_pembayaran($jenis_biaya, $waktu, $periode);
 		$option = "";
 		$option .= '<option value="">Pilih Pembayaran</option>';
 		foreach ($result as $data) {
 			$option .= "<option value='".$data->id_biaya."' >".$data->nama_biaya."</option>";
+			
+		}
+		echo $option;
+
+	}
+	public function get_ta() {
+		// $layanan =$this->input->post('layanan');
+		$param = $this->input->get('periode');
+		$waktu = $this->input->get('waktu');
+		$result = $this->finance_model->get_ta($param , $waktu);
+		$option = "";
+		$option .= '<option value="">Pilih Pembayaran</option>';
+		foreach ($result as $data) {
+			$option .= "<option value='".$data->jenis_biaya."' >".$data->jenis_biaya."</option>";
 			
 		}
 		echo $option;
@@ -194,9 +211,12 @@ class Finance extends CI_Controller {
 		// $option = "";
 		// $option .= "<input readonly='' type='text' class='form-control' name='biaya' id='biayaa' value='".$result->jumlah_biaya."' >";
 
-		if ($pae != null && $par == 'Angsuran Tahun 1'){
+		if ($pae == 1 or $pae == 2	 && $par == 'Angsuran Tahun 1'){
 			$yaya = $this->finance_model->get_yaya($pae);
 			$ee = $result->jumlah_biaya * $yaya->diskon / 100;		
+		} else if($pae >= 3 && $par == 'Angsuran Tahun 2'  or $par == 'Angsuran Tahun 3' or $par == 'Angsuran Tahun 4'){
+			$yaya = $this->finance_model->get_yaya($pae);
+			$ee = $result->jumlah_biaya * $yaya->diskon / 100;	
 		} else {
 			$ee = 0;
 		}
