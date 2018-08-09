@@ -33,7 +33,8 @@
                   <div class="col-sm-10">
                     <div class="col-sm-4">
                     <select name="sa" id="sa" class="form-control" required="" >
-                      <option value="">Pilih Program Studi</option>   
+                      <option value="*">Pilih Program Studi</option>   
+                      <option value="">Semua</option>   
                               <?php 
 
                             foreach($getProdi as $row)
