@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 4.8.2
+-- version 4.8.1
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Aug 02, 2018 at 11:21 AM
--- Server version: 10.1.34-MariaDB
--- PHP Version: 7.2.7
+-- Generation Time: Aug 09, 2018 at 04:10 AM
+-- Server version: 10.1.33-MariaDB
+-- PHP Version: 7.1.18
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET AUTOCOMMIT = 0;
@@ -144,11 +144,11 @@ CREATE TABLE `tb_biaya` (
 --
 
 INSERT INTO `tb_biaya` (`id_biaya`, `jenis_biaya`, `nama_biaya`, `jumlah_biaya`, `periode`, `id_waktu`) VALUES
-('BS001', '', 'Ranking 1', 360000, '2019/2022', '1'),
-('BS002', '', 'Ranking 2', 3900000, '2018/2019', '1'),
-('BS003', '', 'Ranking 3', 4500000, '2018/2019', '1'),
-('BS004', '', 'Non-Beasiswa', 6000000, '2018/2019', '1'),
-('BS005', 'Angsuran Tahun 1', 'Angsuran 1', 2070000, '2018', '1'),
+('BS001', 'Registrasi', 'Ranking 1', 360000, '2019/2022', '1'),
+('BS002', 'Registrasi', 'Ranking 2', 3900000, '2018/2019', '1'),
+('BS003', 'Registrasi', 'Ranking 3', 4500000, '2018/2019', '1'),
+('BS004', 'Registrasi', 'Non-Beasiswa', 6000000, '2018/2019', '1'),
+('BS005', 'Angsuran Tahun 1', 'Angsuran 1', 1200000, '2018', '1'),
 ('BS006', 'Angsuran Tahun 1', 'Angsuran 2', 600000, '2018', '1'),
 ('BS007', 'Angsuran Tahun 1', 'Angsuran 3', 600000, '2018/2019', '1'),
 ('BS008', 'Angsuran Tahun 1', 'Angsuran 4', 600000, '2018/2019', '1'),
@@ -156,7 +156,75 @@ INSERT INTO `tb_biaya` (`id_biaya`, `jenis_biaya`, `nama_biaya`, `jumlah_biaya`,
 ('BS010', 'Angsuran Tahun 1', 'Angsuran 6', 600000, '2018/2019', '1'),
 ('BS011', 'Angsuran Tahun 1', 'Angsuran 7', 600000, '2018/2019', '1'),
 ('BS012', 'Angsuran Tahun 1', 'Angsuran 8', 600000, '2018/2019', '1'),
-('BS013', 'Angsuran Tahun 1', 'Angsuran 9', 600000, '2018/2019', '1');
+('BS013', 'Angsuran Tahun 1', 'Angsuran 9', 600000, '2018/2019', '1'),
+('BS014', 'Angsuran Tahun 2', 'Angsuran 1', 1810000, '2018/2019', '1'),
+('BS015', 'Angsuran Tahun 2', 'Angsuran 2', 680000, '2018/2019', '1'),
+('BS016', 'Angsuran Tahun 2', 'Angsuran 3', 680000, '2018/2019', '1'),
+('BS017', 'Angsuran Tahun 2', 'Angsuran 4', 680000, '2018/2019', '1'),
+('BS018', 'Angsuran Tahun 2', 'Angsuran 5', 680000, '2018/2019', '1'),
+('BS019', 'Angsuran Tahun 2', 'Angsuran 6', 680000, '2018/2019', '1'),
+('BS020', 'Angsuran Tahun 2', 'Angsuran 7', 680000, '2018/2019', '1'),
+('BS021', 'Angsuran Tahun 2', 'Angsuran 8', 680000, '2018/2019', '1'),
+('BS022', 'Angsuran Tahun 2', 'Angsuran 9', 680000, '2018/2019', '1'),
+('BS023', 'Angsuran Tahun 3', 'Angsuran 1', 2200000, '2018/2019', '1'),
+('BS024', 'Angsuran Tahun 3', 'Angsuran 2', 850000, '2018/2019', '1'),
+('BS025', 'Angsuran Tahun 3', 'Angsuran 3', 850000, '2018/2019', '1'),
+('BS026', 'Angsuran Tahun 3', 'Angsuran 4', 850000, '2018/2019', '1'),
+('BS027', 'Angsuran Tahun 3', 'Angsuran 5', 850000, '2018/2019', '1'),
+('BS028', 'Angsuran Tahun 3', 'Angsuran 6', 850000, '2018/2019', '1'),
+('BS029', 'Angsuran Tahun 3', 'Angsuran 7', 850000, '2018/2019', '1'),
+('BS030', 'Angsuran Tahun 3', 'Angsuran 8', 850000, '2018/2019', '1'),
+('BS031', 'Angsuran Tahun 3', 'Angsuran 9', 850000, '2018/2019', '1'),
+('BS032', 'Angsuran Tahun 4', 'Angsuran 1', 2200000, '2018/2019', '1'),
+('BS033', 'Angsuran Tahun 4', 'Angsuran 2', 850000, '2018/2019', '1'),
+('BS034', 'Angsuran Tahun 4', 'Angsuran 3', 850000, '2018/2019', '1'),
+('BS035', 'Angsuran Tahun 4', 'Angsuran 4', 850000, '2018/2019', '1'),
+('BS036', 'Angsuran Tahun 4', 'Angsuran 5', 850000, '2018/2019', '1'),
+('BS037', 'Angsuran Tahun 4', 'Angsuran 6', 850000, '2018/2019', '1'),
+('BS038', 'Angsuran Tahun 4', 'Angsuran 7', 850000, '2018/2019', '1'),
+('BS039', 'Angsuran Tahun 4', 'Angsuran 8', 850000, '2018/2019', '1'),
+('BS040', 'Angsuran Tahun 4', 'Angsuran 9', 850000, '2018/2019', '1'),
+('BS041', 'Angsuran Tahun 1', 'Angsuran 1', 2570022, '2018/2019', '2'),
+('BS042', 'Angsuran Tahun 1', 'Angsuran 2', 850000, '2018/2019', '2'),
+('BS043', 'Angsuran Tahun 1', 'Angsuran 3', 850000, '2018/2019', '2'),
+('BS044', 'Angsuran Tahun 1', 'Angsuran 4', 850000, '2018/2019', '2'),
+('BS045', 'Angsuran Tahun 1', 'Angsuran 5', 850000, '2018/2019', '2'),
+('BS046', 'Angsuran Tahun 1', 'Angsuran 6', 850000, '2018/2019', '2'),
+('BS047', 'Angsuran Tahun 1', 'Angsuran 7', 850000, '2018/2019', '2'),
+('BS048', 'Angsuran Tahun 1', 'Angsuran 8', 850000, '2018/2019', '2'),
+('BS049', 'Angsuran Tahun 1', 'Angsuran 9', 850000, '2018/2019', '2'),
+('BS050', 'Angsuran Tahun 2', 'Angsuran 1', 2270000, '2018/2019', '2'),
+('BS051', 'Angsuran Tahun 2', 'Angsuran 2', 910000, '2018/2019', '2'),
+('BS052', 'Angsuran Tahun 2', 'Angsuran 3', 910000, '2018/2019', '2'),
+('BS053', 'Angsuran Tahun 2', 'Angsuran 4', 910000, '2018/2019', '2'),
+('BS054', 'Angsuran Tahun 2', 'Angsuran 5', 910000, '2018/2019', '2'),
+('BS055', 'Angsuran Tahun 2', 'Angsuran 6', 910000, '2018/2019', '2'),
+('BS056', 'Angsuran Tahun 2', 'Angsuran 7', 910000, '2018/2019', '2'),
+('BS057', 'Angsuran Tahun 2', 'Angsuran 8', 910000, '2018/2019', '2'),
+('BS058', 'Angsuran Tahun 2', 'Angsuran 9', 910000, '2018/2019', '2'),
+('BS059', 'Angsuran Tahun 3', 'Angsuran 1', 2740000, '2018/2019', '2'),
+('BS060', 'Angsuran Tahun 3', 'Angsuran 2', 1120000, '2018/2019', '2'),
+('BS061', 'Angsuran Tahun 3', 'Angsuran 3', 1120000, '2018/2019', '2'),
+('BS062', 'Angsuran Tahun 3', 'Angsuran 4', 1120000, '2018/2019', '2'),
+('BS063', 'Angsuran Tahun 3', 'Angsuran 5', 1120000, '2018/2019', '2'),
+('BS064', 'Angsuran Tahun 3', 'Angsuran 6', 1120000, '2018/2019', '2'),
+('BS065', 'Angsuran Tahun 3', 'Angsuran 7', 1120000, '2018/2019', '2'),
+('BS066', 'Angsuran Tahun 3', 'Angsuran 8', 1120000, '2018/2019', '2'),
+('BS067', 'Angsuran Tahun 3', 'Angsuran 9', 1120000, '2018/2019', '2'),
+('BS068', 'Angsuran Tahun 4', 'Angsuran 1', 2740000, '2018/2019', '2'),
+('BS069', 'Angsuran Tahun 4', 'Angsuran 2', 1120000, '2018/2019', '2'),
+('BS070', 'Angsuran Tahun 4', 'Angsuran 3', 1120000, '2018/2019', '2'),
+('BS071', 'Angsuran Tahun 4', 'Angsuran 4', 1120000, '2018/2019', '2'),
+('BS072', 'Angsuran Tahun 4', 'Angsuran 5', 1120000, '2018/2019', '2'),
+('BS073', 'Angsuran Tahun 4', 'Angsuran 5', 1120000, '2018/2019', '2'),
+('BS074', 'Angsuran Tahun 4', 'Angsuran 6', 1120000, '2018/2019', '2'),
+('BS075', 'Angsuran Tahun 4', 'Angsuran 7', 1120000, '2018/2019', '2'),
+('BS076', 'Angsuran Tahun 4', 'Angsuran 8', 1120000, '2018/2019', '2'),
+('BS077', 'Angsuran Tahun 4', 'Angsuran 9', 1120000, '2018/2019', '2'),
+('BS078', 'KRS', 'KRS Mengulang', 52500, '2018/2019', '1'),
+('BS079', 'KRS', 'KRS Mengulang', 52500, '2018/2019', '2'),
+('BS080', 'Angsuran Tahun 1', 'Angsuran 1', 1200000, '2019/2020', '1'),
+('BS081', 'Registrasi', 'Ranking 1', 400000, '2019/2020', '1');
 
 -- --------------------------------------------------------
 
@@ -178,7 +246,7 @@ CREATE TABLE `tb_bio` (
 --
 
 INSERT INTO `tb_bio` (`id_mahasiswa`, `jenis_kelamin`, `tempat_lahir`, `tanggal_lahir`, `agama`, `foto_mahasiswa`) VALUES
-('436546', 'laki-laki', 'myyt', '2018-08-11', 'Kristen', ''),
+('436546', 'L', 'myyt', '2018-08-11', 'Kristen', ''),
 ('4546', 'P', 'Malang', '2018-08-10', 'Islam', ''),
 ('5435', 'L', 'Malang', '2018-08-02', 'Kristen', ''),
 ('876543', 'L', 'jihugy', '2018-08-02', 'Kristen', ''),
@@ -195,33 +263,65 @@ CREATE TABLE `tb_detail_kurikulum` (
   `id_kurikulum` varchar(5) NOT NULL,
   `kode_matkul` varchar(20) NOT NULL,
   `semester_kurikulum` int(11) NOT NULL,
-  `wajib` varchar(5) NOT NULL,
-  `bobot_matkul` int(11) NOT NULL,
-  `bp` int(11) NOT NULL,
-  `btm` int(11) NOT NULL,
-  `bpl` int(11) NOT NULL,
-  `bs` int(11) NOT NULL
+  `wajib` varchar(5) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `tb_detail_kurikulum`
 --
 
-INSERT INTO `tb_detail_kurikulum` (`id_detail_kurikulum`, `id_kurikulum`, `kode_matkul`, `semester_kurikulum`, `wajib`, `bobot_matkul`, `bp`, `btm`, `bpl`, `bs`) VALUES
-(0, '', '', 0, '', 0, 0, 0, 0, 0),
-(20, '1', 'mk123', 4, 'T', 3, 0, 3, 0, 0),
-(21, '1', '76', 2, 'Y', 8, 3, 2, 1, 2),
-(22, '1', 'i', 5, 'Y', 0, 0, 0, 0, 0),
-(23, '1', '76', 4, 'Y', 8, 3, 2, 1, 2),
-(24, '1', 'mk123', 4, 'T', 3, 0, 3, 0, 0),
-(25, '1', '76', 1, 'T', 8, 3, 2, 1, 2),
-(26, '1', '76', 5, 'Y', 8, 3, 2, 1, 2),
-(27, '5', '76', 1, 'Y', 8, 3, 2, 1, 2),
-(28, '5', 'mk123', 2, 'T', 3, 0, 3, 0, 0),
-(29, '6', '76', 1, 'Y', 8, 3, 2, 1, 2),
-(30, '6', 'mk123', 4, 'T', 3, 0, 3, 0, 0),
-(31, '0', 'mk123', 7, 'Y', 3, 0, 3, 0, 0),
-(32, '4', 'mk123', 4, 'Y', 3, 0, 3, 0, 0);
+INSERT INTO `tb_detail_kurikulum` (`id_detail_kurikulum`, `id_kurikulum`, `kode_matkul`, `semester_kurikulum`, `wajib`) VALUES
+(0, '', '', 0, ''),
+(20, '1', 'mk123', 4, 'T'),
+(21, '1', '76', 2, 'Y'),
+(22, '1', 'i', 5, 'Y'),
+(23, '1', '76', 4, 'Y'),
+(24, '1', 'mk123', 4, 'T'),
+(25, '1', '76', 1, 'T'),
+(26, '1', '76', 5, 'Y'),
+(27, '5', '76', 1, 'Y'),
+(28, '5', 'mk123', 2, 'T'),
+(29, '6', '76', 1, 'Y'),
+(30, '6', 'mk123', 4, 'T'),
+(31, '0', 'mk123', 7, 'Y'),
+(32, '4', 'mk123', 4, 'Y'),
+(34, '0', '76', 7, 'T'),
+(35, '0', 'mk123', 4, 'T'),
+(36, '0', 'mk123', 6, 'Y'),
+(37, '0', '76', 7, 'Y');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `tb_detail_pembayaran`
+--
+
+CREATE TABLE `tb_detail_pembayaran` (
+  `no` int(10) NOT NULL,
+  `kode_pembayaran` varchar(6) NOT NULL,
+  `id_mahasiswa` varchar(10) NOT NULL,
+  `id_biaya` varchar(10) NOT NULL,
+  `tanggal_pembayaran` varchar(20) NOT NULL,
+  `kode_matkul` varchar(10) NOT NULL,
+  `t_biaya` varchar(15) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `tb_detail_pembayaran`
+--
+
+INSERT INTO `tb_detail_pembayaran` (`no`, `kode_pembayaran`, `id_mahasiswa`, `id_biaya`, `tanggal_pembayaran`, `kode_matkul`, `t_biaya`) VALUES
+(16, 'KP001', '4546', 'BS005', '06-08-2018', '', '720000'),
+(17, 'KP001', '4546', 'BS078', '06-08-2018', 'mk123', '157500'),
+(18, 'KP002', '4546', 'BS006', '07-08-2018', '', '360000'),
+(19, 'KP003', '4546', 'BS007', '07-08-2018', '', '360000'),
+(20, 'KP004', '4546', 'BS008', '07-08-2018', '', '360000'),
+(21, 'KP004', '4546', 'BS009', '07-08-2018', '', '360000'),
+(22, 'KP004', '4546', 'BS010', '07-08-2018', '', '360000'),
+(23, 'KP004', '4546', 'BS011', '07-08-2018', '', '360000'),
+(24, 'KP004', '4546', 'BS012', '07-08-2018', '', '360000'),
+(25, 'KP004', '4546', 'BS013', '07-08-2018', '', '360000'),
+(26, 'KP005', '5435', 'BS041', '07-08-2018', '', '2570000');
 
 -- --------------------------------------------------------
 
@@ -253,7 +353,7 @@ INSERT INTO `tb_dosen` (`id_dosen`, `nama_dosen`, `kode_dosen`, `no_hp`, `ketera
 
 CREATE TABLE `tb_grade` (
   `id_grade` int(11) NOT NULL,
-  `grade` varchar(10) NOT NULL
+  `grade` varchar(20) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
@@ -264,8 +364,9 @@ INSERT INTO `tb_grade` (`id_grade`, `grade`) VALUES
 (1, 'Ranking 1'),
 (2, 'Ranking 2'),
 (3, 'Ranking 3'),
-(4, 'Grade A'),
-(5, 'Grade B');
+(4, 'Non-Beasiswa'),
+(5, 'Grade A'),
+(6, 'Grade B');
 
 -- --------------------------------------------------------
 
@@ -417,7 +518,34 @@ CREATE TABLE `tb_kelas_dosen` (
 --
 
 INSERT INTO `tb_kelas_dosen` (`id_kelas_dosen`, `id_dosen`, `rencana`, `realisasi`, `bobot_dosen`, `jenis_evaluasi`, `id_kp`) VALUES
-(17, '1', 4, 4, 3, '', '0');
+(37, '2', 5, 5, 3, 'r', 'KP001'),
+(39, '1', 6, 6, 3, '', 'KP002'),
+(40, '1', 0, 0, 3, '', 'KP003'),
+(41, '1', 6, 6, 3, '', 'KP004'),
+(42, '1', 5, 5, 0, '', 'KP005');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `tb_kelas_mhs`
+--
+
+CREATE TABLE `tb_kelas_mhs` (
+  `id_kelas_mhs` int(11) NOT NULL,
+  `id_mahasiswa` varchar(20) NOT NULL,
+  `id_kp` varchar(11) NOT NULL,
+  `id_skala_nilai` varchar(10) NOT NULL,
+  `nilai_d` float NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `tb_kelas_mhs`
+--
+
+INSERT INTO `tb_kelas_mhs` (`id_kelas_mhs`, `id_mahasiswa`, `id_kp`, `id_skala_nilai`, `nilai_d`) VALUES
+(2, '4546', 'KP004', '16', 70),
+(11, '97865', 'KP001', '', 0),
+(12, '876543', 'KP005', '', 0);
 
 -- --------------------------------------------------------
 
@@ -504,23 +632,27 @@ INSERT INTO `tb_kontak` (`id_mahasiswa`, `no_telepon`, `no_hp`, `email`) VALUES
 --
 
 CREATE TABLE `tb_kp` (
-  `id_kp` int(11) NOT NULL,
+  `id_kp` varchar(11) NOT NULL,
   `nama_kelas` varchar(50) NOT NULL,
   `id_prodi` varchar(7) NOT NULL,
   `id_periode` varchar(5) NOT NULL,
   `kode_matkul` varchar(12) NOT NULL,
   `bahasan` text NOT NULL,
   `tgl_mulai` date NOT NULL,
-  `tgl_akhir` date NOT NULL
+  `tgl_akhir` date NOT NULL,
+  `id_dosen` varchar(20) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `tb_kp`
 --
 
-INSERT INTO `tb_kp` (`id_kp`, `nama_kelas`, `id_prodi`, `id_periode`, `kode_matkul`, `bahasan`, `tgl_mulai`, `tgl_akhir`) VALUES
-(0, 'YE', 'PR002', '3', 'mk123', 'www', '2018-07-03', '2018-07-02'),
-(2, 'kelas 2', 'PR001', '3', '76', 'bahas ituu', '0000-00-00', '0000-00-00');
+INSERT INTO `tb_kp` (`id_kp`, `nama_kelas`, `id_prodi`, `id_periode`, `kode_matkul`, `bahasan`, `tgl_mulai`, `tgl_akhir`, `id_dosen`) VALUES
+('KP001', 'YEy', 'PR001', '2', 'i', 'ss', '0000-00-00', '0000-00-00', '2'),
+('KP002', 'YEy', 'PR002', '3', '76', 'bhg', '0000-00-00', '0000-00-00', '1'),
+('KP003', 'n', 'PR001', '2', 'mk123', '', '0000-00-00', '0000-00-00', '1'),
+('KP004', 'YEy', 'PR001', '2', 'mk123', '', '0000-00-00', '0000-00-00', '1'),
+('KP005', 'YEy', 'PR001', '2', 'i', 'wawaw', '0000-00-00', '0000-00-00', '1');
 
 -- --------------------------------------------------------
 
@@ -574,11 +706,11 @@ CREATE TABLE `tb_mahasiswa` (
 --
 
 INSERT INTO `tb_mahasiswa` (`id_mahasiswa`, `nama_mahasiswa`, `nim`, `status_mahasiswa`, `id_prodi`, `id_konsentrasi`, `id_angkatan`, `id_hasil_tes`, `id_sekolah`, `id_waktu`, `id_grade`) VALUES
-('436546', 'Hiltons', '4', 'Aktif', 'PR001', 'KO003', '1', 'TES0002', 'SE002', 1, ''),
-('4546', 'Lala', '354', 'Nilai Kosong', 'PR002', 'KO006', '1', 'TES0005', 'SE001', 1, ''),
-('5435', 'Taeyeon', '32424', 'Aktif', 'PR001', 'KO003', '1', 'TES0003', 'SE001', 2, ''),
-('876543', 'Cris', '798', 'Aktif', 'PR001', 'KO003', '1', 'TES0004', 'SE002', 2, '2'),
-('97865', 'Ariana', '3253', 'Aktif', 'PR002', 'KO006', '2', 'TES0001', 'SE002', 1, '');
+('436546', 'Hiltons', '1112', 'Aktif', 'PR001', 'KO003', '1', 'TES0002', 'SE002', 1, '3'),
+('4546', 'Lala', '2222', 'Nilai Kosong', 'PR002', 'KO006', '1', 'TES0005', 'SE001', 1, '1'),
+('5435', 'Taeyeon', '3333', 'Aktif', 'PR001', 'KO003', '1', 'TES0003', 'SE001', 2, '4'),
+('876543', 'Cris', '4444', 'Aktif', 'PR001', 'KO003', '1', 'TES0004', 'SE002', 2, '2'),
+('97865', 'Ariana', '5555', 'Aktif', 'PR002', 'KO006', '2', 'TES0001', 'SE002', 1, '2');
 
 -- --------------------------------------------------------
 
@@ -607,7 +739,7 @@ CREATE TABLE `tb_matkul` (
 
 INSERT INTO `tb_matkul` (`kode_matkul`, `nama_matkul`, `id_prodi`, `jenis_matkul`, `bobot_matkul`, `bobot_praktikum`, `bobot_tatap_muka`, `bobot_praktik_lapangan`, `bobot_simulasi`, `metode_pembelajaran`, `tanggal_mulai`, `tanggal_akhir`) VALUES
 ('76', 'Bahasa Inggris', 'PR002', 'B', 8, 3, 2, 1, 2, '', '0000-00-00', '0000-00-00'),
-('i', 'iuh', 'PR003', 'B', 0, 0, 0, 0, 0, '', '2018-07-27', '2018-07-28'),
+('i', 'iuh', 'PR003', 'B', 5, 0, 5, 0, 0, '', '2018-07-27', '2018-07-28'),
 ('mk123', 'Matematika', 'PR001', 'A', 3, 0, 3, 0, 0, 'online', '0000-00-00', '0000-00-00');
 
 -- --------------------------------------------------------
@@ -617,11 +749,22 @@ INSERT INTO `tb_matkul` (`kode_matkul`, `nama_matkul`, `id_prodi`, `jenis_matkul
 --
 
 CREATE TABLE `tb_pembayaran` (
-  `kode_pembayaran` int(2) NOT NULL,
+  `kode_pembayaran` varchar(6) NOT NULL,
   `id_mahasiswa` varchar(7) NOT NULL,
   `total_biaya` varchar(10) NOT NULL,
   `tanggal_pembayaran` varchar(20) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `tb_pembayaran`
+--
+
+INSERT INTO `tb_pembayaran` (`kode_pembayaran`, `id_mahasiswa`, `total_biaya`, `tanggal_pembayaran`) VALUES
+('KP001', '4546', '877500', '06-08-2018'),
+('KP002', '4546', '360000', '07-08-2018'),
+('KP003', '4546', '360000', '07-08-2018'),
+('KP004', '4546', '2160000', '07-08-2018'),
+('KP005', '5435', '2570000', '07-08-2018');
 
 -- --------------------------------------------------------
 
@@ -753,9 +896,9 @@ CREATE TABLE `tb_skala_nilai` (
   `id_skala_nilai` int(11) NOT NULL,
   `id_prodi` varchar(7) NOT NULL,
   `nilai_huruf` varchar(5) NOT NULL,
-  `nilai_indeks` int(11) NOT NULL,
-  `bobot_nilai_minimum` int(11) NOT NULL,
-  `bobot_nilai_maksimum` int(11) NOT NULL,
+  `nilai_indeks` float NOT NULL,
+  `bobot_nilai_minimum` float NOT NULL,
+  `bobot_nilai_maksimum` float NOT NULL,
   `tanggal_mulai_efektif` date NOT NULL,
   `tanggal_akhir_efektif` date NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
@@ -765,8 +908,24 @@ CREATE TABLE `tb_skala_nilai` (
 --
 
 INSERT INTO `tb_skala_nilai` (`id_skala_nilai`, `id_prodi`, `nilai_huruf`, `nilai_indeks`, `bobot_nilai_minimum`, `bobot_nilai_maksimum`, `tanggal_mulai_efektif`, `tanggal_akhir_efektif`) VALUES
-(1, '', '', 0, 0, 0, '0000-00-00', '0000-00-00'),
-(2, 'PR002', 'A-', 4, 82, 86, '2017-09-01', '2020-09-01');
+(2, 'PR002', 'A', 4, 86, 100, '2017-09-01', '2020-09-01'),
+(3, 'PR002', 'A-', 3.75, 82, 85.9, '2018-08-01', '2018-08-31'),
+(4, 'PR002', 'B+', 3.25, 78, 81.9, '0000-00-00', '0000-00-00'),
+(5, 'PR002', 'B', 3, 75, 77.9, '0000-00-00', '0000-00-00'),
+(6, 'PR002', 'B-', 2.75, 70, 74.9, '0000-00-00', '0000-00-00'),
+(7, 'PR002', 'C+', 2.25, 67, 69.9, '2018-08-01', '2018-08-24'),
+(8, 'PR002', 'C', 2, 60, 66.9, '2018-08-01', '2018-08-31'),
+(9, 'PR002', 'D', 1, 57, 59.9, '2018-08-01', '2018-08-31'),
+(11, 'PR002', 'E', 0, 0, 57.9, '0000-00-00', '0000-00-00'),
+(12, 'PR001', 'A', 4, 86, 100, '0000-00-00', '0000-00-00'),
+(13, 'PR001', 'A-   ', 3.75, 82, 85.9, '0000-00-00', '0000-00-00'),
+(14, 'PR001', 'B+   ', 3.25, 78, 81.9, '0000-00-00', '0000-00-00'),
+(15, 'PR001', 'B   ', 3, 75, 77.9, '0000-00-00', '0000-00-00'),
+(16, 'PR001', 'B-   ', 2.75, 70, 74.9, '0000-00-00', '0000-00-00'),
+(18, 'PR001', 'C  ', 2, 60, 66.9, '0000-00-00', '0000-00-00'),
+(19, 'PR001', 'D ', 1, 57, 59.9, '0000-00-00', '0000-00-00'),
+(20, 'PR001', 'E ', 0, 0, 57.9, '0000-00-00', '0000-00-00'),
+(21, 'PR001', 'C+ ', 2.25, 67, 69.9, '0000-00-00', '0000-00-00');
 
 -- --------------------------------------------------------
 
@@ -789,6 +948,27 @@ INSERT INTO `tb_tgl_du` (`id_mahasiswa`, `tgl_du`) VALUES
 ('5435', '2018-08-01'),
 ('876543', '2018-08-01'),
 ('97865', '2018-08-08');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `tb_total_mhs`
+--
+
+CREATE TABLE `tb_total_mhs` (
+  `id_kp` varchar(20) NOT NULL,
+  `total_mhs` int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `tb_total_mhs`
+--
+
+INSERT INTO `tb_total_mhs` (`id_kp`, `total_mhs`) VALUES
+('KP001', 1),
+('KP002', 0),
+('KP004', 0),
+('KP005', 1);
 
 -- --------------------------------------------------------
 
@@ -902,6 +1082,12 @@ ALTER TABLE `tb_detail_kurikulum`
   ADD PRIMARY KEY (`id_detail_kurikulum`);
 
 --
+-- Indexes for table `tb_detail_pembayaran`
+--
+ALTER TABLE `tb_detail_pembayaran`
+  ADD PRIMARY KEY (`no`);
+
+--
 -- Indexes for table `tb_dosen`
 --
 ALTER TABLE `tb_dosen`
@@ -951,6 +1137,12 @@ ALTER TABLE `tb_kelas_dosen`
   ADD PRIMARY KEY (`id_kelas_dosen`);
 
 --
+-- Indexes for table `tb_kelas_mhs`
+--
+ALTER TABLE `tb_kelas_mhs`
+  ADD PRIMARY KEY (`id_kelas_mhs`);
+
+--
 -- Indexes for table `tb_kependudukan`
 --
 ALTER TABLE `tb_kependudukan`
@@ -994,6 +1186,12 @@ ALTER TABLE `tb_matkul`
   ADD PRIMARY KEY (`kode_matkul`);
 
 --
+-- Indexes for table `tb_pembayaran`
+--
+ALTER TABLE `tb_pembayaran`
+  ADD PRIMARY KEY (`kode_pembayaran`);
+
+--
 -- Indexes for table `tb_pendaftaran`
 --
 ALTER TABLE `tb_pendaftaran`
@@ -1028,6 +1226,12 @@ ALTER TABLE `tb_skala_nilai`
 --
 ALTER TABLE `tb_tgl_du`
   ADD PRIMARY KEY (`id_mahasiswa`);
+
+--
+-- Indexes for table `tb_total_mhs`
+--
+ALTER TABLE `tb_total_mhs`
+  ADD PRIMARY KEY (`id_kp`);
 
 --
 -- Indexes for table `tb_user`
@@ -1067,7 +1271,13 @@ ALTER TABLE `tb_angkatan`
 -- AUTO_INCREMENT for table `tb_detail_kurikulum`
 --
 ALTER TABLE `tb_detail_kurikulum`
-  MODIFY `id_detail_kurikulum` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=33;
+  MODIFY `id_detail_kurikulum` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=38;
+
+--
+-- AUTO_INCREMENT for table `tb_detail_pembayaran`
+--
+ALTER TABLE `tb_detail_pembayaran`
+  MODIFY `no` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=27;
 
 --
 -- AUTO_INCREMENT for table `tb_dosen`
@@ -1079,19 +1289,19 @@ ALTER TABLE `tb_dosen`
 -- AUTO_INCREMENT for table `tb_grade`
 --
 ALTER TABLE `tb_grade`
-  MODIFY `id_grade` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+  MODIFY `id_grade` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 
 --
 -- AUTO_INCREMENT for table `tb_kelas_dosen`
 --
 ALTER TABLE `tb_kelas_dosen`
-  MODIFY `id_kelas_dosen` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=18;
+  MODIFY `id_kelas_dosen` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=43;
 
 --
--- AUTO_INCREMENT for table `tb_kp`
+-- AUTO_INCREMENT for table `tb_kelas_mhs`
 --
-ALTER TABLE `tb_kp`
-  MODIFY `id_kp` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+ALTER TABLE `tb_kelas_mhs`
+  MODIFY `id_kelas_mhs` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
 
 --
 -- AUTO_INCREMENT for table `tb_kurikulum`
@@ -1109,13 +1319,13 @@ ALTER TABLE `tb_periode`
 -- AUTO_INCREMENT for table `tb_skala_nilai`
 --
 ALTER TABLE `tb_skala_nilai`
-  MODIFY `id_skala_nilai` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id_skala_nilai` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=22;
 
 --
 -- AUTO_INCREMENT for table `tb_waktu`
 --
 ALTER TABLE `tb_waktu`
-  MODIFY `id_waktu` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `id_waktu` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- Constraints for dumped tables

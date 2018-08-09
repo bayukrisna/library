@@ -26,8 +26,16 @@
             <td>:
                <?php echo $kurikulum->bobot_matkul_wajib; ?>                        </td>
             <td class="left_column" width="15%">SKS Matakuliah Wajib </td>
-            <td>:
-               <?php echo $bobot['bobot_wajib']; ?>   </td>
+            <td>: <?php 
+                    $totalwajib = 0;
+                     foreach($dk as $data){
+                        if ($data->wajib == 'Y') {
+                          $totalwajib += $data->bobot_matkul;
+                        }
+                      } echo $totalwajib;
+                  ?>
+                
+                </td>
         </tr>
         <tr>
             <td class="left_column">Jumlah SKS</td>
@@ -36,8 +44,15 @@
             <td>:
             <?php echo $kurikulum->bobot_matkul_pilihan; ?>
              <td class="left_column" width="15%">SKS Matakuliah Pilihan</td>
-            <td>:
-               <?php echo $bobot['bobot_pilihan']; ?>   </td>
+            <td>: <?php 
+                    $totalpilihan = 0;
+                     foreach($dk as $data){
+                        if ($data->wajib == 'T') {
+                          $totalpilihan += $data->bobot_matkul;
+                        }
+                      } echo $totalpilihan;
+                  ?>
+                  </td>
         </table>
             </div>
             <!-- /.box-body -->
@@ -76,7 +91,11 @@
 
     <?php 
         $no = 0;
-
+        $totalbobot = 0;
+        $totaltm = 0;
+        $totalprak = 0;
+        $totalpl = 0;
+        $totalsim = 0;
         $alert = "'Apakah anda yakin menghapus data ini ?'";
         foreach($dk as $data):
         ;
@@ -86,11 +105,11 @@
       <td><?php echo ++$no;?></td>
         <td style="text-align:center"><?php echo $data->kode_matkul;?></td>
         <td style="text-align:center"><?php echo $data->nama_matkul;?></td>
-        <td style="text-align:center"><?php echo $data->bobot_matkul;?></td>
-        <td style="text-align:center"><?php echo $data->bobot_tatap_muka;?></td>
-        <td style="text-align:center"><?php echo $data->bobot_praktikum;?></td>
-        <td style="text-align:center"><?php echo $data->bobot_praktik_lapangan;?></td >
-        <td style="text-align:center"><?php echo $data->bobot_simulasi;?></td >
+        <td style="text-align:center"><?php $totalbobot += $data->bobot_matkul;echo $data->bobot_matkul;?></td>
+        <td style="text-align:center"><?php $totaltm += $data->bobot_tatap_muka;echo $data->bobot_tatap_muka;?></td>
+        <td style="text-align:center"><?php $totalprak += $data->bobot_praktikum;echo $data->bobot_praktikum;?></td>
+        <td style="text-align:center"><?php $totalpl += $data->bobot_praktik_lapangan;echo $data->bobot_praktik_lapangan;?></td >
+        <td style="text-align:center"><?php $totalsim += $data->bobot_simulasi;echo $data->bobot_simulasi;?></td >
         <td style="text-align:center"><?php echo $data->semester_kurikulum;?></td >
         <td style="text-align:center"><?php
 
@@ -110,11 +129,11 @@
 <?php endforeach; ?>
 <tr>
         <td colspan="3" style="text-align:right"> <b> Jumlah SKS : </b></td>
-        <td style="text-align:center"><?php echo $bobot['bobot_matkuls']; ?></td>
-        <td style="text-align:center"><?php echo $bobot['bobot_btm']; ?></td>
-        <td style="text-align:center"><?php echo $bobot['bobot_bp']; ?></td>
-        <td style="text-align:center"><?php echo $bobot['bobot_bpl']; ?></td>
-        <td style="text-align:center"><?php echo $bobot['bobot_bs']; ?></td>
+        <td style="text-align:center"><?php echo $totalbobot; ?></td>
+        <td style="text-align:center"><?php echo $totaltm; ?></td>
+        <td style="text-align:center"><?php echo $totalprak; ?></td>
+        <td style="text-align:center"><?php echo $totalpl; ?></td>
+        <td style="text-align:center"><?php echo $totalsim; ?></td>
         <td style="text-align:center" colspan="2"></td >
         <td style="text-align:center">
                 

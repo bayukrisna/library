@@ -29,6 +29,7 @@ class Kelas_perkuliahan extends CI_Controller {
 	}
 
 	public function index(){
+
 				$data['getProdi'] = $this->daftar_ulang_model->getProdi();
 				$data['getPeriode'] = $this->daftar_ulang_model->getPeriode();
 				$data['kp'] = $this->kelas_perkuliahan_model->data_kp();
@@ -56,7 +57,6 @@ class Kelas_perkuliahan extends CI_Controller {
 	public function detail_kelas(){
 				$id_kp = $this->uri->segment(3);
 				$data['getProdi'] = $this->daftar_ulang_model->getProdi();
-				$data['kodeunik'] = $this->kelas_perkuliahan_model->buat_kode_mhs();
 				$data['getPeriode'] = $this->daftar_ulang_model->getPeriode();
 				$data['kp'] = $this->kelas_perkuliahan_model->detail_kp($id_kp);
 				$data['dsn'] = $this->kelas_perkuliahan_model->jumlah_dosen($id_kp);
@@ -219,11 +219,25 @@ class Kelas_perkuliahan extends CI_Controller {
 
 	public function hapus_kelas_mhs(){
 		$id_detail_kurikulum = $this->uri->segment(3);
-		if ($this->kelas_perkuliahan_model->hapus_kelas_mhs($id_detail_kurikulum) == TRUE) {
+		$id_kp = $this->input->post('id_kp');
+		if ($this->kelas_perkuliahan_model->hapus_kelas_mhs($id_detail_kurikulum) == TRUE && $this->kelas_perkuliahan_model->update_total_mhs($id_kp) == TRUE) {
 			$this->session->set_flashdata('message', '<div class="alert alert-success"> Hapus Mahasiswa Berhasil </div>');
+            	$id_kp = $this->input->post('id_kp');
+            	redirect('kelas_perkuliahan/detail_kelas/'.$id_kp);
+		} else {
+			$this->session->set_flashdata('message', '<div class="alert alert-danger"> Hapus Mahasiswa Gagal </div>');
+			redirect('Mahasiswa');
+		}
+	}
+
+	public function edit_total(){
+		$id_kp = $this->input->post('id_kp');
+		if ($this->kelas_perkuliahan_model->update_total_mhs($id_kp) == TRUE) {
+			$this->session->set_flashdata('message', '<div class="alert alert-success"> Edit Mahasiswa Berhasil </div>');
             	redirect('kelas_perkuliahan');
 		} else {
 			$this->session->set_flashdata('message', '<div class="alert alert-danger"> Hapus Mahasiswa Gagal </div>');
+			redirect('Mahasiswa');
 		}
 	}
 

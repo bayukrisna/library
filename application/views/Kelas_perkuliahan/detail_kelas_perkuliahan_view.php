@@ -37,11 +37,15 @@
           <td class="left_column">Tanggal Mulai Efektif</td>
             <td colspan="3">:
           <?php echo $kp->tgl_mulai; ?>          </td>
+          <form  method="post" action="<?php echo base_url(); ?>kelas_perkuliahan/hapus_kelas_mhs/; ?>" enctype="multipart/form-data">
 
         <td class="left_column">Total Mahasiswa</td>
+        <input type="text" name="id_kp" id="id_kp" class="text-input" maxlength="3" size="2"  style="width:10%" value="<?php echo $this->uri->segment(3); ?>"> 
             <td colspan="3">: <b> <?php echo $dsn['jumlah_mhs']; ?>  </b> mahasiswa</td>
-        
-         
+            <input type="text" name="total_mhs2" id="total_mhs2" value="<?php echo $kp->total_mhs -1; ?>">
+
+            <button type="submit" class="btn btn-info">Simpan</button>
+            
 
         </tr>
         <tr>
@@ -115,10 +119,7 @@
                 $no = 0;
                  $alert = "'Apakah anda yakin menghapus data ini ?'";
                 foreach ($dosen as $data) {
-
-                  
                   echo '
-                  
                 <tr>
                   <td>'.++$no.'</td>
                   <td>'.$data->id_dosen.'</a></td>
@@ -202,6 +203,7 @@
                 ' ;
               }
               ?>
+              </form>  
                         
                     </tr>
                 </tbody>
@@ -435,8 +437,6 @@
             <td class="left_column">Nama Mahasiswa <font color="#FF0000">*</font></td>
             <td>: <input type="text" name="nama_mahasiswa" id="nama_mahasiswa" class="validate[required] text-input" maxlength="50" size="50" style="width:80%" required="">
               <input type="hidden" name="id_mahasiswa" id="id_mahasiswa" class="validate[required] text-input" maxlength="20" size="40" style="width:80%" required="">
-
-              <input type="text" name="id_kelas_mhs" id="id_kelas_mhs" class="validate[required] text-input" maxlength="20" size="40" style="width:80%" required="" value="<?php echo $kodeunik; ?>">
 
 
               

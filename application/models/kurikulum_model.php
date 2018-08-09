@@ -34,7 +34,7 @@ class Kurikulum_model extends CI_Model {
 
     }
 
-    public function bobot($id_kurikulum){
+    /*public function bobot($id_kurikulum){
 
     $bobot_matkuls = $this->db->query("SELECT SUM(bobot_matkul) AS total FROM tb_detail_kurikulum WHERE id_kurikulum = $id_kurikulum")->row();
     $bobot_btm = $this->db->query("SELECT SUM(btm) AS total FROM tb_detail_kurikulum WHERE id_kurikulum = $id_kurikulum")->row();
@@ -55,7 +55,7 @@ class Kurikulum_model extends CI_Model {
       'bobot_pilihan' => $bobot_pilihan->total,
       );
       
-    }
+    } */
 
     public function autocomplete($nama){
      $this->db->select('*');
@@ -71,12 +71,7 @@ class Kurikulum_model extends CI_Model {
             'id_kurikulum'         => $this->input->post('id_kurikulum'),
             'kode_matkul'         => $this->input->post('kode_matkul'),
             'semester_kurikulum'   => $this->input->post('semester_kurikulum'),
-            'wajib'                 => $this->input->post('wajib'),
-            'bobot_matkul'        => $this->input->post('bobot_matkul'),
-            'bs'                 => $this->input->post('bobot_simulasi'),
-            'btm'                 => $this->input->post('bobot_tatap_muka'),
-            'bp'                 => $this->input->post('bobot_praktikum'),
-            'bpl'                 => $this->input->post('bobot_praktik_lapangan')
+            'wajib'                 => $this->input->post('wajib')
         );
     
         $this->db->insert('tb_detail_kurikulum', $data);
@@ -158,12 +153,7 @@ class Kurikulum_model extends CI_Model {
             'id_kurikulum'         => $this->input->post('id_kurikulum'),
             'kode_matkul'         => $this->input->post('kode_matkul'),
             'semester_kurikulum'   => $this->input->post('semester_kurikulum'),
-            'wajib'                 => $this->input->post('wajib'),
-            'bobot_matkul'        => $this->input->post('bobot_matkul'),
-            'bs'                 => $this->input->post('bobot_simulasi'),
-            'btm'                 => $this->input->post('bobot_tatap_muka'),
-            'bp'                 => $this->input->post('bobot_praktikum'),
-            'bpl'                 => $this->input->post('bobot_praktik_lapangan')
+            'wajib'                 => $this->input->post('wajib')
       );
 
     if (!empty($data)) {

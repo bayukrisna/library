@@ -1,34 +1,36 @@
-        <a class="btn btn-sm btn-primary" href="">Detail Mahasiswa</a>
-        <a class="btn btn-sm btn-info" href="">History Pendidikan</a>
-        <a class="btn btn-sm btn-primary">KRS Mahasiswa</a>
-        <a class="btn btn-sm btn-info">History Nilai</a>
+       <a class="btn btn-sm btn-primary" href="<?php echo base_url();?>mahasiswa/lihat_mahasiswa_dikti/<?php echo $mahasiswa->id_mahasiswa; ?>">Detail Mahasiswa</a>
+        <a class="btn btn-sm btn-info" href="<?php echo base_url();?>mahasiswa/history_pendidikan/<?php echo $mahasiswa->id_mahasiswa; ?>">History Pendidikan</a>
+        <a class="btn btn-sm btn-primary" href="<?php echo base_url();?>mahasiswa/krs_mahasiswa/<?php echo $mahasiswa->id_mahasiswa; ?>">KRS Mahasiswa</a>
+        <a class="btn btn-sm btn-info" href="<?php echo base_url();?>mahasiswa/history_nilai/<?php echo $mahasiswa->id_mahasiswa; ?>">History Nilai</a>
         <a class="btn btn-sm btn-primary">Aktivasi Perkuliahan</a>
         <a class="btn btn-sm btn-info">Prestasi</a>
+        <a class="btn btn-sm btn-primary" href="<?php echo base_url(); ?>mahasiswa/data_mahasiswa">Kembali</a>
         <br><br>
         <div class="box box-info">
         <div class="box-body">
               <table class="table">
         <tr>
             <td width="15%" class="left_column">NIM</td>
-            <td>: 171612120765</td>
+            <td>: <?php echo $mahasiswa->nim; ?></td>
             <td width="15%" class="left_column">Nama</td>
-            <td>: ANINDYA FELITA SYARIENDRAR</td>
+            <td>: <?php echo $mahasiswa->nama_mahasiswa; ?></td>
         </tr>
         <tr>
             <td class="left_column" width="15%">Program Studi</td>
-            <td width="35%">: S1 Akuntansi            </td>
+            <td width="35%">: <?php echo $mahasiswa->nama_prodi; ?>            </td>
             <td class="left_column" width="15%">Angkatan</td>
-            <td>: 2017            </td>
+            <td>: <?php echo $mahasiswa->angkatan; ?>           </td>
         </tr>
         <tr>
             <td class="left_column">Periode </td>
-            <td colspan="3">: 2018/2019 Ganjil</td>
+            <td colspan="3">: </td>
         </tr>
                 <tr>
-            <td class="left_column">Kelas </td>
-            <td colspan="3">: 
-            <input type="text" name="kelas" id="kelas" class="text-input">
-            &nbsp; &nbsp;
+            <!-- <td class="left_column">Kelas </td>
+            
+            <input type="text" name="kelas" id="kelas" class="text-input"> -->
+            <td colspan="3">
+            
                 <button type="button" class="btn btn-sm btn-primary">
                 <i class="fa fa-plus"></i> KRS</button>
             &nbsp;
@@ -55,10 +57,25 @@
     </tr>
     </thead>
     <tbody>
+    <?php 
+        $no = 0;
+        foreach($krs as $data):
+        ;
+      ?>
+      <tr>
+      <td><?php echo ++$no;?></td>
+        <td style="text-align:center"><?php echo $data->kode_matkul;?></td>
+        <td style="text-align:center"><?php echo $data->nama_matkul;?></td>
+        <td style="text-align:center"><?php echo $data->nama_kelas;?></td>
+        <td style="text-align:center"><?php echo $data->bobot_matkul;?></td>
         
-        <tr><td colspan="2">Tidak ada data</td></tr>
-    
-    </tbody>
+        <td style="text-align:center">
+                <button id="" type="button" class="btn btn-xs"   data-toggle="modal" data-target="#modal_detil"><i class="fa fa-pencil"></i></button>
+                        </td>
+    </tr>
+<?php endforeach; ?>
+  
+  </tbody>
     </table>
     </div>
     <div class="callout callout-info">
