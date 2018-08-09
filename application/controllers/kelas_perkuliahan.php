@@ -222,6 +222,18 @@ class Kelas_perkuliahan extends CI_Controller {
 		$id_kp = $this->input->post('id_kp');
 		if ($this->kelas_perkuliahan_model->hapus_kelas_mhs($id_detail_kurikulum) == TRUE && $this->kelas_perkuliahan_model->update_total_mhs($id_kp) == TRUE) {
 			$this->session->set_flashdata('message', '<div class="alert alert-success"> Hapus Mahasiswa Berhasil </div>');
+            	$id_kp = $this->input->post('id_kp');
+            	redirect('kelas_perkuliahan/detail_kelas/'.$id_kp);
+		} else {
+			$this->session->set_flashdata('message', '<div class="alert alert-danger"> Hapus Mahasiswa Gagal </div>');
+			redirect('Mahasiswa');
+		}
+	}
+
+	public function edit_total(){
+		$id_kp = $this->input->post('id_kp');
+		if ($this->kelas_perkuliahan_model->update_total_mhs($id_kp) == TRUE) {
+			$this->session->set_flashdata('message', '<div class="alert alert-success"> Edit Mahasiswa Berhasil </div>');
             	redirect('kelas_perkuliahan');
 		} else {
 			$this->session->set_flashdata('message', '<div class="alert alert-danger"> Hapus Mahasiswa Gagal </div>');

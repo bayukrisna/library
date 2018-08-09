@@ -54,7 +54,6 @@ class Kurikulum extends CI_Controller {
 			$data['kurikulum'] = $this->kurikulum_model->detail_kurikulum($id_kurikulum);
 			$detail_dk = $this->uri->segment(3);
 			$data['dk'] = $this->kurikulum_model->detail_dk($detail_dk);
-			$data['bobot'] = $this->kurikulum_model->bobot($id_kurikulum);
 			$data['getPeriode'] = $this->daftar_ulang_model->getPeriode();
 			$data['getProdi'] = $this->daftar_ulang_model->getProdi();
 			$data['main_view'] = 'kurikulum/detail_kurikulum_view';

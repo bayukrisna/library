@@ -52,6 +52,8 @@
     <?php 
 
         $no = 0;
+        $totalsi = 0;
+        $totalbobot = 0;
         foreach($nilai as $data):
              $dataee = $data->bobot_matkul * $data->nilai_indeks;
         ;
@@ -60,11 +62,11 @@
       <td><?php echo ++$no;?></td>
         <td style="text-align:center"><?php echo $data->kode_matkul;?></td>
         <td style="text-align:center"><?php echo $data->nama_matkul;?></td>
-        <td style="text-align:center"><?php echo $data->bobot_matkul;?></td>
+        <td style="text-align:center"><?php $totalbobot += $data->bobot_matkul; echo $data->bobot_matkul;?></td>
         <td style="text-align:center"><?php echo $data->nilai_d;?></td>
         <td style="text-align:center"><?php echo $data->nilai_huruf;?></td>
         <td style="text-align:center"><?php echo $data->nilai_indeks;?></td>
-        <td style="text-align:center"><?php echo $dataee;?></td>
+        <td style="text-align:center"><?php $totalsi += $dataee; echo $dataee;?></td>
         <input type="text" name="ee" id="ee" value="<?php echo $dataee;?>">
         <td style="text-align:center">
                 <button id="" type="button" class="btn btn-xs"   data-toggle="modal" data-target="#modal_detil"><i class="fa fa-pencil"></i></button>
@@ -74,7 +76,9 @@
 <?php endforeach; ?>
 
     <tr>
-        <td colspan="9"> <span id="val"></span></td>
+        <td colspan="4"> <span id="val"> <?php echo $totalsi; ?> </span></td>
+        <td colspan="4"> <span id="val"> <?php echo $totalbobot; ?> </span></td>
+        <td colspan="1"> <span id="val"> <?php $ips = $totalsi / $totalbobot; echo $ips; ?> </span></td>
 
     </tr>
 
