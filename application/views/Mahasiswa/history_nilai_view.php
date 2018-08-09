@@ -30,6 +30,33 @@
           </div>
         <br><br>
         <div class="box">
+            <table class="">
+                <tbody>
+                  <form method="get" action="<?php echo base_url(); ?>mahasiswa/filter_nilai/<?php echo $mahasiswa->id_mahasiswa; ?>">
+                  <tr>
+                    <th><input type="hidden" name="id_prodi" id="id_prodi" value="<?php echo $mahasiswa->id_prodi; ?>"><br></th>
+                  </tr>
+                  <tr>                                                                    
+                    <td> &nbsp;&nbsp;&nbsp;Periode</td>     
+                    <td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                      
+                      <select name="id_periode" id="id_periode" class="validate[required]">
+                        <option value="">Semua</option>   
+                    
+              </select>
+
+                    </td>  
+                    <td>
+                      &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<input type="submit" class="btn btn-primary" value="Cari">  
+                    </td>                                         
+                  </tr>
+                  
+                </tbody>
+              </table>
+                      
+               </form>
+              <br>
+              <br>
         <table id="table1" class="table table-striped table-bordered" >
     <thead>
     <tr>
@@ -39,13 +66,13 @@
         <th style="text-align:center" rowspan="2">Bobot MK<br />(sks)</th>
          <th style="text-align:center" colspan="3">Nilai<br />(sks)</th>
          <th style="text-align:center" rowspan="2">sks * N.indeks</th>
-        <th rowspan="2"></th>
+       
     </tr>
     <tr>
         <th style="width:5%;text-align:center">Angka</th>
         <th style="text-align:center">Huruf</th>
         <th style="text-align:center">Indeks</th>
-        <th ></th>
+        
     </tr>
     </thead>
     <tbody>
@@ -67,25 +94,35 @@
         <td style="text-align:center"><?php echo $data->nilai_huruf;?></td>
         <td style="text-align:center"><?php echo $data->nilai_indeks;?></td>
         <td style="text-align:center"><?php $totalsi += $dataee; echo $dataee;?></td>
-        <input type="text" name="ee" id="ee" value="<?php echo $dataee;?>">
+        
         <td style="text-align:center">
-                <button id="" type="button" class="btn btn-xs"   data-toggle="modal" data-target="#modal_detil"><i class="fa fa-pencil"></i></button>
+                
                         </td>
     </tr>
    
 <?php endforeach; ?>
 
     <tr>
-        <td colspan="4"> <span id="val"> <?php echo $totalsi; ?> </span></td>
-        <td colspan="4"> <span id="val"> <?php echo $totalbobot; ?> </span></td>
-        <td colspan="1"> <span id="val"> <?php $ips = $totalsi / $totalbobot; echo $ips; ?> </span></td>
+         <td colspan="3" style="text-align:right"> <b> Jumlah Bobot : </b></td>
+        <td style="text-align:center">  <?php 
+        if ($totalbobot == 0) {
+            echo $totalbobot = 1;
+        } else {
+            echo $totalbobot;
+        }  ?> </td>
+        <td colspan="3" style="text-align:right"> <b> Jumlah sks * N.indeks : </b></td>
+        <td style="text-align:center"> <?php echo $totalsi; ?></td>
 
+    </tr>
+    <tr>
+        <th style="text-align:right" colspan="7"> IPS : </th>
+        <th style="text-align:center"> <?php $ips = $totalsi / $totalbobot; echo round($ips, 2); ?>   </th>
     </tr>
 
   
   </tbody>
     </table>
-    <input type="text" name="ea" id="ea">
+    
     </div>
     <div class="callout callout-info">
         <strong>Keterangan :</strong>
@@ -98,16 +135,19 @@
             <br />
             
     </div>
-<script type="text/javascript">
-   
-      /* var table = document.getElementById("table1"), sumVal = 0;
-      for (var i = 1; i < table.rows.length; i++)
-      {
-         sumVal = sumVal + parseInt(table.rows[i].cells[7].innerHTML);
-      }
-      document.getElementById("val").innerHTML = "Sum Value = " + sumVal;
-     console.log(sumVal);
-     /*var ee = document.getElementById('ee').value;
-     var hasil = parseInt(ee) + parseInt(ee);
-     document.getElementById('ea').value = hasil; */
+ <link rel="stylesheet" href="//code.jquery.com/ui/1.12.0/themes/smoothness/jquery-ui.css">
+  <script src="//code.jquery.com/jquery-1.12.4.min.js"></script>
+  <script src="//code.jquery.com/ui/1.12.0/jquery-ui.min.js"></script>
+    <script type="text/javascript">
+                var id_prodi = document.getElementById('id_prodi').value;
+
+                $.ajax({
+                    url: '<?php echo base_url(); ?>kurikulum/get_prodi_periode/'+id_prodi,
+                    data: 'id_prodi='+id_prodi,
+                    type: 'GET',
+                    dataType: 'html',
+                    success: function(msg) {
+                        $("#id_periode").html(msg);
+                    }
+                });                       
 </script>

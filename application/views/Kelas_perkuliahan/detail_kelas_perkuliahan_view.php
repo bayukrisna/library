@@ -37,14 +37,13 @@
           <td class="left_column">Tanggal Mulai Efektif</td>
             <td colspan="3">:
           <?php echo $kp->tgl_mulai; ?>          </td>
-          <form  method="post" action="<?php echo base_url(); ?>kelas_perkuliahan/hapus_kelas_mhs/; ?>" enctype="multipart/form-data">
-
+          
         <td class="left_column">Total Mahasiswa</td>
-        <input type="text" name="id_kp" id="id_kp" class="text-input" maxlength="3" size="2"  style="width:10%" value="<?php echo $this->uri->segment(3); ?>"> 
+        
             <td colspan="3">: <b> <?php echo $dsn['jumlah_mhs']; ?>  </b> mahasiswa</td>
-            <input type="text" name="total_mhs2" id="total_mhs2" value="<?php echo $kp->total_mhs -1; ?>">
+            <input type="hidden" name="total_mhs2" id="total_mhs2" value="<?php echo $kp->total_mhs -1; ?>">
 
-            <button type="submit" class="btn btn-info">Simpan</button>
+           
             
 
         </tr>
@@ -195,7 +194,7 @@
                   <td>'.$data->nama_prodi.'</td>
                   <td>'.$data->angkatan.'</td>
                   <td>
-                        <a href="'.base_url('kelas_perkuliahan/hapus_kelas_mhs/'.$data->id_kelas_mhs).'" class="btn btn-danger  btn-sm" onclick="return confirm('.$alert.')"><i class="glyphicon glyphicon-trash"></i><span class="tooltiptext">Hapus</span></a>
+                        <a href="'.base_url('kelas_perkuliahan/hapus_kelas_mhs/'.$data->id_kelas_mhs.'/'.$data->id_kp).'" class="btn btn-danger  btn-sm" onclick="return confirm('.$alert.')"><i class="glyphicon glyphicon-trash"></i><span class="tooltiptext">Hapus</span></a>
 
                          <a href="'.base_url('kelas_perkuliahan/page_edit_kelas_mhs/'.$data->id_kelas_mhs).'" class="btn btn-warning btn-sm"><i class="glyphicon glyphicon-pencil"></i><span class="tooltiptext">Edit</span></a>
                   </td>
@@ -203,7 +202,7 @@
                 ' ;
               }
               ?>
-              </form>  
+             
                         
                     </tr>
                 </tbody>
@@ -435,21 +434,23 @@
                       <table class="table">
                          <tr>
             <td class="left_column">Nama Mahasiswa <font color="#FF0000">*</font></td>
-            <td>: <input type="text" name="nama_mahasiswa" id="nama_mahasiswa" class="validate[required] text-input" maxlength="50" size="50" style="width:80%" required="">
-              <input type="hidden" name="id_mahasiswa" id="id_mahasiswa" class="validate[required] text-input" maxlength="20" size="40" style="width:80%" required="">
+            <td>: <input type="text" name="nama_mahasiswa" id="nama_mahasiswa" class="validate[required] text-input" maxlength="50" size="50" style="width:80%" required="" >
+              <input type="text" name="id_mahasiswa" id="id_mahasiswa" class="validate[required] text-input" maxlength="20" size="40" style="width:80%" required=""><span id="user-availability-status"></span>
 
-
+              <input type="text" name="prodi" id="prodimhs" class="validate[required] text-input" maxlength="20" size="40" style="width:80%" >
               
-              <input type="hidden" name="prodi" id="prodi" class="validate[required] text-input" maxlength="20" size="40" style="width:80%" required="">
+              <input type="text" name="prodi" id="prodikp" class="validate[required] text-input" maxlength="20" size="40" style="width:80%" required="" value="<?php echo $kp->id_prodi; ?>">
 
-            <input type="hidden" name="id_kp" id="id_kp" class="validate[required] text-input" maxlength="20" size="40" style="width:80%" value="<?php echo $this->uri->segment(3); ?>">
+
+
+            <input type="text" name="id_kp" id="id_kp2" class="validate[required] text-input" maxlength="20" size="40" style="width:80%" value="<?php echo $this->uri->segment(3); ?>">
 
             <input type="hidden" name="total_mhs" id="total_mhs" class="validate[required] text-input" maxlength="20" size="40" style="width:80%" value="<?php echo $dsn['jumlah_mhs'] + 1; ?>">
 
             
           </td>
                   <tr>
-                    <td colspan="4"><button type="submit" class="btn btn-info">Simpan</button></td>
+                    <td colspan="4"><button type="submit" class="btn btn-info" id="myBtn">Simpan</button></td>
                   </tr>
               <?php echo form_close();?>
 
@@ -472,9 +473,48 @@
       select: function(event, ui){
         $('#nama_mahasiswa').val(ui.item.label);
         $('#id_mahasiswa').val(ui.item.id);
-        $('#prodi').val(ui.item.prodi);
+        $('#prodimhs').val(ui.item.prodi);
+        ea();
+        
       }
     });    
   });
   
   </script>
+
+  <script>
+    function disabledB(){
+    ea();
+    }
+    function ea(){
+     var prodimhs = document.getElementById('prodimhs').value;
+    var prodikp = document.getElementById('prodikp').value;
+
+    if (prodikp == prodimhs && hai() == true)
+      {
+         document.getElementById("myBtn").disabled = false;
+      } else {
+        document.getElementById("myBtn").disabled = true;
+      }
+      
+    
+    }
+</script>
+
+<script type="text/javascript">
+  function checkAvailability() {
+    hai();
+            }
+  function hai(){
+   $.ajax({
+                    url: '<?php echo base_url(); ?>kelas_perkuliahan/cek_mahasiswa/',
+                    data: 'id_mahasiswa='+$("#id_mahasiswa").val()+'&id_kp2='+$("#id_kp2").val(),
+                    type: 'POST',
+                    dataType: 'html',
+                    success:function(data){
+                    $("#user-availability-status").html(data);
+                    },
+                    error:function (){}
+                });
+              }
+</script>
