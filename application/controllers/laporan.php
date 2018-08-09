@@ -29,12 +29,14 @@ class Laporan extends CI_Controller {
   	/////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
   	public function laporan_mahasiswa(){
 		$data['main_view'] = 'Laporan/laporan_mahasiswa_view';
+		$data['getPeriode'] = $this->laporan_model->getPeriode();
+		$data['getProdi'] = $this->laporan_model->getProdi();
 		$this->load->view('template', $data);	
 	}
 	public function laporan_mahasiswaku(){
-    $tanggal_pendaftaran = $this->input->get('tanggal_pendaftaran');
-    $tanggal_pendaftaran2 = $this->input->get('tanggal_pendaftaran2');
-    $this->laporan_model->laporan_tamu($tanggal_pendaftaran, $tanggal_pendaftaran2);
+    $id_periode = $this->input->get('id_periode');
+    $id_prodi = $this->input->get('id_prodi');
+    $this->laporan_model->laporan_mahasiswa($id_periode, $id_prodi);
   	}
   	/////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 }

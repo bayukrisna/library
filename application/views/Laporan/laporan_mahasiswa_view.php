@@ -9,20 +9,46 @@
             <form class="form-horizontal">
               <div class="box-body">
                 <div class="form-group">
-                  <label for="inputEmail3" class="col-sm-2 control-label">Tanggal Awal</label>
+                  <label for="inputEmail3" class="col-sm-2 control-label">Tahun Periode</label>
 
                   <div class="col-sm-10">
-                    <input type="date" class="col-sm-4" name="ss" id="ss" required=""><br>
+                    <div class="col-sm-4">
+                    <select name="ss" id="ss" class="form-control" required="">
+                      <option value="">Pilih Periode</option>   
+                              <?php 
+
+                            foreach($getPeriode as $row)
+                            { 
+                              echo '<option value="'.$row->semester.'">'.$row->semester.'</option>';
+                            }
+                            ?>
+              </select></div>
+              <br>
                   </div>
 
                 </div>
                 <div class="form-group">
-                  <label for="inputEmail3" class="col-sm-2 control-label">Tanggal Akhir</label>
+                  <label for="inputEmail3" class="col-sm-2 control-label">Prodi</label>
 
                   <div class="col-sm-10">
-                    <input type="date" class="col-sm-4" name="sa" id="sa" required=""><br><br>
-                    <p class="btn btn-info" onclick="tampil()">Tampilkan</p>
+                    <div class="col-sm-4">
+                    <select name="sa" id="sa" class="form-control" required="" >
+                      <option value="">Pilih Program Studi</option>   
+                              <?php 
+
+                            foreach($getProdi as $row)
+                            { 
+                              echo '<option value="'.$row->id_prodi.'">'.$row->nama_prodi.'</option>';
+                            }
+                            ?>
+                  </select><br>
+                  <p class="btn btn-info" onclick="tampil()">Tampilkan</p>
                     <p class="btn btn-primary" onclick="print1()"> Cetak </p>
+
+                </div>
+                    <br>
+
+                    
                   </div>
 
                 </div>
@@ -38,8 +64,8 @@
 <script type="text/javascript">
   function tampil(){
       $.ajax({
-                    url: '<?php echo base_url(); ?>laporan/laporan_tamuku/',
-                    data: 'tanggal_pendaftaran='+document.getElementById("ss").value+'&tanggal_pendaftaran2='+document.getElementById("sa").value,
+                    url: '<?php echo base_url(); ?>laporan/laporan_mahasiswaku/',
+                    data: 'id_periode='+document.getElementById("ss").value+'&id_prodi='+document.getElementById("sa").value,
                     type: 'GET',
                     dataType: 'html',
                     success:function(data){
