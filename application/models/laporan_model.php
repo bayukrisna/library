@@ -97,7 +97,8 @@ class Laporan_model extends CI_Model {
 
                 } else{
                 $option = "";
-                  $option .= '<section class="content" id="ea">
+                  $option .= '
+                  <section class="content" id="ea">
       <div class="row">
         <div class="col-xs-12">
             <!-- /.box-header -->
@@ -122,6 +123,7 @@ class Laporan_model extends CI_Model {
       </div>
       <!-- /.row -->
     </section>';
+
                   echo $option;
                 
                 }
@@ -198,6 +200,7 @@ class Laporan_model extends CI_Model {
                 <thead>
                 <tr>
                   <th>No</th>
+                  <th>NIM</th>
                   <th>Nama Mahasiswa</th>
                   <th>Program Studi</th>
                   <th>Konsentrasi</th>
@@ -210,6 +213,7 @@ class Laporan_model extends CI_Model {
                     $option .= "
                     <tr>
                       <td>".++$no."</td>
+                      <td>".$data->nim."</td>
                       <td>".$data->nama_mahasiswa."</td>
                       <td>".$data->nama_prodi."</td>
                       <td>".$data->nama_konsentrasi."</td>
@@ -238,12 +242,137 @@ class Laporan_model extends CI_Model {
                 
                 }
     }
+    function laporan_hasil_tes($tanggal_hasil_tes){
+      $query = $this->db->select('*')
+                ->from('tb_hasil_tes')
+                ->join('tb_mahasiswa','tb_mahasiswa.id_hasil_tes=tb_hasil_tes.id_hasil_tes')
+                ->join('tb_sekolah','tb_sekolah.id_sekolah=tb_mahasiswa.id_sekolah')
+                ->join('tb_prodi','tb_prodi.id_prodi=tb_mahasiswa.id_prodi')
+                ->join('tb_konsentrasi','tb_konsentrasi.id_konsentrasi=tb_mahasiswa.id_konsentrasi')
+                ->join('tb_waktu','tb_waktu.id_waktu=tb_mahasiswa.id_waktu')
+                ->like('tanggal_hasil_tes', $tanggal_hasil_tes)
+                ->get();
+      $row = $query->result();
+      $coo = $this->db->select('count(tb_hasil_tes.id_hasil_tes) as total')
+                ->from('tb_hasil_tes')
+                ->join('tb_mahasiswa','tb_mahasiswa.id_hasil_tes=tb_hasil_tes.id_hasil_tes')
+                ->like('tanggal_hasil_tes', $tanggal_hasil_tes)
+                ->get();
+      $eee = $coo->row();
+
+                if ($query->num_rows() > 0)
+                { 
+                  $no = 0;
+                  $option = "";
+                  $option .= '<section class="content" id="ea">
+      <div class="row">
+        <div class="col-xs-12">
+            <!-- /.box-header -->
+            <div class="box-body">
+            <h4><b>Laporan Peserta Tes</h4></b>
+            <table>
+              <tr>
+                <td width="120px">Perguruan Tinggi</td>
+                <td width="300px">: 033082 - STIE Jakarta International College</td>
+                <td width="120px">Alamat</td>
+                <td>: Jalan Perunggu No 53-54 10640</td>
+              </tr>
+              <tr>
+                <td width="120px">Tahun</td>
+                <td width="300px">: '.$tanggal_hasil_tes.'</td>
+                <td width="120px">Jumlah Peserta Tes</td>
+                <td>: '.$eee->total.'</td>
+              </tr>
+            </table>
+            <br>
+              <table id="example1" class="table table-bordered table-striped">
+                <thead>
+                <tr>
+                  <th>No</th>
+                  <th>Nama Peserta</th>
+                  <th>Asal Sekolah</th>
+                  <th>Nama Prodi</th>
+                  <th>Nama Konsentrasi</th>
+                  <th>Waktu</th>
+                  <th>Status</th>
+                </tr>
+                </thead>
+                <tbody>';
+                  foreach ($row as $data) {
+                    $option .= "
+                    <tr>
+                      <td>".++$no."</td>
+                      <td>".$data->nama_mahasiswa."</td>
+                      <td>".$data->nama_sekolah."</td>
+                      <td>".$data->nama_prodi."</td>
+                      <td>".$data->nama_konsentrasi."</td>
+                      <td>".$data->waktu."</td>
+                      <td>".$data->status_mahasiswa."</td>
+                    </tr>";
+                    
+                  }
+                  $option .= '</tbody>
+              </table>
+            </div>
+            
+            <!-- /.box-body -->
+          </div>
+          <!-- /.box -->
+        <!-- /.col -->
+      </div>
+      <!-- /.row -->
+    </section>';
+                  echo $option;
+
+                } else{
+                $option = "";
+                  $option .= '
+                  <section class="content" id="ea">
+      <div class="row">
+        <div class="col-xs-12">
+            <!-- /.box-header -->
+            <div class="box-body">
+              <table id="example1" class="table table-bordered table-striped">
+                <thead>
+                <tr>
+                  <th>No</th>
+                  <th>Semester</th>
+                </tr>
+                </thead>
+                <tbody>
+                  <td></td><td></td>
+                  </tbody>
+              </table>
+            </div>
+            
+            <!-- /.box-body -->
+          </div>
+          <!-- /.box -->
+        <!-- /.col -->
+      </div>
+      <!-- /.row -->
+    </section>';
+
+                  echo $option;
+                
+                }
+    }
     function getPeriode()
     {
         $ea =  $this->db->select('tb_periode.semester')
                 ->distinct()
                 ->from('tb_periode')
                 ->join('tb_prodi','tb_prodi.id_prodi=tb_periode.id_prodi')
+                ->get();
+        return $ea->result();
+
+    }
+    function getTahun()
+    {
+        $ea =  $this->db->select('DATE_FORMAT(tb_hasil_tes.tanggal_hasil_tes, "%Y") as tanggal_hasil_tes')
+                ->distinct()
+                ->from('tb_hasil_tes')
+                ->join('tb_mahasiswa','tb_mahasiswa.id_hasil_tes=tb_hasil_tes.id_hasil_tes')
                 ->get();
         return $ea->result();
 

@@ -39,6 +39,15 @@ class Laporan extends CI_Controller {
     $this->laporan_model->laporan_mahasiswa($id_periode, $id_prodi);
   	}
   	/////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+  	public function laporan_peserta_tes(){
+  		$data['getTahun'] = $this->laporan_model->getTahun();
+		$data['main_view'] = 'Laporan/laporan_peserta_tes_view';
+		$this->load->view('template', $data);	
+	}
+	public function laporan_peserta_tesku(){
+    $tanggal_hasil_tes = $this->input->get('tanggal_hasil_tes');
+    $this->laporan_model->laporan_hasil_tes($tanggal_hasil_tes);
+  	}
 }
 
 
