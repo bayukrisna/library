@@ -120,6 +120,14 @@ class Mahasiswa extends CI_Controller {
 			$this->load->view('template', $data);
 	}
 
+	public function page_tambah_mahasiswa()
+	{
+			$data['kodeunik_mhs'] = $this->mahasiswa_model->buat_kode_mhs();
+			$data['getProdi'] = $this->daftar_ulang_model->getProdi();
+			$data['main_view'] = 'Mahasiswa/tambah_mahasiswa_view';
+			$this->load->view('template', $data);
+	}
+
 	public function history_pendidikan()
 	{
 			$id_mahasiswa = $this->uri->segment(3);
@@ -145,13 +153,13 @@ class Mahasiswa extends CI_Controller {
 
 	public function save_mahasiswa()
 	{
-			if($this->mahasiswa_model->save_mahasiswa() == TRUE && $this->mahasiswa_model->save_ayah() == TRUE  && $this->mahasiswa_model->save_ibu() == TRUE && $this->mahasiswa_model->save_alamat() == TRUE && $this->mahasiswa_model->save_wali() == TRUE && $this->mahasiswa_model->save_kependudukan() == TRUE && $this->mahasiswa_model->save_jenis_tinggal() == TRUE && $this->mahasiswa_model->save_bio() == TRUE && $this->mahasiswa_model->save_kontak() == TRUE){
+			if($this->mahasiswa_model->save_mahasiswa() == TRUE && $this->mahasiswa_model->save_ayah() == TRUE  && $this->mahasiswa_model->save_ibu() == TRUE && $this->mahasiswa_model->save_alamat() == TRUE && $this->mahasiswa_model->save_wali() == TRUE && $this->mahasiswa_model->save_kependudukan() == TRUE && $this->mahasiswa_model->save_jenis_tinggal() == TRUE && $this->mahasiswa_model->save_bio() == TRUE && $this->mahasiswa_model->save_kontak() == TRUE && $this->mahasiswa_model->save_tgl_du() == TRUE){
 				$nama_du = $this->input->post('nama_mahasiswa');
 				$this->session->set_flashdata('message', '<div class="col-md-12 alert alert-success"> Data '.$nama_du.' berhasil didaftarkan. </div>');
-            	redirect('daftar_ulang/data_peserta_tes');
+            	redirect('mahasiswa/data_mahasiswa');
 			} else{
 				$this->session->set_flashdata('message', '<div class="col-md-12 alert alert-danger"> Data  '.$nama_pendaftar.' Sudah Ada </div>');
-            	redirect('daftar_ulang/page_du_pagi');
+            	redirect('mahasiswa/data_mahasiswa');
 			} 
 	} 
 

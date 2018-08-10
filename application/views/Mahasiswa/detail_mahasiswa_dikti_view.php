@@ -52,7 +52,7 @@
               <li><a href="#tab_1" data-toggle="tab">Alamats</a></li>
               <li><a href="#tab_2" data-toggle="tab">Orang Tua</a></li>
               <li><a href="#tab_3" data-toggle="tab">Wali</a></li>
-              <li><a href="#tab_4" data-toggle="tab">Kebutuhan Khusus</a></li>
+              <!--<li><a href="#tab_4" data-toggle="tab">Kebutuhan Khusus</a></li> -->
               <li class="pull-right"><button class="btn btn-sm btn-success" >Simpan</button> </li>
             </ul>
             <div class="tab-content">

@@ -50,9 +50,9 @@ class Nilai_perkuliahan_model extends CI_Model {
 
   public function data_nilai($id_kp){
       return $this->db->join('tb_mahasiswa','tb_mahasiswa.id_mahasiswa=tb_kelas_mhs.id_mahasiswa','left')
+              ->join('tb_bio','tb_bio.id_mahasiswa=tb_mahasiswa.id_mahasiswa')
               ->join('tb_kp','tb_kp.id_kp=tb_kelas_mhs.id_kp','left')
               ->join('tb_prodi','tb_prodi.id_prodi=tb_kp.id_prodi')
-              ->join('tb_angkatan','tb_angkatan.id_angkatan=tb_mahasiswa.id_angkatan','left')
               ->join('tb_skala_nilai','tb_skala_nilai.id_skala_nilai=tb_kelas_mhs.id_skala_nilai','left')
               ->where('tb_kelas_mhs.id_kp', $id_kp)
               ->get('tb_kelas_mhs')
@@ -91,7 +91,6 @@ class Nilai_perkuliahan_model extends CI_Model {
      $this->db->from('tb_mahasiswa');
      $this->db->join('tb_bio','tb_bio.id_mahasiswa=tb_mahasiswa.id_mahasiswa');
      $this->db->join('tb_prodi','tb_prodi.id_prodi=tb_mahasiswa.id_prodi');
-     $this->db->join('tb_angkatan','tb_angkatan.id_angkatan=tb_mahasiswa.id_angkatan');
      $this->db->like('tb_mahasiswa.nama_mahasiswa', $nama);
      $query = $this->db->get();
      return $query->result();
@@ -103,7 +102,6 @@ class Nilai_perkuliahan_model extends CI_Model {
      $this->db->join('tb_mahasiswa','tb_mahasiswa.id_mahasiswa=tb_kelas_mhs.id_mahasiswa');
      $this->db->join('tb_bio','tb_bio.id_mahasiswa=tb_mahasiswa.id_mahasiswa');
      $this->db->join('tb_prodi','tb_prodi.id_prodi=tb_mahasiswa.id_prodi');
-     $this->db->join('tb_angkatan','tb_angkatan.id_angkatan=tb_mahasiswa.id_angkatan');
      $this->db->where('tb_kelas_mhs.id_kelas_mhs', $nama);
      $query = $this->db->get();
      return $query->row();

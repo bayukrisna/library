@@ -73,6 +73,7 @@
               <br>
               <br>
               <table id="example1" class="table table-bordered table-striped">
+                 <a href="<?php echo base_url(); ?>mahasiswa/page_tambah_mahasiswa" class="btn btn-info btn-sm" > Tambah Mahasiswa</a> <br> <br>
                 <thead>
                 <tr>
                   <th>No</th>

@@ -13,7 +13,8 @@
             <!-- form start -->
                 <div class="form-group">
                   <label for="no">No. Registrasi</label>
-                  <input type="text" name="id_mahasiswa" class="form-control" id="id_mahasiswa" placeholder=""  .input-sm value="<?php echo $du_pagi->id_du; ?>" readonly>
+                  <input type="text" name="id_du" class="form-control" id="id_du" placeholder=""  .input-sm value="<?php echo $du_pagi->id_du; ?>" readonly>
+                   <input type="text" name="id_mahasiswa" class="form-control" id="id_mahasiswa" placeholder=""  .input-sm value="<?php echo $kodeunik_mhs; ?>" readonly>
                 </div>
              
                
@@ -132,19 +133,7 @@
                   <label for="mother">NIM</label>
                   <input type="text" name="nim" class="form-control" id="nim" placeholder="Masukan NIM" value="" required="" onkeyup="checkAvailability()"><span id="user-availability-status"></span>  
                 </div>   
-                <div class="form-group">
-                  <label for="prodi">Angkatan</label>
-                  <select id="id_angkatan" class="form-control" required="" name="id_angkatan">
-                    <option value="">Pilih Angkatan</option>   
-                    <?php 
-
-                  foreach($getAngkatan as $row)
-                  { 
-                    echo '<option value="'.$row->id_angkatan.'">'.$row->angkatan.'</option>';
-                  }
-                  ?>
-                  </select>                                     
-                </div>       
+                   
                  <input type="hidden" name="nama_ayah" class="form-control" value="">
                  <input type="hidden" name="nik_ayah" class="form-control" value="">
                  <input type="hidden" name="tanggal_lahir_ayah" class="form-control" value="">

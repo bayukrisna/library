@@ -16,6 +16,7 @@ class daftar_ulang extends CI_Controller {
 			$id_pendaftaran = $this->uri->segment(3);
 			$data['du_pagi'] = $this->daftar_ulang_model->page_du_pagi($id_pendaftaran);
 			$data['kodeunik'] = $this->daftar_ulang_model->buat_kode();
+			$data['kodeunik_mhs'] = $this->mahasiswa_model->buat_kode_mhs();
 			$data['getProdi'] = $this->daftar_ulang_model->getProdi();
 			$data['getPreschool'] = $this->daftar_ulang_model->getPreschool();
 			$data['main_view'] = 'Daftar/daftarulang_pagi_view';
@@ -40,6 +41,7 @@ class daftar_ulang extends CI_Controller {
 	{
 			$id_pendaftaran = $this->uri->segment(3);
 			$data['du_pagi'] = $this->daftar_ulang_model->page_du_pagi($id_pendaftaran);
+			$data['kodeunik_mhs'] = $this->mahasiswa_model->buat_kode_mhs();
 			$data['kodeunik'] = $this->daftar_ulang_model->buat_kode();
 			$data['getProdi'] = $this->daftar_ulang_model->getProdi();
 			$data['getPreschool'] = $this->daftar_ulang_model->getPreschool();

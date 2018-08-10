@@ -8,38 +8,35 @@
             <div class="box-body">
               <table class="table">
         <tr>
-
-          
                   <label for="no">Data Mahasiswa</label>
-                  <input type="hidden" name="id_mahasiswa" class="form-control" id="id_mahasiswa" placeholder="" required .input-sm value="<?php echo $kodeunik ?>" readonly>
-                
-              <input type="hidden" name="id_prodi" id="id_prodi" class="text-input" size="10" style="width:70%" value="<?php echo $mahasiswa->id_prodi; ?>" readonly>    </td>
-               <input type="hidden" name="id_konsentrasi" id="id_konsentrasi" class="text-input" size="10" style="width:70%" value="<?php echo $mahasiswa->id_konsentrasi; ?>" readonly>    </td>
-               <input type="hidden" name="nim" id="nim" class="text-input" size="10" style="width:70%" value="<?php echo $mahasiswa->nim; ?>" readonly>    </td>
+                  <input type="hidden" name="id_mahasiswa" class="form-control" id="id_mahasiswa" placeholder="" required .input-sm value="<?php echo $kodeunik_mhs ?>" >
 
             <td width="15%" class="left_column">Nama <font color="#FF0000">*</font></td>
             <td>:
-                <input type="text" name="nama_mahasiswa" id="nama_mahasiswa" class="text-input" size="10" style="width:70%" value="<?php echo $mahasiswa->nama_du; ?>" readonly>    </td>
+                <input type="text" name="nama_mahasiswa" id="nama_mahasiswa" class="text-input" size="10" style="width:70%"  required="">    </td>
       
-            <td class="left_column">Nama Ibu <font color="#FF0000">*</font></td>
-            <td>:  <input type="text" name="nama_ibu" id="nama_ibu" class="text-input" size="10" style="width:70%" value="<?php echo $mahasiswa->ibu_kandung_du; ?>" readonly>
+            <td class="left_column">Waktu <font color="#FF0000">*</font></td>
+            <td>:  <select name="id_waktu" id="id_waktu">
+                    <option value=""> Pilih Waktu </option>
+                    <option value="1">Pagi</option>
+                    <option value="2">Sore</option>
+                    </select></td>
                                   
-            <input type="hidden" name="stat_pd" value="A">
             </td>
         </tr>
         <tr>
             <td class="left_column" width="15%" value=>Tempat Lahir <font color="#FF0000">*</font></td>
-            <td width="35%">: <input type="text" name="tempat_lahir" id="tempat_lahir" class="text-input" size="10" style="width:70%" value="<?php echo $mahasiswa->tpt_lahir_du; ?>" readonly>          </td>
+            <td width="35%">: <input type="text" name="tempat_lahir" id="tempat_lahir" class="text-input" size="10" style="width:70%" required="">          </td>
             <td class="left_column" width="15%">Tanggal Lahir <font color="#FF0000">*</font></td>
             <td>:
-                <input type="date" name="tanggal_lahir" id="tanggal_lahir" class="text-input" size="10" style="width:70%" value="<?php echo $mahasiswa->tgl_lahir_du; ?>" readonly>                           </td>
+                <input type="date" name="tanggal_lahir" id="tanggal_lahir" class="text-input" size="10" style="width:70%"  required="">                           </td>
         </tr>
         <tr>
             <td class="left_column">Jenis Kelamin</td>
-            <td>: <input type="text" name="jenis_kelamin" id="jenis_kelamin" class="text-input" size="10" style="width:70%" value="<?php echo $mahasiswa->jk_daftar_du; ?>" readonly></td>
+            <td>: <input type="text" name="jenis_kelamin" id="jenis_kelamin" class="text-input" size="10" style="width:70%" required=""></td>
             <td class="left_column">Agama <font color="#FF0000">*</font></td>
-            <td>:  <select name="agama" id="agama">
-            <option value="<?php echo $mahasiswa->agama_du; ?>"><?php echo $mahasiswa->agama_du; ?></option>
+            <td>:  <select name="agama" id="agama" required="">
+            <option>Pilih Agama</option>
             <option value="Islam">Islam</option>
             <option value="Katholik">Katholik</option>
              <option value="Kristen">Kristen</option>
@@ -57,19 +54,57 @@
 
           <div class="nav-tabs-custom">
             <ul class="nav nav-tabs">
-              <li class="active"><a href="#tab_1" data-toggle="tab">Alamat</a></li>
+              <li class="active"><a href="#tab_0" data-toggle="tab">Profil</a></li>
+              <li><a href="#tab_1" data-toggle="tab">Alamat</a></li>
               <li><a href="#tab_2" data-toggle="tab">Orang Tua</a></li>
               <li><a href="#tab_3" data-toggle="tab">Wali</a></li>
-              <li><a href="#tab_4" data-toggle="tab">Kebutuhan Khusus</a></li>
+              <!--<li><a href="#tab_4" data-toggle="tab">Kebutuhan Khusus</a></li> -->
           
               <li class="pull-right"><button class="btn btn-sm btn-success" >Simpan</button> </li>
             </ul>
             <div class="tab-content">
-              <div class="tab-pane active" id="tab_1">
+                <div class="tab-pane active" id="tab_0">
+                <table width="90%" class="table">
+                <tr>
+                    <td class="left_column" width="15%">NIM</td>
+                    <td colspan="3">:  <input type="text" name="nim" id="nim" class="text-input" maxlength="16" size="50" style="width:40%" onkeydown="return onlyNumber(event,this,false,false)" required="">              
+                     <input type="text" name="jurusan" id="jurusan" class="text-input" maxlength="16" size="50" style="width:40%" onkeydown="return onlyNumber(event,this,false,false)" value="">                              
+                    </td>
+                    <td rowspan="8"><div class="btn btn-file" >
+                  <input type="file"   onchange="loadFile(event)" name="foto_mahasiswa" id="foto_mahasiswa">
+                  <img id="output" height="200" width="150" class="pull-right" width="40%" alt="Photo" onerror="this.src='<?php echo base_url();?>uploads/user.jpg'" src="#" alt="Your Image">
+                </div></td>
+                </tr>
+                <tr>
+                    <td class="left_column" width="15%" >Nama Prodi</td>
+                    <td>: <select name="id_prodi" id="id_prodi" required="" onchange="return get_concentrate(this.value)">
+                            <option>Pilih Prodi</option>  
+                             <?php 
+
+                  foreach($getProdi as $row)
+                  { 
+                    echo '<option value="'.$row->id_prodi.'">'.$row->nama_prodi.'</option>';
+                  }
+                  ?>
+                             </select></td>
+                </tr>
+                <tr>
+                    <td class="left_column">Nama Konsentrasi</td>
+                    <td>:
+                        <select name="concentrate" id="concentrate" required="" >
+                            <option>Pilih Konsentrasi</option>
+                            
+                             </select></td>
+                </tr>
+               
+            </table>
+
+              </div>
+              <div class="tab-pane" id="tab_1">
                 <table width="90%" class="table">
                 <tr>
                     <td class="left_column" width="15%">NIK <font color="#FF0000">*</font></td>
-                    <td colspan="4">:  <input type="text" name="nik" id="nik" value="<?php echo $mahasiswa->nik_du; ?>" class="validate[required] text-input" maxlength="16" size="50" style="width:40%" required>                            <font color="grey"><em> ( Nomor NIK tanpa tanda baca ) </em></font>
+                    <td colspan="4">:  <input type="text" name="nik" id="nik" class="validate[required] text-input" maxlength="16" size="50" style="width:40%" required>                            <font color="grey"><em> ( Nomor NIK tanpa tanda baca ) </em></font>
                     </td>
                 </tr>
         <tr>
@@ -142,9 +177,9 @@
                 </tr>
                 <tr>
                     <td class="left_column">Telepon</td>
-                    <td>: <input type="text" name="no_telepon" id="no_telepon" class="text-input" maxlength="20" size="20" style="width:30%" value="<?php echo $mahasiswa->no_telp_du; ?>"></td>
+                    <td>: <input type="text" name="no_telepon" id="no_telepon" class="text-input" maxlength="20" size="20" style="width:30%"></td>
                     <td class="left_column">HP</td>
-                    <td colspan="4">: <input type="text" name="no_hp" id="no_hp" class="text-input" maxlength="20" size="20" style="width:30%" value="<?php echo $mahasiswa->no_telpm_du; ?>"></td>
+                    <td colspan="4">: <input type="text" name="no_hp" id="no_hp" class="text-input" maxlength="20" size="20" style="width:30%"></td>
                 </tr>
                 <tr>
                     <td class="left_column">Email</td>
@@ -260,7 +295,7 @@
                 <tr>
                     <td class="left_column">Nama</td>
                     <td>:
-            <input type="text" name="" id="" class="text-input" size="10" style="width:70%" value="<?php echo $mahasiswa->ibu_kandung_du; ?>" readonly></td>
+            <input type="text" name="nama_ibu" id="nama_ibu" class="text-input" size="10" style="width:70%"></td>
                 </tr>
                 <tr>
                     <td class="left_column">Tanggal Lahir</td>
@@ -419,7 +454,7 @@
                 <tr>
                     <td class="left_column" width="15%" valign="middle">Mahasiswa</td>
                     <td>
-                    <table width="100%">
+                    <table width="100%">u
                     <tr>
                     <td>
                                                             <input type="checkbox" name="id_kk[]" id="id_kk_1#A" value="1#A"> A - Tuna netra<br>                                        <input type="checkbox" name="id_kk[]" id="id_kk_2#B" value="2#B"> B - Tuna rungu<br>                                        <input type="checkbox" name="id_kk[]" id="id_kk_4#C" value="4#C"> C - Tuna grahita ringan<br>                                        <input type="checkbox" name="id_kk[]" id="id_kk_8#C1" value="8#C1"> C1 - Tuna grahita ringan<br>                                        <input type="checkbox" name="id_kk[]" id="id_kk_16#D" value="16#D"> D - Tuna daksa ringan<br>                                        <input type="checkbox" name="id_kk[]" id="id_kk_32#D1" value="32#D1"> D1 - Tuna daksa sedang<br></td><td>                                        <input type="checkbox" name="id_kk[]" id="id_kk_64#E" value="64#E"> E - Tuna laras<br>                                        <input type="checkbox" name="id_kk[]" id="id_kk_128#F" value="128#F"> F - Tuna wicara<br>                                        <input type="checkbox" name="id_kk[]" id="id_kk_256#H" value="256#H"> H - Hiperaktif<br>                                        <input type="checkbox" name="id_kk[]" id="id_kk_512#I" value="512#I"> I - Cerdas Istimewa<br>                                        <input type="checkbox" name="id_kk[]" id="id_kk_1024#J" value="1024#J"> J - Bakat Istimewa<br>                                        <input type="checkbox" name="id_kk[]" id="id_kk_2048#K" value="2048#K"> K - Kesulitan Belajar<br></td><td>                                        <input type="checkbox" name="id_kk[]" id="id_kk_4096#N" value="4096#N"> N - Narkoba<br>                                        <input type="checkbox" name="id_kk[]" id="id_kk_8192#O" value="8192#O"> O - Indigo<br>                                        <input type="checkbox" name="id_kk[]" id="id_kk_16384#P" value="16384#P"> P - Down Syndrome<br>                                        <input type="checkbox" name="id_kk[]" id="id_kk_32768#Q" value="32768#Q"> Q - Autis<br>                                        </td>
@@ -462,13 +497,29 @@
 
 
         <script>
-            document.getElementById("myText").readonly = true;
+            document.getElementById("myText").readOnly = true;
 function disableTxt() {
     document.getElementById("myText").readOnly = true;
 }
 
 function undisableTxt() {
-    document.getElementById("myText").readonly = false;
+    document.getElementById("myText").readOnly = false;
   }
 </script>
-        <!-- /.col -->
+  
+  <script type="text/javascript">
+      function get_concentrate(p) {
+                var id_prodi = p;
+
+                $.ajax({
+                    url: '<?php echo base_url(); ?>daftar_ulang/get_concentrate/'+id_prodi,
+                    data: 'id_prodi='+id_prodi,
+                    type: 'GET',
+                    dataType: 'html',
+                    success: function(msg) {
+                        $("#concentrate").html(msg);
+
+                    }
+                });
+            }
+  </script>      <!-- /.col -->

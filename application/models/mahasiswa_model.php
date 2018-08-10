@@ -9,8 +9,8 @@ class Mahasiswa_model extends CI_Model {
 		parent::__construct();
 	}
 
-   public function  buat_kode()   {
-          $this->db->SELECT('RIGHT(tb_mahasiswa.id_mahasiswa,3) as kode', FALSE);
+   public function  buat_kode_mhs()   {
+          $this->db->SELECT('RIGHT(tb_mahasiswa.id_mahasiswa,4) as kode', FALSE);
           $this->db->order_by('id_mahasiswa','DESC');    
           $this->db->limit(1);    
           $query = $this->db->get('tb_mahasiswa');      //cek dulu apakah ada sudah ada kode di tabel.    
@@ -23,14 +23,13 @@ class Mahasiswa_model extends CI_Model {
            //jika kode belum ada      
            $kode = 1;    
           }
-          $kodemax = str_pad($kode, 3, "0", STR_PAD_LEFT); // angka 4 menunjukkan jumlah digit angka 0
-          $kodejadi = "MHS".$kodemax;    // hasilnya ODJ-991-0001 dst.
+          $kodemax = str_pad($kode, 4, "0", STR_PAD_LEFT); // angka 4 menunjukkan jumlah digit angka 0
+          $kodejadi = "M".$kodemax;    // hasilnya ODJ-991-0001 dst.
           return $kodejadi; 
     }
 
 	public function data_mahasiswa(){
 		return $this->db->join('tb_prodi','tb_prodi.id_prodi=tb_mahasiswa.id_prodi')
-              ->join('tb_sekolah','tb_sekolah.id_sekolah=tb_mahasiswa.id_sekolah')
               ->join('tb_konsentrasi','tb_konsentrasi.id_konsentrasi=tb_mahasiswa.id_konsentrasi')
               ->join('tb_alamat','tb_alamat.id_mahasiswa=tb_mahasiswa.id_mahasiswa')  
               ->join('tb_bio','tb_bio.id_mahasiswa=tb_mahasiswa.id_mahasiswa') 
@@ -156,8 +155,6 @@ class Mahasiswa_model extends CI_Model {
             'status_mahasiswa'      => 'Aktif',
             'id_prodi'      => $this->input->post('id_prodi', TRUE),
             'id_konsentrasi'      => $this->input->post('concentrate', TRUE),
-            'id_hasil_tes'      => $this->input->post('id_hasil_tes', TRUE),
-            'id_sekolah'      => $this->input->post('id_sekolah', TRUE),
             'id_waktu'      => $this->input->post('id_waktu', TRUE)
         );
     
@@ -176,6 +173,7 @@ class Mahasiswa_model extends CI_Model {
     {        
         $data = array(
             'id_mahasiswa'      => $this->input->post('id_mahasiswa', TRUE),
+            'id_du'      => $this->input->post('id_du', TRUE),
             'nama_mahasiswa'      => $this->input->post('nama_mahasiswa', TRUE),
             'nim'      => $this->input->post('nim', TRUE),
             'status_mahasiswa'      => 'Nilai Kosong',
@@ -201,6 +199,7 @@ class Mahasiswa_model extends CI_Model {
     {        
         $data = array(
             'id_mahasiswa'      => $this->input->post('id_mahasiswa', TRUE),
+            'id_du'      => $this->input->post('id_du', TRUE),
             'nama_mahasiswa'      => $this->input->post('nama_mahasiswa', TRUE),
             'nim'      => $this->input->post('nim', TRUE),
             'status_mahasiswa'      => 'Aktif',
@@ -368,7 +367,6 @@ class Mahasiswa_model extends CI_Model {
             'rt'     => $this->input->post('rt', TRUE),
             'rw'     => $this->input->post('rw', TRUE),
             'kode_pos'     => $this->input->post('kode_pos', TRUE),
-            'alamat_mhs'     => $this->input->post('alamat_mhs', TRUE),
             'jurusan'     => $this->input->post('jurusan', TRUE),
         );
         $this->db->insert('tb_alamat', $data);

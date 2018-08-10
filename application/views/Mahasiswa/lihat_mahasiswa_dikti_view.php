@@ -48,7 +48,7 @@
               <li><a href="#tab_1" data-toggle="tab">Alamat</a></li>
               <li><a href="#tab_2" data-toggle="tab">Orang Tua</a></li>
               <li><a href="#tab_3" data-toggle="tab">Wali</a></li>
-              <li><a href="#tab_4" data-toggle="tab">Kebutuhan Khusus</a></li>
+              <!--<li><a href="#tab_4" data-toggle="tab">Kebutuhan Khusus</a></li> -->
               <a class="btn btn-success pull-right" href="<?php echo base_url();?>mahasiswa/detail_mahasiswa_dikti/<?php echo $mahasiswa->id_mahasiswa; ?>">Ubah</a>
             </ul>
 
