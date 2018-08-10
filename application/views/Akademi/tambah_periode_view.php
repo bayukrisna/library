@@ -7,7 +7,7 @@
 		<table class="table">
     	<tr>
         	<td>Semester <font color="#FF0000">*</font></td>
-            <td colspan="9">:  <input type="text" name="semester" id="id_smt" value="2018/2019 Ganjil"  readonly="" />
+            <td colspan="9">:  <input type="text" name="semester" id="id_smt" value="2018/2019 Ganjil"   />
         </tr>
     	<tr>
         	<td class="left_column" width="20%">Program Studi <font color="#FF0000">*</font></td>

@@ -18,7 +18,6 @@ class daftar_ulang extends CI_Controller {
 			$data['kodeunik'] = $this->daftar_ulang_model->buat_kode();
 			$data['getProdi'] = $this->daftar_ulang_model->getProdi();
 			$data['getPreschool'] = $this->daftar_ulang_model->getPreschool();
-			$data['getAngkatan'] = $this->daftar_ulang_model->getAngkatan();
 			$data['main_view'] = 'Daftar/daftarulang_pagi_view';
 			$this->load->view('template', $data);
 	}
@@ -44,7 +43,6 @@ class daftar_ulang extends CI_Controller {
 			$data['kodeunik'] = $this->daftar_ulang_model->buat_kode();
 			$data['getProdi'] = $this->daftar_ulang_model->getProdi();
 			$data['getPreschool'] = $this->daftar_ulang_model->getPreschool();
-			$data['getAngkatan'] = $this->daftar_ulang_model->getAngkatan();
 			$data['main_view'] = 'Daftar/daftarulang_sore_view';
 			$this->load->view('template', $data);
 	}

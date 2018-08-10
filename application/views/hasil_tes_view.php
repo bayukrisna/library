@@ -84,13 +84,13 @@
                   <label for="inputEmail3" class="control-label pull-left">Nilai</label>
                 </div>
                   <div class="col-md-2">
-                    <input type="text" id="mtk" name="mtk" class="form-control input-sm"  placeholder="MTK" onkeyup="sum();" required="">
+                    <input type="text" id="mtk" name="mtk" class="form-control input-sm"  placeholder="MTK" onkeyup="sum(); sum2();" required="">
                   </div>
                   <div class="col-md-2">
-                    <input type="text" id="psikotes" name="psikotes" class="form-control input-sm"  placeholder="Psiko" onkeyup="sum()" required="">
+                    <input type="text" id="psikotes" name="psikotes" class="form-control input-sm"  placeholder="Psiko" onkeyup="sum(); sum2();" required="">
                   </div>
                   <div class="col-md-2">
-                    <input type="text" id="bing" name="bing" class="form-control input-sm"  placeholder="BIG" onkeyup="sum()" required="">
+                    <input type="text" id="bing" name="bing" class="form-control input-sm"  placeholder="BIG" onkeyup="sum(); sum2();" required="">
                   </div> 
                   <div class="col-md-2">
                   <button  class=" btn pull-left input-sm ">Input Nilai</button></div>
@@ -188,6 +188,7 @@
                   </div>
                   <div class="col-md-5">
                     <input id="grade" name="grade" type="text" class="form-control input-sm" placeholder="" readonly="">
+                    <input id="id_grade" name="id_grade" type="hidden" class="form-control input-sm" placeholder="" readonly="">
                   </div>
                 </div>
               </div>
@@ -230,7 +231,7 @@
 
          <script type="text/javascript">
             
-            function sum() {
+            function sum2() {
             var mtk = document.getElementById('mtk').value;
             var bing = document.getElementById('bing').value;
             var psikotes = document.getElementById('psikotes').value;

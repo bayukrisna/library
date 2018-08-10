@@ -135,19 +135,7 @@
                   <label for="mother">NIM</label>
                   <input type="text" name="nim" class="form-control" id="nim" placeholder="Masukan NIM" value="" required="" onkeyup="checkAvailability()"><span id="user-availability-status"></span>  
                 </div>   
-                <div class="form-group">
-                  <label for="prodi">Angkatan</label>
-                  <select id="id_angkatan" class="form-control" required="" name="id_angkatan">
-                    <option value="">Pilih Angkatan</option>   
-                    <?php 
-
-                  foreach($getAngkatan as $row)
-                  { 
-                    echo '<option value="'.$row->id_angkatan.'">'.$row->angkatan.'</option>';
-                  }
-                  ?>
-                  </select>                                     
-                </div>       
+                      
                  <input type="hidden" name="nama_ayah" class="form-control" value="">
                  <input type="hidden" name="nik_ayah" class="form-control" value="">
                  <input type="hidden" name="tanggal_lahir_ayah" class="form-control" value="">

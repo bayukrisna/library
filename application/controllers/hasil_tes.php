@@ -25,9 +25,7 @@ class Hasil_tes extends CI_Controller {
 	}
 
 	public function save_hasil_tes()
-	{
-		
-			
+	{		
 			if($this->daftar_ulang_model->save_hasil_tes() == TRUE){
 				$id_tes = $this->input->post('id_hasil_tes');
 				$this->daftar_ulang_model->save_update_status($id_tes);

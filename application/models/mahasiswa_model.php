@@ -48,7 +48,6 @@ class Mahasiswa_model extends CI_Model {
      $this->db->join('tb_konsentrasi','tb_konsentrasi.id_konsentrasi=tb_mahasiswa.id_konsentrasi');
      $this->db->join('tb_prodi','tb_prodi.id_prodi=tb_mahasiswa.id_prodi');
      $this->db->join('tb_bio','tb_bio.id_mahasiswa=tb_mahasiswa.id_mahasiswa');
-      $this->db->join('tb_angkatan','tb_angkatan.id_angkatan=tb_mahasiswa.id_angkatan');
      $query = $this->db->get();
      return $query->result();
   }
@@ -59,7 +58,6 @@ class Mahasiswa_model extends CI_Model {
      $this->db->join('tb_konsentrasi','tb_konsentrasi.id_konsentrasi=tb_mahasiswa.id_konsentrasi');
      $this->db->join('tb_prodi','tb_prodi.id_prodi=tb_mahasiswa.id_prodi');
      $this->db->join('tb_bio','tb_bio.id_mahasiswa=tb_mahasiswa.id_mahasiswa');
-     $this->db->join('tb_angkatan','tb_angkatan.id_angkatan=tb_mahasiswa.id_angkatan');
      $this->db->like('tb_prodi.id_prodi',$id_prodi);
      $this->db->like('tb_bio.agama',$agama);
      $this->db->like('tb_bio.jenis_kelamin',$jenis_kelamin);
@@ -67,7 +65,7 @@ class Mahasiswa_model extends CI_Model {
      return $query->result();
   }
 
-   function filter_nilai($id_periode){
+   function filter_nilai($id_mahasiswa,$id_periode){
 
      $this->db->select('*');
      $this->db->from('tb_kelas_mhs');
@@ -75,10 +73,20 @@ class Mahasiswa_model extends CI_Model {
      $this->db->join('tb_matkul','tb_matkul.kode_matkul=tb_kp.kode_matkul');
      $this->db->join('tb_skala_nilai','tb_skala_nilai.id_skala_nilai=tb_kelas_mhs.id_skala_nilai');
      $this->db->join('tb_periode','tb_periode.id_periode=tb_kp.id_periode');
+     $this->db->like('tb_kelas_mhs.id_mahasiswa',$id_mahasiswa);
      $this->db->like('tb_periode.id_periode',$id_periode);
      $query = $this->db->get();
      return $query->result();
       }
+
+      public function data_nilai_mhs($id_mahasiswa){
+      return $this->db->join('tb_kp','tb_kp.id_kp=tb_kelas_mhs.id_kp')
+              ->join('tb_matkul','tb_matkul.kode_matkul=tb_kp.kode_matkul')
+              ->join('tb_skala_nilai','tb_skala_nilai.id_skala_nilai=tb_kelas_mhs.id_skala_nilai')
+              ->where('tb_kelas_mhs.id_mahasiswa', $id_mahasiswa)
+              ->get('tb_kelas_mhs')
+              ->result();
+  } 
 
   public function detail_mahasiswa_dikti($id_mahasiswa){
       return $this->db->join('tb_prodi','tb_prodi.id_prodi=tb_mahasiswa.id_prodi')
@@ -98,7 +106,7 @@ class Mahasiswa_model extends CI_Model {
 
   public function detail_krs_mahasiswa($id_mahasiswa){
       return $this->db->join('tb_prodi','tb_prodi.id_prodi=tb_mahasiswa.id_prodi')
-              ->join('tb_angkatan','tb_angkatan.id_angkatan=tb_mahasiswa.id_angkatan')
+              ->join('tb_bio','tb_bio.id_mahasiswa=tb_mahasiswa.id_mahasiswa')
               ->where('tb_mahasiswa.id_mahasiswa', $id_mahasiswa)
               ->get('tb_mahasiswa')
               ->row();
@@ -114,14 +122,6 @@ class Mahasiswa_model extends CI_Model {
               ->result();
   } 
 
-  public function data_nilai_mhs($id_mahasiswa){
-      return $this->db->join('tb_kp','tb_kp.id_kp=tb_kelas_mhs.id_kp')
-              ->join('tb_matkul','tb_matkul.kode_matkul=tb_kp.kode_matkul')
-              ->join('tb_skala_nilai','tb_skala_nilai.id_skala_nilai=tb_kelas_mhs.id_skala_nilai')
-              ->where('tb_kelas_mhs.id_mahasiswa', $id_mahasiswa)
-              ->get('tb_kelas_mhs')
-              ->result();
-  } 
 
   public function history_pendidikan($history){
       return $this->db->join('tb_prodi','tb_prodi.id_prodi=tb_mahasiswa.id_prodi')
@@ -158,7 +158,6 @@ class Mahasiswa_model extends CI_Model {
             'id_konsentrasi'      => $this->input->post('concentrate', TRUE),
             'id_hasil_tes'      => $this->input->post('id_hasil_tes', TRUE),
             'id_sekolah'      => $this->input->post('id_sekolah', TRUE),
-            'id_angkatan'      => $this->input->post('id_angkatan', TRUE),
             'id_waktu'      => $this->input->post('id_waktu', TRUE)
         );
     
@@ -184,7 +183,6 @@ class Mahasiswa_model extends CI_Model {
             'id_konsentrasi'      => $this->input->post('concentrate', TRUE),
             'id_hasil_tes'      => $this->input->post('id_hasil_tes', TRUE),
             'id_sekolah'      => $this->input->post('id_sekolah', TRUE),
-            'id_angkatan'      => $this->input->post('id_angkatan', TRUE),
             'id_waktu'      => '1',
         );
     
@@ -210,7 +208,6 @@ class Mahasiswa_model extends CI_Model {
             'id_konsentrasi'      => $this->input->post('concentrate', TRUE),
             'id_hasil_tes'      => $this->input->post('id_hasil_tes', TRUE),
             'id_sekolah'      => $this->input->post('id_sekolah', TRUE),
-            'id_angkatan'      => $this->input->post('id_angkatan', TRUE),
             'id_waktu'      => '2',
         );
     
@@ -246,7 +243,8 @@ class Mahasiswa_model extends CI_Model {
             'jenis_kelamin'      => $this->input->post('jenis_kelamin', TRUE),
             'tanggal_lahir'      => $this->input->post('tanggal_lahir', TRUE),
             'tempat_lahir'     => $this->input->post('tempat_lahir', TRUE),
-            'agama'     => $this->input->post('agama', TRUE)
+            'agama'     => $this->input->post('agama', TRUE),
+            'angkatan'     => date('Y')
         );
     
         $this->db->insert('tb_bio', $data);

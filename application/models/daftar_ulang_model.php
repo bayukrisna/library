@@ -50,12 +50,6 @@ class Daftar_ulang_model extends CI_Model {
 
     }
 
-    function getAngkatan()
-    {
-        return $this->db->get('tb_angkatan')
-                    ->result();
-
-    }
 
     function getJenisMatkul()
     {
@@ -154,7 +148,8 @@ class Daftar_ulang_model extends CI_Model {
 
     public function save_update_status($id_tes){
     $data = array(
-       'status_mahasiswa'     => 'Aktif'
+       'status_mahasiswa'     => 'Aktif',
+       'id_grade'     => $this->input->post('id_grade', TRUE)
       );
 
     $this->db->where('id_hasil_tes', $id_tes)

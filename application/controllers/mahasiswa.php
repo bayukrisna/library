@@ -71,7 +71,7 @@ class Mahasiswa extends CI_Controller {
 			$id_mahasiswa = $this->uri->segment(3);
 			$id_periode=$this->input->get('id_periode');
 			$data['mahasiswa'] = $this->mahasiswa_model->detail_krs_mahasiswa($id_mahasiswa);
-			$data['nilai'] = $this->mahasiswa_model->filter_nilai($id_periode);
+			$data['nilai'] = $this->mahasiswa_model->filter_nilai($id_mahasiswa,$id_periode);
 			$data['main_view'] = 'Mahasiswa/history_nilai_view';
 			$this->load->view('template', $data);
 	}
