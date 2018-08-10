@@ -131,7 +131,7 @@
                             <input type="text" name="tahun" class="form-control input-sm pull-left" id="tahun" placeholder="" required="" value="">
                         </div>
                     </div>
-                    </div>
+                  
                     <div class="form-group">
                         <label class=" col-xs-4" >Penyelenggara</label>
                         <div class="col-xs-6">
@@ -153,7 +153,7 @@
             </div>
         </div>
 
-        
+        </div>
         <div class="callout callout-info">
         <strong>Keterangan :</strong>
             <br />
