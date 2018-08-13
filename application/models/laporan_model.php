@@ -134,13 +134,12 @@ class Laporan_model extends CI_Model {
                 ->join('tb_kelas_mhs','tb_kelas_mhs.id_kp=tb_kp.id_kp')
                 ->join('tb_periode','tb_periode.id_periode=tb_kp.id_periode')
                 ->join('tb_mahasiswa','tb_mahasiswa.id_mahasiswa=tb_kelas_mhs.id_mahasiswa')
+                ->join('tb_bio','tb_mahasiswa.id_mahasiswa=tb_bio.id_mahasiswa')
                 ->join('tb_konsentrasi','tb_mahasiswa.id_konsentrasi=tb_konsentrasi.id_konsentrasi')
                 ->join('tb_prodi','tb_prodi.id_prodi=tb_kp.id_prodi')
-                ->join('tb_angkatan','tb_angkatan.id_angkatan=tb_mahasiswa.id_angkatan')
                 ->join('tb_waktu','tb_waktu.id_waktu=tb_mahasiswa.id_waktu')
                 ->where('tb_periode.semester' , $id_periode)
                 ->like('tb_kp.id_prodi' , $id_prodi)
-                ->order_by("tb_angkatan.angkatan", "asc")
                 ->get();
       $row = $query->result();
       $pp = $this->db->select('nama_prodi')
@@ -154,7 +153,6 @@ class Laporan_model extends CI_Model {
                 ->join('tb_mahasiswa','tb_mahasiswa.id_mahasiswa=tb_kelas_mhs.id_mahasiswa')
                 ->join('tb_konsentrasi','tb_mahasiswa.id_konsentrasi=tb_konsentrasi.id_konsentrasi')
                 ->join('tb_prodi','tb_prodi.id_prodi=tb_kp.id_prodi')
-                ->join('tb_angkatan','tb_angkatan.id_angkatan=tb_mahasiswa.id_angkatan')
                 ->join('tb_waktu','tb_waktu.id_waktu=tb_mahasiswa.id_waktu')
                 ->where('tb_periode.semester' , $id_periode)
                 ->like('tb_kp.id_prodi' , $id_prodi)

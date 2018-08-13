@@ -14,26 +14,21 @@
            <td class="left_column" width="25%">NIM <font color="#FF0000">*</font></td>
             <td>:  <?php echo $data->id_mahasiswa ?>
                                      </td>
-                                     <input type="hidden" name="js_ranking" id="js_ranking" value="
-                                     <?php 
-              if ($data->semester_aktif >= '3'){
-                echo $grade->id_grade;
-              } else {
-                echo $grade->id_grade;
-            } ?>  ">
+                                     <input type="hidden" name="js_ranking" id="js_ranking" value="<?php echo $data->id_grade?>">
+            <input type="hidden" name="js_grade" id="js_grade" value="<?php echo $data->id_grade2;?>">
            
             </td>
         </tr>
         <tr>
             <td class="left_column" width="15%" value=>Jenis Kelamin <font color="#FF0000">*</font></td>
             <td width="25%">: <?php echo $data->jenis_kelamin ?>       </td>
-            <td class="left_column" width="15%">Ranking <font color="#FF0000">*</font></td>
+            <td class="left_column" width="15%">Ranking / Grade <font color="#FF0000">*</font></td>
             <td>: 
               <?php 
-              if ($data->semester_aktif >= '3'){
+              if ($grade->grade != null){
                 echo $grade->grade;
               } else {
-                echo $grade->grade;
+                echo $data->grade;
             } ?>  
               
                                      </td>
@@ -48,8 +43,8 @@
             <td class="left_column">Kelas </td>
             <td>: <?php echo $data->waktu ?></td>
             <input type="hidden" name="waktu" id="waktu" value="<?php echo $data->waktu ?>">
-            <td class="left_column">Semester <font color="#FF0000">*</font></td>
-            <td>:  <?php echo $data->semester_aktif; ?></td>
+         <!--    <td class="left_column">Semester <font color="#FF0000">*</font></td>
+            <td>:  <?php echo $data->semester_aktif; ?></td> -->
           </tr>
         </table>
             </div>
@@ -84,11 +79,6 @@
                 <tbody> 
                   <?php 
                 $no = 0;
-                if ($data->semester_aktif >= '3'){
-                $grade->diskon;
-                  } else {
-                $grade->diskon;
-                }
                 foreach ($data_pembayaran as $data) {
                   
                   if ($data->jenis_biaya == 'Angsuran Tahun 1'){
@@ -402,6 +392,7 @@
         function get_biaya(p) {
                 var id_biaya = p;
                 var id_grade = document.getElementById('js_ranking').value;
+                var id_grade2 = document.getElementById('js_grade').value;
                 var kategori = document.getElementById('jenis_pembayaran').value;
                 if (kategori == 'KRS'){
                   document.getElementById("myText2").style.display = "";
@@ -410,7 +401,7 @@
                 }
                 $.ajax({
                     url: '<?php echo base_url(); ?>finance/get_biaya_pembayaran/',
-                    data: 'id_biaya='+id_biaya+'&id_grade='+id_grade+'&kategori='+kategori,
+                    data: 'id_biaya='+id_biaya+'&id_grade='+id_grade+'&kategori='+kategori+'&id_grade2='+id_grade2,
                     type: 'GET',
                     dataType: 'html',
                     success: function(msg) {
