@@ -40,7 +40,7 @@
             <!-- /.box-body -->
           </div>
           <div class="">
-            <a class="btn btn-primary pull-right"  data-toggle="modal" data-target="#modal_edit"><i class="fa fa-plus"></i> Tambah Pendidikan</a><br><br>
+            <a class="btn btn-primary pull-right"  data-toggle="modal" data-target="#modal_tambah"><i class="fa fa-plus"></i> Tambah Pendidikan</a><br><br>
           </div>
 
           <div class="box box-info">
@@ -65,12 +65,12 @@
       ?>
       <tr>
       <td><?php echo ++$no;?></td>
-        <td style="text-align:center"><?php echo $data->nama_mahasiswa;?></td>
-        <td style="text-align:center"><?php echo $data->nama_mahasiswa;?></td>
-        <td style="text-align:center"><?php echo $data->nama_mahasiswa;?></td>
-        <td style="text-align:center"><?php echo $data->nama_mahasiswa;?></td>
-        <td style="text-align:center"><?php echo $data->nama_mahasiswa;?></td>
-        <td style="text-align:center"><?php echo $data->nama_mahasiswa;?></td >
+        <td style="text-align:center"><?php echo $data->nim;?></td>
+        <td style="text-align:center"><?php echo $data->nama_pendaftaran;?></td>
+        <td style="text-align:center"><?php echo $data->semester;?></td>
+        <td style="text-align:center"><?php echo $data->tgl_du;?></td>
+        <td style="text-align:center"><?php echo $data->nama_pt;?></td>
+        <td style="text-align:center"><?php echo $data->nama_prodi;?></td >
         <td style="text-align:center">
                 <button id="" type="button" class="btn btn-xs"   data-toggle="modal" data-target="#modal_detil"><i class="fa fa-pencil"></i></button>
                         </td>
@@ -81,134 +81,120 @@
 </table>
 
           </div>
-          <div class="modal fade" id="modal_edit" >
+          <div class="modal fade" id="modal_tambah" >
             <div class="modal-dialog">
             <div class="modal-content">
             <div class="modal-header">
                 <button type="button" class="close" data-dismiss="modal" aria-hidden="true">x</button>
                 <h3 class="modal-title" id="myModalLabel">History Pendidikan</h3>
             </div>
-            <?php echo form_open(); ?>
+            <?php echo form_open('mahasiswa/simpan_pendidikan/'.$mahasiswa->id_mahasiswa); ?>
             <div class="form-horizontal">
                 <div class="modal-body">
 
                     <div class="form-group">
                         <label class="col-xs-4" >NIM</label>
                         <div class="col-xs-6">
-                            <input type="text" name="id_daftar_ulang" class="form-control input-sm pull-left" id="id_daftar_ulang" placeholder="" required="" >
+                            <input type="text" name="nim" class="form-control input-sm pull-left" id="nim" placeholder="" readonly="" value="<?php echo $mahasiswa->nim; ?>">
+                            <input type="hidden" name="id_mahasiswa" class="form-control input-sm pull-left" id="id_mahasiswa" placeholder="" required="" value="<?php echo $mahasiswa->id_mahasiswa; ?>">
                         </div>
                     </div>
                     <div class="form-group">
                         <label class="col-xs-4" >Jenis Pendaftaran</label>
                         <div class="col-xs-6">
-                            <select name="agama" id="agama" class="form-control input-sm">
-            <option value="">-- Pilih Pendaftaran --</option>
-            <option value="Islam">Islam</option>
-            <option value="Katholik">Katholiksssssssssssss</option>
-             <option value="Kristen">Kristen</option>
-             <option value="Hindu">Hindu</option>
-             <option value="Budha">Budha</option>
-             <option value="Konghucu">Konghucu</option>
-             <option value="Lainnya">Lainnya</option>
+                            <select name="jenis_pendaftaran" id="jenis_pendaftaran" class="form-control input-sm">
+            <option value="">-- Pilih Jenis Pendaftaran --</option>
+            <option value="1">Peserta Didik Baru</option>
+            <option value="2">Pindahan</option>
+             <option value="3">Alih Jenjang</option>
+             <option value="4">Lintas Jalur</option>
+             <option value="5">Rekognisi Pembelajaran Lampau</option>
              </select>
                         </div>
                     </div>
                     <div class="form-group">
                         <label class="col-xs-4" >Jalur Pendaftaran</label>
                         <div class="col-xs-6">
-                            <select name="agama" id="agama" class="form-control input-sm">
-            <option value="">-- Pilih Pendaftaran --</option>
-            <option value="Islam">Islam</option>
-            <option value="Katholik">Katholiksssssssssssss</option>
-             <option value="Kristen">Kristen</option>
-             <option value="Hindu">Hindu</option>
-             <option value="Budha">Budha</option>
-             <option value="Konghucu">Konghucu</option>
-             <option value="Lainnya">Lainnya</option>
+                            <select name="jalur_pendaftaran" id="jalur_pendaftaran" class="form-control input-sm">
+            <option value="">-- Pilih Jalur Pendaftaran --</option>
+            <option value="1">SBMPTN</option>
+            <option value="2">SNMPTN</option>
+             <option value="3">PMDK</option>
+             <option value="4">Prestasi</option>
+             <option value="5">Seleksi Jalur PTN</option>
+             <option value="6">Seleksi Jalur PTS</option>
+              <option value="7">Ujian Masuk Bersama PTN (UMB-PT)</option>
+               <option value="8">Ujian Masuk Bersama PTS (UMB-PTS)</option>
+                <option value="9">Program Internasional</option>
+                 <option value="10">Program Kerjasama Perusahaan/Institusi/Pemerintah</option>
              </select>
-                        </div>
-                    </div>
-                    <div class="form-group">
-                        <label class="col-xs-4" >Tanggal Masuk</label>
-                        <div class="col-xs-6">
-                            <input type="text" name="id_daftar_ulang" class="form-control input-sm pull-left" id="id_daftar_ulang" placeholder="" required="" >
                         </div>
                     </div>
                     <div class="form-group">
                         <label class="col-xs-4" >Pembiayaan Awal</label>
                         <div class="col-xs-6">
-                            <select name="agama" id="agama" class="form-control input-sm">
-            <option value="">-- Pilih Pendaftaran --</option>
-            <option value="Islam">Islam</option>
-            <option value="Katholik">Katholiksssssssssssss</option>
-             <option value="Kristen">Kristen</option>
-             <option value="Hindu">Hindu</option>
-             <option value="Budha">Budha</option>
-             <option value="Konghucu">Konghucu</option>
-             <option value="Lainnya">Lainnya</option>
+                            <select name="pembiayaan_awal" id="pembiayaan_awal" class="form-control input-sm">
+            <option value="">-- Pilih Pembiayaan Awal --</option>
+            <option value="1">Mandiri</option>
+            <option value="2">Beasiswa Tidak Penuh</option>
+             <option value="3">Beasiswa Penuh</option>
              </select>
                         </div>
                     </div>
                     <div class="form-group">
                         <label class=" col-xs-4" >Perguruan Tinggi</label>
                         <div class="col-xs-6">
-                            <input type="text" name="id_daftar_ulang" class="form-control input-sm pull-left" id="id_daftar_ulang" placeholder="" required="" value="033082 - STIE Jakarta International College" readonly="">
+                            <input type="text" name="perguruan_tinggis" class="form-control input-sm pull-left" id="perguruan_tinggis" placeholder="" required="" value="033082 - STIE Jakarta International College" readonly="">
+                            <input type="hidden" name="perguruan_tinggi" class="form-control input-sm pull-left" id="perguruan_tinggi" placeholder="" required="" value="033082" readonly="">
                         </div>
                     </div>
                     <div class="form-group">
-                        <label class=" col-xs-4" >Program Studi</label>
+                        <label class=" col-xs-4" >Nama Prodi</label>
                         <div class="col-xs-6">
-                            <select name="agama" id="agama" class="form-control input-sm">
-            <option value="">-- Pilih Pendaftaran --</option>
-            <option value="Islam">Islam</option>
-            <option value="Katholik">Katholiksssssssssssss</option>
-             <option value="Kristen">Kristen</option>
-             <option value="Hindu">Hindu</option>
-             <option value="Budha">Budha</option>
-             <option value="Konghucu">Konghucu</option>
-             <option value="Lainnya">Lainnya</option>
-             </select>
+                            <select name="id_prodi" onchange="return get_prodi_periode(this.value)" class="form-control input-sm pull-left">
+                        <option value="">-- Pilih Prodi --</option>
+                        <?php 
+
+                                        foreach($getProdi as $row)
+                                        { 
+                                          echo '<option value="'.$row->id_prodi.'">'.$row->nama_prodi.'</option>';
+                                        }
+                                    ?>
+                      </select>
+                  </div>
                         </div>
-                    </div>
                     <div class="form-group">
                         <label class=" col-xs-4" >Periode Pendaftaran</label>
                         <div class="col-xs-6">
-                            <input type="text" name="id_daftar_ulang" class="form-control input-sm pull-left" id="id_daftar_ulang" placeholder="" required="" value="2018/2019 Ganjil" readonly="">
+                            <select name="id_periode" id="id_periode" class="form-control input-sm pull-left">
+                        <option value="">-- Pilih periode --</option>
+                       
+                      </select>
                         </div>
                     </div>
                     <div class="form-group">
                         <label class=" col-xs-4" >Jumlah Sks di akui</label>
                         <div class="col-xs-6">
-                            <input type="text" name="id_daftar_ulang" class="form-control input-sm pull-left" id="id_daftar_ulang" placeholder="" required="" >
+                            <input type="text" name="jml_sks_diakui" class="form-control input-sm pull-left" id="jml_sks_diakui" placeholder="" required="" >
                         </div>
                     </div>
                     <div class="form-group">
                         <label class=" col-xs-4" >Asal Perguruan Tinggi</label>
                         <div class="col-xs-6">
-                            <input type="text" name="id_daftar_ulang" class="form-control input-sm pull-left" id="id_daftar_ulang" placeholder="" required="" >
+                            <input type="text" name="asal_pt" class="form-control input-sm pull-left" id="asal_pt" placeholder="" required="" >
                         </div>
                     </div>
-                    <div class="form-group">
+                   <div class="form-group">
                         <label class=" col-xs-4" >Asal Program Studi</label>
                         <div class="col-xs-6">
-                            <select name="agama" id="agama" class="form-control input-sm">
-            <option value="">-- Pilih Pendaftaran --</option>
-            <option value="Islam">Islam</option>
-            <option value="Katholik">Katholiksssssssssssss</option>
-             <option value="Kristen">Kristen</option>
-             <option value="Hindu">Hindu</option>
-             <option value="Budha">Budha</option>
-             <option value="Konghucu">Konghucu</option>
-             <option value="Lainnya">Lainnya</option>
-             </select>
+                            <input type="text" name="asal_prodi" class="form-control input-sm pull-left" id="asal_prodi" placeholder="" required="" >
                         </div>
                     </div>
 
                 </div>
 
                 <div class="modal-footer">
-                    <button class="btn" data-dismiss="modal" aria-hidden="true">Tutup</button>
-                    <button class="btn btn-info">Konfirmasi</button>
+                    <button class="btn btn-info">Simpan</button>
                 </div>
             <?php echo form_close();?>
             </div></div>
@@ -305,3 +291,20 @@
             <br />
             - Data yang dapat di ubah hanya data pada periode aktif
          </div>
+
+
+<script type="text/javascript">
+            function get_prodi_periode(p) {
+                var id_prodi = p;
+
+                $.ajax({
+                    url: '<?php echo base_url(); ?>kurikulum/get_prodi_periode/'+id_prodi,
+                    data: 'id_prodi='+id_prodi,
+                    type: 'GET',
+                    dataType: 'html',
+                    success: function(msg) {
+                        $("#id_periode").html(msg);
+                    }
+                });
+            }
+</script>

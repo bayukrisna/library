@@ -10,6 +10,7 @@
             
             <!-- /.box-header -->
             <div class="box-body">
+
               <table class="table">
         <tr>
 
@@ -42,6 +43,7 @@
           <div class="">
             <a class="btn btn-primary pull-right"  data-toggle="modal" data-target="#modal_tambah"><i class="fa fa-plus"></i> Tambah Pendidikan</a><br><br>
           </div>
+          <?php echo $this->session->flashdata('message');?>
 
           <div class="box box-info">
             <table class="table table-bordered table-striped" id="example3">
@@ -72,7 +74,7 @@
         <td style="text-align:center"><?php echo $data->penyelenggara;?></td>
         <td style="text-align:center"><?php echo $data->peringkat;?></td >
         <td style="text-align:center">
-                <button id="" type="button" class="btn btn-xs"   data-toggle="modal" data-target="#modal_detil"><i class="fa fa-pencil"></i></button>
+        <a href="<?php echo base_url(); ?>mahasiswa/detail_prestasi/<?php echo $data->id_prestasi; ?>" class="btn btn-success  btn-sm"><i class="fa fa-pencil"></i><span class="tooltiptext">Edit Prestasi</span></a>
                         </td>
     </tr>
 <?php endforeach; ?>
@@ -80,7 +82,9 @@
   </tbody>
 </table>
 
+
           </div>
+
           <div class="modal fade" id="modal_tambah" >
             <div class="modal-dialog">
             <div class="modal-content">
@@ -88,26 +92,26 @@
                 <button type="button" class="close" data-dismiss="modal" aria-hidden="true">x</button>
                 <h3 class="modal-title" id="myModalLabel">Tambah Prestasi</h3>
             </div>
-           <?php echo form_open('mahasiswa/simpan_prestasi/'.$mahasiswa->id_mahasiswa); ?>
-            <div class="form-horizontal">
-                <div class="modal-body">
+                 <div class="modal-body">
 
                     <div class="form-group">
-                        <label class="col-xs-4" >Jenis Prestasi</label>
-                        <div class="col-xs-6">
-                            <select name="jenis_prestasi" id="jenis_prestasi" class="form-control input-sm">
-                                <option value="">-- Pilih Jenis Prestasi --</option>
+                       <?php echo form_open('mahasiswa/simpan_prestasi/'.$mahasiswa->id_mahasiswa); ?>
+                      <table class="table">
+      <tr>
+            <td class="left_column" width="30%">Jenis Prestasi <font color="#FF0000">*</font></td>
+            <td colspan="9">:  
+             <select name="jenis_prestasi" id="jenis_prestasi" required="">
+                                <option value=""> -- Pilih Jenis Prestasi --</option>
                                 <option value="Sains">Sains</option>
                                 <option value="Olahraga">Olahraga</option>
                                  <option value="Seni">Seni</option>
                                  <option value="Lain-lain">Lain-lain</option>
-                                 </select>
-                        </div>
-                    </div>
-                    <div class="form-group">
-                        <label class="col-xs-4" >Tingkat Prestasi</label>
-                        <div class="col-xs-6">
-                            <select name="tingkat_prestasi" id="tingkat_prestasi" class="form-control input-sm">
+                                 </select>     </td>
+        </tr>
+        <tr>
+         <td class="left_column" width="40%">Tingkat Prestasi <font color="#FF0000">*</font></td>
+            <td>: 
+       <select name="tingkat_prestasi" id="tingkat_prestasi" required="">
                             <option value="">-- Pilih Tingkat Prestasi --</option>
                             <option value="Islam">Sekolah</option>
                             <option value="Kecamatan">Kecamatan</option>
@@ -117,47 +121,43 @@
                              <option value="Internasional">Internasional</option>
                              <option value="Lainnya">Lainnya</option>
                              </select>
-                        </div>
-                    </div>
-                    <div class="form-group">
-                        <label class="col-xs-4" >Nama Prestasi</label>
-                        <div class="col-xs-6">
-                            <input type="text" name="nama_prestasi" class="form-control input-sm pull-left" id="nama_prestasi" placeholder="" required="" >
-                        </div>
-                    </div>
-                     <div class="form-group">
-                        <label class="col-xs-4" >Tahun</label>
-                        <div class="col-xs-6">
-                            <input type="text" name="tahun" class="form-control input-sm pull-left" id="tahun" placeholder="" required="" value="">
-                        </div>
-                    </div>
-                  
-                    <div class="form-group">
-                        <label class=" col-xs-4" >Penyelenggara</label>
-                        <div class="col-xs-6">
-                            <input type="text" name="penyelenggara" class="form-control input-sm pull-left" id="penyelenggara" placeholder="" required="" value="">
-                        </div>
-                    </div>
-                    <div class="form-group">
-                        <label class=" col-xs-4" >Peringkat</label>
-                        <div class="col-xs-6">
-                            <input type="text" name="peringkat" class="form-control input-sm pull-left" id="peringkat" placeholder="" required="" value="">
-                        </div>
+             </td>
+        </tr> 
+        <tr>
+          <td class="left_column">Nama Prestasi<font color="#FF0000">*</font></td>
+            <td>: <input type="text" name="nama_prestasi" id="nama_prestasi" placeholder="" required="" value="" ></td>
+        </tr> 
+        <tr>
+          <td class="left_column">Tahun<font color="#FF0000">*</font></td>
+            <td>: <input type="text" name="tahun" id="tahun" placeholder="" required="" value=""></td>
+        </tr> 
+        <tr>
+          <td class="left_column">Penyelenggara<font color="#FF0000">*</font></td>
+            <td>: <input type="text" name="penyelenggara"  id="penyelenggara" placeholder="" required="" value=""></td>
+        </tr>
+        <tr>
+          <td class="left_column">Peringkat<font color="#FF0000">*</font></td>
+            <td>: <input type="text" name="peringkat"  id="peringkat" placeholder="" required="" value=""></td>
+        </tr> 
+        <tr>
+          <td colspan="4"><button type="submit" class="btn btn-info">Simpan</button></td>
+        </tr>
+    </table>
+    <?php echo form_close();?>
+
+
                     </div>
 
-                <div class="modal-footer">
-                    <button class="btn btn-info">Simpan</button>
                 </div>
-            <?php echo form_close();?>
-            </div></div>
+            </div>
             </div>
         </div>
 
-        </div>
-        <div class="callout callout-info">
-        <strong>Keterangan :</strong>
-            <br />
-            - Fitur ini digunakan untuk menampilkan history pendidikan setiap mahasiswa
-            <br />
-            - Data yang dapat di ubah hanya data pada periode aktif
-         </div>
+
+        
+        
+
+
+
+      
+       

@@ -29,10 +29,103 @@
             <!-- /.box-body -->
           </div>
         <br><br>
-        <div class="box">
+
+        <div class="nav-tabs-custom">
+            <ul class="nav nav-tabs">
+            <li class="active"><a href="#tab_0" data-toggle="tab">Nilai</a></li>
+              <!-- <li><a href="#tab_1" data-toggle="tab">IPK</a></li> -->
+              <!--<li><a href="#tab_4" data-toggle="tab">Kebutuhan Khusus</a></li> -->
+             
+            </ul>
+
+        <div class="tab-content">
+
+         <div class="tab-pane" id="tab_1">
+
+<table id="table1" class="table table-striped table-bordered" >
+    <thead>
+    <tr>
+        <th style="width:5%;text-align:center" rowspan="2">No.</th>
+        <th style="text-align:center" rowspan="2">Kode MK</th>
+        <th style="text-align:center" rowspan="2">Nama MK</th>
+        <th style="text-align:center" rowspan="2">Bobot MK<br />(sks)</th>
+         <th style="text-align:center" colspan="3">Nilai<br />(sks)</th>
+         <th style="text-align:center" rowspan="2">sks * N.indeks</th>
+       
+    </tr>
+    <tr>
+        <th style="width:5%;text-align:center">Angka</th>
+        <th style="text-align:center">Huruf</th>
+        <th style="text-align:center">Indeks</th>
+        
+    </tr>
+    </thead>
+    <tbody>
+    <?php 
+
+        $no = 0;
+        $totalsi = 0;
+        $totalbobot = 0;
+        foreach($nilai as $data):
+             $dataee = $data->bobot_matkul * $data->nilai_indeks;
+        ;
+      ?>
+      <tr>
+      <td><?php echo ++$no;?></td>
+        <td style="text-align:center"><?php echo $data->kode_matkul;?></td>
+        <td style="text-align:center"><?php echo $data->nama_matkul;?></td>
+        <td style="text-align:center"><?php $totalbobot += $data->bobot_matkul; echo $data->bobot_matkul;?></td>
+        <td style="text-align:center"><?php echo $data->nilai_d;?></td>
+        <td style="text-align:center"><?php echo $data->nilai_huruf;?></td>
+        <td style="text-align:center"><?php echo $data->nilai_indeks;?></td>
+        <td style="text-align:center"><?php $totalsi += $dataee; echo $dataee;?></td>
+        
+       
+    </tr>
+   
+<?php endforeach; ?>
+
+    <tr>
+         <td colspan="3" style="text-align:right"> <b> Jumlah Bobot : </b></td>
+        <td style="text-align:center">  <?php 
+        if ($totalbobot == 0) {
+            echo $totalbobot = 1;
+        } else {
+            echo $totalbobot;
+        }  ?> </td>
+        <td colspan="3" style="text-align:right"> <b> Jumlah sks * N.indeks : </b></td>
+        <td style="text-align:center"> <?php echo $totalsi; ?></td>
+
+    </tr>
+    <tr>
+        <th style="text-align:right" colspan="7"> IPK : </th>
+        <th style="text-align:center"> <?php $ipk = $totalsi / $totalbobot; echo round($ipk, 2); ?>   </th>
+    </tr>
+
+  
+  </tbody>
+    </table>
+
+    <input type="text" name="ipk" id="ipk" value="<?php $ipk2 = round($ipk, 2);echo $ipk2; ?>"> 
+
+    <?php if ($ipk <= 3.5) {
+         $a = '7';
+    } elseif ($ipk < 3.76) {
+         $a = '6';
+    } else {
+         $a = '5';
+    } ?>
+
+     <input type="text" name="id_grade2" id="id_grade2" value="<?php echo $a; ?>"> 
+
+</div>
+
+        <div class="tab-pane active" id="tab_0">
+
             <table class="">
                 <tbody>
                   <form method="get" action="<?php echo base_url(); ?>mahasiswa/filter_nilai/<?php echo $mahasiswa->id_mahasiswa; ?>">
+                    <a href="<?php echo base_url(); ?>mahasiswa/transkip_nilai/<?php echo $mahasiswa->id_mahasiswa ?>/<?php echo $ipk2 ?>/<?php echo $a ?>" class="btn btn-success  btn-sm">Transkip</span></a>
                   <tr>
                     <th><input type="hidden" name="id_prodi" id="id_prodi" value="<?php echo $mahasiswa->id_prodi; ?>"><br></th>
                   </tr>
@@ -50,11 +143,13 @@
                       &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<input type="submit" class="btn btn-primary" value="Cari">  
                     </td>                                         
                   </tr>
+                   </form>
                   
+                
+
                 </tbody>
-              </table>
-                      
-               </form>
+              </table>       
+              
               <br>
               <br>
         <table id="table1" class="table table-striped table-bordered" >
@@ -95,9 +190,7 @@
         <td style="text-align:center"><?php echo $data->nilai_indeks;?></td>
         <td style="text-align:center"><?php $totalsi += $dataee; echo $dataee;?></td>
         
-        <td style="text-align:center">
-                
-                        </td>
+       
     </tr>
    
 <?php endforeach; ?>
@@ -122,8 +215,8 @@
   
   </tbody>
     </table>
-    
     </div>
+     </div>
     <div class="callout callout-info">
         <strong>Keterangan :</strong>
             <br />
@@ -135,6 +228,9 @@
             <br />
             
     </div>
+
+
+</div>
  <link rel="stylesheet" href="//code.jquery.com/ui/1.12.0/themes/smoothness/jquery-ui.css">
   <script src="//code.jquery.com/jquery-1.12.4.min.js"></script>
   <script src="//code.jquery.com/ui/1.12.0/jquery-ui.min.js"></script>

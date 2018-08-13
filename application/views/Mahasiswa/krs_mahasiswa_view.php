@@ -53,7 +53,7 @@
         <th style="text-align:center">Nama MK</th>
         <th style="text-align:center">Kelas</th>
         <th style="text-align:center">Bobot MK<br />(sks)</th>
-        <th ></th>
+        
     </tr>
     </thead>
     <tbody>
@@ -68,10 +68,7 @@
         <td style="text-align:center"><?php echo $data->nama_matkul;?></td>
         <td style="text-align:center"><?php echo $data->nama_kelas;?></td>
         <td style="text-align:center"><?php echo $data->bobot_matkul;?></td>
-        
-        <td style="text-align:center">
-                <button id="" type="button" class="btn btn-xs"   data-toggle="modal" data-target="#modal_detil"><i class="fa fa-pencil"></i></button>
-                        </td>
+    
     </tr>
 <?php endforeach; ?>
   

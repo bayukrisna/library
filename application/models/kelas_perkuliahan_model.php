@@ -341,9 +341,9 @@ class Kelas_perkuliahan_model extends CI_Model {
         }
   }
 
-  public function update_total_mhs($id_kp){
+  public function update_total_mhs($id_kp, $total_mhs){
     $data = array(
-            'total_mhs'        => $this->input->post('total_mhs2')
+            'total_mhs'        => $total_mhs
       );
 
     if (!empty($data)) {
