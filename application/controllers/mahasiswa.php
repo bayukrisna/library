@@ -106,11 +106,7 @@ class Mahasiswa extends CI_Controller {
 			$data['main_view'] = 'Mahasiswa/aktivasi_perkuliahan_view';
 			$this->load->view('template', $data);
 	}
-	public function prestasi()
-	{
-			$data['main_view'] = 'Mahasiswa/prestasi_view';
-			$this->load->view('template', $data);
-	}
+	
 
 	public function lihat_mahasiswa_dikti()
 	{
@@ -136,6 +132,24 @@ class Mahasiswa extends CI_Controller {
 			$data['history'] = $this->mahasiswa_model->history_pendidikan($history);
 			$data['main_view'] = 'Mahasiswa/history_pendidikan_view';
 			$this->load->view('template', $data);
+	}
+
+	public function prestasi()
+	{
+			$id_mahasiswa = $this->uri->segment(3);
+			$data['mahasiswa'] = $this->mahasiswa_model->detail_mahasiswa_dikti($id_mahasiswa);
+			$data['prestasi'] = $this->mahasiswa_model->prestasi($id_mahasiswa);
+			$data['main_view'] = 'Mahasiswa/prestasi_mahasiswa_view';
+			$this->load->view('template', $data);
+	}
+
+	public function simpan_prestasi()
+	{
+		$id_mahasiswa = $this->uri->segment(3);
+			if($this->mahasiswa_model->simpan_prestasi($id_mahasiswa) == TRUE){
+				$this->session->set_flashdata('message', '<div class="alert alert-success"> Tambah Prestasi Berhasil </div>');
+            	redirect('mahasiswa/prestasi/'.$id_mahasiswa);
+			} 
 	}
 
 	public function save_edit_mahasiswa()

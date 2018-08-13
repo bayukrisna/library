@@ -138,6 +138,35 @@ class Mahasiswa_model extends CI_Model {
               ->result();
   }
 
+  public function prestasi($history){
+      return $this->db->where('tb_prestasi.id_mahasiswa', $history)
+              ->get('tb_prestasi')
+              ->result();
+  }
+
+  public function simpan_prestasi($id_mahasiswa)
+    {
+        $data = array(
+            'id_mahasiswa'        => $id_mahasiswa,
+            'jenis_prestasi'        => $this->input->post('jenis_prestasi'),
+            'tingkat_prestasi'        => $this->input->post('tingkat_prestasi'),
+            'nama_prestasi'        => $this->input->post('nama_prestasi'),
+            'penyelenggara'        => $this->input->post('penyelenggara'),
+            'tahun'        => $this->input->post('tahun'),
+            'peringkat'        => $this->input->post('peringkat')
+
+        );
+    
+        $this->db->insert('tb_prestasi', $data);
+
+        if($this->db->affected_rows() > 0){
+            
+                return true;
+        } else {
+            return false;
+        }
+    }
+
   public function get_mahasiswa_by_du($id_mahasiswa){
        return $this->db->join('tb_prodi','tb_prodi.id_prodi=tb_mahasiswa.id_prodi')
               ->join('tb_konsentrasi','tb_konsentrasi.id_konsentrasi=tb_mahasiswa.id_konsentrasi')
