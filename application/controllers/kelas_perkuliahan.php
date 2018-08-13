@@ -220,7 +220,8 @@ class Kelas_perkuliahan extends CI_Controller {
 	public function hapus_kelas_mhs(){
 		$id_detail_kurikulum = $this->uri->segment(3);
 		$id_kp = $this->uri->segment(4);
-		if ($this->kelas_perkuliahan_model->hapus_kelas_mhs($id_detail_kurikulum) == TRUE && $this->kelas_perkuliahan_model->update_total_mhs($id_kp) == TRUE) {
+		$total_mhs = $this->uri->segment(5);
+		if ($this->kelas_perkuliahan_model->hapus_kelas_mhs($id_detail_kurikulum) == TRUE && $this->kelas_perkuliahan_model->update_total_mhs($id_kp, $total_mhs) == TRUE) {
 			$this->session->set_flashdata('message', '<div class="alert alert-success"> Hapus Mahasiswa Berhasil </div>');
             	redirect('kelas_perkuliahan/detail_kelas/'.$id_kp);
 		} else {
