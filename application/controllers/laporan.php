@@ -46,7 +46,18 @@ class Laporan extends CI_Controller {
 	}
 	public function laporan_peserta_tesku(){
     $tanggal_hasil_tes = $this->input->get('tanggal_hasil_tes');
-    $this->laporan_model->laporan_hasil_tes($tanggal_hasil_tes);
+    $this->laporan_model->laporan_peserta_tes($tanggal_hasil_tes);
+  	}
+  	/////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+  	/////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+  	public function laporan_data_getstudent(){
+  		$data['getTahunSgs'] = $this->laporan_model->getTahunSgs();
+		$data['main_view'] = 'Laporan/laporan_data_getstudent_view';
+		$this->load->view('template', $data);	
+	}
+	public function laporan_data_getstudentku(){
+    $tanggal_konfirmasi = $this->input->get('tanggal_konfirmasi');
+    $this->laporan_model->laporan_data_getstudent($tanggal_konfirmasi);
   	}
 }
 
