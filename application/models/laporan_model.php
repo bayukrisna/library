@@ -242,7 +242,7 @@ class Laporan_model extends CI_Model {
                 
                 }
     }
-    function laporan_hasil_tes($tanggal_hasil_tes){
+    function laporan_peserta_tes($tanggal_hasil_tes){
       $query = $this->db->select('*')
                 ->from('tb_hasil_tes')
                 ->join('tb_mahasiswa','tb_mahasiswa.id_hasil_tes=tb_hasil_tes.id_hasil_tes')
@@ -357,6 +357,113 @@ class Laporan_model extends CI_Model {
                 
                 }
     }
+    function laporan_data_getstudent($tanggal){
+      $query = $this->db->select('*')
+                ->from('tb_pendaftaran')
+                ->join('tb_mahasiswa','tb_mahasiswa.nim=tb_pendaftaran.sgs')
+                ->like('tanggal_konfirmasi', $tanggal)
+                ->get();
+      $row = $query->result();
+      $coo = $this->db->select('count(tb_pendaftaran.id_pendaftaran) as total')
+                ->from('tb_pendaftaran')
+                ->join('tb_mahasiswa','tb_mahasiswa.nim=tb_pendaftaran.sgs')
+                ->like('tanggal_konfirmasi', $tanggal)
+                ->get();
+      $eee = $coo->row();
+
+                if ($query->num_rows() > 0)
+                { 
+                  $no = 0;
+                  $option = "";
+                  $option .= '<section class="content" id="ea">
+      <div class="row">
+        <div class="col-xs-12">
+            <!-- /.box-header -->
+            <div class="box-body">
+            <h4><b>Laporan Peserta Tes</h4></b>
+            <table>
+              <tr>
+                <td width="120px">Perguruan Tinggi</td>
+                <td width="300px">: 033082 - STIE Jakarta International College</td>
+                <td width="120px">Alamat</td>
+                <td>: Jalan Perunggu No 53-54 10640</td>
+              </tr>
+              <tr>
+                <td width="120px">Tahun</td>
+                <td width="300px">: '.$tanggal.'</td>
+                <td width="120px">Jumlah Peserta Tes</td>
+                <td>: '.$eee->total.'</td>
+              </tr>
+            </table>
+            <br>
+              <table id="example1" class="table table-bordered table-striped">
+                <thead>
+                <tr>
+                  <th>No</th>
+                  <th>Nama Pendaftar</th>
+                  <th>Nama Narasumber</th>
+                  <th>NIM</th>
+                  <th>Tanggal Pendaftaran</th>
+                </tr>
+                </thead>
+                <tbody>';
+                  foreach ($row as $data) {
+                    $option .= "
+                    <tr>
+                      <td>".++$no."</td>
+                      <td>".$data->nama_pendaftar."</td>
+                      <td>".$data->nama_mahasiswa."</td>
+                      <td>".$data->nim."</td>
+                      <td>".$data->tanggal_konfirmasi."</td>
+                    </tr>";
+                    
+                  }
+                  $option .= '</tbody>
+              </table>
+            </div>
+            
+            <!-- /.box-body -->
+          </div>
+          <!-- /.box -->
+        <!-- /.col -->
+      </div>
+      <!-- /.row -->
+    </section>';
+                  echo $option;
+
+                } else{
+                $option = "";
+                  $option .= '
+                  <section class="content" id="ea">
+      <div class="row">
+        <div class="col-xs-12">
+            <!-- /.box-header -->
+            <div class="box-body">
+              <table id="example1" class="table table-bordered table-striped">
+                <thead>
+                <tr>
+                  <th>No</th>
+                  <th>Semester</th>
+                </tr>
+                </thead>
+                <tbody>
+                  <td></td><td></td>
+                  </tbody>
+              </table>
+            </div>
+            
+            <!-- /.box-body -->
+          </div>
+          <!-- /.box -->
+        <!-- /.col -->
+      </div>
+      <!-- /.row -->
+    </section>';
+
+                  echo $option;
+                
+                }
+    }
     function getPeriode()
     {
         $ea =  $this->db->select('tb_periode.semester')
@@ -387,6 +494,14 @@ class Laporan_model extends CI_Model {
         return $ea->result();
 
     }
+    public function getTahunSgs(){
+      $this->db->select('DATE_FORMAT(tb_pendaftaran.tanggal_konfirmasi, "%Y") as tanggal_konfirmasi')->distinct();
+      $this->db->from('tb_pendaftaran');
+      $this->db->join('tb_mahasiswa','tb_mahasiswa.nim=tb_pendaftaran.sgs');
+      $this->db->where('sumber','student_get_student');
+      $query = $this->db->get();
+      return $query->result();
+  }
 }
 
 /* End of file prodi_model.php */
