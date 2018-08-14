@@ -45,7 +45,8 @@ class Kelas_perkuliahan_model extends CI_Model {
      $this->db->from('tb_kp');
      $this->db->join('tb_prodi','tb_prodi.id_prodi=tb_kp.id_prodi');
      $this->db->join('tb_periode','tb_periode.id_periode=tb_kp.id_periode');
-     $this->db->join('tb_matkul','tb_matkul.kode_matkul=tb_kp.id_detail_kurikulum');
+    $this->db->join('tb_detail_kurikulum','tb_detail_kurikulum.id_detail_kurikulum=tb_kp.id_detail_kurikulum');
+     $this->db->join('tb_matkul','tb_matkul.kode_matkul=tb_detail_kurikulum.kode_matkul');
      $this->db->join('tb_dosen','tb_dosen.id_dosen=tb_kp.id_dosen');
      $this->db->join('tb_total_mhs','tb_total_mhs.id_kp=tb_kp.id_kp');
      $this->db->like('tb_prodi.id_prodi',$id_prodi);

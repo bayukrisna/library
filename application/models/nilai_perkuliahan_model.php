@@ -10,18 +10,24 @@ class Nilai_perkuliahan_model extends CI_Model {
 	}
 
 	public function data_kp(){
-		$this->db->select('*');
-		 $this->db->from('tb_kp');
-     $this->db->join('tb_matkul','tb_matkul.kode_matkul=tb_kp.kode_matkul');
+
+    $this->db->select('*');
+     $this->db->from('tb_kp');
+     $this->db->join('tb_periode','tb_periode.id_periode=tb_kp.id_periode');
+     $this->db->join('tb_detail_kurikulum','tb_detail_kurikulum.id_detail_kurikulum=tb_kp.id_detail_kurikulum');
+     $this->db->join('tb_matkul','tb_matkul.kode_matkul=tb_detail_kurikulum.kode_matkul');
      $this->db->join('tb_total_mhs','tb_total_mhs.id_kp=tb_kp.id_kp');
-		 $query = $this->db->get();
-		 return $query->result();
-	}
+     $query = $this->db->get();
+     return $query->result();
+  }
 
   public function filter_kp($id_prodi, $id_periode){
     $this->db->select('*');
      $this->db->from('tb_kp');
-     $this->db->join('tb_matkul','tb_matkul.kode_matkul=tb_kp.kode_matkul');
+     $this->db->join('tb_prodi','tb_prodi.id_prodi=tb_kp.id_prodi');
+     $this->db->join('tb_periode','tb_periode.id_periode=tb_kp.id_periode');
+     $this->db->join('tb_detail_kurikulum','tb_detail_kurikulum.id_detail_kurikulum=tb_kp.id_detail_kurikulum');
+     $this->db->join('tb_matkul','tb_matkul.kode_matkul=tb_detail_kurikulum.kode_matkul');
      $this->db->join('tb_total_mhs','tb_total_mhs.id_kp=tb_kp.id_kp');
      $this->db->like('tb_prodi.id_prodi',$id_prodi);
      $this->db->like('tb_periode.id_periode',$id_periode);
@@ -32,7 +38,8 @@ class Nilai_perkuliahan_model extends CI_Model {
   public function detail_nilai($id_kp){
       return $this->db->join('tb_prodi','tb_prodi.id_prodi=tb_kp.id_prodi')
               ->join('tb_periode','tb_periode.id_periode=tb_kp.id_periode')
-              ->join('tb_matkul','tb_matkul.kode_matkul=tb_kp.kode_matkul')
+              ->join('tb_detail_kurikulum','tb_detail_kurikulum.id_detail_kurikulum=tb_kp.id_detail_kurikulum')
+             ->join('tb_matkul','tb_matkul.kode_matkul=tb_detail_kurikulum.kode_matkul')
               ->where('id_kp', $id_kp)
               ->get('tb_kp')
               ->row();
@@ -41,7 +48,8 @@ class Nilai_perkuliahan_model extends CI_Model {
   public function edit_nilai($id_kp){
       return $this->db->join('tb_mahasiswa','tb_mahasiswa.id_mahasiswa=tb_kelas_mhs.id_mahasiswa')
               ->join('tb_kp','tb_kp.id_kp=tb_kelas_mhs.id_kp')
-              ->join('tb_matkul','tb_matkul.kode_matkul=tb_kp.kode_matkul')
+              ->join('tb_detail_kurikulum','tb_detail_kurikulum.id_detail_kurikulum=tb_kp.id_detail_kurikulum')
+             ->join('tb_matkul','tb_matkul.kode_matkul=tb_detail_kurikulum.kode_matkul')
               ->join('tb_prodi','tb_prodi.id_prodi=tb_kp.id_prodi')
               ->where('id_kelas_mhs', $id_kp)
               ->get('tb_kelas_mhs')
