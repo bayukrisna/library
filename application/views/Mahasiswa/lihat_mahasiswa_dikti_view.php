@@ -194,7 +194,7 @@
                 </tr>
                  <tr>
                     <td class="left_column">Alat Transportasi</td>
-                    <td colspan="5">: <?php echo $mahasiswa->alat_transportasi; ?></td>
+                    <td colspan="5">: <?php echo $mahasiswa->transportasi; ?></td>
                 </tr>
                 <tr>
                     <td class="left_column">Telepon</td>

@@ -16,7 +16,7 @@
                 <input type="text" name="nama_mahasiswa" id="nama_mahasiswa" class="text-input" size="10" style="width:70%"  required="">    </td>
       
             <td class="left_column">Waktu <font color="#FF0000">*</font></td>
-            <td>:  <select name="id_waktu" id="id_waktu">
+            <td>:  <select name="id_waktu" id="id_waktu" required="">
                     <option value=""> Pilih Waktu </option>
                     <option value="1">Pagi</option>
                     <option value="2">Sore</option>
@@ -32,8 +32,9 @@
                 <input type="date" name="tanggal_lahir" id="tanggal_lahir" class="text-input" size="10" style="width:70%"  required="">                           </td>
         </tr>
         <tr>
-            <td class="left_column">Jenis Kelamin</td>
-            <td>: <input type="text" name="jenis_kelamin" id="jenis_kelamin" class="text-input" size="10" style="width:70%" required=""></td>
+            <td class="left_column">Jenis Kelamin <font color="#FF0000">*</font></td>
+            <td>:  &nbsp;&nbsp;<label class="radio-inline"><input type="radio" name="jenis_kelamin" id="jenis_kelamin" value="L" checked=""> Laki-laki</label> &nbsp; 
+                <label class="radio-inline"><input type="radio" name="jenis_kelamin" id="jenis_kelamin" value="P"> Perempuan</label> &nbsp; </td>
             <td class="left_column">Agama <font color="#FF0000">*</font></td>
             <td>:  <select name="agama" id="agama" required="">
             <option>Pilih Agama</option>
@@ -66,9 +67,9 @@
                 <div class="tab-pane active" id="tab_0">
                 <table width="90%" class="table">
                 <tr>
-                    <td class="left_column" width="15%">NIM</td>
-                    <td colspan="3">:  <input type="text" name="nim" id="nim" class="text-input" maxlength="16" size="50" style="width:40%" onkeydown="return onlyNumber(event,this,false,false)" required="">              
-                     <input type="text" name="jurusan" id="jurusan" class="text-input" maxlength="16" size="50" style="width:40%" onkeydown="return onlyNumber(event,this,false,false)" value="">                              
+                    <td class="left_column" width="15%">NIM <font color="#FF0000">*</font></td>
+                    <td colspan="3">:  <input type="text" name="nim" id="nim" class="text-input" maxlength="16" size="50" style="width:40%" onkeydown="return onlyNumber(event,this,false,false)" required="">       
+
                     </td>
                     <td rowspan="8"><div class="btn btn-file" >
                   <input type="file"   onchange="loadFile(event)" name="foto_mahasiswa" id="foto_mahasiswa">
@@ -76,7 +77,7 @@
                 </div></td>
                 </tr>
                 <tr>
-                    <td class="left_column" width="15%" >Nama Prodi</td>
+                    <td class="left_column" width="15%" >Nama Prodi <font color="#FF0000">*</font></td>
                     <td>: <select name="id_prodi" id="id_prodi" required="" onchange="return get_concentrate(this.value)">
                             <option>Pilih Prodi</option>  
                              <?php 
@@ -89,13 +90,47 @@
                              </select></td>
                 </tr>
                 <tr>
-                    <td class="left_column">Nama Konsentrasi</td>
+                    <td class="left_column">Nama Konsentrasi <font color="#FF0000">*</font></td>
                     <td>:
                         <select name="concentrate" id="concentrate" required="" >
                             <option>Pilih Konsentrasi</option>
                             
                              </select></td>
                 </tr>
+                <tr>
+                    <td class="left_column" width="15%">Tanggal Pendaftaran <font color="#FF0000">*</font></td>
+                    <td colspan="4">:  <input type="date" name="tgl_du" id="tgl_du" class="validate[required] text-input" maxlength="16" size="50" style="width:20%" required="">                            
+                    </td>
+                </tr>
+                <tr>
+                    <td class="left_column" width="15%">Status Mahasiswa <font color="#FF0000">*</font></td>
+                    <td colspan="4">:  <select name="id_status" id="id_status" required="">
+                            <option>Pilih Status</option>  
+                             <?php 
+
+                  foreach($getStatus as $row)
+                  { 
+                    echo '<option value="'.$row->id_status.'">'.$row->status_mhs.'</option>';
+                  }
+                  ?>
+                             </select>                            
+                    </td>
+                </tr>
+                <tr>
+                    <td class="left_column" width="15%"> Grade <font color="#FF0000">*</font></td>
+                    <td colspan="4">:  <select name="id_grade" id="id_grade" required="">
+                            <option>Pilih Grade</option>  
+                             <?php 
+
+                  foreach($getGrade as $row)
+                  { 
+                    echo '<option value="'.$row->id_grade.'">'.$row->grade.'</option>';
+                  }
+                  ?>
+                             </select>                            
+                    </td>
+                </tr>
+
                
             </table>
 
@@ -149,30 +184,30 @@
                     <td class="left_column">Jenis Tinggal</td>
                     <td colspan="5">: <select name="jenis_tinggal" id="jenis_tinggal">
                     <option value="">-- Pilih Jenis Tinggal --</option>
-                    <option value="Bersama orang tua">Bersama orang tua</option>
-                    <option value="Wali">Wali</option>
-                    <option value="Kost">Kost</option>
-                    <option value="Asrama">Asrama</option>
-                    <option value="Panti asuhan">Panti asuhan</option>
-                    <option value="Lainnya">Lainnya</option>
+                    <option value="1">Bersama orang tua</option>
+                    <option value="2">Wali</option>
+                    <option value="3">Kost</option>
+                    <option value="4">Asrama</option>
+                    <option value="5">Panti asuhan</option>
+                    <option value="6">Lainnya</option>
                     </select></td>
                 </tr>
                  <tr>
                     <td class="left_column">Alat Transportasi</td>
                     <td colspan="5">: <select name="alat_transportasi" id="alat_transportasi">
                     <option value="">-- Pilih Alat Transportasi --</option>
-                    <option value="Jalan kaki">Jalan kaki</option>
-                    <option value="Angkutan umum/bus/pete-pete">Angkutan umum/bus/pete-pete</option>
-                    <option value="Mobil/bus antar jemput">Mobil/bus antar jemput</option>
-                    <option value="Kereta api">Kereta api</option>
-                    <option value="Ojek">Ojek</option>
-                    <option value="Andong/bendi/sado/dokar/delman/becak">Andong/bendi/sado/dokar/delman/becak</option>
-                    <option value="Perahu penyeberangan/rakit/getek">Perahu penyeberangan/rakit/getek</option>
-                    <option value="Kuda">Kuda</option>
-                    <option value="Sepeda">Sepeda</option>
-                    <option value="Sepeda motor">Sepeda motor</option>
-                    <option value="Mobil pribadi">Mobil pribadi</option>
-                    <option value="Lainnya">Lainnya</option>
+                    <option value="1">Jalan kaki</option>
+                    <option value="2">Angkutan umum/bus/pete-pete</option>
+                    <option value="3">Mobil/bus antar jemput</option>
+                    <option value="4">Kereta api</option>
+                    <option value="5">Ojek</option>
+                    <option value="6">Andong/bendi/sado/dokar/delman/becak</option>
+                    <option value="7">Perahu penyeberangan/rakit/getek</option>
+                    <option value="8">Kuda</option>
+                    <option value="9">Sepeda</option>
+                    <option value="10">Sepeda motor</option>
+                    <option value="11">Mobil pribadi</option>
+                    <option value="12">Lainnya</option>
                 </select></td>
                 </tr>
                 <tr>

@@ -202,7 +202,7 @@
                  <tr>
                     <td class="left_column">Alat Transportasi</td>
                     <td colspan="5">: <select name="alat_transportasi" id="alat_transportasi">
-                    <option value="<?php echo $mahasiswa->alat_transportasi; ?>"><?php echo $mahasiswa->alat_transportasi; ?></option>
+                    <option value="<?php echo $mahasiswa->transportasi; ?>"><?php echo $mahasiswa->transportasi; ?></option>
                     <option value="Jalan kaki">Jalan kaki</option>
                     <option value="Angkutan umum/bus/pete-pete">Angkutan umum/bus/pete-pete</option>
                     <option value="Mobil/bus antar jemput">Mobil/bus antar jemput</option>

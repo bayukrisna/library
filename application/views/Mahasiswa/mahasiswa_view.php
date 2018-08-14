@@ -103,7 +103,7 @@
                   <td>'.$data->agama.'</td>
                   <td>'.$data->tanggal_lahir.'</td>
                   <td>'.$data->nama_prodi.'</td>
-                  <td>'.$data->status_mahasiswa.'</td>
+                  <td>'.$data->status_mhs.'</td>
                   <td>'.$data->angkatan.'</td>
                   <td>
                     <a href="'.base_url('mahasiswa/detail_mahasiswa_dikti/'.$data->id_mahasiswa).'" class="btn btn-success  btn-sm"><i class="glyphicon glyphicon-pencil"></i><span class="tooltiptext">Detail Mahasiswa</span></a>

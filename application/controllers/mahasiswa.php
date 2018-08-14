@@ -36,15 +36,6 @@ class Mahasiswa extends CI_Controller {
 			$this->load->view('template', $data);
 	}
 
-	public function tambah_mahasiswa()
-	{
-		$data['kodeunik'] = $this->mahasiswa_model->buat_kode();
-			$id_du = $this->uri->segment(3);
-			$data['mahasiswa'] = $this->mahasiswa_model->get_mahasiswa_by_du($id_du);
-			$data['main_view'] = 'Mahasiswa/detil_mahasiswa_view';
-			$this->load->view('template', $data);
-	}
-
 
 	public function data_mahasiswa()
 	{
@@ -143,6 +134,8 @@ class Mahasiswa extends CI_Controller {
 	public function page_tambah_mahasiswa()
 	{
 			$data['kodeunik_mhs'] = $this->mahasiswa_model->buat_kode_mhs();
+			$data['getStatus'] = $this->mahasiswa_model->getStatus();
+			$data['getGrade'] = $this->mahasiswa_model->getGrade();
 			$data['getProdi'] = $this->daftar_ulang_model->getProdi();
 			$data['main_view'] = 'Mahasiswa/tambah_mahasiswa_view';
 			$this->load->view('template', $data);
@@ -219,7 +212,7 @@ class Mahasiswa extends CI_Controller {
 
 	public function save_mahasiswa()
 	{
-			if($this->mahasiswa_model->save_mahasiswa() == TRUE && $this->mahasiswa_model->save_ayah() == TRUE  && $this->mahasiswa_model->save_ibu() == TRUE && $this->mahasiswa_model->save_alamat() == TRUE && $this->mahasiswa_model->save_wali() == TRUE && $this->mahasiswa_model->save_kependudukan() == TRUE && $this->mahasiswa_model->save_jenis_tinggal() == TRUE && $this->mahasiswa_model->save_bio() == TRUE && $this->mahasiswa_model->save_kontak() == TRUE && $this->mahasiswa_model->save_tgl_du() == TRUE){
+			if($this->mahasiswa_model->save_mahasiswa() == TRUE && $this->mahasiswa_model->save_ayah() == TRUE  && $this->mahasiswa_model->save_ibu() == TRUE && $this->mahasiswa_model->save_alamat() == TRUE && $this->mahasiswa_model->save_wali() == TRUE && $this->mahasiswa_model->save_kependudukan() == TRUE && $this->mahasiswa_model->save_bio() == TRUE && $this->mahasiswa_model->save_kontak() == TRUE && $this->mahasiswa_model->save_tgl_du_mhs() == TRUE){
 				$nama_du = $this->input->post('nama_mahasiswa');
 				$this->session->set_flashdata('message', '<div class="col-md-12 alert alert-success"> Data '.$nama_du.' berhasil didaftarkan. </div>');
             	redirect('mahasiswa/data_mahasiswa');
