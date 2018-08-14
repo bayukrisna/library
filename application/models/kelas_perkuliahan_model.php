@@ -55,9 +55,6 @@ class Kelas_perkuliahan_model extends CI_Model {
      return $query->result();
   }
 
- 
- 
-
   public function data_kelas_dosen($id_dosen){
     $this->db->select('*');
      $this->db->from('tb_kelas_dosen');

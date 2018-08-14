@@ -686,9 +686,23 @@ class Mahasiswa_model extends CI_Model {
         }
   }
 
-  public function update_ipk($id_mahasiswa, $ipk, $id_grade2){
+  public function update_ipk($id_mahasiswa, $ipk){
     $data = array(
-            'ipk'      => $ipk,
+            'ipk'      => $ipk
+      );
+
+    if (!empty($data)) {
+            $this->db->where('id_mahasiswa', $id_mahasiswa)
+        ->update('tb_mhs_add', $data);
+
+          return true;
+        } else {
+            return null;
+        }
+  }
+
+  public function update_grade($id_mahasiswa, $id_grade2){
+    $data = array(
             'id_grade2'      => $id_grade2
       );
 

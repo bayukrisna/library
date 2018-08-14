@@ -89,6 +89,7 @@ class Mahasiswa extends CI_Controller {
 			$id_mahasiswa = $this->uri->segment(3);
 			$data['mahasiswa'] = $this->mahasiswa_model->detail_krs_mahasiswa($id_mahasiswa);
 			$data['nilai'] = $this->mahasiswa_model->data_nilai_mhs($id_mahasiswa);
+			$data['nilai2'] = $this->mahasiswa_model->data_nilai_mhs($id_mahasiswa);
 			$data['main_view'] = 'Mahasiswa/history_nilai_view';
 			$this->load->view('template', $data);
 	}
@@ -98,7 +99,7 @@ class Mahasiswa extends CI_Controller {
 			$id_mahasiswa = $this->uri->segment(3);
 			$ipk = $this->uri->segment(4);
 			$id_grade2 = $this->uri->segment(5);
-			if($this->mahasiswa_model->update_ipk($id_mahasiswa, $ipk, $id_grade2) == TRUE){
+			if($this->mahasiswa_model->update_ipk($id_mahasiswa, $ipk) == TRUE && $this->mahasiswa_model->update_grade($id_mahasiswa, $id_grade2) ){
 				$this->session->set_flashdata('message', '<div class="alert alert-success"> Update IPK Berhasil </div>');
             	redirect('mahasiswa/transkip_nilai2/'.$id_mahasiswa);
 			} 	
