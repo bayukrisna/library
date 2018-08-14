@@ -82,6 +82,7 @@ class Mahasiswa_model extends CI_Model {
       return $this->db->join('tb_kp','tb_kp.id_kp=tb_kelas_mhs.id_kp')
               ->join('tb_matkul','tb_matkul.kode_matkul=tb_kp.kode_matkul')
               ->join('tb_skala_nilai','tb_skala_nilai.id_skala_nilai=tb_kelas_mhs.id_skala_nilai')
+              ->join('tb_periode','tb_periode.id_periode=tb_kp.id_periode')
               ->where('tb_kelas_mhs.id_mahasiswa', $id_mahasiswa)
               ->get('tb_kelas_mhs')
               ->result();

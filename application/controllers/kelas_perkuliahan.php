@@ -105,17 +105,6 @@ class Kelas_perkuliahan extends CI_Controller {
 					}
 			}
 
-	function autocomplete(){
-		$searchTerm = $_GET['term'];
-		//mendapatkan data yang sesuai dari tabel daftar_kota
-		$query = $this->db->query("SELECT * FROM tb_dosen WHERE nama_dosen LIKE '%".$searchTerm."%' ORDER BY nama_dosen ASC");
-		foreach($query->result_array() as $row){
-		    $data[] = $row['nama_dosen'];
-		    $data[] = $row['id_dosen'];
-		}
-		//return data json
-		echo json_encode($data);
-	}
 	public function get_autocomplete(){
 		if(isset($_GET['term'])){
 			$result = $this->kelas_perkuliahan_model->autocomplete($_GET['term']);
@@ -182,6 +171,7 @@ class Kelas_perkuliahan extends CI_Controller {
 						'label' => $row->kode_matkul.' - '.$row->nama_matkul.' - (sks) '.$row->bobot_matkul.'-'.$row->nama_kurikulum,
 						'bobot' => $row->bobot_matkul,
 						'kurikulum' => $row->nama_kurikulum,
+						'idk' => $row->id_detail_kurikulum,
 						'id' => $row->kode_matkul);
 				echo json_encode($result_array);
 			

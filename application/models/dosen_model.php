@@ -26,7 +26,7 @@ class Dosen_model extends CI_Model {
             
         );
     
-        $this->db->insert('dosen', $data);
+        $this->db->insert('tb_dosen', $data);
 
         if($this->db->affected_rows() > 0){
             

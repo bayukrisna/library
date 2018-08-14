@@ -41,7 +41,7 @@
         <td class="left_column">Total Mahasiswa</td>
         
             <td colspan="3">: <b> <?php echo $dsn['jumlah_mhs']; ?>  </b> mahasiswa</td>
-            <input type="text" name="total_mhs2" id="total_mhs2" value="<?php $total_mhs2 = $kp->total_mhs -1;echo $total_mhs2; ?>">
+            <input type="hidden" name="total_mhs2" id="total_mhs2" value="<?php $total_mhs2 = $kp->total_mhs -1;echo $total_mhs2; ?>">
 
            
             

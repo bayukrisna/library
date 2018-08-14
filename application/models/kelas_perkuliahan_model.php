@@ -25,13 +25,6 @@ class Kelas_perkuliahan_model extends CI_Model {
      return $query->result();
   }
 
-  public function get_mk(){
-     $this->db->select('*');
-     $this->db->from('tb_matkul');
-     $this->db->like('tb_matkul.nama_matkul',$nama);
-     $query = $this->db->get();
-     return $query->result();
-  }
 
 	public function data_kp(){
 
@@ -39,7 +32,8 @@ class Kelas_perkuliahan_model extends CI_Model {
 		 $this->db->from('tb_kp');
 		 $this->db->join('tb_prodi','tb_prodi.id_prodi=tb_kp.id_prodi');
      $this->db->join('tb_periode','tb_periode.id_periode=tb_kp.id_periode');
-     $this->db->join('tb_matkul','tb_matkul.kode_matkul=tb_kp.kode_matkul');
+     $this->db->join('tb_detail_kurikulum','tb_detail_kurikulum.id_detail_kurikulum=tb_kp.id_detail_kurikulum');
+     $this->db->join('tb_matkul','tb_matkul.kode_matkul=tb_detail_kurikulum.kode_matkul');
      $this->db->join('tb_dosen','tb_dosen.id_dosen=tb_kp.id_dosen');
      $this->db->join('tb_total_mhs','tb_total_mhs.id_kp=tb_kp.id_kp');
 		 $query = $this->db->get();
@@ -51,7 +45,7 @@ class Kelas_perkuliahan_model extends CI_Model {
      $this->db->from('tb_kp');
      $this->db->join('tb_prodi','tb_prodi.id_prodi=tb_kp.id_prodi');
      $this->db->join('tb_periode','tb_periode.id_periode=tb_kp.id_periode');
-     $this->db->join('tb_matkul','tb_matkul.kode_matkul=tb_kp.kode_matkul');
+     $this->db->join('tb_matkul','tb_matkul.kode_matkul=tb_kp.id_detail_kurikulum');
      $this->db->join('tb_dosen','tb_dosen.id_dosen=tb_kp.id_dosen');
      $this->db->join('tb_total_mhs','tb_total_mhs.id_kp=tb_kp.id_kp');
      $this->db->like('tb_prodi.id_prodi',$id_prodi);
@@ -86,7 +80,8 @@ class Kelas_perkuliahan_model extends CI_Model {
   public function detail_kp($id_kp){
       return $this->db->join('tb_prodi','tb_prodi.id_prodi=tb_kp.id_prodi')
               ->join('tb_periode','tb_periode.id_periode=tb_kp.id_periode')
-              ->join('tb_matkul','tb_matkul.kode_matkul=tb_kp.kode_matkul')
+              ->join('tb_detail_kurikulum','tb_detail_kurikulum.id_detail_kurikulum=tb_kp.id_detail_kurikulum')
+              ->join('tb_matkul','tb_matkul.kode_matkul=tb_detail_kurikulum.kode_matkul')
               ->join('tb_total_mhs','tb_total_mhs.id_kp=tb_kp.id_kp')
               ->where('tb_kp.id_kp', $id_kp)
               ->get('tb_kp')
@@ -119,7 +114,6 @@ class Kelas_perkuliahan_model extends CI_Model {
      $this->db->join('tb_mahasiswa','tb_mahasiswa.id_mahasiswa=tb_kelas_mhs.id_mahasiswa');
      $this->db->join('tb_bio','tb_bio.id_mahasiswa=tb_mahasiswa.id_mahasiswa');
      $this->db->join('tb_prodi','tb_prodi.id_prodi=tb_mahasiswa.id_prodi');
-     $this->db->join('tb_angkatan','tb_angkatan.id_angkatan=tb_mahasiswa.id_angkatan');
      $this->db->where('tb_kelas_mhs.id_kelas_mhs', $nama);
      $query = $this->db->get();
      return $query->row();
@@ -177,7 +171,7 @@ class Kelas_perkuliahan_model extends CI_Model {
             'nama_kelas'      	=> $this->input->post('nama_kelas'),
             'id_prodi'      		=> $this->input->post('id_prodi'),
             'id_periode'          => $this->input->post('id_periode'),
-            'kode_matkul'          => $this->input->post('kode_matkul'),
+            'id_detail_kurikulum'          => $this->input->post('id_detail_kurikulum'),
             'bahasan'          => $this->input->post('bahasan'),
             'tgl_mulai'          => $this->input->post('tgl_mulai'),
             'tgl_akhir'          => $this->input->post('tgl_akhir')
