@@ -31,6 +31,7 @@ class Finance extends CI_Controller {
 		$data['mahasiswa']=$ea;
 		$data['data']= $dataku;
 		$data['grade']= $this->finance_model->get_data_detail_mahasiswa2($ya, $dataku->semester_aktif);
+		
 		$data['data_pembayaran']= $this->finance_model->data_pembayaran_mahasiswa($ya);
 		$data['data_pembayaran2']= $this->finance_model->data_pembayaran_mahasiswa($ya);
 		$data['kodeunik'] = $this->finance_model->buat_kode();
@@ -206,16 +207,17 @@ class Finance extends CI_Controller {
 		$param = $this->input->get('id_biaya');
 		$pae = $this->input->get('id_grade');
 		$par = $this->input->get('kategori');
+		$pat = $this->input->get('id_grade2');
 		$id_biaya = $param;
 		$result = $this->finance_model->get_biaya_pembayaran($id_biaya);
 		// $option = "";
 		// $option .= "<input readonly='' type='text' class='form-control' name='biaya' id='biayaa' value='".$result->jumlah_biaya."' >";
 
-		if ($pae == 1 or $pae == 2	 && $par == 'Angsuran Tahun 1'){
+		if ($par == 'Angsuran Tahun 1'){
 			$yaya = $this->finance_model->get_yaya($pae);
 			$ee = $result->jumlah_biaya * $yaya->diskon / 100;		
-		} else if($pae >= 3 && $par == 'Angsuran Tahun 2'  or $par == 'Angsuran Tahun 3' or $par == 'Angsuran Tahun 4'){
-			$yaya = $this->finance_model->get_yaya($pae);
+		} else if($par == 'Angsuran Tahun 2'  or $par == 'Angsuran Tahun 3' or $par == 'Angsuran Tahun 4'){
+			$yaya = $this->finance_model->get_yaya($pat);
 			$ee = $result->jumlah_biaya * $yaya->diskon / 100;	
 		} else {
 			$ee = 0;
