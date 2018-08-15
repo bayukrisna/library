@@ -98,8 +98,8 @@ class Mahasiswa extends CI_Controller {
 	{
 			$id_mahasiswa = $this->uri->segment(3);
 			$ipk = $this->uri->segment(4);
-			$id_grade2 = $this->uri->segment(5);
-			if($this->mahasiswa_model->update_ipk($id_mahasiswa, $ipk) == TRUE && $this->mahasiswa_model->update_grade($id_mahasiswa, $id_grade2) ){
+			$id_grade = $this->uri->segment(5);
+			if($this->mahasiswa_model->update_ipk($id_mahasiswa, $ipk) == TRUE && $this->mahasiswa_model->update_grade($id_mahasiswa, $id_grade) ){
 				$this->session->set_flashdata('message', '<div class="alert alert-success"> Update IPK Berhasil </div>');
             	redirect('mahasiswa/transkip_nilai2/'.$id_mahasiswa);
 			} 	

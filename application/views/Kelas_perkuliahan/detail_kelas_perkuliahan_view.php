@@ -62,19 +62,14 @@
 <div class="">
 
             <?php if( $dsn['dosen'] != 1 OR 0) echo '
-             <a class="btn btn-primary pull-right" style="margin-right: 10px" data-toggle="modal" data-target="#modal_tambah"><i class="fa fa-plus"></i> Tambah Dosen</a>
-            
-            '; else echo '
-             
-            ';
+             <a class="btn btn-primary pull-right" style="margin-right: 10px" data-toggle="modal" data-target="#modal_tambah"><i class="fa fa-plus"></i> Tambah Dosen</a>'; else echo '';
             ?>
 
-             <?php if( $dsn['jumlah_mhs'] <= 39) echo '
-             <a class="btn btn-primary pull-right"  data-toggle="modal" style="margin-right: 10px"data-target="#modal_tambah_mhs"><i class="fa fa-plus"></i> Tambah Mahasiswa</a>
-            
-            '; else echo '
+             <?php $ab = date('Y-m-d'); if( $dsn['jumlah_mhs'] <= 39 && $ab >= $kp->tanggal_mulai && $ab <= $kp->tgl_akhir) echo '
              
-            ';
+             <a class="btn btn-primary pull-right"  data-toggle="modal" style="margin-right: 10px"data-target="#modal_tambah_mhs"><i class="fa fa-plus"></i> Tambah Mahasiswa</a>'; 
+             else 
+             echo '';
             ?>
 
              <a class="btn btn-primary pull-right" style="margin-right: 10px"  href="<?php echo base_url('kelas_perkuliahan'); ?>"></i> Kembali </a> <br> <br>

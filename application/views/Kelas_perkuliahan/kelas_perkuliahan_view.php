@@ -75,19 +75,13 @@
                  $alert = "'Apakah anda yakin menghapus data ini ?'";
 
                 foreach ($kp as $data) { 
-                   $ab = date('Y-m-d');
-                if ($ab >= $data->tanggal_mulai && $ab <= $data->tgl_akhir)
-                 {
-                 $c = '<a href="'.base_url('kelas_perkuliahan/detail_kelas/'.$data->id_kp).'">'.$data->kode_matkul.'</a>';
-                }else{
-                    $c = "$data->kode_matkul";
-                }
+                  
                   
 
                   echo '                  
                 <tr>
                   <td>'.++$no.'</td>
-                  <td>'.$c.'</td>
+                  <td><a href="'.base_url('kelas_perkuliahan/detail_kelas/'.$data->id_kp).'">'.$data->kode_matkul.'</a></td>
                   <td>'.$data->nama_matkul.'</td>
                   <td>'.$data->nama_kelas.'</td>
                   <td>'.$data->bobot_matkul.'</td>
