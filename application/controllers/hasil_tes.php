@@ -29,11 +29,10 @@ class Hasil_tes extends CI_Controller {
 			if($this->daftar_ulang_model->save_hasil_tes() == TRUE){
 				$id_tes = $this->input->post('id_hasil_tes');
 				$this->daftar_ulang_model->save_update_status($id_tes);
-				$hasil_tes = $this->input->post('nama_du');
-				$this->session->set_flashdata('message', '<div class="col-md-12 alert alert-success">Hasil '.$hasil_tes.' berhasil didaftarkan. </div>');
+				$this->session->set_flashdata('message', '<div class="col-md-12 alert alert-success">Hasil Tes berhasil ditambahkan </div>');
             	redirect('daftar_ulang/data_peserta_tes');
 			} else{
-				$this->session->set_flashdata('message', '<div class="col-md-12 alert alert-danger"> Kode Tes Sudah Ada </div>');
+				$this->session->set_flashdata('message', '<div class="col-md-12 alert alert-danger"> Hasil Tes gagal ditambahkan </div>');
             	redirect('hasil_tes/page_input_nilai');
 			} 
 	} 
@@ -45,7 +44,8 @@ class Hasil_tes extends CI_Controller {
         $cek = $edit->grade;
         $data['biaya'] = $this->daftar_ulang_model->get_biaya($cek);
         $data['edit'] = $edit;
-
+        $id_hasil_tes = $this->uri->segment(4);
+		$data['total_n'] = $this->daftar_ulang_model->total_nilai($id_hasil_tes);
         $data['main_view'] = 'Tes/hasil_tes_cetak_view';
         $this->load->view('template', $data);
   }

@@ -26,7 +26,7 @@ class daftar_ulang extends CI_Controller {
 	public function save_mahasiswa_pagi()
 	{
 			if($this->mahasiswa_model->save_mahasiswa_pagi() == TRUE && $this->mahasiswa_model->save_ayah() == TRUE  && $this->mahasiswa_model->save_ibu() == TRUE && $this->mahasiswa_model->save_alamat() == TRUE && $this->mahasiswa_model->save_wali() == TRUE && $this->mahasiswa_model->save_kependudukan() == TRUE && $this->mahasiswa_model->save_bio() == TRUE && $this->mahasiswa_model->save_kontak() == TRUE && $this->mahasiswa_model->save_tgl_du() == TRUE){
-				$id_du = $this->input->post('id_mahasiswa');
+				$id_du = $this->input->post('id_du');
 				$this->tamu_model->save_update_status2($id_du);
 				$nama_du = $this->input->post('nama_mahasiswa');
 				$this->session->set_flashdata('message', '<div class="col-md-12 alert alert-success"> Data '.$nama_du.' berhasil didaftarkan. </div>');
@@ -42,7 +42,6 @@ class daftar_ulang extends CI_Controller {
 			$id_pendaftaran = $this->uri->segment(3);
 			$data['du_pagi'] = $this->daftar_ulang_model->page_du_pagi($id_pendaftaran);
 			$data['kodeunik_mhs'] = $this->mahasiswa_model->buat_kode_mhs();
-			$data['kodeunik'] = $this->daftar_ulang_model->buat_kode();
 			$data['getProdi'] = $this->daftar_ulang_model->getProdi();
 			$data['getPreschool'] = $this->daftar_ulang_model->getPreschool();
 			$data['main_view'] = 'Daftar/daftarulang_sore_view';
@@ -51,8 +50,8 @@ class daftar_ulang extends CI_Controller {
 
 	public function save_mahasiswa_sore()
 	{
-			if($this->mahasiswa_model->save_mahasiswa_sore() == TRUE && $this->mahasiswa_model->save_ayah() == TRUE  && $this->mahasiswa_model->save_ibu() == TRUE && $this->mahasiswa_model->save_alamat() == TRUE && $this->mahasiswa_model->save_wali() == TRUE && $this->mahasiswa_model->save_kependudukan() == TRUE && $this->mahasiswa_model->save_bio() == TRUE && $this->mahasiswa_model->save_kontak() == TRUE && $this->mahasiswa_model->save_tgl_du() == TRUE && $this->mahasiswa_model->save_tes_sore() == TRUE){
-				$id_du = $this->input->post('id_mahasiswa');
+			if($this->mahasiswa_model->save_mahasiswa_sore() == TRUE && $this->mahasiswa_model->save_ayah() == TRUE  && $this->mahasiswa_model->save_ibu() == TRUE && $this->mahasiswa_model->save_alamat() == TRUE && $this->mahasiswa_model->save_wali() == TRUE && $this->mahasiswa_model->save_kependudukan() == TRUE && $this->mahasiswa_model->save_bio() == TRUE && $this->mahasiswa_model->save_kontak() == TRUE && $this->mahasiswa_model->save_tgl_du() == TRUE){
+				$id_du = $this->input->post('id_du');
 				$this->tamu_model->save_update_status2($id_du);
 				$nama_du = $this->input->post('nama_mahasiswa');
 				$this->session->set_flashdata('message', '<div class="col-md-12 alert alert-success"> Data '.$nama_du.' berhasil didaftarkan. </div>');

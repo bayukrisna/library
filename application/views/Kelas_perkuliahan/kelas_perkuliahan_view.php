@@ -1,20 +1,4 @@
-<!-- <script src="//code.jquery.com/jquery-1.12.4.min.js"></script>
-  <script src="//code.jquery.com/ui/1.12.0/jquery-ui.min.js"></script>
-<script type="text/javascript">
-     function total(id){
-      var id_kp = id;
-         $.ajax({
-                    url: '<?php echo base_url(); ?>kelas_perkuliahan/get_total_mhs/'+id_kp,
-                    data: 'id_kp='+id_kp,
-                    type: 'GET',
-                    success: function(data) {
-                      console.log('poop', data)
-                    }
-                });
-       };
-       window.get_total_mhs=total;
-    get_total_mhs(10);
-</script> -->
+
 
     <section class="content">
 
@@ -89,20 +73,28 @@
                 <?php 
                 $no = 0;
                  $alert = "'Apakah anda yakin menghapus data ini ?'";
+
                 foreach ($kp as $data) { 
+                   $ab = date('Y-m-d');
+                if ($ab >= $data->tanggal_mulai && $ab <= $data->tgl_akhir)
+                 {
+                 $c = '<a href="'.base_url('kelas_perkuliahan/detail_kelas/'.$data->id_kp).'">'.$data->kode_matkul.'</a>';
+                }else{
+                    $c = "$data->kode_matkul";
+                }
                   
 
                   echo '                  
                 <tr>
                   <td>'.++$no.'</td>
-                  <td><a href="'.base_url('kelas_perkuliahan/detail_kelas/'.$data->id_kp).'">'.$data->kode_matkul.'</a></td>
+                  <td>'.$c.'</td>
                   <td>'.$data->nama_matkul.'</td>
                   <td>'.$data->nama_kelas.'</td>
                   <td>'.$data->bobot_matkul.'</td>
                   <td>'.$data->nama_dosen.'</td>
                   <td>'.$data->total_mhs.'</td>
                   <td>
-                        <a href="'.base_url('kelas_perkuliahan/hapus_kp/'.$data->id_kp).'" class="btn btn-danger  btn-sm" onclick="return confirm('.$alert.')"><i class="glyphicon glyphicon-trash"></i><span class="tooltiptext">Hapus Kelas</span></a>
+                        <a href="'.base_url('kelas_perkuliahan/hapus_kp/'.$data->id_kp).'" class="btn btn-danger btn-sm" onclick="return confirm('.$alert.')"><i class="glyphicon glyphicon-trash"></i><span class="tooltiptext">Hapus Kelas</span></a>
                          <a href="'.base_url('kelas_perkuliahan/detail_kp/'.$data->id_kp).'" class="btn btn-warning  btn-sm"><i class="glyphicon glyphicon-pencil"></i><span class="tooltiptext">Edit Kelas </span></a>
                   </td>
                   </tr>

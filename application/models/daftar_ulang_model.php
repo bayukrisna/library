@@ -103,7 +103,8 @@ class Daftar_ulang_model extends CI_Model {
               ->join('tb_bio','tb_bio.id_mahasiswa=tb_mahasiswa.id_mahasiswa') 
               ->join('tb_kontak','tb_kontak.id_mahasiswa=tb_mahasiswa.id_mahasiswa')
               ->join('tb_waktu','tb_waktu.id_waktu=tb_mahasiswa.id_waktu') 
-              ->join('tb_tgl_du','tb_tgl_du.id_mahasiswa=tb_mahasiswa.id_mahasiswa')
+              ->join('tb_status_mhs','tb_status_mhs.id_status=tb_mahasiswa.id_status')
+              ->join('tb_mhs_add','tb_mhs_add.id_mahasiswa=tb_mahasiswa.id_mahasiswa')
               ->where('tb_mahasiswa.id_waktu', '1')
               ->get('tb_mahasiswa')
               ->result();
@@ -127,9 +128,6 @@ class Daftar_ulang_model extends CI_Model {
             'nilai_mat'      => $this->input->post('mtk', TRUE),
             'nilai_bing'      => $this->input->post('bing', TRUE),
             'nilai_psikotes'     => $this->input->post('psikotes', TRUE),
-            'total_nilai'     => $this->input->post('nilai', TRUE),
-            'total_jawaban'     => $this->input->post('total_jawaban', TRUE),
-            'grade'     => $this->input->post('grade', TRUE),
             'tanggal_hasil_tes'     => date('Y-m-d')
 
         );
@@ -148,11 +146,11 @@ class Daftar_ulang_model extends CI_Model {
 
     public function save_update_status($id_tes){
     $data = array(
-       'status_mahasiswa'     => 'Aktif',
+       'id_status'     => '1',
        'id_grade'     => $this->input->post('id_grade', TRUE)
       );
 
-    $this->db->where('id_hasil_tes', $id_tes)
+    $this->db->where('id_grade', $id_tes)
         ->update('tb_mahasiswa', $data);
 
     if ($this->db->affected_rows() > 0) {
@@ -169,7 +167,8 @@ class Daftar_ulang_model extends CI_Model {
               ->join('tb_hasil_tes','tb_hasil_tes.id_hasil_tes=tb_mahasiswa.id_hasil_tes')  
               ->join('tb_alamat','tb_alamat.id_mahasiswa=tb_mahasiswa.id_mahasiswa')  
               ->join('tb_bio','tb_bio.id_mahasiswa=tb_mahasiswa.id_mahasiswa') 
-              ->join('tb_kontak','tb_kontak.id_mahasiswa=tb_mahasiswa.id_mahasiswa')             
+              ->join('tb_kontak','tb_kontak.id_mahasiswa=tb_mahasiswa.id_mahasiswa') 
+              ->join('tb_grade','tb_grade.id_grade=tb_mahasiswa.id_grade')             
               ->where('tb_mahasiswa.id_mahasiswa', $id_mahasiswa)
               ->get('tb_mahasiswa')
               ->row();
@@ -180,9 +179,20 @@ class Daftar_ulang_model extends CI_Model {
               ->join('tb_bio','tb_bio.id_mahasiswa=tb_mahasiswa.id_mahasiswa') 
               ->join('tb_alamat','tb_alamat.id_mahasiswa=tb_mahasiswa.id_mahasiswa')  
               ->join('tb_hasil_tes','tb_hasil_tes.id_hasil_tes=tb_mahasiswa.id_hasil_tes')
+              ->join('tb_grade','tb_grade.id_grade=tb_mahasiswa.id_grade') 
               ->where('tb_mahasiswa.id_mahasiswa', $id_mahasiswa)
               ->get('tb_mahasiswa')
               ->row();
+  }
+
+  public function total_nilai($id_hasil_tes){
+
+     $total_nilai = $this->db->query("SELECT nilai_mat + nilai_bing + nilai_psikotes AS total FROM tb_mahasiswa join tb_hasil_tes ON tb_hasil_tes.id_hasil_tes = tb_mahasiswa.id_hasil_tes WHERE tb_hasil_tes.id_hasil_tes = '$id_hasil_tes'")->row();
+
+return array(
+      'total_nilai' => $total_nilai->total
+      );
+
   }
 
   public function get_biaya($cek){

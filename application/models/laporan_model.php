@@ -247,6 +247,7 @@ class Laporan_model extends CI_Model {
                 ->join('tb_sekolah','tb_sekolah.id_sekolah=tb_mahasiswa.id_sekolah')
                 ->join('tb_prodi','tb_prodi.id_prodi=tb_mahasiswa.id_prodi')
                 ->join('tb_konsentrasi','tb_konsentrasi.id_konsentrasi=tb_mahasiswa.id_konsentrasi')
+                ->join('tb_status_mhs','tb_status_mhs.id_status=tb_mahasiswa.id_status')
                 ->join('tb_waktu','tb_waktu.id_waktu=tb_mahasiswa.id_waktu')
                 ->like('tanggal_hasil_tes', $tanggal_hasil_tes)
                 ->get();
@@ -305,7 +306,7 @@ class Laporan_model extends CI_Model {
                       <td>".$data->nama_prodi."</td>
                       <td>".$data->nama_konsentrasi."</td>
                       <td>".$data->waktu."</td>
-                      <td>".$data->status_mahasiswa."</td>
+                      <td>".$data->status_mhs."</td>
                     </tr>";
                     
                   }

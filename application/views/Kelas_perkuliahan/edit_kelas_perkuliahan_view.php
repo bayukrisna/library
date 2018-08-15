@@ -31,7 +31,7 @@
             <td colspan="9">: 
       <input type="text" name="nama_matkul" id="nama_matkul" class="validate[required] text-input ui-autocomplete-input" size="20"  style="width: 50%;" required="" value="<?php echo $kp->nama_matkul; ?>"><span role="status" aria-live="polite" class="ui-helper-hidden-accessible"></span>            
 
-      <input type="hidden" name="kode_matkul" id="kode_matkul" value="<?php echo $kp->kode_matkul; ?>" > 
+      <input type="text" name="kode_matkul" id="kode_matkul" value="<?php echo $kp->id_detail_kurikulum; ?>" > 
             </td>
              <input type="hidden" name="id_kp" id="id_kp" value="<?php echo $kp->id_kp; ?>" > 
             </td>
@@ -92,7 +92,7 @@
       minLength:1,
       select: function(event, ui){
         $('#nama_matkul').val(ui.item.label)  ;
-        $('#kode_matkul').val(ui.item.id);
+        $('#kode_matkul').val(ui.item.idk);
         $('#bobot_dosen').val(ui.item.bobot);
         $('#nama_kurikulum').val(ui.item.kurikulum);
       }

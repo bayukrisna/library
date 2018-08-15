@@ -171,7 +171,7 @@
                   <label for="inputEmail3" class="control-label pull-left">Total Jawaban Benar</label>
                   </div>
                   <div class="col-md-5">
-                    <input type="text" name="total_jawaban" id="total_jawaban" class="form-control input-sm" id="inputEmail3" placeholder="" readonly="" value="<?php echo $edit->total_jawaban; ?>">
+                    <input type="text" name="total_jawaban" id="total_jawaban" class="form-control input-sm" id="inputEmail3" placeholder="" readonly="" value="<?php $total_jawaban = $edit->nilai_mat + $edit->nilai_bing + $edit->nilai_psikotes;echo $total_jawaban ?>">
                   </div>
                 </div>
                 <div class="form-group">
@@ -179,7 +179,7 @@
                   <label for="inputEmail3" class="control-label pull-left">Total Nilai</label>
                   </div>
                   <div class="col-md-5">
-                    <input id="nilai" name="nilai" type="number" class="form-control input-sm" id="inputEmail3" placeholder="" readonly="" value="<?php echo $edit->total_nilai; ?>">
+                    <input id="nilai" name="nilai" type="number" class="form-control input-sm" id="inputEmail3" placeholder="" readonly="" value="<?php $total_nilai = $total_jawaban / 9 * 10;echo round($total_nilai, 2); ?>">
                   </div>
                 </div>
                 <div class="form-group">

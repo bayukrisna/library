@@ -28,7 +28,7 @@
                 <?php 
                
                 foreach ($du as $data) {
-                    if ($data->status_mahasiswa == 'Nilai Kosong') {
+                    if ($data->status_mhs == 'Nilai Kosong') {
                        echo '
                   
                 <tr>
@@ -40,7 +40,7 @@
                   <td>'.$data->nama_konsentrasi.'</td>
                   <td>'.$data->waktu.'</td>
                   <td>'.$data->tgl_du.'</td>
-                  <td>'.$data->status_mahasiswa.'</td>
+                  <td>'.$data->status_mhs.'</td>
                   <td>
                     
                      <a href="'.base_url('daftar_ulang/print_ljk/'.$data->id_mahasiswa).'" target="_blank" class="btn btn-warning btn-sm" title="Print Lembar Jawaban"><i class="glyphicon glyphicon-print" ></i><span class="tooltiptext">Print LJK</span></a>
@@ -61,10 +61,10 @@
                   <td>'.$data->nama_konsentrasi.'</td>
                   <td>'.$data->waktu.'</td>
                   <td>'.$data->tgl_du.'</td>
-                  <td>'.$data->status_mahasiswa.'</td>
+                  <td>'.$data->status_mhs.'</td>
                   <td>
                     <a href="'.base_url('daftar_ulang/detail_nilai/'.$data->id_mahasiswa).'" class="btn btn-warning btn-sm" title="Detail"><i class="glyphicon glyphicon-list-alt"></i><span class="tooltiptext">Detail</span></a>
-                     <a href="'.base_url('hasil_tes/print_hasil_tes/'.$data->id_mahasiswa).'" target="_blank" class="btn btn-info btn-sm" title="Print Hasil Tes"><i class="fa fa-print"></i><span class="tooltiptext">Print Hasil Tes</span></a>
+                     <a href="'.base_url('hasil_tes/print_hasil_tes/'.$data->id_mahasiswa.'/'.$data->id_hasil_tes).'" target="_blank" class="btn btn-info btn-sm" title="Print Hasil Tes"><i class="fa fa-print"></i><span class="tooltiptext">Print Hasil Tes</span></a>
                   </td>
                 </tr>
                 ';
