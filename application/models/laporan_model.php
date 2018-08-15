@@ -500,6 +500,12 @@ class Laporan_model extends CI_Model {
       $query = $this->db->get();
       return $query->result();
   }
+  public function get_semester_dosen(){
+      return $this->db->select('semester')
+              ->distinct()
+              ->get('tb_periode')
+              ->result();
+  }
 }
 
 /* End of file prodi_model.php */

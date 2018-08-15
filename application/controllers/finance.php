@@ -30,7 +30,7 @@ class Finance extends CI_Controller {
 		$dataku = $this->finance_model->get_data_detail_mahasiswa($ya);
 		$data['mahasiswa']=$ea;
 		$data['data']= $dataku;
-		$data['grade']= $this->finance_model->get_data_detail_mahasiswa2($ya, $dataku->semester_aktif);
+		$data['grade']= $this->finance_model->get_data_detail_mahasiswa2($ya);
 		
 		$data['data_pembayaran']= $this->finance_model->data_pembayaran_mahasiswa($ya);
 		$data['data_pembayaran2']= $this->finance_model->data_pembayaran_mahasiswa($ya);
@@ -61,7 +61,11 @@ class Finance extends CI_Controller {
 					   'pembayaran'    => $product->nama_biaya,
 					   'jp'    => $this->input->post('jenis_pembayaran'),
 					   'kdmatkul'    => $this->input->post('kode_matkul'),
-					   'kode'    => $this->input->post('kode_pembayaran')
+					   'kode'    => $this->input->post('kode_pembayaran'),
+					   'idgrade'    => $this->input->post('id_grade'),
+					   'potongan'    => $this->input->post('potongan'),
+					   'denda'    => $this->input->post('denda'),
+					   'keterangan'    => $this->input->post('keterangan')
 					);
 
 		$this->cart->insert($data);
@@ -207,7 +211,6 @@ class Finance extends CI_Controller {
 		$param = $this->input->get('id_biaya');
 		$pae = $this->input->get('id_grade');
 		$par = $this->input->get('kategori');
-		$pat = $this->input->get('id_grade2');
 		$id_biaya = $param;
 		$result = $this->finance_model->get_biaya_pembayaran($id_biaya);
 		// $option = "";
@@ -217,7 +220,7 @@ class Finance extends CI_Controller {
 			$yaya = $this->finance_model->get_yaya($pae);
 			$ee = $result->jumlah_biaya * $yaya->diskon / 100;		
 		} else if($par == 'Angsuran Tahun 2'  or $par == 'Angsuran Tahun 3' or $par == 'Angsuran Tahun 4'){
-			$yaya = $this->finance_model->get_yaya($pat);
+			$yaya = $this->finance_model->get_yaya($pae);
 			$ee = $result->jumlah_biaya * $yaya->diskon / 100;	
 		} else {
 			$ee = 0;

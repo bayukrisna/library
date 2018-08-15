@@ -190,7 +190,7 @@ class Finance_model extends CI_Model {
 
               ->row();
   }
-  function get_data_detail_mahasiswa2($ya , $id){
+  function get_data_detail_mahasiswa2($ya){
       return $this->db->join('tb_bio','tb_bio.id_mahasiswa=tb_mahasiswa.id_mahasiswa')
               ->join('tb_kontak','tb_kontak.id_mahasiswa=tb_mahasiswa.id_mahasiswa')
               ->join('tb_prodi','tb_prodi.id_prodi=tb_mahasiswa.id_prodi')
@@ -272,7 +272,7 @@ class Finance_model extends CI_Model {
      $this->db->from('tb_mahasiswa');
      $this->db->join('tb_detail_pembayaran','tb_detail_pembayaran.id_mahasiswa=tb_mahasiswa.id_mahasiswa');
      $this->db->join('tb_biaya','tb_biaya.id_biaya=tb_detail_pembayaran.id_biaya');
-     $this->db->join('tb_grade','tb_grade.id_grade=tb_mahasiswa.id_grade', 'left');
+     $this->db->join('tb_grade','tb_grade.id_grade=tb_detail_pembayaran.id_grade', 'left');
      $this->db->join('tb_matkul','tb_matkul.kode_matkul=tb_detail_pembayaran.kode_matkul' ,'left');
      $this->db->join('tb_pembayaran','tb_pembayaran.kode_pembayaran=tb_detail_pembayaran.kode_pembayaran');
      $this->db->where('tb_mahasiswa.id_mahasiswa', $ya);
@@ -284,9 +284,7 @@ class Finance_model extends CI_Model {
     {
           $invoice = array(
              'kode_pembayaran'      => $this->input->post('kodeku_pembayaran'),
-             'id_mahasiswa'   => $this->input->post('id_mhsa'),
-             'total_biaya'   => $this->input->post('total_biaya'),
-             'tanggal_pembayaran'    => $this->input->post('tanggal_pembayaran')
+             'id_mahasiswa'   => $this->input->post('id_mhsa')
             
         );
         $this->db->insert('tb_pembayaran', $invoice);
@@ -297,7 +295,11 @@ class Finance_model extends CI_Model {
             'id_mahasiswa'    => $item['idmhsa'],
             'id_biaya'    => $item['id'],
             'kode_matkul'    => $item['kdmatkul'],
-            'tanggal_pembayaran'       => $item['tgl']
+            'tanggal_pembayaran'       => $item['tgl'],
+            'id_grade'       => $item['idgrade'],
+            'potongan'       => $item['potongan'],
+            'denda'       => $item['denda'],
+            'keterangan'       => $item['keterangan']
           );
           $this->db->insert('tb_detail_pembayaran', $data);
         }

@@ -7,31 +7,19 @@
               <table class="table">
         <tr>
 
-
+          <input type="hidden" name="js_ranking" id="js_ranking" value="<?php echo $data->id_grade?>">
             <td width="15%" class="left_column">Nama Mahasiswa <font color="#FF0000">*</font></td>
             <td>:  <?php echo $data->nama_mahasiswa ?> </td>
       
            <td class="left_column" width="25%">NIM <font color="#FF0000">*</font></td>
-            <td>:  <?php echo $data->nim ?>
-                                     </td>
-                                     <input type="hidden" name="js_ranking" id="js_ranking" value="<?php echo $data->id_grade?>">
-            <input type="hidden" name="js_grade" id="js_grade" value="<?php echo $data->id_grade2;?>">
-           
+            <td>:  <?php echo $data->nim ?> </td>           
             </td>
         </tr>
         <tr>
             <td class="left_column" width="15%" value=>Jenis Kelamin <font color="#FF0000">*</font></td>
             <td width="25%">: <?php echo $data->jenis_kelamin ?>       </td>
             <td class="left_column" width="15%">Ranking / Grade <font color="#FF0000">*</font></td>
-            <td>: 
-              <?php 
-              if ($grade->grade != null){
-                echo $grade->grade;
-              } else {
-                echo $data->grade;
-            } ?>  
-              
-                                     </td>
+            <td>: <?php echo $data->grade;?>  </td>
         </tr>
         <tr>
             <td class="left_column">Nomor Telephone</td>
@@ -43,8 +31,7 @@
             <td class="left_column">Kelas </td>
             <td>: <?php echo $data->waktu ?></td>
             <input type="hidden" name="waktu" id="waktu" value="<?php echo $data->waktu ?>">
-         <!--    <td class="left_column">Semester <font color="#FF0000">*</font></td>
-            <td>:  <?php echo $data->semester_aktif; ?></td> -->
+            
           </tr>
         </table>
             </div>
@@ -68,37 +55,48 @@
                 <thead>
                 <tr>
                   <th>No</th>
-                  <th>Nama Mahasiswa</th>
+                  <th>Tanggal Pembayaran</th>
                   <th>Jenis Pembayaran</th>
                   <th>Nama Pembayaran</th>
+                  <th>Biaya</th>
+                  <th>Denda</th>
+                  <th>Potongan</th>
+                  <th>Keterangan</th>
                   <th>Total Biaya</th>
-                  <th>Tanggal Pembayaran</th>
-                  <!-- <th>Aksi</th> -->
                 </tr>
                 </thead>
                 <tbody> 
                   <?php 
                 $no = 0;
-                foreach ($data_pembayaran as $data) {
-                  
-                  if ($data->jenis_biaya == 'Angsuran Tahun 1'){
-                    $dataea = $data->jumlah_biaya * $data->diskon / 100;
-                    $data->jumlah_biaya = $data->jumlah_biaya - $dataea;
-                  } else if($data->jenis_biaya == 'KRS'){
-                    $data->jumlah_biaya = $data->jumlah_biaya * $data->bobot_matkul;
-                  }  else if($data->jenis_biaya == 'Angsuran Tahun 2' or $data->jenis_biaya == 'Angsuran Tahun 3' or $data->jenis_biaya == 'Angsuran Tahun 4'){
-                    $dataea = $data->jumlah_biaya * $grade->diskon / 100;
-                    $data->jumlah_biaya = $data->jumlah_biaya - $dataea;
+
+                foreach ($data_pembayaran as $i) {
+
+                  if ($i->jenis_biaya == 'Angsuran Tahun 1'){
+                    $dataea = $i->jumlah_biaya * $i->diskon / 100;
+                    $iae = $i->jumlah_biaya - $dataea;
+                    $iea = $i->jumlah_biaya - $dataea  - $i->potongan + $i->denda;
+                  } else if($i->jenis_biaya == 'KRS'){
+                    $iae = $i->jumlah_biaya * $i->bobot_matkul;
+                    $iea = ($i->jumlah_biaya * $i->bobot_matkul)   - $i->potongan + $i->denda;
+                    $i->nama_biaya = $i->nama_biaya.' - '.$i->kode_matkul;
+                  }  else if($i->jenis_biaya == 'Angsuran Tahun 2' or $i->jenis_biaya == 'Angsuran Tahun 3' or $i->jenis_biaya == 'Angsuran Tahun 4'){
+                    $dataea = $i->jumlah_biaya * $i->diskon / 100;
+                    $iae = $i->jumlah_biaya - $dataea;
+                    $iea = $i->jumlah_biaya - $dataea   - $i->potongan + $i->denda;
                   }
                   echo '
                   
                 <tr>
                   <td>'.++$no.'</td>
-                  <td>'.$data->nama_mahasiswa.'</td>
-                  <td>'.$data->jenis_biaya.'</td>
-                  <td>'.$data->nama_biaya.' '.$data->kode_matkul.'</td>
-                  <td>'.$data->jumlah_biaya.'</td>
-                  <td>'.$data->tanggal_pembayaran.'</td>
+                  <td>'.$i->tanggal_pembayaran.'</td>
+                  <td>'.$i->jenis_biaya.'</td>
+                  <td>'.$i->nama_biaya.'</td>
+                  <td>'.$iae.'</td>
+                  <td>'.$i->denda.'</td>
+                  <td>'.$i->potongan.'</td>
+                  <td>'.$i->keterangan.'</td>
+                  <td>'.$iea.'</td>
+                  
                   
 
        
@@ -125,7 +123,7 @@
           <th>Nama Mahasiswa</th>
           <th>Jenis Pembayaran</th>
           <th>Pembayaran</th>
-          <th>Price</th>
+          <th>Harga</th>
           <th>Subtotal</th>
         </tr>
       </thead>
@@ -165,10 +163,8 @@
         ?>
                         <input type="hidden" class="form-control" id="kodeku_pembayaran" name="kodeku_pembayaran" value="<?= $items['kode'] ?>">
                         <input type="hidden" class="form-control" id="id_mhsa" name="id_mhsa" value="<?= $items['idmhsa'] ?>">
-                        <input type="hidden" class="form-control" id="tanggal_pembayaran" name="tanggal_pembayaran" value="<?= $items['tgl'] ?>">
-                        <input type="hidden" class="form-control" id="total_biaya" name="total_biaya" value="<?= $this->cart->total() ?>">
                 <?php endforeach; ?>
-                <div id="yoyo" style="display: ">
+                <div id="yoyo" style="display: none ">
   <table align="left">
 <tbody>
 <tr style="height: 18px;">
@@ -255,35 +251,12 @@
                 <?php echo form_open('finance/add_to_cart/'.$this->uri->segment(3));?>
                   <div class="box-body">
                     <div class="box-body">
-                    <div class="form-group">
-                      <label for="inputEmail3" class="col-sm-3 control-label">Tgl Pembayaran</label>
-
-                      <div class="col-sm-8">
-                        <input type="text" class="form-control" name="tanggal_pembayaran" id="tanggal_pembayaran" placeholder="" 
+                      <input type="hidden" name="id_grade" id="id_grade" value="<?php echo $data->id_grade?>">
+                        <input type="hidden" class="form-control" name="tanggal_pembayaran" id="tanggal_pembayaran" placeholder="" 
                         value="<?php echo date('d-m-Y'); ?>" readonly>
-                      </div>
-                    </div>
-                    <div class="form-group">
-                      <label for="inputEmail3" class="col-sm-3 control-label">Kode Pembayaran</label>
-
-                      <div class="col-sm-8">
-                        <input type="text" class="form-control" id="kode_pembayaran" name="kode_pembayaran" value="<?= $kodeunik; ?>" placeholder="" readonly="">
-                      </div>
-                    </div>
-                    <div class="form-group">
-                      <label for="inputEmail3" class="col-sm-3 control-label">ID Mahasiswa</label>
-
-                      <div class="col-sm-8">
-                        <input type="text" class="form-control" id="id_mhsa" name="id_mhsa" value="<?php echo $data->id_mahasiswa ?>" placeholder="" readonly >
-                      </div>
-                    </div>
-                    <div class="form-group">
-                      <label for="inputEmail3" class="col-sm-3 control-label">Nama Mahasiswa</label>
-
-                      <div class="col-sm-8">
-                        <input type="text" class="form-control" id="nama_mhsa" name="nama_mhsa" value="<?php echo $data->nama_mahasiswa ?>" placeholder="" readonly>
-                      </div>
-                    </div>
+                        <input type="hidden" class="form-control" id="kode_pembayaran" name="kode_pembayaran" value="<?= $kodeunik; ?>" placeholder="" readonly="">
+                        <input type="hidden" class="form-control" id="id_mhsa" name="id_mhsa" value="<?php echo $data->id_mahasiswa ?>" placeholder="" readonly >
+                        <input type="hidden" class="form-control" id="nama_mhsa" name="nama_mhsa" value="<?php echo $data->nama_mahasiswa ?>" placeholder="" readonly>
                     <div class="form-group">
                       <label for="inputEmail3" class="col-sm-3 control-label">Tahun Akademik</label>
 
@@ -337,10 +310,31 @@
                       </div>
                     </div>
                     <div class="form-group">
+                      <label for="inputEmail3" class="col-sm-3 control-label">Potongan</label>
+
+                      <div class="col-sm-8">
+                        <input type="text" class="form-control"  name="potongan" id="potongan"  value="0"  onkeyup="myFunction()">
+                      </div>
+                    </div>
+                    <div class="form-group">
+                      <label for="inputEmail3" class="col-sm-3 control-label">Denda</label>
+
+                      <div class="col-sm-8">
+                        <input type="number" id="denda" name="denda" class="form-control" value="0" onkeyup="myFunction()">
+                      </div>
+                    </div>
+                    <div class="form-group">
+                      <label for="inputEmail3" class="col-sm-3 control-label">Keterangan</label>
+
+                      <div class="col-sm-8">
+                        <textarea name="keterangan" class="form-control"></textarea>
+                      </div>
+                    </div>
+                    <div class="form-group">
                       <label for="inputEmail3" class="col-sm-3 control-label">Biaya</label>
 
                       <div class="col-sm-8" id="biaya">
-                        <input type="text" class="form-control" readonly="" name="biaya" id="biayaa" required="" value="">
+                        <input type="text" class="form-control" readonly="" name="biaya" id="biayaa" required="" value="" >
                         <input type="hidden" class="form-control" readonly="" name="biayaku" id="biayaku" required="" value="">
                       </div>
                     </div>
@@ -360,6 +354,33 @@
         </div>
     
 <!-- <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script> -->
+<script>
+function myFunction() {
+    
+    var a = document.getElementById("denda").value;
+    var c = document.getElementById("potongan").value;
+    var b = document.getElementById("biayaku").value;
+    var d;
+    if (a > 0){
+      a = document.getElementById("denda").value;
+    } else {
+      a = 0;
+    }
+    if (c > 0){
+      c = document.getElementById("potongan").value;
+    } else {
+      c = 0;
+    }
+    var result = parseInt(a) + parseInt(b) - parseInt(c);
+    if (!isNaN(result)) {
+            document.getElementById("biayaa").value = result;
+            } else {
+              document.getElementById("biayaa").value = b;
+            }
+    
+    
+}
+</script>
 <script type="text/javascript">
             jQuery(document).ready(function($){
     $('#krs_mengulang').autocomplete({
@@ -410,7 +431,6 @@
         function get_biaya(p) {
                 var id_biaya = p;
                 var id_grade = document.getElementById('js_ranking').value;
-                var id_grade2 = document.getElementById('js_grade').value;
                 var kategori = document.getElementById('jenis_pembayaran').value;
                 if (kategori == 'KRS'){
                   document.getElementById("myText2").style.display = "";
@@ -419,7 +439,7 @@
                 }
                 $.ajax({
                     url: '<?php echo base_url(); ?>finance/get_biaya_pembayaran/',
-                    data: 'id_biaya='+id_biaya+'&id_grade='+id_grade+'&kategori='+kategori+'&id_grade2='+id_grade2,
+                    data: 'id_biaya='+id_biaya+'&id_grade='+id_grade+'&kategori='+kategori,
                     type: 'GET',
                     dataType: 'html',
                     success: function(msg) {
@@ -440,10 +460,12 @@
                         //   document.getElementById('biayaa').value = msg;
                         // }
                         document.getElementById('biayaa').value = msg;
+                        document.getElementById('biayaku').value = msg;
                       } else if(kategori == 'KRS'){
                         document.getElementById('biayaku').value = msg;
                       } else {
                         document.getElementById('biayaa').value = msg;
+                        document.getElementById('biayaku').value = msg;
                       }
 
                       
