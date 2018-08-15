@@ -69,6 +69,8 @@
                 <tr>
                     <td class="left_column" width="15%">NIM <font color="#FF0000">*</font></td>
                     <td colspan="3">:  <input type="text" name="nim" id="nim" class="text-input" maxlength="16" size="50" style="width:40%" onkeydown="return onlyNumber(event,this,false,false)" required="">       
+                        <input type="hidden" name="jurusan" id="jurusan" class="text-input" maxlength="16" size="50" value="">       
+                        <input type="hidden" name="alamat_mhs" id="alamat_mhs" class="text-input" maxlength="16" size="50" value="">       
 
                     </td>
                     <td rowspan="8"><div class="btn btn-file" >

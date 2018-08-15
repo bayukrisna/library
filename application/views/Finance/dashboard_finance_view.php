@@ -36,7 +36,6 @@
       </div>
       <!-- /.row -->
       <!-- Main row -->
-      
           <!-- /.box -->
 
           <!-- quick email widget -->

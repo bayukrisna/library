@@ -275,7 +275,7 @@ class Mahasiswa_model extends CI_Model {
             'id_du'      => $this->input->post('id_du', TRUE),
             'nama_mahasiswa'      => $this->input->post('nama_mahasiswa', TRUE),
             'nim'      => $this->input->post('nim', TRUE),
-            'status_mahasiswa'      => 'Nilai Kosong',
+            'id_status'      => '12',
             'id_prodi'      => $this->input->post('id_prodi', TRUE),
             'id_konsentrasi'      => $this->input->post('concentrate', TRUE),
             'id_hasil_tes'      => $this->input->post('id_hasil_tes', TRUE),
@@ -301,12 +301,12 @@ class Mahasiswa_model extends CI_Model {
             'id_du'      => $this->input->post('id_du', TRUE),
             'nama_mahasiswa'      => $this->input->post('nama_mahasiswa', TRUE),
             'nim'      => $this->input->post('nim', TRUE),
-            'status_mahasiswa'      => 'Aktif',
+            'id_status'      => '1',
             'id_prodi'      => $this->input->post('id_prodi', TRUE),
             'id_konsentrasi'      => $this->input->post('concentrate', TRUE),
-            'id_hasil_tes'      => $this->input->post('id_hasil_tes', TRUE),
             'id_sekolah'      => $this->input->post('id_sekolah', TRUE),
             'id_waktu'      => '2',
+            'id_grade'      => '4'
         );
     
         $this->db->insert('tb_mahasiswa', $data);
@@ -317,20 +317,6 @@ class Mahasiswa_model extends CI_Model {
         } else {
             return false;
             
-        }
-    }
-
-    public function save_tes_sore()
-    {        
-        $data = array(
-            'id_hasil_tes'      => $this->input->post('id_hasil_tes', TRUE),
-            'grade'      => 'Non-Beasiswa',
-        );
-        $this->db->insert('tb_hasil_tes', $data);
-        if($this->db->affected_rows() > 0){
-                return true;
-        } else {
-            return false;
         }
     }
 
@@ -489,6 +475,8 @@ class Mahasiswa_model extends CI_Model {
             'rt'     => $this->input->post('rt', TRUE),
             'rw'     => $this->input->post('rw', TRUE),
             'kode_pos'     => $this->input->post('kode_pos', TRUE),
+            'alamat_mhs'     => $this->input->post('alamat_mhs', TRUE),
+            'jurusan'     => $this->input->post('jurusan', TRUE),
         );
         $this->db->insert('tb_alamat', $data);
         if($this->db->affected_rows() > 0){

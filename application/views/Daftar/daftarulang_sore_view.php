@@ -18,7 +18,7 @@
                 </div>
              
                
-                  <input type="hidden" name="id_hasil_tes" class="form-control" id="id_hasil_tes" placeholder=""  .input-sm value="<?php echo $kodeunik; ?>" readonly>
+                  
                   
                 <div class="form-group">
                   <label for="email">Nama Lengkap</label>

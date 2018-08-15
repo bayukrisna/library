@@ -125,10 +125,10 @@ class Kelas_perkuliahan_model extends CI_Model {
                 ->get();
                 if ($query->num_rows() > 0)
                 {
-                    echo '<span class="label label-success"> Tidak aman</span><script>document.getElementById("myBtn").disabled = true;</script>';
+                    echo '<span class="label label-success"> Mahasiswa Sudah terdaftar </span><script>document.getElementById("myBtn").disabled = true;</script>';
 
                 } else{
-                echo '<span class="label label-success"> Aman broo</span><script>document.getElementById("myBtn").disabled = false;</script>';
+                echo '<span class="label label-success"> </span><script>document.getElementById("myBtn").disabled = false;</script>';
                 
                 }
     }
@@ -243,7 +243,7 @@ class Kelas_perkuliahan_model extends CI_Model {
             'nama_kelas'       => $this->input->post('nama_kelas'),
             'id_prodi'          => $this->input->post('id_prodi'),
             'id_periode'          => $this->input->post('id_periode'),
-            'kode_matkul'          => $this->input->post('kode_matkul'),
+            'id_detail_kurikulum'          => $this->input->post('kode_matkul'),
             'bahasan'          => $this->input->post('bahasan'),
             'tgl_mulai'          => $this->input->post('tgl_mulai'),
             'tgl_akhir'          => $this->input->post('tgl_akhir')
