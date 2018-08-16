@@ -37,7 +37,8 @@ class Aktivitas_perkuliahan extends CI_Controller {
 
 	public function save_ap()
 	{
-			if($this->aktivitas_perkuliahan_model->save_ap() == TRUE){
+		$id_mahasiswa = $this->input->post('id_mahasiswa');
+			if($this->aktivitas_perkuliahan_model->save_ap() == TRUE && $this->aktivitas_perkuliahan_model->update_status($id_mahasiswa) == TRUE){
 				$this->session->set_flashdata('message', '<div class="col-md-12 alert alert-success"> Data aktivitas perkuliahan berhasil ditambahkan </div>');
             	redirect('aktivitas_perkuliahan');
 			} else{

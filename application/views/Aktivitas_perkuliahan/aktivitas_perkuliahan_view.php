@@ -92,7 +92,7 @@
                   <td>'.$data->nama_prodi.'</td>
                   <td>'.$data->angkatan.'</td>
                   <td>'.$data->semester.'</td>
-                  <td>'.$data->status_ak.'</td>
+                  <td>'.$data->status_mhs.'</td>
                   <td>'.$data->ips.'</td>
                   <td>'.$data->ipk_ak.'</td>
                   <td>'.$data->sks_semester.'</td>
