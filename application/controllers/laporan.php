@@ -64,40 +64,61 @@ class Laporan extends CI_Controller {
   	public function laporan_dmm(){
 		$data['main_view'] = 'Laporan/laporan_dmm_view';
 		$data['getSemester'] = $this->laporan_model->get_semester_dosen();
-		$data['getProdi'] = $this->laporan_model->getProdi();
 		$this->load->view('template', $data);	
 	}
-	public function laporan_dmmku(){
-	    $id_periode = $this->input->get('id_periode');
-	    $id_prodi = $this->input->get('id_prodi');
-	    $this->laporan_model->laporan_mahasiswa($id_periode, $id_prodi);
+	public function laporan_dmm_dosen(){
+	    $semester = $this->input->post('semester');
+	    $id_dosen = $this->input->post('id_dosen');
+	    $this->laporan_model->laporan_dmm_dosen($semester, $id_dosen);
   	}
-  	public function get_semester_dmm() {
-		// $layanan =$this->input->post('layanan');
-		$filter = $this->input->get('filter');
-		if ($filter == "dosen"){
-			$result = $this->laporan_model->get_semester_dosen();
-			$option = "";
-			$option .= '
-			<div class="form-group">
-                  <label for="inputEmail3" class="col-sm-2 control-label">Semester</label>
-
-                  <div class="col-sm-10">
-                    <div class="col-sm-4"> 
-			<select id="semester" class="form-control"  name="semester">
-			<option value="">Pilih Semester</option>';
-			foreach ($result as $data) {
-				$option .= "<option value='".$data->semester."' >".$data->semester."</option>";
+  	public function laporan_dmm_mahasiswa(){
+	    $semester = $this->input->post('semester');
+	    $id_mahasiswa = $this->input->post('id_mahasiswa');
+	    $this->laporan_model->laporan_dmm_mahasiswa($semester, $id_mahasiswa);
+  	}
+  	public function laporan_dmm_matkul(){
+	    $semester = $this->input->post('semester');
+	    $kode_matkul = $this->input->post('kode_matkul');
+	    $this->laporan_model->laporan_dmm_matkul($semester, $kode_matkul);
+  	}
+  	public function get_autocomplete_dosen(){
+		if(isset($_GET['term'])){
+			$result = $this->laporan_model->autocomplete_dosen($_GET['term']);
+			if(count($result) > 0){
+				foreach ($result as $row) 
+					$result_array[] = array(
+						'label' => $row->id_dosen.' - '.$row->nama_dosen,
+						'id' => $row->id_dosen);
+				echo json_encode($result_array);
+			
 			}
-			$option .= '</select> </div>
-              
-                  </div>';
-
-		} else {
-
 		}
-		echo $option;
-
+	}
+	public function get_autocomplete_mahasiswa(){
+		if(isset($_GET['term'])){
+			$result = $this->laporan_model->autocomplete_mahasiswa($_GET['term']);
+			if(count($result) > 0){
+				foreach ($result as $row) 
+					$result_array[] = array(
+						'label' => $row->id_mahasiswa.' - '.$row->nama_mahasiswa,
+						'id' => $row->id_mahasiswa);
+				echo json_encode($result_array);
+			
+			}
+		}
+	}
+	public function get_autocomplete_matkul(){
+		if(isset($_GET['term'])){
+			$result = $this->laporan_model->autocomplete_matkul($_GET['term']);
+			if(count($result) > 0){
+				foreach ($result as $row) 
+					$result_array[] = array(
+						'label' => $row->kode_matkul.' - '.$row->nama_matkul,
+						'id' => $row->kode_matkul);
+				echo json_encode($result_array);
+			
+			}
+		}
 	}
 }
 
