@@ -30,8 +30,6 @@ class Finance extends CI_Controller {
 		$dataku = $this->finance_model->get_data_detail_mahasiswa($ya);
 		$data['mahasiswa']=$ea;
 		$data['data']= $dataku;
-		$data['grade']= $this->finance_model->get_data_detail_mahasiswa2($ya);
-		
 		$data['data_pembayaran']= $this->finance_model->data_pembayaran_mahasiswa($ya);
 		$data['data_pembayaran2']= $this->finance_model->data_pembayaran_mahasiswa($ya);
 		$data['kodeunik'] = $this->finance_model->buat_kode();
@@ -104,6 +102,7 @@ class Finance extends CI_Controller {
 		echo json_encode($data);
 	}
 	function pembayaran(){
+		$this->cart->destroy();
 		$data['main_view'] = 'finance/pembayaran_view';
 		$this->load->view('template', $data);
 	}

@@ -190,18 +190,6 @@ class Finance_model extends CI_Model {
 
               ->row();
   }
-  function get_data_detail_mahasiswa2($ya){
-      return $this->db->join('tb_bio','tb_bio.id_mahasiswa=tb_mahasiswa.id_mahasiswa')
-              ->join('tb_kontak','tb_kontak.id_mahasiswa=tb_mahasiswa.id_mahasiswa')
-              ->join('tb_prodi','tb_prodi.id_prodi=tb_mahasiswa.id_prodi')
-              ->join('tb_waktu','tb_waktu.id_waktu=tb_mahasiswa.id_waktu')
-              ->join('tb_grade','tb_grade.id_grade=tb_mahasiswa.id_grade2', 'left')
-              ->where('tb_mahasiswa.id_mahasiswa', $ya)
-              ->get('tb_mahasiswa')
-
-              ->row();
-    
-  }
   public function tambah_pembayaran()
     {
         $data = array(

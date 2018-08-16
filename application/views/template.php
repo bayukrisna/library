@@ -189,11 +189,12 @@ a:hover .tooltiptext {
                 </span>
               </a>
               <ul class="treeview-menu">
-                <li><a href="<?php echo base_url(); ?>laporan/laporan_mahasiswa"><i class="fa fa-circle-o"></i>Laporan Mahasiswa</a>
+                <li><a href="<?php echo base_url(); ?>laporan/laporan_mahasiswa"><i class="fa fa-circle-o"></i>Laporan Mahasiswa Per<br> Periode</a>
                 </li>
+                <li><a href="<?php echo base_url(); ?>laporan/laporan_dmm"><i class="fa fa-circle-o"></i>Laporan Mahasiswa</a></li>
                 <li><a href="<?php echo base_url(); ?>laporan/laporan_tamu"><i class="fa fa-circle-o"></i>Laporan Tamu</a></li>
                 <li><a href="<?php echo base_url(); ?>laporan/laporan_peserta_tes"><i class="fa fa-circle-o"></i>Laporan Peserta Tes</a></li>
-                <li><a href="<?php echo base_url(); ?>laporan/laporan_data_getstudent"><i class="fa fa-circle-o"></i>Laporan Student Get Student</a></li>
+                <li><a href="<?php echo base_url(); ?>laporan/laporan_data_getstudent"><i class="fa fa-circle-o"></i>Laporan Student Get <br>Student</a></li>
               </ul>
             </li>
             

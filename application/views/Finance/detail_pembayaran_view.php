@@ -228,7 +228,7 @@
                 
                 } else {
                   echo '<button type="submit" class="btn btn-success" > Simpan </button>';
-                  echo '&nbsp;<p class="btn btn-primary" onclick="print1()"> Cetak </p>';
+                  // echo '&nbsp;<p class="btn btn-primary" onclick="print1()"> Cetak </p>';
 
                 } ?> 
                 
