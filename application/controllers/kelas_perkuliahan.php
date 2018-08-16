@@ -155,6 +155,7 @@ class Kelas_perkuliahan extends CI_Controller {
 						'label' => $row->nim.' - '.$row->nama_mahasiswa,
 						'id' => $row->id_mahasiswa,
 						'nama' => $row->nama_mahasiswa,
+						'status' => $row->id_status,
 						'prodi' => $row->id_prodi);
 				echo json_encode($result_array);
 			
@@ -201,7 +202,9 @@ class Kelas_perkuliahan extends CI_Controller {
 	public function simpan_kelas_mhs()
 	{
 		$id_kp = $this->input->post('id_kp');
-			if($this->kelas_perkuliahan_model->simpan_kelas_mhs() == TRUE && $this->kelas_perkuliahan_model->edit_jumlah_mhs($id_kp) == TRUE){
+		$id_mahasiswa = $this->input->post('id_mahasiswa');
+		$id_periode = $this->input->post('id_periode');
+			if($this->kelas_perkuliahan_model->simpan_kelas_mhs() == TRUE && $this->kelas_perkuliahan_model->edit_jumlah_mhs($id_kp) == TRUE && $this->kelas_perkuliahan_model->update_status_mhs($id_mahasiswa) == TRUE && $this->kelas_perkuliahan_model->update_status_aktivitas($id_mahasiswa, $id_periode) == TRUE){
 				$this->session->set_flashdata('message', '<div class="alert alert-success"> Tambah Mahasiswa Berhasil </div>');
 				$id_kp = $this->input->post('id_kp');
             	redirect('kelas_perkuliahan/detail_kelas/'.$id_kp);

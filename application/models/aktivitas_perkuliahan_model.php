@@ -14,7 +14,7 @@ class Aktivitas_perkuliahan_model extends CI_Model {
               ->join('tb_bio','tb_bio.id_mahasiswa=tb_mahasiswa.id_mahasiswa')
               ->join('tb_periode','tb_periode.id_periode=tb_aktivitas_perkuliahan.id_periode')
               ->join('tb_prodi','tb_prodi.id_prodi=tb_mahasiswa.id_prodi')
-              ->join('tb_status_aktivitas','tb_status_aktivitas.id_status_ak=tb_aktivitas_perkuliahan.id_status_ak')
+              ->join('tb_status_mhs','tb_status_mhs.id_status=tb_aktivitas_perkuliahan.id_status')
               ->get('tb_aktivitas_perkuliahan')
               ->result();
 	}
@@ -56,7 +56,7 @@ class Aktivitas_perkuliahan_model extends CI_Model {
         $data = array(
             'id_mahasiswa'      => $this->input->post('id_mahasiswa', TRUE),
             'id_periode'     => $this->input->post('id_periode', TRUE),
-            'id_status_ak'     => $this->input->post('id_status_ak', TRUE),
+            'id_status'     => $this->input->post('id_status_ak', TRUE),
             'ips'     => $this->input->post('ips', TRUE),
             'ipk_ak'      => $this->input->post('ipk_ak', TRUE),
             'sks_semester'      => $this->input->post('sks_semester', TRUE),
@@ -81,6 +81,22 @@ class Aktivitas_perkuliahan_model extends CI_Model {
               ->get('tb_kelas_mhs')
               ->result();
   } 
+
+  public function update_status($id_mahasiswa){
+    $data = array(
+            'id_status'      => $this->input->post('id_status_ak', TRUE)
+      );
+
+    if (!empty($data)) {
+            $this->db->where('id_mahasiswa', $id_mahasiswa)
+        ->update('tb_mahasiswa', $data);
+
+          return true;
+        } else {
+            return null;
+        }
+  }
+
 
   public function detail_mahasiswa_dikti($id_mahasiswa){
       return $this->db->join('tb_prodi','tb_prodi.id_prodi=tb_mahasiswa.id_prodi')

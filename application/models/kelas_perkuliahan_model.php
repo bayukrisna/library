@@ -9,12 +9,6 @@ class Kelas_perkuliahan_model extends CI_Model {
 		
 	}
 
-  /*public function get_total_mhs($id_kp){
-    $jumlah_mhs = $this->db->query("SELECT count(*) AS `total` FROM tb_kelas_mhs WHERE id_kp = $id_kp");
-    return $jumlah_mhs->row();
-    print_r($jumlah_mhs);
-  }*/
-
   public function autocomplete_mk($nama){
      $this->db->select('*');
      $this->db->from('tb_detail_kurikulum');
@@ -396,6 +390,28 @@ class Kelas_perkuliahan_model extends CI_Model {
             return false;
         }
     }
+
+      public function update_status_mhs($id_mahasiswa){
+    $data = array(
+            'id_mahasiswa'        => $this->input->post('id_mahasiswa'),
+            'id_status'       => '1'
+        );
+
+    if (!empty($data)) {
+            $this->db->where('id_mahasiswa', $id_mahasiswa)
+        ->update('tb_mahasiswa', $data);
+
+          return true;
+        } else {
+            return null;
+        }
+  }
+
+  public function update_status_aktivitas($id_mahasiswa, $id_periode){
+    $this->db->query("UPDATE tb_aktivitas_perkuliahan SET id_status = '1' WHERE id_mahasiswa = '$id_mahasiswa' AND id_periode = '$id_periode'");
+
+          return true;
+  }
 
 }
 

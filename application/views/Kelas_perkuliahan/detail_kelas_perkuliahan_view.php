@@ -440,6 +440,10 @@
 
             <input type="text" name="id_kp" id="id_kp2" class="validate[required] text-input" maxlength="20" size="40" style="width:80%" value="<?php echo $this->uri->segment(3); ?>">
 
+            <input type="text" name="id_status" id="id_status" class="validate[required] text-input" maxlength="20" size="40" style="width:80%" >
+
+            <input type="text" name="id_periode" id="id_periode" class="validate[required] text-input" maxlength="20" size="40" style="width:80%" value="<?php echo $kp->id_periode; ?>">
+
             <input type="hidden" name="total_mhs" id="total_mhs" class="validate[required] text-input" maxlength="20" size="40" style="width:80%" value="<?php echo $dsn['jumlah_mhs'] + 1; ?>">
 
             
@@ -469,6 +473,7 @@
         $('#nama_mahasiswa').val(ui.item.label);
         $('#id_mahasiswa').val(ui.item.id);
         $('#prodimhs').val(ui.item.prodi);
+        $('#id_status').val(ui.item.status);
         ea();
         
       }

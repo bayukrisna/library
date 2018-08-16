@@ -93,6 +93,7 @@
                 <?php 
                $no = 0;
                 foreach ($mahasiswa as $data) {
+                  if ($data->id_status != 12) {
                   
                   echo '
                 <tr>
@@ -113,6 +114,8 @@
                   
                 </tr>
                 ';
+
+                  }
                 
               }
               ?>

@@ -49,7 +49,7 @@ class Mahasiswa_model extends CI_Model {
      $this->db->join('tb_prodi','tb_prodi.id_prodi=tb_mahasiswa.id_prodi');
      $this->db->join('tb_bio','tb_bio.id_mahasiswa=tb_mahasiswa.id_mahasiswa');
      $this->db->join('tb_status_mhs','tb_status_mhs.id_status=tb_mahasiswa.id_status');
-     $this->db->where('tb_mahasiswa.id_status', '1');
+     
      $query = $this->db->get();
      return $query->result();
   }
