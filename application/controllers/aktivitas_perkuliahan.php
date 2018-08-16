@@ -1,48 +1,49 @@
 <?php
 defined('BASEPATH') OR exit('No direct script access allowed');
 
-class Mahasiswa extends CI_Controller {
+class Aktivitas_perkuliahan extends CI_Controller {
 
 	public function __construct()
 	{
 		parent::__construct();
-		$this->load->model('mahasiswa_model');
+		$this->load->model('aktivitas_perkuliahan_model');
 		$this->load->model('daftar_ulang_model');
-		$this->load->model('konsentrasi_model');
 	}
 
 	public function index()
 	{
-			$data['mahasiswa'] = $this->mahasiswa_model->data_mahasiswa();
-			$data['main_view'] = 'Mahasiswa/data_mahasiswa_view';
+			$data['aktivitas'] = $this->aktivitas_perkuliahan_model->data_aktivitas_perkuliahan();
+			$data['main_view'] = 'aktivitas_perkuliahan/aktivitas_perkuliahan_view';
 			$this->load->view('template', $data);
 	}
 
-	public function mahasiswa2()
-	{
-			$data['mahasiswa'] = $this->mahasiswa_model->data_mahasiswa();
-			$data['main_view'] = 'Mahasiswa/data_mahasiswa_view2';
-			$this->load->view('template', $data);
+	public function cek_duplikat(){
+		$id_mahasiswa = $this->input->post('id_mahasiswa');
+		$id_periode = $this->input->post('id_periode');
+		$this->aktivitas_perkuliahan_model->cek_duplikat($id_mahasiswa, $id_periode);
 	}
 	
 
-	public function detail_mahasiswa()
+	public function filter_ap()
 	{
-			$id_du = $this->uri->segment(3);
-			$data['du'] = $this->daftar_ulang_model->detail_du($id_du);
-			$data['getProdi'] = $this->daftar_ulang_model->getProdi();
-			$data['getPreschool'] = $this->daftar_ulang_model->getPreschool();
-			$data['main_view'] = 'Mahasiswa/detail_mahasiswa_view';
+			$id_mahasiswa = $this->input->get('id_mahasiswa');
+			$id_periode = $this->input->get('id_periode');
+			$data['nilai'] = $this->aktivitas_perkuliahan_model->filter_ap($id_mahasiswa,$id_periode);
+			$data['nilai2'] = $this->aktivitas_perkuliahan_model->data_nilai_mhs($id_mahasiswa);
+			$data['main_view'] = 'aktivitas_perkuliahan/aktivitas_perkuliahan_view2';
 			$this->load->view('template', $data);
 	}
 
 
-	public function data_mahasiswa()
+	public function save_ap()
 	{
-			$data['mahasiswa'] = $this->mahasiswa_model->data_mahasiswa_dikti();
-			$data['drop_down_prodi'] = $this->konsentrasi_model->get_prodi();
-			$data['main_view'] = 'Mahasiswa/mahasiswa_view';
-			$this->load->view('template', $data);
+			if($this->aktivitas_perkuliahan_model->save_ap() == TRUE){
+				$this->session->set_flashdata('message', '<div class="col-md-12 alert alert-success"> Data aktivitas perkuliahan berhasil ditambahkan </div>');
+            	redirect('aktivitas_perkuliahan/data_aktivitas_perkuliahan');
+			} else{
+				$this->session->set_flashdata('message', '<div class="col-md-12 alert alert-danger"> Data aktivitas perkuliahan gagal ditambahkan </div>');
+            	redirect('aktivitas_perkuliahan/data_aktivitas_perkuliahan');
+			} 
 	}
 	
 
@@ -127,15 +128,6 @@ class Mahasiswa extends CI_Controller {
 			$data['mahasiswa'] = $this->mahasiswa_model->detail_krs_mahasiswa($id_mahasiswa);
 			$data['nilai2'] = $this->mahasiswa_model->data_nilai_mhs($id_mahasiswa);
 			$data['main_view'] = 'Mahasiswa/transkip_nilai_view';
-			$this->load->view('template', $data);
-	}
-
-
-
-
-	public function aktivasi_perkuliahan()
-	{
-			$data['main_view'] = 'Mahasiswa/aktivasi_perkuliahan_view';
 			$this->load->view('template', $data);
 	}
 	

@@ -1,233 +1,203 @@
 
-        <div class="box box-info">
-        <div class="box-body">
-              <table class="table">
-        <tr>
-            <td width="15%" class="left_column">Nim</td>
-            <td>: <input type="text" name="nim" id="nim" class="text-input" maxlength="16" size="50" style="width:40%" onkeydown="return onlyNumber(event,this,false,false)" value="<?php echo $mahasiswa->nim; ?>"></td>
-            <td width="15%" class="left_column">Nama</td>
-            <td>: <?php echo $mahasiswa->nama_mahasiswa; ?></td>
-        </tr>
-        <tr>
-            <td class="left_column" width="15%">Program Studi</td>
-            <td width="35%">: <?php echo $mahasiswa->nama_prodi; ?>            </td>
-            <td class="left_column" width="15%">Angkatan</td>
-            <td>: <?php echo $mahasiswa->angkatan; ?>           </td>
-        </tr>
-        
-               
 
-        </table>
+    <section class="content">
+
+      <div class="row">
+        <div class="col-xs-12">
+          <?php echo $this->session->flashdata('message');?>
+          <div class="box">
+
+            <div class="box-header">
+              <h3 class="box-title">Data Aktivitas Perkuliahan</h3>
             </div>
-            <!-- /.box-body -->
-          </div>
-        <br><br>
-
-        <div class="nav-tabs-custom">
-            <ul class="nav nav-tabs">
-            <li class="active"><a href="#tab_0" data-toggle="tab">Nilai</a></li>
-             <!--<li><a href="#tab_1" data-toggle="tab">IPK</a></li> -->
-              <!--<li><a href="#tab_4" data-toggle="tab">Kebutuhan Khusus</a></li> -->
-             
-            </ul>
-
-        <div class="tab-content">
-
-         <div class="tab-pane" id="tab_1">
-
-<table id="table1" class="table table-striped table-bordered" >
-    <thead>
-    <tr>
-        <th style="width:5%;text-align:center" rowspan="2">No.</th>
-        <th style="text-align:center" rowspan="2">Kode MK</th>
-        <th style="text-align:center" rowspan="2">Nama MK</th>
-        <th style="text-align:center" rowspan="2">Bobot MK<br />(sks)</th>
-         <th style="text-align:center" colspan="3">Nilai<br />(sks)</th>
-         <th style="text-align:center" rowspan="2">sks * N.indeks</th>
-       
-    </tr>
-    <tr>
-        <th style="width:5%;text-align:center">Angka</th>
-        <th style="text-align:center">Huruf</th>
-        <th style="text-align:center">Indeks</th>
-        
-    </tr>
-    </thead>
-    <tbody>
-    <?php 
-
-        $no = 0;
-        $totalsi = 0;
-        $totalbobot = 0;
-        foreach($nilai2 as $data):
-             $dataee = $data->bobot_matkul * $data->nilai_indeks;
-        ;
-      ?>
-      <tr>
-      <td><?php echo ++$no;?></td>
-        <td style="text-align:center"><?php echo $data->kode_matkul;?></td>
-        <td style="text-align:center"><?php echo $data->nama_matkul;?></td>
-        <td style="text-align:center"><?php $totalbobot += $data->bobot_matkul; echo $data->bobot_matkul;?></td>
-        <td style="text-align:center"><?php echo $data->nilai_d;?></td>
-        <td style="text-align:center"><?php echo $data->nilai_huruf;?></td>
-        <td style="text-align:center"><?php echo $data->nilai_indeks;?></td>
-        <td style="text-align:center"><?php $totalsi += $dataee; echo $dataee;?></td>
-        
-       
-    </tr>
-   
-<?php endforeach; ?>
-
-    <tr>
-         <td colspan="3" style="text-align:right"> <b> Jumlah Bobot : </b></td>
-        <td style="text-align:center">  <?php 
-        if ($totalbobot == 0) {
-            echo $totalbobot = 1;
-        } else {
-            echo $totalbobot;
-        }  ?> </td>
-        <td colspan="3" style="text-align:right"> <b> Jumlah sks * N.indeks : </b></td>
-        <td style="text-align:center"> <?php echo $totalsi; ?></td>
-
-    </tr>
-    <tr>
-        <th style="text-align:right" colspan="7"> IPK : </th>
-        <th style="text-align:center"> <?php $ipk = $totalsi / $totalbobot; echo round($ipk, 2); ?>   </th>
-    </tr>
-
-  
-  </tbody>
-    </table>
-
-    <input type="text" name="ipk" id="ipk" value="<?php $ipk2 = round($ipk, 2);echo $ipk2; ?>"> 
-
-    <?php if ($ipk <= 3.5) {
-         $a = '7';
-    } elseif ($ipk < 3.76) {
-         $a = '6';
-    } else {
-         $a = '5';
-    } ?>
-
-     <input type="text" name="id_grade" id="id_grade" value="<?php echo $a; ?>"> 
-
-</div>
-
-        <div class="tab-pane active" id="tab_0">
-
-            <table class="">
+            <div class="box-body">
+              <table class="">
                 <tbody>
-                  <form method="get" action="<?php echo base_url(); ?>mahasiswa/filter_nilai/<?php echo $mahasiswa->id_mahasiswa; ?>">
-                    <a href="<?php echo base_url(); ?>mahasiswa/transkip_nilai/<?php echo $mahasiswa->id_mahasiswa ?>/<?php echo $ipk2 ?>/<?php echo $a ?>" class="btn btn-success  btn-sm">Transkip</span></a>
+                  <form method="get" action="<?php echo base_url("kelas_perkuliahan/filter_kp/")?>">
                   <tr>
-                    <th><input type="hidden" name="id_prodi" id="id_prodi" value="<?php echo $mahasiswa->id_prodi; ?>"><br></th>
+                    <th>Filter</th>
                   </tr>
                   <tr>                                                                    
-                    <td> &nbsp;&nbsp;&nbsp;Periode</td>     
+                    <td>Program Studi</td>     
                     <td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
                       
-                      <select name="id_periode" id="id_periode" class="validate[required]">
-                        <option value="">Semua</option>   
-                    
-              </select>
+                      <select name="id_prodi" onchange="return get_prodi_periode2(this.value)">
+                        <option value="">-- Semua --</option>
+                        <?php 
 
-                    </td>  
+                                        foreach($getProdi as $row)
+                                        { 
+                                          echo '<option value="'.$row->id_prodi.'">'.$row->nama_prodi.'</option>';
+                                        }
+                                    ?>
+                      </select>
+
+                    </td>                                            
+                    <td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Semester</td>     
+                    <td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                      <select name="id_periode" id="id_periode2">
+                        <option value="">-- Semua --</option>
+              
+                      </select>
+                    </td>
                     <td>
                       &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<input type="submit" class="btn btn-primary" value="Cari">  
-                    </td>                                         
+                    </td>
+
                   </tr>
-                   </form>
                   
-                
-
                 </tbody>
-              </table>       
-              
-              <br>
-              <br>
-        <table id="table1" class="table table-striped table-bordered" >
-    <thead>
-    <tr>
-        <th style="width:5%;text-align:center" rowspan="2">No.</th>
-        <th style="text-align:center" rowspan="2">Kode MK</th>
-        <th style="text-align:center" rowspan="2">Nama MK</th>
-        <th style="text-align:center" rowspan="2">Bobot MK<br />(sks)</th>
-         <th style="text-align:center" colspan="3">Nilai<br />(sks)</th>
-         <th style="text-align:center" rowspan="2">sks * N.indeks</th>
-       
-    </tr>
-    <tr>
-        <th style="width:5%;text-align:center">Angka</th>
-        <th style="text-align:center">Huruf</th>
-        <th style="text-align:center">Indeks</th>
+              </table>
+                      
+               </form>
+               <br>
+
+              <table id="example3" class="table2 table-bordered table-striped">
+                <a class="btn btn-info btn-sm" href="" data-toggle="modal" data-target="#modal_view"><i class="fa fa-plus"></i> Tambah Akvititas</a> <br> <br>
+                <thead>
+                <tr>
+                  <th rowspan="2" style="text-align: center" width="3px">No</th>
+                  <th rowspan="2" style="text-align: center">NIM</th>
+                  <th rowspan="2" style="text-align: center">Nama</th>
+                  <th rowspan="2" style="text-align: center">Prodi</th>
+                  <th rowspan="2" style="text-align: center">Angkatan</th>
+                  <th rowspan="2" style="text-align: center">Periode</th>
+                  <th rowspan="2" style="text-align: center">Status</th>
+                  <th rowspan="2" style="text-align: center">IPS</th>
+                  <th rowspan="2" style="text-align: center">IPK</th>
+                  <th colspan="2" style="text-align: center">SKS</th>
+                </tr>
+                <tr>
+                  <th>Smt</th>
+                  <th>Total</th>
+                </tr>
+                 
+                </thead>
+
+                <tbody>
+
+                <?php 
+                $no = 0;
+                 $alert = "'Apakah anda yakin menghapus data ini ?'";
+
+                foreach ($aktivitas as $data) { 
+                  
+                  
+
+                  echo '                  
+                <tr>
+                  <td>'.++$no.'</td>
+                  <td><a href="'.base_url('kelas_perkuliahan/detail_kelas/'.$data->id_aktivitas).'">'.$data->nim.'</a></td>
+                  <td>'.$data->nama_mahasiswa.'</td>
+                  <td>'.$data->nama_prodi.'</td>
+                  <td>'.$data->angkatan.'</td>
+                  <td>'.$data->semester.'</td>
+                  <td>'.$data->status_ak.'</td>
+                  <td>'.$data->ips.'</td>
+                  <td>'.$data->ipk_ak.'</td>
+                  <td>'.$data->sks_semester.'</td>
+                  <td>'.$data->sks_total.'</td>
+                  
+                  </tr>
+                ' ;
+                
+                
+              }
+              ?>
         
-    </tr>
-    </thead>
-    <tbody>
-    <?php 
-
-        $no = 0;
-        $totalsi = 0;
-        $totalbobot = 0;
-        foreach($nilai as $data):
-             $dataee = $data->bobot_matkul * $data->nilai_indeks;
-        ;
-      ?>
-      <tr>
-      <td><?php echo ++$no;?></td>
-        <td style="text-align:center"><?php echo $data->kode_matkul;?></td>
-        <td style="text-align:center"><?php echo $data->nama_matkul;?></td>
-        <td style="text-align:center"><?php $totalbobot += $data->bobot_matkul; echo $data->bobot_matkul;?></td>
-        <td style="text-align:center"><?php echo $data->nilai_d;?></td>
-        <td style="text-align:center"><?php echo $data->nilai_huruf;?></td>
-        <td style="text-align:center"><?php echo $data->nilai_indeks;?></td>
-        <td style="text-align:center"><?php $totalsi += $dataee; echo $dataee;?></td>
-        
-       
-    </tr>
-   
-<?php endforeach; ?>
-
-    <tr>
-         <td colspan="3" style="text-align:right"> <b> Jumlah Bobot : </b></td>
-        <td style="text-align:center">  <?php 
-        if ($totalbobot == 0) {
-            echo $totalbobot = 1;
-        } else {
-            echo $totalbobot;
-        }  ?> </td>
-        <td colspan="3" style="text-align:right"> <b> Jumlah sks * N.indeks : </b></td>
-        <td style="text-align:center"> <?php echo $totalsi; ?></td>
-
-    </tr>
-    <tr>
-        <th style="text-align:right" colspan="7"> IPS : </th>
-        <th style="text-align:center"> <?php $ips = $totalsi / $totalbobot; echo round($ips, 2); ?>   </th>
-    </tr>
-
-  
-  </tbody>
-    </table>
-    </div>
-     </div>
-    <div class="callout callout-info">
-        <strong>Keterangan :</strong>
-            <br />
-            - Fitur ini di gunakan untuk menampilkan nilai perkuliahan mahasiswa setiap periode 
-            <br />
-            - Perhitungan IPS = Jumlah ( N.Indeks * sks ) / Jumlah sks
-            <br />
-            - Untuk mengisikan nilai , silahkan ke menu [ Nilai Perkuliahan ]   
-            <br />
+                </tbody>
+              </table>
+            </div>
             
-    </div>
+            <!-- /.box-body -->
+          </div>
+          <!-- /.box -->
+        </div>
+        <!-- /.col -->
+      </div>
+      <!-- /.row -->
+    </section>
+    
+        <div class="modal fade" id="modal_view" >
+            <div class="modal-dialog">
+            <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">x</button>
+                <h3 class="modal-title" id="myModalLabel">Tambah Aktivitas Perkuliahan</h3>
+            </div>
+                <div class="modal-body">
+
+                    <div class="form-group">
+                      <form method="get" action="<?php echo base_url("aktivitas_perkuliahan/filter_ap/")?>">
+                      <table class="table">
+                         <tr>
+                           <td class="left_column">Mahasiswa <font color="#FF0000">*</font></td>
+            <td colspan="9">: 
+      <input type="text" name="nama_mahasiswa" id="nama_mahasiswa" class="validate[required] text-input ui-autocomplete-input" size="20"  style="width: 50%;" required=""><span role="status" aria-live="polite" class="ui-helper-hidden-accessible"></span>            <input type="hidden" name="id_mahasiswa" id="id_mahasiswa" > <input type="hidden" name="id_prodi" id="id_prodi" > <input type="hidden" name="nama" id="nama" >
+            </td>
+        </tr>
+        <tr>
+            <td class="left_column" width="20%">Status <font color="#FF0000">*</font></td>
+            <td colspan="9">:  
+            <select name="id_status_ak" id="id_status_ak" class="validate[required]" required="">
+            <option value="1"> Aktif </option>
+            <option value="2"> Non Aktif </option>
+            <option value="3"> Cuti </option>
+        </select>     </td>
+        </tr>
+        <tr>
+          <td class="left_column" width="20%">Periode<font color="#FF0000">*</font></td>
+            <td colspan="9">:  
+            <select name="id_periode" id="id_periode" class="validate[required]" required="" onchange="return get_nama_periode(this.value);">
+            <option value=""> Pilih Periode</option>
+        </select>     <input type="hidden" name="semester" id="semester" >
+       
+      </td>
+        
+    </tr>
+    <tr>
+      <td colspan="9"> <span id="user-availability-status"></span> </td>
+    </tr>
+
+        
+                  <tr>
+                    <td colspan="4"><button type="submit" class="btn btn-info" id="MyBtn">Tampilkan</button></td>
+                  </tr>
+              </form>
+
+                        </table>
+
+                    </div>
+
+                </div>
+            </div>
+            </div>
+        </div>
 
 
-</div>
- <link rel="stylesheet" href="//code.jquery.com/ui/1.12.0/themes/smoothness/jquery-ui.css">
+<link rel="stylesheet" href="//code.jquery.com/ui/1.12.0/themes/smoothness/jquery-ui.css">
   <script src="//code.jquery.com/jquery-1.12.4.min.js"></script>
   <script src="//code.jquery.com/ui/1.12.0/jquery-ui.min.js"></script>
-    <script type="text/javascript">
+ <script>
+
+       document.getElementById("nama_mahasiswa").style.visibility = 'visible';
+    jQuery(document).ready(function($){
+    $('#nama_mahasiswa').autocomplete({
+      source:'<?php echo base_url(); ?>kelas_perkuliahan/get_autocomplete2', 
+      minLength:1,
+      select: function(event, ui){
+        $('#nama_mahasiswa').val(ui.item.label);
+        $('#id_mahasiswa').val(ui.item.id);
+        $('#id_prodi').val(ui.item.prodi);
+        $('#nama').val(ui.item.nama);
+        get_prodi_periode();
+      }
+    });    
+  });
+  
+  </script>
+ <script type="text/javascript">
+            function get_prodi_periode() {
                 var id_prodi = document.getElementById('id_prodi').value;
 
                 $.ajax({
@@ -236,7 +206,47 @@
                     type: 'GET',
                     dataType: 'html',
                     success: function(msg) {
+                      //console.log(id_prodi);
                         $("#id_periode").html(msg);
+
+
                     }
-                });                       
+                });
+            }
+</script>
+<script>
+
+        function get_nama_periode() {
+                var id_periode = document.getElementById('id_periode').value;
+
+                $.ajax({
+                    url: '<?php echo base_url(); ?>kurikulum/get_nama_periode/'+id_periode,
+                    data: 'id_periode='+id_periode,
+                    type: 'GET',
+                    dataType: 'html',
+                    success: function(msg) {
+                      console.log(msg);
+
+                        document.getElementById('semester').value = msg;
+                        cek_duplikat();
+
+
+                    }
+                });
+            }
+  
+  </script>
+  <script type="text/javascript">
+  function cek_duplikat(){
+   $.ajax({
+                    url: '<?php echo base_url(); ?>aktivitas_perkuliahan/cek_duplikat/',
+                    data: 'id_mahasiswa='+$("#id_mahasiswa").val()+'&id_periode='+$("#id_periode").val(),
+                    type: 'POST',
+                    dataType: 'html',
+                    success:function(data){
+                    $("#user-availability-status").html(data);
+                    },
+                    error:function (){}
+                });
+              }
 </script>

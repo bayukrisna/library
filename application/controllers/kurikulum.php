@@ -165,10 +165,17 @@ class Kurikulum extends CI_Controller {
 		$option = "";
 		$option .= '<option value="">Pilih Semester</option>';
 		foreach ($result as $data) {
-			$option .= "<option value='".$data->id_periode."' >".$data->semester."</option>";
+			$option .= "<option value='".$data->id_periode."'>".$data->semester."</option>";
 			
 		}
 		echo $option;
 
+	}
+
+	public function get_nama_periode($param = NULL) {
+		$periode = $param;
+		$result = $this->kurikulum_model->get_nama_periode($periode);
+		$ea = $result->semester;
+		echo $ea;
 	}
 }

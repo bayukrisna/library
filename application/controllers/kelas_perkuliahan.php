@@ -154,6 +154,7 @@ class Kelas_perkuliahan extends CI_Controller {
 					$result_array[] = array(
 						'label' => $row->nim.' - '.$row->nama_mahasiswa,
 						'id' => $row->id_mahasiswa,
+						'nama' => $row->nama_mahasiswa,
 						'prodi' => $row->id_prodi);
 				echo json_encode($result_array);
 			

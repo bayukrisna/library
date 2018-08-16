@@ -1,7 +1,7 @@
 <?php
 defined('BASEPATH') OR exit('No direct script access allowed');
 
-class Mahasiswa_model extends CI_Model {
+class Aktivitas_perkuliahan_model extends CI_Model {
 
 
 	public function __construct()
@@ -9,65 +9,33 @@ class Mahasiswa_model extends CI_Model {
 		parent::__construct();
 	}
 
-   public function  buat_kode_mhs()   {
-          $this->db->SELECT('RIGHT(tb_mahasiswa.id_mahasiswa,4) as kode', FALSE);
-          $this->db->order_by('id_mahasiswa','DESC');    
-          $this->db->limit(1);    
-          $query = $this->db->get('tb_mahasiswa');      //cek dulu apakah ada sudah ada kode di tabel.    
-          if($query->num_rows() <> 0){      
-           //jika kode ternyata sudah ada.      
-           $data = $query->row();      
-           $kode = intval($data->kode) + 1;    
-          }
-          else {      
-           //jika kode belum ada      
-           $kode = 1;    
-          }
-          $kodemax = str_pad($kode, 4, "0", STR_PAD_LEFT); // angka 4 menunjukkan jumlah digit angka 0
-          $kodejadi = "M".$kodemax;    // hasilnya ODJ-991-0001 dst.
-          return $kodejadi; 
-    }
-
-	public function data_mahasiswa(){
-		return $this->db->join('tb_prodi','tb_prodi.id_prodi=tb_mahasiswa.id_prodi')
-              ->join('tb_konsentrasi','tb_konsentrasi.id_konsentrasi=tb_mahasiswa.id_konsentrasi')
-              ->join('tb_alamat','tb_alamat.id_mahasiswa=tb_mahasiswa.id_mahasiswa')  
-              ->join('tb_bio','tb_bio.id_mahasiswa=tb_mahasiswa.id_mahasiswa') 
-              ->join('tb_kontak','tb_kontak.id_mahasiswa=tb_mahasiswa.id_mahasiswa')
-              ->join('tb_waktu','tb_waktu.id_waktu=tb_mahasiswa.id_waktu') 
-              ->join('tb_mhs_add','tb_mhs_add.id_mahasiswa=tb_mahasiswa.id_mahasiswa')
-              ->join('tb_status_mhs','tb_status_mhs.id_status=tb_mahasiswa.id_status')
-              ->where('tb_mahasiswa.id_status', '1')
-              ->get('tb_mahasiswa')
+	public function data_aktivitas_perkuliahan(){
+		return $this->db->join('tb_mahasiswa','tb_mahasiswa.id_mahasiswa=tb_aktivitas_perkuliahan.id_mahasiswa')
+              ->join('tb_bio','tb_bio.id_mahasiswa=tb_mahasiswa.id_mahasiswa')
+              ->join('tb_periode','tb_periode.id_periode=tb_aktivitas_perkuliahan.id_periode')
+              ->join('tb_prodi','tb_prodi.id_prodi=tb_mahasiswa.id_prodi')
+              ->join('tb_status_aktivitas','tb_status_aktivitas.id_status_ak=tb_aktivitas_perkuliahan.id_status_ak')
+              ->get('tb_aktivitas_perkuliahan')
               ->result();
 	}
 
-  public function data_mahasiswa_dikti(){
-    $this->db->select('*');
-     $this->db->from('tb_mahasiswa');
-     $this->db->join('tb_konsentrasi','tb_konsentrasi.id_konsentrasi=tb_mahasiswa.id_konsentrasi');
-     $this->db->join('tb_prodi','tb_prodi.id_prodi=tb_mahasiswa.id_prodi');
-     $this->db->join('tb_bio','tb_bio.id_mahasiswa=tb_mahasiswa.id_mahasiswa');
-     $this->db->join('tb_status_mhs','tb_status_mhs.id_status=tb_mahasiswa.id_status');
-     $this->db->where('tb_mahasiswa.id_status', '1');
-     $query = $this->db->get();
-     return $query->result();
-  }
+  function cek_duplikat($id_mahasiswa, $id_periode){
+      $query = $this->db->select('*')
+                ->from('tb_aktivitas_perkuliahan')
+                ->where('id_mahasiswa', $id_mahasiswa)
+                ->where('id_periode', $id_periode)
+                ->get();
+                if ($query->num_rows() > 0)
+                {
+                    echo '<span class="label label-success"> Data sudah ada dalam daftar </span><script>document.getElementById("MyBtn").disabled = true;</script>';
 
-  public function filter_mahasiswa($id_prodi, $agama, $jenis_kelamin){
-    $this->db->select('*');
-     $this->db->from('tb_mahasiswa');
-     $this->db->join('tb_konsentrasi','tb_konsentrasi.id_konsentrasi=tb_mahasiswa.id_konsentrasi');
-     $this->db->join('tb_prodi','tb_prodi.id_prodi=tb_mahasiswa.id_prodi');
-     $this->db->join('tb_bio','tb_bio.id_mahasiswa=tb_mahasiswa.id_mahasiswa');
-     $this->db->like('tb_prodi.id_prodi',$id_prodi);
-     $this->db->like('tb_bio.agama',$agama);
-     $this->db->like('tb_bio.jenis_kelamin',$jenis_kelamin);
-     $query = $this->db->get();
-     return $query->result();
-  }
+                } else{
+                echo '<span class="label label-success"> Klik Tampilkan </span><script>document.getElementById("MyBtn").disabled = false;</script>';
+                
+                }
+    }
 
-   function filter_nilai($id_mahasiswa,$id_periode){
+  function filter_ap($id_mahasiswa,$id_periode){
 
      $this->db->select('*');
      $this->db->from('tb_kelas_mhs');
@@ -81,6 +49,27 @@ class Mahasiswa_model extends CI_Model {
      $query = $this->db->get();
      return $query->result();
       }
+
+
+   public function save_ap()
+    {        
+        $data = array(
+            'id_mahasiswa'      => $this->input->post('id_mahasiswa', TRUE),
+            'id_periode'     => $this->input->post('id_periode', TRUE),
+            'id_status_ak'     => $this->input->post('id_status_ak', TRUE),
+            'ips'     => $this->input->post('ips', TRUE),
+            'ipk_ak'      => $this->input->post('ipk_ak', TRUE),
+            'sks_semester'      => $this->input->post('sks_semester', TRUE),
+            'sks_total'      => $this->input->post('sks_total', TRUE)
+            
+        );
+        $this->db->insert('tb_aktivitas_perkuliahan', $data);
+        if($this->db->affected_rows() > 0){
+                return true;
+        } else {
+            return false;
+        }
+    }
 
       public function data_nilai_mhs($id_mahasiswa){
       return $this->db->join('tb_kp','tb_kp.id_kp=tb_kelas_mhs.id_kp')

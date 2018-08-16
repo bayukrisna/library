@@ -126,6 +126,12 @@ class Kurikulum_model extends CI_Model {
               ->result();
   }
 
+  public function get_nama_periode($data){
+      return $this->db->where('tb_periode.id_periode',$data)
+              ->get('tb_periode')
+              ->row();
+  }
+
   public function edit_kurikulum($id_kurikulum){
     $data = array(
             'id_kurikulum'         => $this->input->post('id_kurikulum'),

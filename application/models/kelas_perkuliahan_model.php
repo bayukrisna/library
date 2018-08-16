@@ -128,7 +128,7 @@ class Kelas_perkuliahan_model extends CI_Model {
                     echo '<span class="label label-success"> Mahasiswa Sudah terdaftar </span><script>document.getElementById("myBtn").disabled = true;</script>';
 
                 } else{
-                echo '<span class="label label-success"> </span><script>document.getElementById("myBtn").disabled = false;</script>';
+                echo '<span class="label label-success"> Mahasiswa bisa ditambahkan</span><script>document.getElementById("myBtn").disabled = false;</script>';
                 
                 }
     }
