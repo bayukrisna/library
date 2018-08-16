@@ -39,10 +39,10 @@ class Aktivitas_perkuliahan extends CI_Controller {
 	{
 			if($this->aktivitas_perkuliahan_model->save_ap() == TRUE){
 				$this->session->set_flashdata('message', '<div class="col-md-12 alert alert-success"> Data aktivitas perkuliahan berhasil ditambahkan </div>');
-            	redirect('aktivitas_perkuliahan/data_aktivitas_perkuliahan');
+            	redirect('aktivitas_perkuliahan');
 			} else{
 				$this->session->set_flashdata('message', '<div class="col-md-12 alert alert-danger"> Data aktivitas perkuliahan gagal ditambahkan </div>');
-            	redirect('aktivitas_perkuliahan/data_aktivitas_perkuliahan');
+            	redirect('aktivitas_perkuliahan');
 			} 
 	}
 	
