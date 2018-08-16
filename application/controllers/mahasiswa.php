@@ -239,13 +239,23 @@ class Mahasiswa extends CI_Controller {
 			} 
 	} 
 
-	public function save_edit_foto_mahasiswa($foto_mahasiswa){
-		$config['upload_path'] = './uploads/';
-	    $config['allowed_types'] = 'jpg|png|jpeg';
+	public function save_edit_foto_mahasiswa(){
+	    $config['upload_path'] = './uploads/';
+	    $config['allowed_types'] = 'jpg|png|jpeg|pdf';
 	    $this->load->library('upload', $config);
-
-	    $this->upload->do_upload($foto_mahasiswa);
-	      $this->mahasiswa_model->save_edit_foto_mahasiswa($this->upload->data(), $this->uri->segment(3));
+	    if($this->upload->do_upload('foto_mahasiswa')){
+	      if($this->mahasiswa_model->save_edit_foto_mahasiswa($this->upload->data(), $this->uri->segment(3)) == TRUE){
+	        $this->session->set_flashdata('success', 'Upload Bukti Berhasil');
+	            redirect('laporan');
+	      } else {
+	        $this->session->set_flashdata('failed', 'Update foto gagal');
+	            redirect('finance');
+	      }
+	    } else {
+	      $this->session->set_flashdata('failed', $this->upload->display_errors());
+	        redirect('tamu');
+	    }
+        
 	}
 		
 }

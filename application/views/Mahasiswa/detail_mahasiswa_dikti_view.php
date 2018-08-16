@@ -62,10 +62,11 @@
                     <td class="left_column" width="15%">NIM</td>
                     <td colspan="3">:  <input type="text" name="nim" id="nim" class="text-input" maxlength="16" size="50" style="width:40%" onkeydown="return onlyNumber(event,this,false,false)" value="<?php echo $mahasiswa->nim; ?>">                            
                     </td>
-                    <td rowspan="8"><div class="btn btn-file" >
-                  <input type="file"   onchange="loadFile(event)" name="foto_mahasiswa" id="foto_mahasiswa">
-                  <img id="output" height="200" width="150" class="pull-right" width="40%" src="<?php echo base_url(); ?>uploads/<?php echo $mahasiswa->foto_mahasiswa; ?>" alt="Photo" onerror="this.src='<?php echo base_url();?>uploads/user.jpg'" src="#" alt="Your Image">
-                </div></td>
+                    <td rowspan="8">
+                        <div class="btn btn-file" >
+                  <img  data-toggle="modal" data-target="#modal-default" id="output" height="200" width="150" class="pull-right" width="40%" src="<?php echo base_url(); ?>uploads/<?php echo $mahasiswa->foto_mahasiswa; ?>" alt="Photo" onerror="this.src='<?php echo base_url();?>uploads/user.jpg'" src="#" alt="Your Image">
+                </div>
+                </td>
                 </tr>
                 <tr>
                     <td class="left_column" width="15%">Nama</td>
@@ -541,19 +542,45 @@
     function loadFile(event) {
                 var output = document.getElementById('output');
                 output.src = URL.createObjectURL(event.target.files[0]);
-                var foto_mahasiswa = event.target.files;
-                $.ajax({
-                    url: '<?php echo base_url(); ?>mahasiswa/save_edit_foto_mahasiswa/',
-                    type:"post",
-                     data:new FormData(this),
-                     processData:false,
-                     contentType:false,
-                     cache:false,
-                     async:false,
-                      success: function(data){
-                          alert("Upload Image Berhasil.");
-
-                    }
-                });
             }
 </script>
+<script type="text/javascript">
+</script>
+   <link rel="stylesheet" href="//code.jquery.com/ui/1.12.0/themes/smoothness/jquery-ui.css">
+      <script src="//code.jquery.com/jquery-1.12.4.min.js"></script>
+      <script src="//code.jquery.com/ui/1.12.0/jquery-ui.min.js"></script>
+<div class="modal fade" id="modal-default" >
+          <div class="modal-dialog">
+            <div class="modal-content">
+              <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                  <span aria-hidden="true">&times;</span></button>
+                <h4 class="modal-title">Pembayaran</h4>
+              </div>
+              <div class="modal-body">
+                
+                <div class="form-horizontal">
+                <form  method="post" runat="server" action="<?php echo base_url(); ?>mahasiswa/save_edit_foto_mahasiswa" enctype="multipart/form-data">
+                  <div class="box-body">
+                    <div class="box-body">
+                    <div class="form-group">
+                      <label for="inputEmail3" class="col-sm-3 control-label">Potongan</label>
+
+                      <div class="col-sm-8">
+                        <input type="file" id="foto_mahasiswa" name="foto_mahasiswa">
+                      </div>
+                    </div>
+                    <button type="submit">Simpan</button>
+                  </div>
+                  <!-- /.box-body -->
+                  <!-- /.box-footer -->
+                  </div></form>
+
+                </div>
+          </div>
+              </div>
+            </div>
+            <!-- /.modal-content -->
+          </div>
+          <!-- /.modal-dialog -->
+        </div>

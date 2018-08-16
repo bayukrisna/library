@@ -507,18 +507,15 @@ class Mahasiswa_model extends CI_Model {
     }
 
     public function save_edit_foto_mahasiswa($foto_mahasiswa, $id_mahasiswa)
-   {
+   {    
     $data = array('foto_mahasiswa' => $foto_mahasiswa['file_name'] )
                   ;
-
-    if (!empty($data)) {
-            $this->db->where('id_mahasiswa', $id_mahasiswa)
-        ->update('tb_mahasiswa', $data);
-
-          return true;
-        } else {
-            return null;
-        }
+    $this->db->where('id_mahasiswa', $id_mahasiswa)->update('tb_bio', $data);
+    if ($this->db->affected_rows() > 0) {
+      return TRUE;
+    } else {
+      return FALSE;
+    }
   }
 
     public function save_edit_mahasiswa($id_tes){
