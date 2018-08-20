@@ -1,7 +1,7 @@
 <?php
 defined('BASEPATH') OR exit('No direct script access allowed');
 
-class Dosen_model extends CI_Model {
+class Login_model extends CI_Model {
 
     
 
@@ -10,30 +10,40 @@ class Dosen_model extends CI_Model {
 		parent::__construct();
 	}
 
-    public function ceklogin(){
-        $query = $this->db->join('tb_jabatan', 'tb_jabatan.id_jabatan = tb_user.id_jabatan2')
-        ->where('username', $this->input->post('username'))
-        ->where('password', $this->input->post('password'))
-        ->get('tb_user');
+    public function masuk() {
+        $username = $this->input->post('username');
+        $password = $this->input->post('password');
 
+        $this->db->where('username',$username);
+        $result = $this->getUsers($password);        
+
+        if (!empty($result)) {
+            return $result;
+        } else {
+            return null;
+        }
+    }
+    function getUsers($password) {
+        $query = $this->db->get('tb_user');
 
         if ($query->num_rows() == 1) {
-            $data_pegawai = $query->row();
-            $session = array(
-                'logged_in' => TRUE,
-                'username'       => $data_pegawai->username,
-                'password' => $data_pegawai->password,
-                'nama' => $data_pegawai->nama,
-                'id_jabatan' => $data_pegawai->id_jabatan,
-                'nama_jabatan' => $data_pegawai->nama_jabatan,
-                'level' => $data_pegawai->level
-                );
+            
+            $result = $query->row_array();
 
-            $this->session->set_userdata($session);
+            if ($this->bcrypt->check_password($password, $result['password'])) {
+                foreach ($query->result() as $sess) {
+                $sess_data['logged_in'] = TRUE;
+                $sess_data['username'] = $sess->username;
+                }
+                $this->session->set_userdata($sess_data);
+                return $result;
+            } else {
+                //Wrong password
+                return array();
+            }
 
-            return TRUE;
         } else {
-            return FALSE;
+            return array();
         }
     }
 	

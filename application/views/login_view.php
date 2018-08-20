@@ -1,35 +1,39 @@
-
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>PSB Online SMK Telkom Malang</title>
+    <link rel="stylesheet" type="text/css" href="<?php echo base_url(); ?>assets/css/bootstrap.min.css">
+    <link rel="stylesheet" type="text/css" href="<?php echo base_url(); ?>assets/css/style.css">
+    <link rel="stylesheet" href="<?php echo base_url(); ?>assets/dist/css/AdminLTE.min.css">
+  </head>
+  <body class="hold-transition lockscreen">
+    <div class="container" style="padding-top: 150px;">
       <div class="row">
-        <div class="col-md-12">
-          <!-- Horizontal Form -->
-          <div class="panel panel-primary">
-                        <div class="panel-heading">
-                        <i class="fa fa-sign-in"></i> Masuk</div>
-                        <div class="panel-body">
-                            <div class="row">
-                                <div class="col-lg-12">
-                                  <?php echo $this->session->flashdata('message');
-                                  $alert = "'Apakah anda yakin mengapus data ini ?'";
 
-                                  ?>
-                                    <?php echo form_open('login/cek_login'); ?>
-                                                              <div class="form-group">
-                                              <label for="email">Username</label><label for="daftar"></label> <a href="registration"></a>
-                                              <input type="text" name="username" class="form-control" id="username" placeholder="Masukkan Username Anda" required>
-                                          </div>
-                                          <div class="form-group">
-                                              <label for="password">Kata Sandi</label> <a href="login/lupa"><i>Lupa?</i></a>
-                                              <input type="password" name="password" class="form-control" id="password" placeholder="*****" required>
-                                          </div>
-                                          <button type="submit" class="btn btn-info">Masuk</button>
-                                          <button type="reset" class="btn btn-default">Reset</button>
-                                    <?php echo form_close();?>
-                            </div></div>
-                        </div>
-                    </div>
+        <div class="col-md-4 col-sm-4 col-xs-4 col-lg-4"></div>
+        <div class="col-md-4 col-sm-4 col-xs-4 col-lg-4">
+          <?php echo $this->session->flashdata('message'); ?>
+          <div class="panel panel-default">
+            <div class="panel-heading"><h4>Login Administrator</h4></div>
+              <div class="panel-body">
+              <form action="<?php echo base_url('login/login'); ?>" id="form-login" method="post">
+                <div class="input-group">
+                  <span class="input-group-addon"><i class="glyphicon glyphicon-envelope"></i></span>
+                  <input type="text" id="username" name="username" autofocus value="" required="" placeholder="Username" class="form-control" />
+                </div>
+                <br>
+                <div class="input-group">
+                  <span class="input-group-addon"><i class="glyphicon glyphicon-lock"></i></span>
+                  <input type="password" id="password" name="password" autofocus value="" required="" placeholder="Password" class="form-control" />
+                </div>
+                <br>
+                <input type="submit" name="submit" value="LOGIN" class="btn btn-block btn-sm btn-primary">
+              </form>
+            </div>
           </div>
-          <!-- /.box -->
-          <!-- general form elements disabled -->
-      <!-- /.row -->
-    
-
+        </div>
+        <div class="col-md-4 col-sm-4 col-xs-4 col-lg-4"></div>
+      </div>
+    </div>
+  </body>
+</html>
