@@ -73,10 +73,7 @@
                         <input type="hidden" name="alamat_mhs" id="alamat_mhs" class="text-input" maxlength="16" size="50" value="">       
 
                     </td>
-                    <td rowspan="8"><div class="btn btn-file" >
-                  <input type="file"   onchange="loadFile(event)" name="foto_mahasiswa" id="foto_mahasiswa">
-                  <img id="output" height="200" width="150" class="pull-right" width="40%" alt="Photo" onerror="this.src='<?php echo base_url();?>uploads/user.jpg'" src="#" alt="Your Image">
-                </div></td>
+                   
                 </tr>
                 <tr>
                     <td class="left_column" width="15%" >Nama Prodi <font color="#FF0000">*</font></td>
@@ -104,20 +101,7 @@
                     <td colspan="4">:  <input type="date" name="tgl_du" id="tgl_du" class="validate[required] text-input" maxlength="16" size="50" style="width:20%" required="">                            
                     </td>
                 </tr>
-                <tr>
-                    <td class="left_column" width="15%">Status Mahasiswa <font color="#FF0000">*</font></td>
-                    <td colspan="4">:  <select name="id_status" id="id_status" required="">
-                            <option>Pilih Status</option>  
-                             <?php 
-
-                  foreach($getStatus as $row)
-                  { 
-                    echo '<option value="'.$row->id_status.'">'.$row->status_mhs.'</option>';
-                  }
-                  ?>
-                             </select>                            
-                    </td>
-                </tr>
+               
                 <tr>
                     <td class="left_column" width="15%"> Grade <font color="#FF0000">*</font></td>
                     <td colspan="4">:  <select name="id_grade" id="id_grade" required="">

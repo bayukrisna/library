@@ -122,6 +122,8 @@ class Kurikulum_model extends CI_Model {
 
   public function get_prodi_periode($data){
       return $this->db->where('tb_periode.id_prodi',$data)
+              ->where('tgl_akhir_kul >=',  date('Y-m-d'))
+              ->where('tgl_awal_kul <=',  date('Y-m-d'))
               ->get('tb_periode')
               ->result();
   }

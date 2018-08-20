@@ -560,7 +560,7 @@
               <div class="modal-body">
                 
                 <div class="form-horizontal">
-                <form  method="post" runat="server" action="<?php echo base_url(); ?>mahasiswa/save_edit_foto_mahasiswa" enctype="multipart/form-data">
+                <form  method="post" runat="server" action="<?php echo base_url(); ?>mahasiswa/save_foto_mhs" enctype="multipart/form-data">
                   <div class="box-body">
                     <div class="box-body">
                     <div class="form-group">
