@@ -110,7 +110,7 @@
                   <td>'.$data->angkatan.'</td>
                   <td>
                     <a href="'.base_url('mahasiswa/detail_mahasiswa_dikti/'.$data->id_mahasiswa).'" class="btn btn-success  btn-sm"><i class="glyphicon glyphicon-pencil"></i><span class="tooltiptext">Detail Mahasiswa</span></a>
-                    <a href="'.base_url('mahasiswa/aktivitas_perkuliahan/'.$data->id_mahasiswa).'" class="btn btn-warning btn-sm"><i class="glyphicon glyphicon-pencil"></i><span class="tooltiptext">Aktivitas Kuliah</span></a>
+                    
 
                   </td>
                   

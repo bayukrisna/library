@@ -77,7 +77,7 @@ class Mahasiswa_model extends CI_Model {
      $this->db->join('tb_skala_nilai','tb_skala_nilai.id_skala_nilai=tb_kelas_mhs.id_skala_nilai');
      $this->db->join('tb_periode','tb_periode.id_periode=tb_kp.id_periode');
      $this->db->like('tb_kelas_mhs.id_mahasiswa',$id_mahasiswa);
-     $this->db->like('tb_periode.id_periode',$id_periode);
+     $this->db->like('tb_periode.semester',$id_periode);
      $query = $this->db->get();
      return $query->result();
       }
@@ -93,6 +93,14 @@ class Mahasiswa_model extends CI_Model {
               ->result();
   } 
 
+  public function data_ap($id_mahasiswa){
+      return $this->db->join('tb_status_mhs','tb_status_mhs.id_status=tb_aktivitas_perkuliahan.id_status')
+              ->join('tb_periode','tb_periode.id_periode=tb_aktivitas_perkuliahan.id_periode')
+              ->where('tb_aktivitas_perkuliahan.id_mahasiswa', $id_mahasiswa)
+              ->get('tb_aktivitas_perkuliahan')
+              ->result();
+  } 
+
   public function detail_mahasiswa_dikti($id_mahasiswa){
       return $this->db->join('tb_prodi','tb_prodi.id_prodi=tb_mahasiswa.id_prodi')
               ->join('tb_konsentrasi','tb_konsentrasi.id_konsentrasi=tb_mahasiswa.id_konsentrasi')
@@ -104,6 +112,8 @@ class Mahasiswa_model extends CI_Model {
               ->join('tb_kontak','tb_kontak.id_mahasiswa=tb_mahasiswa.id_mahasiswa')
               ->join('tb_bio','tb_bio.id_mahasiswa=tb_mahasiswa.id_mahasiswa')
               ->join('tb_mhs_add','tb_mhs_add.id_mahasiswa=tb_mahasiswa.id_mahasiswa')
+              ->join('tb_grade','tb_grade.id_grade=tb_mahasiswa.id_grade')
+              ->join('tb_status_mhs','tb_status_mhs.id_status=tb_mahasiswa.id_status')
               ->join('tb_jenis_tinggal','tb_jenis_tinggal.id_jt=tb_mhs_add.id_jt','left')
               ->join('tb_transportasi','tb_transportasi.id_transportasi=tb_mhs_add.id_transportasi','left')
               ->where('tb_mahasiswa.id_mahasiswa', $id_mahasiswa)

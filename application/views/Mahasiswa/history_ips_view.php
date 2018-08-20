@@ -21,6 +21,11 @@
             <td class="left_column" width="15%">Angkatan</td>
             <td>: <?php echo $mahasiswa->angkatan; ?>           </td>
         </tr>
+        <tr>
+            <td class="left_column" width="15%">Periode</td>
+            <td width="35%">: <?php echo $this->input->get('id_periode'); ?>            </td>
+            
+        </tr>
         
                
 
@@ -134,7 +139,8 @@
                     <td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
                       
                       <select name="id_periode" id="id_periode" class="validate[required]">
-                        
+                        <option value="">Semua</option>   
+
                     
               </select>
 
@@ -208,7 +214,7 @@
 
     </tr>
     <tr>
-        <th style="text-align:right" colspan="7"> IPK : </th>
+        <th style="text-align:right" colspan="7"> IPS : </th>
         <th style="text-align:center"> <?php $ips = $totalsi / $totalbobot; echo round($ips, 2); ?>   </th>
     </tr>
 
