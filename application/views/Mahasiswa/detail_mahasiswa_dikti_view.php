@@ -570,11 +570,7 @@ if(!empty($ea)){
               <div class="modal-body">
                 
                 <div class="form-horizontal">
-<<<<<<< HEAD
-                <form  method="post" runat="server" action="<?php echo base_url(); ?>mahasiswa/save_foto_mhs" enctype="multipart/form-data">
-=======
                 <form  method="post" runat="server" action="<?php echo base_url(); ?>mahasiswa/save_edit_foto_mahasiswa/<?php echo $this->uri->segment(3);?>" enctype="multipart/form-data">
->>>>>>> 0427690a8de26cd8068a5a8773205f25e372cd76
                   <div class="box-body">
                     <div class="box-body">
                         <div class="form-group">
