@@ -3,7 +3,7 @@
 <?php
 $ea = $this->session->flashdata('message');
 if(!empty($ea)){
-    echo '<div class="alert alert-info">';
+    echo '<div class="callout callout-info">';
     echo $ea;
     echo '</div>';
 }
