@@ -81,7 +81,8 @@
                   <th>NIM</th>
                   <th>L/P</th>
                   <th>Agama</th>
-                  <th>Tanggal Lahir </th>
+                  <th>Tpt. Lahir </th>
+                  <th>Tgl. Lahir </th>
                   <th>Program Studi</th>
                   <th>Status</th>
                   <th>Angkatan</th>
@@ -102,6 +103,7 @@
                   <td>'.$data->nim.'</td>
                   <td>'.$data->jenis_kelamin.'</td>
                   <td>'.$data->agama.'</td>
+                  <td>'.$data->tempat_lahir.'</td>
                   <td>'.$data->tanggal_lahir.'</td>
                   <td>'.$data->nama_prodi.'</td>
                   <td>'.$data->status_mhs.'</td>
