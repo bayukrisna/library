@@ -125,9 +125,21 @@ class Mahasiswa_model extends CI_Model {
       return $this->db->join('tb_kp','tb_kp.id_kp=tb_kelas_mhs.id_kp')
               ->join('tb_detail_kurikulum','tb_detail_kurikulum.id_detail_kurikulum=tb_kp.id_detail_kurikulum')
               ->join('tb_matkul','tb_matkul.kode_matkul=tb_detail_kurikulum.kode_matkul')
+              ->join('tb_periode','tb_periode.id_periode=tb_kp.id_periode')
               ->where('tb_kelas_mhs.id_mahasiswa', $id_mahasiswa)
+              ->where('tb_periode.tgl_awal_kul <=', date('Y-m-d'))
+              ->where('tb_periode.tgl_akhir_kul >=', date('Y-m-d'))
               ->get('tb_kelas_mhs')
               ->result();
+  } 
+
+   public function Periode_krs($id_prodi){
+      return $this->db->select('semester')
+              ->where('tb_periode.tgl_awal_kul <=', date('Y-m-d'))
+              ->where('tb_periode.tgl_akhir_kul >=', date('Y-m-d'))
+              ->where('id_prodi', $id_prodi)
+              ->get('tb_periode')
+              ->row();
   } 
 
   public function getStatus(){
@@ -249,12 +261,11 @@ class Mahasiswa_model extends CI_Model {
             'id_mahasiswa'      => $this->input->post('id_mahasiswa', TRUE),
             'nama_mahasiswa'      => $this->input->post('nama_mahasiswa', TRUE),
             'nim'      => $this->input->post('nim', TRUE),
-            'id_status'      => $this->input->post('id_status', TRUE),
+            'id_status'      => '1',
             'id_prodi'      => $this->input->post('id_prodi', TRUE),
             'id_konsentrasi'      => $this->input->post('concentrate', TRUE),
             'id_waktu'      => $this->input->post('id_waktu', TRUE),
-            'id_grade'      => $this->input->post('id_grade', TRUE),
-            'id_grade2'      => $this->input->post('id_grade', TRUE)
+            'id_grade'      => $this->input->post('id_grade', TRUE)
 
         );
     
@@ -521,12 +532,32 @@ class Mahasiswa_model extends CI_Model {
     public function save_edit_mahasiswa($id_tes){
     $data = array(
             'nama_mahasiswa'      => $this->input->post('nama_mahasiswa', TRUE),
-            'nim'      => $this->input->post('nim', TRUE),
+            'nim'      => $this->input->post('nim', TRUE),   
+            'id_prodi'      => $this->input->post('id_prodi', TRUE),
+            'id_konsentrasi'      => $this->input->post('concentrate', TRUE),
+            'id_waktu'      => $this->input->post('id_waktu', TRUE),
+            'id_grade'      => $this->input->post('id_grade', TRUE)
       );
 
     if (!empty($data)) {
             $this->db->where('id_mahasiswa', $id_tes)
         ->update('tb_mahasiswa', $data);
+
+          return true;
+        } else {
+            return null;
+        }
+  }
+
+  public function save_edit_mhs_add($id_tes){
+    $data = array(
+            'id_transportasi'      => $this->input->post('id_transportasi', TRUE),
+            'id_jt'      => $this->input->post('id_jt', TRUE),
+      );
+
+    if (!empty($data)) {
+            $this->db->where('id_mahasiswa', $id_tes)
+        ->update('tb_mhs_add', $data);
 
           return true;
         } else {

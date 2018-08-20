@@ -23,7 +23,8 @@
         </tr>
         <tr>
             <td class="left_column">Periode </td>
-            <td colspan="3">: </td>
+            <td colspan="3">: <?php 
+             echo $periode->semester;?></td>
         </tr>
                 <tr>
             <!-- <td class="left_column">Kelas </td>

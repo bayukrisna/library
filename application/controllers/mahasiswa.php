@@ -84,8 +84,10 @@ class Mahasiswa extends CI_Controller {
 	public function krs_mahasiswa()
 	{
 			$id_mahasiswa = $this->uri->segment(3);
+			$id_prodi = $this->uri->segment(4);
 			$data['mahasiswa'] = $this->mahasiswa_model->detail_krs_mahasiswa($id_mahasiswa);
 			$data['krs'] = $this->mahasiswa_model->data_krs_mhs($id_mahasiswa);
+			$data['periode'] = $this->mahasiswa_model->Periode_krs();
 			$data['main_view'] = 'Mahasiswa/krs_mahasiswa_view';
 			$this->load->view('template', $data);
 	}
@@ -217,7 +219,7 @@ class Mahasiswa extends CI_Controller {
 	public function save_edit_mahasiswa()
 	{
 		 $id_mahasiswa = $this->uri->segment(3);
-			if($this->mahasiswa_model->save_edit_mahasiswa($id_mahasiswa) == TRUE && $this->mahasiswa_model->save_edit_ayah($id_mahasiswa) == TRUE && $this->mahasiswa_model->save_edit_ibu($id_mahasiswa) == TRUE && $this->mahasiswa_model->save_edit_alamat($id_mahasiswa) == TRUE && $this->mahasiswa_model->save_edit_wali($id_mahasiswa) == TRUE && $this->mahasiswa_model->save_edit_kependudukan($id_mahasiswa) == TRUE && $this->mahasiswa_model->save_edit_bio($id_mahasiswa) == TRUE && $this->mahasiswa_model->save_edit_jenis_tinggal($id_mahasiswa) == TRUE && $this->mahasiswa_model->save_edit_kontak($id_mahasiswa) == TRUE){
+			if($this->mahasiswa_model->save_edit_mahasiswa($id_mahasiswa) == TRUE && $this->mahasiswa_model->save_edit_ayah($id_mahasiswa) == TRUE && $this->mahasiswa_model->save_edit_ibu($id_mahasiswa) == TRUE && $this->mahasiswa_model->save_edit_alamat($id_mahasiswa) == TRUE && $this->mahasiswa_model->save_edit_wali($id_mahasiswa) == TRUE && $this->mahasiswa_model->save_edit_kependudukan($id_mahasiswa) == TRUE && $this->mahasiswa_model->save_edit_bio($id_mahasiswa) == TRUE && $this->mahasiswa_model->save_edit_kontak($id_mahasiswa) == TRUE && $this->mahasiswa_model->save_edit_mhs_add($id_mahasiswa) == TRUE){
 				$nama_du = $this->input->post('nama_mahasiswa');
 				$this->session->set_flashdata('message', '<div class="col-md-12 alert alert-success"> Data '.$nama_du.' berhasil didaftarkan. </div>');
             	redirect('mahasiswa/data_mahasiswa');
