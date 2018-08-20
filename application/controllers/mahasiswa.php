@@ -241,20 +241,31 @@ class Mahasiswa extends CI_Controller {
 
 	public function save_foto_mhs(){
 	    $config['upload_path'] = './uploads/';
-	    $config['allowed_types'] = 'jpg|png|jpeg|pdf';
+	    $config['allowed_types'] = 'jpg|png|jpeg';
 	    $this->load->library('upload', $config);
 
 	    if($this->upload->do_upload('foto_mahasiswa')){
+<<<<<<< HEAD
 	      if($this->mahasiswa_model->save_foto_mhs($this->upload->data(), $this->uri->segment(3)) == TRUE){
 	        $this->session->set_flashdata('success', 'Upload Bukti Berhasil');
 	            redirect('tamu');
+=======
+	      if($this->mahasiswa_model->save_edit_foto_mahasiswa($this->upload->data(), $this->uri->segment(3)) == TRUE){
+	        $this->session->set_flashdata('message', 'Upload Bukti Berhasil');
+	            redirect('mahasiswa/detail_mahasiswa_dikti/'.$this->uri->segment(3));
+>>>>>>> 0427690a8de26cd8068a5a8773205f25e372cd76
 	      } else {
-	        $this->session->set_flashdata('failed', 'Update foto gagal');
-	            redirect('finance');
+	        $this->session->set_flashdata('message', 'Update foto gagal');
+	            redirect('mahasiswa/detail_mahasiswa_dikti/'.$this->uri->segment(3));
 	      }
 	    } else {
+<<<<<<< HEAD
 	      $this->session->set_flashdata('failed', $this->upload->display_errors());
 	        redirect('ee');
+=======
+	      $this->session->set_flashdata('message', $this->upload->display_errors());
+	        redirect('mahasiswa/detail_mahasiswa_dikti/'.$this->uri->segment(3));
+>>>>>>> 0427690a8de26cd8068a5a8773205f25e372cd76
 	    }
 	  } 
 		

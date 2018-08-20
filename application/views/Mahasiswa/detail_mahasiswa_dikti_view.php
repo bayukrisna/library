@@ -1,3 +1,13 @@
+
+
+<?php
+$ea = $this->session->flashdata('message');
+if(!empty($ea)){
+    echo '<div class="alert alert-info">';
+    echo $ea;
+    echo '</div>';
+}
+?>
 <form  method="post" action="<?php echo base_url(); ?>mahasiswa/save_edit_mahasiswa/<?php echo $mahasiswa->id_mahasiswa; ?>" enctype="multipart/form-data">
         
         <div class="box box-info">
@@ -540,7 +550,7 @@
         <!-- /.col -->
 <script>
     function loadFile(event) {
-                var output = document.getElementById('output');
+                var output = document.getElementById('outputku');
                 output.src = URL.createObjectURL(event.target.files[0]);
             }
 </script>
@@ -560,17 +570,20 @@
               <div class="modal-body">
                 
                 <div class="form-horizontal">
+<<<<<<< HEAD
                 <form  method="post" runat="server" action="<?php echo base_url(); ?>mahasiswa/save_foto_mhs" enctype="multipart/form-data">
+=======
+                <form  method="post" runat="server" action="<?php echo base_url(); ?>mahasiswa/save_edit_foto_mahasiswa/<?php echo $this->uri->segment(3);?>" enctype="multipart/form-data">
+>>>>>>> 0427690a8de26cd8068a5a8773205f25e372cd76
                   <div class="box-body">
                     <div class="box-body">
-                    <div class="form-group">
-                      <label for="inputEmail3" class="col-sm-3 control-label">Potongan</label>
-
-                      <div class="col-sm-8">
-                        <input type="file" id="foto_mahasiswa" name="foto_mahasiswa">
-                      </div>
-                    </div>
-                    <button type="submit">Simpan</button>
+                        <div class="form-group">
+                             <img  id="outputku" height="200" width="200"  src="<?php echo base_url(); ?>uploads/<?php echo $mahasiswa->foto_mahasiswa; ?>" alt="Photo" onerror="this.src='<?php echo base_url();?>uploads/user.jpg'" src="#" alt="Your Image" >
+                        </div>
+                        <div class="form-group">
+                            <input type="file" id="foto_mahasiswa" name="foto_mahasiswa" onchange="loadFile(event)">
+                        </div>
+                    <button type="submit" class="btn btn-primary">Simpan</button>
                   </div>
                   <!-- /.box-body -->
                   <!-- /.box-footer -->
