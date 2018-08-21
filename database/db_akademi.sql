@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Aug 20, 2018 at 04:43 AM
+-- Generation Time: Aug 21, 2018 at 11:26 AM
 -- Server version: 10.1.33-MariaDB
 -- PHP Version: 7.1.18
 
@@ -46,11 +46,11 @@ CREATE TABLE `tb_aktivitas_perkuliahan` (
 INSERT INTO `tb_aktivitas_perkuliahan` (`id_aktivitas`, `id_mahasiswa`, `id_periode`, `ips`, `ipk_ak`, `id_status`, `sks_semester`, `sks_total`) VALUES
 (3, 'M0007', '2', 0, 0, '2', 0, 1),
 (4, 'M0007', '4', 0, 0, '1', 0, 1),
-(5, 'M0003', '2', 3.25, 3.25, '1', 14, 22),
 (6, 'M0008', '2', 0, 0, '2', 0, 1),
 (7, 'M0004', '2', 0, 0, '2', 0, 1),
 (8, 'M0004', '4', 0, 0, '2', 0, 1),
-(9, 'M0008', '4', 0, 0, '1', 0, 1);
+(9, 'M0008', '4', 0, 0, '1', 0, 1),
+(12, 'M0003', '4', 3.25, 3.25, '1', 8, 22);
 
 -- --------------------------------------------------------
 
@@ -243,7 +243,7 @@ INSERT INTO `tb_bio` (`id_mahasiswa`, `jenis_kelamin`, `tempat_lahir`, `tanggal_
 ('M0004', 'P', 'Malang', '2018-08-08', 'Katholik', '', '2018'),
 ('M0005', 'L', 'Malang', '2018-08-11', 'Kristen', '', '2018'),
 ('M0006', 'L', 'Malang', '2018-08-03', 'Kristen', '', '2018'),
-('M0007', 'L', 'Malang', '2018-08-02', 'Islam', '', '2018'),
+('M0007', 'L', 'Malang', '2018-08-02', 'Islam', 'histori_nilai.PNG', '2018'),
 ('M0008', 'L', 'Malang', '2018-08-10', 'Kristen', '', '2018'),
 ('M0009', 'P', 'Malang', '2018-08-06', 'Kristen', '', '2018'),
 ('M0010', 'P', 'Pakis', '2018-08-01', 'Islam', 'aktivitas_perkuliahan.PNG', '2018');
@@ -372,6 +372,30 @@ INSERT INTO `tb_grade` (`id_grade`, `grade`, `diskon`) VALUES
 -- --------------------------------------------------------
 
 --
+-- Table structure for table `tb_hari`
+--
+
+CREATE TABLE `tb_hari` (
+  `id_hari` int(1) NOT NULL,
+  `hari` varchar(6) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `tb_hari`
+--
+
+INSERT INTO `tb_hari` (`id_hari`, `hari`) VALUES
+(1, 'Senin'),
+(2, 'Selasa'),
+(3, 'Rabu'),
+(4, 'Kamis'),
+(5, 'Jumat'),
+(6, 'Sabtu'),
+(7, 'Minggu');
+
+-- --------------------------------------------------------
+
+--
 -- Table structure for table `tb_hasil_tes`
 --
 
@@ -427,17 +451,37 @@ INSERT INTO `tb_ibu` (`id_mahasiswa`, `nama_ibu`, `nik_ibu`, `tanggal_lahir_ibu`
 --
 
 CREATE TABLE `tb_jabatan` (
-  `id_jabatan` varchar(7) NOT NULL,
-  `nama_jabatan` varchar(20) NOT NULL,
-  `level` int(2) NOT NULL
+  `id_level` varchar(7) NOT NULL,
+  `nama_level` varchar(20) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `tb_jabatan`
 --
 
-INSERT INTO `tb_jabatan` (`id_jabatan`, `nama_jabatan`, `level`) VALUES
-('123', 'Admin', 0);
+INSERT INTO `tb_jabatan` (`id_level`, `nama_level`) VALUES
+('1', 'Admin'),
+('2', 'Dosen'),
+('3', 'Pemasaran'),
+('4', 'Keuangan'),
+('5', 'Mahasiswa');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `tb_jadwal`
+--
+
+CREATE TABLE `tb_jadwal` (
+  `id_jadwal` int(5) NOT NULL,
+  `id_detail_kurikulum` varchar(5) NOT NULL,
+  `id_periode` varchar(3) NOT NULL,
+  `id_hari` int(1) NOT NULL,
+  `jam_awal` time NOT NULL,
+  `jam_akhir` time NOT NULL,
+  `id_waktu` int(1) NOT NULL,
+  `id_kp` varchar(7) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 -- --------------------------------------------------------
 
@@ -540,24 +584,23 @@ INSERT INTO `tb_jenis_tinggal` (`id_jt`, `jenis_tinggal`) VALUES
 --
 
 CREATE TABLE `tb_kelas_dosen` (
-  `id_kelas_dosen` int(11) NOT NULL,
+  `id_kp` varchar(6) NOT NULL,
   `id_dosen` varchar(10) NOT NULL,
   `rencana` int(11) NOT NULL,
   `realisasi` int(11) NOT NULL,
-  `bobot_dosen` int(11) NOT NULL,
-  `jenis_evaluasi` varchar(50) NOT NULL,
-  `id_kp` varchar(6) NOT NULL
+  `jenis_evaluasi` varchar(50) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `tb_kelas_dosen`
 --
 
-INSERT INTO `tb_kelas_dosen` (`id_kelas_dosen`, `id_dosen`, `rencana`, `realisasi`, `bobot_dosen`, `jenis_evaluasi`, `id_kp`) VALUES
-(49, '3', 4, 4, 14, 'yey', 'KP001'),
-(52, '3', 5, 5, 14, '4', 'KP002'),
-(53, '2', 5, 5, 10, '5', 'KP003'),
-(54, '1', 1, 1, 8, '', 'KP004');
+INSERT INTO `tb_kelas_dosen` (`id_kp`, `id_dosen`, `rencana`, `realisasi`, `jenis_evaluasi`) VALUES
+('KP001', '3', 4, 4, 'yey'),
+('KP002', '3', 5, 5, '4'),
+('KP003', '2', 5, 5, '5'),
+('KP004', '1', 1, 1, ''),
+('KP005', '3', 5, 5, 'r');
 
 -- --------------------------------------------------------
 
@@ -581,9 +624,9 @@ INSERT INTO `tb_kelas_mhs` (`id_kelas_mhs`, `id_mahasiswa`, `id_kp`, `id_skala_n
 (2, 'M0003', 'KP002', '14', 78),
 (3, 'M0003', 'KP003', '14', 80),
 (4, 'M0006', 'KP001', '12', 90),
-(24, 'M0008', 'KP003', '', 0),
+(24, 'M0008', 'KP003', '20', 43),
 (26, 'M0009', 'KP003', '', 0),
-(27, 'M0009', 'KP004', '', 0);
+(27, 'M0009', 'KP004', '14', 78);
 
 -- --------------------------------------------------------
 
@@ -679,19 +722,19 @@ CREATE TABLE `tb_kp` (
   `id_detail_kurikulum` varchar(4) NOT NULL,
   `bahasan` text NOT NULL,
   `tgl_mulai` date NOT NULL,
-  `tgl_akhir` date NOT NULL,
-  `id_dosen` varchar(20) NOT NULL
+  `tgl_akhir` date NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `tb_kp`
 --
 
-INSERT INTO `tb_kp` (`id_kp`, `nama_kelas`, `id_prodi`, `id_periode`, `id_detail_kurikulum`, `bahasan`, `tgl_mulai`, `tgl_akhir`, `id_dosen`) VALUES
-('KP001', 'Kelas korea', 'PR002', '3', '6', 'MEmbahas ninja', '2018-08-01', '2018-08-24', '3'),
-('KP002', 'jpg', 'PR001', '2', '7', 'waw', '2018-08-01', '2018-08-14', '3'),
-('KP003', 'kelas jerman', 'PR001', '4', '9', 'jerman', '2018-08-01', '2018-08-31', '2'),
-('KP004', 'jerman new', 'PR001', '4', '9', 'w', '2018-08-01', '2018-08-31', '1');
+INSERT INTO `tb_kp` (`id_kp`, `nama_kelas`, `id_prodi`, `id_periode`, `id_detail_kurikulum`, `bahasan`, `tgl_mulai`, `tgl_akhir`) VALUES
+('KP001', 'Kelas korea', 'PR002', '3', '6', 'MEmbahas ninja', '2018-08-01', '2018-08-24'),
+('KP002', 'jpg', 'PR001', '2', '7', 'waw', '2018-08-01', '2018-08-14'),
+('KP003', 'kelas jerman', 'PR001', '4', '9', 'jerman', '2018-08-01', '2018-08-31'),
+('KP004', 'jerman new', 'PR001', '4', '9', 'w', '2018-08-01', '2018-08-31'),
+('KP005', 'Mtk class', 'PR001', '4', '8', 'wawan', '2018-08-02', '2018-08-31');
 
 -- --------------------------------------------------------
 
@@ -721,6 +764,31 @@ INSERT INTO `tb_kurikulum` (`id_kurikulum`, `nama_kurikulum`, `id_prodi`, `jumla
 -- --------------------------------------------------------
 
 --
+-- Table structure for table `tb_ld`
+--
+
+CREATE TABLE `tb_ld` (
+  `id_mahasiswa` varchar(7) NOT NULL,
+  `id_status` int(2) NOT NULL,
+  `keterangan` varchar(30) NOT NULL,
+  `sk_yudisium` varchar(30) NOT NULL,
+  `tgl_sk_yudisium` date NOT NULL,
+  `no_seri_ijazah` varchar(20) NOT NULL,
+  `tanggal_keluar` date NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `tb_ld`
+--
+
+INSERT INTO `tb_ld` (`id_mahasiswa`, `id_status`, `keterangan`, `sk_yudisium`, `tgl_sk_yudisium`, `no_seri_ijazah`, `tanggal_keluar`) VALUES
+('M0003', 7, 'ya', 'sk 1', '2018-08-01', '233/33', '2018-08-08'),
+('M0006', 13, 'waw', 'yey', '2018-08-01', '233/354', '2018-08-02'),
+('M0010', 13, '0', 'sk 1', '2018-08-02', '233/33', '2018-08-23');
+
+-- --------------------------------------------------------
+
+--
 -- Table structure for table `tb_mahasiswa`
 --
 
@@ -730,7 +798,6 @@ CREATE TABLE `tb_mahasiswa` (
   `nama_mahasiswa` varchar(50) NOT NULL,
   `nim` varchar(15) NOT NULL,
   `id_status` varchar(2) NOT NULL,
-  `id_prodi` varchar(7) NOT NULL,
   `id_konsentrasi` varchar(7) NOT NULL,
   `id_hasil_tes` varchar(7) NOT NULL,
   `id_sekolah` varchar(6) NOT NULL,
@@ -742,15 +809,15 @@ CREATE TABLE `tb_mahasiswa` (
 -- Dumping data for table `tb_mahasiswa`
 --
 
-INSERT INTO `tb_mahasiswa` (`id_mahasiswa`, `id_du`, `nama_mahasiswa`, `nim`, `id_status`, `id_prodi`, `id_konsentrasi`, `id_hasil_tes`, `id_sekolah`, `id_waktu`, `id_grade`) VALUES
-('M0003', '', 'bayu krisna', '999', '1', 'PR001', 'KO003', '', '', 1, '6'),
-('M0004', '', 'Britney', '435', '2', 'PR001', 'KO003', '', '', 1, '5'),
-('M0005', ' 9865', 'Paris ', '896875', '12', 'PR002', 'KO002', 'TES0001', 'SE001', 1, ''),
-('M0006', ' 87965', 'paris sore', '1111', '1', 'PR002', 'KO002', '', 'SE002', 2, '4'),
-('M0007', ' 87g', 'new paris', '2222', '1', 'PR001', 'KO003', 'TES0002', 'SE001', 1, '3'),
-('M0008', ' 54', 'Jessica Jung', '65645', '1', 'PR001', 'KO003', 'TES0003', 'SE001', 1, ''),
-('M0009', '', 'Ariana', '4444', '1', 'PR001', 'KO003', '', '', 1, '1'),
-('M0010', '', 'Katy', '55555', '1', 'PR002', 'KO002', '', '', 2, '4');
+INSERT INTO `tb_mahasiswa` (`id_mahasiswa`, `id_du`, `nama_mahasiswa`, `nim`, `id_status`, `id_konsentrasi`, `id_hasil_tes`, `id_sekolah`, `id_waktu`, `id_grade`) VALUES
+('M0003', '', 'bayu krisna', '999', '1', 'KO003', '', '', 1, '6'),
+('M0004', '', 'Britney', '435', '2', 'KO003', '', '', 1, '5'),
+('M0005', ' 9865', 'Paris ', '896875', '12', 'KO002', 'TES0001', 'SE001', 1, ''),
+('M0006', ' 87965', 'paris sore', '1111', '1', 'KO002', '', 'SE002', 2, '4'),
+('M0007', ' 87g', 'new paris', '2222', '1', 'KO003', 'TES0002', 'SE001', 1, '3'),
+('M0008', ' 54', 'Jessica Jung', '65645', '1', 'KO003', 'TES0003', 'SE001', 1, ''),
+('M0009', '', 'Ariana', '4444', '1', 'KO003', '', '', 1, '1'),
+('M0010', '', 'Katy', '55555', '1', 'KO002', '', '', 2, '4');
 
 -- --------------------------------------------------------
 
@@ -803,14 +870,14 @@ CREATE TABLE `tb_mhs_add` (
 --
 
 INSERT INTO `tb_mhs_add` (`id_mahasiswa`, `tgl_du`, `id_transportasi`, `id_jt`, `ipk`) VALUES
-('M0003', '2018-08-15', '9', '', 3.52),
+('M0003', '2018-08-15', '9', '', 3.25),
 ('M0004', '2018-08-21', '', '', 0),
 ('M0005', '2018-08-14', '', '', 0),
 ('M0006', '2018-08-14', '', '', 0),
 ('M0007', '2018-08-14', '', '', 0),
 ('M0008', '2018-08-14', '', '', 0),
 ('M0009', '2018-08-14', '', '', 0),
-('M0010', '2018-08-08', '', '', 0);
+('M0010', '2018-08-08', '', '', 3.1);
 
 -- --------------------------------------------------------
 
@@ -948,7 +1015,7 @@ CREATE TABLE `tb_periode` (
 --
 
 INSERT INTO `tb_periode` (`id_periode`, `semester`, `id_prodi`, `target_mhs_baru`, `pendaftar_ikut_seleksi`, `pendaftar_lulus_seleksi`, `daftar_ulang`, `mengundurkan_diri`, `tgl_awal_kul`, `tgl_akhir_kul`, `jumlah_minggu_pertemuan`) VALUES
-(2, '2018/2019 Ganjil', 'PR001', '12', '21', '31', '32', '12', '2018-07-23', '2018-07-25', '2'),
+(2, '2018/2019 Ganjil', 'PR001', '12', '21', '31', '32', '12', '2018-07-23', '2018-07-05', '2'),
 (3, '2018/2019 Ganjil', 'PR002', '12', '51', '52', '53', '54', '2018-07-23', '2018-08-31', '2'),
 (4, '2018/2019 Genap', 'PR001', '100', '50', '50', '32', '54', '2018-08-01', '2018-08-31', '6');
 
@@ -1103,28 +1170,10 @@ INSERT INTO `tb_status_mhs` (`id_status`, `status_mhs`) VALUES
 (9, 'Keputusan PO'),
 (10, 'Menghilang'),
 (11, 'Lulus'),
-(12, 'Nilai Kosong');
-
--- --------------------------------------------------------
-
---
--- Table structure for table `tb_total_mhs`
---
-
-CREATE TABLE `tb_total_mhs` (
-  `id_kp` varchar(20) NOT NULL,
-  `total_mhs` int(11) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
-
---
--- Dumping data for table `tb_total_mhs`
---
-
-INSERT INTO `tb_total_mhs` (`id_kp`, `total_mhs`) VALUES
-('KP001', 1),
-('KP002', 0),
-('KP003', 3),
-('KP004', 1);
+(12, 'Nilai Kosong'),
+(13, 'Mutasi'),
+(14, 'Putus Sekolah'),
+(15, 'Lainnya');
 
 -- --------------------------------------------------------
 
@@ -1163,17 +1212,18 @@ INSERT INTO `tb_transportasi` (`id_transportasi`, `transportasi`) VALUES
 
 CREATE TABLE `tb_user` (
   `username` varchar(20) NOT NULL,
-  `password` varchar(20) NOT NULL,
+  `password` varchar(100) NOT NULL,
   `nama` varchar(30) NOT NULL,
-  `id_jabatan2` varchar(7) NOT NULL
+  `id_level` varchar(7) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `tb_user`
 --
 
-INSERT INTO `tb_user` (`username`, `password`, `nama`, `id_jabatan2`) VALUES
-('Bayu', 'admin', 'Bayu Krisna', '123');
+INSERT INTO `tb_user` (`username`, `password`, `nama`, `id_level`) VALUES
+('admin', '$2b$10$MQlZmmJPyWLNhaA3BQ.2i.vx1f8vfvcAT/CrF5aefTVN80Qv0cJdK', 'Admin', '1'),
+('aldi', '$2a$08$WWAwBJ646n1sYWgkOwwhiet8qlqXrQcONdo.gq6X0cHKjQD1vjPAe', 'aldi rahman', '5');
 
 -- --------------------------------------------------------
 
@@ -1283,6 +1333,12 @@ ALTER TABLE `tb_grade`
   ADD PRIMARY KEY (`id_grade`);
 
 --
+-- Indexes for table `tb_hari`
+--
+ALTER TABLE `tb_hari`
+  ADD PRIMARY KEY (`id_hari`);
+
+--
 -- Indexes for table `tb_hasil_tes`
 --
 ALTER TABLE `tb_hasil_tes`
@@ -1298,7 +1354,13 @@ ALTER TABLE `tb_ibu`
 -- Indexes for table `tb_jabatan`
 --
 ALTER TABLE `tb_jabatan`
-  ADD PRIMARY KEY (`id_jabatan`);
+  ADD PRIMARY KEY (`id_level`);
+
+--
+-- Indexes for table `tb_jadwal`
+--
+ALTER TABLE `tb_jadwal`
+  ADD PRIMARY KEY (`id_jadwal`);
 
 --
 -- Indexes for table `tb_jalur_pendaftaran`
@@ -1328,7 +1390,7 @@ ALTER TABLE `tb_jenis_tinggal`
 -- Indexes for table `tb_kelas_dosen`
 --
 ALTER TABLE `tb_kelas_dosen`
-  ADD PRIMARY KEY (`id_kelas_dosen`);
+  ADD PRIMARY KEY (`id_kp`);
 
 --
 -- Indexes for table `tb_kelas_mhs`
@@ -1366,6 +1428,12 @@ ALTER TABLE `tb_kp`
 --
 ALTER TABLE `tb_kurikulum`
   ADD PRIMARY KEY (`id_kurikulum`);
+
+--
+-- Indexes for table `tb_ld`
+--
+ALTER TABLE `tb_ld`
+  ADD PRIMARY KEY (`id_mahasiswa`);
 
 --
 -- Indexes for table `tb_mahasiswa`
@@ -1452,12 +1520,6 @@ ALTER TABLE `tb_status_mhs`
   ADD PRIMARY KEY (`id_status`);
 
 --
--- Indexes for table `tb_total_mhs`
---
-ALTER TABLE `tb_total_mhs`
-  ADD PRIMARY KEY (`id_kp`);
-
---
 -- Indexes for table `tb_transportasi`
 --
 ALTER TABLE `tb_transportasi`
@@ -1489,7 +1551,7 @@ ALTER TABLE `tb_wali`
 -- AUTO_INCREMENT for table `tb_aktivitas_perkuliahan`
 --
 ALTER TABLE `tb_aktivitas_perkuliahan`
-  MODIFY `id_aktivitas` int(4) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
+  MODIFY `id_aktivitas` int(4) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
 
 --
 -- AUTO_INCREMENT for table `tb_detail_kurikulum`
@@ -1516,6 +1578,18 @@ ALTER TABLE `tb_grade`
   MODIFY `id_grade` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
 
 --
+-- AUTO_INCREMENT for table `tb_hari`
+--
+ALTER TABLE `tb_hari`
+  MODIFY `id_hari` int(1) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
+
+--
+-- AUTO_INCREMENT for table `tb_jadwal`
+--
+ALTER TABLE `tb_jadwal`
+  MODIFY `id_jadwal` int(5) NOT NULL AUTO_INCREMENT;
+
+--
 -- AUTO_INCREMENT for table `tb_jalur_pendaftaran`
 --
 ALTER TABLE `tb_jalur_pendaftaran`
@@ -1532,12 +1606,6 @@ ALTER TABLE `tb_jenis_pendaftaran`
 --
 ALTER TABLE `tb_jenis_tinggal`
   MODIFY `id_jt` int(1) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
-
---
--- AUTO_INCREMENT for table `tb_kelas_dosen`
---
-ALTER TABLE `tb_kelas_dosen`
-  MODIFY `id_kelas_dosen` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=55;
 
 --
 -- AUTO_INCREMENT for table `tb_kelas_mhs`
@@ -1585,7 +1653,7 @@ ALTER TABLE `tb_skala_nilai`
 -- AUTO_INCREMENT for table `tb_status_mhs`
 --
 ALTER TABLE `tb_status_mhs`
-  MODIFY `id_status` int(2) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
+  MODIFY `id_status` int(2) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=16;
 
 --
 -- AUTO_INCREMENT for table `tb_transportasi`

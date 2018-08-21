@@ -34,28 +34,6 @@ class Kurikulum_model extends CI_Model {
 
     }
 
-    /*public function bobot($id_kurikulum){
-
-    $bobot_matkuls = $this->db->query("SELECT SUM(bobot_matkul) AS total FROM tb_detail_kurikulum WHERE id_kurikulum = $id_kurikulum")->row();
-    $bobot_btm = $this->db->query("SELECT SUM(btm) AS total FROM tb_detail_kurikulum WHERE id_kurikulum = $id_kurikulum")->row();
-    $bobot_bp = $this->db->query("SELECT SUM(bp) AS total FROM tb_detail_kurikulum WHERE id_kurikulum = $id_kurikulum")->row();
-    $bobot_bpl = $this->db->query("SELECT SUM(bpl) AS total FROM tb_detail_kurikulum WHERE id_kurikulum = $id_kurikulum")->row();
-    $bobot_bs = $this->db->query("SELECT SUM(bs) AS total FROM tb_detail_kurikulum WHERE id_kurikulum = $id_kurikulum")->row();
-    $bobot_wajib = $this->db->query("SELECT SUM(bobot_matkul) AS total FROM tb_detail_kurikulum WHERE wajib LIKE 'Y' AND id_kurikulum LIKE $id_kurikulum")->row();
-    $bobot_pilihan = $this->db->query("SELECT SUM(bobot_matkul) AS total FROM tb_detail_kurikulum WHERE wajib = 'T'  AND id_kurikulum LIKE $id_kurikulum")->row();
-
-
-    return array(
-      'bobot_matkuls' => $bobot_matkuls->total,
-      'bobot_btm' => $bobot_btm->total,
-      'bobot_bp' => $bobot_bp->total,
-      'bobot_bpl' => $bobot_bpl->total,
-      'bobot_bs' => $bobot_bs->total,
-      'bobot_wajib' => $bobot_wajib->total,
-      'bobot_pilihan' => $bobot_pilihan->total,
-      );
-      
-    } */
 
     public function autocomplete($nama){
      $this->db->select('*');
