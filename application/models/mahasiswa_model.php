@@ -743,6 +743,97 @@ class Mahasiswa_model extends CI_Model {
         }
   }
 
+  public function data_ld(){
+       return $this->db->join('tb_mahasiswa','tb_mahasiswa.id_mahasiswa=tb_ld.id_mahasiswa')
+              ->join('tb_bio','tb_bio.id_mahasiswa=tb_mahasiswa.id_mahasiswa')
+              ->join('tb_status_mhs','tb_status_mhs.id_status=tb_ld.id_status')
+              ->join('tb_mhs_add','tb_mhs_add.id_mahasiswa=tb_mahasiswa.id_mahasiswa')
+              ->get('tb_ld')
+              ->result();
+  }
+
+  public function autocomplete_ipk($nama){
+     $this->db->select('*');
+     $this->db->from('tb_mahasiswa');
+     $this->db->join('tb_mhs_add','tb_mhs_add.id_mahasiswa=tb_mahasiswa.id_mahasiswa');
+     $this->db->like('tb_mahasiswa.nim',$nama);
+     $query = $this->db->get();
+     return $query->result();
+  }
+
+  public function update_status_ld($id_mahasiswa){
+    $data = array(
+            'id_mahasiswa' => $this->input->post('id_mahasiswa', TRUE),
+            'id_status'      => $this->input->post('id_status', TRUE)
+      );
+
+    if (!empty($data)) {
+            $this->db->where('id_mahasiswa', $id_mahasiswa)
+        ->update('tb_mahasiswa', $data);
+
+          return true;
+        } else {
+            return null;
+        }
+  }
+
+   public function simpan_ld()
+    {        
+        $data = array(
+            'id_mahasiswa'      =>$this->input->post('id_mahasiswa', TRUE),
+            'id_status'      => $this->input->post('id_status', TRUE),
+            'keterangan'      => $this->input->post('keterangan', TRUE),
+            'sk_yudisium'      => $this->input->post('sk_yudisium', TRUE),
+            'tgl_sk_yudisium'     => $this->input->post('tgl_sk_yudisium', TRUE),
+            'no_seri_ijazah'     => $this->input->post('no_seri_ijazah', TRUE),
+            'tanggal_keluar'     => $this->input->post('tanggal_keluar', TRUE)
+        );
+        $this->db->insert('tb_ld', $data);
+        if($this->db->affected_rows() > 0){
+                return true;
+        } else {
+            return false;
+        }
+    }
+
+     public function edit_status_ld($id_mahasiswa){
+    $data = array(
+            'id_mahasiswa' => $this->input->post('id_mahasiswa', TRUE),
+            'id_status'      => $this->input->post('id_status', TRUE)
+      );
+
+    if (!empty($data)) {
+            $this->db->where('id_mahasiswa', $id_mahasiswa)
+        ->update('tb_mahasiswa', $data);
+
+          return true;
+        } else {
+            return null;
+        }
+  }
+
+  public function edit_ld($id_mahasiswa){
+    $data = array(
+           'id_mahasiswa'      =>$this->input->post('id_mahasiswa', TRUE),
+            'id_status'      => $this->input->post('id_status', TRUE),
+            'keterangan'      => $this->input->post('keterangan', TRUE),
+            'sk_yudisium'      => $this->input->post('sk_yudisium', TRUE),
+            'tgl_sk_yudisium'     => $this->input->post('tgl_sk_yudisium', TRUE),
+            'no_seri_ijazah'     => $this->input->post('no_seri_ijazah', TRUE),
+            'tanggal_keluar'     => $this->input->post('tanggal_keluar', TRUE)
+      );
+
+   if (!empty($data)) {
+            $this->db->where('id_mahasiswa', $id_mahasiswa)
+        ->update('tb_ld', $data);
+
+          return true;
+        } else {
+            return null;
+        }
+  }
+
+
 }
 
 /* End of file prodi_model.php */

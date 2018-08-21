@@ -41,15 +41,15 @@
   <thead>
   <tr>
     <th style="width:5%" style="text-align:center" rowspan="2">No.</th>
-    <th width="10%" style="text-align:center" rowspan="2">Semester</th>
+    <th style="text-align:center" rowspan="2">Semester</th>
     <th width="10%" style="text-align:center" rowspan="2">Status</th>
     <th width="15%" style="text-align:center" rowspan="2">IPS</th>
     <th width="15%" style="text-align:center" rowspan="2">IPK</th>
     <th style="text-align:center" colspan="2">Jumlah SKS</th>
   </tr>
   <tr>
-    <th style="text-align:center">Semester</th>
-    <th width="10%" style="text-align:center">Total</th>
+    <th width="5%" style="text-align:center">Semester</th>
+    <th width="5%" style="text-align:center">Total</th>
   </tr>
   </thead>
   <tbody>

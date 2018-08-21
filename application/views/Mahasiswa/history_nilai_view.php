@@ -152,7 +152,7 @@
               
               <br>
               <br>
-        <table id="table1" class="table table-striped table-bordered" >
+        <table id="table1" class="table2 table-bordered table-striped" >
     <thead>
     <tr>
         <th style="width:5%;text-align:center" rowspan="2">No.</th>

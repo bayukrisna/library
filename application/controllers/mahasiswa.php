@@ -84,7 +84,6 @@ class Mahasiswa extends CI_Controller {
 			
 		}
 		echo $option;
-
 	}
 
 	public function detail_mahasiswa_dikti()
@@ -274,6 +273,47 @@ class Mahasiswa extends CI_Controller {
 	        redirect('mahasiswa/detail_mahasiswa_dikti/'.$this->uri->segment(3));
 	    }
         
+	}
+
+	public function data_ld(){
+		$data['ld'] = $this->mahasiswa_model->data_ld();
+		$data['main_view'] = 'ld/lulus_do_view';
+		$this->load->view('template', $data);
+	}
+
+	public function get_autocomplete_ipk(){
+		if(isset($_GET['term'])){
+			$result = $this->mahasiswa_model->autocomplete_ipk($_GET['term']);
+			if(count($result) > 0){
+				foreach ($result as $row) 
+					$result_array[] = array(
+						'label' => $row->nim.' - '.$row->nama_mahasiswa,
+						'id' => $row->id_mahasiswa,
+						'nama' => $row->nama_mahasiswa,
+						'ipk' => $row->ipk,
+						'prodi' => $row->id_prodi);
+				echo json_encode($result_array);
+			
+			}
+		}
+	}
+
+	public function simpan_ld()
+	{
+		$id_mahasiswa = $this->input->post('id_mahasiswa');
+			if($this->mahasiswa_model->simpan_ld() == TRUE  && $this->mahasiswa_model->update_status_ld($id_mahasiswa) == TRUE){
+				$this->session->set_flashdata('message', '<div class="alert alert-success"> Tambah Mahasiswa Berhasil </div>');
+            	redirect('mahasiswa/data_ld');
+			} 
+	}
+
+	public function edit_ld()
+	{
+		$id_mahasiswa = $this->input->post('id_mahasiswa');
+			if($this->mahasiswa_model->edit_ld($id_mahasiswa) == TRUE  && $this->mahasiswa_model->edit_status_ld($id_mahasiswa) == TRUE){
+				$this->session->set_flashdata('message', '<div class="alert alert-success"> Tambah Mahasiswa Berhasil </div>');
+            	redirect('mahasiswa/data_ld');
+			} 
 	}
 		
 }
