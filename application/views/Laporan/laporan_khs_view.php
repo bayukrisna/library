@@ -11,7 +11,7 @@
             <form class="form-horizontal">
               <div class="box-body">
                 <div class="form-group">
-                  <label for="inputEmail3" class="col-sm-2 control-label">NIM</label>
+                  <label for="inputEmail3" class="col-sm-2 control-label">NIM/Mahasiswa</label>
 
                   <div class="col-sm-10">
                     <div class="col-sm-4">
@@ -55,7 +55,7 @@
             </div>
 <script type="text/javascript">
       $('#nama_mahasiswa').autocomplete({
-        source:'<?php echo base_url(); ?>laporan/get_autocomplete_nim', 
+        source:'<?php echo base_url(); ?>laporan/get_autocomplete_mahasiswa', 
         minLength:1,
         select: function(event, ui){
           $('#nama_mahasiswa').val(ui.item.label)  ;
