@@ -1,7 +1,7 @@
 <?php
 defined('BASEPATH') OR exit('No direct script access allowed');
 
-class Login_model extends CI_Model {
+class User_model extends CI_Model {
 
     
 
@@ -45,6 +45,40 @@ class Login_model extends CI_Model {
         } else {
             return array();
         }
+    }
+    public function data_user(){
+        $this->db->select('*');
+        $this->db->from('tb_user');
+        $query = $this->db->get();
+        return $query->result();
+    }
+     function dropdown_level()
+    {
+        return $this->db->get('tb_jabatan')
+                    ->result();
+
+    }
+    public function signup()
+    {
+        $password = $this->input->post('password', TRUE);
+        $hash = $this->bcrypt->hash_password($password);
+        $data = array(
+            'nama'      => $this->input->post('nama', TRUE),
+            'username'      => $this->input->post('username', TRUE),
+            'password'  => $hash,
+            'id_level'     => $this->input->post('id_level', TRUE)
+        );
+    
+        $this->db->insert('tb_user', $data);
+
+        if($this->db->affected_rows() > 0){
+            
+                return true;
+        } else {
+            return false;
+            
+        }
+
     }
 	
 

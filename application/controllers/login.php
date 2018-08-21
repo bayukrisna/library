@@ -6,7 +6,7 @@ class Login extends CI_Controller {
 	public function __construct()
 	{
 		parent::__construct();
-		$this->load->model('login_model');
+		$this->load->model('user_model');
 	}
 
 	public function index()
@@ -16,7 +16,7 @@ class Login extends CI_Controller {
 
 	public function login()
 	{
-		if($this->login_model->masuk() == TRUE){
+		if($this->user_model->masuk() == TRUE){
 			redirect(base_url('finance'));
 		} else {
 			$this->session->set_flashdata('message', '<div class="alert alert-danger"><p> Login Gagal</p></div>');
@@ -27,7 +27,7 @@ class Login extends CI_Controller {
 	public function logout(){
 		if ($this->session->userdata('logged_in') == TRUE) {
 			$this->session->sess_destroy();
-			redirect('login/login');
+			redirect('login');
 		}
 	}
 }
