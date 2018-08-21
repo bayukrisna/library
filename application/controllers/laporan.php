@@ -97,7 +97,7 @@ class Laporan extends CI_Controller {
 			if(count($result) > 0){
 				foreach ($result as $row) 
 					$result_array[] = array(
-						'label' => $row->id_mahasiswa.' - '.$row->nama_mahasiswa,
+						'label' => $row->nim.' - '.$row->nama_mahasiswa,
 						'id' => $row->id_mahasiswa);
 				echo json_encode($result_array);
 			

@@ -22,6 +22,7 @@ class Finance_model extends CI_Model {
      $this->db->from('tb_mahasiswa');
      // $this->db->join('tb_pembayaran','tb_mahasiswa.id_mahasiswa=tb_pembayaran.id_mahasiswa');
      $this->db->like('tb_mahasiswa.nim',$nama);
+     $this->db->or_like('tb_mahasiswa.nama_mahasiswa',$nama);
      $query = $this->db->get();
      return $query->result();
   }
