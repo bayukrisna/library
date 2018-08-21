@@ -13,7 +13,7 @@
         </tr>
         <tr>
             <td class="left_column" width="20%">Semester <font color="#FF0000">*</font></td>
-            <td colspan="3">:  <?php echo $kp->semester; ?>            <input type="hidden" name="id_smt" id="id_smt" value="20171">
+            <td colspan="3">:  <?php echo $kp->semester; ?>           
             </td>
         <td class="left_column">Bobot Mata Kuliah</td>
             <td colspan="3">: 
@@ -41,7 +41,7 @@
         <td class="left_column">Total Mahasiswa</td>
         
             <td colspan="3">: <b> <?php echo $dsn['jumlah_mhs']; ?>  </b> mahasiswa</td>
-            <input type="hidden" name="total_mhs2" id="total_mhs2" value="<?php $total_mhs2 = $kp->total_mhs -1;echo $total_mhs2; ?>">
+           
 
            
             
@@ -113,19 +113,21 @@
                 $no = 0;
                  $alert = "'Apakah anda yakin menghapus data ini ?'";
                 foreach ($dosen as $data) {
+                  
+                  
                   if($ab >= $kp->tanggal_mulai && $ab <= $kp->tgl_akhir) {
                   echo '
                 <tr>
                   <td>'.++$no.'</td>
                   <td>'.$data->id_dosen.'</a></td>
                   <td>'.$data->nama_dosen.'</td>
-                  <td id="bobot_dosen">'.$data->bobot_dosen.'</td>
+                  <td id="bobot_matkul">'.$data->bobot_matkul.'</td>
                   <td id="rencana">'.$data->rencana.'</td>
                   <td id="realisasi">'.$data->realisasi.'</td>
                   <td>'.$data->jenis_evaluasi.'</td>
                   <td>
 
-                         <a class="btn btn-warning  btn-sm" data-toggle="modal" data-target="#modal_edit'.$data->id_kelas_dosen.'"><i class="glyphicon glyphicon-pencil"></i><span class="tooltiptext">Edit Dosen</span></a>
+                         <a class="btn btn-warning  btn-sm" data-toggle="modal" data-target="#modal_edit'.$data->id_kp.'"><i class="glyphicon glyphicon-pencil"></i><span class="tooltiptext">Edit Dosen</span></a>
                   </td>
 
                 ' ;
@@ -135,7 +137,7 @@
                   <td>'.++$no.'</td>
                   <td>'.$data->id_dosen.'</a></td>
                   <td>'.$data->nama_dosen.'</td>
-                  <td id="bobot_dosen">'.$data->bobot_dosen.'</td>
+                  <td id="bobot_matkul">'.$data->bobot_matkul.'</td>
                   <td id="rencana">'.$data->rencana.'</td>
                   <td id="realisasi">'.$data->realisasi.'</td>
                   <td>'.$data->jenis_evaluasi.'</td>
@@ -205,7 +207,7 @@
                   <td>'.$data->nama_prodi.'</td>
                   <td>'.$data->angkatan.'</td>
                   <td>
-                        <a href="'.base_url('kelas_perkuliahan/hapus_kelas_mhs/'.$data->id_kelas_mhs.'/'.$data->id_kp.'/'.$total_mhs2).'" class="btn btn-danger  btn-sm" onclick="return confirm('.$alert.')"><i class="glyphicon glyphicon-trash"></i><span class="tooltiptext">Hapus</span></a>
+                        <a href="'.base_url('kelas_perkuliahan/hapus_kelas_mhs/'.$data->id_kelas_mhs).'" class="btn btn-danger  btn-sm" onclick="return confirm('.$alert.')"><i class="glyphicon glyphicon-trash"></i><span class="tooltiptext">Hapus</span></a>
 
                          <a href="'.base_url('kelas_perkuliahan/page_edit_kelas_mhs/'.$data->id_kelas_mhs).'" class="btn btn-warning btn-sm"><i class="glyphicon glyphicon-pencil"></i><span class="tooltiptext">Edit</span></a>
                   </td>
@@ -311,7 +313,7 @@
         <tr>
             <td class="left_column">Bobot (sks)</td>
             <td>: 
-            <input type="text" name="bobot_dosen" id="bobot_dosen" class="text-input" maxlength="3" size="2"  style="width:10%; background-color: #E0E0E0;" value="<?php echo $kp->bobot_matkul;?>" readonly>         
+            <input type="text" name="bobot_matkul" id="bobot_matkul" class="text-input" maxlength="3" size="2"  style="width:10%; background-color: #E0E0E0;" value="<?php echo $kp->bobot_matkul;?>" readonly>         
             </td>
         </tr>
         <tr>
@@ -354,24 +356,25 @@
   });
 
   </script>
-
   <script>
 
       var rencana = document.getElementById('rencana').innerHTML;
       var realisasi = document.getElementById('realisasi').innerHTML;
-      var bobot_dosen = document.getElementById('bobot_dosen').innerHTML;
+      var bobot_dosen = document.getElementById('bobot_matkul').innerHTML;
       var result = parseInt(rencana) / parseInt(realisasi) * parseInt(bobot_dosen);
       if (!isNaN(result)) {
          document.getElementById('jumlah_sks').innerHTML = result;
       }
 </script>
 
+  
+
 <?php 
         foreach($dosen as $i):
         ?>
 
 
-<div class="modal fade" id="modal_edit<?php echo $i->id_kelas_dosen;?>" >
+<div class="modal fade" id="modal_edit<?php echo $i->id_kp;?>" >
             <div class="modal-dialog">
             <div class="modal-content">
             <div class="modal-header">
@@ -381,7 +384,7 @@
                 <div class="modal-body">
 
                     <div class="form-group">
-                      <?php echo form_open('kelas_perkuliahan/edit_kelas_dosen/'.$i->id_kelas_dosen); ?>
+                      <?php echo form_open('kelas_perkuliahan/edit_kelas_dosen/'.$i->id_kp); ?>
                       <table class="table">
                          <tr>
             <td class="left_column">Nama Dosen <font color="#FF0000">*</font></td>
@@ -405,7 +408,7 @@
         <tr>
             <td class="left_column">Bobot (sks)</td>
             <td>: 
-            <input type="text" name="bobot_dosen" id="bobot_dosen" class="text-input" maxlength="3" size="2"  style="width:10%" value="<?php echo $i->bobot_dosen; ?>">         
+            <input type="text" name="bobot_matkul" id="bobot_matkul" class="text-input" maxlength="3" size="2"  style="width:10%" value="<?php echo $i->bobot_matkul; ?>">         
             </td>
         </tr>
         <tr>
@@ -479,7 +482,7 @@
 
             <input type="text" name="id_periode" id="id_periode" class="validate[required] text-input" maxlength="20" size="40" style="width:80%" value="<?php echo $kp->id_periode; ?>">
 
-            <input type="hidden" name="total_mhs" id="total_mhs" class="validate[required] text-input" maxlength="20" size="40" style="width:80%" value="<?php echo $dsn['jumlah_mhs'] + 1; ?>">
+          
 
             
           </td>

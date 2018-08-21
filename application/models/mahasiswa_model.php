@@ -715,6 +715,7 @@ class Mahasiswa_model extends CI_Model {
 
   public function update_ipk($id_mahasiswa, $ipk){
     $data = array(
+            'id_mahasiswa'      => $this->input->post('id_mahasiswa', TRUE),
             'ipk'      => $ipk
       );
 
@@ -730,6 +731,7 @@ class Mahasiswa_model extends CI_Model {
 
   public function update_grade($id_mahasiswa, $id_grade){
     $data = array(
+            'id_mahasiswa'      => $this->input->post('id_mahasiswa', TRUE),
             'id_grade'      => $id_grade
       );
 

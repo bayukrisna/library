@@ -75,8 +75,8 @@
                  $alert = "'Apakah anda yakin menghapus data ini ?'";
 
                 foreach ($kp as $data) { 
-                  
-                  
+                  $total_mahasiswa = $this->db->query("SELECT count(*) AS total FROM tb_kelas_mhs WHERE id_kp = '$data->id_kp'")->row();
+                  $nama_dosen = $this->db->query("SELECT nama_dosen AS abc FROM tb_kp JOIN tb_kelas_dosen ON tb_kelas_dosen.id_kp = tb_kp.id_kp JOIN tb_dosen ON tb_dosen.id_dosen = tb_kelas_dosen.id_dosen WHERE tb_kp.id_kp = '$data->id_kp'")->row();
 
                   echo '                  
                 <tr>
@@ -85,8 +85,8 @@
                   <td>'.$data->nama_matkul.'</td>
                   <td>'.$data->nama_kelas.'</td>
                   <td>'.$data->bobot_matkul.'</td>
-                  <td>'.$data->nama_dosen.'</td>
-                  <td>'.$data->total_mhs.'</td>
+                  <td>'.$nama_dosen->abc.'</td>
+                  <td>'.$total_mahasiswa->total.'</td>
                   <td>
                         <a href="'.base_url('kelas_perkuliahan/hapus_kp/'.$data->id_kp).'" class="btn btn-danger btn-sm" onclick="return confirm('.$alert.')"><i class="glyphicon glyphicon-trash"></i><span class="tooltiptext">Hapus Kelas</span></a>
                          <a href="'.base_url('kelas_perkuliahan/detail_kp/'.$data->id_kp).'" class="btn btn-warning  btn-sm"><i class="glyphicon glyphicon-pencil"></i><span class="tooltiptext">Edit Kelas </span></a>

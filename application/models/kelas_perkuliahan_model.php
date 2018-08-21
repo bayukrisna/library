@@ -28,8 +28,6 @@ class Kelas_perkuliahan_model extends CI_Model {
      $this->db->join('tb_periode','tb_periode.id_periode=tb_kp.id_periode');
      $this->db->join('tb_detail_kurikulum','tb_detail_kurikulum.id_detail_kurikulum=tb_kp.id_detail_kurikulum');
      $this->db->join('tb_matkul','tb_matkul.kode_matkul=tb_detail_kurikulum.kode_matkul');
-     $this->db->join('tb_dosen','tb_dosen.id_dosen=tb_kp.id_dosen');
-     $this->db->join('tb_total_mhs','tb_total_mhs.id_kp=tb_kp.id_kp');
 		 $query = $this->db->get();
 		 return $query->result();
 	}
@@ -42,7 +40,6 @@ class Kelas_perkuliahan_model extends CI_Model {
     $this->db->join('tb_detail_kurikulum','tb_detail_kurikulum.id_detail_kurikulum=tb_kp.id_detail_kurikulum');
      $this->db->join('tb_matkul','tb_matkul.kode_matkul=tb_detail_kurikulum.kode_matkul');
      $this->db->join('tb_dosen','tb_dosen.id_dosen=tb_kp.id_dosen');
-     $this->db->join('tb_total_mhs','tb_total_mhs.id_kp=tb_kp.id_kp');
      $this->db->like('tb_prodi.id_prodi',$id_prodi);
      $this->db->like('tb_periode.id_periode',$id_periode);
      $query = $this->db->get();
@@ -53,6 +50,9 @@ class Kelas_perkuliahan_model extends CI_Model {
     $this->db->select('*');
      $this->db->from('tb_kelas_dosen');
      $this->db->join('tb_dosen','tb_dosen.id_dosen=tb_kelas_dosen.id_dosen');
+     $this->db->join('tb_kp','tb_kp.id_kp=tb_kelas_dosen.id_kp');
+     $this->db->join('tb_detail_kurikulum','tb_detail_kurikulum.id_detail_kurikulum=tb_kp.id_detail_kurikulum');
+     $this->db->join('tb_matkul','tb_matkul.kode_matkul=tb_detail_kurikulum.kode_matkul');
      $this->db->where('tb_kelas_dosen.id_kp', $id_dosen);
      $query = $this->db->get();
      return $query->result();
@@ -74,7 +74,6 @@ class Kelas_perkuliahan_model extends CI_Model {
               ->join('tb_periode','tb_periode.id_periode=tb_kp.id_periode')
               ->join('tb_detail_kurikulum','tb_detail_kurikulum.id_detail_kurikulum=tb_kp.id_detail_kurikulum')
               ->join('tb_matkul','tb_matkul.kode_matkul=tb_detail_kurikulum.kode_matkul')
-              ->join('tb_total_mhs','tb_total_mhs.id_kp=tb_kp.id_kp')
               ->where('tb_kp.id_kp', $id_kp)
               ->get('tb_kp')
               ->row();
@@ -171,24 +170,6 @@ class Kelas_perkuliahan_model extends CI_Model {
         );
     
         $this->db->insert('tb_kp', $data);
-
-        if($this->db->affected_rows() > 0){
-            
-                return true;
-        } else {
-            return false;
-        }
-
-    }
-
-    public function save_total_mhs()
-    {
-        $data = array(
-            'id_kp'        => $this->input->post('id_kp')
-            
-        );
-    
-        $this->db->insert('tb_total_mhs', $data);
 
         if($this->db->affected_rows() > 0){
             
@@ -320,37 +301,6 @@ class Kelas_perkuliahan_model extends CI_Model {
     if (!empty($data)) {
             $this->db->where('id_kp', $id_detail_kurikulum)
         ->update('tb_kp', $data);
-
-          return true;
-        } else {
-            return null;
-        }
-  }
-
-  public function update_total_mhs($id_kp, $total_mhs){
-    $data = array(
-            'total_mhs'        => $total_mhs
-      );
-
-    if (!empty($data)) {
-            $this->db->where('id_kp', $id_kp)
-        ->update('tb_total_mhs', $data);
-
-          return true;
-        } else {
-            return null;
-        }
-  }
-
-  public function edit_jumlah_mhs($id_detail_kurikulum){
-    $data = array(
-            'id_kp'        => $this->input->post('id_kp'),
-            'total_mhs'        => $this->input->post('total_mhs')
-      );
-
-    if (!empty($data)) {
-            $this->db->where('id_kp', $id_detail_kurikulum)
-        ->update('tb_total_mhs', $data);
 
           return true;
         } else {

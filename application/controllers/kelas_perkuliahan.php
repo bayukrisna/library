@@ -69,7 +69,7 @@ class Kelas_perkuliahan extends CI_Controller {
 
 	public function save_kp()
 	{
-			if($this->kelas_perkuliahan_model->save_kp() == TRUE && $this->kelas_perkuliahan_model->save_kelas_dosen() == TRUE  && $this->kelas_perkuliahan_model->save_total_mhs() == TRUE){
+			if($this->kelas_perkuliahan_model->save_kp() == TRUE && $this->kelas_perkuliahan_model->save_kelas_dosen() == TRUE){
 				$username = $this->input->post('nama_kp');
 				$this->session->set_flashdata('message', '<div class="alert alert-success"> Kelas berhasil ditambahkan. </div>');
             	redirect('kelas_perkuliahan');
@@ -204,7 +204,7 @@ class Kelas_perkuliahan extends CI_Controller {
 		$id_kp = $this->input->post('id_kp');
 		$id_mahasiswa = $this->input->post('id_mahasiswa');
 		$id_periode = $this->input->post('id_periode');
-			if($this->kelas_perkuliahan_model->simpan_kelas_mhs() == TRUE && $this->kelas_perkuliahan_model->edit_jumlah_mhs($id_kp) == TRUE && $this->kelas_perkuliahan_model->update_status_mhs($id_mahasiswa) == TRUE && $this->kelas_perkuliahan_model->update_status_aktivitas($id_mahasiswa, $id_periode) == TRUE){
+			if($this->kelas_perkuliahan_model->simpan_kelas_mhs() == TRUE && $this->kelas_perkuliahan_model->update_status_mhs($id_mahasiswa) == TRUE && $this->kelas_perkuliahan_model->update_status_aktivitas($id_mahasiswa, $id_periode) == TRUE){
 				$this->session->set_flashdata('message', '<div class="alert alert-success"> Tambah Mahasiswa Berhasil </div>');
 				$id_kp = $this->input->post('id_kp');
             	redirect('kelas_perkuliahan/detail_kelas/'.$id_kp);
@@ -214,8 +214,7 @@ class Kelas_perkuliahan extends CI_Controller {
 	public function hapus_kelas_mhs(){
 		$id_detail_kurikulum = $this->uri->segment(3);
 		$id_kp = $this->uri->segment(4);
-		$total_mhs = $this->uri->segment(5);
-		if ($this->kelas_perkuliahan_model->hapus_kelas_mhs($id_detail_kurikulum) == TRUE && $this->kelas_perkuliahan_model->update_total_mhs($id_kp, $total_mhs) == TRUE) {
+		if ($this->kelas_perkuliahan_model->hapus_kelas_mhs($id_detail_kurikulum) == TRUE) {
 			$this->session->set_flashdata('message', '<div class="alert alert-success"> Hapus Mahasiswa Berhasil </div>');
             	redirect('kelas_perkuliahan/detail_kelas/'.$id_kp);
 		} else {

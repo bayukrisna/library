@@ -89,7 +89,7 @@
          $a = '5';
     } ?>
 
-     <input type="hidden" name="id_grade" id="id_grade" value="<?php echo $a; ?>"> 
+     
 
 </div>
 
@@ -227,7 +227,17 @@
               
             </td>
             <td class="left_column" width="15%">IPK</td>
-            <td>: <input type="text" name="ipk_ak" id="ipk_ak" class="text-input" maxlength="16" size="30" style="width:40%" value="<?php echo $ipk2; ?>">           </td>
+            <td>: <input type="text" name="ipk_ak" id="ipk_ak" class="text-input" maxlength="16" size="30" style="width:40%" value="<?php echo $ipk2; ?>">    
+              <?php if ($ipk2 <= 3.5) {
+                     $a = '7';
+                } elseif ($ipk2 < 3.76) {
+                     $a = '6';
+                } else {
+                     $a = '5';
+                } ?>
+
+             <input type="hidden" name="id_grade" id="id_grade" value="<?php echo $a; ?>">
+                    </td>
         </tr>
         <tr>
              <td width="15%" class="left_column">Jumlah SKS total</td>

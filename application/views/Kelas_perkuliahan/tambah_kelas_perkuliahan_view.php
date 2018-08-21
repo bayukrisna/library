@@ -31,7 +31,7 @@
         <tr>
           <td class="left_column">Mata Kuliah  <font color="#FF0000">*</font></td>
             <td colspan="9">: 
-      <input type="text" name="nama_matkul" id="nama_matkul" class="validate[required] text-input ui-autocomplete-input" size="20"  style="width: 50%;" required=""><span role="status" aria-live="polite" class="ui-helper-hidden-accessible"></span>            <input type="text" name="id_detail_kurikulum" id="id_detail_kurikulum" value="" > 
+      <input type="text" name="nama_matkul" id="nama_matkul" class="validate[required] text-input ui-autocomplete-input" size="20"  style="width: 50%;" required=""><span role="status" aria-live="polite" class="ui-helper-hidden-accessible"></span>            <input type="hidden" name="id_detail_kurikulum" id="id_detail_kurikulum" value="" > 
        <input type="hidden" name="id_kp" id="id_kp" value="<?php echo $kodeunik; ?>" >
             </td>
     </tr>

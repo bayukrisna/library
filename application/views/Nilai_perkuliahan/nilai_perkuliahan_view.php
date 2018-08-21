@@ -77,8 +77,8 @@
                   <th>Nama MK</th>
                   <th>Nama Kelas</th>
                   <th>Bobot MK (SKS)</th>
-                  <th>KRS</th>
-                  <th>Jumlah Mahasiswa</th>
+                  <th>Jumlah KRS</th>
+                  <th>Jumlah Nilai Terisi</th>
                 </tr>
                  
                 </thead>
@@ -88,11 +88,10 @@
                 <?php 
                 $no = 0;
                  $alert = "'Apakah anda yakin menghapus data ini ?'";
-                foreach ($kp as $data) { ?>
-                   <script type="text/javascript" > 
-                      get_total_mhs(10);
-                   </script>                  
-                 <?php 
+                foreach ($kp as $data) {                
+                  $total_mahasiswa = $this->db->query("SELECT count(*) AS total FROM tb_kelas_mhs WHERE id_kp = '$data->id_kp'")->row();
+                  $total_nilai = $this->db->query("SELECT count(*) AS total FROM tb_kelas_mhs WHERE nilai_d != 0 AND id_kp = '$data->id_kp'")->row();
+
                   echo '                  
                 <tr>
                   <td>'.++$no.'</td>
@@ -100,8 +99,8 @@
                   <td>'.$data->nama_matkul.'</td>
                   <td>'.$data->nama_kelas.'</td>
                   <td>'.$data->bobot_matkul.'</td>
-                  <td>'.$data->total_mhs.'</td>
-                  <td>'.$data->total_mhs.'</td>
+                  <td>'.$total_mahasiswa->total.'</td>
+                  <td>'.$total_nilai->total.'</td>
                   
                   </tr>
                 ' ;
