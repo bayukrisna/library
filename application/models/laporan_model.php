@@ -673,8 +673,7 @@ class Laporan_model extends CI_Model {
                 }
     }
     function laporan_dmm_matkul($semester, $kode_matkul){
-      $query = $this->db->select('tb_prodi.id_prodi, tb_mahasiswa.nama_mahasiswa, tb_mahasiswa.nim, tb_bio.tempat_lahir, tb_bio.tanggal_lahir, tb_ibu.nama_ibu, tb_bio.agama, tb_kependudukan.nik, tb_alamat.kecamatan, tb_alamat.kelurahan, tb_sekolah.nama_sekolah')
-                ->distinct()
+      $query = $this->db->select('*')
                 ->from('tb_kelas_mhs')
                 ->join('tb_kp','tb_kp.id_kp=tb_kelas_mhs.id_kp')
                 ->join('tb_periode','tb_periode.id_periode=tb_kp.id_periode')
@@ -684,10 +683,6 @@ class Laporan_model extends CI_Model {
                 ->join('tb_prodi','tb_prodi.id_prodi=tb_kp.id_prodi')
                 ->join('tb_detail_kurikulum','tb_detail_kurikulum.id_detail_kurikulum=tb_kp.id_detail_kurikulum')
                 ->join('tb_matkul','tb_matkul.kode_matkul=tb_detail_kurikulum.kode_matkul')
-                ->join('tb_ibu','tb_ibu.id_mahasiswa=tb_mahasiswa.id_mahasiswa', 'left' )
-                ->join('tb_kependudukan','tb_kependudukan.id_mahasiswa=tb_mahasiswa.id_mahasiswa', 'left' )
-                ->join('tb_alamat','tb_alamat.id_mahasiswa=tb_mahasiswa.id_mahasiswa', 'left' )
-                ->join('tb_sekolah','tb_sekolah.id_sekolah=tb_mahasiswa.id_sekolah', 'left' )
                 ->where('tb_matkul.kode_matkul', $kode_matkul)
                 ->where('tb_periode.semester', $semester)
                 ->get();
@@ -745,16 +740,10 @@ class Laporan_model extends CI_Model {
                 <thead>
                 <tr>
                   <th>No</th>
-                  <th>Kode Prodi</th>
                   <th>NIM</th>
                   <th>Nama Mahasiswa</th>
-                  <th>Tempat, Tanggal Lahir</th>
-                  <th>Nama Ibu Kandung</th>
-                  <th>Agama</th>
-                  <th>NIK</th>
-                  <th>Kelurahan</th>
-                  <th>Kecamatan</th>
-                  <th>Asal SMTA</th>
+                  <th>Jurusan</th>
+                  <th>Angkatan</th>
                 </tr>
                 </thead>
                 <tbody>';
@@ -762,16 +751,10 @@ class Laporan_model extends CI_Model {
                     $option .= "
                     <tr>
                       <td>".++$no."</td>
-                      <td>".$data->id_prodi."</td>
                       <td>".$data->nim."</td>
                       <td>".$data->nama_mahasiswa."</td>
-                      <td>".$data->tempat_lahir.', '.$data->tanggal_lahir."</td>
-                      <td>".$data->nama_ibu."</td>
-                      <td>".$data->agama."</td>
-                      <td>".$data->nik."</td>
-                      <td>".$data->kelurahan."</td>
-                      <td>".$data->kecamatan."</td>
-                      <td>".$data->nama_sekolah."</td>
+                      <td>".$data->nama_prodi."</td>
+                      <td>".$data->angkatan."</td>
                     </tr>"
                     ;
                     

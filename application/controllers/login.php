@@ -28,6 +28,8 @@ class Login extends CI_Controller {
 		if ($this->session->userdata('logged_in') == TRUE) {
 			$this->session->sess_destroy();
 			redirect('login');
+		} else {
+			redirect('login');
 		}
 	}
 }

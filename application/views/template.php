@@ -184,8 +184,12 @@ a:hover .tooltiptext {
                 <li><a href="<?php echo base_url(); ?>setting_periode"><i class="fa fa-circle-o"></i>Setting Periode</a></li>
               </ul>
             </li>
-            <li class="treeview">
-              <a href="#"><i class="fa fa-circle-o"></i>Laporan
+            
+            
+          </ul>
+        </li>
+        <li class="treeview">
+              <a href="#"><i class="fa fa-share"></i>Laporan
                 <span class="pull-right-container">
                   <i class="fa fa-angle-left pull-right"></i>
                 </span>
@@ -199,9 +203,6 @@ a:hover .tooltiptext {
                 <li><a href="<?php echo base_url(); ?>laporan/laporan_data_getstudent"><i class="fa fa-circle-o"></i>Laporan Student Get <br>Student</a></li>
               </ul>
             </li>
-            
-          </ul>
-        </li>
       </ul>
     </section>
     <!-- /.sidebar -->
