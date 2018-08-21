@@ -277,6 +277,7 @@ class Mahasiswa extends CI_Controller {
 
 	public function data_ld(){
 		$data['ld'] = $this->mahasiswa_model->data_ld();
+		$data['getProdi'] = $this->daftar_ulang_model->getProdi();
 		$data['main_view'] = 'ld/lulus_do_view';
 		$this->load->view('template', $data);
 	}
@@ -314,6 +315,17 @@ class Mahasiswa extends CI_Controller {
 				$this->session->set_flashdata('message', '<div class="alert alert-success"> Tambah Mahasiswa Berhasil </div>');
             	redirect('mahasiswa/data_ld');
 			} 
+	}
+
+	public function filter_ld()
+	{
+			$data['getProdi'] = $this->daftar_ulang_model->getProdi();
+			$id_prodi=$this->input->get('id_prodi');
+			$id_status=$this->input->get('id_status');
+			$angkatan=$this->input->get('angkatan');
+			$data['ld'] = $this->mahasiswa_model->filter_ld($id_prodi,$id_status,$angkatan);
+			$data['main_view'] = 'ld/lulus_do_view';
+			$this->load->view('template', $data);
 	}
 		
 }

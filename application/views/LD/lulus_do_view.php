@@ -7,8 +7,73 @@
               <h3 class="box-title">Data Mahasiswa Lulus atau Drop Out</h3>
             </div>
             <div class="box-body">
+              <table class="">
+                <tbody>
+                  <form method="get" action="<?php echo base_url("mahasiswa/filter_ld/")?>">
+                  <tr>
+                    <th>Filter</th>
+                  </tr>
+                  <tr>                                                                    
+                    <td>Program Studi</td>     
+                    <td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                      
+                      <select name="id_prodi">
+                        <option value="">-- Semua --</option>
+                        <?php 
+
+                                        foreach($getProdi as $row)
+                                        { 
+                                          echo '<option value="'.$row->id_prodi.'">'.$row->nama_prodi.'</option>';
+                                        }
+                                    ?>
+                      </select>
+
+                    </td>                                            
+                    <td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Angkatan</td>     
+                    <td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                      <select name="angkatan">
+                        <option value="">-- Semua --</option>
+                        <option value="2016">2016</option>
+                        <option value="2017">2017</option>
+                        <option value="2018">2018</option>
+                        <option value="2019">2019</option>
+                        <option value="2020">2020</option>
+                        <option value="2021">2021</option>
+                        <option value="2022">2022</option>
+                      </select>
+                    </td>
+                    
+                    <td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Jenis Keluar</td>     
+                    <td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                     <select name="id_status" id="id_status">
+                        <option value="">-- Jenis Keluar --</option>
+                        <option value="11">Lulus</option>
+                        <option value="13">Mutasi</option>
+                        <option value="5">Dikeluarkan</option>
+                        <option value="7">Mengundurkan diri</option>
+                        <option value="14">Putus Sekolah</option>
+                        <option value="8">Meninggal Dunia</option>
+                        <option value="10">Hilang</option>
+                        <option value="15">Lainnya</option>
+                        </select> 
+                    </td>
+                    <td>
+                      &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<input type="submit" class="btn btn-primary" value="Cari">  
+                    </td>
+
+                  </tr>
+
+                
+                </tbody>
+              </table>
+                      
+               </form>
+
               <table id="example1" class="table table-bordered table-striped">
+                <br>
+
                <a class="btn btn-info btn-sm" href="" data-toggle="modal" data-target="#modal_view"><i class="fa fa-plus"></i> Tambah </a>
+
                <br> <br>
                 <thead>
                 <tr>
@@ -16,6 +81,7 @@
                   <th>NIM</th>
                   <th>Nama Mahasiswa</th>
                   <th>Angkatan</th>
+                  <th>Prodi</th>
                   <th>Jenis Keluar</th>
                   <th>Tanggal Keluar</th>
                   <th>Aksi</th>
@@ -34,6 +100,7 @@
                   <td><a href="" data-toggle="modal" data-target="#modal_lihat'.$data->id_mahasiswa.'">'.$data->nim.'</a></td>
                   <td>'.$data->nama_mahasiswa.'</td>
                   <td>'.$data->angkatan.'</td>
+                  <td>'.$data->nama_prodi.'</td>
                   <td>'.$data->status_mhs.'</td>
                   <td>'.$data->tanggal_keluar.'</td>
                   <td><a href="" data-toggle="modal" data-target="#modal_edit'.$data->id_mahasiswa.'"><i class="fa fa-pencil"> </i></a></td>
