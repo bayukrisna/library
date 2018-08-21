@@ -118,6 +118,30 @@ class Laporan extends CI_Controller {
 		}
 	}
 	////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+	public function laporan_khs(){
+		$data['main_view'] = 'Laporan/laporan_khs_view';
+		$data['getPeriode'] = $this->laporan_model->getPeriode();
+		$this->load->view('template', $data);	
+	}
+	public function laporan_khsku(){
+	    $id_mahasiswa = $this->input->get('id_mahasiswa');
+	    $semester = $this->input->get('semester');
+	    $this->laporan_model->laporan_khs($id_mahasiswa, $semester);
+	}
+	public function get_autocomplete_nim(){
+		if(isset($_GET['term'])){
+			$result = $this->laporan_model->autocomplete_nim($_GET['term']);
+			if(count($result) > 0){
+				foreach ($result as $row) 
+					$result_array[] = array(
+						'label' => $row->nim.' - '.$row->nama_mahasiswa,
+						'id' => $row->id_mahasiswa,
+						'nim' => $row->nim);
+				echo json_encode($result_array);
+			
+			}
+		}
+	}
 }
 
 

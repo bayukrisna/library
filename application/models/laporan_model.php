@@ -778,6 +778,130 @@ class Laporan_model extends CI_Model {
                 
                 }
     }
+    function laporan_khs($id_mahasiswa, $semester){
+      $query = $this->db->select('')
+                ->from('tb_kp')
+                ->join('tb_kelas_mhs','tb_kelas_mhs.id_kp=tb_kp.id_kp')
+                ->join('tb_periode','tb_periode.id_periode=tb_kp.id_periode')
+                ->join('tb_mahasiswa','tb_mahasiswa.id_mahasiswa=tb_kelas_mhs.id_mahasiswa')
+                ->join('tb_bio','tb_mahasiswa.id_mahasiswa=tb_bio.id_mahasiswa')
+                ->join('tb_konsentrasi','tb_mahasiswa.id_konsentrasi=tb_konsentrasi.id_konsentrasi')
+                ->join('tb_prodi','tb_prodi.id_prodi=tb_kp.id_prodi')
+                ->join('tb_waktu','tb_waktu.id_waktu=tb_mahasiswa.id_waktu')
+                ->join('tb_ibu','tb_ibu.id_mahasiswa=tb_mahasiswa.id_mahasiswa', 'left' )
+                ->join('tb_kependudukan','tb_kependudukan.id_mahasiswa=tb_mahasiswa.id_mahasiswa', 'left' )
+                ->join('tb_alamat','tb_alamat.id_mahasiswa=tb_mahasiswa.id_mahasiswa', 'left' )
+                ->join('tb_sekolah','tb_sekolah.id_sekolah=tb_mahasiswa.id_sekolah', 'left' )
+                ->where('tb_periode.semester' , $id_periode)
+                ->like('tb_kp.id_prodi' , $id_prodi)
+                ->get();
+      $row = $query->result();
+      $pp = $this->db->select('nama_prodi')
+            ->where('id_prodi', $id_prodi)
+            ->get('tb_prodi')
+            ->row();
+      $coo = $this->db->select('count(distinct tb_mahasiswa.nama_mahasiswa) as total')
+                ->from('tb_kp')
+                ->join('tb_kelas_mhs','tb_kelas_mhs.id_kp=tb_kp.id_kp')
+                ->join('tb_periode','tb_periode.id_periode=tb_kp.id_periode')
+                ->join('tb_mahasiswa','tb_mahasiswa.id_mahasiswa=tb_kelas_mhs.id_mahasiswa')
+                ->join('tb_konsentrasi','tb_mahasiswa.id_konsentrasi=tb_konsentrasi.id_konsentrasi')
+                ->join('tb_prodi','tb_prodi.id_prodi=tb_kp.id_prodi')
+                ->join('tb_waktu','tb_waktu.id_waktu=tb_mahasiswa.id_waktu')
+                ->where('tb_periode.semester' , $id_periode)
+                ->like('tb_kp.id_prodi' , $id_prodi)
+                ->get();
+      $total = $coo->row();
+
+                if ($query->num_rows() > 0)
+                { 
+                  if(empty($pp->nama_prodi)){
+                    $cc = 'All';
+                  } else {
+                    $cc = $pp->nama_prodi;
+                  }
+                  $no = 0;
+                  $option = "";
+                  $option .= '<section class="content" id="ea">
+      <div class="row">
+        <div class="col-xs-12">
+          
+            <h4><b>Laporan Mahasiswa</h4></b>
+            <table>
+              <tr>
+                <td width="120px">Perguruan Tinggi</td>
+                <td width="300px">: 033082 - STIE Jakarta International College</td>
+                <td width="120px">Alamat</td>
+                <td>: Jalan Perunggu No 53-54 10640</td>
+              </tr>
+              <tr>
+                <td width="120px">Periode</td>
+                <td width="300px">: '.$id_periode.'</td>
+                <td width="120px">Program Studi</td>
+                <td>: '.$cc.'</td>
+              </tr>
+              <tr>
+                <td width="120px">Jumlah Mahasiswa</td>
+                <td width="300px">: '.$total->total.'</td>
+              </tr>
+            </table>
+            <br>
+            <!-- /.box-header -->
+            <div class="box-body">
+              <table id="example1" class="table table-bordered table-striped">
+                <thead>
+                <tr>
+                  <th>No</th>
+                  <th>Kode Prodi</th>
+                  <th>NIM</th>
+                  <th>Nama Mahasiswa</th>
+                  <th>Tempat, Tanggal Lahir</th>
+                  <th>Nama Ibu Kandung</th>
+                  <th>Agama</th>
+                  <th>NIK</th>
+                  <th>Kelurahan</th>
+                  <th>Kecamatan</th>
+                  <th>Asal SMTA</th>
+                </tr>
+                </thead>
+                <tbody>';
+                  foreach ($row as $data) {
+                    $option .= "
+                    <tr>
+                      <td>".++$no."</td>
+                      <td>".$data->id_prodi."</td>
+                      <td>".$data->nim."</td>
+                      <td>".$data->nama_mahasiswa."</td>
+                      <td>".$data->tempat_lahir.', '.$data->tanggal_lahir."</td>
+                      <td>".$data->nama_ibu."</td>
+                      <td>".$data->agama."</td>
+                      <td>".$data->nik."</td>
+                      <td>".$data->kelurahan."</td>
+                      <td>".$data->kecamatan."</td>
+                      <td>".$data->nama_sekolah."</td>
+                    </tr>"
+                    ;
+                    
+                  }
+                  $option .= '</tbody>
+              </table>
+            </div>
+            
+            <!-- /.box-body -->
+          
+          <!-- /.box -->
+        </div>
+        <!-- /.col -->
+      </div>
+      <!-- /.row -->
+    </section>';
+                  echo $option;
+
+                } else{
+                echo '<span class="label label-success"> Tidak Ada Data.</span>';
+                
+                }
+    }
     function getPeriode()
     {
         $ea =  $this->db->select('tb_periode.semester')
@@ -840,6 +964,13 @@ class Laporan_model extends CI_Model {
      $this->db->select('*');
      $this->db->from('tb_matkul');
      $this->db->like('nama_matkul',$nama);
+     $query = $this->db->get();
+     return $query->result();
+  }
+  public function autocomplete_nim($nama){
+     $this->db->select('*');
+     $this->db->from('tb_mahasiswa');
+     $this->db->like('nim',$nama);
      $query = $this->db->get();
      return $query->result();
   }
