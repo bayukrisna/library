@@ -1,8 +1,8 @@
-      <a class="btn btn-sm btn-primary" href="<?php echo base_url();?>mahasiswa/lihat_mahasiswa_dikti/<?php echo $mahasiswa->id_mahasiswa; ?>">Detail Mahasiswa</a>
+           <a class="btn btn-sm btn-primary" href="<?php echo base_url();?>mahasiswa/lihat_mahasiswa_dikti/<?php echo $mahasiswa->id_mahasiswa; ?>">Detail Mahasiswa</a>
         <a class="btn btn-sm btn-info" href="<?php echo base_url();?>mahasiswa/history_pendidikan/<?php echo $mahasiswa->id_mahasiswa; ?>">History Pendidikan</a>
-        <a class="btn btn-sm btn-primary" href="<?php echo base_url();?>mahasiswa/krs_mahasiswa/<?php echo $mahasiswa->id_mahasiswa; ?>">KRS Mahasiswa</a>
+        <a class="btn btn-sm btn-primary" href="<?php echo base_url();?>mahasiswa/krs_mahasiswa/<?php echo $mahasiswa->id_mahasiswa ?>/<?php echo $mahasiswa->id_prodi; ?>">KRS Mahasiswa</a>
         <a class="btn btn-sm btn-info" href="<?php echo base_url();?>mahasiswa/history_nilai/<?php echo $mahasiswa->id_mahasiswa; ?>">History Nilai</a>
-        <a class="btn btn-sm btn-primary">Aktivasi Perkuliahan</a>
+        <a class="btn btn-sm btn-primary" href="<?php echo base_url();?>mahasiswa/aktivitas_perkuliahan/<?php echo $mahasiswa->id_mahasiswa; ?>">Aktivitas Perkuliahan</a>
         <a class="btn btn-sm btn-info" href="<?php echo base_url();?>mahasiswa/prestasi/<?php echo $mahasiswa->id_mahasiswa; ?>">Prestasi</a>
         <a class="btn btn-sm btn-primary" href="<?php echo base_url(); ?>mahasiswa/data_mahasiswa">Kembali</a>
         <br><br>
@@ -61,85 +61,30 @@
                 
                 <tr>
                     <td class="left_column" width="15%">NIM</td>
-                    <td colspan="3">:  <?php echo $mahasiswa->nim; ?>
+                    <td colspan="6">:  <?php echo $mahasiswa->nim; ?>
                     </td>
-                    <td rowspan="8"><div class="btn btn-file" >
+                    <td rowspan="8" width="15%"><div class="btn btn-file" >
                  
-                  <img id="output" height="200" width="150" class="pull-right" width="40%" src="<?php echo base_url(); ?>uploads/<?php echo $mahasiswa->foto_mahasiswa; ?>" alt="Photo" onerror="this.src='<?php echo base_url();?>uploads/user.jpg'" src="#" alt="Your Image">
+                  <img id="output" height="200" width="150" class="pull-right" width="40%" src="<?php echo base_url(); ?>uploads/<?php echo $mahasiswa->foto_mahasiswa; ?>" alt="Your Image" onerror="this.src='<?php echo base_url();?>uploads/user.jpg'">
                 </div></td>
                 </tr>
                 <tr>
-                    <td class="left_column" width="15%">Nama</td>
-                    <td>: <input type="text" name="nama_ayah" id="nama_ayah" class="text-input" maxlength="100" size="100" style="width:50%" value="<?php echo $mahasiswa->nama_ayah; ?>"></td>
+                    <td class="left_column" width="15%"> Prodi</td>
+                    <td colspan="6" size="100">: <?php echo $mahasiswa->nama_prodi; ?></td>
                 </tr>
-                <tr>
-                    <td class="left_column">Tanggal Lahir</td>
-                    <td>:
-                        <input type="date" name="tanggal_lahir_ayah" id="tanggal_lahir_ayah" class="text-input" maxlength="50" size="50" style="width:20%" value="<?php echo $mahasiswa->tanggal_lahir_ayah; ?>">                                                                    </td>
+                 <tr>
+                    <td class="left_column" width="15%"> Konsentrasi</td>
+                    <td colspan="6" size="100">: <?php echo $mahasiswa->nama_konsentrasi; ?></td>
                 </tr>
-                <tr>
-                    <td class="left_column">Pendidikan</td>
-                    <td>: <select name="pendidikan_ayah" id="pendidikan_ayah">
-                        <option value="<?php echo $mahasiswa->pendidikan_ayah; ?>"><?php echo $mahasiswa->pendidikan_ayah; ?></option>
-                        <option value="Tidak sekolah">Tidak sekolah</option>
-                        <option value="PAUD">PAUD</option>
-                        <option value="TK / sederajat">TK / sederajat</option>
-                        <option value="Putus SD">Putus SD</option>
-                        <option value="SD / sederajat">SD / sederajat</option>
-                        <option value="SMP / sederajat">SMP / sederajat</option>
-                        <option value="SMA / sederajat">SMA / sederajat</option>
-                        <option value="Paket A">Paket A</option>
-                        <option value="Paket B">Paket B</option>
-                        <option value="Paket C">Paket C</option>
-                        <option value="D1">D1</option>
-                        <option value="D2">D2</option>
-                        <option value="D3">D3</option>
-                        <option value="D4">D4</option>
-                        <option value="S1">S1</option>
-                        <option value="Profesi">Profesi</option>
-                        <option value="Sp-1">Sp-1</option>
-                        <option value="S2">S2</option>
-                        <option value="S2 Terapan">S2 Terapan</option>
-                        <option value="Sp-2">Sp-2</option>
-                        <option value="S3">S3</option>
-                        <option value="S3 Terapan">S3 Terapan</option>
-                        <option value="Non formal">Non formal</option>
-                        <option value="Informal">Informal</option>
-                        <option value="Lainnya">Lainnya</option>
-                        </select></td>
+                 <tr>
+                    <td class="left_column" width="15%"> Tanggal Pendaftaran</td>
+                    <td colspan="6" size="100">: <?php echo $mahasiswa->tgl_du; ?></td>
                 </tr>
-                <tr>
-                    <td class="left_column">Pekerjaan</td>
-                    <td>: <select name="pekerjaan_ayah" id="pekerjaan_ayah">
-                        <option value="<?php echo $mahasiswa->pekerjaan_ayah; ?>"><?php echo $mahasiswa->pekerjaan_ayah; ?></option>
-                        <option value="Tidak bekerja">Tidak bekerja</option>
-                        <option value="Nelayan">Nelayan</option>
-                        <option value="Petani">Petani</option>
-                        <option value="Peternak">Peternak</option>
-                        <option value="PNS/TNI/Polri">PNS/TNI/Polri</option>
-                        <option value="Karyawan Swasta">Karyawan Swasta</option>
-                        <option value="Pedagang Kecil">Pedagang Kecil</option>
-                        <option value="Pedagang Besar">Pedagang Besar</option>
-                        <option value="Wiraswasta">Wiraswasta</option>
-                        <option value="Wirausaha">Wirausaha</option>
-                        <option value="Buruh">Buruh</option>
-                        <option value="Pensiunan">Pensiunan</option>
-                        <option value="Sudah Meninggal">Sudah Meninggal</option>
-                        <option value="Lainnya">Lainnya</option>
-                        </select></td>
+                 <tr>
+                    <td class="left_column" width="15%"> Status</td>
+                    <td colspan="6" size="100">: <?php echo $mahasiswa->status_mhs; ?></td>
                 </tr>
-                <tr>
-                    <td class="left_column">Penghasilan</td>
-                    <td>: <select name="penghasilan_ayah" id="penghasilan_ayah">
-                        <option value="<?php echo $mahasiswa->penghasilan_ayah; ?>"><?php echo $mahasiswa->penghasilan_ayah; ?></option>
-                        <option value="Kurang dari Rp. 500,000">Kurang dari Rp. 500,000</option>
-                        <option value="Rp. 500,000 - Rp. 999,999">Rp. 500,000 - Rp. 999,999</option>
-                        <option value="Rp. 1,000,000 - Rp. 1,999,999">Rp. 1,000,000 - Rp. 1,999,999</option>
-                        <option value="Rp. 2,000,000 - Rp. 4,999,999">Rp. 2,000,000 - Rp. 4,999,999</option>
-                        <option value="Rp. 5,000,000 - Rp. 20,000,000">Rp. 5,000,000 - Rp. 20,000,000</option>
-                        <option value="Lebih dari Rp. 20,000,000">Lebih dari Rp. 20,000,000</option>
-                        </select></td>
-                </tr>
+                
             </table>
 
               </div>

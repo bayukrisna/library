@@ -72,83 +72,52 @@ if(!empty($ea)){
                     <td class="left_column" width="15%">NIM</td>
                     <td colspan="3">:  <input type="text" name="nim" id="nim" class="text-input" maxlength="16" size="50" style="width:40%" onkeydown="return onlyNumber(event,this,false,false)" value="<?php echo $mahasiswa->nim; ?>">                            
                     </td>
-                    <td rowspan="8">
+                    <td rowspan="8" width="15%">
                         <div class="btn btn-file" >
                   <img  data-toggle="modal" data-target="#modal-default" id="output" height="200" width="150" class="pull-right" width="40%" src="<?php echo base_url(); ?>uploads/<?php echo $mahasiswa->foto_mahasiswa; ?>" alt="Photo" onerror="this.src='<?php echo base_url();?>uploads/user.jpg'" src="#" alt="Your Image">
                 </div>
                 </td>
                 </tr>
-                <tr>
-                    <td class="left_column" width="15%">Nama</td>
-                    <td>: <input type="text" name="nama_ayah" id="nama_ayah" class="text-input" maxlength="100" size="100" style="width:50%" value="<?php echo $mahasiswa->nama_ayah; ?>"></td>
+                 <tr>
+                    <td class="left_column" width="15%" >Nama Prodi <font color="#FF0000">*</font></td>
+                    <td>: <select name="id_prodi" id="id_prodi" required="" onchange="return get_concentrate(this.value)">
+                            <option value="<?php echo $mahasiswa->id_prodi; ?>"><?php echo $mahasiswa->nama_prodi; ?></option>  
+                             <?php 
+
+                  foreach($getProdi as $row)
+                  { 
+                    echo '<option value="'.$row->id_prodi.'">'.$row->nama_prodi.'</option>';
+                  }
+                  ?>
+                             </select></td>
                 </tr>
                 <tr>
-                    <td class="left_column">Tanggal Lahir</td>
+                    <td class="left_column">Nama Konsentrasi <font color="#FF0000">*</font></td>
                     <td>:
-                        <input type="date" name="tanggal_lahir_ayah" id="tanggal_lahir_ayah" class="text-input" maxlength="50" size="50" style="width:20%" value="<?php echo $mahasiswa->tanggal_lahir_ayah; ?>">                                                                    </td>
+                        <select name="concentrate" id="concentrate" required="" >
+                            <option value="<?php echo $mahasiswa->id_konsentrasi; ?>"><?php echo $mahasiswa->nama_konsentrasi; ?></option>
+                            
+                             </select></td>
                 </tr>
                 <tr>
-                    <td class="left_column">Pendidikan</td>
-                    <td>: <select name="pendidikan_ayah" id="pendidikan_ayah">
-                        <option value="<?php echo $mahasiswa->pendidikan_ayah; ?>"><?php echo $mahasiswa->pendidikan_ayah; ?></option>
-                        <option value="Tidak sekolah">Tidak sekolah</option>
-                        <option value="PAUD">PAUD</option>
-                        <option value="TK / sederajat">TK / sederajat</option>
-                        <option value="Putus SD">Putus SD</option>
-                        <option value="SD / sederajat">SD / sederajat</option>
-                        <option value="SMP / sederajat">SMP / sederajat</option>
-                        <option value="SMA / sederajat">SMA / sederajat</option>
-                        <option value="Paket A">Paket A</option>
-                        <option value="Paket B">Paket B</option>
-                        <option value="Paket C">Paket C</option>
-                        <option value="D1">D1</option>
-                        <option value="D2">D2</option>
-                        <option value="D3">D3</option>
-                        <option value="D4">D4</option>
-                        <option value="S1">S1</option>
-                        <option value="Profesi">Profesi</option>
-                        <option value="Sp-1">Sp-1</option>
-                        <option value="S2">S2</option>
-                        <option value="S2 Terapan">S2 Terapan</option>
-                        <option value="Sp-2">Sp-2</option>
-                        <option value="S3">S3</option>
-                        <option value="S3 Terapan">S3 Terapan</option>
-                        <option value="Non formal">Non formal</option>
-                        <option value="Informal">Informal</option>
-                        <option value="Lainnya">Lainnya</option>
-                        </select></td>
+                    <td class="left_column" width="15%">Tanggal Pendaftaran <font color="#FF0000">*</font></td>
+                    <td colspan="4">:  <input type="date" name="tgl_du" id="tgl_du" class="validate[required] text-input" maxlength="16" size="50" style="width:20%" value="<?php echo $mahasiswa->tgl_du; ?>">                            
+                    </td>
                 </tr>
+               
                 <tr>
-                    <td class="left_column">Pekerjaan</td>
-                    <td>: <select name="pekerjaan_ayah" id="pekerjaan_ayah">
-                        <option value="<?php echo $mahasiswa->pekerjaan_ayah; ?>"><?php echo $mahasiswa->pekerjaan_ayah; ?></option>
-                        <option value="Tidak bekerja">Tidak bekerja</option>
-                        <option value="Nelayan">Nelayan</option>
-                        <option value="Petani">Petani</option>
-                        <option value="Peternak">Peternak</option>
-                        <option value="PNS/TNI/Polri">PNS/TNI/Polri</option>
-                        <option value="Karyawan Swasta">Karyawan Swasta</option>
-                        <option value="Pedagang Kecil">Pedagang Kecil</option>
-                        <option value="Pedagang Besar">Pedagang Besar</option>
-                        <option value="Wiraswasta">Wiraswasta</option>
-                        <option value="Wirausaha">Wirausaha</option>
-                        <option value="Buruh">Buruh</option>
-                        <option value="Pensiunan">Pensiunan</option>
-                        <option value="Sudah Meninggal">Sudah Meninggal</option>
-                        <option value="Lainnya">Lainnya</option>
-                        </select></td>
-                </tr>
-                <tr>
-                    <td class="left_column">Penghasilan</td>
-                    <td>: <select name="penghasilan_ayah" id="penghasilan_ayah">
-                        <option value="<?php echo $mahasiswa->penghasilan_ayah; ?>"><?php echo $mahasiswa->penghasilan_ayah; ?></option>
-                        <option value="Kurang dari Rp. 500,000">Kurang dari Rp. 500,000</option>
-                        <option value="Rp. 500,000 - Rp. 999,999">Rp. 500,000 - Rp. 999,999</option>
-                        <option value="Rp. 1,000,000 - Rp. 1,999,999">Rp. 1,000,000 - Rp. 1,999,999</option>
-                        <option value="Rp. 2,000,000 - Rp. 4,999,999">Rp. 2,000,000 - Rp. 4,999,999</option>
-                        <option value="Rp. 5,000,000 - Rp. 20,000,000">Rp. 5,000,000 - Rp. 20,000,000</option>
-                        <option value="Lebih dari Rp. 20,000,000">Lebih dari Rp. 20,000,000</option>
-                        </select></td>
+                    <td class="left_column" width="15%"> Grade <font color="#FF0000">*</font></td>
+                    <td colspan="4">:  <select name="id_grade" id="id_grade" required="">
+                            <option value="<?php echo $mahasiswa->id_grade; ?>"><?php echo $mahasiswa->grade; ?></option>  
+                             <?php 
+
+                  foreach($getGrade as $row)
+                  { 
+                    echo '<option value="'.$row->id_grade.'">'.$row->grade.'</option>';
+                  }
+                  ?>
+                             </select>                            
+                    </td>
                 </tr>
             </table>
 
@@ -565,7 +534,7 @@ if(!empty($ea)){
               <div class="modal-header">
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                   <span aria-hidden="true">&times;</span></button>
-                <h4 class="modal-title">Pembayaran</h4>
+                <h4 class="modal-title">Upload Foto</h4>
               </div>
               <div class="modal-body">
                 
@@ -593,3 +562,20 @@ if(!empty($ea)){
           </div>
           <!-- /.modal-dialog -->
         </div>
+
+        <script type="text/javascript">
+      function get_concentrate(p) {
+                var id_prodi = p;
+
+                $.ajax({
+                    url: '<?php echo base_url(); ?>daftar_ulang/get_concentrate/'+id_prodi,
+                    data: 'id_prodi='+id_prodi,
+                    type: 'GET',
+                    dataType: 'html',
+                    success: function(msg) {
+                        $("#concentrate").html(msg);
+
+                    }
+                });
+            }
+  </script>  

@@ -128,6 +128,12 @@ class Kurikulum_model extends CI_Model {
               ->result();
   }
 
+  public function get_prodi_periode2($data){
+      return $this->db->where('tb_periode.id_prodi',$data)
+              ->get('tb_periode')
+              ->result();
+  }
+
   public function get_nama_periode($data){
       return $this->db->where('tb_periode.id_periode',$data)
               ->get('tb_periode')

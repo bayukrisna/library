@@ -21,6 +21,11 @@
             <td class="left_column" width="15%">Angkatan</td>
             <td>: <?php echo $mahasiswa->angkatan; ?>           </td>
         </tr>
+        <tr>
+            <td class="left_column" width="15%">Periode</td>
+            <td width="35%">: <?php echo $this->input->get('id_periode'); ?>            </td>
+            
+        </tr>
         
                
 
@@ -42,7 +47,7 @@
 
          <div class="tab-pane" id="tab_1">
 
-<table id="table1" class="table table-striped table-bordered" >
+<table id="table1" class="table2 table-bordered table-striped" >
     <thead>
     <tr>
         <th style="width:5%;text-align:center" rowspan="2">No.</th>
@@ -134,7 +139,8 @@
                     <td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
                       
                       <select name="id_periode" id="id_periode" class="validate[required]">
-                        
+                        <option value="">Semua</option>   
+
                     
               </select>
 
@@ -152,7 +158,7 @@
               
               <br>
               <br>
-        <table id="table1" class="table2 table-bordered table-striped" >
+        <table id="table1" class="table2 table-striped table-bordered" >
     <thead>
     <tr>
         <th style="width:5%;text-align:center" rowspan="2">No.</th>
@@ -208,7 +214,7 @@
 
     </tr>
     <tr>
-        <th style="text-align:right" colspan="7"> IPK : </th>
+        <th style="text-align:right" colspan="7"> IPS : </th>
         <th style="text-align:center"> <?php $ips = $totalsi / $totalbobot; echo round($ips, 2); ?>   </th>
     </tr>
 

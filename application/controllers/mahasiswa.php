@@ -9,6 +9,7 @@ class Mahasiswa extends CI_Controller {
 		$this->load->model('mahasiswa_model');
 		$this->load->model('daftar_ulang_model');
 		$this->load->model('konsentrasi_model');
+		$this->load->model('kurikulum_model');
 	}
 
 	public function index()
@@ -64,7 +65,7 @@ class Mahasiswa extends CI_Controller {
 			$data['mahasiswa'] = $this->mahasiswa_model->detail_krs_mahasiswa($id_mahasiswa);
 			$data['nilai'] = $this->mahasiswa_model->filter_nilai($id_mahasiswa,$id_periode);
 			$data['nilai2'] = $this->mahasiswa_model->data_nilai_mhs($id_mahasiswa);
-			$data['main_view'] = 'Mahasiswa/history_nilai_view';
+			$data['main_view'] = 'Mahasiswa/history_ips_view';
 			$this->load->view('template', $data);
 	}
 	public function filter_nilai_ak(){
@@ -73,10 +74,25 @@ class Mahasiswa extends CI_Controller {
     		$this->mahasiswa_model->filter_nilai_ak($id_mahasiswa, $id_periode);
   	
 	}
+	public function get_prodi_periode($param = NULL) {
+		$prodi = $param;
+		$result = $this->kurikulum_model->get_prodi_periode2($prodi);
+		$option = "";
+		$option .= '';
+		foreach ($result as $data) {
+			$option .= "<option value='".$data->semester."'>".$data->semester."</option>";
+			
+		}
+		echo $option;
+	}
 
 	public function detail_mahasiswa_dikti()
 	{
 			$id_mahasiswa = $this->uri->segment(3);
+			$data['getStatus'] = $this->mahasiswa_model->getStatus();
+			$data['getGrade'] = $this->mahasiswa_model->getGrade();
+			$data['getProdi'] = $this->daftar_ulang_model->getProdi();
+			$data['getConcentrate'] = $this->daftar_ulang_model->getProdi();
 			$data['mahasiswa'] = $this->mahasiswa_model->detail_mahasiswa_dikti($id_mahasiswa);
 			$data['main_view'] = 'Mahasiswa/detail_mahasiswa_dikti_view';
 			$this->load->view('template', $data);
@@ -87,7 +103,7 @@ class Mahasiswa extends CI_Controller {
 			$id_prodi = $this->uri->segment(4);
 			$data['mahasiswa'] = $this->mahasiswa_model->detail_krs_mahasiswa($id_mahasiswa);
 			$data['krs'] = $this->mahasiswa_model->data_krs_mhs($id_mahasiswa);
-			$data['periode'] = $this->mahasiswa_model->Periode_krs();
+			$data['periode'] = $this->mahasiswa_model->Periode_krs($id_prodi);
 			$data['main_view'] = 'Mahasiswa/krs_mahasiswa_view';
 			$this->load->view('template', $data);
 	}
@@ -106,9 +122,8 @@ class Mahasiswa extends CI_Controller {
 	{
 			$id_mahasiswa = $this->uri->segment(3);
 			$data['mahasiswa'] = $this->mahasiswa_model->detail_krs_mahasiswa($id_mahasiswa);
-			$data['nilai'] = $this->mahasiswa_model->data_nilai_mhs($id_mahasiswa);
-			$data['nilai2'] = $this->mahasiswa_model->data_nilai_mhs($id_mahasiswa);
-			$data['main_view'] = 'aktivitas_perkuliahan/aktivitas_perkuliahan_view';
+			$data['aktivitas'] = $this->mahasiswa_model->data_ap($id_mahasiswa);
+			$data['main_view'] = 'mahasiswa/aktivitas_perkuliahan_mahasiswa_view';
 			$this->load->view('template', $data);
 	}
 
@@ -258,6 +273,59 @@ class Mahasiswa extends CI_Controller {
 	        redirect('mahasiswa/detail_mahasiswa_dikti/'.$this->uri->segment(3));
 	    }
         
+	}
+
+	public function data_ld(){
+		$data['ld'] = $this->mahasiswa_model->data_ld();
+		$data['getProdi'] = $this->daftar_ulang_model->getProdi();
+		$data['main_view'] = 'ld/lulus_do_view';
+		$this->load->view('template', $data);
+	}
+
+	public function get_autocomplete_ipk(){
+		if(isset($_GET['term'])){
+			$result = $this->mahasiswa_model->autocomplete_ipk($_GET['term']);
+			if(count($result) > 0){
+				foreach ($result as $row) 
+					$result_array[] = array(
+						'label' => $row->nim.' - '.$row->nama_mahasiswa,
+						'id' => $row->id_mahasiswa,
+						'nama' => $row->nama_mahasiswa,
+						'ipk' => $row->ipk,
+						'prodi' => $row->id_prodi);
+				echo json_encode($result_array);
+			
+			}
+		}
+	}
+
+	public function simpan_ld()
+	{
+		$id_mahasiswa = $this->input->post('id_mahasiswa');
+			if($this->mahasiswa_model->simpan_ld() == TRUE  && $this->mahasiswa_model->update_status_ld($id_mahasiswa) == TRUE){
+				$this->session->set_flashdata('message', '<div class="alert alert-success"> Tambah Mahasiswa Berhasil </div>');
+            	redirect('mahasiswa/data_ld');
+			} 
+	}
+
+	public function edit_ld()
+	{
+		$id_mahasiswa = $this->input->post('id_mahasiswa');
+			if($this->mahasiswa_model->edit_ld($id_mahasiswa) == TRUE  && $this->mahasiswa_model->edit_status_ld($id_mahasiswa) == TRUE){
+				$this->session->set_flashdata('message', '<div class="alert alert-success"> Tambah Mahasiswa Berhasil </div>');
+            	redirect('mahasiswa/data_ld');
+			} 
+	}
+
+	public function filter_ld()
+	{
+			$data['getProdi'] = $this->daftar_ulang_model->getProdi();
+			$id_prodi=$this->input->get('id_prodi');
+			$id_status=$this->input->get('id_status');
+			$angkatan=$this->input->get('angkatan');
+			$data['ld'] = $this->mahasiswa_model->filter_ld($id_prodi,$id_status,$angkatan);
+			$data['main_view'] = 'ld/lulus_do_view';
+			$this->load->view('template', $data);
 	}
 		
 }

@@ -113,6 +113,7 @@
                 $no = 0;
                  $alert = "'Apakah anda yakin menghapus data ini ?'";
                 foreach ($dosen as $data) {
+                  if($ab >= $kp->tanggal_mulai && $ab <= $kp->tgl_akhir) {
                   echo '
                 <tr>
                   <td>'.++$no.'</td>
@@ -128,6 +129,21 @@
                   </td>
 
                 ' ;
+              } else {
+                 echo '
+                <tr>
+                  <td>'.++$no.'</td>
+                  <td>'.$data->id_dosen.'</a></td>
+                  <td>'.$data->nama_dosen.'</td>
+                  <td id="bobot_dosen">'.$data->bobot_dosen.'</td>
+                  <td id="rencana">'.$data->rencana.'</td>
+                  <td id="realisasi">'.$data->realisasi.'</td>
+                  <td>'.$data->jenis_evaluasi.'</td>
+                  <td>  
+                  </td>
+                  ';
+              }
+
               }
               ?>
             </tr>
@@ -173,12 +189,12 @@
                 </tr>
                 </thead>
                 <tbody> 
-                    <?php 
-                $no = 0;
-                 $alert = "'Apakah anda yakin menghapus data ini ?'";
+                  <?php 
+                    $no = 0;
+                    $alert = "'Apakah anda yakin menghapus data ini ?'";
+                    //
                 foreach ($mhs as $data) {
-
-                  
+                  if($ab >= $kp->tanggal_mulai && $ab <= $kp->tgl_akhir) {
                   echo '
                   
                 <tr>
@@ -195,7 +211,26 @@
                   </td>
 
                 ' ;
+                 } else {
+                echo '
+                <tr>
+                  <td>'.++$no.'</td>
+                  <td>'.$data->nim.'</a></td>
+                  <td>'.$data->nama_mahasiswa.'</td>
+                  <td>'.$data->jenis_kelamin.'</td>
+                  <td>'.$data->nama_prodi.'</td>
+                  <td>'.$data->angkatan.'</td>
+                  <td>
+                       
+                  </td>
+
+                ' ;
+              
+                }
               }
+             
+
+
               ?>
              
                         
