@@ -290,7 +290,7 @@
                 <div class="modal-body">
 
                     <div class="form-group">
-                      <?php echo form_open('mahasiswa/edit_ld'); ?>
+                      
                       <table class="table">
       <tr>
           <td class="left_column">Mahasiswa <font color="#FF0000">*</font></td>
@@ -338,7 +338,7 @@
             </div>
             </div>
         </div>
-        <?php echo form_close();?>
+        
 
     <?php endforeach;?>
 

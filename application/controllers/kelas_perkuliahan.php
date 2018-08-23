@@ -148,7 +148,7 @@ class Kelas_perkuliahan extends CI_Controller {
 		
 	public function get_autocomplete2(){
 		if(isset($_GET['term'])){
-			$result = $this->finance_model->autocomplete($_GET['term']);
+			$result = $this->kelas_perkuliahan_model->autocomplete2($_GET['term']);
 			if(count($result) > 0){
 				foreach ($result as $row) 
 					$result_array[] = array(
@@ -180,24 +180,6 @@ class Kelas_perkuliahan extends CI_Controller {
 			}
 		}
 	}
-
-	public function get_autocomplete3(){
-		if(isset($_GET['term'])){
-			$result = $this->kelas_perkuliahan_model->autocomplete2($_GET['term']);
-			if(count($result) > 0){
-				foreach ($result as $row) 
-					$result_array[] = array(
-						'label' => $row->nama_mahasiswa,
-						'id' => $row->id_mahasiswa,
-						'angkatan' => $row->angkatan,
-						'nim' => $row->nim,
-						'jenis_kelamin' => $row->jenis_kelamin,
-						'id_prodi' => $row->nama_prodi);
-				echo json_encode($result_array);
-			
-			}
-		}
-	}  
 
 	public function simpan_kelas_mhs()
 	{
