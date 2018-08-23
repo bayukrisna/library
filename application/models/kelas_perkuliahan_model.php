@@ -94,8 +94,7 @@ class Kelas_perkuliahan_model extends CI_Model {
      $this->db->from('tb_mahasiswa');
      $this->db->join('tb_bio','tb_bio.id_mahasiswa=tb_mahasiswa.id_mahasiswa');
      $this->db->join('tb_konsentrasi','tb_konsentrasi.id_konsentrasi=tb_mahasiswa.id_konsentrasi');
-     $this->db->join('tb_prodi','tb_prodi.id_prodi=tb_mahasiswa.id_prodi');
-     $this->db->join('tb_angkatan','tb_angkatan.id_angkatan=tb_mahasiswa.id_angkatan');
+     $this->db->join('tb_prodi','tb_prodi.id_prodi=tb_konsentrasi.id_prodi');
      $this->db->like('tb_mahasiswa.nama_mahasiswa', $nama);
      $query = $this->db->get();
      return $query->result();
@@ -107,7 +106,7 @@ class Kelas_perkuliahan_model extends CI_Model {
      $this->db->join('tb_mahasiswa','tb_mahasiswa.id_mahasiswa=tb_kelas_mhs.id_mahasiswa');
      $this->db->join('tb_bio','tb_bio.id_mahasiswa=tb_mahasiswa.id_mahasiswa');
      $this->db->join('tb_konsentrasi','tb_konsentrasi.id_konsentrasi=tb_mahasiswa.id_konsentrasi');
-     $this->db->join('tb_prodi','tb_prodi.id_prodi=tb_mahasiswa.id_prodi');
+     $this->db->join('tb_prodi','tb_prodi.id_prodi=tb_konsentrasi.id_prodi');
      $this->db->where('tb_kelas_mhs.id_kelas_mhs', $nama);
      $query = $this->db->get();
      return $query->row();

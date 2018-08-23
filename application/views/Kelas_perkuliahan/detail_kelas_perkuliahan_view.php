@@ -114,7 +114,7 @@
                  $alert = "'Apakah anda yakin menghapus data ini ?'";
                 foreach ($dosen as $data) {
                   
-                  
+
                   if($ab >= $kp->tanggal_mulai && $ab <= $kp->tgl_akhir) {
                   echo '
                 <tr>
@@ -500,6 +500,9 @@
             </div>
         </div>
 
+    <link rel="stylesheet" href="//code.jquery.com/ui/1.12.0/themes/smoothness/jquery-ui.css">
+  <script src="//code.jquery.com/jquery-1.12.4.min.js"></script>
+  <script src="//code.jquery.com/ui/1.12.0/jquery-ui.min.js"></script>
          <script>
 
        document.getElementById("nama_mahasiswa").style.visibility = 'visible';
