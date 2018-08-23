@@ -16,7 +16,7 @@
                   <div class="col-sm-10">
                     <div class="col-sm-4">
                       <input type="text" class="form-control" name="nama_mahasiswa" id="nama_mahasiswa" value="">
-                      <input type="text" class="form-control" name="id_mahasiswa" id="id_mahasiswa">
+                      <input type="hidden" class="form-control" name="id_mahasiswa" id="id_mahasiswa">
                     </div>
                 <br>
                 </div>
