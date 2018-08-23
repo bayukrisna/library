@@ -781,69 +781,51 @@ class Laporan_model extends CI_Model {
     }
     function laporan_khs($id_mahasiswa, $semester){
       $query = $this->db->select('*')
-                ->from('tb_kp')
-                ->join('tb_kelas_mhs','tb_kelas_mhs.id_kp=tb_kp.id_kp')
+                ->from('tb_kelas_mhs')
+                ->join('tb_kp','tb_kp.id_kp=tb_kelas_mhs.id_kp')
                 ->join('tb_periode','tb_periode.id_periode=tb_kp.id_periode')
                 ->join('tb_mahasiswa','tb_mahasiswa.id_mahasiswa=tb_kelas_mhs.id_mahasiswa')
                 ->join('tb_bio','tb_mahasiswa.id_mahasiswa=tb_bio.id_mahasiswa')
                 ->join('tb_konsentrasi','tb_mahasiswa.id_konsentrasi=tb_konsentrasi.id_konsentrasi')
                 ->join('tb_prodi','tb_prodi.id_prodi=tb_kp.id_prodi')
                 ->join('tb_waktu','tb_waktu.id_waktu=tb_mahasiswa.id_waktu')
-                ->join('tb_ibu','tb_ibu.id_mahasiswa=tb_mahasiswa.id_mahasiswa', 'left' )
-                ->join('tb_kependudukan','tb_kependudukan.id_mahasiswa=tb_mahasiswa.id_mahasiswa', 'left' )
-                ->join('tb_alamat','tb_alamat.id_mahasiswa=tb_mahasiswa.id_mahasiswa', 'left' )
-                ->join('tb_sekolah','tb_sekolah.id_sekolah=tb_mahasiswa.id_sekolah', 'left' )
-                ->where('tb_periode.semester' , $id_periode)
-                ->like('tb_kp.id_prodi' , $id_prodi)
+                ->join('tb_detail_kurikulum','tb_detail_kurikulum.id_detail_kurikulum=tb_kp.id_detail_kurikulum')
+                ->join('tb_matkul','tb_matkul.kode_matkul=tb_detail_kurikulum.kode_matkul')
+                ->join('tb_skala_nilai','tb_skala_nilai.id_skala_nilai=tb_kelas_mhs.id_skala_nilai')
+                ->like('tb_periode.semester' , $semester)
+                ->where('tb_kelas_mhs.id_mahasiswa' , $id_mahasiswa)
                 ->get();
       $row = $query->result();
-      $pp = $this->db->select('nama_prodi')
-            ->where('id_prodi', $id_prodi)
-            ->get('tb_prodi')
+     
+      $pp = $this->db->select('*')
+            ->where('id_mahasiswa', $id_mahasiswa)            
+            ->join('tb_konsentrasi', 'tb_konsentrasi.id_konsentrasi=tb_mahasiswa.id_konsentrasi')
+            ->join('tb_prodi', 'tb_prodi.id_prodi=tb_konsentrasi.id_prodi')
+            ->get('tb_mahasiswa')
             ->row();
-      $coo = $this->db->select('count(distinct tb_mahasiswa.nama_mahasiswa) as total')
-                ->from('tb_kp')
-                ->join('tb_kelas_mhs','tb_kelas_mhs.id_kp=tb_kp.id_kp')
-                ->join('tb_periode','tb_periode.id_periode=tb_kp.id_periode')
-                ->join('tb_mahasiswa','tb_mahasiswa.id_mahasiswa=tb_kelas_mhs.id_mahasiswa')
-                ->join('tb_konsentrasi','tb_mahasiswa.id_konsentrasi=tb_konsentrasi.id_konsentrasi')
-                ->join('tb_prodi','tb_prodi.id_prodi=tb_kp.id_prodi')
-                ->join('tb_waktu','tb_waktu.id_waktu=tb_mahasiswa.id_waktu')
-                ->where('tb_periode.semester' , $id_periode)
-                ->like('tb_kp.id_prodi' , $id_prodi)
-                ->get();
-      $total = $coo->row();
 
                 if ($query->num_rows() > 0)
                 { 
-                  if(empty($pp->nama_prodi)){
-                    $cc = 'All';
-                  } else {
-                    $cc = $pp->nama_prodi;
-                  }
                   $no = 0;
+                  $totalsi = 0;
+                  $totalbobot = 0;
                   $option = "";
                   $option .= '<section class="content" id="ea">
       <div class="row">
         <div class="col-xs-12">
-          
-            <h4><b>Laporan Mahasiswa</h4></b>
+        <h4 style="text-align:center" ><b>Kartu Hasil Studi (KHS)</h4></b>
             <table>
               <tr>
-                <td width="120px">Perguruan Tinggi</td>
-                <td width="300px">: 033082 - STIE Jakarta International College</td>
-                <td width="120px">Alamat</td>
-                <td>: Jalan Perunggu No 53-54 10640</td>
+                <td width="200px"><b>Nama Mahasiswa</b></td>
+                <td width="500px">: '.$pp->nama_mahasiswa.'</td>
+                <td width="120px"><b>NIM</b></td>
+                <td>: '.$pp->nim.'</td>
               </tr>
               <tr>
-                <td width="120px">Periode</td>
-                <td width="300px">: '.$id_periode.'</td>
-                <td width="120px">Program Studi</td>
-                <td>: '.$cc.'</td>
-              </tr>
-              <tr>
-                <td width="120px">Jumlah Mahasiswa</td>
-                <td width="300px">: '.$total->total.'</td>
+                <td width="200px"><b>Program Studi</b></td>
+                <td>: '.$pp->nama_prodi.' </td>
+                <td width="120px"><b>Periode</b></td>
+                <td width="300px">: '.$semester.'</td>
               </tr>
             </table>
             <br>
@@ -852,39 +834,59 @@ class Laporan_model extends CI_Model {
               <table id="example1" class="table table-bordered table-striped">
                 <thead>
                 <tr>
-                  <th>No</th>
-                  <th>Kode Prodi</th>
-                  <th>NIM</th>
-                  <th>Nama Mahasiswa</th>
-                  <th>Tempat, Tanggal Lahir</th>
-                  <th>Nama Ibu Kandung</th>
-                  <th>Agama</th>
-                  <th>NIK</th>
-                  <th>Kelurahan</th>
-                  <th>Kecamatan</th>
-                  <th>Asal SMTA</th>
+                    <th style="width:5%;text-align:center" height="10" rowspan="2">No.</th>
+                    <th style="text-align:center" height="10" rowspan="2">Kode MK</th>
+                    <th style="text-align:center" height="10" rowspan="2">Nama MK</th>
+                    <th style="text-align:center" height="10" rowspan="2">Bobot MK<br />(sks)</th>
+                     <th style="text-align:center" height="5" colspan="3">Nilai</th>
+                     <th style="text-align:center"  height="10" rowspan="2">sks * N.indeks</th>
+                   
+                </tr>
+                <tr>
+                    <th style="width:5%;text-align:center">Angka</th>
+                    <th style="width:5%;text-align:center">Huruf</th>
+                    <th style="width:5%;text-align:center">Indeks</th>
+                    
                 </tr>
                 </thead>
                 <tbody>';
                   foreach ($row as $data) {
+                    $totalbobot += $data->bobot_matkul;
+                    $ea = $data->bobot_matkul * $data->nilai_indeks;
+                    $totalsi += $ea;
                     $option .= "
                     <tr>
                       <td>".++$no."</td>
-                      <td>".$data->id_prodi."</td>
-                      <td>".$data->nim."</td>
-                      <td>".$data->nama_mahasiswa."</td>
-                      <td>".$data->tempat_lahir.', '.$data->tanggal_lahir."</td>
-                      <td>".$data->nama_ibu."</td>
-                      <td>".$data->agama."</td>
-                      <td>".$data->nik."</td>
-                      <td>".$data->kelurahan."</td>
-                      <td>".$data->kecamatan."</td>
-                      <td>".$data->nama_sekolah."</td>
+                      <td>".$data->kode_matkul."</td>
+                      <td>".$data->nama_matkul."</td>
+                      <td style='text-align:right'>".$data->bobot_matkul."</td>
+                      <td style='text-align:right'>".$data->nilai_d."</td>
+                      <td style='text-align:right'>".$data->nilai_huruf."</td>
+                      <td style='text-align:right'>".$data->nilai_indeks."</td>
+                      <td style='text-align:right'>".$data->bobot_matkul * $data->nilai_indeks."</td>
                     </tr>"
                     ;
                     
                   }
+                  
+                  if ($totalbobot == 0) {
+                      $totalbobot = 1;
+                  } else {
+                      $totalbobot;
+                  }
+                  $ipk = $totalsi / $totalbobot;
                   $option .= '</tbody>
+                  <tr>
+                    <td colspan="3" style="text-align:right"> <b> Jumlah Bobot : </b></td>
+                    <td style="text-align:right">  '.$totalbobot.' </td>
+                    <td colspan="3" style="text-align:right"> <b> Jumlah sks * N.indeks : </b></td>
+                    <td style="text-align:right"> '.$totalsi.'</td>
+
+                </tr>
+                <tr>
+                    <td style="text-align:right" colspan="7"> IPS : </td>
+                    <td style="text-align:right"> '.$ipk.'  </td>
+                </tr>
               </table>
             </div>
             

@@ -17,7 +17,11 @@ class Login extends CI_Controller {
 	public function login()
 	{
 		if($this->user_model->masuk() == TRUE){
-			redirect(base_url('finance'));
+			if($this->session->userdata('level') == 5){
+				redirect(base_url('mahasiswa'));
+			} else {
+				redirect(base_url('finance'));
+			}
 		} else {
 			$this->session->set_flashdata('message', '<div class="alert alert-danger"><p> Login Gagal</p></div>');
 			redirect('login');

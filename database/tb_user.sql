@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Aug 21, 2018 at 07:21 AM
+-- Generation Time: Aug 23, 2018 at 09:26 AM
 -- Server version: 10.1.34-MariaDB
 -- PHP Version: 7.2.7
 
@@ -31,7 +31,7 @@ SET time_zone = "+00:00";
 CREATE TABLE `tb_user` (
   `username` varchar(20) NOT NULL,
   `password` varchar(100) NOT NULL,
-  `nama` varchar(30) NOT NULL,
+  `id_mahasiswa` varchar(11) NOT NULL,
   `id_level` varchar(7) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
@@ -39,9 +39,9 @@ CREATE TABLE `tb_user` (
 -- Dumping data for table `tb_user`
 --
 
-INSERT INTO `tb_user` (`username`, `password`, `nama`, `id_level`) VALUES
-('admin', '$2b$10$MQlZmmJPyWLNhaA3BQ.2i.vx1f8vfvcAT/CrF5aefTVN80Qv0cJdK', 'Admin', '1'),
-('aldi', '$2a$08$WWAwBJ646n1sYWgkOwwhiet8qlqXrQcONdo.gq6X0cHKjQD1vjPAe', 'aldi rahman', '5');
+INSERT INTO `tb_user` (`username`, `password`, `id_mahasiswa`, `id_level`) VALUES
+('admin', '$2b$10$MQlZmmJPyWLNhaA3BQ.2i.vx1f8vfvcAT/CrF5aefTVN80Qv0cJdK', 'M0000', '1'),
+('aldi', '$2a$08$WWAwBJ646n1sYWgkOwwhiet8qlqXrQcONdo.gq6X0cHKjQD1vjPAe', 'M0003', '5');
 
 --
 -- Indexes for dumped tables

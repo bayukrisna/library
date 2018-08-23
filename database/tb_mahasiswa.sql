@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Aug 21, 2018 at 10:16 AM
+-- Generation Time: Aug 23, 2018 at 09:25 AM
 -- Server version: 10.1.34-MariaDB
 -- PHP Version: 7.2.7
 
@@ -34,7 +34,6 @@ CREATE TABLE `tb_mahasiswa` (
   `nama_mahasiswa` varchar(50) NOT NULL,
   `nim` varchar(15) NOT NULL,
   `id_status` varchar(2) NOT NULL,
-  `id_prodi` varchar(7) NOT NULL,
   `id_konsentrasi` varchar(7) NOT NULL,
   `id_hasil_tes` varchar(7) NOT NULL,
   `id_sekolah` varchar(6) NOT NULL,
@@ -46,15 +45,15 @@ CREATE TABLE `tb_mahasiswa` (
 -- Dumping data for table `tb_mahasiswa`
 --
 
-INSERT INTO `tb_mahasiswa` (`id_mahasiswa`, `id_du`, `nama_mahasiswa`, `nim`, `id_status`, `id_prodi`, `id_konsentrasi`, `id_hasil_tes`, `id_sekolah`, `id_waktu`, `id_grade`) VALUES
-('M0003', '', 'bayu krisna', '999', '1', 'PR001', 'KO003', '', '', 1, '6'),
-('M0004', '', 'Britney', '435', '2', 'PR001', 'KO003', '', '', 1, '5'),
-('M0005', ' 9865', 'Paris ', '896875', '12', 'PR002', 'KO002', 'TES0001', 'SE001', 1, ''),
-('M0006', ' 87965', 'paris sore', '1111', '1', 'PR002', 'KO002', '', 'SE002', 2, '4'),
-('M0007', ' 87g', 'new paris', '2222', '1', 'PR001', 'KO003', 'TES0002', 'SE001', 1, '3'),
-('M0008', ' 54', 'Jessica Jung', '65645', '1', 'PR001', 'KO003', 'TES0003', 'SE001', 1, ''),
-('M0009', '', 'Ariana', '4444', '1', 'PR001', 'KO003', '', '', 1, '1'),
-('M0010', '', 'Katy', '55555', '1', 'PR002', 'KO002', '', '', 2, '4');
+INSERT INTO `tb_mahasiswa` (`id_mahasiswa`, `id_du`, `nama_mahasiswa`, `nim`, `id_status`, `id_konsentrasi`, `id_hasil_tes`, `id_sekolah`, `id_waktu`, `id_grade`) VALUES
+('M0003', '', 'Aldi', '999', '1', 'KO003', '', 'SE001', 1, '6'),
+('M0004', '', 'Britney', '435', '2', 'KO003', '', '', 1, '5'),
+('M0005', ' 9865', 'Paris ', '896875', '12', 'KO002', '', 'SE001', 1, ''),
+('M0006', ' 87965', 'paris sore', '1111', '1', 'KO002', '', 'SE002', 2, '4'),
+('M0007', ' 87g', 'new paris', '2222', '1', 'KO003', 'TES0002', 'SE001', 1, '3'),
+('M0008', ' 54', 'Jessica Jung', '65645', '1', 'KO003', 'TES0003', 'SE001', 1, ''),
+('M0009', '', 'Ariana', '4444', '1', 'KO003', '', '', 1, '1'),
+('M0010', '', 'Katy', '55555', '1', 'KO002', '', '', 2, '4');
 
 --
 -- Indexes for dumped tables

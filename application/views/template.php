@@ -111,7 +111,16 @@ a:hover .tooltiptext {
       <!-- sidebar menu: : style can be found in sidebar.less -->
       <ul class="sidebar-menu">
         <li class="header">MENU UTAMA</li>
-        <li class="treeview">
+        <?php 
+          if($this->session->userdata('id_mahasiswa') != null){ ?>
+            <li><a href="<?php echo base_url(); ?>mahasiswa"><i class="fa fa-user"></i> <span>Profil</span></a></li>
+            <li><a href="<?php echo base_url(); ?>mahasiswa/history_pendidikan"><i class="fa fa-history"></i> <span>History Pendidikan</span></a></li>
+            <li><a href="<?php echo base_url(); ?>mahasiswa/krs_mahasiswa"><i class="fa fa-book"></i> <span>KRS Mahasiswa</span></a></li>
+            <li><a href="<?php echo base_url(); ?>mahasiswa/history_nilai"><i class="fa fa-file-text"></i> <span>History Nilai</span></a></li>
+            <li><a href="<?php echo base_url(); ?>mahasiswa/aktivitas_perkuliahan"><i class="fa fa-calendar-o"></i> <span>Aktivitas Perkuliahan</span></a></li>
+            <li><a href="<?php echo base_url(); ?>mahasiswa/prestasi"><i class="fa fa-graduation-cap"></i> <span>Prestasi</span></a></li>
+          <?php } else { ?>
+          <li class="treeview">
           <a href="#">
             <i class="fa fa-dashboard"></i> <span>Master</span>
             <span class="pull-right-container">
@@ -203,6 +212,8 @@ a:hover .tooltiptext {
                 <li><a href="<?php echo base_url(); ?>laporan/laporan_data_getstudent"><i class="fa fa-circle-o"></i>Laporan Student Get <br>Student</a></li>
               </ul>
             </li>
+          <?php } ?>
+        
       </ul>
     </section>
     <!-- /.sidebar -->

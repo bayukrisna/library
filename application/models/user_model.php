@@ -33,7 +33,8 @@ class User_model extends CI_Model {
             if ($this->bcrypt->check_password($password, $result['password'])) {
                 foreach ($query->result() as $sess) {
                 $sess_data['logged_in'] = TRUE;
-                $sess_data['username'] = $sess->username;
+                $sess_data['id_mahasiswa'] = $sess->id_mahasiswa;
+                $sess_data['level'] = $sess->id_level;
                 }
                 $this->session->set_userdata($sess_data);
                 return $result;

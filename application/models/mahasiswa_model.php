@@ -27,6 +27,19 @@ class Mahasiswa_model extends CI_Model {
           $kodejadi = "M".$kodemax;    // hasilnya ODJ-991-0001 dst.
           return $kodejadi; 
     }
+    public function session_mahasiswa($id_mahasiswa){
+      return $this->db->join('tb_konsentrasi','tb_konsentrasi.id_konsentrasi=tb_mahasiswa.id_konsentrasi')
+              ->join('tb_prodi','tb_prodi.id_prodi=tb_konsentrasi.id_prodi')
+              ->join('tb_alamat','tb_alamat.id_mahasiswa=tb_mahasiswa.id_mahasiswa')  
+              ->join('tb_bio','tb_bio.id_mahasiswa=tb_mahasiswa.id_mahasiswa') 
+              ->join('tb_kontak','tb_kontak.id_mahasiswa=tb_mahasiswa.id_mahasiswa')
+              ->join('tb_waktu','tb_waktu.id_waktu=tb_mahasiswa.id_waktu') 
+              ->join('tb_mhs_add','tb_mhs_add.id_mahasiswa=tb_mahasiswa.id_mahasiswa')
+              ->join('tb_status_mhs','tb_status_mhs.id_status=tb_mahasiswa.id_status')
+              ->where('tb_mahasiswa.id_mahasiswa', $id_mahasiswa)
+              ->get('tb_mahasiswa')
+              ->row();
+    }
 
 	public function data_mahasiswa(){
 		return $this->db->join('tb_konsentrasi','tb_konsentrasi.id_konsentrasi=tb_mahasiswa.id_konsentrasi')

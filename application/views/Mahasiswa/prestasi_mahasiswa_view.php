@@ -1,11 +1,25 @@
-          <a class="btn btn-sm btn-primary" href="<?php echo base_url();?>mahasiswa/lihat_mahasiswa_dikti/<?php echo $mahasiswa->id_mahasiswa; ?>">Detail Mahasiswa</a>
+         <?php 
+                if($this->session->userdata('id_mahasiswa') != null){ ?>
+        <!-- <a class="btn btn-sm btn-primary" href="<?php echo base_url();?>mahasiswa">Detail Mahasiswa</a>
+        <a class="btn btn-sm btn-info" href="<?php echo base_url();?>mahasiswa/history_pendidikan">History Pendidikan</a>
+        <a class="btn btn-sm btn-primary" href="<?php echo base_url();?>mahasiswa/krs_mahasiswa">KRS Mahasiswa</a>
+        <a class="btn btn-sm btn-info" href="<?php echo base_url();?>mahasiswa/history_nilai">History Nilai</a>
+        <a class="btn btn-sm btn-primary" href="<?php echo base_url();?>mahasiswa/aktivitas_perkuliahan">Aktivitas Perkuliahan</a>
+        <a class="btn btn-sm btn-info" href="<?php echo base_url();?>mahasiswa/prestasi">Prestasi</a> -->
+        
+           <?php } else { ?>
+
+        <a class="btn btn-sm btn-primary" href="<?php echo base_url();?>mahasiswa/lihat_mahasiswa_dikti/<?php echo $mahasiswa->id_mahasiswa; ?>">Detail Mahasiswa</a>
         <a class="btn btn-sm btn-info" href="<?php echo base_url();?>mahasiswa/history_pendidikan/<?php echo $mahasiswa->id_mahasiswa; ?>">History Pendidikan</a>
         <a class="btn btn-sm btn-primary" href="<?php echo base_url();?>mahasiswa/krs_mahasiswa/<?php echo $mahasiswa->id_mahasiswa ?>/<?php echo $mahasiswa->id_prodi; ?>">KRS Mahasiswa</a>
         <a class="btn btn-sm btn-info" href="<?php echo base_url();?>mahasiswa/history_nilai/<?php echo $mahasiswa->id_mahasiswa; ?>">History Nilai</a>
         <a class="btn btn-sm btn-primary" href="<?php echo base_url();?>mahasiswa/aktivitas_perkuliahan/<?php echo $mahasiswa->id_mahasiswa; ?>">Aktivitas Perkuliahan</a>
         <a class="btn btn-sm btn-info" href="<?php echo base_url();?>mahasiswa/prestasi/<?php echo $mahasiswa->id_mahasiswa; ?>">Prestasi</a>
         <a class="btn btn-sm btn-primary" href="<?php echo base_url(); ?>mahasiswa/data_mahasiswa">Kembali</a>
-        <br><br>
+           <br><br>
+           <?php }
+
+           ?>
         <div class="box box-info">
             
             <!-- /.box-header -->
@@ -41,7 +55,12 @@
             <!-- /.box-body -->
           </div>
           <div class="">
-            <a class="btn btn-primary pull-right"  data-toggle="modal" data-target="#modal_tambah"><i class="fa fa-plus"></i> Tambah Pendidikan</a><br><br>
+            <?php 
+                if($this->session->userdata('id_mahasiswa') != null){ ?>
+
+                <?php } else { ?>
+                        <a class="btn btn-primary pull-right"  data-toggle="modal" data-target="#modal_tambah"><i class="fa fa-plus"></i> Tambah Pendidikan</a><br><br>
+                <?php } ?>
           </div>
           <?php echo $this->session->flashdata('message');?>
 
@@ -56,7 +75,12 @@
     <th width="15%" style="text-align:center">Tahun</th>
     <th style="text-align:center">Penyelenggara</th>
     <th style="text-align:center">Peringkat</th>
-    <th style="text-align:center"></th>
+                <?php 
+                if($this->session->userdata('id_mahasiswa') != null){ ?>
+
+                <?php } else { ?>
+                  <th style="text-align:center"></th>
+                <?php } ?>
   </tr>
   </thead>
   <tbody>
@@ -73,9 +97,15 @@
         <td style="text-align:center"><?php echo $data->tahun;?></td>
         <td style="text-align:center"><?php echo $data->penyelenggara;?></td>
         <td style="text-align:center"><?php echo $data->peringkat;?></td >
-        <td style="text-align:center">
-        <a href="<?php echo base_url(); ?>mahasiswa/detail_prestasi/<?php echo $data->id_prestasi; ?>" class="btn btn-success  btn-sm"><i class="fa fa-pencil"></i><span class="tooltiptext">Edit Prestasi</span></a>
+        
+           <?php 
+                if($this->session->userdata('id_mahasiswa') != null){ ?>
+
+                <?php } else { ?>
+                  <td style="text-align:center">
+                        <a href="<?php echo base_url(); ?>mahasiswa/detail_prestasi/<?php echo $data->id_prestasi; ?>" class="btn btn-success  btn-sm"><i class="fa fa-pencil"></i><span class="tooltiptext">Edit Prestasi</span></a>
                         </td>
+                <?php } ?>
     </tr>
 <?php endforeach; ?>
   
