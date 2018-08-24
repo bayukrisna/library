@@ -69,10 +69,19 @@ class Kelas_perkuliahan extends CI_Controller {
 
 	public function save_kp()
 	{
-			if($this->kelas_perkuliahan_model->save_kp() == TRUE && $this->kelas_perkuliahan_model->save_kelas_dosen() == TRUE){
+			if($this->kelas_perkuliahan_model->save_kp() == TRUE){
 				$username = $this->input->post('nama_kp');
 				$this->session->set_flashdata('message', '<div class="alert alert-success"> Kelas berhasil ditambahkan. </div>');
             	redirect('kelas_perkuliahan');
+			} 
+	}
+
+	public function simpan_kelas_dosen()
+	{
+		$id_kp = $this->input->post('id_kp');
+			if($this->kelas_perkuliahan_model->simpan_kelas_dosen() == TRUE){
+				$this->session->set_flashdata('message', '<div class="alert alert-success"> Dosen berhasil ditambahkan. </div>');
+            	redirect('kelas_perkuliahan/detail_kelas/'.$id_kp);
 			} 
 	}
 
@@ -173,8 +182,25 @@ class Kelas_perkuliahan extends CI_Controller {
 						'label' => $row->kode_matkul.' - '.$row->nama_matkul.' - (sks) '.$row->bobot_matkul.'-'.$row->nama_kurikulum,
 						'bobot' => $row->bobot_matkul,
 						'kurikulum' => $row->nama_kurikulum,
+						'prodi' => $row->id_prodi,
 						'idk' => $row->id_detail_kurikulum,
 						'id' => $row->kode_matkul);
+				echo json_encode($result_array);
+			
+			}
+		}
+	}
+
+	public function get_autocomplete_jadwal(){
+		if(isset($_GET['term'])){
+			$result = $this->kelas_perkuliahan_model->autocomplete_jadwal($_GET['term']);
+			if(count($result) > 0){
+				foreach ($result as $row) 
+					$result_array[] = array(
+						'label' => $row->hari.' - ('.substr($row->jam_awal,0,-3).'-'.substr($row->jam_akhir,0,-3).') - '.$row->nama_matkul,
+						'ruang' => $row->ruang,
+						'prodi' => $row->nama_prodi,
+						'id' => $row->id_jadwal);
 				echo json_encode($result_array);
 			
 			}

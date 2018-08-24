@@ -14,19 +14,19 @@
                         <input type="text" name="nama_dosen" class="form-control" id="nama_dosen" placeholder="Masukkan Nama Dosen">
                       </div>
                       <div class="form-group">
-                        <label for="email">Kode Dosen</label>
+                        <label for="email">NIDN / NUP/ NIDK</label>
                         <input type="text" name="kode_dosen" class="form-control" id="kode_dosen" placeholder="Masukkan Kode Dosen">
                       </div>
                       <div class="form-group">
-                        <label for="email">No HP</label>
+                        <label for="email">NIP</label>
                         <input type="number" name="no_hp" class="form-control" id="no_hp" placeholder="Masukkan No HP">
                       </div>
                       <div class="form-group">
-                        <label for="email">Keterangan</label>
+                        <label for="email">L/P</label>
                         <input type="text" name="keterangan" class="form-control" id="keterangan" placeholder="Masukkan Keterangan">
                       </div>
                       <button type="submit" class="btn btn-info">Tambah</button>
-                      <button type="reset" class="btn btn-default">Reset</button>
+                      
                   <?php echo form_close();?>
               </div></div>
             </div>

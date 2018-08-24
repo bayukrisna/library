@@ -23,7 +23,7 @@
                   <th>Hari</th>
                   <th>Waktu</th>
                   <th>Sesi</th>
-                  <th>Kelas</th>
+                  <th>Ruang</th>
                   <th>Semester</th>
                   <th>Aksi</th>
                 </tr>
@@ -43,7 +43,7 @@
                   <td>'.$data->hari.'</td>
                   <td>'.substr($data->jam_awal,0,-3).' - '.substr($data->jam_akhir,0,-3).'</td>
                   <td>'.$data->waktu.'</td>
-                  <td>'.$data->nama_kelas.'</td>
+                  <td>'.$data->ruang.'</td>
                   <td>'.$data->semester.'</td>
                   <td> <a href="'.base_url('jadwal/hapus_jadwal/'.$data->id_jadwal).'" class="btn btn-danger  btn-sm" onclick="return confirm('.$alert.')"><i class="glyphicon glyphicon-trash"></i><span class="tooltiptext">Hapus Jadwal</span></a>
                          <a href="'.base_url('jadwal/detail_jadwal/'.$data->id_jadwal).'" class="btn btn-warning  btn-sm"><i class="glyphicon glyphicon-pencil"></i><span class="tooltiptext">Edit Jadwal</span></a>
@@ -80,11 +80,21 @@
                     <div class="form-group">
                       <?php echo form_open('jadwal/simpan_jadwal'); ?>
                       <table class="table">
+                       <tr>
+          <td class="left_column">Mata Kuliah</td>
+            <td>: <input type="text" name="nama_matkul" id="nama_matkul" class="text-input" maxlength="80" size="80" style="width:400px">
+            <input type="hidden" name="id_detail_kurikulum" id="id_detail_kurikulum" class="text-input" maxlength="80" size="80" style="width:100px">
+            <input type="text" name="id_prodi" id="id_prodi" class="text-input" maxlength="80" size="80" style="width:100px">
+          </td>
+        </tr>
+                     
                          <tr>
-          <td class="left_column">Kelas</td>
-            <td>: <input type="text" name="nama_kelas" id="nama_kelas" class="text-input" maxlength="80" size="80" style="width:400px">
-            <input type="hidden" name="id_kp" id="id_kp" class="text-input" maxlength="80" size="80" style="width:100px">
-            <input type="hidden" name="id_prodi" id="id_prodi" class="text-input" maxlength="80" size="80" style="width:100px">
+          <td class="left_column">Konsentrasi</td>
+            <td>: <select name="id_konsentrasi" id="concentrate" class="validate[required]" required=""  >
+              <option value=""> Pilih Konsentrasi</option>
+
+
+      </select> 
           </td>
         </tr>
         <tr>
@@ -96,9 +106,10 @@
 
           </select>            </td>
         </tr> 
+       
          <tr>
           <td class="left_column">Hari</td>
-            <td>: <select name="id_hari" id="id_hari" class="validate[required]" required="" style="width: 100px">
+            <td>: <select name="id_hari" id="id_hari" class="validate[required]" required="" onchange="hai();" style="width: 100px" >
         <option value=""> Pilih Hari </option>
         <option value="1"> Senin </option>
         <option value="2"> Selasa </option>
@@ -113,11 +124,11 @@
         </tr>
          <tr>
           <td class="left_column">Jam Awal</td>
-            <td>: <input type="time" name="jam_awal" id="jam_awal" class="text-input" maxlength="80" size="80" style="width:100px"></td>
+            <td>: <input type="time" name="jam_awal" id="jam_awal" class="text-input" maxlength="80" size="80" style="width:100px" onchange="hai();"></td>
         </tr>
         <tr>
           <td class="left_column">Jam Akhir</td>
-            <td>: <input type="time" name="jam_akhir" id="jam_akhir" class="text-input" maxlength="80" size="80" style="width:100px"></td>
+            <td>: <input type="time" name="jam_akhir" id="jam_akhir" class="text-input" maxlength="80" size="80" style="width:100px" onchange="hai();"></td>
         </tr>
         <tr>
           <td class="left_column">Sesi</td>
@@ -125,6 +136,13 @@
         <option value="1"> Pagi </option>
         <option value="2"> Sore </option>
       </select>  </td>
+        </tr>
+         <tr>
+          <td class="left_column">Ruang</td>
+            <td>: <input type="text" name="ruang" id="ruang" class="text-input" maxlength="80" size="80" style="width:150px" onchange="hai();"></td>
+        </tr>
+        <tr>
+          <td><span id="user-availability-status"></span></td>
         </tr>
         <tr>
                     <td colspan="4"><button type="submit" class="btn btn-info" id="MyBtn">Simpan</button></td>
@@ -214,19 +232,19 @@
     <link rel="stylesheet" href="//code.jquery.com/ui/1.12.0/themes/smoothness/jquery-ui.css">
   <script src="//code.jquery.com/jquery-1.12.4.min.js"></script>
   <script src="//code.jquery.com/ui/1.12.0/jquery-ui.min.js"></script>
-
-
-  <script>
-       document.getElementById("nama_kelas").style.visibility = 'visible';
+ <script>
+       document.getElementById("nama_matkul").style.visibility = 'visible';
 
     jQuery(document).ready(function($){
-    $('#nama_kelas').autocomplete({
-      source:'<?php echo base_url(); ?>jadwal/get_autocomplete_kp', 
+    $('#nama_matkul').autocomplete({
+      source:'<?php echo base_url(); ?>kelas_perkuliahan/get_autocomplete_mk', 
       minLength:1,
       select: function(event, ui){
-        $('#nama_kelas').val(ui.item.label)  ;
-        $('#id_kp').val(ui.item.id);
-        $('#id_prodi').val(ui.item.id_prodi);
+        $('#nama_matkul').val(ui.item.label);
+        $('#id_prodi').val(ui.item.prodi);
+        $('#id_detail_kurikulum').val(ui.item.idk);
+       
+        get_concentrate();
         get_prodi_periode();
       }
     });    
@@ -235,8 +253,25 @@
   </script>
 
   <script type="text/javascript">
-            function get_prodi_periode() {
+            function get_concentrate() {
                 var id_prodi = document.getElementById('id_prodi').value;
+
+                $.ajax({
+                    url: '<?php echo base_url(); ?>daftar_ulang/get_concentrate/'+id_prodi,
+                    data: 'id_prodi='+id_prodi,
+                    type: 'GET',
+                    dataType: 'html',
+                    success: function(msg) {
+                        $("#concentrate").html(msg);
+
+                    }
+                });
+            }
+  </script>
+
+  <script type="text/javascript">
+            function get_prodi_periode() {
+                 var id_prodi = document.getElementById('id_prodi').value;
                 $.ajax({
                     url: '<?php echo base_url(); ?>kurikulum/get_prodi_periode/'+id_prodi,
                     data: 'id_prodi='+id_prodi,
@@ -248,6 +283,21 @@
                 });
             }
 </script>
+<script type="text/javascript">
+  function hai(){
+   $.ajax({
+                    url: '<?php echo base_url(); ?>jadwal/cek_duplikat/',
+                    data: 'id_kp='+$("#id_kp").val()+'&jam_awal='+$("#jam_awal").val()+'&jam_akhir='+$("#jam_akhir").val()+'&id_hari='+$("#id_hari").val(),
+                    type: 'POST',
+                    dataType: 'html',
+                    success:function(data){
+                    $("#user-availability-status").html(data);
+                    },
+                    error:function (){}
+                });
+              }
+</script>
+
 
      
 

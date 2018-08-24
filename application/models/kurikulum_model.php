@@ -14,7 +14,7 @@ class Kurikulum_model extends CI_Model {
         $data = array(
             'id_kurikulum'         => $this->input->post('id_kurikulum'),
             'nama_kurikulum'      => $this->input->post('nama_kurikulum'),
-            'id_prodi'                 => $this->input->post('id_prodi'),
+            'id_konsentrasi'                 => $this->input->post('id_konsentrasi'),
             'id_periode'                 => $this->input->post('id_periode'),
             'jumlah_sks'      	  => $this->input->post('jumlah_sks'),
             'bobot_matkul_wajib'      		=> $this->input->post('bobot_matkul_wajib'),
@@ -66,7 +66,8 @@ class Kurikulum_model extends CI_Model {
 
   public function data_kurikulum(){
 
-   return $this->db->join('tb_prodi','tb_prodi.id_prodi=tb_kurikulum.id_prodi')
+   return $this->db->join('tb_konsentrasi','tb_konsentrasi.id_konsentrasi=tb_kurikulum.id_konsentrasi')
+              ->join('tb_prodi','tb_prodi.id_prodi=tb_konsentrasi.id_prodi')
               ->join('tb_periode','tb_periode.id_periode=tb_kurikulum.id_periode')
               ->get('tb_kurikulum')
               ->result();
@@ -74,7 +75,8 @@ class Kurikulum_model extends CI_Model {
   }
 
   public function detail_kurikulum($id_kurikulum){
-      return $this->db->join('tb_prodi','tb_prodi.id_prodi=tb_kurikulum.id_prodi')
+      return $this->db->join('tb_konsentrasi','tb_konsentrasi.id_konsentrasi=tb_kurikulum.id_konsentrasi')
+              ->join('tb_prodi','tb_prodi.id_prodi=tb_konsentrasi.id_prodi')
               ->join('tb_periode','tb_periode.id_periode=tb_kurikulum.id_periode')
               ->where('tb_kurikulum.id_kurikulum', $id_kurikulum)
               ->get('tb_kurikulum')

@@ -10,18 +10,31 @@ class Jadwal_model extends CI_Model {
 	}
 
 	public function data_jadwal(){
-		return $this->db->join('tb_kp','tb_kp.id_kp=tb_jadwal.id_kp')
-              ->join('tb_periode','tb_periode.id_periode=tb_jadwal.id_periode')
+		return $this->db->join('tb_periode','tb_periode.id_periode=tb_jadwal.id_periode')
+              ->join('tb_konsentrasi','tb_konsentrasi.id_konsentrasi=tb_jadwal.id_konsentrasi')
+              ->join('tb_prodi','tb_prodi.id_prodi=tb_konsentrasi.id_prodi')
               ->join('tb_hari','tb_hari.id_hari=tb_jadwal.id_hari')
               ->join('tb_waktu','tb_waktu.id_waktu=tb_jadwal.id_waktu')
-              ->join('tb_detail_kurikulum','tb_detail_kurikulum.id_detail_kurikulum=tb_kp.id_detail_kurikulum')
+              ->join('tb_detail_kurikulum','tb_detail_kurikulum.id_detail_kurikulum=tb_jadwal.id_detail_kurikulum')
               ->join('tb_matkul','tb_matkul.kode_matkul=tb_detail_kurikulum.kode_matkul')
-              ->join('tb_prodi','tb_prodi.id_prodi=tb_kp.id_prodi')
               ->get('tb_jadwal')
               ->result();
 	}
 
   public function detail_jadwal($id_jadwal){
+    return $this->db->join('tb_periode','tb_periode.id_periode=tb_jadwal.id_periode')
+              ->join('tb_konsentrasi','tb_konsentrasi.id_konsentrasi=tb_jadwal.id_konsentrasi')
+              ->join('tb_prodi','tb_prodi.id_prodi=tb_konsentrasi.id_prodi')
+              ->join('tb_hari','tb_hari.id_hari=tb_jadwal.id_hari')
+              ->join('tb_waktu','tb_waktu.id_waktu=tb_jadwal.id_waktu')
+              ->join('tb_detail_kurikulum','tb_detail_kurikulum.id_detail_kurikulum=tb_jadwal.id_detail_kurikulum')
+              ->join('tb_matkul','tb_matkul.kode_matkul=tb_detail_kurikulum.kode_matkul')
+              ->where('id_jadwal', $id_jadwal)
+              ->get('tb_jadwal')
+              ->row();
+  }
+
+  public function jadwal_mhs($id_prodi){
     return $this->db->join('tb_kp','tb_kp.id_kp=tb_jadwal.id_kp')
               ->join('tb_periode','tb_periode.id_periode=tb_jadwal.id_periode')
               ->join('tb_hari','tb_hari.id_hari=tb_jadwal.id_hari')
@@ -34,18 +47,22 @@ class Jadwal_model extends CI_Model {
               ->row();
   }
 
-  function cek_duplikat($id_mahasiswa, $id_periode){
-      $query = $this->db->select('*')
-                ->from('tb_aktivitas_perkuliahan')
-                ->where('id_mahasiswa', $id_mahasiswa)
-                ->where('id_periode', $id_periode)
+  function cek_duplikat($jam_awal, $jam_akhir, $id_hari, $id_kp){
+     $query = $this->db->select('*')
+                ->from('tb_jadwal')
+                ->where('jam_awal <=', $jam_awal)
+                ->where('jam_akhir >=', $jam_awal)
+                ->where('jam_awal <=', $jam_akhir)
+                ->where('jam_akhir >=', $jam_akhir)
+                ->where('id_hari', $id_hari)
+                ->where('id_kp', $id_kp)
                 ->get();
                 if ($query->num_rows() > 0)
                 {
-                    echo '<span class="label label-success"> Data sudah ada dalam daftar </span><script>document.getElementById("MyBtn").disabled = true;</script>';
+                    echo '<span class="label label-success"> Jadwal sudah digunakan </span><script>document.getElementById("MyBtn").disabled = true;</script>';
 
                 } else{
-                echo '<span class="label label-success"> Klik Tampilkan </span><script>document.getElementById("MyBtn").disabled = false;</script>';
+                echo '<span class="label label-success"> Klik Simpan </span><script>document.getElementById("MyBtn").disabled = false;</script>';
                 
                 }
     }
@@ -74,7 +91,9 @@ class Jadwal_model extends CI_Model {
             'jam_awal'     => $this->input->post('jam_awal', TRUE),
             'jam_akhir'      => $this->input->post('jam_akhir', TRUE),
             'id_waktu'      => $this->input->post('id_waktu', TRUE),
-            'id_kp'      => $this->input->post('id_kp', TRUE)
+            'id_konsentrasi'      => $this->input->post('id_konsentrasi', TRUE),
+            'id_detail_kurikulum'      => $this->input->post('id_detail_kurikulum', TRUE),
+            'ruang'      => $this->input->post('ruang', TRUE)
             
         );
         $this->db->insert('tb_jadwal', $data);
@@ -92,7 +111,9 @@ class Jadwal_model extends CI_Model {
             'jam_awal'     => $this->input->post('jam_awal', TRUE),
             'jam_akhir'      => $this->input->post('jam_akhir', TRUE),
             'id_waktu'      => $this->input->post('id_waktu', TRUE),
-            'id_kp'      => $this->input->post('id_kp', TRUE)
+            'id_konsentrasi'      => $this->input->post('id_konsentrasi', TRUE),
+            'id_detail_kurikulum'      => $this->input->post('id_detail_kurikulum', TRUE),
+            'ruang'      => $this->input->post('ruang', TRUE)
       );
 
     if (!empty($data)) {

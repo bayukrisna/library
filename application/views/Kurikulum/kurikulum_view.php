@@ -83,7 +83,7 @@
         </tr> 
         <tr>
             <td class="left_column">Program Studi <font color="#FF0000">*</font></td>
-            <td>:  <select name="id_prodi" id="id_prodi" class="validate[required]" required="" onchange="return get_prodi_periode(this.value)">
+            <td>:  <select name="id_prodi" id="id_prodi" class="validate[required]" required="" onchange="return get_prodi_periode(this.value)" onblur="return get_concentrate(this.value)">
             <option value="">Pilih Prodi</option>   
                     <?php 
 
@@ -92,6 +92,15 @@
                     echo '<option value="'.$row->id_prodi.'">'.$row->nama_prodi.'</option>';
                   }
                   ?>
+              </select>
+
+        </td>
+        </tr>
+        <tr>
+            <td class="left_column">Konsentrasi <font color="#FF0000">*</font></td>
+            <td>:  <select name="id_konsentrasi" id="concentrate" class="validate[required]" required="">
+            <option value="">Pilih Konsentrasi</option>   
+                    
               </select>
 
         </td>
@@ -162,6 +171,23 @@ function sum() {
                 });
             }
 </script>
+
+<script type="text/javascript">
+            function get_concentrate(p) {
+                var id_prodi = p;
+
+                $.ajax({
+                    url: '<?php echo base_url(); ?>daftar_ulang/get_concentrate/'+id_prodi,
+                    data: 'id_prodi='+id_prodi,
+                    type: 'GET',
+                    dataType: 'html',
+                    success: function(msg) {
+                        $("#concentrate").html(msg);
+
+                    }
+                });
+            }
+ </script>
 
 
     

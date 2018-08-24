@@ -13,6 +13,7 @@ class Jadwal extends CI_Controller {
 	public function index()
 	{
 			$data['jadwal'] = $this->jadwal_model->data_jadwal();
+			$data['getProdi'] = $this->daftar_ulang_model->getProdi();
 			$data['main_view'] = 'jadwal/jadwal_view';
 			$this->load->view('template', $data);
 	}
@@ -26,9 +27,11 @@ class Jadwal extends CI_Controller {
 	}
 
 	public function cek_duplikat(){
-		$id_mahasiswa = $this->input->post('id_mahasiswa');
-		$id_periode = $this->input->post('id_periode');
-		$this->aktivitas_perkuliahan_model->cek_duplikat($id_mahasiswa, $id_periode);
+		$id_kp = $this->input->post('id_kp');
+		$jam_awal = $this->input->post('jam_awal');
+		$jam_akhir = $this->input->post('jam_akhir');
+		$id_hari = $this->input->post('id_hari');
+		$this->jadwal_model->cek_duplikat($id_kp, $jam_awal,$jam_akhir, $id_hari);
 	}
 	
 
@@ -89,6 +92,15 @@ class Jadwal extends CI_Controller {
 			$this->session->set_flashdata('message', '<div class="col-md-12 alert alert-success"> Jadwal gagal ditambahkan </div>');
 			redirect('jadwal');
 		}
+	}
+
+	public function jadwal_mhs()
+	{
+			$id_mahasiswa = $this->uri->segment(3);
+			$data['jadwal'] = $this->jadwal_model->jadwal_mhs($id_mahasiswa);
+			$data['mahasiswa'] = $this->mahasiswa_model->detail_krs_mahasiswa($id_mahasiswa);
+			$data['main_view'] = 'jadwal/edit_jadwal_view';
+			$this->load->view('template', $data);
 	}
 		
 }

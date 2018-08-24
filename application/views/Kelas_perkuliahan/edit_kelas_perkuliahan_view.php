@@ -5,58 +5,49 @@
               <div class="row">
          <form  method="post" action="<?php echo base_url(); ?>kelas_perkuliahan/save_edit_kp/<?php echo $kp->id_kp; ?>" enctype="multipart/form-data">
 		<table class="table">
-    	  <tr>
-            <td class="left_column" width="30%">Program Studi <font color="#FF0000">*</font></td>
-            <td colspan="9">:  
-            <select name="id_prodi" id="id_prodi" class="validate[required]" onchange="return get_prodi_periode(this.value)" required="">
-              <option value="<?php echo $kp->id_prodi; ?>"> <?php echo $kp->nama_prodi; ?></option>
-           <?php 
-
-                            foreach($getProdi as $row)
-                            { 
-                              echo '<option value="'.$row->id_prodi.'">'.$row->nama_prodi.'</option>';
-                            }
-                            ?>
-        </select>     </td>
-        </tr>
-        <tr>
-            <td class="left_column" width="20%">Semester <font color="#FF0000">*</font></td>
-            <td colspan="9">:  
-            <select name="id_periode" id="id_periode" class="validate[required]" required="">
-            <option value="<?php echo $kp->id_periode; ?>"><?php echo $kp->semester; ?></option>
-        </select>     </td>
-        </tr>
-        <tr>
-          <td class="left_column">Mata Kuliah  <font color="#FF0000">*</font></td>
-            <td colspan="9">: 
-      <input type="text" name="nama_matkul" id="nama_matkul" class="validate[required] text-input ui-autocomplete-input" size="20"  style="width: 50%;" required="" value="<?php echo $kp->nama_matkul; ?>"><span role="status" aria-live="polite" class="ui-helper-hidden-accessible"></span>            
-
-      <input type="text" name="kode_matkul" id="kode_matkul" value="<?php echo $kp->id_detail_kurikulum; ?>" > 
+    	   <tr>
+          <td class="left_column">Masukan Jadwal <font color="#FF0000">*</font>
             </td>
-             <input type="hidden" name="id_kp" id="id_kp" value="<?php echo $kp->id_kp; ?>" > 
-            </td>
-    </tr>
+          <td colspan="9">: 
+      <input type="text" name="jadwal" id="jadwal" class="validate[required] text-input"  size="5" style="width: 90%;" required="" placeholder="Masukan mata kuliah yang sudah terjadwal"  value="<?php echo $kp->hari; ?> - (<?php echo $kp->jam_awal; ?> - <?php echo $kp->jam_akhir; ?>) - <?php echo $kp->nama_matkul; ?>">
+      <input type="hidden" name="id_jadwal" id="id_jadwal" class="validate[required] text-input"  size="5" style="width: 90%;" value="<?php echo $kp->id_jadwal; ?>"></td>
+        </tr> 
         <tr>
           <td class="left_column">Nama Kelas <font color="#FF0000">*</font>
             </td>
           <td colspan="9">: 
-      <input type="text" name="nama_kelas" id="nama_kelas" class="validate[required] text-input"  size="5" style="width: 40%;" required="" value="<?php echo $kp->nama_kelas; ?>"></td>
+      <input type="text" name="nama_kelas" id="nama_kelas" class="validate[required] text-input"  size="5" style="width: 40%;" required=""> </td>
+        </tr> 
+        <tr>
+          <td class="left_column">Konsentrasi <font color="#FF0000">*</font>
+            </td>
+          <td colspan="9">: 
+      <input type="text" name="konsentrasi" id="id_konsentrasi" class="validate[required] text-input"  size="5" style="width: 40%; background-color:#E0E0E0" readonly="" >
+      </td>
         </tr> 
         <tr>
           <td class="left_column">Bahasan</td>
             <td colspan="9">: 
-      <textarea wrap="soft" name="bahasan" id="bahasan" class="text-input" rows="5" cols="50" maxlength="200"><?php echo $kp->bahasan; ?></textarea></td>
+      <textarea wrap="soft" name="bahasan" id="bahasan" class="text-input" rows="5" cols="50" maxlength="200"></textarea></td>
+        </tr>
+        <tr>
+            <td class="left_column">Jenis Evaluasi</td>
+            <td>: 
+            <input type="text" name="jenis_evaluasi" id="jenis_evaluasi" class="text-input" size="2"  style="width:40%" >         
+            </td>
+            <input type="hidden" name="id_kp" id="id_kp" class="text-input" maxlength="3" size="2"  style="width:10%" value="<?php echo $this->uri->segment(3); ?>"> 
+            
         </tr>
         <tr>
          <td class="left_column">Tanggal Mulai Efektif</td>
             <td colspan="9">:
-        <input type="date" name="tgl_mulai" id="tgl_mulai" class="text-input hasDatepicker" maxlength="50" size="50" style="width:50%" value="<?php echo $kp->tgl_mulai; ?>">            </td>
+        <input type="date" name="tgl_mulai" id="tgl_mulai" class="text-input hasDatepicker" maxlength="50" size="50" style="width:50%">            </td>
         </tr>
         <tr>
           <td class="left_column">Tanggal Akhir Efektif 
          </td>
          <td colspan="9">:
-        <input type="date" name="tgl_akhir" id="tgl_akhir" class="text-input hasDatepicker" maxlength="50" size="50" style="width:50%" value="<?php echo $kp->tgl_akhir; ?>">            </td>
+        <input type="date" name="tgl_akhir" id="tgl_akhir" class="text-input hasDatepicker" maxlength="50" size="50" style="width:50%">            </td>
         </tr>
                   <tr>
                     <td colspan="4"><button type="submit" class="btn btn-info">Simpan</button></td>
