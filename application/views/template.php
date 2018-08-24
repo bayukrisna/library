@@ -112,14 +112,14 @@ a:hover .tooltiptext {
       <ul class="sidebar-menu">
         <li class="header">MENU UTAMA</li>
         <?php 
-          if($this->session->userdata('id_mahasiswa') != null){ ?>
+          if($this->session->userdata('level') == 5){ ?>
             <li><a href="<?php echo base_url(); ?>mahasiswa"><i class="fa fa-user"></i> <span>Profil</span></a></li>
             <li><a href="<?php echo base_url(); ?>mahasiswa/history_pendidikan"><i class="fa fa-history"></i> <span>History Pendidikan</span></a></li>
             <li><a href="<?php echo base_url(); ?>mahasiswa/krs_mahasiswa"><i class="fa fa-book"></i> <span>KRS Mahasiswa</span></a></li>
             <li><a href="<?php echo base_url(); ?>mahasiswa/history_nilai"><i class="fa fa-file-text"></i> <span>History Nilai</span></a></li>
             <li><a href="<?php echo base_url(); ?>mahasiswa/aktivitas_perkuliahan"><i class="fa fa-calendar-o"></i> <span>Aktivitas Perkuliahan</span></a></li>
             <li><a href="<?php echo base_url(); ?>mahasiswa/prestasi"><i class="fa fa-graduation-cap"></i> <span>Prestasi</span></a></li>
-            <li><a href="<?php echo base_url(); ?>logout"><i class="fa fa-sign-out"></i> <span>logout</span></a></li>
+            <li><a href="<?php echo base_url(); ?>login/logout"><i class="fa fa-sign-out"></i> <span>logout</span></a></li>
           <?php } else { ?>
           <li class="treeview">
           <a href="#">
@@ -129,6 +129,7 @@ a:hover .tooltiptext {
             </span>
           </a>
           <ul class="treeview-menu">
+            <li><a href="<?php echo base_url(); ?>admin"><i class="fa fa-circle-o"></i> User</a></li>
             <li><a href="<?php echo base_url(); ?>master_prodi"><i class="fa fa-circle-o"></i> Prodi</a></li>
             <li><a href="<?php echo base_url(); ?>master_konsentrasi"><i class="fa fa-circle-o"></i> Konsentrasi</a
               ></li>
@@ -217,6 +218,7 @@ a:hover .tooltiptext {
               </ul>
             </li>
           <?php } ?>
+          <li><a href="<?php echo base_url(); ?>login/logout"><i class="fa fa-sign-out"></i> <span>logout</span></a></li>
         
       </ul>
     </section>
