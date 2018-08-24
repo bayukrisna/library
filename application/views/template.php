@@ -119,7 +119,6 @@ a:hover .tooltiptext {
             <li><a href="<?php echo base_url(); ?>mahasiswa/history_nilai"><i class="fa fa-file-text"></i> <span>History Nilai</span></a></li>
             <li><a href="<?php echo base_url(); ?>mahasiswa/aktivitas_perkuliahan"><i class="fa fa-calendar-o"></i> <span>Aktivitas Perkuliahan</span></a></li>
             <li><a href="<?php echo base_url(); ?>mahasiswa/prestasi"><i class="fa fa-graduation-cap"></i> <span>Prestasi</span></a></li>
-            <li><a href="<?php echo base_url(); ?>login/logout"><i class="fa fa-sign-out"></i> <span>logout</span></a></li>
 
           <?php } else if($this->session->userdata('level') == 3) { ?>
             <li><a href="<?php echo base_url(); ?>master_asal_sekolah"><i class="fa fa-building-o"></i> Asal Sekolah</a></li>
