@@ -17,6 +17,7 @@ class Master_dosen extends CI_Controller {
 	}
 
 	public function page_tambah_dosen(){
+		$data['kd'] = $this->dosen_model->buat_kode_dosen();
 		$data['main_view'] = 'Dosen/tambah_dosen_view';
 		$this->load->view('template', $data);
 	}

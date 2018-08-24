@@ -38,6 +38,14 @@ class Dosen_model extends CI_Model {
 
     }
 
+     public function  buat_kode_dosen()   {
+          $this->db->select("MAX(id_dosen)+1 AS id");
+          $this->db->from("tb_dosen");
+          $query = $this->db->get();
+
+          return $query->row()->id;
+    } 
+
 	
 
 }

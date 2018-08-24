@@ -85,10 +85,11 @@ class Mahasiswa_model extends CI_Model {
      $this->db->select('*');
      $this->db->from('tb_kelas_mhs');
      $this->db->join('tb_kp','tb_kp.id_kp=tb_kelas_mhs.id_kp');
-     $this->db->join('tb_detail_kurikulum','tb_detail_kurikulum.id_detail_kurikulum=tb_kp.id_detail_kurikulum');
+     $this->db->join('tb_jadwal','tb_jadwal.id_jadwal=tb_kp.id_jadwal');
+     $this->db->join('tb_detail_kurikulum','tb_detail_kurikulum.id_detail_kurikulum=tb_jadwal.id_detail_kurikulum');
      $this->db->join('tb_matkul','tb_matkul.kode_matkul=tb_detail_kurikulum.kode_matkul');
      $this->db->join('tb_skala_nilai','tb_skala_nilai.id_skala_nilai=tb_kelas_mhs.id_skala_nilai');
-     $this->db->join('tb_periode','tb_periode.id_periode=tb_kp.id_periode');
+     $this->db->join('tb_periode','tb_periode.id_periode=tb_jadwal.id_periode');
      $this->db->like('tb_kelas_mhs.id_mahasiswa',$id_mahasiswa);
      $this->db->like('tb_periode.semester',$id_periode);
      $query = $this->db->get();
@@ -97,10 +98,11 @@ class Mahasiswa_model extends CI_Model {
 
       public function data_nilai_mhs($id_mahasiswa){
       return $this->db->join('tb_kp','tb_kp.id_kp=tb_kelas_mhs.id_kp')
-              ->join('tb_detail_kurikulum','tb_detail_kurikulum.id_detail_kurikulum=tb_kp.id_detail_kurikulum')
+              ->join('tb_jadwal','tb_jadwal.id_jadwal=tb_kp.id_jadwal')
+              ->join('tb_detail_kurikulum','tb_detail_kurikulum.id_detail_kurikulum=tb_jadwal.id_detail_kurikulum')
               ->join('tb_matkul','tb_matkul.kode_matkul=tb_detail_kurikulum.kode_matkul')
               ->join('tb_skala_nilai','tb_skala_nilai.id_skala_nilai=tb_kelas_mhs.id_skala_nilai')
-              ->join('tb_periode','tb_periode.id_periode=tb_kp.id_periode')
+              ->join('tb_periode','tb_periode.id_periode=tb_jadwal.id_periode')
               ->where('tb_kelas_mhs.id_mahasiswa', $id_mahasiswa)
               ->get('tb_kelas_mhs')
               ->result();
@@ -147,9 +149,10 @@ class Mahasiswa_model extends CI_Model {
 
   public function data_krs_mhs($id_mahasiswa){
       return $this->db->join('tb_kp','tb_kp.id_kp=tb_kelas_mhs.id_kp')
-              ->join('tb_detail_kurikulum','tb_detail_kurikulum.id_detail_kurikulum=tb_kp.id_detail_kurikulum')
+              ->join('tb_jadwal','tb_jadwal.id_jadwal=tb_kp.id_jadwal')
+              ->join('tb_detail_kurikulum','tb_detail_kurikulum.id_detail_kurikulum=tb_jadwal.id_detail_kurikulum')
               ->join('tb_matkul','tb_matkul.kode_matkul=tb_detail_kurikulum.kode_matkul')
-              ->join('tb_periode','tb_periode.id_periode=tb_kp.id_periode')
+              ->join('tb_periode','tb_periode.id_periode=tb_jadwal.id_periode')
               ->where('tb_kelas_mhs.id_mahasiswa', $id_mahasiswa)
               ->where('tb_periode.tgl_awal_kul <=', date('Y-m-d'))
               ->where('tb_periode.tgl_akhir_kul >=', date('Y-m-d'))
