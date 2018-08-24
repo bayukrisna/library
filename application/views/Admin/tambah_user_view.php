@@ -30,10 +30,10 @@
                   
                 <tr>
                   <td>'.++$no.'</td>
-                  <td>'.$data->nama.'</td>
+                  <td>'.$data->nama_mahasiswa.'</td>
                   <td>'.$data->username.'</td>
                   <td>'.$data->password.'</td>
-                  <td>'.$data->id_level.'</td>
+                  <td>'.$data->nama_level.'</td>
                   
 
        

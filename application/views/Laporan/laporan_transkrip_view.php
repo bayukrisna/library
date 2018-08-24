@@ -4,7 +4,7 @@
           <!-- Horizontal Form -->
           <div class="box box-info">
             <div class="box-header with-border">
-              <h3 class="box-title">Laporan KHS Mahasiswa</h3>
+              <h3 class="box-title">Laporan Transkrip Nilai</h3>
             </div>
             <!-- /.box-header -->
             <!-- form start -->
@@ -17,31 +17,12 @@
                     <div class="col-sm-4">
                       <input type="text" class="form-control" name="nama_mahasiswa" id="nama_mahasiswa" value="">
                       <input type="hidden" class="form-control" name="id_mahasiswa" id="id_mahasiswa">
+                      <br><p class="btn btn-info" onclick="tampil()">Tampilkan</p>
+                    <p class="btn btn-primary" onclick="print1()"> Cetak </p>
                     </div>
                 <br>
+                
                 </div>
-
-                </div>
-                <div class="form-group">
-                  <label for="inputEmail3" class="col-sm-2 control-label">Tahun Periode</label>
-
-                  <div class="col-sm-10">
-                    <div class="col-sm-4">
-                    <select name="ss" id="ss" class="form-control" required="">
-                      <option value="">Pilih Periode</option>   
-                              <?php 
-
-                            foreach($getPeriode as $row)
-                            { 
-                              echo '<option value="'.$row->semester.'">'.$row->semester.'</option>';
-                            }
-                            ?>
-              </select>
-              <br><p class="btn btn-info" onclick="tampil()">Tampilkan</p>
-                    <p class="btn btn-primary" onclick="print1()"> Cetak </p>
-            </div>
-              <br>
-                  </div>
 
                 </div>
                 
@@ -64,8 +45,8 @@
       });
   function tampil(){
       $.ajax({
-                    url: '<?php echo base_url(); ?>laporan/laporan_khsku/',
-                    data: 'id_mahasiswa='+document.getElementById("id_mahasiswa").value+'&semester='+document.getElementById("ss").value,
+                    url: '<?php echo base_url(); ?>laporan/laporan_transkripku/',
+                    data: 'id_mahasiswa='+document.getElementById("id_mahasiswa").value,
                     type: 'GET',
                     dataType: 'html',
                     success:function(data){

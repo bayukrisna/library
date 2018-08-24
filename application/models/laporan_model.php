@@ -905,6 +905,129 @@ class Laporan_model extends CI_Model {
                 
                 }
     }
+    function laporan_transkrip($id_mahasiswa){
+      $query = $this->db->select('*')
+                ->from('tb_kelas_mhs')
+                ->join('tb_kp','tb_kp.id_kp=tb_kelas_mhs.id_kp')
+                ->join('tb_periode','tb_periode.id_periode=tb_kp.id_periode')
+                ->join('tb_mahasiswa','tb_mahasiswa.id_mahasiswa=tb_kelas_mhs.id_mahasiswa')
+                ->join('tb_bio','tb_mahasiswa.id_mahasiswa=tb_bio.id_mahasiswa')
+                ->join('tb_konsentrasi','tb_mahasiswa.id_konsentrasi=tb_konsentrasi.id_konsentrasi')
+                ->join('tb_prodi','tb_prodi.id_prodi=tb_kp.id_prodi')
+                ->join('tb_waktu','tb_waktu.id_waktu=tb_mahasiswa.id_waktu')
+                ->join('tb_detail_kurikulum','tb_detail_kurikulum.id_detail_kurikulum=tb_kp.id_detail_kurikulum')
+                ->join('tb_matkul','tb_matkul.kode_matkul=tb_detail_kurikulum.kode_matkul')
+                ->join('tb_skala_nilai','tb_skala_nilai.id_skala_nilai=tb_kelas_mhs.id_skala_nilai')
+                ->where('tb_kelas_mhs.id_mahasiswa' , $id_mahasiswa)
+                ->get();
+      $row = $query->result();
+     
+      $pp = $this->db->select('*')
+            ->where('id_mahasiswa', $id_mahasiswa)            
+            ->join('tb_konsentrasi', 'tb_konsentrasi.id_konsentrasi=tb_mahasiswa.id_konsentrasi')
+            ->join('tb_prodi', 'tb_prodi.id_prodi=tb_konsentrasi.id_prodi')
+            ->get('tb_mahasiswa')
+            ->row();
+
+                if ($query->num_rows() > 0)
+                { 
+                  $no = 0;
+                  $totalsi = 0;
+                  $totalbobot = 0;
+                  $option = "";
+                  $option .= '<section class="content" id="ea">
+      <div class="row">
+        <div class="col-xs-12">
+        <h4 style="text-align:center" ><b>Transkrip Nilai</h4></b>
+            <table>
+              <tr>
+                <td width="200px"><b>Nama Mahasiswa</b></td>
+                <td width="500px">: '.$pp->nama_mahasiswa.'</td>
+                <td width="120px"><b>NIM</b></td>
+                <td>: '.$pp->nim.'</td>
+              </tr>
+              <tr>
+                <td width="200px"><b>Program Studi</b></td>
+                <td>: '.$pp->nama_prodi.' </td>
+              </tr>
+            </table>
+            <br>
+            <!-- /.box-header -->
+            <div class="box-body">
+              <table id="example1" class="table table-bordered table-striped">
+                <thead>
+                <tr>
+                    <th style="width:5%;text-align:center" height="10" rowspan="2">No.</th>
+                    <th style="text-align:center" height="10" rowspan="2">Kode MK</th>
+                    <th style="text-align:center" height="10" rowspan="2">Nama MK</th>
+                    <th style="text-align:center" height="10" rowspan="2">Bobot MK<br />(sks)</th>
+                     <th style="text-align:center" height="5" colspan="3">Nilai</th>
+                     <th style="text-align:center"  height="10" rowspan="2">sks * N.indeks</th>
+                   
+                </tr>
+                <tr>
+                    <th style="width:5%;text-align:center">Angka</th>
+                    <th style="width:5%;text-align:center">Huruf</th>
+                    <th style="width:5%;text-align:center">Indeks</th>
+                    
+                </tr>
+                </thead>
+                <tbody>';
+                  foreach ($row as $data) {
+                    $totalbobot += $data->bobot_matkul;
+                    $ea = $data->bobot_matkul * $data->nilai_indeks;
+                    $totalsi += $ea;
+                    $option .= "
+                    <tr>
+                      <td>".++$no."</td>
+                      <td>".$data->kode_matkul."</td>
+                      <td>".$data->nama_matkul."</td>
+                      <td style='text-align:right'>".$data->bobot_matkul."</td>
+                      <td style='text-align:right'>".$data->nilai_d."</td>
+                      <td style='text-align:right'>".$data->nilai_huruf."</td>
+                      <td style='text-align:right'>".$data->nilai_indeks."</td>
+                      <td style='text-align:right'>".$data->bobot_matkul * $data->nilai_indeks."</td>
+                    </tr>"
+                    ;
+                    
+                  }
+                  
+                  if ($totalbobot == 0) {
+                      $totalbobot = 1;
+                  } else {
+                      $totalbobot;
+                  }
+                  $ipk = $totalsi / $totalbobot;
+                  $option .= '</tbody>
+                  <tr>
+                    <td colspan="3" style="text-align:right"> <b> Jumlah Bobot : </b></td>
+                    <td style="text-align:right">  '.$totalbobot.' </td>
+                    <td colspan="3" style="text-align:right"> <b> Jumlah sks * N.indeks : </b></td>
+                    <td style="text-align:right"> '.$totalsi.'</td>
+
+                </tr>
+                <tr>
+                    <td style="text-align:right" colspan="7"> IPS : </td>
+                    <td style="text-align:right"> '.$ipk.'  </td>
+                </tr>
+              </table>
+            </div>
+            
+            <!-- /.box-body -->
+          
+          <!-- /.box -->
+        </div>
+        <!-- /.col -->
+      </div>
+      <!-- /.row -->
+    </section>';
+                  echo $option;
+
+                } else{
+                echo '<span class="label label-success"> Tidak Ada Data.</span>';
+                
+                }
+    }
     function getPeriode()
     {
         $ea =  $this->db->select('tb_periode.semester')

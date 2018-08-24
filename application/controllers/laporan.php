@@ -128,6 +128,15 @@ class Laporan extends CI_Controller {
 	    $semester = $this->input->get('semester');
 	    $this->laporan_model->laporan_khs($id_mahasiswa, $semester);
 	}
+	////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+	public function laporan_transkrip(){
+		$data['main_view'] = 'Laporan/laporan_transkrip_view';
+		$this->load->view('template', $data);	
+	}
+	public function laporan_transkripku(){
+	    $id_mahasiswa = $this->input->get('id_mahasiswa');
+	    $this->laporan_model->laporan_transkrip($id_mahasiswa);
+	}
 }
 
 

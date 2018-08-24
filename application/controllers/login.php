@@ -11,14 +11,39 @@ class Login extends CI_Controller {
 
 	public function index()
 	{
-			$this->load->view('login_view');
+			if($this->session->userdata('level') == 1){ //mahasiswa
+				redirect(base_url('admin'));
+			} else if($this->session->userdata('level') == 2){ // Dosen
+				redirect(base_url('dosen'));
+			} else if($this->session->userdata('level') == 3){ // Marketing
+				redirect(base_url('tamu'));
+			} else if($this->session->userdata('level') == 4){ // Finance
+				redirect(base_url('finance/dashboard_finance'));
+			} else if($this->session->userdata('level') == 5){ // Mahasiswa
+				redirect(base_url('mahasiswa'));
+			} else if($this->session->userdata('level') == 6){ // Akademik
+				redirect(base_url('akademik'));
+			} else {
+				$this->load->view('login_view');
+			}
+			
 	}
 
 	public function login()
 	{
 		if($this->user_model->masuk() == TRUE){
-			if($this->session->userdata('level') == 5){
+			if($this->session->userdata('level') == 1){ //mahasiswa
+				redirect(base_url('admin'));
+			} else if($this->session->userdata('level') == 2){ // Dosen
+				redirect(base_url('dosen'));
+			} else if($this->session->userdata('level') == 3){ // Marketing
+				redirect(base_url('tamu'));
+			} else if($this->session->userdata('level') == 4){ // Finance
+				redirect(base_url('finance/dashboard_finance'));
+			} else if($this->session->userdata('level') == 5){ // Mahasiswa
 				redirect(base_url('mahasiswa'));
+			} else if($this->session->userdata('level') == 6){ // Akademik
+				redirect(base_url('akademik'));
 			} else {
 				redirect(base_url('finance'));
 			}

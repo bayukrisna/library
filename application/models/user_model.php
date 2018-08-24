@@ -50,6 +50,8 @@ class User_model extends CI_Model {
     public function data_user(){
         $this->db->select('*');
         $this->db->from('tb_user');
+        $this->db->join('tb_mahasiswa', 'tb_mahasiswa.id_mahasiswa=tb_user.id_mahasiswa', 'left');
+        $this->db->join('tb_jabatan', 'tb_jabatan.id_level=tb_user.id_level');
         $query = $this->db->get();
         return $query->result();
     }

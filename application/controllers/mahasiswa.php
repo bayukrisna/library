@@ -12,12 +12,17 @@ class Mahasiswa extends CI_Controller {
 		$this->load->model('kurikulum_model');
 	}
 	public function index()
-	{
-			$id_mahasiswa = $this->session->userdata('id_mahasiswa');
-			$data['id_mahasiswa'] = $this->session->userdata('id_mahasiswa');
-			$data['mahasiswa'] = $this->mahasiswa_model->detail_mahasiswa_dikti($id_mahasiswa);
-			$data['main_view'] = 'Mahasiswa/lihat_mahasiswa_dikti_view';
-			$this->load->view('template', $data);
+	{		
+			if($this->session->userdata('level') == 5){
+				$id_mahasiswa = $this->session->userdata('id_mahasiswa');
+				$data['id_mahasiswa'] = $this->session->userdata('id_mahasiswa');
+				$data['mahasiswa'] = $this->mahasiswa_model->detail_mahasiswa_dikti($id_mahasiswa);
+				$data['main_view'] = 'Mahasiswa/lihat_mahasiswa_dikti_view';
+				$this->load->view('template', $data);	
+			} else {
+				redirect(base_url('login'));
+			}
+			
 	}
 	public function mahasiswa_data()
 	{
