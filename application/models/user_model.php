@@ -66,7 +66,6 @@ class User_model extends CI_Model {
         $password = $this->input->post('password', TRUE);
         $hash = $this->bcrypt->hash_password($password);
         $data = array(
-            'nama'      => $this->input->post('nama', TRUE),
             'username'      => $this->input->post('username', TRUE),
             'password'  => $hash,
             'id_level'     => $this->input->post('id_level', TRUE)

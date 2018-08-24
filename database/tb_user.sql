@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Aug 23, 2018 at 09:26 AM
+-- Generation Time: Aug 24, 2018 at 09:28 AM
 -- Server version: 10.1.34-MariaDB
 -- PHP Version: 7.2.7
 
@@ -41,7 +41,10 @@ CREATE TABLE `tb_user` (
 
 INSERT INTO `tb_user` (`username`, `password`, `id_mahasiswa`, `id_level`) VALUES
 ('admin', '$2b$10$MQlZmmJPyWLNhaA3BQ.2i.vx1f8vfvcAT/CrF5aefTVN80Qv0cJdK', 'M0000', '1'),
-('aldi', '$2a$08$WWAwBJ646n1sYWgkOwwhiet8qlqXrQcONdo.gq6X0cHKjQD1vjPAe', 'M0003', '5');
+('akademik', '$2a$08$A93qO2QEb6CJm8poAEhjtemxbapXQBaXWDnV/XWkIIj.syLTEQ3oi', '', '6'),
+('aldi', '$2a$08$WWAwBJ646n1sYWgkOwwhiet8qlqXrQcONdo.gq6X0cHKjQD1vjPAe', 'M0003', '5'),
+('finance', '$2a$08$.0B5SBwkpvmBsjsevsHr3ekW8cPnMzkhCK96s1J7zeWvIxX2AN7/.', '', '4'),
+('marketing', '$2a$08$HevO5xRCCuSIPfT6mXPHEOPWvGDNxopv6uinMU2szCBzwgFljYBFu', '', '3');
 
 --
 -- Indexes for dumped tables

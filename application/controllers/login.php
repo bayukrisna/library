@@ -22,7 +22,7 @@ class Login extends CI_Controller {
 			} else if($this->session->userdata('level') == 5){ // Mahasiswa
 				redirect(base_url('mahasiswa'));
 			} else if($this->session->userdata('level') == 6){ // Akademik
-				redirect(base_url('akademik'));
+				redirect(base_url('mahasiswa/data_mahasiswa'));
 			} else {
 				$this->load->view('login_view');
 			}
@@ -43,7 +43,7 @@ class Login extends CI_Controller {
 			} else if($this->session->userdata('level') == 5){ // Mahasiswa
 				redirect(base_url('mahasiswa'));
 			} else if($this->session->userdata('level') == 6){ // Akademik
-				redirect(base_url('akademik'));
+				redirect(base_url('mahasiswa/data_mahasiswa'));
 			} else {
 				redirect(base_url('finance'));
 			}

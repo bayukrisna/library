@@ -64,13 +64,13 @@
               <?php echo form_open('admin/signup'); ?>
               <div class="form-horizontal">
               <div class="box-body">
-                <div class="form-group">
+                <!-- <div class="form-group">
                   <label for="inputEmail3" class="col-sm-2 control-label">Nama</label>
 
                   <div class="col-sm-10">
                     <input type="text" class="form-control" id="nama" name="nama" placeholder="Nama" required="">
                   </div>
-                </div>
+                </div> -->
                 <div class="form-group">
                   <label for="inputEmail3" class="col-sm-2 control-label">Username</label>
 
