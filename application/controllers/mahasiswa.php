@@ -121,9 +121,31 @@ class Mahasiswa extends CI_Controller {
 			}
 			
 			$data['mahasiswa'] = $this->mahasiswa_model->detail_krs_mahasiswa($id_mahasiswa);
-			$data['krs'] = $this->mahasiswa_model->data_krs_mhs($id_mahasiswa);
+			$data['krs'] = $this->mahasiswa_model->data_krs_mhs($id_mahasiswa, $id_prodi);
+			$data['periode2'] = $this->mahasiswa_model->getPer($id_prodi);
 			$data['periode'] = $this->mahasiswa_model->Periode_krs($id_prodi);
 			$data['main_view'] = 'Mahasiswa/krs_mahasiswa_view';
+			$this->load->view('template', $data);
+	}
+
+	public function jadwal_mhs()
+	{
+			if($this->session->userdata('id_mahasiswa') != null){
+				$id_mahasiswa = $this->session->userdata('id_mahasiswa');
+				$session = $this->mahasiswa_model->session_mahasiswa($id_mahasiswa);
+				$id_prodi = $session->id_prodi;
+			} else {
+				$id_mahasiswa = $this->uri->segment(3);
+				$id_prodi = $this->uri->segment(4);
+			}
+			$data['periode'] = $this->mahasiswa_model->Periode_krs($id_prodi);
+			$data['mahasiswa'] = $this->mahasiswa_model->detail_krs_mahasiswa($id_mahasiswa);
+			$data['senin'] = $this->mahasiswa_model->jadwal_mhs_senin($id_mahasiswa);
+			$data['selasa'] = $this->mahasiswa_model->jadwal_mhs_selasa($id_mahasiswa);
+			$data['rabu'] = $this->mahasiswa_model->jadwal_mhs_rabu($id_mahasiswa);
+			$data['kamis'] = $this->mahasiswa_model->jadwal_mhs_kamis($id_mahasiswa);
+			$data['jumat'] = $this->mahasiswa_model->jadwal_mhs_jumat($id_mahasiswa);
+			$data['main_view'] = 'Mahasiswa/jadwal_mahasiswa_view';
 			$this->load->view('template', $data);
 	}
 
@@ -224,6 +246,26 @@ class Mahasiswa extends CI_Controller {
 			if($this->mahasiswa_model->simpan_pendidikan($id_mahasiswa) == TRUE){
 				$this->session->set_flashdata('message', '<div class="alert alert-success"> Tambah History Pendidikan Berhasil </div>');
             	redirect('mahasiswa/history_pendidikan/'.$id_mahasiswa);
+			} 
+	}
+
+	public function simpan_krs_mhs()
+	{
+		$id_mahasiswa = $this->input->post('id_mahasiswa');
+		$id_prodi = $this->uri->segment(3);
+			if($this->mahasiswa_model->simpan_krs_mhs() == TRUE){
+				$this->session->set_flashdata('message', '<div class="alert alert-success"> Tambah History Pendidikan Berhasil </div>');
+            	redirect('mahasiswa/jadwal_mhs/'.$id_mahasiswa.'/'.$id_prodi);
+			} 
+	}
+
+	public function simpan_krs_mengulang()
+	{
+		$id_mahasiswa = $this->input->post('id_mahasiswa');
+		$id_prodi = $this->uri->segment(3);
+			if($this->mahasiswa_model->simpan_krs_mengulang() == TRUE){
+				$this->session->set_flashdata('message', '<div class="alert alert-success"> Tambah History Pendidikan Berhasil </div>');
+            	redirect('mahasiswa/jadwal_mhs/'.$id_mahasiswa.'/'.$id_prodi);
 			} 
 	}
 

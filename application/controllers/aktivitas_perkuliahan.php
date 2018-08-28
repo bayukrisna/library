@@ -30,7 +30,7 @@ class Aktivitas_perkuliahan extends CI_Controller {
 			$id_mahasiswa = $this->input->get('id_mahasiswa');
 			$id_periode = $this->input->get('id_periode');
 			$data['nilai'] = $this->aktivitas_perkuliahan_model->filter_ap($id_mahasiswa,$id_periode);
-			$data['nilai2'] = $this->aktivitas_perkuliahan_model->data_nilai_mhs($id_mahasiswa);
+			$data['nilai2'] = $this->mahasiswa_model->data_nilai_mhs($id_mahasiswa);
 			$data['main_view'] = 'aktivitas_perkuliahan/aktivitas_perkuliahan_view2';
 			$this->load->view('template', $data);
 	}

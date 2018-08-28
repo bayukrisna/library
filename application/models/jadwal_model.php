@@ -126,16 +126,7 @@ class Jadwal_model extends CI_Model {
         }
   }
 
-   public function autocomplete_kp($nama){
-    $this->db->select('*');
-     $this->db->from('tb_kp');
-     $this->db->join('tb_prodi','tb_prodi.id_prodi=tb_kp.id_prodi');
-     $this->db->join('tb_detail_kurikulum','tb_detail_kurikulum.id_detail_kurikulum=tb_kp.id_detail_kurikulum');
-     $this->db->join('tb_matkul','tb_matkul.kode_matkul=tb_detail_kurikulum.kode_matkul');
-     $this->db->like('tb_kp.nama_kelas', $nama);
-     $query = $this->db->get();
-     return $query->result();
-  }
+   
 
   public function hapus_jadwal($id_jadwal){
         $this->db->where('id_jadwal', $id_jadwal)

@@ -65,7 +65,10 @@
                       </div>
                        <div class="form-group">
                         <label for="text">Jenis Dosen</label>
-                        <input type="text" name="jenis_dosen" class="form-control" id="jenis_dosen" placeholder="Masukkan Keterangan">
+                        <select id="jenis_dosen" name="jenis_dosen" class="form-control" required="">
+                             <option value="1">Tetap</option>
+                              <option value="2">Tidak Tetap</option>
+                          </select> 
                       </div>
                       <button type="submit" class="btn btn-info pull-right">Simpan</button>
                       

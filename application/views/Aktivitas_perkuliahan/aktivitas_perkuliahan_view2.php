@@ -241,7 +241,13 @@
         </tr>
         <tr>
              <td width="15%" class="left_column">Jumlah SKS total</td>
-            <td>: <input type="text" name="sks_total" id="sks_total" class="text-input" maxlength="16" size="90" style="width:40%" value="<?php echo $totalbobot2; ?>">
+            <td>: <input type="text" name="sks_total" id="sks_total" class="text-input" maxlength="16" size="90" style="width:40%" value="<?php 
+              if ($totalbobot2 == 1){
+                $ab = '0';
+              } else {
+                $ab = $totalbobot2;
+              }
+            echo $ab; ?>">
               
             </td>
             <td width="15%" class="left_column"></td>

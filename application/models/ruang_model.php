@@ -16,6 +16,13 @@ class Ruang_model extends CI_Model {
 		 return $query->result();
 	}
 
+  function getRuang()
+    {
+        return $this->db->get('tb_ruang')
+                    ->result();
+
+    }
+
     public function simpan_ruang()
     {
         $data = array(

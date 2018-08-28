@@ -94,6 +94,7 @@ class Kelas_perkuliahan_model extends CI_Model {
               ->join('tb_periode','tb_periode.id_periode=tb_jadwal.id_periode')
               ->join('tb_detail_kurikulum','tb_detail_kurikulum.id_detail_kurikulum=tb_jadwal.id_detail_kurikulum')
               ->join('tb_matkul','tb_matkul.kode_matkul=tb_detail_kurikulum.kode_matkul')
+              ->join('tb_hari','tb_hari.id_hari=tb_jadwal.id_hari')
               ->where('tb_kp.id_kp', $id_kp)
               ->get('tb_kp')
               ->row();
@@ -104,6 +105,19 @@ class Kelas_perkuliahan_model extends CI_Model {
      $this->db->select('*');
      $this->db->from('tb_dosen');
      $this->db->like('tb_dosen.nama_dosen',$nama);
+     $query = $this->db->get();
+     return $query->result();
+  }
+
+  public function autocomplete_kp($nama){
+    $this->db->select('*');
+     $this->db->from('tb_kp');
+     $this->db->join('tb_jadwal','tb_jadwal.id_jadwal=tb_kp.id_jadwal');
+     $this->db->join('tb_konsentrasi','tb_konsentrasi.id_konsentrasi=tb_jadwal.id_konsentrasi');
+     $this->db->join('tb_prodi','tb_prodi.id_prodi=tb_konsentrasi.id_prodi');
+     $this->db->join('tb_detail_kurikulum','tb_detail_kurikulum.id_detail_kurikulum=tb_jadwal.id_detail_kurikulum');
+     $this->db->join('tb_matkul','tb_matkul.kode_matkul=tb_detail_kurikulum.kode_matkul');
+     $this->db->like('tb_matkul.nama_matkul', $nama);
      $query = $this->db->get();
      return $query->result();
   }

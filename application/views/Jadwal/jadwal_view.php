@@ -139,7 +139,17 @@
         </tr>
          <tr>
           <td class="left_column">Ruang</td>
-            <td>: <input type="text" name="ruang" id="ruang" class="text-input" maxlength="80" size="80" style="width:150px" onchange="hai();"></td>
+            <td>: <select name="ruang" id="ruang" class="validate[required]" required="" onchange="hai();" style="width: 100px" >
+        <option value=""> Pilih Ruang </option>
+        <?php 
+
+                                        foreach($getRuang as $row)
+                                        { 
+                                          echo '<option value="'.$row->id_ruang.'">'.$row->nama_ruang.'</option>';
+                                        }
+                                    ?>
+      </select>
+    </td>
         </tr>
         <tr>
           <td><span id="user-availability-status"></span></td>

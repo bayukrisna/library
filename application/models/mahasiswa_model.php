@@ -147,17 +147,32 @@ class Mahasiswa_model extends CI_Model {
 
   
 
-  public function data_krs_mhs($id_mahasiswa){
-      return $this->db->join('tb_kp','tb_kp.id_kp=tb_kelas_mhs.id_kp')
-              ->join('tb_jadwal','tb_jadwal.id_jadwal=tb_kp.id_jadwal')
+  public function data_krs_mhs($id_mahasiswa, $id_prodi){
+      return $this->db->join('tb_jadwal','tb_jadwal.id_jadwal=tb_kp.id_jadwal')
               ->join('tb_detail_kurikulum','tb_detail_kurikulum.id_detail_kurikulum=tb_jadwal.id_detail_kurikulum')
               ->join('tb_matkul','tb_matkul.kode_matkul=tb_detail_kurikulum.kode_matkul')
+              ->join('tb_ruang','tb_ruang.id_ruang=tb_jadwal.ruang')
               ->join('tb_periode','tb_periode.id_periode=tb_jadwal.id_periode')
-              ->where('tb_kelas_mhs.id_mahasiswa', $id_mahasiswa)
-              ->where('tb_periode.tgl_awal_kul <=', date('Y-m-d'))
-              ->where('tb_periode.tgl_akhir_kul >=', date('Y-m-d'))
-              ->get('tb_kelas_mhs')
+              ->join('tb_konsentrasi','tb_konsentrasi.id_konsentrasi=tb_jadwal.id_konsentrasi')
+              ->join('tb_prodi','tb_prodi.id_prodi=tb_konsentrasi.id_prodi')
+              ->where('tb_prodi.id_prodi', $id_prodi)
+              ->where('tgl_mulai <=', date('Y-m-d'))
+              ->where('tgl_akhir >=', date('Y-m-d'))
+              ->get('tb_kp')
               ->result();
+  } 
+
+  public function getPer($id_prodi){
+      return $this->db->join('tb_jadwal','tb_jadwal.id_jadwal=tb_kp.id_jadwal')
+              ->join('tb_detail_kurikulum','tb_detail_kurikulum.id_detail_kurikulum=tb_jadwal.id_detail_kurikulum')
+              ->join('tb_matkul','tb_matkul.kode_matkul=tb_detail_kurikulum.kode_matkul')
+              ->join('tb_ruang','tb_ruang.id_ruang=tb_jadwal.ruang')
+              ->join('tb_periode','tb_periode.id_periode=tb_jadwal.id_periode')
+              ->where('tb_periode.id_prodi', $id_prodi)
+              ->where('tgl_mulai <=', date('Y-m-d'))
+              ->where('tgl_akhir >=', date('Y-m-d'))
+              ->get('tb_kp')
+              ->row();
   } 
 
    public function Periode_krs($id_prodi){
@@ -190,6 +205,66 @@ class Mahasiswa_model extends CI_Model {
               ->join('tb_jenis_pendaftaran','tb_jenis_pendaftaran.id_jenis_pendaftaran=tb_pendidikan.jenis_pendaftaran')
               ->where('tb_pendidikan.id_mahasiswa', $history)
               ->get('tb_pendidikan')
+              ->result();
+  }
+
+  public function jadwal_mhs_senin($id_mahasiswa){
+      return $this->db->join('tb_kp','tb_kp.id_kp=tb_kelas_mhs.id_kp')
+              ->join('tb_jadwal','tb_jadwal.id_jadwal=tb_kp.id_jadwal')
+              ->join('tb_detail_kurikulum','tb_detail_kurikulum.id_detail_kurikulum=tb_jadwal.id_detail_kurikulum')
+              ->join('tb_matkul','tb_matkul.kode_matkul=tb_detail_kurikulum.kode_matkul')
+              ->join('tb_ruang','tb_ruang.id_ruang=tb_jadwal.ruang')
+              ->where('tb_kelas_mhs.id_mahasiswa', $id_mahasiswa)
+              ->where('tb_jadwal.id_hari', '1')
+              ->get('tb_kelas_mhs')
+              ->result();
+  }
+
+  public function jadwal_mhs_selasa($id_mahasiswa){
+      return $this->db->join('tb_kp','tb_kp.id_kp=tb_kelas_mhs.id_kp')
+              ->join('tb_jadwal','tb_jadwal.id_jadwal=tb_kp.id_jadwal')
+              ->join('tb_detail_kurikulum','tb_detail_kurikulum.id_detail_kurikulum=tb_jadwal.id_detail_kurikulum')
+              ->join('tb_matkul','tb_matkul.kode_matkul=tb_detail_kurikulum.kode_matkul')
+              ->join('tb_ruang','tb_ruang.id_ruang=tb_jadwal.ruang')
+              ->where('tb_kelas_mhs.id_mahasiswa', $id_mahasiswa)
+              ->where('tb_jadwal.id_hari', '2')
+              ->get('tb_kelas_mhs')
+              ->result();
+  }
+
+  public function jadwal_mhs_rabu($id_mahasiswa){
+      return $this->db->join('tb_kp','tb_kp.id_kp=tb_kelas_mhs.id_kp')
+              ->join('tb_jadwal','tb_jadwal.id_jadwal=tb_kp.id_jadwal')
+              ->join('tb_detail_kurikulum','tb_detail_kurikulum.id_detail_kurikulum=tb_jadwal.id_detail_kurikulum')
+              ->join('tb_matkul','tb_matkul.kode_matkul=tb_detail_kurikulum.kode_matkul')
+              ->join('tb_ruang','tb_ruang.id_ruang=tb_jadwal.ruang')
+              ->where('tb_kelas_mhs.id_mahasiswa', $id_mahasiswa)
+              ->where('tb_jadwal.id_hari', '3')
+              ->get('tb_kelas_mhs')
+              ->result();
+  }
+
+  public function jadwal_mhs_kamis($id_mahasiswa){
+      return $this->db->join('tb_kp','tb_kp.id_kp=tb_kelas_mhs.id_kp')
+              ->join('tb_jadwal','tb_jadwal.id_jadwal=tb_kp.id_jadwal')
+              ->join('tb_detail_kurikulum','tb_detail_kurikulum.id_detail_kurikulum=tb_jadwal.id_detail_kurikulum')
+              ->join('tb_matkul','tb_matkul.kode_matkul=tb_detail_kurikulum.kode_matkul')
+              ->join('tb_ruang','tb_ruang.id_ruang=tb_jadwal.ruang')
+              ->where('tb_kelas_mhs.id_mahasiswa', $id_mahasiswa)
+              ->where('tb_jadwal.id_hari', '4')
+              ->get('tb_kelas_mhs')
+              ->result();
+  }
+
+  public function jadwal_mhs_jumat($id_mahasiswa){
+      return $this->db->join('tb_kp','tb_kp.id_kp=tb_kelas_mhs.id_kp')
+              ->join('tb_jadwal','tb_jadwal.id_jadwal=tb_kp.id_jadwal')
+              ->join('tb_detail_kurikulum','tb_detail_kurikulum.id_detail_kurikulum=tb_jadwal.id_detail_kurikulum')
+              ->join('tb_matkul','tb_matkul.kode_matkul=tb_detail_kurikulum.kode_matkul')
+              ->join('tb_ruang','tb_ruang.id_ruang=tb_jadwal.ruang')
+              ->where('tb_kelas_mhs.id_mahasiswa', $id_mahasiswa)
+              ->where('tb_jadwal.id_hari', '5')
+              ->get('tb_kelas_mhs')
               ->result();
   }
 
@@ -227,6 +302,39 @@ class Mahasiswa_model extends CI_Model {
             return false;
         }
     }
+
+    public function simpan_krs_mhs()
+    {
+      $id_kp2 = explode(',', $this->input->post('id_kp'));
+      for($i=0; $i+1<count($id_kp2);$i++){
+        $data = array('id_mahasiswa'        => $this->input->post('id_mahasiswa'),
+                      'id_kp'        => $id_kp2[$i]);
+        $this->db->insert('tb_kelas_mhs', $data);
+      }
+      if($this->db->affected_rows() > 0){
+                return true;
+        } else {
+            return false;
+        }
+    }
+
+    public function simpan_krs_mengulang()
+    {
+        $data = array(
+            'id_mahasiswa'        => $this->input->post('id_mahasiswa'),
+            'id_kp'        => $this->input->post('id_kp')
+        );
+    
+        $this->db->insert('tb_kelas_mhs', $data);
+
+        if($this->db->affected_rows() > 0){
+            
+                return true;
+        } else {
+            return false;
+        }
+    }
+
 
     public function simpan_pendidikan($id_mahasiswa)
     {

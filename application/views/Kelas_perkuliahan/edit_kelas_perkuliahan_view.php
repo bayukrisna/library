@@ -16,38 +16,31 @@
           <td class="left_column">Nama Kelas <font color="#FF0000">*</font>
             </td>
           <td colspan="9">: 
-      <input type="text" name="nama_kelas" id="nama_kelas" class="validate[required] text-input"  size="5" style="width: 40%;" required=""> </td>
+      <input type="text" name="nama_kelas" id="nama_kelas" class="validate[required] text-input"  size="5" style="width: 40%;" required="" value="<?php echo $kp->nama_kelas; ?>"> </td>
         </tr> 
         <tr>
           <td class="left_column">Konsentrasi <font color="#FF0000">*</font>
             </td>
           <td colspan="9">: 
-      <input type="text" name="konsentrasi" id="id_konsentrasi" class="validate[required] text-input"  size="5" style="width: 40%; background-color:#E0E0E0" readonly="" >
+      <input type="text" name="konsentrasi" id="id_konsentrasi" class="validate[required] text-input"  size="5" style="width: 40%; background-color:#E0E0E0" readonly="" value="<?php echo $kp->nama_konsentrasi; ?>">
       </td>
         </tr> 
         <tr>
           <td class="left_column">Bahasan</td>
             <td colspan="9">: 
-      <textarea wrap="soft" name="bahasan" id="bahasan" class="text-input" rows="5" cols="50" maxlength="200"></textarea></td>
+      <textarea wrap="soft" name="bahasan" id="bahasan" class="text-input" rows="5" cols="50" maxlength="200"><?php echo $kp->bahasan; ?></textarea></td>
         </tr>
         <tr>
-            <td class="left_column">Jenis Evaluasi</td>
-            <td>: 
-            <input type="text" name="jenis_evaluasi" id="jenis_evaluasi" class="text-input" size="2"  style="width:40%" >         
-            </td>
-            <input type="hidden" name="id_kp" id="id_kp" class="text-input" maxlength="3" size="2"  style="width:10%" value="<?php echo $this->uri->segment(3); ?>"> 
-            
-        </tr>
-        <tr>
+          <input type="hidden" name="id_kp" id="id_kp" class="text-input" maxlength="3" size="2"  style="width:10%" value="<?php echo $this->uri->segment(3); ?>"> 
          <td class="left_column">Tanggal Mulai Efektif</td>
             <td colspan="9">:
-        <input type="date" name="tgl_mulai" id="tgl_mulai" class="text-input hasDatepicker" maxlength="50" size="50" style="width:50%">            </td>
+        <input type="date" name="tgl_mulai" id="tgl_mulai" class="text-input hasDatepicker" maxlength="50" size="50" style="width:50%" value="<?php echo $kp->tgl_mulai; ?>">            </td>
         </tr>
         <tr>
           <td class="left_column">Tanggal Akhir Efektif 
          </td>
          <td colspan="9">:
-        <input type="date" name="tgl_akhir" id="tgl_akhir" class="text-input hasDatepicker" maxlength="50" size="50" style="width:50%">            </td>
+        <input type="date" name="tgl_akhir" id="tgl_akhir" class="text-input hasDatepicker" maxlength="50" size="50" style="width:50%" value="<?php echo $kp->tgl_akhir; ?>">            </td>
         </tr>
                   <tr>
                     <td colspan="4"><button type="submit" class="btn btn-info">Simpan</button></td>

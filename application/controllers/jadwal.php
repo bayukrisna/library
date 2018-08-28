@@ -8,12 +8,14 @@ class Jadwal extends CI_Controller {
 		parent::__construct();
 		$this->load->model('jadwal_model');
 		$this->load->model('daftar_ulang_model');
+		$this->load->model('ruang_model');
 	}
 
 	public function index()
 	{
 			$data['jadwal'] = $this->jadwal_model->data_jadwal();
 			$data['getProdi'] = $this->daftar_ulang_model->getProdi();
+			$data['getRuang'] = $this->ruang_model->getRuang();
 			$data['main_view'] = 'jadwal/jadwal_view';
 			$this->load->view('template', $data);
 	}
@@ -69,20 +71,6 @@ class Jadwal extends CI_Controller {
 			} 
 	}
 
-	public function get_autocomplete_kp(){
-		if(isset($_GET['term'])){
-			$result = $this->jadwal_model->autocomplete_kp($_GET['term']);
-			if(count($result) > 0){
-				foreach ($result as $row) 
-					$result_array[] = array(
-						'label' => $row->nama_kelas.' - '.$row->nama_matkul.' - '.$row->nama_prodi,
-						'id_prodi' => $row->id_prodi,
-						'id' => $row->id_kp);
-				echo json_encode($result_array);
-			
-			}
-		}
-	}
 	public function hapus_jadwal($id_prodi){
 		$id_jadwal = $this->uri->segment(3);
 		if ($this->jadwal_model->hapus_jadwal($id_jadwal) == TRUE) {
