@@ -12,16 +12,20 @@
                 <tr>
                   <th>No</th>
                   <th>Nama Dosen</th>
-                  <th>Kode Dosen</th>
-                  <th>No. HP</th>
-                  <th>Keterangan</th>
-                   <th>Aksi</th>
+                  <th>NIDN/NUP/NIDK</th>
+                  <th>NIP</th>
+                  <th>L/P</th>
+                  <th>No. Telp</th>
+                  <th>Status</th>
+                  <th>Jenis</th>
+                  <th>Aksi</th>
                 </tr>
                 </thead>
                 <tbody>
 
                 <?php 
                 $no = 0;
+                $alert = "'Apakah anda yakin menghapus data ini ?'";
                 foreach ($dosen as $data) {
                   echo '
                   
@@ -30,10 +34,14 @@
                   <td>'.$data->nama_dosen.'
                   </td>
                   <td>'.$data->kode_dosen.'</td>
+                  <td>'.$data->nip.'</td>
+                  <td>'.$data->jenis_kelamin.'</td>
                   <td>'.$data->no_hp.'</td>
-                  <td>'.$data->keterangan.'</td>
-                  <td>   <a href="'.base_url('/detail_tamu/'.$data->id_dosen).'" class="btn btn-warning btn-sm"><i class="glyphicon glyphicon-list-alt"></i><span class="tooltiptext">Detail Tamu</span></a>
-                  <a href="'.base_url('daftar_ulang/page_du_pagi/'.$data->id_dosen).'" class="btn btn-info btn-sm"><i class="fa fa-sign-in"></i><span class="tooltiptext">Daftar Ulang</span></a>
+                  <td>'.$data->status_mhs.'</td>
+                  <td>'.$data->status_dosen.'</td>
+                  <td>   
+                        <a href="'.base_url('kurikulum/hapus_kurikulum/'.$data->id_dosen).'" class="btn btn-danger  btn-sm" onclick="return confirm('.$alert.')"><i class="glyphicon glyphicon-trash"></i><span class="tooltiptext">Hapus Kurikulum</span></a>
+                         <a href="'.base_url('kurikulum/detail_kurikulum2/'.$data->id_dosen).'" class="btn btn-warning  btn-sm"><i class="glyphicon glyphicon-pencil"></i><span class="tooltiptext">Edit Kurikulum</span></a>
                   </td>
                 </tr>
                 ';

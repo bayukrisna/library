@@ -24,28 +24,14 @@ class Master_dosen extends CI_Controller {
 
 	public function save_dosen()
 	{
-		//set rule di setiap form input
-		$this->form_validation->set_rules('nama_dosen', 'Nama Dosen', 'trim|required');		
-		$this->form_validation->set_rules('kode_dosen', 'Kode Dosen', 'trim|required');	
-		$this->form_validation->set_rules('no_hp', 'No HP', 'trim|required');
-		$this->form_validation->set_rules('keterangan', 'Keterangan', 'trim|required');
-		
-		if ($this->form_validation->run() == TRUE){
 			if($this->dosen_model->save_dosen() == TRUE){
 				$dosen = $this->input->post('dosen');
-				$this->session->set_flashdata('message', '<div class="alert alert-success"> Registrasi '.$nama_dosen.' berhasil didaftarkan. </div>');
+				$this->session->set_flashdata('message', '<div class="alert alert-success"> Data '.$nama_dosen.' berhasil ditambahkan. </div>');
             	redirect('master_dosen');
 			} else{
-				$this->session->set_flashdata('message', '<div class="alert alert-danger"> Username/password sudah ada. </div>');
+				$this->session->set_flashdata('message', '<div class="alert alert-success"> Data '.$nama_dosen.' gagal ditambahkan. </div>');
             	redirect('master_dosen/page_tambah_dosen');
 			} 
-			} else{
-				$this->session->set_flashdata('message', '<div class="alert alert-danger"> '.validation_errors().' </div>');
-            	redirect('master_dosen/page_tambah_dosen');
-				// $data['notif'] = validation_errors();
-				// $data['main_view'] = 'daftar';
-				// $this->load->view('template', $data);
-		}
 	} 
 
 

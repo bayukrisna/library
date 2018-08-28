@@ -165,6 +165,7 @@ class Kelas_perkuliahan extends CI_Controller {
 						'id' => $row->id_mahasiswa,
 						'nama' => $row->nama_mahasiswa,
 						'status' => $row->id_status,
+						'semester_aktif' => $row->semester_aktif,
 						'prodi' => $row->id_prodi);
 				echo json_encode($result_array);
 			
@@ -201,6 +202,22 @@ class Kelas_perkuliahan extends CI_Controller {
 						'ruang' => $row->ruang,
 						'prodi' => $row->nama_prodi,
 						'id' => $row->id_jadwal);
+				echo json_encode($result_array);
+			
+			}
+		}
+	}
+
+	public function get_autocomplete_kp(){
+		if(isset($_GET['term'])){
+			$result = $this->kelas_perkuliahan_model->autocomplete_kp($_GET['term']);
+			if(count($result) > 0){
+				foreach ($result as $row) 
+					$result_array[] = array(
+						'label' => $row->nama_kelas.' - '.$row->nama_matkul.' - '.$row->nama_prodi,
+						'prodi' => $row->id_prodi,
+						'periode' => $row->id_periode,
+						'id' => $row->id_kp);
 				echo json_encode($result_array);
 			
 			}
