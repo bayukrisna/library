@@ -2,7 +2,7 @@
 
 
   <div class="row">
-        <div class="col-md-12">
+        <div class="col-md-6">
           <div class="box box-info">
             <div class="box-header with-border">
               <h3 class="box-title">Grafik Tamu</h3>
@@ -14,13 +14,30 @@
               </div>
             </div>
             <div class="box-body chart-responsive">
-              <div class="chart" id="line-chart" style="height: 300px;"></div>
+              <div class="chart" id="line-chart" style="height: 200px;"></div>
+            </div>
+            <!-- /.box-body -->
+          </div>
+        </div>
+        <div class="col-md-6">
+          <div class="box box-info">
+            <div class="box-header with-border">
+              <h3 class="box-title">Grafik Penerimaan Mahasiswa</h3>
+
+              <div class="box-tools pull-right">
+                <button type="button" class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-minus"></i>
+                </button>
+                <button type="button" class="btn btn-box-tool" data-widget="remove"><i class="fa fa-times"></i></button>
+              </div>
+            </div>
+            <div class="box-body chart-responsive">
+              <div class="chart" id="line-chart2" style="height: 200px;"></div>
             </div>
             <!-- /.box-body -->
           </div>
         </div>
   </div>
-  <div class="col-lg-3 col-xs-6">
+      <div class="col-lg-3 col-xs-6">
           <!-- small box -->
           <div class="small-box bg-aqua">
             <div class="inner">
@@ -98,17 +115,23 @@
 
 <script>
   $(function () {
-    
-
-    // AREA CHART
-    
-
-    // LINE CHART
     var line = new Morris.Line({
       element: 'line-chart',
       resize: true,
       data: 
         <?php echo $encode;?>
+      ,
+      xkey: "waktu",
+      ykeys: ['no_telp'],
+      labels: ['Total'],
+      lineColors: ['#3c8dbc'],
+      hideHover: 'auto'
+    });
+    var line2 = new Morris.Line({
+      element: 'line-chart2',
+      resize: true,
+      data: 
+        <?php echo $encode2;?>
       ,
       xkey: "waktu",
       ykeys: ['no_telp'],

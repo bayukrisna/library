@@ -25,11 +25,17 @@ class Dashboard_model extends CI_Model {
       );
   }
   public function dashboard_marketing_data(){
-    return $this->db->select('tanggal_pendaftaran , no_telp')
-                  ->get('tb_pendaftaran')
-                  ->result();
+    $yes = $this->db->query('SELECT distinct(DATE_FORMAT(tanggal_pendaftaran,"%Y-%m")) as tanggal_pendaftaran FROM `tb_pendaftaran`  order by tanggal_pendaftaran desc LIMIT 3');
+    return $yes->result();
+    
         
-  } 
+  }
+  public function dashboard_marketing_data2(){
+    $yes = $this->db->query('SELECT distinct(DATE_FORMAT(tanggal_pendaftaran,"%Y")) as tanggal_pendaftaran FROM `tb_pendaftaran`  order by tanggal_pendaftaran desc LIMIT 3');
+    return $yes->result();
+              
+        
+  }  
   public function dashboard_marketing(){
     $data_tamu = $this->db->select('count(*) as total')
                 ->get('tb_pendaftaran')
