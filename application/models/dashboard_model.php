@@ -23,6 +23,12 @@ class Dashboard_model extends CI_Model {
       'lunas' => $lunas->total
 
       );
+  }
+  public function dashboard_marketing_data(){
+    return $this->db->select('tanggal_pendaftaran , no_telp')
+                  ->get('tb_pendaftaran')
+                  ->result();
+        
   } 
   public function dashboard_marketing(){
     $data_tamu = $this->db->select('count(*) as total')
