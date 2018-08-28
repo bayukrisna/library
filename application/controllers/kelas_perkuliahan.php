@@ -79,7 +79,7 @@ class Kelas_perkuliahan extends CI_Controller {
 	public function simpan_kelas_dosen()
 	{
 		$id_kp = $this->input->post('id_kp');
-			if($this->kelas_perkuliahan_model->simpan_kelas_dosen() == TRUE  && $this->kelas_perkuliahan_model->update_id_dosen($id_kp) == TRUE){
+			if($this->kelas_perkuliahan_model->simpan_kelas_dosen() == TRUE){
 				$this->session->set_flashdata('message', '<div class="alert alert-success"> Dosen berhasil ditambahkan. </div>');
             	redirect('kelas_perkuliahan/detail_kelas/'.$id_kp);
 			} 

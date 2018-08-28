@@ -139,14 +139,15 @@ class Mahasiswa extends CI_Controller {
 			} else {
 				$id_mahasiswa = $this->uri->segment(3);
 				$id_prodi = $this->uri->segment(4);
+				$semester_aktif = $this->uri->segment(5);
 			}
 			$data['periode'] = $this->mahasiswa_model->Periode_krs($id_prodi);
-			$data['mahasiswa'] = $this->mahasiswa_model->detail_krs_mahasiswa($id_mahasiswa);
-			$data['senin'] = $this->mahasiswa_model->jadwal_mhs_senin($id_mahasiswa);
-			$data['selasa'] = $this->mahasiswa_model->jadwal_mhs_selasa($id_mahasiswa);
-			$data['rabu'] = $this->mahasiswa_model->jadwal_mhs_rabu($id_mahasiswa);
-			$data['kamis'] = $this->mahasiswa_model->jadwal_mhs_kamis($id_mahasiswa);
-			$data['jumat'] = $this->mahasiswa_model->jadwal_mhs_jumat($id_mahasiswa);
+			$data['mahasiswa'] = $this->mahasiswa_model->detail_krs_mahasiswa($id_mahasiswa, $semester_aktif);
+			$data['senin'] = $this->mahasiswa_model->jadwal_mhs_senin($id_mahasiswa, $semester_aktif);
+			$data['selasa'] = $this->mahasiswa_model->jadwal_mhs_selasa($id_mahasiswa, $semester_aktif);
+			$data['rabu'] = $this->mahasiswa_model->jadwal_mhs_rabu($id_mahasiswa, $semester_aktif);
+			$data['kamis'] = $this->mahasiswa_model->jadwal_mhs_kamis($id_mahasiswa, $semester_aktif);
+			$data['jumat'] = $this->mahasiswa_model->jadwal_mhs_jumat($id_mahasiswa, $semester_aktif);
 			$data['main_view'] = 'Mahasiswa/jadwal_mahasiswa_view';
 			$this->load->view('template', $data);
 	}
@@ -255,9 +256,10 @@ class Mahasiswa extends CI_Controller {
 	{
 		$id_mahasiswa = $this->input->post('id_mahasiswa');
 		$id_prodi = $this->uri->segment(3);
+		$semester_aktif = $this->uri->segment(4);
 			if($this->mahasiswa_model->simpan_krs_mhs() == TRUE && $this->mahasiswa_model->update_status($id_mahasiswa) == TRUE){
 				$this->session->set_flashdata('message', '<div class="alert alert-success"> Tambah History Pendidikan Berhasil </div>');
-            	redirect('mahasiswa/jadwal_mhs/'.$id_mahasiswa.'/'.$id_prodi);
+            	redirect('mahasiswa/jadwal_mhs/'.$id_mahasiswa.'/'.$id_prodi.'/'.$semester_aktif);
 			} 
 	}
 
@@ -265,9 +267,10 @@ class Mahasiswa extends CI_Controller {
 	{
 		$id_mahasiswa = $this->input->post('id_mahasiswa');
 		$id_prodi = $this->uri->segment(3);
+		$semester_aktif = $this->uri->segment(4);
 			if($this->mahasiswa_model->simpan_krs_mengulang() == TRUE){
 				$this->session->set_flashdata('message', '<div class="alert alert-success"> Tambah History Pendidikan Berhasil </div>');
-            	redirect('mahasiswa/jadwal_mhs/'.$id_mahasiswa.'/'.$id_prodi);
+            	redirect('mahasiswa/jadwal_mhs/'.$id_mahasiswa.'/'.$id_prodi.'/'.$semester_aktif);
 			} 
 	}
 

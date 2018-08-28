@@ -8,7 +8,7 @@
          <a class="btn btn-sm btn-primary" href="<?php echo base_url();?>mahasiswa/lihat_mahasiswa_dikti/<?php echo $mahasiswa->id_mahasiswa; ?>">Detail Mahasiswa</a>
         <a class="btn btn-sm btn-info" href="<?php echo base_url();?>mahasiswa/history_pendidikan/<?php echo $mahasiswa->id_mahasiswa; ?>">History Pendidikan</a>
         <a class="btn btn-sm btn-primary" href="<?php echo base_url();?>mahasiswa/krs_mahasiswa/<?php echo $mahasiswa->id_mahasiswa ?>/<?php echo $mahasiswa->id_prodi; ?>/<?php echo $mahasiswa->semester_aktif; ?>">KRS Mahasiswa</a>
-        <a class="btn btn-sm btn-info" href="<?php echo base_url();?>mahasiswa/jadwal_mhs/<?php echo $mahasiswa->id_mahasiswa ?>/<?php echo $mahasiswa->id_prodi; ?>">Jadwal Kuliah</a>
+        <a class="btn btn-sm btn-info" href="<?php echo base_url();?>mahasiswa/jadwal_mhs/<?php echo $mahasiswa->id_mahasiswa ?>/<?php echo $mahasiswa->id_prodi; ?>/<?php echo $mahasiswa->semester_aktif; ?>">Jadwal Kuliah</a>
         <a class="btn btn-sm btn-primary" href="<?php echo base_url();?>mahasiswa/history_nilai/<?php echo $mahasiswa->id_mahasiswa; ?>">History Nilai</a>
         <a class="btn btn-sm btn-info" href="<?php echo base_url();?>mahasiswa/aktivitas_perkuliahan/<?php echo $mahasiswa->id_mahasiswa; ?>">Aktivitas Perkuliahan</a>
         <a class="btn btn-sm btn-primary" href="<?php echo base_url();?>mahasiswa/prestasi/<?php echo $mahasiswa->id_mahasiswa; ?>">Prestasi</a>
@@ -31,20 +31,13 @@
             <td>: <?php echo $mahasiswa->angkatan; ?>           </td>
         </tr>
         <tr>
-            <td class="left_column">Periode </td>
-            <td colspan="3">: <?php 
-             echo $periode->semester;?></td>
+           <td class="left_column" width="15%">Periode</td>
+            <td width="35%">: <?php echo $periode->semester; ?>            </td>
+             <td class="left_column" width="15%">Semester</td>
+            <td>: <?php 
+             echo $mahasiswa->semester_aktif;?></td>
         </tr>
-                <tr>
-            <!-- <td class="left_column">Kelas </td>
-            
-            <input type="text" name="kelas" id="kelas" class="text-input"> -->
-            <td colspan="3">
-            
-                
-            
-                        </td>
-        </tr>
+               
 
         </table>
             </div>
@@ -64,9 +57,9 @@
                 <tr>
                   <th  style="width:5%">No</th>
                   <th style="width:50%">Nama Matkul</th>
-                  <th style="width:50%">Dosen</th>
+                  <th style="width:20%">Dosen</th>
                   <th style="width:30%">Waktu</th>
-                  <th style="width:30%">Kelas/Ruang</th>
+                  <th style="width:15%">Kelas/Ruang</th>
                 </tr>
                 </thead>
                 <tbody> 
@@ -101,9 +94,10 @@
             <div class="box-body">
               <table class="table table-bordered table-striped">
                 <thead>
-                <tr>
-                  <th style="width:5%">No</th>
+                 <tr>
+                  <th  style="width:5%">No</th>
                   <th style="width:50%">Nama Matkul</th>
+                  <th style="width:20%">Dosen</th>
                   <th style="width:30%">Waktu</th>
                   <th style="width:15%">Kelas/Ruang</th>
                 </tr>
@@ -119,11 +113,12 @@
                   
                 <tr>
                   <td style="width:5%">'.++$no.'</td>
-                  <td style="width:50%">'.$i->nama_matkul.'</td>
+                  <td style="width:30%">'.$i->nama_matkul.'</td>
+                  <td style="width:20%">'.$i->nama_dosen.'</td>
                   <td style="width:30%">'.substr($i->jam_awal,0,-3).' - '.substr($i->jam_akhir,0,-3).'</td>
                   <td style="width:15%">'.$i->nama_kelas.' / '.$i->nama_ruang.'</td>
                 ' ;
-                }   
+                }    
               
             ?>
                 </tbody>
@@ -139,9 +134,10 @@
             <div class="box-body">
               <table class="table table-bordered table-striped">
                 <thead>
-                <tr>
-                  <th style="width:5%">No</th>
+                 <tr>
+                  <th  style="width:5%">No</th>
                   <th style="width:50%">Nama Matkul</th>
+                  <th style="width:20%">Dosen</th>
                   <th style="width:30%">Waktu</th>
                   <th style="width:15%">Kelas/Ruang</th>
                 </tr>
@@ -157,7 +153,8 @@
                   
                 <tr>
                   <td style="width:5%">'.++$no.'</td>
-                  <td style="width:50%">'.$i->nama_matkul.'</td>
+                  <td style="width:30%">'.$i->nama_matkul.'</td>
+                  <td style="width:20%">'.$i->nama_dosen.'</td>
                   <td style="width:30%">'.substr($i->jam_awal,0,-3).' - '.substr($i->jam_akhir,0,-3).'</td>
                   <td style="width:15%">'.$i->nama_kelas.' / '.$i->nama_ruang.'</td>
                 ' ;
@@ -177,9 +174,10 @@
             <div class="box-body">
               <table class="table table-bordered table-striped">
                 <thead>
-                <tr>
-                  <th style="width:5%">No</th>
+                 <tr>
+                  <th  style="width:5%">No</th>
                   <th style="width:50%">Nama Matkul</th>
+                  <th style="width:20%">Dosen</th>
                   <th style="width:30%">Waktu</th>
                   <th style="width:15%">Kelas/Ruang</th>
                 </tr>
@@ -195,7 +193,8 @@
                   
                 <tr>
                   <td style="width:5%">'.++$no.'</td>
-                  <td style="width:50%">'.$i->nama_matkul.'</td>
+                  <td style="width:30%">'.$i->nama_matkul.'</td>
+                  <td style="width:20%">'.$i->nama_dosen.'</td>
                   <td style="width:30%">'.substr($i->jam_awal,0,-3).' - '.substr($i->jam_akhir,0,-3).'</td>
                   <td style="width:15%">'.$i->nama_kelas.' / '.$i->nama_ruang.'</td>
                 ' ;
@@ -215,9 +214,10 @@
             <div class="box-body">
               <table class="table table-bordered table-striped">
                 <thead>
-                <tr>
-                  <th style="width:5%">No</th>
+                 <tr>
+                  <th  style="width:5%">No</th>
                   <th style="width:50%">Nama Matkul</th>
+                  <th style="width:20%">Dosen</th>
                   <th style="width:30%">Waktu</th>
                   <th style="width:15%">Kelas/Ruang</th>
                 </tr>
@@ -233,7 +233,8 @@
                   
                 <tr>
                   <td style="width:5%">'.++$no.'</td>
-                  <td style="width:50%">'.$i->nama_matkul.'</td>
+                  <td style="width:30%">'.$i->nama_matkul.'</td>
+                  <td style="width:20%">'.$i->nama_dosen.'</td>
                   <td style="width:30%">'.substr($i->jam_awal,0,-3).' - '.substr($i->jam_akhir,0,-3).'</td>
                   <td style="width:15%">'.$i->nama_kelas.' / '.$i->nama_ruang.'</td>
                 ' ;
