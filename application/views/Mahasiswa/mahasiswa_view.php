@@ -94,6 +94,13 @@
                 <?php 
                $no = 0;
                 foreach ($mahasiswa as $data) {
+                  if ($data->id_status == 19) {
+                    $status = 'Aktif';}
+                    else if ($data->id_status == 1){
+                      $status = 'Aktif';
+                    } else {
+                      $status = $data->status_mhs;
+                    }
                   if ($data->id_status != 12) {
                   
                   echo '
@@ -106,7 +113,7 @@
                   <td>'.$data->tempat_lahir.'</td>
                   <td>'.$data->tanggal_lahir.'</td>
                   <td>'.$data->nama_prodi.'</td>
-                  <td>'.$data->status_mhs.'</td>
+                  <td>'.$status.'</td>
                   <td>'.$data->angkatan.'</td>
                   <td>
                     <a href="'.base_url('mahasiswa/detail_mahasiswa_dikti/'.$data->id_mahasiswa).'" class="btn btn-success  btn-sm"><i class="glyphicon glyphicon-pencil"></i><span class="tooltiptext">Detail Mahasiswa</span></a>

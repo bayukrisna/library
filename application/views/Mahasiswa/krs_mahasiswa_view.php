@@ -12,17 +12,17 @@
 
         <a class="btn btn-sm btn-primary" href="<?php echo base_url();?>mahasiswa/lihat_mahasiswa_dikti/<?php echo $mahasiswa->id_mahasiswa; ?>">Detail Mahasiswa</a>
         <a class="btn btn-sm btn-info" href="<?php echo base_url();?>mahasiswa/history_pendidikan/<?php echo $mahasiswa->id_mahasiswa; ?>">History Pendidikan</a>
-        <a class="btn btn-sm btn-primary" href="<?php echo base_url();?>mahasiswa/krs_mahasiswa/<?php echo $mahasiswa->id_mahasiswa ?>/<?php echo $mahasiswa->id_prodi; ?>">KRS Mahasiswa</a>
-        <a class="btn btn-sm btn-primary" href="<?php echo base_url();?>mahasiswa/jadwal_mhs/<?php echo $mahasiswa->id_mahasiswa ?>/<?php echo $mahasiswa->id_prodi; ?>">Jadwal Kuliah</a>
-        <a class="btn btn-sm btn-info" href="<?php echo base_url();?>mahasiswa/history_nilai/<?php echo $mahasiswa->id_mahasiswa; ?>">History Nilai</a>
-        <a class="btn btn-sm btn-primary" href="<?php echo base_url();?>mahasiswa/aktivitas_perkuliahan/<?php echo $mahasiswa->id_mahasiswa; ?>">Aktivitas Perkuliahan</a>
-        <a class="btn btn-sm btn-info" href="<?php echo base_url();?>mahasiswa/prestasi/<?php echo $mahasiswa->id_mahasiswa; ?>">Prestasi</a>
-        <a class="btn btn-sm btn-primary" href="<?php echo base_url(); ?>mahasiswa/data_mahasiswa">Kembali</a>
+        <a class="btn btn-sm btn-primary" href="<?php echo base_url();?>mahasiswa/krs_mahasiswa/<?php echo $mahasiswa->id_mahasiswa ?>/<?php echo $mahasiswa->id_prodi; ?>/<?php echo $mahasiswa->semester_aktif; ?>">KRS Mahasiswa</a>
+        <a class="btn btn-sm btn-info" href="<?php echo base_url();?>mahasiswa/jadwal_mhs/<?php echo $mahasiswa->id_mahasiswa ?>/<?php echo $mahasiswa->id_prodi; ?>">Jadwal Kuliah</a>
+        <a class="btn btn-sm btn-primary" href="<?php echo base_url();?>mahasiswa/history_nilai/<?php echo $mahasiswa->id_mahasiswa; ?>">History Nilai</a>
+        <a class="btn btn-sm btn-info" href="<?php echo base_url();?>mahasiswa/aktivitas_perkuliahan/<?php echo $mahasiswa->id_mahasiswa; ?>">Aktivitas Perkuliahan</a>
+        <a class="btn btn-sm btn-primary" href="<?php echo base_url();?>mahasiswa/prestasi/<?php echo $mahasiswa->id_mahasiswa; ?>">Prestasi</a>
+        <a class="btn btn-sm btn-info" href="<?php echo base_url(); ?>mahasiswa/data_mahasiswa">Kembali</a>
          <br/><br/>  
            <?php }           ?>
         <div class="box box-info">
         <div class="box-body">
-              <table class="table">
+              <table class="table" >
         <tr>
             <td width="15%" class="left_column">NIM</td>
             <td>: <?php echo $mahasiswa->nim; ?></td>
@@ -36,26 +36,21 @@
             <td>: <?php echo $mahasiswa->angkatan; ?>           </td>
         </tr>
         <tr>
-            <td class="left_column">Periode </td>
-            <td colspan="3">: <?php 
-             echo $periode->semester;?></td>
+            <td class="left_column" width="15%">Periode</td>
+            <td width="35%">: <?php echo $periode->semester; ?>            </td>
+             <td class="left_column" width="15%">Semester</td>
+            <td>: <?php 
+             echo $mahasiswa->semester_aktif;?></td>
 
         </tr>
-                <tr>
-            <!-- <td class="left_column">Kelas </td>
-            
-            <input type="text" name="kelas" id="kelas" class="text-input"> -->
-            <td colspan="3">
-            
                 
-            
-                        </td>
-        </tr>
 
         </table>
             </div>
             <!-- /.box-body -->
           </div>
+          
+          
         <div class="box">
         <section class="content">
       <div class="row">
@@ -73,7 +68,7 @@
             
             <!-- /.box-header -->
             <div class="box-body">
-              <table id="example1" class="table table-bordered table-striped">
+              <table class="table table-bordered table-striped">
                 <thead>
                 <tr>
                   <th>No</th>
@@ -89,9 +84,11 @@
                   <?php 
                 $no = 0;
                 $id_kp = '';
+                if ($mahasiswa->id_status != '1') {
                 foreach ($krs as $i) {
                        
                   $total_mahasiswa = $this->db->query("SELECT count(*) AS total FROM tb_kelas_mhs WHERE id_kp = '$i->id_kp'")->row();
+                  if(date('Y-m-d') > $i->tgl_mulai AND date('Y-m-d') < $i->tgl_akhir){
                   if ($total_mahasiswa->total < $i->kapasitas) {
                    $id_kp .= $i->id_kp.',';        
                   echo '
@@ -103,9 +100,22 @@
                   <td>'.$i->bobot_matkul.'</td>
                   <td>'.$total_mahasiswa->total.'</td>
                   <td>'.$i->kapasitas.'</td>
+                </tr>
                 ' ;
                 }   
+              } else {
+                echo '
+                 <tr>
+                    <td colspan="6"> Waktu mengisi KRS sudah melebihi batas akhir</td>
+                  </tr>
+                ';
               }
+            }
+          } else {
+            echo '
+              <td colspan="6"> Anda sudah mengisi KRS</td>
+            ';
+          }
             ?>
                 </tbody>
               </table>
@@ -114,7 +124,11 @@
             <?php echo form_open('mahasiswa/simpan_krs_mhs/'.$mahasiswa->id_prodi);?>
               <input type="hidden" class="form-control" id="id_mahasiswa" name="id_mahasiswa" value="<?php echo $id_mahasiswa ?>">
                <input type="hidden" class="form-control" id="id_kp" name="id_kp" value="<?php echo $id_kp ?>">
-              <button type="submit"  class="btn btn-success">Simpan</button>
+               <?php
+               if ($mahasiswa->id_status != '1') { echo ' 
+              <button type="submit"  class="btn btn-success">Simpan</button> ';
+            }
+                 ?>
  <?php echo form_close();?>
             <!-- /.box-body -->
           </div>

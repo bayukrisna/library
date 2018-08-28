@@ -133,15 +133,15 @@
                          <tr>
                            <td class="left_column">Mahasiswa <font color="#FF0000">*</font></td>
             <td colspan="9">: 
-      <input type="text" name="nama_mahasiswa" id="nama_mahasiswa" class="validate[required] text-input ui-autocomplete-input" size="20"  style="width: 50%;" required="" placeholder="Masukan NIM"><span role="status" aria-live="polite" class="ui-helper-hidden-accessible"></span>            <input type="hidden" name="id_mahasiswa" id="id_mahasiswa" > <input type="hidden" name="id_prodi" id="id_prodi" > <input type="hidden" name="nama" id="nama" >
-      <input type="text" name="semester_aktif" id="semester_aktif" > <input type="hidden" name="nama" id="nama" >
+      <input type="text" name="nama_mahasiswa" id="nama_mahasiswa" class="validate[required] text-input ui-autocomplete-input" size="20"  style="width: 50%;" required="" placeholder="Masukan NIM"><span role="status" aria-live="polite" class="ui-helper-hidden-accessible"></span>            <input type="hidden" name="id_mahasiswa" id="id_mahasiswa" > <input type="hidden" name="nama_m" id="nama_m" > <input type="hidden" name="id_prodi" id="id_prodi" > 
+      <input type="hidden" name="semester_aktif" id="semester_aktif" > <input type="hidden" name="nama" id="nama" >
             </td>
         </tr>
         <tr>
             <td class="left_column" width="20%">Status <font color="#FF0000">*</font></td>
             <td colspan="9">:  
             <select name="id_status_ak" id="id_status_ak" class="validate[required]" required="">
-            <option value="1"> Aktif </option>
+            <option value="19"> Aktif </option>
             <option value="2"> Non Aktif </option>
             <option value="3"> Cuti </option>
         </select>     </td>
@@ -189,8 +189,8 @@
       select: function(event, ui){
         $('#nama_mahasiswa').val(ui.item.label);
         $('#id_mahasiswa').val(ui.item.id);
+        $('#nama_m').val(ui.item.nama_m);
         $('#id_prodi').val(ui.item.prodi);
-        $('#nama').val(ui.item.nama);
         $('#semester_aktif').val(ui.item.semester_aktif);
         get_prodi_periode();
       }

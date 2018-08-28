@@ -90,8 +90,9 @@ class Mahasiswa extends CI_Controller {
 		$prodi = $param;
 		$result = $this->kurikulum_model->get_prodi_periode2($prodi);
 		$option = "";
-		$option .= '';
+		$option .= '<option value="uygydg">Pilih Periode</option>';
 		foreach ($result as $data) {
+			$option = 
 			$option .= "<option value='".$data->semester."'>".$data->semester."</option>";
 			
 		}
@@ -118,10 +119,11 @@ class Mahasiswa extends CI_Controller {
 			} else {
 				$id_mahasiswa = $this->uri->segment(3);
 				$id_prodi = $this->uri->segment(4);
+				$semester_aktif = $this->uri->segment(5);
 			}
 			
 			$data['mahasiswa'] = $this->mahasiswa_model->detail_krs_mahasiswa($id_mahasiswa);
-			$data['krs'] = $this->mahasiswa_model->data_krs_mhs($id_mahasiswa, $id_prodi);
+			$data['krs'] = $this->mahasiswa_model->data_krs_mhs($id_mahasiswa, $id_prodi, $semester_aktif);
 			$data['periode2'] = $this->mahasiswa_model->getPer($id_prodi);
 			$data['periode'] = $this->mahasiswa_model->Periode_krs($id_prodi);
 			$data['main_view'] = 'Mahasiswa/krs_mahasiswa_view';
@@ -253,7 +255,7 @@ class Mahasiswa extends CI_Controller {
 	{
 		$id_mahasiswa = $this->input->post('id_mahasiswa');
 		$id_prodi = $this->uri->segment(3);
-			if($this->mahasiswa_model->simpan_krs_mhs() == TRUE){
+			if($this->mahasiswa_model->simpan_krs_mhs() == TRUE && $this->mahasiswa_model->update_status($id_mahasiswa) == TRUE){
 				$this->session->set_flashdata('message', '<div class="alert alert-success"> Tambah History Pendidikan Berhasil </div>');
             	redirect('mahasiswa/jadwal_mhs/'.$id_mahasiswa.'/'.$id_prodi);
 			} 

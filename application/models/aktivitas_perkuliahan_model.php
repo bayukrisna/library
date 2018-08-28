@@ -77,7 +77,8 @@ class Aktivitas_perkuliahan_model extends CI_Model {
 
   public function update_status($id_mahasiswa){
     $data = array(
-            'id_status'      => $this->input->post('id_status_ak', TRUE)
+            'id_status'      => $this->input->post('id_status_ak', TRUE),
+            'semester_aktif'      => $this->input->post('semester_aktif', TRUE)
       );
 
     if (!empty($data)) {

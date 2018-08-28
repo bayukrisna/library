@@ -79,7 +79,7 @@ class Kelas_perkuliahan extends CI_Controller {
 	public function simpan_kelas_dosen()
 	{
 		$id_kp = $this->input->post('id_kp');
-			if($this->kelas_perkuliahan_model->simpan_kelas_dosen() == TRUE){
+			if($this->kelas_perkuliahan_model->simpan_kelas_dosen() == TRUE  && $this->kelas_perkuliahan_model->update_id_dosen($id_kp) == TRUE){
 				$this->session->set_flashdata('message', '<div class="alert alert-success"> Dosen berhasil ditambahkan. </div>');
             	redirect('kelas_perkuliahan/detail_kelas/'.$id_kp);
 			} 
@@ -163,7 +163,7 @@ class Kelas_perkuliahan extends CI_Controller {
 					$result_array[] = array(
 						'label' => $row->nim.' - '.$row->nama_mahasiswa,
 						'id' => $row->id_mahasiswa,
-						'nama' => $row->nama_mahasiswa,
+						'nama_m' => $row->nama_mahasiswa,
 						'status' => $row->id_status,
 						'semester_aktif' => $row->semester_aktif,
 						'prodi' => $row->id_prodi);

@@ -171,20 +171,28 @@
               <table class="table">
         <tr>
             <td width="15%" class="left_column">Nama</td>
-            <td>: <input type="text" name="nama" id="nama" class="text-input" maxlength="16" style="width:40%" value="<?php echo $this->input->get('nama'); ?>" readonly>
+            <td>: <input type="text" name="nama" id="nama" class="text-input" maxlength="16" style="width:40%" value="<?php echo $this->input->get('nama_m'); ?>" readonly>
               <input type="hidden" name="id_mahasiswa" id="id_mahasiswa" class="text-input" maxlength="16" style="width:40%" value="<?php echo $this->input->get('id_mahasiswa'); ?>" readonly>
              
             </td>
             <td width="15%" class="left_column">Periode</td>
             <td>: <input type="text" name="semester" id="semester" class="text-input" maxlength="16" style="width:80%" value="<?php echo $this->input->get('semester') ?>">
               <input type="hidden" name="id_periode" id="id_periode" class="text-input" maxlength="16" style="width:40%" value="<?php echo $this->input->get('id_periode') ?>">
+
+              <input type="hidden" name="semester_aktif" id="semester_aktif" class="text-input" maxlength="16" style="width:40%" value="<?php 
+              if($this->input->get('id_status_ak') == '19'){
+              echo $this->input->get('semester_aktif') + 1;
+              } else {
+                echo $this->input->get('semester_aktif'); 
+              }
+              ?>">
               
             </td>
         </tr>
         <tr>
              <td width="15%" class="left_column">Status Mahasiswa</td>
             <td>: <input type="text" name="Status" id="Status" class="text-input" maxlength="16" style="width:40%" value="<?php 
-            if ($this->input->get('id_status_ak') == 1){
+            if ($this->input->get('id_status_ak') == 19){
               $a = 'Aktif'; }
               else if ($this->input->get('id_status_ak') == 2){
               $a = 'Non Aktif'; }
@@ -197,7 +205,7 @@
 
             <td class="left_column" width="15%">IPS</td>
             <td>: <input type="text" name="ips" id="ips" class="text-input" maxlength="16" size="30" style="width:40%" value="<?php 
-              if ($this->input->get('id_status_ak') == 1){
+              if ($this->input->get('id_status_ak') == 19){
               $a = round($ips,2);}
               else if ($this->input->get('id_status_ak') == 2){
               $a = '0'; }
@@ -211,7 +219,7 @@
         <tr>
              <td width="15%" class="left_column">Jumlah SKS Semester</td>
             <td>: <input type="text" name="sks_semester" id="sks_semester" class="text-input" maxlength="16" size="30" style="width:40%" value="<?php 
-            if ($this->input->get('id_status_ak') == 1){
+            if ($this->input->get('id_status_ak') == 19){
               if ($totalbobot == 1){
                 $ab = '0';
               } else {
