@@ -11,20 +11,21 @@ class Jadwal_model extends CI_Model {
 
 	public function data_jadwal(){
 		return $this->db->join('tb_periode','tb_periode.id_periode=tb_jadwal.id_periode')
-              ->join('tb_konsentrasi','tb_konsentrasi.id_konsentrasi=tb_jadwal.id_konsentrasi')
-              ->join('tb_prodi','tb_prodi.id_prodi=tb_konsentrasi.id_prodi')
+              ->join('tb_konsentrasi_kelas','tb_konsentrasi_kelas.id_konsentrasi=tb_jadwal.id_konsentrasi')
+              ->join('tb_prodi','tb_prodi.id_prodi=tb_konsentrasi_kelas.id_prodi')
               ->join('tb_hari','tb_hari.id_hari=tb_jadwal.id_hari')
               ->join('tb_waktu','tb_waktu.id_waktu=tb_jadwal.id_waktu')
               ->join('tb_detail_kurikulum','tb_detail_kurikulum.id_detail_kurikulum=tb_jadwal.id_detail_kurikulum')
               ->join('tb_matkul','tb_matkul.kode_matkul=tb_detail_kurikulum.kode_matkul')
+              ->join('tb_ruang','tb_ruang.id_ruang=tb_jadwal.id_ruang')
               ->get('tb_jadwal')
               ->result();
 	}
 
   public function detail_jadwal($id_jadwal){
     return $this->db->join('tb_periode','tb_periode.id_periode=tb_jadwal.id_periode')
-              ->join('tb_konsentrasi','tb_konsentrasi.id_konsentrasi=tb_jadwal.id_konsentrasi')
-              ->join('tb_prodi','tb_prodi.id_prodi=tb_konsentrasi.id_prodi')
+              ->join('tb_konsentrasi_kelas','tb_konsentrasi_kelas.id_konsentrasi=tb_jadwal.id_konsentrasi')
+              ->join('tb_prodi','tb_prodi.id_prodi=tb_konsentrasi_kelas.id_prodi')
               ->join('tb_hari','tb_hari.id_hari=tb_jadwal.id_hari')
               ->join('tb_waktu','tb_waktu.id_waktu=tb_jadwal.id_waktu')
               ->join('tb_detail_kurikulum','tb_detail_kurikulum.id_detail_kurikulum=tb_jadwal.id_detail_kurikulum')
@@ -93,7 +94,7 @@ class Jadwal_model extends CI_Model {
             'id_waktu'      => $this->input->post('id_waktu', TRUE),
             'id_konsentrasi'      => $this->input->post('id_konsentrasi', TRUE),
             'id_detail_kurikulum'      => $this->input->post('id_detail_kurikulum', TRUE),
-            'ruang'      => $this->input->post('ruang', TRUE)
+            'id_ruang'      => $this->input->post('ruang', TRUE)
             
         );
         $this->db->insert('tb_jadwal', $data);
@@ -113,7 +114,7 @@ class Jadwal_model extends CI_Model {
             'id_waktu'      => $this->input->post('id_waktu', TRUE),
             'id_konsentrasi'      => $this->input->post('id_konsentrasi', TRUE),
             'id_detail_kurikulum'      => $this->input->post('id_detail_kurikulum', TRUE),
-            'ruang'      => $this->input->post('ruang', TRUE)
+            'id_ruang'      => $this->input->post('ruang', TRUE)
       );
 
     if (!empty($data)) {

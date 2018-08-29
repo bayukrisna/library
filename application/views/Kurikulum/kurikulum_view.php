@@ -29,8 +29,7 @@
                 $no = 0;
                  $alert = "'Apakah anda yakin menghapus data ini ?'";
                 foreach ($kurikulum as $data) {
-
-                  
+                  $jumlah_sks = $data->bobot_matkul_wajib + $data->bobot_matkul_pilihan;
                   echo '
                   
                 <tr>
@@ -38,7 +37,7 @@
                   <td><a href="'.base_url('kurikulum/detail_kurikulum/'.$data->id_kurikulum).'">'.$data->nama_kurikulum.'</a></td>
                   <td>'.$data->nama_prodi.'</td>
                   <td>'.$data->semester.'</td>
-                  <td>'.$data->jumlah_sks.'</td>
+                  <td>'.$jumlah_sks.'</td>
                   <td>'.$data->bobot_matkul_wajib.'</td>
                   <td>'.$data->bobot_matkul_pilihan.'</td>
                   <td>
@@ -92,15 +91,6 @@
                     echo '<option value="'.$row->id_prodi.'">'.$row->nama_prodi.'</option>';
                   }
                   ?>
-              </select>
-
-        </td>
-        </tr>
-        <tr>
-            <td class="left_column">Konsentrasi <font color="#FF0000">*</font></td>
-            <td>:  <select name="id_konsentrasi" id="concentrate" class="validate[required]" required="">
-            <option value="">Pilih Konsentrasi</option>   
-                    
               </select>
 
         </td>
@@ -171,23 +161,6 @@ function sum() {
                 });
             }
 </script>
-
-<script type="text/javascript">
-            function get_concentrate(p) {
-                var id_prodi = p;
-
-                $.ajax({
-                    url: '<?php echo base_url(); ?>daftar_ulang/get_concentrate/'+id_prodi,
-                    data: 'id_prodi='+id_prodi,
-                    type: 'GET',
-                    dataType: 'html',
-                    success: function(msg) {
-                        $("#concentrate").html(msg);
-
-                    }
-                });
-            }
- </script>
 
 
     

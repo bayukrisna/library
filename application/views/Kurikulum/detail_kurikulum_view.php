@@ -39,7 +39,7 @@
         </tr>
         <tr>
             <td class="left_column">Jumlah SKS</td>
-            <td width=20%">: <?php echo $kurikulum->jumlah_sks; ?></td>
+            <td width=20%">: <?php  $jumlah_sks = $kurikulum->bobot_matkul_wajib + $kurikulum->bobot_matkul_pilihan;;echo $jumlah_sks; ?></td>
             <td class="left_column">Jumlah Bobot Matakuliah Pilihan <font color="#FF0000">*</font></td>
             <td>:
             <?php echo $kurikulum->bobot_matkul_pilihan; ?>

@@ -14,7 +14,7 @@ class Mata_kuliah_model extends CI_Model {
         $data = array(
             'kode_matkul'           => $this->input->post('kode_matkul'),
             'nama_matkul'           => $this->input->post('nama_matkul'),
-            'id_konsentrasi'                 => $this->input->post('id_konsentrasi'),
+            'id_prodi'                 => $this->input->post('id_prodi'),
             'jenis_matkul'      	  => $this->input->post('jenis_matkul'),
             'bobot_matkul'      		=> $this->input->post('bobot_matkul'),
             'bobot_praktikum'         => $this->input->post('bobot_praktikum'),
@@ -23,7 +23,8 @@ class Mata_kuliah_model extends CI_Model {
             'bobot_simulasi'         => $this->input->post('bobot_simulasi'),
             'metode_pembelajaran'         => $this->input->post('metode_pembelajaran'),
             'tanggal_mulai'         => $this->input->post('tanggal_mulai'),
-            'tanggal_akhir'         => $this->input->post('tanggal_akhir')
+            'tanggal_akhir'         => $this->input->post('tanggal_akhir'),
+            'matkul_english'         => $this->input->post('matkul_english')
             
         );
     
@@ -40,8 +41,7 @@ class Mata_kuliah_model extends CI_Model {
     }
 
   public function data_matkul(){
-   return $this->db->join('tb_konsentrasi','tb_konsentrasi.id_konsentrasi=tb_matkul.id_konsentrasi')
-              ->join('tb_prodi','tb_prodi.id_prodi=tb_konsentrasi.id_prodi')
+   return $this->db->join('tb_prodi','tb_prodi.id_prodi=tb_matkul.id_prodi')
               ->join('tb_jenis_matkul','tb_jenis_matkul.id_jenis_matkul=tb_matkul.jenis_matkul')
               ->order_by('nama_matkul')
               ->get('tb_matkul')
@@ -49,8 +49,7 @@ class Mata_kuliah_model extends CI_Model {
   }
 
   public function detail_matkul($kode_matkul){
-      return $this->db->join('tb_konsentrasi','tb_konsentrasi.id_konsentrasi=tb_matkul.id_konsentrasi')
-              ->join('tb_prodi','tb_prodi.id_prodi=tb_konsentrasi.id_prodi')
+      return $this->db->join('tb_prodi','tb_prodi.id_prodi=tb_matkul.id_prodi')
               ->join('tb_jenis_matkul','tb_jenis_matkul.id_jenis_matkul=tb_matkul.jenis_matkul')
               ->where('tb_matkul.kode_matkul', $kode_matkul)
               ->get('tb_matkul')
@@ -61,7 +60,7 @@ class Mata_kuliah_model extends CI_Model {
     $data = array(
            'kode_matkul'                        => $this->input->post('kode_matkul'),
             'nama_matkul'                        => $this->input->post('nama_matkul'),
-            'id_konsentrasi'                 => $this->input->post('id_konsentrasi'),
+            'id_prodi'                 => $this->input->post('id_prodi'),
             'jenis_matkul'            => $this->input->post('jenis_matkul'),
             'bobot_matkul'              => $this->input->post('bobot_matkul'),
             'bobot_praktikum'         => $this->input->post('bobot_praktikum'),
@@ -70,7 +69,8 @@ class Mata_kuliah_model extends CI_Model {
             'bobot_simulasi'         => $this->input->post('bobot_simulasi'),
             'metode_pembelajaran'         => $this->input->post('metode_pembelajaran'),
             'tanggal_mulai'         => $this->input->post('tanggal_mulai'),
-            'tanggal_akhir'         => $this->input->post('tanggal_akhir')
+            'tanggal_akhir'         => $this->input->post('tanggal_akhir'),
+            'matkul_english'         => $this->input->post('matkul_english')
       );
 
     if (!empty($data)) {

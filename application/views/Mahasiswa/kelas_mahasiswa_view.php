@@ -8,7 +8,7 @@
         <a class="btn btn-sm btn-info" href="<?php echo base_url();?>mahasiswa/prestasi">Prestasi</a> -->
         
            <?php } else {
-           $id_mahasiswa = $mahasiswa->id_mahasiswa; $semester_aktif = $mahasiswa->semester_aktif?>
+          ?>
            
 
          <a class="btn btn-sm btn-primary" href="<?php echo base_url();?>mahasiswa/lihat_mahasiswa_dikti/<?php echo $mahasiswa->id_mahasiswa; ?>">Detail Mahasiswa</a>
@@ -21,35 +21,7 @@
         <a class="btn btn-sm btn-info" href="<?php echo base_url(); ?>mahasiswa/data_mahasiswa">Kembali</a>
          <br/><br/>  
            <?php }           ?>
-        <div class="box box-info">
-        <div class="box-body">
-              <table class="table" >
-        <tr>
-            <td width="15%" class="left_column">NIM</td>
-            <td>: <?php echo $mahasiswa->nim; ?></td>
-            <td width="15%" class="left_column">Nama</td>
-            <td>: <?php echo $mahasiswa->nama_mahasiswa; ?></td>
-        </tr>
-        <tr>
-            <td class="left_column" width="15%">Program Studi</td>
-            <td width="35%">: <?php echo $mahasiswa->nama_prodi; ?>            </td>
-            <td class="left_column" width="15%">Angkatan</td>
-            <td>: <?php echo $mahasiswa->angkatan; ?>           </td>
-        </tr>
-        <tr>
-            <td class="left_column" width="15%">Periode</td>
-            <td width="35%">: <?php echo $periode->semester; ?>            </td>
-             <td class="left_column" width="15%">Semester</td>
-            <td>: <?php 
-             echo $mahasiswa->semester_aktif;?></td>
-
-        </tr>
-                
-
-        </table>
-            </div>
-            <!-- /.box-body -->
-          </div>
+      
           
           
         <div class="box">
@@ -58,13 +30,7 @@
         
           
             <div class="box-header">
-              <h3 class="box-title">Data KRS</h3>
-
-              <button type="button" class="btn btn-primary pull-right" data-toggle="modal" data-target="#modal-default">
-                <i class="fa fa-plus"></i> Tambah Matkul Mengulang
-              </button>
-              <br>
-              <br>
+              <h3 class="box-title">Kelas yang anda ambil pada semester <?php echo $this->uri->segment(4); ?></h3>
 
             
             <!-- /.box-header -->
@@ -74,25 +40,20 @@
                 <tr>
                   <th>No</th>
                   <th>Kode Matkul</th>
-                  <th>Nama Matkul</th>
-                  <th>SKS</th>
-                  <th>Dosen</th>
+                  <th>Mata Kuliah</th>
+                  <th>Beban Kredit</th>
+                  <th>Nama Dosen</th>
                 </tr>
                 </thead>
                 <tbody> 
                     
                   <?php 
                 $no = 0;
-                $id_kp = '';
-                if ($mahasiswa->id_status != '1') {
-                foreach ($krs as $i) {
-                       
-                  $total_mahasiswa = $this->db->query("SELECT count(*) AS total FROM tb_kelas_mhs WHERE id_kp = '$i->id_kp'")->row();
-                  if(date('Y-m-d') > $i->tgl_mulai AND date('Y-m-d') < $i->tgl_akhir){
-                  if ($total_mahasiswa->total < $i->kapasitas) {
-                   $id_kp .= $i->id_kp.',';        
+                $totalbobot = 0;
+                if ($mahasiswa->id_status == '1') {
+                foreach ($kelas as $i) {
+                  $totalbobot += $i->bobot_matkul;
                   echo '
-                  
                 <tr>
                   <td>'.++$no.'</td>
                   <td>'.$i->kode_matkul.'</td>
@@ -100,43 +61,29 @@
                   <td>'.$i->bobot_matkul.'</td>
                   <td>'.$i->nama_dosen.'</td>
                 </tr>
+                <tr>
+                  <td></td>
+                  <td></td>
+                  <td>'.$i->matkul_english.'</td>
+                  <td></td>
+                  <td></td>
+                </tr>
                 ' ;
-                }   
-              } else {
-                echo '
-                 <tr>
-                    <td colspan="6"> Waktu mengisi KRS sudah melebihi batas akhir</td>
-                  </tr>
-                ';
-              }
             }
-          } else {
-            echo '
-              <td colspan="6"> Anda sudah mengisi KRS</td>
-            ';
-          }
+          } 
             ?>
+            <tr>
+
+                  <td colspan="3"><p class="pull-right">Beban Kredit :</p></td>
+                  <td><?php echo $totalbobot; ?></td>
+                  <td></td>
+                </tr> 
+            
                 </tbody>
               </table>
 
             </div>
-            <?php echo form_open('mahasiswa/simpan_krs_mhs/'.$mahasiswa->id_prodi.'/'.$mahasiswa->semester_aktif);?>
-              <input type="hidden" class="form-control" id="id_mahasiswa" name="id_mahasiswa" value="<?php echo $id_mahasiswa ?>">
-              <input type="hidden" class="form-control" id="semester_aktif" name="semester_aktif" value="<?php echo $semester_aktif ?>">
-               <input type="hidden" class="form-control" id="id_kp" name="id_kp" value="<?php echo $id_kp ?>">
-               <?php
-               if ($mahasiswa->id_status != '1') { echo ' 
-              <button type="submit"  class="btn btn-success">Simpan</button> ';
-            } 
-                 ?>
- <?php echo form_close();?>
-              <?php 
-              if ($mahasiswa->id_status == '1') { echo '
-
-              <a href="'.base_url('mahasiswa/kelas_mhs/'.$mahasiswa->id_mahasiswa.'/'.$mahasiswa->semester_aktif).'" class="btn btn-warning  btn-sm">Cetak KRS</a>
-
-              ';
-            } ?>
+          
             <!-- /.box-body -->
           </div>
           <!-- /.box -->
@@ -147,20 +94,6 @@
     </section>
     
    
-    </div>
-    <div class="callout callout-info">
-        <strong>Keterangan :</strong>
-            <br />
-            - Fitur ini di gunakan untuk menampilkan dan mengelola KRS per mahasiswa pada periode berlaku
-            <br />
-            - Fitur ini cocok di gunakan apabila sumber data yang digunakan adalah daftar KRS per mahasiswa
-            <br />
-            - Bila sumber data yang digunakan adalah daftar absensi , silahkan ke menu <a href="http://10.10.0.4:8082/kelaskuliah">[ Kelas Perkuliahan ]</a>            <br />
-            - Untuk menambahkan Kelas yang di tawarkan, silahkan ke menu <a href="http://10.10.0.4:8082/kelaskuliah">[ Kelas Perkuliahan ]</a>          <br />
-            - Anda dapat menambahkan KRS secara kolektif pada mahasiswa ini, klik pada 
-            <a style="cursor:pointer" onclick="return showKelas(this)" title="Menampilkan Kelas yang ditawarkan">[ KRS Kolektif ]</a>
-            <br />
-            
     </div>
 
     <div class="modal fade" id="modal-default" >
