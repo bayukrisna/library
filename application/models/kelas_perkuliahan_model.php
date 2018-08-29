@@ -257,8 +257,6 @@ class Kelas_perkuliahan_model extends CI_Model {
         }
   }
 
-  
-
 
     public function hapus_kelas_dosen($id_detail_kurikulum){
         $this->db->where('id_kp', $id_detail_kurikulum)
