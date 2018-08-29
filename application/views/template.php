@@ -86,6 +86,59 @@ a:hover .tooltiptext {
       <a href="#" class="sidebar-toggle" data-toggle="offcanvas" role="button">
         
       </a>
+      <div class="navbar-custom-menu">
+        <ul class="nav navbar-nav">
+          <!-- Messages: style can be found in dropdown.less-->
+          
+          <!-- Notifications: style can be found in dropdown.less -->
+          
+          <!-- Tasks: style can be found in dropdown.less -->
+          
+          <!-- User Account: style can be found in dropdown.less -->
+          <li class="dropdown user user-menu">
+            <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+              <img src="<?php echo base_url(); ?>/assets/img/jic.png" class="user-image" alt="User Image">
+              <span class="hidden-xs">Alexander Pierce</span>
+            </a>
+            <ul class="dropdown-menu">
+              <!-- User image -->
+              <li class="user-header">
+                <img src="<?php echo base_url(); ?>/assets/img/jic.png" class="img-circle" alt="User Image">
+
+                <p>
+                  Alexander Pierce - Web Developer
+                  <small>Member since Nov. 2012</small>
+                </p>
+              </li>
+              <!-- Menu Body -->
+              <li class="user-body">
+                <div class="row">
+                  <div class="col-xs-4 text-center">
+                    <a href="#">Followers</a>
+                  </div>
+                  <div class="col-xs-4 text-center">
+                    <a href="#">Sales</a>
+                  </div>
+                  <div class="col-xs-4 text-center">
+                    <a href="#">Friends</a>
+                  </div>
+                </div>
+                <!-- /.row -->
+              </li>
+              <!-- Menu Footer-->
+              <li class="user-footer">
+                <div class="pull-left">
+                  <a href="#" class="btn btn-default btn-flat">Profile</a>
+                </div>
+                <div class="pull-right">
+                  <a href="<?php echo base_url(); ?>login/logout" class="btn btn-default fa fa-sign-out">Logout</a>
+                </div>
+              </li>
+            </ul>
+          </li>
+          <!-- Control Sidebar Toggle Button -->
+        </ul>
+      </div>
 
     </nav>
   </header>
@@ -94,23 +147,9 @@ a:hover .tooltiptext {
     <!-- sidebar: style can be found in sidebar.less -->
     <section class="sidebar">
       <!-- Sidebar user panel -->
-      <div class="user-panel">
-        <div class="pull-left image">
-          <img src="<?php echo base_url(); ?>/assets/img/jic.png" class="img-circle" alt="User Image">
-        </div>
-        <div class="pull-left info">
-          <p>Alexander Pierce</p>
-          <a href="#"><i class="fa fa-circle text-success"></i> Online</a>
-        </div>
-      </div>
-      <!-- search form -->
-      <form action="#" method="get" class="sidebar-form">
-        
-      </form>
       <!-- /.search form -->
       <!-- sidebar menu: : style can be found in sidebar.less -->
       <ul class="sidebar-menu">
-        <li class="header">MENU UTAMA</li>
         <?php 
           if($this->session->userdata('level') == 5){ ?>
             <li><a href="<?php echo base_url(); ?>mahasiswa"><i class="fa fa-user"></i> <span>Profil</span></a></li>
@@ -121,73 +160,34 @@ a:hover .tooltiptext {
             <li><a href="<?php echo base_url(); ?>mahasiswa/prestasi"><i class="fa fa-graduation-cap"></i> <span>Prestasi</span></a></li>
 
           <?php } else if($this->session->userdata('level') == 3) { ?>
-            <li><a href="<?php echo base_url(); ?>dashboard"><i class="fa fa-dashboard"></i>Dashboard</a></li>
-            <li><a href="<?php echo base_url(); ?>master_asal_sekolah"><i class="fa fa-building-o"></i> Asal Sekolah</a></li>
-            <li><a href="<?php echo base_url(); ?>tamu"><i class="fa fa-group"></i>Data Tamu</a></li>
-            <li><a href="<?php echo base_url(); ?>daftar_ulang/data_peserta_tes"><i class="fa fa-male"></i>Data Peserta Tes</a></li>
-            <li><a href="<?php echo base_url(); ?>tamu/data_sgs"><i class="fa  fa-file"></i>Data Student Get Student</a>
-            <li><a href="<?php echo base_url(); ?>mahasiswa/mahasiswa_data"><i class="fa  fa-file"></i>Data Mahasiswa</a></li>
-            <li><a href="<?php echo base_url(); ?>tamu/data_out"><i class="fa fa-file"></i>Data Tamu Non Aktif</a></li>
+            <li><a href="<?php echo base_url(); ?>dashboard"> <i class="fa fa-dashboard"></i> <span>Dashboard</span></a></li>
+
+            <li><a href="<?php echo base_url(); ?>master_asal_sekolah"><i class="fa fa-building-o"></i><span> Asal Sekolah</span></a></li>
+            <li><a href="<?php echo base_url(); ?>tamu"><i class="fa fa-group"></i><span>Data Tamu</span></a></li>
+            <li><a href="<?php echo base_url(); ?>daftar_ulang/data_peserta_tes"><i class="fa fa-male"></i><span>Data Peserta Tes</span></a></li>
+            <li><a href="<?php echo base_url(); ?>tamu/data_sgs"><i class="fa  fa-file"></i><span>Data Student Get Student</span></a>
+            <li><a href="<?php echo base_url(); ?>mahasiswa/mahasiswa_data"><i class="fa  fa-file"></i><span>Data Mahasiswa</span></a></li>
+            <li><a href="<?php echo base_url(); ?>tamu/data_out"><i class="fa fa-file"></i><span>Data Tamu Non Aktif</span></a></li>
 
           <?php } else if($this->session->userdata('level') == 4) { ?>
-            <li><a href="<?php echo base_url(); ?>finance/dashboard_finance"><i class="fa fa-dashboard"></i>Dashboard</a></li>
-            <li><a href="<?php echo base_url(); ?>master_biaya_sekolah"><i class="fa fa-money"></i> Biaya Kuliah</a></li>
-            <li><a href="<?php echo base_url(); ?>finance"><i class="fa fa-check-square"></i>Konfirmasi Registrasi</a></li>
-            <li><a href="<?php echo base_url(); ?>finance/data_lunas"><i class="fa fa-database"></i>Data Registrasi Lunas</a></li>
-            <li><a href="<?php echo base_url(); ?>finance/pembayaran"><i class="fa fa-bank"></i>Pembayaran</a></li>
+            <li><a href="<?php echo base_url(); ?>finance/dashboard_finance"><i class="fa fa-dashboard"></i><span>Dashboard</span></a></li>
+            <li><a href="<?php echo base_url(); ?>master_biaya_sekolah"><i class="fa fa-money"></i> <span>Biaya Kuliah</span></a></li>
+            <li><a href="<?php echo base_url(); ?>finance"><i class="fa fa-check-square"></i><span>Konfirmasi Registrasi</span></a></li>
+            <li><a href="<?php echo base_url(); ?>finance/data_lunas"><i class="fa fa-database"></i><span>Data Registrasi Lunas</span></a></li>
+            <li><a href="<?php echo base_url(); ?>finance/pembayaran"><i class="fa fa-bank"></i><span>Pembayaran</span></a></li>
 
           <?php } else if($this->session->userdata('level') == 6) { ?>
-            <li class="treeview">
-          <a href="#">
-            <i class="fa fa-dashboard"></i> <span>Master</span>
-            <span class="pull-right-container">
-              <i class="fa fa-angle-left pull-right"></i>
-            </span>
-          </a>
-          <ul class="treeview-menu">
-            <li><a href="<?php echo base_url(); ?>master_prodi"><i class="fa fa-circle-o"></i> Prodi</a></li>
-            <li><a href="<?php echo base_url(); ?>master_konsentrasi"><i class="fa fa-circle-o"></i> Konsentrasi</a
-              ></li>
-            <li><a href="<?php echo base_url(); ?>master_asal_sekolah"><i class="fa fa-circle-o"></i> Asal Sekolah</a></li>
-            <li><a href="<?php echo base_url(); ?>master_biaya_sekolah"><i class="fa fa-circle-o"></i> Biaya Kuliah</a></li>
-            <li><a href="<?php echo base_url(); ?>ruang"><i class="fa fa-circle-o"></i> Ruangan</a></li>
-          </ul>
-        </li>
-         <li class="treeview">
-          <a href="#">
-            <i class="fa fa-share"></i> <span>Akademik</span>
-            <span class="pull-right-container">
-              <i class="fa fa-angle-left pull-right"></i>
-            </span>
-          </a>
-          <ul class="treeview-menu">
-            <li><a href="<?php echo base_url(); ?>master_dosen"><i class="fa fa-circle-o"></i> Dosen</a></li>
-            <li><a href="<?php echo base_url(); ?>mahasiswa/data_mahasiswa"><i class="fa fa-circle-o"></i>Mahasiswa</a></li>
-             <li><a href="<?php echo base_url(); ?>mata_kuliah"><i class="fa fa-circle-o"></i>Mata Kuliah</a></li>
-             <li><a href="<?php echo base_url(); ?>kurikulum"><i class="fa fa-circle-o"></i>Kurikulum</a></li>
-              <li><a href="<?php echo base_url(); ?>jadwal"><i class="fa fa-circle-o"></i>Jadwal Perkuliahan</a></li>
-             <li><a href="<?php echo base_url(); ?>kelas_perkuliahan"><i class="fa fa-circle-o"></i>Kelas Perkuliahan</a></li>
-             <li><a href="<?php echo base_url(); ?>nilai_perkuliahan"><i class="fa fa-circle-o"></i>Nilai Perkuliahan</a></li>
-             <li><a href="<?php echo base_url(); ?>aktivitas_perkuliahan"><i class="fa fa-circle-o"></i>Aktivitas Perkuliahan</a></li>
-             <li><a href="<?php echo base_url(); ?>mahasiswa/data_ld"><i class="fa fa-circle-o"></i>Mahasiswa Lulus / DO</a></li>
-             
-            <li class="treeview">
-              <a href="#"><i class="fa fa-circle-o"></i>Pelengkap
-                <span class="pull-right-container">
-                  <i class="fa fa-angle-left pull-right"></i>
-                </span>
-              </a>
-              <ul class="treeview-menu">
-                <li><a href="<?php echo base_url(); ?>nilai"><i class="fa fa-circle-o"></i>Skala Nilai</a></li>
-                <li><a href="<?php echo base_url(); ?>setting_periode"><i class="fa fa-circle-o"></i>Setting Periode</a></li>
-              </ul>
-            </li>
-            
-            
-          </ul>
-        </li>
+            <li><a href="<?php echo base_url(); ?>master_dosen"><i class="fa fa-circle-o"></i> <span>Dosen</span></a></li>
+            <li><a href="<?php echo base_url(); ?>mahasiswa/data_mahasiswa"><i class="fa fa-circle-o"></i><span>Mahasiswa</span></a></li>
+             <li><a href="<?php echo base_url(); ?>mata_kuliah"><i class="fa fa-circle-o"></i><span>Mata Kuliah</span></a></li>
+             <li><a href="<?php echo base_url(); ?>kurikulum"><i class="fa fa-circle-o"></i><span>Kurikulum</span></a></li>
+              <li><a href="<?php echo base_url(); ?>jadwal"><i class="fa fa-circle-o"></i><span>Jadwal Perkuliahan</span></a></li>
+             <li><a href="<?php echo base_url(); ?>kelas_perkuliahan"><i class="fa fa-circle-o"></i><span>Kelas Perkuliahan</span></a></li>
+             <li><a href="<?php echo base_url(); ?>nilai_perkuliahan"><i class="fa fa-circle-o"></i><span>Nilai Perkuliahan</span></a></li>
+             <li><a href="<?php echo base_url(); ?>aktivitas_perkuliahan"><i class="fa fa-circle-o"></i><span>Aktivitas Perkuliahan</span></a></li>
+             <li><a href="<?php echo base_url(); ?>mahasiswa/data_ld"><i class="fa fa-circle-o"></i><span>Mahasiswa Lulus / DO</span></a></li>
         <li class="treeview">
-              <a href="#"><i class="fa fa-share"></i>Laporan
+              <a href="#"><i class="fa fa-share"></i><span>Laporan</span>
                 <span class="pull-right-container">
                   <i class="fa fa-angle-left pull-right"></i>
                 </span>
@@ -285,7 +285,7 @@ a:hover .tooltiptext {
           </ul>
         </li>
         <li class="treeview">
-              <a href="#"><i class="fa fa-share"></i>Laporan
+              <a href="#"><i class="fa fa-share"></i><span>Laporan</span>
                 <span class="pull-right-container">
                   <i class="fa fa-angle-left pull-right"></i>
                 </span>
@@ -301,7 +301,6 @@ a:hover .tooltiptext {
               </ul>
             </li>
           <?php } ?>
-          <li><a href="<?php echo base_url(); ?>login/logout"><i class="fa fa-sign-out"></i> <span>logout</span></a></li>
         
       </ul>
     </section>

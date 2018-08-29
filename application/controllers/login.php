@@ -16,13 +16,13 @@ class Login extends CI_Controller {
 			} else if($this->session->userdata('level') == 2){ // Dosen
 				redirect(base_url('dosen'));
 			} else if($this->session->userdata('level') == 3){ // Marketing
-				redirect(base_url('tamu'));
+				redirect(base_url('dashboard'));
 			} else if($this->session->userdata('level') == 4){ // Finance
 				redirect(base_url('dashboard'));
 			} else if($this->session->userdata('level') == 5){ // Mahasiswa
 				redirect(base_url('mahasiswa'));
 			} else if($this->session->userdata('level') == 6){ // Akademik
-				redirect(base_url('mahasiswa/data_mahasiswa'));
+				redirect(base_url('dashboard'));
 			} else {
 				$this->load->view('login_view');
 			}
@@ -37,13 +37,13 @@ class Login extends CI_Controller {
 			} else if($this->session->userdata('level') == 2){ // Dosen
 				redirect(base_url('dosen'));
 			} else if($this->session->userdata('level') == 3){ // Marketing
-				redirect(base_url('tamu'));
+				redirect(base_url('dashboard'));
 			} else if($this->session->userdata('level') == 4){ // Finance
 				redirect(base_url('dashboard'));
 			} else if($this->session->userdata('level') == 5){ // Mahasiswa
 				redirect(base_url('mahasiswa'));
 			} else if($this->session->userdata('level') == 6){ // Akademik
-				redirect(base_url('mahasiswa/data_mahasiswa'));
+				redirect(base_url('dashboard'));
 			} else {
 				redirect(base_url('finance'));
 			}

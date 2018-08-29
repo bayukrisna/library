@@ -63,6 +63,43 @@ class Dashboard_model extends CI_Model {
 
       );
   }
+  public function dashboard_akademik(){
+    $data_mhs_aktif = $this->db->select('count(*) as total')
+                ->where('id_status', 1)
+                ->get('tb_mahasiswa')
+                ->row();
+
+    $data_prodi = $this->db->select('count(*) as total')
+                ->get('tb_prodi')
+                ->row();
+
+    $data_dosen = $this->db->select('count(*) as total')
+                ->get('tb_dosen')
+                ->row();
+
+    $data_mhs_akuntansi = $this->db->select('count(*) as total')
+                ->from('tb_konsentrasi')
+                ->join('tb_mahasiswa','tb_mahasiswa.id_konsentrasi=tb_konsentrasi.id_konsentrasi')
+                ->where('tb_konsentrasi.id_prodi', 'PR002')
+                ->get();
+    $data_mhs_akuntansi = $data_mhs_akuntansi->row();
+
+    $data_mhs_manajemen = $this->db->select('count(*) as total')
+                ->from('tb_konsentrasi')
+                ->join('tb_mahasiswa','tb_mahasiswa.id_konsentrasi=tb_konsentrasi.id_konsentrasi')
+                ->where('tb_konsentrasi.id_prodi', 'PR001')
+                ->get();
+    $data_mhs_manajemen = $data_mhs_manajemen->row();
+
+    return array(
+      'data_mhs_aktif' => $data_mhs_aktif->total,
+      'data_prodi' => $data_prodi->total,
+      'data_dosen' => $data_dosen->total,
+      'data_mhs_akuntansi' => $data_mhs_akuntansi->total,
+      'data_mhs_manajemen' => $data_mhs_manajemen->total
+
+      );
+  }
 
 	
 

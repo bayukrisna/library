@@ -49,9 +49,9 @@ class Dashboard extends CI_Controller {
             $data['encode2'] = $ea2;
             $data['main_view'] = 'tamu/dashboard_marketing_view';
             $this->load->view('template', $data);
-        } else if($this->session->userdata('level') == 3){
-            $data['dashboard'] = $this->dashboard_model->dashboard_finance();
-            $data['main_view'] = 'Finance/dashboard_finance_view';
+        } else if($this->session->userdata('level') == 6){
+            $data['dashboard'] = $this->dashboard_model->dashboard_akademik();
+            $data['main_view'] = 'Akademi/dashboard_akademik_view';
             $this->load->view('template', $data);
         } else {
 			redirect(base_url('login'));
