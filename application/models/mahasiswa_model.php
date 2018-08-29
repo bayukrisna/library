@@ -145,16 +145,14 @@ class Mahasiswa_model extends CI_Model {
               ->row();
   } 
 
-  
-
   public function data_krs_mhs($id_mahasiswa, $id_prodi, $semester_aktif){
       return $this->db->join('tb_jadwal','tb_jadwal.id_jadwal=tb_kp.id_jadwal')
               ->join('tb_detail_kurikulum','tb_detail_kurikulum.id_detail_kurikulum=tb_jadwal.id_detail_kurikulum')
               ->join('tb_matkul','tb_matkul.kode_matkul=tb_detail_kurikulum.kode_matkul')
-              ->join('tb_ruang','tb_ruang.id_ruang=tb_jadwal.ruang')
+              ->join('tb_ruang','tb_ruang.id_ruang=tb_jadwal.id_ruang')
               ->join('tb_periode','tb_periode.id_periode=tb_jadwal.id_periode')
-              ->join('tb_konsentrasi','tb_konsentrasi.id_konsentrasi=tb_jadwal.id_konsentrasi')
-              ->join('tb_prodi','tb_prodi.id_prodi=tb_konsentrasi.id_prodi')
+              ->join('tb_konsentrasi_kelas','tb_konsentrasi_kelas.id_konsentrasi=tb_jadwal.id_konsentrasi')
+              ->join('tb_prodi','tb_prodi.id_prodi=tb_konsentrasi_kelas.id_prodi')
               ->join('tb_kelas_dosen','tb_kelas_dosen.id_kp=tb_kp.id_kp','left')
               ->join('tb_dosen','tb_dosen.id_dosen=tb_kelas_dosen.id_dosen','left')
               ->where('tb_detail_kurikulum.semester_kurikulum', $semester_aktif)
@@ -165,21 +163,20 @@ class Mahasiswa_model extends CI_Model {
               ->result();
   } 
 
-  public function get_tgl($id_mahasiswa, $id_prodi, $semester_aktif){
-      return $this->db->select('tb_kp.tgl_mulai, tb_kp.tgl_akhir')
-              ->distinct()
+  public function kelas_mhs($id_mahasiswa, $semester_aktif){
+      return $this->db->join('tb_kp','tb_kp.id_kp=tb_kelas_mhs.id_kp')
               ->join('tb_jadwal','tb_jadwal.id_jadwal=tb_kp.id_jadwal')
               ->join('tb_detail_kurikulum','tb_detail_kurikulum.id_detail_kurikulum=tb_jadwal.id_detail_kurikulum')
               ->join('tb_matkul','tb_matkul.kode_matkul=tb_detail_kurikulum.kode_matkul')
-              ->join('tb_ruang','tb_ruang.id_ruang=tb_jadwal.ruang')
+              ->join('tb_ruang','tb_ruang.id_ruang=tb_jadwal.id_ruang')
               ->join('tb_periode','tb_periode.id_periode=tb_jadwal.id_periode')
-              ->join('tb_konsentrasi','tb_konsentrasi.id_konsentrasi=tb_jadwal.id_konsentrasi')
-              ->join('tb_prodi','tb_prodi.id_prodi=tb_konsentrasi.id_prodi')
+              ->join('tb_konsentrasi_kelas','tb_konsentrasi_kelas.id_konsentrasi=tb_jadwal.id_konsentrasi')
+              ->join('tb_prodi','tb_prodi.id_prodi=tb_konsentrasi_kelas.id_prodi')
+              ->join('tb_kelas_dosen','tb_kelas_dosen.id_kp=tb_kp.id_kp','left')
+              ->join('tb_dosen','tb_dosen.id_dosen=tb_kelas_dosen.id_dosen','left')
               ->where('tb_detail_kurikulum.semester_kurikulum', $semester_aktif)
-              ->where('tb_prodi.id_prodi', $id_prodi)
-              ->where('tgl_mulai <=', date('Y-m-d'))
-              ->where('tgl_akhir >=', date('Y-m-d'))
-              ->get('tb_kp')
+              ->where('tb_kelas_mhs.id_mahasiswa', $id_mahasiswa)
+              ->get('tb_kelas_mhs')
               ->result();
   } 
 
@@ -187,7 +184,7 @@ class Mahasiswa_model extends CI_Model {
       return $this->db->join('tb_jadwal','tb_jadwal.id_jadwal=tb_kp.id_jadwal')
               ->join('tb_detail_kurikulum','tb_detail_kurikulum.id_detail_kurikulum=tb_jadwal.id_detail_kurikulum')
               ->join('tb_matkul','tb_matkul.kode_matkul=tb_detail_kurikulum.kode_matkul')
-              ->join('tb_ruang','tb_ruang.id_ruang=tb_jadwal.ruang')
+              ->join('tb_ruang','tb_ruang.id_ruang=tb_jadwal.id_ruang')
               ->join('tb_periode','tb_periode.id_periode=tb_jadwal.id_periode')
               ->where('tb_periode.id_prodi', $id_prodi)
               ->where('tgl_mulai <=', date('Y-m-d'))
@@ -234,7 +231,7 @@ class Mahasiswa_model extends CI_Model {
               ->join('tb_jadwal','tb_jadwal.id_jadwal=tb_kp.id_jadwal')
               ->join('tb_detail_kurikulum','tb_detail_kurikulum.id_detail_kurikulum=tb_jadwal.id_detail_kurikulum')
               ->join('tb_matkul','tb_matkul.kode_matkul=tb_detail_kurikulum.kode_matkul')
-              ->join('tb_ruang','tb_ruang.id_ruang=tb_jadwal.ruang')
+              ->join('tb_ruang','tb_ruang.id_ruang=tb_jadwal.id_ruang')
               ->join('tb_kelas_dosen','tb_kelas_dosen.id_kp=tb_kp.id_kp','left')
               ->join('tb_dosen','tb_dosen.id_dosen=tb_kelas_dosen.id_dosen','left')
 
@@ -250,7 +247,7 @@ class Mahasiswa_model extends CI_Model {
               ->join('tb_jadwal','tb_jadwal.id_jadwal=tb_kp.id_jadwal')
               ->join('tb_detail_kurikulum','tb_detail_kurikulum.id_detail_kurikulum=tb_jadwal.id_detail_kurikulum')
               ->join('tb_matkul','tb_matkul.kode_matkul=tb_detail_kurikulum.kode_matkul')
-              ->join('tb_ruang','tb_ruang.id_ruang=tb_jadwal.ruang')
+              ->join('tb_ruang','tb_ruang.id_ruang=tb_jadwal.id_ruang')
               ->join('tb_kelas_dosen','tb_kelas_dosen.id_kp=tb_kp.id_kp','right')
               ->join('tb_dosen','tb_dosen.id_dosen=tb_kelas_dosen.id_dosen')
               ->where('tb_kelas_mhs.semester', $semester_aktif)
@@ -265,7 +262,7 @@ class Mahasiswa_model extends CI_Model {
               ->join('tb_jadwal','tb_jadwal.id_jadwal=tb_kp.id_jadwal')
               ->join('tb_detail_kurikulum','tb_detail_kurikulum.id_detail_kurikulum=tb_jadwal.id_detail_kurikulum')
               ->join('tb_matkul','tb_matkul.kode_matkul=tb_detail_kurikulum.kode_matkul')
-              ->join('tb_ruang','tb_ruang.id_ruang=tb_jadwal.ruang')
+              ->join('tb_ruang','tb_ruang.id_ruang=tb_jadwal.id_ruang')
               ->join('tb_kelas_dosen','tb_kelas_dosen.id_kp=tb_kp.id_kp','right')
               ->join('tb_dosen','tb_dosen.id_dosen=tb_kelas_dosen.id_dosen')
               
@@ -281,7 +278,7 @@ class Mahasiswa_model extends CI_Model {
               ->join('tb_jadwal','tb_jadwal.id_jadwal=tb_kp.id_jadwal')
               ->join('tb_detail_kurikulum','tb_detail_kurikulum.id_detail_kurikulum=tb_jadwal.id_detail_kurikulum')
               ->join('tb_matkul','tb_matkul.kode_matkul=tb_detail_kurikulum.kode_matkul')
-              ->join('tb_ruang','tb_ruang.id_ruang=tb_jadwal.ruang')
+              ->join('tb_ruang','tb_ruang.id_ruang=tb_jadwal.id_ruang')
               ->join('tb_kelas_dosen','tb_kelas_dosen.id_kp=tb_kp.id_kp','right')
               ->join('tb_dosen','tb_dosen.id_dosen=tb_kelas_dosen.id_dosen')
               
@@ -297,7 +294,7 @@ class Mahasiswa_model extends CI_Model {
               ->join('tb_jadwal','tb_jadwal.id_jadwal=tb_kp.id_jadwal')
               ->join('tb_detail_kurikulum','tb_detail_kurikulum.id_detail_kurikulum=tb_jadwal.id_detail_kurikulum')
               ->join('tb_matkul','tb_matkul.kode_matkul=tb_detail_kurikulum.kode_matkul')
-              ->join('tb_ruang','tb_ruang.id_ruang=tb_jadwal.ruang')
+              ->join('tb_ruang','tb_ruang.id_ruang=tb_jadwal.id_ruang')
               ->join('tb_kelas_dosen','tb_kelas_dosen.id_kp=tb_kp.id_kp','right')
               ->join('tb_dosen','tb_dosen.id_dosen=tb_kelas_dosen.id_dosen')
               

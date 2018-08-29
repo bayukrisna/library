@@ -76,6 +76,19 @@ class Kelas_perkuliahan extends CI_Controller {
 			} 
 	}
 
+	public function get_concentrate2($param = NULL) {
+		// $layanan =$this->input->post('layanan');
+		$prodi = $param;
+		$result = $this->kelas_perkuliahan_model->get_concentrate2($prodi);
+		$option = "";
+		$option .= '<option value="">Pilih Konsentrasi</option>';
+		foreach ($result as $data) {
+			$option .= "<option value='".$data->id_konsentrasi."' >".$data->nama_konsentrasi."</option>";
+		}
+		echo $option;
+
+	}
+
 	public function simpan_kelas_dosen()
 	{
 		$id_kp = $this->input->post('id_kp');
@@ -199,8 +212,9 @@ class Kelas_perkuliahan extends CI_Controller {
 				foreach ($result as $row) 
 					$result_array[] = array(
 						'label' => $row->hari.' - ('.substr($row->jam_awal,0,-3).'-'.substr($row->jam_akhir,0,-3).') - '.$row->nama_matkul,
-						'ruang' => $row->ruang,
+						'ruang' => $row->nama_ruang,
 						'prodi' => $row->nama_prodi,
+						'konsentrasi' => $row->nama_konsentrasi,
 						'id' => $row->id_jadwal);
 				echo json_encode($result_array);
 			

@@ -43,7 +43,7 @@
                   <td>'.$data->hari.'</td>
                   <td>'.substr($data->jam_awal,0,-3).' - '.substr($data->jam_akhir,0,-3).'</td>
                   <td>'.$data->waktu.'</td>
-                  <td>'.$data->ruang.'</td>
+                  <td>'.$data->nama_ruang.'</td>
                   <td>'.$data->semester.'</td>
                   <td> <a href="'.base_url('jadwal/hapus_jadwal/'.$data->id_jadwal).'" class="btn btn-danger  btn-sm" onclick="return confirm('.$alert.')"><i class="glyphicon glyphicon-trash"></i><span class="tooltiptext">Hapus Jadwal</span></a>
                          <a href="'.base_url('jadwal/detail_jadwal/'.$data->id_jadwal).'" class="btn btn-warning  btn-sm"><i class="glyphicon glyphicon-pencil"></i><span class="tooltiptext">Edit Jadwal</span></a>
@@ -90,7 +90,7 @@
                      
                          <tr>
           <td class="left_column">Konsentrasi</td>
-            <td>: <select name="id_konsentrasi" id="concentrate" class="validate[required]" required=""  >
+            <td>: <select name="id_konsentrasi" id="id_konsentrasi" class="validate[required]" required=""  >
               <option value=""> Pilih Konsentrasi</option>
 
 
@@ -267,12 +267,12 @@
                 var id_prodi = document.getElementById('id_prodi').value;
 
                 $.ajax({
-                    url: '<?php echo base_url(); ?>daftar_ulang/get_concentrate/'+id_prodi,
+                    url: '<?php echo base_url(); ?>kelas_perkuliahan/get_concentrate2/'+id_prodi,
                     data: 'id_prodi='+id_prodi,
                     type: 'GET',
                     dataType: 'html',
                     success: function(msg) {
-                        $("#concentrate").html(msg);
+                        $("#id_konsentrasi").html(msg);
 
                     }
                 });
@@ -307,6 +307,7 @@
                 });
               }
 </script>
+
 
 
      

@@ -152,6 +152,23 @@ class Mahasiswa extends CI_Controller {
 			$this->load->view('template', $data);
 	}
 
+	public function kelas_mhs()
+	{
+			if($this->session->userdata('id_mahasiswa') != null){
+				$id_mahasiswa = $this->session->userdata('id_mahasiswa');
+				$session = $this->mahasiswa_model->session_mahasiswa($id_mahasiswa);
+				$id_prodi = $session->id_prodi;
+			} else {
+				$id_mahasiswa = $this->uri->segment(3);
+				$semester_aktif = $this->uri->segment(4);
+			}
+			//$data['periode'] = $this->mahasiswa_model->Periode_krs($id_prodi);
+			$data['mahasiswa'] = $this->mahasiswa_model->detail_krs_mahasiswa($id_mahasiswa, $semester_aktif);
+			$data['kelas'] = $this->mahasiswa_model->kelas_mhs($id_mahasiswa, $semester_aktif);
+			$data['main_view'] = 'Mahasiswa/kelas_mahasiswa_view';
+			$this->load->view('template', $data);
+	}
+
 	public function history_nilai()
 	{
 			if($this->session->userdata('id_mahasiswa') != null){

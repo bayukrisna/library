@@ -145,6 +145,13 @@
       </td>
         </tr> 
         <tr>
+          <td class="left_column">Konsentrasi <font color="#FF0000">*</font>
+            </td>
+          <td colspan="9">: 
+      <input type="text" name="konsentrasi" id="konsentrasi" class="validate[required] text-input"  size="5" style="width: 40%; background-color:#E0E0E0" readonly="" >
+      </td>
+        </tr> 
+        <tr>
           <td class="left_column">Nama Kelas <font color="#FF0000">*</font>
             </td>
           <td colspan="9">: 
@@ -202,6 +209,7 @@
         $('#id_jadwal').val(ui.item.id);
         $('#ruang').val(ui.item.ruang);
         $('#prodi').val(ui.item.prodi);
+        $('#konsentrasi').val(ui.item.konsentrasi);
       }
     });    
   });
