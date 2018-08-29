@@ -78,7 +78,11 @@
                   $total_mahasiswa = $this->db->query("SELECT count(*) AS total FROM tb_kelas_mhs WHERE id_kp = '$data->id_kp'")->row();
 
                   $nama_dosen = $this->db->query("SELECT nama_dosen AS abc FROM tb_kelas_dosen RIGHT JOIN tb_kp ON tb_kp.id_kp = tb_kelas_dosen.id_kp left JOIN tb_dosen ON tb_dosen.id_dosen = tb_kelas_dosen.id_dosen WHERE tb_kp.id_kp = '$data->id_kp'")->row();
-
+                  if ($nama_dosen->abc == null) {
+                    $a = '<p style="color:red;"><b>Belum diisi </b></p>';
+                  } else {
+                    $a = $nama_dosen->abc;
+                  }
                   echo '                  
                 <tr>
                   <td>'.++$no.'</td>
@@ -86,7 +90,7 @@
                   <td>'.$data->nama_matkul.'</td>
                   <td>'.$data->nama_kelas.'</td>
                   <td>'.$data->bobot_matkul.'</td>
-                  <td>'.$nama_dosen->abc.'</td>
+                  <td>'.$a.'</td>
                   <td>'.$total_mahasiswa->total.'</td>
                   <td>
                         <a href="'.base_url('kelas_perkuliahan/hapus_kp/'.$data->id_kp).'" class="btn btn-danger btn-sm" onclick="return confirm('.$alert.')"><i class="glyphicon glyphicon-trash"></i><span class="tooltiptext">Hapus Kelas</span></a>
