@@ -916,15 +916,6 @@ class Mahasiswa_model extends CI_Model {
               ->result();
   }
 
-  public function autocomplete_ipk($nama){
-     $this->db->select('*');
-     $this->db->from('tb_mahasiswa');
-     $this->db->join('tb_mhs_add','tb_mhs_add.id_mahasiswa=tb_mahasiswa.id_mahasiswa');
-     $this->db->like('tb_mahasiswa.nim',$nama);
-     $query = $this->db->get();
-     return $query->result();
-  }
-
   public function update_status_ld($id_mahasiswa){
     $data = array(
             'id_mahasiswa' => $this->input->post('id_mahasiswa', TRUE),

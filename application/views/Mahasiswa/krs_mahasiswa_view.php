@@ -132,9 +132,8 @@
  <?php echo form_close();?>
               <?php 
               if ($mahasiswa->id_status == '1') { echo '
-
-              <a href="'.base_url('mahasiswa/kelas_mhs/'.$mahasiswa->id_mahasiswa.'/'.$mahasiswa->semester_aktif).'" class="btn btn-warning  btn-sm">Cetak KRS</a>
-
+              <br>
+              <a href="'.base_url('mahasiswa/kelas_mhs/'.$mahasiswa->id_mahasiswa.'/'.$mahasiswa->id_prodi.'/'.$mahasiswa->semester_aktif).'" class="btn btn-warning  btn-sm pull-right">Cetak KRS</a>
               ';
             } ?>
             <!-- /.box-body -->

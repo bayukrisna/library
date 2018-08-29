@@ -128,6 +128,21 @@ class Kelas_perkuliahan_model extends CI_Model {
      return $query->result();
   }
 
+  public function autocomplete_kp($nama){
+    $this->db->select('*');
+     $this->db->from('tb_kp');
+     $this->db->join('tb_jadwal','tb_jadwal.id_jadwal=tb_kp.id_jadwal');
+     $this->db->join('tb_konsentrasi_kelas','tb_konsentrasi_kelas.id_konsentrasi=tb_jadwal.id_konsentrasi');
+     $this->db->join('tb_prodi','tb_prodi.id_prodi=tb_konsentrasi_kelas.id_prodi');
+     $this->db->join('tb_detail_kurikulum','tb_detail_kurikulum.id_detail_kurikulum=tb_jadwal.id_detail_kurikulum');
+     $this->db->join('tb_matkul','tb_matkul.kode_matkul=tb_detail_kurikulum.kode_matkul');
+     $this->db->where('tb_kp.tgl_mulai <=', date('Y-m-d'));
+     $this->db->where('tb_kp.tgl_akhir >=', date('Y-m-d'));
+     $this->db->like('tb_matkul.nama_matkul', $nama);
+     $query = $this->db->get();
+     return $query->result();
+  }
+
   public function detail_kelas_mhs($nama){
     $this->db->select('*');
      $this->db->from('tb_kelas_mhs');

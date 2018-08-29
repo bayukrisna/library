@@ -25,24 +25,28 @@
           
           
         <div class="box">
-        <section class="content">
+        <section class="content" >
+          
+          
       <div class="row">
         
           
             <div class="box-header">
-              <h3 class="box-title">Kelas yang anda ambil pada semester <?php echo $this->uri->segment(4); ?></h3>
+              <h3 class="box-title">
+              Data KRS yang anda ambil semester <?php echo $this->uri->segment(5); ?></h3>
 
+            
             
             <!-- /.box-header -->
             <div class="box-body">
               <table class="table table-bordered table-striped">
                 <thead>
                 <tr>
-                  <th>No</th>
-                  <th>Kode Matkul</th>
-                  <th>Mata Kuliah</th>
-                  <th>Beban Kredit</th>
-                  <th>Nama Dosen</th>
+                  <th style="width: 5%; text-align: center;">No</th>
+                  <th style="width: 15%; text-align: center;">Kode Matkul</th>
+                  <th style="width: 45%; text-align: center;">Mata Kuliah</th>
+                  <th style="width: 5%; text-align: center;">Beban Kredit</th>
+                  <th style="width: 25%; text-align: center;">Nama Dosen</th>
                 </tr>
                 </thead>
                 <tbody> 
@@ -72,82 +76,144 @@
             }
           } 
             ?>
-            <tr>
-
-                  <td colspan="3"><p class="pull-right">Beban Kredit :</p></td>
-                  <td><?php echo $totalbobot; ?></td>
-                  <td></td>
-                </tr> 
+            
             
                 </tbody>
               </table>
-
-            </div>
+              
+              
+              
+                  
+              
           
             <!-- /.box-body -->
           </div>
           <!-- /.box -->
         </div>
+
+       
+        
+       
+        
+        
         <!-- /.col -->
       
       <!-- /.row -->
     </section>
+
+    <section class="content" id="ea" style="display: none">
+          
+          
+      <div class="row">
+        
+          
+            <div class="box-header">
+              <h3 class="box-title">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b>KARTU RENCANA STUDY</b> <br>
+              <br>
+              <br></h3>
+
+             
+              <div>
+            &nbsp;&nbsp;&nbsp;&nbsp; Nama : <?php echo $mahasiswa->nama_mahasiswa; ?><br>
+            &nbsp;&nbsp;&nbsp;&nbsp; NIM : <?php echo $mahasiswa->nim; ?><br>
+            &nbsp;&nbsp;&nbsp;&nbsp; Program Studi : <?php echo $mahasiswa->nama_prodi; ?><br>
+            &nbsp;&nbsp;&nbsp;&nbsp; Semester : <?php echo $mahasiswa->semester_aktif; ?><br>
+            &nbsp;&nbsp;&nbsp;&nbsp; TA : <?php echo $periode->semester; ?><br>
+          </div>
+            
+            <!-- /.box-header -->
+            <div class="box-body">
+              <table class="table table-bordered table-striped">
+                <thead>
+                <tr>
+                  <th style="width: 5%; text-align: center;">No</th>
+                  <th style="width: 15%; text-align: center;">Kode Matkul</th>
+                  <th style="width: 45%; text-align: center;">Mata Kuliah</th>
+                  <th style="width: 5%; text-align: center;">Beban Kredit</th>
+                  <th style="width: 25%; text-align: center;">Nama Dosen</th>
+                </tr>
+                </thead>
+                <tbody> 
+                    
+                  <?php 
+                $no = 0;
+                $totalbobot = 0;
+                if ($mahasiswa->id_status == '1') {
+                foreach ($kelas as $i) {
+                  $totalbobot += $i->bobot_matkul;
+                  echo '
+                <tr>
+                  <td>'.++$no.'</td>
+                  <td>'.$i->kode_matkul.'</td>
+                  <td>'.$i->nama_matkul.'</td>
+                  <td>'.$i->bobot_matkul.'</td>
+                  <td>'.$i->nama_dosen.'</td>
+                </tr>
+                <tr>
+                  <td></td>
+                  <td></td>
+                  <td>'.$i->matkul_english.'</td>
+                  <td></td>
+                  <td></td>
+                </tr>
+                ' ;
+            }
+          } 
+            ?>
+            
+            
+                </tbody>
+              </table>
+              <div>
+              <br>
+              Beban Kredit : <?php echo $totalbobot; ?> <br> <br>
+              Mengetahui &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Jakarta, <?php echo date('d-M-Y'); ?><br>
+              Pembimbing Akademik &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Mahasiswa<br><br><br><br><br>
+              <table  style="width: 100%">
+                <tr>
+                 <td>Session login</td>
+                <td style="text-align: center;"><?php echo $mahasiswa->nama_mahasiswa; ?></td>
+                </tr>
+              </table>
+               </div>
+              
+              
+                  
+              
+          
+            <!-- /.box-body -->
+          </div>
+          <!-- /.box -->
+        </div>
+
+       
+        
+       
+        
+        
+        <!-- /.col -->
+      
+      <!-- /.row -->
+    </section>
+
+    <p class="btn btn-primary" onclick="print1()"> Cetak </p>
     
    
     </div>
 
-    <div class="modal fade" id="modal-default" >
-            <div class="modal-dialog">
-            <div class="modal-content">
-            <div class="modal-header">
-                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">x</button>
-                <h3 class="modal-title" id="myModalLabel">Tambah Matkul Mengulang</h3>
-                <h4 class="modal-title" id="myModalLabel2">Untuk periode <?php echo $periode2->semester; ?></h4>
-            </div>
-                <div class="modal-body">
-
-                    <div class="form-group">
-                      <?php echo form_open('mahasiswa/simpan_krs_mengulang/'.$mahasiswa->id_prodi.'/'.$mahasiswa->semester_aktif); ?>
-                      <table class="table">
-        <tr>
-          <td class="left_column">Masukan Matkul <font color="#FF0000">*</font>
-            </td>
-          <td colspan="15">: 
-      <input type="text" name="nama_matkul" id="nama_matkul" class="validate[required] text-input"  size="40" style="width: 90%;" required="">
-       <input type="hidden" name="id_mahasiswa" id="id_mahasiswa" class="validate[required] text-input"  size="40" style="width: 90%;" value="<?php echo $mahasiswa->id_mahasiswa; ?>">
-       <input type="hidden" name="semester_aktif" id="semester_aktif" class="validate[required] text-input"  size="40" style="width: 90%;" value="<?php echo $mahasiswa->semester_aktif; ?>">
-      </td>
-      <input type="hidden" name="id_kp" id="id_kp2" class="validate[required] text-input"  size="5" style="width: 90%;">
-        </tr> 
-                  <tr>
-                    <td colspan="4"><button type="submit" class="btn btn-info">Simpan</button></td>
-                  </tr>
-              <?php echo form_close();?>
-
-                        </table>
-
-                    </div>
-
-                </div>
-            </div>
-            </div>
-        </div>
-
-        <link rel="stylesheet" href="//code.jquery.com/ui/1.12.0/themes/smoothness/jquery-ui.css">
-  <script src="//code.jquery.com/jquery-1.12.4.min.js"></script>
-  <script src="//code.jquery.com/ui/1.12.0/jquery-ui.min.js"></script>
- <script>
-       document.getElementById("nama_matkul").style.visibility = 'visible';
-
-    jQuery(document).ready(function($){
-    $('#nama_matkul').autocomplete({
-      source:'<?php echo base_url(); ?>kelas_perkuliahan/get_autocomplete_kp', 
-      minLength:1,
-      select: function(event, ui){
-        $('#nama_matkul').val(ui.item.label);
-        $('#id_kp2').val(ui.item.id);
-      }
-    });    
-  });
-
+    <script>
+    function print1(){
+      //document.getElementById("ngok").style.display = "block";
+      //document.getElementById("ngoks").style.display = "block";
+      //document.getElementById("ngoks1").style.display = "block";
+     var printContents = document.getElementById("ea").innerHTML;
+      var originalContents = document.body.innerHTML;
+      document.body.innerHTML = printContents;
+      window.print();
+      document.body.innerHTML = originalContents; 
+    }
   </script>
+
+   
+
+        
