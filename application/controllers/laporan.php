@@ -35,7 +35,8 @@ class Laporan extends CI_Controller {
 	public function laporan_mahasiswaku(){
     $id_periode = $this->input->get('id_periode');
     $id_prodi = $this->input->get('id_prodi');
-    $this->laporan_model->laporan_mahasiswa($id_periode, $id_prodi);
+    $ea = $this->laporan_model->laporan_mahasiswa($id_periode, $id_prodi);
+    print_r($ea);
   	}
   	/////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
   	public function laporan_peserta_tes(){
