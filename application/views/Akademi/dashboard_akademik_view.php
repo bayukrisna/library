@@ -1,6 +1,7 @@
-
+<link rel="stylesheet" href="<?php echo base_url(); ?>assets/plugins/morris/morris.css">
       <!-- Small boxes (Stat box) -->
       <div class="row">
+
         <div class="col-lg-3 col-xs-6">
           <!-- small box -->
           <div class="small-box bg-aqua">
@@ -61,6 +62,24 @@
           </div>
         </div>
 
+        <div class="col-md-6">
+          <div class="box box-info">
+            <div class="box-header with-border">
+              <h3 class="box-title">Grafik Penerimaan Mahasiswa</h3>
+
+              <div class="box-tools pull-right">
+                <button type="button" class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-minus"></i>
+                </button>
+                <button type="button" class="btn btn-box-tool" data-widget="remove"><i class="fa fa-times"></i></button>
+              </div>
+            </div>
+            <div class="box-body chart-responsive">
+              <div class="chart" id="line-chart" style="height: 200px;"></div>
+            </div>
+            <!-- /.box-body -->
+          </div>
+        </div>
+
 
       </div>
       <!-- /.row -->
@@ -71,3 +90,35 @@
           
             
           </div>
+<script src="<?php echo base_url(); ?>assets/plugins/jQuery/jquery-2.2.3.min.js"></script>
+<!-- Bootstrap 3.3.6 -->
+
+<!-- Morris.js charts -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/raphael/2.1.0/raphael-min.js"></script>
+<script src="<?php echo base_url(); ?>assets/plugins/morris/morris.min.js"></script>
+<!-- FastClick -->
+<script src="<?php echo base_url(); ?>assets/plugins/fastclick/fastclick.js"></script>
+<!-- AdminLTE App -->
+
+<!-- AdminLTE for demo purposes -->
+
+<!-- page script -->
+
+<script>
+  $(function () {
+    var line = new Morris.Line({
+      element: 'line-chart',
+      resize: true,
+      data: 
+        <?php echo $encode2;?>
+      ,
+      xkey: "waktu",
+      ykeys: ['no_telp'],
+      labels: ['Total'],
+      lineColors: ['#3c8dbc'],
+      hideHover: 'auto'
+    });
+    
+  });
+</script>
+

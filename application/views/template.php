@@ -128,7 +128,7 @@ a:hover .tooltiptext {
               <!-- Menu Footer-->
               <li class="user-footer">
                 <div class="pull-left">
-                  <a href="#" class="btn btn-default btn-flat">Profile</a>
+                  <a href="<?php echo base_url(); ?>profile" class="btn btn-default btn-flat">Profile</a>
                 </div>
                 <div class="pull-right">
                   <a href="<?php echo base_url(); ?>login/logout" class="btn btn-default fa fa-sign-out">Logout</a>
@@ -168,6 +168,18 @@ a:hover .tooltiptext {
             <li><a href="<?php echo base_url(); ?>tamu/data_sgs"><i class="fa  fa-file"></i><span>Data Student Get Student</span></a>
             <li><a href="<?php echo base_url(); ?>mahasiswa/mahasiswa_data"><i class="fa  fa-file"></i><span>Data Mahasiswa</span></a></li>
             <li><a href="<?php echo base_url(); ?>tamu/data_out"><i class="fa fa-file"></i><span>Data Tamu Non Aktif</span></a></li>
+            <li class="treeview">
+              <a href="#"><i class="fa fa-share"></i><span>Laporan</span>
+                <span class="pull-right-container">
+                  <i class="fa fa-angle-left pull-right"></i>
+                </span>
+              </a>
+              <ul class="treeview-menu">
+                <li><a href="<?php echo base_url(); ?>laporan/laporan_tamu"><i class="fa fa-circle-o"></i>Laporan Tamu</a></li>
+                <li><a href="<?php echo base_url(); ?>laporan/laporan_peserta_tes"><i class="fa fa-circle-o"></i>Laporan Peserta Tes</a></li>
+                <li><a href="<?php echo base_url(); ?>laporan/laporan_data_getstudent"><i class="fa fa-circle-o"></i>Laporan Student Get <br>Student</a></li>
+              </ul>
+            </li>
 
           <?php } else if($this->session->userdata('level') == 4) { ?>
             <li><a href="<?php echo base_url(); ?>dashboard"><i class="fa fa-dashboard"></i><span>Dashboard</span></a></li>
@@ -199,13 +211,11 @@ a:hover .tooltiptext {
                 <li><a href="<?php echo base_url(); ?>laporan/laporan_dmm"><i class="fa fa-circle-o"></i>Laporan KRS</a></li>
                 <li><a href="<?php echo base_url(); ?>laporan/laporan_khs"><i class="fa fa-circle-o"></i>Laporan KHS </a></li>
                 <li><a href="<?php echo base_url(); ?>laporan/laporan_transkrip"><i class="fa fa-circle-o"></i>Laporan Transkrip</a></li>
-                <li><a href="<?php echo base_url(); ?>laporan/laporan_tamu"><i class="fa fa-circle-o"></i>Laporan Tamu</a></li>
-                <li><a href="<?php echo base_url(); ?>laporan/laporan_peserta_tes"><i class="fa fa-circle-o"></i>Laporan Peserta Tes</a></li>
-                <li><a href="<?php echo base_url(); ?>laporan/laporan_data_getstudent"><i class="fa fa-circle-o"></i>Laporan Student Get <br>Student</a></li>
               </ul>
             </li>
 
           <?php } else { ?>
+            <li><a href="<?php echo base_url(); ?>dashboard"><i class="fa fa-dashboard"></i><span>Dashboard</span></a></li>
         <li class="treeview">
           <a href="#">
             <i class="fa fa-dashboard"></i> <span>Master</span>
@@ -297,6 +307,7 @@ a:hover .tooltiptext {
                 </li>
                 <li><a href="<?php echo base_url(); ?>laporan/laporan_dmm"><i class="fa fa-circle-o"></i>Laporan KRS</a></li>
                 <li><a href="<?php echo base_url(); ?>laporan/laporan_khs"><i class="fa fa-circle-o"></i>Laporan KHS <br>
+                  <li><a href="<?php echo base_url(); ?>laporan/laporan_transkrip"><i class="fa fa-circle-o"></i>Laporan Transkrip</a></li>
                 <li><a href="<?php echo base_url(); ?>laporan/laporan_tamu"><i class="fa fa-circle-o"></i>Laporan Tamu</a></li>
                 <li><a href="<?php echo base_url(); ?>laporan/laporan_peserta_tes"><i class="fa fa-circle-o"></i>Laporan Peserta Tes</a></li>
                 <li><a href="<?php echo base_url(); ?>laporan/laporan_data_getstudent"><i class="fa fa-circle-o"></i>Laporan Student Get <br>Student</a></li>

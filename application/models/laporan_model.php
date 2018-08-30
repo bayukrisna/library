@@ -1023,7 +1023,7 @@ class Laporan_model extends CI_Model {
 
                 </tr>
                 <tr>
-                    <td style="text-align:right" colspan="7"> IPS : </td>
+                    <td style="text-align:right" colspan="7"> IPK : </td>
                     <td style="text-align:right"> '.$cc.'  </td>
                 </tr>
               </table>

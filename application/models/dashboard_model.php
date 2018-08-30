@@ -9,7 +9,17 @@ class Dashboard_model extends CI_Model {
 	{
 		parent::__construct();
 	}
+  public function dashboard_admin(){
+    $jml_user = $this->db->select('count(*) as total')
+                ->get('tb_user')
+                ->row();
 
+
+    return array(
+      'jml_user' => $jml_user->total
+
+      );
+  }
 	public function dashboard_finance(){
     $belum_bayar = $this->db->select('count(*) as total')
                 ->where('status_bayar','Proses Pengecekan')
