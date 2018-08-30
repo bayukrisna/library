@@ -97,6 +97,10 @@ class Nilai_perkuliahan_model extends CI_Model {
             'id_skala_nilai'        => $this->input->post('id_skala_nilai'),
             'nilai_d'       => $this->input->post('nilai'),
             'id_kp'       => $this->input->post('id_kp'),
+            'absensi'       => $this->input->post('absensi'),
+            'nilai_tugas'       => $this->input->post('nilai_tugas'),
+            'nilai_uts'       => $this->input->post('nilai_uts'),
+            'nilai_uas'       => $this->input->post('nilai_uas')
         );
 
     if (!empty($data)) {

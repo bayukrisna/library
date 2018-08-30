@@ -180,19 +180,6 @@ class Mahasiswa_model extends CI_Model {
               ->result();
   } 
 
-  public function getPer($id_prodi){
-      return $this->db->join('tb_jadwal','tb_jadwal.id_jadwal=tb_kp.id_jadwal')
-              ->join('tb_detail_kurikulum','tb_detail_kurikulum.id_detail_kurikulum=tb_jadwal.id_detail_kurikulum')
-              ->join('tb_matkul','tb_matkul.kode_matkul=tb_detail_kurikulum.kode_matkul')
-              ->join('tb_ruang','tb_ruang.id_ruang=tb_jadwal.id_ruang')
-              ->join('tb_periode','tb_periode.id_periode=tb_jadwal.id_periode')
-              ->where('tb_periode.id_prodi', $id_prodi)
-              ->where('tgl_mulai <=', date('Y-m-d'))
-              ->where('tgl_akhir >=', date('Y-m-d'))
-              ->get('tb_kp')
-              ->row();
-  } 
-
    public function Periode_krs($id_prodi){
       return $this->db->select('semester')
               ->where('tb_periode.tgl_awal_kul <=', date('Y-m-d'))
@@ -874,22 +861,6 @@ class Mahasiswa_model extends CI_Model {
         }
   }
 
-  public function update_ipk($id_mahasiswa, $ipk){
-    $data = array(
-            'id_mahasiswa'      => $this->input->post('id_mahasiswa', TRUE),
-            'ipk'      => $ipk
-      );
-
-    if (!empty($data)) {
-            $this->db->where('id_mahasiswa', $id_mahasiswa)
-        ->update('tb_mhs_add', $data);
-
-          return true;
-        } else {
-            return null;
-        }
-  }
-
   public function update_grade($id_mahasiswa, $id_grade){
     $data = array(
             'id_mahasiswa'      => $this->input->post('id_mahasiswa', TRUE),
@@ -911,6 +882,7 @@ class Mahasiswa_model extends CI_Model {
               ->join('tb_bio','tb_bio.id_mahasiswa=tb_mahasiswa.id_mahasiswa')
               ->join('tb_status_mhs','tb_status_mhs.id_status=tb_ld.id_status')
               ->join('tb_mhs_add','tb_mhs_add.id_mahasiswa=tb_mahasiswa.id_mahasiswa')
+              ->join('tb_konsentrasi','tb_konsentrasi.id_konsentrasi=tb_mahasiswa.id_konsentrasi')
               ->join('tb_prodi','tb_prodi.id_prodi=tb_konsentrasi.id_prodi')
               ->get('tb_ld')
               ->result();
@@ -1016,6 +988,18 @@ class Mahasiswa_model extends CI_Model {
      $this->db->like('tb_prodi.id_prodi',$id_prodi);
      $this->db->like('tb_bio.angkatan',$angkatan);
      $this->db->like('tb_ld.id_status',$id_status);
+     $query = $this->db->get();
+     return $query->result();
+  }
+
+   public function autocomplete_ipk($nama){
+    $this->db->select('*');
+     $this->db->from('tb_mahasiswa');
+     $this->db->join('tb_bio','tb_bio.id_mahasiswa=tb_mahasiswa.id_mahasiswa');
+     $this->db->join('tb_mhs_add','tb_mhs_add.id_mahasiswa=tb_mahasiswa.id_mahasiswa');
+     $this->db->join('tb_konsentrasi','tb_konsentrasi.id_konsentrasi=tb_mahasiswa.id_konsentrasi');
+     $this->db->join('tb_prodi','tb_prodi.id_prodi=tb_konsentrasi.id_prodi');
+     $this->db->like('tb_mahasiswa.nama_mahasiswa', $nama);
      $query = $this->db->get();
      return $query->result();
   }

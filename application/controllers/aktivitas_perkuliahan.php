@@ -41,7 +41,8 @@ class Aktivitas_perkuliahan extends CI_Controller {
 		$id_mahasiswa = $this->input->post('id_mahasiswa');
 		$id_grade = $this->input->post('id_grade');
 		$semester_aktif = $this->input->post('semester_aktif');
-			if($this->aktivitas_perkuliahan_model->save_ap() == TRUE && $this->aktivitas_perkuliahan_model->update_status($id_mahasiswa, $semester_aktif) == TRUE && $this->mahasiswa_model->update_grade($id_mahasiswa, $id_grade) == TRUE){
+		$ipk_ak = $this->input->post('ipk_ak');
+			if($this->aktivitas_perkuliahan_model->save_ap() == TRUE && $this->aktivitas_perkuliahan_model->update_status($id_mahasiswa, $semester_aktif) == TRUE && $this->mahasiswa_model->update_grade($id_mahasiswa, $id_grade) == TRUE  && $this->aktivitas_perkuliahan_model->update_ipk($id_mahasiswa, $ipk_ak) == TRUE){
 				$this->session->set_flashdata('message', '<div class="col-md-12 alert alert-success"> Data aktivitas perkuliahan berhasil ditambahkan </div>');
             	redirect('aktivitas_perkuliahan');
 			} else{

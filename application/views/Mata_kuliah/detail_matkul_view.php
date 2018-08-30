@@ -15,6 +15,10 @@
             <td>: <input type="text" name="nama_matkul" id="nama_matkul" class="validate[required] text-input" maxlength="20" size="20" style="width:80%" value="<?php echo $matkul->nama_matkul;?>"> </td>
         </tr> 
         <tr>
+          <td class="left_column">Nama Mata Kuliah (<i>English Ver.</i>) <font color="#FF0000">*</font></td>
+            <td>: <input type="text" name="nama_matkul" id="nama_matkul" class="validate[required] text-input" maxlength="20" size="20" style="width:80%" value="<?php echo $matkul->matkul_english;?>"> </td>
+        </tr> 
+        <tr>
             <td class="left_column">Program Studi <font color="#FF0000">*</font></td>
             <td>:  <select name="id_prodi" id="id_prodi" class="validate[required]">
               <option value="<?php echo $matkul->id_prodi;?>"><?php echo $matkul->nama_prodi;?></option>   
