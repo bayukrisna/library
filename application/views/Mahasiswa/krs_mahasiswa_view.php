@@ -133,7 +133,7 @@
               <?php 
               if ($mahasiswa->id_status == '1') { echo '
               <br>
-              <a href="'.base_url('mahasiswa/kelas_mhs/'.$mahasiswa->id_mahasiswa.'/'.$mahasiswa->id_prodi.'/'.$mahasiswa->semester_aktif).'" class="btn btn-warning  btn-sm pull-right">Cetak KRS</a>
+              <a href="'.base_url('mahasiswa/kelas_mhs/'.$mahasiswa->id_mahasiswa.'/'.$mahasiswa->id_prodi.'/'.$mahasiswa->semester_aktif).'" class="btn btn-warning  btn-sm pull-right">Lihat KRS Semester Ini</a>
               ';
             } ?>
             <!-- /.box-body -->
@@ -168,7 +168,7 @@
             <div class="modal-header">
                 <button type="button" class="close" data-dismiss="modal" aria-hidden="true">x</button>
                 <h3 class="modal-title" id="myModalLabel">Tambah Matkul Mengulang</h3>
-                <h4 class="modal-title" id="myModalLabel2">Untuk periode <?php echo $periode2->semester; ?></h4>
+                <h4 class="modal-title" id="myModalLabel2">Untuk semester <?php echo $mahasiswa->semester_aktif; ?></h4>
             </div>
                 <div class="modal-body">
 

@@ -68,7 +68,7 @@
                 <tr>
                   <td></td>
                   <td></td>
-                  <td>'.$i->matkul_english.'</td>
+                  <td><i>'.$i->matkul_english.'</i></td>
                   <td></td>
                   <td></td>
                 </tr>

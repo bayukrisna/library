@@ -91,6 +91,22 @@ class Aktivitas_perkuliahan_model extends CI_Model {
         }
   }
 
+   public function update_ipk($id_mahasiswa, $ipk_ak){
+    $data = array(
+            'id_mahasiswa'      => $this->input->post('id_mahasiswa', TRUE),
+            'ipk'      => $this->input->post('ipk_ak', TRUE)
+      );
+
+    if (!empty($data)) {
+            $this->db->where('id_mahasiswa', $id_mahasiswa)
+        ->update('tb_mhs_add', $data);
+
+          return true;
+        } else {
+            return null;
+        }
+  }
+
 
   
 

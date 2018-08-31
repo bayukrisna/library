@@ -22,15 +22,35 @@ class Master_dosen extends CI_Controller {
 		$this->load->view('template', $data);
 	}
 
+	public function page_edit_dosen(){
+		$id_dosen = $this->uri->segment(3);
+		$data['dosen'] = $this->dosen_model->detail_dosen($id_dosen);
+		$data['main_view'] = 'Dosen/edit_dosen_view';
+		$this->load->view('template', $data);
+	}
+
 	public function save_dosen()
 	{
 			if($this->dosen_model->save_dosen() == TRUE){
-				$dosen = $this->input->post('dosen');
+				$dosen = $this->input->post('nama_dosen');
 				$this->session->set_flashdata('message', '<div class="alert alert-success"> Data '.$nama_dosen.' berhasil ditambahkan. </div>');
             	redirect('master_dosen');
 			} else{
 				$this->session->set_flashdata('message', '<div class="alert alert-success"> Data '.$nama_dosen.' gagal ditambahkan. </div>');
             	redirect('master_dosen/page_tambah_dosen');
+			} 
+	} 
+
+	public function edit_dosen()
+	{
+		$id_dosen = $this->uri->segment(3);
+			if($this->dosen_model->edit_dosen($id_dosen) == TRUE){
+				$dosen = $this->input->post('id_dosen');
+				$this->session->set_flashdata('message', '<div class="alert alert-success"> Data '.$nama_dosen.' berhasil ditambahkan. </div>');
+            	redirect('master_dosen');
+			} else{
+				$this->session->set_flashdata('message', '<div class="alert alert-success"> Data '.$nama_dosen.' gagal ditambahkan. </div>');
+            	redirect('master_dosen/edit_tambah_dosen/'.$id_dosen);
 			} 
 	} 
 
