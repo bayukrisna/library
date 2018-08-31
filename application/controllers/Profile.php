@@ -7,13 +7,22 @@ class Profile extends CI_Controller {
 	{
 		parent::__construct();
         $this->load->model('user_model');
+        $this->load->model('mahasiswa_model');
 	}
 
 	public function index()
 	{
-        $data['data_user'] = $this->user_model->data_session();
-	    $data['main_view'] = 'profile';
-        $this->load->view('template', $data);	
+        if($this->session->userdata('level') == 5){
+            $id_mahasiswa = $this->session->userdata('id_mahasiswa');
+            $data['id_mahasiswa'] = $this->session->userdata('id_mahasiswa');
+            $data['mahasiswa'] = $this->mahasiswa_model->detail_mahasiswa_dikti($id_mahasiswa);
+            $data['main_view'] = 'Mahasiswa/lihat_mahasiswa_dikti_view';
+            $this->load->view('template', $data);   
+        } else {
+            $data['data_user'] = $this->user_model->data_session();
+    	    $data['main_view'] = 'profile';
+            $this->load->view('template', $data);	
+        }
 			
 	}
     public function save_data()

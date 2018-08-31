@@ -1,5 +1,5 @@
            <?php 
-                if($this->session->userdata('id_mahasiswa') != null){ ?>
+                if($this->session->userdata('level') == 5){ ?>
         <!-- <a class="btn btn-sm btn-primary" href="<?php echo base_url();?>mahasiswa">Detail Mahasiswa</a>
         <a class="btn btn-sm btn-info" href="<?php echo base_url();?>mahasiswa/history_pendidikan">History Pendidikan</a>
         <a class="btn btn-sm btn-primary" href="<?php echo base_url();?>mahasiswa/krs_mahasiswa">KRS Mahasiswa</a>
@@ -57,18 +57,18 @@
             </div>
             <!-- /.box-body -->
           </div>
+          <?php echo $this->session->flashdata('message');?>
           <div class="nav-tabs-custom">
             <ul class="nav nav-tabs">
             <li class="active"><a href="#tab_0" data-toggle="tab">Profil</a></li>
               <li><a href="#tab_1" data-toggle="tab">Alamat</a></li>
               <li><a href="#tab_2" data-toggle="tab">Orang Tua</a></li>
               <li><a href="#tab_3" data-toggle="tab">Wali</a></li>
-              <!--<li><a href="#tab_4" data-toggle="tab">Kebutuhan Khusus</a></li> -->
               <?php 
-                if($this->session->userdata('id_mahasiswa') != null){ ?>
-
+                if($this->session->userdata('level') == 5){ ?>
+                <li><a href="#tab_5" data-toggle="tab">Ganti Password</a></li> 
                 <?php } else { ?>
-                        <a class="btn btn-success pull-right" href="<?php echo base_url();?>mahasiswa/detail_mahasiswa_dikti/<?php echo $mahasiswa->id_mahasiswa; ?>">Ubah</a>
+                    <li class="pull-right"><button class="btn btn-sm btn-success"><a href="<?php echo base_url();?>mahasiswa/detail_mahasiswa_dikti/<?php echo $mahasiswa->id_mahasiswa; ?>" class="text-muted"  style="color:white;">Ubah</a></button></li>
                 <?php } ?>
               
             </ul>
@@ -321,6 +321,134 @@
 
               </div>
               <!-- /.tab-pane -->
+              <?php if($this->session->userdata('level') == 5){ ?>
+              <div class="tab-pane" id="tab_5">
+                <table width="90%" class="table">
+                <form  method="post" runat="server" action="<?php echo base_url(); ?>profile/save_data" enctype="multipart/form-data">
+                <div class="form-group">
+                        <div class="col-xs-12">
+                          <div class="col-sm-2">
+                              <label for="first_name" ><h5><b>Username</b></h5></label>
+                          </div>
+                          <div class="col-xs-4">
+                              <input type="text" class="form-control" name="username" id="username" value="<?php echo $this->session->userdata('username')?>" title="enter your first name if any." readonly="">
+                          </div>
+                        </div>
+                </div>
+                <div class="form-group">
+                        <div class="col-xs-12">
+                          <div class="col-sm-2">
+                              <label for="first_name"><h5 style="font-size: 13.5px"><b>Password Lama</b></h5></label>
+                          </div>
+                          <div class="col-xs-4">
+                              <input type="password" class="form-control" name="password" id="password" placeholder="****" title="enter your first name if any.">
+                          </div>
+                        </div>
+                </div>
+                <div class="form-group">
+                        <div class="col-xs-12">
+                          <div class="col-sm-2">
+                              <label for="first_name"><h5><b>Password Baru</b></h5></label>
+                          </div>
+                          <div class="col-xs-4">
+                              <input type="password" class="form-control" name="password_baru" id="password_baru" placeholder="****" title="enter your first name if any.">
+                          </div>
+                        </div>
+                </div>
+                <div class="form-group" >
+                        <br><br><br><br><br><br><br>
+                        <div class="col-xs-12">
+                          <div class="col-xs-6">
+                          <button class="btn btn-primary" type="submit"><i class="glyphicon glyphicon-ok-sign"></i> Save</button>
+                          <button class="btn btn-default pull-right" type="reset"><i class="glyphicon glyphicon-repeat"></i> Cancel</button>
+                        </div>
+                          
+                        </div>
+                      </div>
+                      </form>
+                              
+                
+            </table>
+        <?php } ?>
+
+              </div>
+              <div class="tab-pane" id="tab_1">
+                <table width="90%" class="table">
+                <tr>
+                    <td class="left_column" width="15%">NIK <font color="#FF0000">*</font></td>
+                    <td colspan="4">:  <?php echo $mahasiswa->nik; ?>
+                    </td>
+                </tr>
+        <tr>
+                    <td class="left_column" width="15%">NISN</td>
+                    <td colspan="5">: <?php echo $mahasiswa->nisn; ?></td>
+                </tr>
+        <tr>
+                    <td class="left_column" width="15%">NPWP</td>
+                    <td colspan="5">: <?php echo $mahasiswa->npwp; ?></td>
+                </tr>
+                <tr>
+                    <td class="left_column">Kewarganegaraan <font color="#FF0000">*</font></td>
+                    <td colspan="5">: 
+                    <?php echo $mahasiswa->kewarganegaraan; ?>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="left_column" width="15%">Jalan</td>
+                    <td colspan="5">: <?php echo $mahasiswa->jalan; ?></td>
+                </tr>
+                <tr>
+                    <td class="left_column">Dusun</td>
+                    <td>: <?php echo $mahasiswa->dusun; ?></td>
+                    <td class="left_column">RT</td>
+                    <td>: <?php echo $mahasiswa->rt; ?> </td>
+                    <td class="left_column">RW</td>
+                    <td>: <?php echo $mahasiswa->rw; ?></td>
+                </tr>
+                <tr>
+                    <td class="left_column">Kelurahan <font color="#FF0000">*</font></td>
+                    <td>: <?php echo $mahasiswa->kelurahan; ?></td>
+                    <td class="left_column">Kodepos</td>
+                    <td colspan="4">: <?php echo $mahasiswa->kode_pos; ?></td>
+                </tr>
+                <tr>
+                    <td class="left_column">Kecamatan <font color="#FF0000">*</font></td>
+                    <td colspan="5">: 
+                    <?php echo $mahasiswa->kecamatan; ?>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="left_column">Jenis Tinggal</td>
+                    <td colspan="5">: <?php echo $mahasiswa->jenis_tinggal; ?></td>
+                </tr>
+                 <tr>
+                    <td class="left_column">Alat Transportasi</td>
+                    <td colspan="5">: <?php echo $mahasiswa->transportasi; ?></td>
+                </tr>
+                <tr>
+                    <td class="left_column">Telepon</td>
+                    <td>: <?php echo $mahasiswa->no_telepon; ?></td>
+                    <td class="left_column">HP</td>
+                    <td colspan="4">: <?php echo $mahasiswa->no_hp; ?></td>
+                </tr>
+                <tr>
+                    <td class="left_column">Email</td>
+                    <td colspan="5">: <?php echo $mahasiswa->email; ?></td>
+                </tr>
+                <tr>
+                    <td class="left_column">Penerima KPS ? <font color="#FF0000">*</font></td>
+                    <td>: 
+                    <?php echo $mahasiswa->kps; ?>
+                </td>
+                    <td class="left_column">No KPS</td>
+                    <td colspan = '4'>: <?php echo $mahasiswa->no_kps; ?></td>
+                </tr>
+
+
+
+
+          </table>
+              </div>
             </div>
             <!-- /.tab-content -->
           </div>

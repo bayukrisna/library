@@ -26,6 +26,7 @@
                   <span class="input-group-addon"><i class="glyphicon glyphicon-lock"></i></span>
                   <input type="password" id="password" name="password" autofocus value="" required="" placeholder="Password" class="form-control" />
                 </div>
+                <!-- <div class="g-recaptcha" data-sitekey="6LcMU20UAAAAACiZUAOaCfw0YDu2rHirY7Z0DjNT"></div> -->
                 <br>
                 <input type="submit" name="submit" value="LOGIN" class="btn btn-block btn-sm btn-primary">
               </form>
@@ -37,3 +38,4 @@
     </div>
   </body>
 </html>
+<script src='https://www.google.com/recaptcha/api.js'></script>
