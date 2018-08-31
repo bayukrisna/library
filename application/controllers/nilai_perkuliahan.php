@@ -42,6 +42,8 @@ class Nilai_perkuliahan extends CI_Controller {
 	public function detail_nilai(){
 				$id_kp = $this->uri->segment(3);
 				$data['kp'] = $this->nilai_perkuliahan_model->detail_nilai($id_kp);
+				$data['dsn'] = $this->kelas_perkuliahan_model->jumlah_dosen($id_kp);
+				$data['mhs'] = $this->kelas_perkuliahan_model->data_kelas_mhs($id_kp);
 				$data['nilai'] = $this->nilai_perkuliahan_model->data_nilai($id_kp);
 				$data['main_view'] = 'Nilai_perkuliahan/detail_nilai_perkuliahan_view';
 				$this->load->view('template', $data);

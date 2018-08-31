@@ -15,7 +15,7 @@
                   <th>Nama Dosen</th>
                   <th>NIDN/NUP/NIDK</th>
                   <th>NIP</th>
-                  <th>L/P</th>
+                  <th>Jenis Kelamin</th>
                   <th>No. Telp</th>
                   <th>Status</th>
                   <th>Jenis</th>
@@ -32,7 +32,7 @@
                   
                 <tr>
                   <td>'.++$no.'</td>
-                  <td>'.$data->nama_dosen.'
+                  <td> <a href="'.base_url('master_dosen/detail_dosen/'.$data->id_dosen).'"/>'.$data->nama_dosen.'
                   </td>
                   <td>'.$data->kode_dosen.'</td>
                   <td>'.$data->nip.'</td>
@@ -42,7 +42,8 @@
                   <td>'.$data->status_dosen.'</td>
                   <td>   
                         <a href="'.base_url('master_dosen/hapus_dosen/'.$data->id_dosen).'" class="btn btn-danger  btn-sm" onclick="return confirm('.$alert.')"><i class="glyphicon glyphicon-trash"></i><span class="tooltiptext">Hapus Kurikulum</span></a>
-                         <a href="'.base_url('master_dosen/page_edit_dosen/'.$data->id_dosen).'" class="btn btn-warning  btn-sm"><i class="glyphicon glyphicon-pencil"></i><span class="tooltiptext">Edit Kurikulum</span></a>
+
+                         <a href="'.base_url('master_dosen/page_edit_dosen/'.$data->id_dosen).'" class="btn btn-warning  btn-sm"><i class="glyphicon glyphicon-pencil"></i><span class="tooltiptext">Edit Dosen</span></a>
                   </td>
                 </tr>
                 ';

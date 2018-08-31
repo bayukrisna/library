@@ -45,12 +45,13 @@
                 <div class="form-group">
                   <label for="religion">Agama</label>
                 <select id="agama" name="agama" class="form-control" required="">
-                  <option value="">Pilih Agama</option>
-                  <option value="Kristen">Kristen</option>
-                  <option value="Islam">Islam</option>
-                  <option value="Hindu">Hindu</option>
-                  <option value="Buddha">Buddha</option>
-                  <option value="Konghuchu">Konghuchu</option>
+                 <option value="">Pilih Agama</option>
+                              <option value="1">Islam</option>
+                              <option value="2">Katholik</option>
+                              <option value="3">Kristen</option>
+                              <option value="4">Hindu</option>
+                              <option value="5">Budha</option>
+                              <option value="6">Konghucu</option>
 
                 </select>                                     
                 </div>

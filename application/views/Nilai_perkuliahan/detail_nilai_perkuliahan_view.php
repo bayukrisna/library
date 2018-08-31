@@ -1,5 +1,5 @@
         
-        
+        <?php echo $this->session->flashdata('message');?>
         <div class="box box-info">
             
             <!-- /.box-header -->
@@ -31,7 +31,15 @@
             <!-- /.box-body -->
           </div>
           <div class="">
-            <a class="btn btn-primary pull-right"  href="<?php echo base_url(); ?>nilai_perkuliahan"></i> Kembali</a><br><br>
+
+            
+
+            <a class="btn btn-primary pull-right"  href="<?php echo base_url(); ?>nilai_perkuliahan"></i> Kembali</a>
+
+            <a class="btn btn-info pull-right" style="margin-right: 10px"  href="<?php echo base_url(); ?>master_dosen/jadwal_dosen/<?php echo $this->uri->segment(4); ?>"></i> Kembali </a>
+
+            <p class="btn btn-primary pull-right" style="margin-right: 10px" onclick="print1()"> Cetak Absensi</p>
+            <br><br>
           </div>
 
           <div class="box box-info">
@@ -40,16 +48,19 @@
   <tr>
     <th style="width:5%" style="text-align:center" rowspan="2">No.</th>
     <th width="15%" style="text-align:center" rowspan="2">NIM</th>
-    <th style="text-align:center" rowspan="2">Nama Mahasiswa</th>
-    <th width="15%" style="text-align:center" rowspan="2">Prodi</th>
-    <th width="15%" style="text-align:center" rowspan="2">Angkatan</th>
-    <th style="text-align:center" colspan="2">Nilai</th>
+    <th width="25%" style="text-align:center" rowspan="2">Nama Mahasiswa</th>
+    <th width="5%" style="text-align:center" rowspan="2">Angkatan</th>
+    <th width="5%" style="text-align:center" rowspan="2">Absensi</th>
+    <th width="5%" style="text-align:center" colspan="3">Nilai</th>
+    <th width="10%" style="text-align:center" colspan="2">Nilai Akhir</th>
     <th style="text-align:center" rowspan="2"> Aksi</th>
   </tr>
    <tr>
-   
-    <th width="7%" style="text-align:center">Angka</th>
-    <th width="7%" style="text-align:center">Huruf</th>
+    <th  style="text-align:center">Tugas</th>
+    <th style="text-align:center">UTS</th>
+    <th  style="text-align:center">UAS</th>
+    <th  style="text-align:center">Angka</th>
+    <th  style="text-align:center">Huruf</th>
   </tr>
   </thead>
   <tbody>
@@ -62,12 +73,30 @@
       <td><?php echo ++$no;?></td>
         <td style="text-align:center"><?php echo $data->nim;?></td>
         <td style="text-align:center"><?php echo $data->nama_mahasiswa;?></td>
-        <td style="text-align:center"><?php echo $data->nama_prodi;?></td>
         <td style="text-align:center"><?php echo $data->angkatan;?></td>
-        <td style="text-align:center"><?php echo $data->nilai_d;?></td>
+        <td style="text-align:center"><?php if ($data->absensi == 0) {
+          $a = '<font style="color:red" class="glyphicon glyphicon-warning-sign"></font>';
+        } else {
+          $a = $data->absensi; }; echo $a;?></td>
+        <td style="text-align:center"><?php if ($data->nilai_tugas == 0) {
+          $a = '<font style="color:red" class="glyphicon glyphicon-warning-sign"></font>';
+        } else {
+          $a = $data->nilai_tugas; }; echo $a;?></td>
+        <td style="text-align:center"><?php if ($data->nilai_uts == 0) {
+          $a = '<font style="color:red" class="glyphicon glyphicon-warning-sign"></font>';
+        } else {
+          $a = $data->nilai_uts; }; echo $a;?></td>
+       <td style="text-align:center"><?php if ($data->nilai_uas == 0) {
+          $a = '<font style="color:red" class="glyphicon glyphicon-warning-sign"></font>';
+        } else {
+          $a = $data->nilai_uas; }; echo $a;?></td>
+        <td style="text-align:center"><?php if ($data->nilai_d == 0) {
+          $a = '<font style="color:red" class="glyphicon glyphicon-warning-sign"></font>';
+        } else {
+          $a = $data->nilai_d; }; echo $a;?></td>
         <td style="text-align:center"><?php echo $data->nilai_huruf;?> ( <?php echo $data->nilai_indeks;?> ) </td >
         <td style="text-align:center"> 
-                 <a href="<?php echo base_url(); ?>nilai_perkuliahan/edit_nilai/<?php echo $data->id_kelas_mhs; ?>/<?php echo $data->id_kp; ?>" class="btn btn-warning  btn-sm"><i class="glyphicon glyphicon-pencil"></i><span class="tooltiptext">Edit Kelas </span></a>
+                 <a href="<?php echo base_url(); ?>nilai_perkuliahan/edit_nilai/<?php echo $data->id_kelas_mhs; ?>/<?php echo $data->id_kp; ?>" class="btn btn-warning  btn-sm"><i class="glyphicon glyphicon-pencil"></i><span class="tooltiptext"> Input Nilai </span></a>
     </tr>
 <?php endforeach; ?>
   
@@ -75,6 +104,141 @@
 </table>
 
           </div>
+
+           <div class="tab-pane" id="tab_3">
+                <section class="content" id="ea" style="display: none">
+
+                  <table class="table">
+        <tbody><tr>
+            <td class="left_column" width="20%">Program Studi <font color="#FF0000">*</font></td>
+            <td colspan="3" width="20%">:  
+      <?php echo $kp->nama_prodi; ?>      </td>
+
+      <td class="left_column">Mata Kuliah  <font color="#FF0000">*</font></td>
+            <td colspan="3">: 
+      <?php echo $kp->nama_matkul; ?>             
+            </td>
+        </tr>
+        <tr>
+            <td class="left_column" width="20%">Semester <font color="#FF0000">*</font></td>
+            <td colspan="3">:  <?php echo $kp->semester; ?>           
+            </td>
+        <td class="left_column">Total Mahasiswa</td>
+        
+            <td colspan="3">: <b> <?php echo $dsn['jumlah_mhs']; ?>  </b> mahasiswa</td>
+
+        </tr>
+        <tr>
+<td class="left_column">Nama Kelas <font color="#FF0000">*</font>
+            </td>
+          <td colspan="3">: 
+      <?php echo $kp->nama_kelas; ?> </td>
+
+      
+            <td class="left_column">Dosen</td>
+            <td colspan="3">: 
+      <?php echo $kp->nama_dosen; ?> </td>
+          
+    </tr>
+
+
+       
+       
+    </tbody></table>
+      
+              <table class="table table-bordered table-striped">
+                <thead>
+                <tr>
+                    <th style="width: 2%">No</th>
+                    <th style="width: 18%">Nama Mahasiswa</th>
+                    <th style="width: 4%"></th>
+                    <th style="width: 4%"></th>
+                    <th style="width: 4%"></th>
+                    <th style="width: 4%"></th>
+                    <th style="width: 4%"></th>
+                    <th style="width: 4%"></th>
+                    <th style="width: 4%"></th>
+                    <th style="width: 4%"></th>
+                    <th style="width: 4%"></th>
+                    <th style="width: 4%"></th>
+                    <th style="width: 4%"></th>
+                    <th style="width: 4%"></th>
+                    <th style="width: 4%"></th>
+                    <th style="width: 4%"></th>
+                    <th style="width: 4%"></th>
+                    <th style="width: 4%"></th>
+                    <th style="width: 4%"></th>
+                    <th style="width: 4%"></th>
+                    <th style="width: 4%"></th>
+                    <th style="width: 4%"></th>
+                    
+
+
+                  <!-- <th>Aksi</th> -->
+                </tr>
+                </thead>
+                <tbody> 
+                  <?php 
+                    $no = 0;
+                    $alert = "'Apakah anda yakin menghapus data ini ?'";
+                    //
+                foreach ($mhs as $data) {
+                  echo '
+                  
+                <tr>
+                  <td>'.++$no.'</td>
+                  <td>'.$data->nama_mahasiswa.'</a></td>
+                  <th style="width: 4%"></th>
+                    <th style="width: 4%"></th>
+                    <th style="width: 4%"></th>
+                    <th style="width: 4%"></th>
+                    <th style="width: 4%"></th>
+                    <th style="width: 4%"></th>
+                    <th style="width: 4%"></th>
+                    <th style="width: 4%"></th>
+                    <th style="width: 4%"></th>
+                    <th style="width: 4%"></th>
+                    <th style="width: 4%"></th>
+                    <th style="width: 4%"></th>
+                    <th style="width: 4%"></th>
+                    <th style="width: 4%"></th>
+                    <th style="width: 4%"></th>
+                    <th style="width: 4%"></th>
+                    <th style="width: 4%"></th>
+                    <th style="width: 4%"></th>
+                    <th style="width: 4%"></th>
+                    <th style="width: 4%"></th>
+
+                ' ;
+              }
+             
+
+
+              ?>
+             
+                        
+                    </tr>
+                </tbody>
+              </table>
+           
+        <!-- /.col -->
+      
+      <!-- /.row -->
+    </section>
+              </div>
+
+              <script>
+    function print1(){
+      //document.getElementById("ngok").style.display = "block";
+      //document.getElementById("ngoks").style.display = "block";
+      //document.getElementById("ngoks1").style.display = "block";
+     var printContents = document.getElementById("ea").innerHTML;
+      var originalContents = document.body.innerHTML;
+      document.body.innerHTML = printContents;
+      window.print();
+      document.body.innerHTML = originalContents; 
+    }
+  </script>
            
 
         

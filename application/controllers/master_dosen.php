@@ -29,6 +29,13 @@ class Master_dosen extends CI_Controller {
 		$this->load->view('template', $data);
 	}
 
+	public function detail_dosen(){
+		$id_dosen = $this->uri->segment(3);
+		$data['dosen'] = $this->dosen_model->detail_dosen($id_dosen);
+		$data['main_view'] = 'Dosen/detail_dosen_view';
+		$this->load->view('template', $data);
+	}
+
 	public function save_dosen()
 	{
 			if($this->dosen_model->save_dosen() == TRUE){
@@ -53,6 +60,18 @@ class Master_dosen extends CI_Controller {
             	redirect('master_dosen/edit_tambah_dosen/'.$id_dosen);
 			} 
 	} 
+
+	public function jadwal_dosen(){
+		$id_dosen = $this->uri->segment(3);
+		$data['dosen'] = $this->dosen_model->detail_dosen($id_dosen);
+		$data['senin'] = $this->dosen_model->jadwal_dosen_senin($id_dosen);
+		$data['selasa'] = $this->dosen_model->jadwal_dosen_selasa($id_dosen);
+		$data['rabu'] = $this->dosen_model->jadwal_dosen_rabu($id_dosen);
+		$data['kamis'] = $this->dosen_model->jadwal_dosen_kamis($id_dosen);
+		$data['jumat'] = $this->dosen_model->jadwal_dosen_jumat($id_dosen);
+		$data['main_view'] = 'Dosen/jadwal_dosen_view';
+		$this->load->view('template', $data);
+	}
 
 
 }

@@ -1,20 +1,4 @@
-<!-- <script src="//code.jquery.com/jquery-1.12.4.min.js"></script>
-  <script src="//code.jquery.com/ui/1.12.0/jquery-ui.min.js"></script>
-<script type="text/javascript">
-     function total(id){
-      var id_kp = id;
-         $.ajax({
-                    url: '<?php echo base_url(); ?>kelas_perkuliahan/get_total_mhs/'+id_kp,
-                    data: 'id_kp='+id_kp,
-                    type: 'GET',
-                    success: function(data) {
-                      console.log('poop', data)
-                    }
-                });
-       };
-       window.get_total_mhs=total;
-    get_total_mhs(10);
-</script> -->
+
 
     <section class="content">
 

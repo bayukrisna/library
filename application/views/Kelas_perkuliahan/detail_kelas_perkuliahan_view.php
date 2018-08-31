@@ -72,7 +72,9 @@
              else 
              echo '';
             ?>
-              <p class="btn btn-primary pull-right" style="margin-right: 10px" onclick="print1()"> Cetak Absensi</p>
+             
+
+              
 
              <a class="btn btn-primary pull-right" style="margin-right: 10px"  href="<?php echo base_url('kelas_perkuliahan'); ?>"></i> Kembali </a> <br> <br>
 
@@ -253,144 +255,7 @@
     </section>
               </div>
 
-               <div class="tab-pane" id="tab_3">
-                <section class="content" id="ea">
-
-                  <table class="table">
-        <tbody><tr>
-            <td class="left_column" width="20%">Program Studi <font color="#FF0000">*</font></td>
-            <td colspan="3" width="20%">:  
-      <?php echo $kp->nama_prodi; ?>      </td>
-
-      <td class="left_column">Mata Kuliah  <font color="#FF0000">*</font></td>
-            <td colspan="3">: 
-      <?php echo $kp->nama_matkul; ?>             
-            </td>
-        </tr>
-        <tr>
-            <td class="left_column" width="20%">Semester <font color="#FF0000">*</font></td>
-            <td colspan="3">:  <?php echo $kp->semester; ?>           
-            </td>
-        <td class="left_column">Total Mahasiswa</td>
-        
-            <td colspan="3">: <b> <?php echo $dsn['jumlah_mhs']; ?>  </b> mahasiswa</td>
-
-        </tr>
-        <tr>
-<td class="left_column">Nama Kelas <font color="#FF0000">*</font>
-            </td>
-          <td colspan="3">: 
-      <?php echo $kp->nama_kelas; ?> </td>
-
-      
-            <td class="left_column">Dosen</td>
-            <td colspan="3">: 
-      <?php echo $kp->nama_dosen; ?> </td>
-          
-    </tr>
-
-
-       
-       
-    </tbody></table>
-      
-              <table id="example1" class="table table-bordered table-striped">
-                <thead>
-                <tr>
-                    <th style="width: 2%">No</th>
-                    <th style="width: 18%">Nama Mahasiswa</th>
-                    <th style="width: 4%"></th>
-                    <th style="width: 4%"></th>
-                    <th style="width: 4%"></th>
-                    <th style="width: 4%"></th>
-                    <th style="width: 4%"></th>
-                    <th style="width: 4%"></th>
-                    <th style="width: 4%"></th>
-                    <th style="width: 4%"></th>
-                    <th style="width: 4%"></th>
-                    <th style="width: 4%"></th>
-                    <th style="width: 4%"></th>
-                    <th style="width: 4%"></th>
-                    <th style="width: 4%"></th>
-                    <th style="width: 4%"></th>
-                    <th style="width: 4%"></th>
-                    <th style="width: 4%"></th>
-                    <th style="width: 4%"></th>
-                    <th style="width: 4%"></th>
-                    <th style="width: 4%"></th>
-                    <th style="width: 4%"></th>
-                    
-
-
-                  <!-- <th>Aksi</th> -->
-                </tr>
-                </thead>
-                <tbody> 
-                  <?php 
-                    $no = 0;
-                    $alert = "'Apakah anda yakin menghapus data ini ?'";
-                    //
-                foreach ($mhs as $data) {
-                  if($ab >= $kp->tanggal_mulai && $ab <= $kp->tgl_akhir) {
-                  echo '
-                  
-                <tr>
-                  <td>'.++$no.'</td>
-                  <td>'.$data->nama_mahasiswa.'</a></td>
-                  <th style="width: 4%"></th>
-                    <th style="width: 4%"></th>
-                    <th style="width: 4%"></th>
-                    <th style="width: 4%"></th>
-                    <th style="width: 4%"></th>
-                    <th style="width: 4%"></th>
-                    <th style="width: 4%"></th>
-                    <th style="width: 4%"></th>
-                    <th style="width: 4%"></th>
-                    <th style="width: 4%"></th>
-                    <th style="width: 4%"></th>
-                    <th style="width: 4%"></th>
-                    <th style="width: 4%"></th>
-                    <th style="width: 4%"></th>
-                    <th style="width: 4%"></th>
-                    <th style="width: 4%"></th>
-                    <th style="width: 4%"></th>
-                    <th style="width: 4%"></th>
-                    <th style="width: 4%"></th>
-                    <th style="width: 4%"></th>
-
-                ' ;
-                 } else {
-                echo '
-                <tr>
-                  <td>'.++$no.'</td>
-                  <td>'.$data->nim.'</a></td>
-                  <td>'.$data->nama_mahasiswa.'</td>
-                  <td>'.$data->jenis_kelamin.'</td>
-                  <td>'.$data->nama_prodi.'</td>
-                  <td>'.$data->angkatan.'</td>
-                  <td>
-                       
-                  </td>
-
-                ' ;
-              
-                }
-              }
-             
-
-
-              ?>
-             
-                        
-                    </tr>
-                </tbody>
-              </table>
-           
-        <!-- /.col -->
-      
-      <!-- /.row -->
-    </section>
-              </div>
+               
               <!-- /.tab-pane -->
               <!--<div class="tab-pane" id="tab_3">
                 Lorem Ipsum is simply dummy text of the printing and typesetting industry.
@@ -700,15 +565,4 @@
                 });
               }
 </script>
- <script>
-    function print1(){
-      //document.getElementById("ngok").style.display = "block";
-      //document.getElementById("ngoks").style.display = "block";
-      //document.getElementById("ngoks1").style.display = "block";
-     var printContents = document.getElementById("ea").innerHTML;
-      var originalContents = document.body.innerHTML;
-      document.body.innerHTML = printContents;
-      window.print();
-      document.body.innerHTML = originalContents; 
-    }
-  </script>
+ 

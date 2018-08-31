@@ -101,7 +101,7 @@
       <!-- /.row -->
     </section>
 
-    <section class="content" id="ea" style="display: none">
+    <section class="content" id="ea" >
           
           
       <div class="row">
@@ -112,13 +112,33 @@
               <br>
               <br></h3>
 
-             
+             <IMG src="<?php echo base_url(); ?>uploads/jiclogo.png" class="pull-right">
               <div>
-            &nbsp;&nbsp;&nbsp;&nbsp; Nama : <?php echo $mahasiswa->nama_mahasiswa; ?><br>
-            &nbsp;&nbsp;&nbsp;&nbsp; NIM : <?php echo $mahasiswa->nim; ?><br>
-            &nbsp;&nbsp;&nbsp;&nbsp; Program Studi : <?php echo $mahasiswa->nama_prodi; ?><br>
-            &nbsp;&nbsp;&nbsp;&nbsp; Semester : <?php echo $mahasiswa->semester_aktif; ?><br>
-            &nbsp;&nbsp;&nbsp;&nbsp; TA : <?php echo $periode->semester; ?><br>
+                <table>
+                  <tr>
+                    <td style="width: 100px">&nbsp;&nbsp;&nbsp;&nbsp;Nama</td>
+                    <td>: <?php echo $mahasiswa->nama_mahasiswa; ?></td>
+                  </tr>
+                  <tr>
+                    <td style="width: 100px">&nbsp;&nbsp;&nbsp;&nbsp;NIM</td>
+                    <td>: <?php echo $mahasiswa->nim; ?></td>
+                  </tr>
+                  <tr>
+                    <td style="width: 100px">&nbsp;&nbsp;&nbsp;&nbsp;Program Studi</td>
+                    <td>: <?php echo $mahasiswa->nama_prodi; ?></td>
+                  </tr>
+                  <tr>
+                    <td style="width: 100px">&nbsp;&nbsp;&nbsp;&nbsp;Semester</td>
+                    <td>: <?php echo $mahasiswa->semester_aktif; ?></td>
+                  </tr>
+                  <tr>
+                    <td style="width: 100px">&nbsp;&nbsp;&nbsp;&nbsp;TA</td>
+                    <td>: <?php echo $periode->semester; ?></td>
+                  </tr>
+                  
+
+                </table>
+        
           </div>
             
             <!-- /.box-header -->
@@ -143,10 +163,10 @@
                   $totalbobot += $i->bobot_matkul;
                   echo '
                 <tr>
-                  <td>'.++$no.'</td>
-                  <td>'.$i->kode_matkul.'</td>
+                  <td style="text-align:center">'.++$no.'</td>
+                  <td style="text-align:center">'.$i->kode_matkul.'</td>
                   <td>'.$i->nama_matkul.'</td>
-                  <td>'.$i->bobot_matkul.'</td>
+                  <td style="text-align:center">'.$i->bobot_matkul.'</td>
                   <td>'.$i->nama_dosen.'</td>
                 </tr>
                 <tr>

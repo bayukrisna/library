@@ -159,18 +159,22 @@
               
               <br>
               <br>
-        <table id="table1" class="table2 table-striped table-bordered" >
+        <table id="table1" class="table2 table-bordered table-striped" >
     <thead>
     <tr>
         <th style="width:5%;text-align:center" rowspan="2">No.</th>
         <th style="text-align:center" rowspan="2">Kode MK</th>
         <th style="text-align:center" rowspan="2">Nama MK</th>
         <th style="text-align:center" rowspan="2">Bobot MK<br />(sks)</th>
-         <th style="text-align:center" colspan="3">Nilai<br />(sks)</th>
+        <th style="text-align:center" colspan="3">Nilai</th>
+         <th style="text-align:center" colspan="3">Nilai Akhir<br />(sks)</th>
          <th style="text-align:center" rowspan="2">sks * N.indeks</th>
        
     </tr>
     <tr>
+        <th style="width:5%;text-align:center">Tugas</th>
+        <th style="width:5%;text-align:center">UTS</th>
+        <th style="width:5%;text-align:center">UAS</th>
         <th style="width:5%;text-align:center">Angka</th>
         <th style="text-align:center">Huruf</th>
         <th style="text-align:center">Indeks</th>
@@ -192,6 +196,9 @@
         <td style="text-align:center"><?php echo $data->kode_matkul;?></td>
         <td style="text-align:center"><?php echo $data->nama_matkul;?></td>
         <td style="text-align:center"><?php $totalbobot += $data->bobot_matkul; echo $data->bobot_matkul;?></td>
+        <td style="text-align:center"><?php echo $data->nilai_tugas;?></td>
+        <td style="text-align:center"><?php echo $data->nilai_uts;?></td>
+        <td style="text-align:center"><?php echo $data->nilai_uas;?></td>
         <td style="text-align:center"><?php echo $data->nilai_d;?></td>
         <td style="text-align:center"><?php echo $data->nilai_huruf;?></td>
         <td style="text-align:center"><?php echo $data->nilai_indeks;?></td>
@@ -210,12 +217,12 @@
         } else {
             echo $totalbobot;
         }  ?> </td>
-        <td colspan="3" style="text-align:right"> <b> Jumlah sks * N.indeks : </b></td>
+        <td colspan="6" style="text-align:right"> <b> Jumlah sks * N.indeks : </b></td>
         <td style="text-align:center"> <?php echo $totalsi; ?></td>
 
     </tr>
     <tr>
-        <th style="text-align:right" colspan="7"> IPS : </th>
+        <th style="text-align:right" colspan="10"> IPS : </th>
         <th style="text-align:center"> <?php $ips = $totalsi / $totalbobot; echo round($ips, 2); ?>   </th>
     </tr>
 

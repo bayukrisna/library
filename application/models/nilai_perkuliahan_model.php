@@ -42,7 +42,9 @@ class Nilai_perkuliahan_model extends CI_Model {
               ->join('tb_periode','tb_periode.id_periode=tb_jadwal.id_periode')
               ->join('tb_detail_kurikulum','tb_detail_kurikulum.id_detail_kurikulum=tb_jadwal.id_detail_kurikulum')
               ->join('tb_matkul','tb_matkul.kode_matkul=tb_detail_kurikulum.kode_matkul')
-              ->where('id_kp', $id_kp)
+              ->join('tb_kelas_dosen','tb_kelas_dosen.id_kp=tb_kp.id_kp','left')
+              ->join('tb_dosen','tb_dosen.id_dosen=tb_kelas_dosen.id_dosen','left')
+              ->where('tb_kp.id_kp', $id_kp)
               ->get('tb_kp')
               ->row();
   }
