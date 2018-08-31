@@ -16,7 +16,7 @@
           <div class="panel panel-default">
             <div class="panel-heading"><h4>Login Administrator</h4></div>
               <div class="panel-body">
-              <form action="<?php echo base_url('login/login'); ?>" id="form-login" method="post">
+              <form action="<?php echo base_url('login/login'); ?>" name="form-login" id="form-login" method="post" onsubmit="return validateForm()">
                 <div class="input-group">
                   <span class="input-group-addon"><i class="glyphicon glyphicon-envelope"></i></span>
                   <input type="text" id="username" name="username" autofocus value="" required="" placeholder="Username" class="form-control" />
@@ -26,7 +26,9 @@
                   <span class="input-group-addon"><i class="glyphicon glyphicon-lock"></i></span>
                   <input type="password" id="password" name="password" autofocus value="" required="" placeholder="Password" class="form-control" />
                 </div>
-                <!-- <div class="g-recaptcha" data-sitekey="6LcMU20UAAAAACiZUAOaCfw0YDu2rHirY7Z0DjNT"></div> -->
+                <br>
+                <div class="g-recaptcha" data-sitekey="6LcMU20UAAAAACiZUAOaCfw0YDu2rHirY7Z0DjNT"></div>
+                <font color="red"><span id="myspan"> </font></span>
                 <br>
                 <input type="submit" name="submit" value="LOGIN" class="btn btn-block btn-sm btn-primary">
               </form>
@@ -39,3 +41,14 @@
   </body>
 </html>
 <script src='https://www.google.com/recaptcha/api.js'></script>
+<script type="text/javascript">
+  function validateForm() {
+    var x = document.forms["form-login"]["g-recaptcha-response"].value;
+    if (x == "") {
+        document.getElementById("myspan").textContent="Captcha Tidak Valid";
+        return false;
+    } else {
+      document.getElementById("myspan").textContent=" ";
+    }
+}
+</script>

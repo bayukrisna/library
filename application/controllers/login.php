@@ -33,29 +33,30 @@ class Login extends CI_Controller {
 
 	public function login()
 	{
-		// $site_key = '6LcMU20UAAAAACiZUAOaCfw0YDu2rHirY7Z0DjNT'; // Diisi dengan site_key API Google reCapthca yang sobat miliki
-	 //    $secret_key = '6LcMU20UAAAAACIL5_uXmqO3T5J01aBTZmkYddka'; // Diisi dengan secret_key API Google reCapthca yang sobat miliki
+		$site_key = '6LcMU20UAAAAACiZUAOaCfw0YDu2rHirY7Z0DjNT'; // Diisi dengan site_key API Google reCapthca yang sobat miliki
+	    $secret_key = '6LcMU20UAAAAACIL5_uXmqO3T5J01aBTZmkYddka'; // Diisi dengan secret_key API Google reCapthca yang sobat miliki
 	 
-	 //    $api_url = 'https://www.google.com/recaptcha/api/siteverify?secret=' . $secret_key . '&response='.$_POST['g-recaptcha-response'];
-	 //    $response = @file_get_contents($api_url);
-	 //    $data = json_decode($response, true);
+	    $api_url = 'https://www.google.com/recaptcha/api/siteverify?secret=' . $secret_key . '&response='.$_POST['g-recaptcha-response'];
+	    $response = @file_get_contents($api_url);
+	    $data = json_decode($response, true);
 	 
-	 //        if($data['success'])
-	 //            {
-	 //                if($this->user_model->masuk() == TRUE){
+	        if($data['success'])
+	            {
+	                if($this->user_model->masuk() == TRUE){
+						redirect(base_url('dashboard'));
+					} else {
+						$this->session->set_flashdata('message', '<div class="alert alert-danger"><p> Password Salah</p></div>');
+						redirect(base_url('login'));
+					}
+	        } else {
+			$this->session->set_flashdata('message', '<div class="alert alert-danger"><p> Captcha Gagal</p></div>');
+			redirect('login');
+		}
+		// if($this->user_model->masuk() == TRUE){
 		// 				redirect(base_url('dashboard'));
 		// 			} else {
 		// 				redirect(base_url('login'));
 		// 			}
-	 //        } else {
-		// 	$this->session->set_flashdata('message', '<div class="alert alert-danger"><p> Captcha Gagal</p></div>');
-		// 	redirect('login');
-		// }
-		if($this->user_model->masuk() == TRUE){
-						redirect(base_url('dashboard'));
-					} else {
-						redirect(base_url('login'));
-					}
 	}
 
 	public function logout(){
