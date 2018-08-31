@@ -53,6 +53,7 @@
          
 
           <div class="box box-info">
+            <div class="box-body">
             <table class="table table-bordered table-striped" id="example3">
   <thead>
   <tr>
@@ -87,6 +88,7 @@
   
   </tbody>
 </table>
+</div>
 
           </div>
       

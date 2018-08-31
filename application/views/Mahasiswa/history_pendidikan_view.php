@@ -21,6 +21,7 @@
            <?php }
 
            ?>
+
         <div class="box box-info">
             
             <!-- /.box-header -->
@@ -56,15 +57,15 @@
           </div>
           <div class="">
             <?php 
-                if($this->session->userdata('id_mahasiswa') != null){ ?>
+                if($this->session->userdata('level') == 5){ ?>
 
                 <?php } else { ?>
                         <a class="btn btn-primary pull-right"  data-toggle="modal" data-target="#modal_tambah"><i class="fa fa-plus"></i> Tambah Pendidikan</a><br><br>
                 <?php } ?>
             
           </div>
-
           <div class="box box-info">
+            <div class="box-body">
             <table class="table table-bordered table-striped" id="example3">
   <thead>
   <tr>
@@ -75,7 +76,9 @@
     <th width="15%" style="text-align:center">Tanggal Masuk</th>
     <th style="text-align:center">Perguruan Tinggi</th>
     <th style="text-align:center">Program Studi</th>
+    <?php if($this->session->userdata('level') != 5){?>
         <th style="text-align:center"></th>
+    <?php } ?>
   </tr>
   </thead>
   <tbody>
@@ -92,14 +95,16 @@
         <td style="text-align:center"><?php echo $data->tgl_du;?></td>
         <td style="text-align:center"><?php echo $data->nama_pt;?></td>
         <td style="text-align:center"><?php echo $data->nama_prodi;?></td >
+        <?php if($this->session->userdata('level') != 5){?>
         <td style="text-align:center">
                 <button id="" type="button" class="btn btn-xs"   data-toggle="modal" data-target="#modal_detil"><i class="fa fa-pencil"></i></button>
-                        </td>
+                        </td> <?php }?>
     </tr>
 <?php endforeach; ?>
   
   </tbody>
 </table>
+</div>
 
           </div>
           <div class="modal fade" id="modal_tambah" >
