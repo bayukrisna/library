@@ -11,6 +11,7 @@
 
          <a class="btn btn-sm btn-primary" href="<?php echo base_url();?>master_dosen/detail_dosen/<?php echo $dosen->id_dosen; ?>">Profil Dosen</a>
         <a class="btn btn-sm btn-info" href="<?php echo base_url();?>master_dosen/jadwal_dosen/<?php echo $dosen->id_dosen; ?>">Jadwal Dosen</a>
+        <a class="btn btn-sm btn-info" href="<?php echo base_url();?>master_dosen/nilai_dosen/<?php echo $dosen->id_dosen; ?>">Input Nilai</a>
         <a class="btn btn-sm btn-info" href="<?php echo base_url(); ?>master_dosen">Kembali</a>
          <br/><br/> 
            <?php }

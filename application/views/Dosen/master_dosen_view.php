@@ -43,7 +43,7 @@
                   <td>'.$data->status_mhs.'</td>
                   <td>'.$data->status_dosen.'</td>
                   <td>   
-                        <a href="'.base_url('master_dosen/hapus_dosen/'.$data->id_dosen).'" class="btn btn-danger  btn-sm" onclick="return confirm('.$alert.')"><i class="glyphicon glyphicon-trash"></i><span class="tooltiptext">Hapus Kurikulum</span></a>
+                        <a href="'.base_url('master_dosen/hapus_dosen/'.$data->id_dosen).'" class="btn btn-danger  btn-sm" onclick="return confirm('.$alert.')"><i class="glyphicon glyphicon-trash"></i><span class="tooltiptext">Hapus Dosen</span></a>
 
                          <a href="'.base_url('master_dosen/page_edit_dosen/'.$data->id_dosen).'" class="btn btn-warning  btn-sm"><i class="glyphicon glyphicon-pencil"></i><span class="tooltiptext">Edit Dosen</span></a>
                   </td>

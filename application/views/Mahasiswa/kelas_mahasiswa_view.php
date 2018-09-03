@@ -101,7 +101,7 @@
       <!-- /.row -->
     </section>
 
-    <section class="content" id="ea" >
+    <section class="content" id="ea" style="display: none">
           
           
       <div class="row">

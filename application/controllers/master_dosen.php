@@ -7,6 +7,7 @@ class Master_dosen extends CI_Controller {
 	{
 		parent::__construct();
 		$this->load->model('dosen_model');
+		$this->load->model('nilai_perkuliahan_model');
 	}
 
 	public function index()
@@ -72,6 +73,27 @@ class Master_dosen extends CI_Controller {
 		$data['main_view'] = 'Dosen/jadwal_dosen_view';
 		$this->load->view('template', $data);
 	}
+
+	public function hapus_dosen()
+	{
+		$id_dosen = $this->uri->segment(3);
+			if($this->dosen_model->hapus_dosen($id_dosen) == TRUE){
+				$this->session->set_flashdata('message', '<div class="alert alert-success"> Hapus Dosen Berhasil </div>');
+            	redirect('master_dosen');
+			} else{
+				$this->session->set_flashdata('message', '<div class="alert alert-danger">Hapus Dosen Gagal </div>');
+            	redirect('master_dosen');
+			} 
+	} 
+
+	public function nilai_dosen()
+	{
+		$id_dosen = $this->uri->segment(3);
+		$data['dosen'] = $this->dosen_model->detail_dosen($id_dosen);
+		$data['nilai'] = $this->dosen_model->data_kp($id_dosen);
+		$data['main_view'] = 'Dosen/nilai_dosen_view';
+		$this->load->view('template', $data);
+	} 
 
 
 }
