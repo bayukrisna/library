@@ -365,7 +365,7 @@ class Mahasiswa extends CI_Controller {
 	    $this->load->library('upload', $config);
 	    if($this->upload->do_upload('foto_mahasiswa')){
 	      if($this->mahasiswa_model->save_edit_foto_mahasiswa($this->upload->data(), $this->uri->segment(3)) == TRUE){
-	        $this->session->set_flashdata('message', 'Upload Bukti Berhasil');
+	        $this->session->set_flashdata('message', 'Upload Foto Berhasil');
 	            redirect('mahasiswa/detail_mahasiswa_dikti/'.$this->uri->segment(3));
 	      } else {
 	        $this->session->set_flashdata('message', 'Update foto gagal');

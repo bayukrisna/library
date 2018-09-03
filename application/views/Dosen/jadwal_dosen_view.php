@@ -16,7 +16,7 @@
            <?php }
 
            ?>
-      
+      <?php echo $this->session->flashdata('message');?>
         <div class="box box-info">
             
             <!-- /.box-header -->

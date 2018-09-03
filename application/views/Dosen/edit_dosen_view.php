@@ -1,3 +1,4 @@
+<?php echo $this->session->flashdata('message');?>
 <div class="row"> 
     <div class="col-md-12">
         <div>
@@ -53,6 +54,10 @@
                        <div class="form-group">
                         <label for="text">Email</label>
                         <input type="email" name="email" class="form-control" id="email" value="<?php echo $dosen->email; ?>">
+                      </div>
+                      <div class="form-group">
+                        <label for="text">Tanggal Lahir</label>
+                        <input type="date" name="tanggal_lahir" class="form-control" id="tanggal_lahir" value="<?php echo $dosen->tgl_lahir; ?>">
                       </div>
                        <div class="form-group">
                         <label for="text">No. Telepon</label>
