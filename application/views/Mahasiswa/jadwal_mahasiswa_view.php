@@ -1,5 +1,5 @@
            <?php 
-                if($this->session->userdata('id_mahasiswa') != null){ ?>
+                if($this->session->userdata('level') == 5){ ?>
       
         
            <?php } else {

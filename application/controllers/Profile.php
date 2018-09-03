@@ -13,8 +13,11 @@ class Profile extends CI_Controller {
 	public function index()
 	{
         if($this->session->userdata('level') == 5){
-            $id_mahasiswa = $this->session->userdata('id_mahasiswa');
-            $data['id_mahasiswa'] = $this->session->userdata('id_mahasiswa');
+
+            $username = $this->session->userdata('username');
+            $session = $this->mahasiswa_model->session_mahasiswa($username);
+            $id_mahasiswa = $session->id_mahasiswa;
+            $data['id_mahasiswa'] = $id_mahasiswa;
             $data['mahasiswa'] = $this->mahasiswa_model->detail_mahasiswa_dikti($id_mahasiswa);
             $data['main_view'] = 'Mahasiswa/lihat_mahasiswa_dikti_view';
             $this->load->view('template', $data);   

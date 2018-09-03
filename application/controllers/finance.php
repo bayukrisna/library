@@ -10,22 +10,28 @@ class Finance extends CI_Controller {
 		$this->load->model('biaya_sekolah_model');
 	}
 
-	public function dashboard_finance(){
-		$data['dashboard'] = $this->finance_model->dashboard();
-		$data['main_view'] = 'Finance/dashboard_finance_view';
-		$this->load->view('template', $data);
-
-	}
-
 		public function index()
 	{
-		$data['main_view'] = 'finance_view';
+		if($this->session->userdata('level') == 4 || $this->session->userdata('level') == 1){
+			redirect(base_url('dashboard'));
+		} else {
+			redirect(base_url('login'));
+		}
+		
+	}
+	public function data_registrasi(){
+		if($this->session->userdata('level') == 4 || $this->session->userdata('level') == 1){
+			$data['main_view'] = 'finance_view';
 		// $data['data']=$this->finance_model->data_mahasiswa();
 		$this->load->view('template', $data);
+		} else {
+			redirect(base_url('login'));
+		}
 	}
 	public function detail_pembayaran()
 	{
-		$ea = $this->uri->segment(3);
+		if($this->session->userdata('level') == 4 || $this->session->userdata('level') == 1){
+			$ea = $this->uri->segment(3);
 		$ya = $this->uri->segment(3);
 		$dataku = $this->finance_model->get_data_detail_mahasiswa($ya);
 		$data['mahasiswa']=$ea;
@@ -36,118 +42,180 @@ class Finance extends CI_Controller {
 		// $data['getJenisPembayaran'] = $this->biaya_sekolah_model->getJenisPembayaran($dataku->waktu);
 		$data['getTA'] = $this->biaya_sekolah_model->getTA();
 		$data['main_view'] = 'Finance/detail_pembayaran_view';
-		$this->load->view('template', $data);	
+		$this->load->view('template', $data);
+		} else {
+			redirect(base_url('login'));
+		}
+			
 		
 		
 	}
 	public function cek_mahasiswa(){
-    $id_mahasiswa = $this->input->get('id_mahasiswa');
-    $this->finance_model->cek_mahasiswa($id_mahasiswa);
+		if($this->session->userdata('level') == 4 || $this->session->userdata('level') == 1){
+			$id_mahasiswa = $this->input->get('id_mahasiswa');
+    		$this->finance_model->cek_mahasiswa($id_mahasiswa);
+		} else {
+			redirect(base_url('login'));
+		}
+    
   }
   public function add_to_cart()
 	{
-		$ea = $this->uri->segment(3);
-		$product_id = $this->input->post('pembayaran');
-		$product = $this->finance_model->find($product_id);
-		$data = array(
-					   'id'      => $this->input->post('pembayaran'),
-					   'qty'     => 1,
-					   'price'   => $this->input->post('biaya'),
-					   'name'    => $this->input->post('nama_mhsa'),
-					   'idmhsa'    => $this->input->post('id_mhsa'),
-					   'tgl'    => $this->input->post('tanggal_pembayaran'),
-					   'pembayaran'    => $product->nama_biaya,
-					   'jp'    => $this->input->post('jenis_pembayaran'),
-					   'kdmatkul'    => $this->input->post('kode_matkul'),
-					   'kode'    => $this->input->post('kode_pembayaran'),
-					   'idgrade'    => $this->input->post('id_grade'),
-					   'potongan'    => $this->input->post('potongan'),
-					   'denda'    => $this->input->post('denda'),
-					   'keterangan'    => $this->input->post('keterangan')
-					);
+		if($this->session->userdata('level') == 4 || $this->session->userdata('level') == 1){
+			$ea = $this->uri->segment(3);
+			$product_id = $this->input->post('pembayaran');
+			$product = $this->finance_model->find($product_id);
+			$data = array(
+						   'id'      => $this->input->post('pembayaran'),
+						   'qty'     => 1,
+						   'price'   => $this->input->post('biaya'),
+						   'name'    => $this->input->post('nama_mhsa'),
+						   'idmhsa'    => $this->input->post('id_mhsa'),
+						   'tgl'    => $this->input->post('tanggal_pembayaran'),
+						   'pembayaran'    => $product->nama_biaya,
+						   'jp'    => $this->input->post('jenis_pembayaran'),
+						   'kdmatkul'    => $this->input->post('kode_matkul'),
+						   'kode'    => $this->input->post('kode_pembayaran'),
+						   'idgrade'    => $this->input->post('id_grade'),
+						   'potongan'    => $this->input->post('potongan'),
+						   'denda'    => $this->input->post('denda'),
+						   'keterangan'    => $this->input->post('keterangan')
+						);
 
-		$this->cart->insert($data);
-		redirect(base_url('finance/detail_pembayaran/'.$ea));
+			$this->cart->insert($data);
+			redirect(base_url('finance/detail_pembayaran/'.$ea));
+		} else {
+			redirect(base_url('login'));
+		}
+		
 	}
 	public function simpan_pembayaran()
 	{
+		if($this->session->userdata('level') == 4 || $this->session->userdata('level') == 1){
 			if($this->finance_model->simpan_pembayaran() == TRUE){
 				$this->cart->destroy();
 				$ea = $this->uri->segment(3);
             	redirect(base_url('finance/detail_pembayaran/'.$ea));
 			} 
+		} else {
+			redirect(base_url('login'));
+		}
+			
 	}
 	public function clear_cart()
 	{
-		$this->cart->destroy();
-
-		$ea = $this->uri->segment(3);
-		redirect(base_url('finance/detail_pembayaran/'.$ea));
+		if($this->session->userdata('level') == 4 || $this->session->userdata('level') == 1){
+			$this->cart->destroy();
+			$ea = $this->uri->segment(3);
+			redirect(base_url('finance/detail_pembayaran/'.$ea));
+		} else {
+			redirect(base_url('login'));
+		}
+		
 	}
 	public function tambah_cart()
 	{
-		$data = array(
-            'id_mahasiswa'                        => $this->input->post('id_mhsa'),
-            'kode_pembayaran'                        => $this->input->post('kode_pembayaran'),
-            'total_biaya'                 => $this->input->post('biaya'),
-            'tanggal_pembayaran'          => $this->input->post('tanggal_pembayaran')
-            
-        );
-		$this->cart->insert($data);
+		if($this->session->userdata('level') == 4 || $this->session->userdata('level') == 1){
+			$data = array(
+	            'id_mahasiswa'                        => $this->input->post('id_mhsa'),
+	            'kode_pembayaran'                        => $this->input->post('kode_pembayaran'),
+	            'total_biaya'                 => $this->input->post('biaya'),
+	            'tanggal_pembayaran'          => $this->input->post('tanggal_pembayaran')
+	            
+	        );
+			$this->cart->insert($data);
+		} else {
+			redirect(base_url('login'));
+		}
+		
 	}
 	function data_pembayaran_mahasiswa(){
+		if($this->session->userdata('level') == 4 || $this->session->userdata('level') == 1){
+			$id = $this->input->get('id_mahasiswa');
+			$data=$this->finance_model->coba_mahasiswa($id);
+			echo json_encode($data);
+		} else {
+			redirect(base_url('login'));
+		}
 		
-		$id = $this->input->get('id_mahasiswa');
-		$data=$this->finance_model->coba_mahasiswa($id);
-		echo json_encode($data);
 	}
 	function pembayaran(){
-		$this->cart->destroy();
-		$data['main_view'] = 'finance/pembayaran_view';
-		$this->load->view('template', $data);
+		if($this->session->userdata('level') == 4 || $this->session->userdata('level') == 1){
+			$this->cart->destroy();
+			$data['main_view'] = 'finance/pembayaran_view';
+			$this->load->view('template', $data);
+		} else {
+			redirect(base_url('login'));
+		}
+		
 	}
 	function data_gg(){
-		$data=$this->finance_model->barang_gg();
-		echo json_encode($data);
+		if($this->session->userdata('level') == 4 || $this->session->userdata('level') == 1){
+			$data=$this->finance_model->barang_gg();
+			echo json_encode($data);
+		} else {
+			redirect(base_url('login'));
+		}
+		
 	}
 	public function oke()
 	{
 		$this->load->view('Finance/pembayaran_view');
 	}
 	function autocomplete(){
-		$searchTerm = $_GET['term'];
-		//mendapatkan data yang sesuai dari tabel daftar_kota
-		$query = $this->db->query("SELECT * FROM tb_biaya WHERE nama_biaya LIKE '%".$searchTerm."%' ORDER BY nama_biaya ASC");
-		foreach($query->result_array() as $row){
-		    $data[] = $row['nama_biaya'];
-		    $data[] = $row['id_biaya'];
+		if($this->session->userdata('level') == 4 || $this->session->userdata('level') == 1){
+			$searchTerm = $_GET['term'];
+			//mendapatkan data yang sesuai dari tabel daftar_kota
+			$query = $this->db->query("SELECT * FROM tb_biaya WHERE nama_biaya LIKE '%".$searchTerm."%' ORDER BY nama_biaya ASC");
+			foreach($query->result_array() as $row){
+			    $data[] = $row['nama_biaya'];
+			    $data[] = $row['id_biaya'];
+			}
+			//return data json
+			echo json_encode($data);
+		} else {
+			redirect(base_url('login'));
 		}
-		//return data json
-		echo json_encode($data);
+		
 	}
 	public function get_autocomplete(){
-		if(isset($_GET['term'])){
-			$result = $this->finance_model->autocomplete($_GET['term']);
-			if(count($result) > 0){
-				foreach ($result as $row) 
-					$result_array[] = array(
-						'label' => $row->nim.' - '.$row->nama_mahasiswa,
-						'id' => $row->id_mahasiswa);
-				echo json_encode($result_array);
-			
+		if($this->session->userdata('level') == 4 || $this->session->userdata('level') == 1){
+			if(isset($_GET['term'])){
+				$result = $this->finance_model->autocomplete($_GET['term']);
+				if(count($result) > 0){
+					foreach ($result as $row) 
+						$result_array[] = array(
+							'label' => $row->nim.' - '.$row->nama_mahasiswa,
+							'id' => $row->id_mahasiswa);
+					echo json_encode($result_array);
+				
+				}
 			}
+		} else {
+			redirect(base_url('login'));
 		}
+		
 	}
 
 
 	public function data_lunas()
 	{
+		if($this->session->userdata('level') == 4 || $this->session->userdata('level') == 1){
+			redirect(base_url('dashboard'));
+		} else {
+			redirect(base_url('login'));
+		}
 		$data['main_view'] = 'Finance/data_lunas_view';
 		$data['mahasiswa'] = $this->finance_model->data_lunas();
 		$this->load->view('template', $data);
 	}
 
-	public function konfirmasi(){				
+	public function konfirmasi(){
+		if($this->session->userdata('level') == 4 || $this->session->userdata('level') == 1){
+			redirect(base_url('dashboard'));
+		} else {
+			redirect(base_url('login'));
+		}				
 				$id_pendaftaran = $this->input->post('id_pendaftaran');
 				if ($this->input->post('reg') == 'No Registrasi Tersedia'){
 					if ($this->finance_model->save_konfirmasi($id_pendaftaran) == TRUE) {
@@ -162,6 +230,11 @@ class Finance extends CI_Controller {
 						redirect('finance');}
 		}
 	public function konfirmasi_gagal($id_pendaftaran){				
+		if($this->session->userdata('level') == 4 || $this->session->userdata('level') == 1){
+			redirect(base_url('dashboard'));
+		} else {
+			redirect(base_url('login'));
+		}
 				$id_pendaftaran = $this->uri->segment(3);
 				if ($this->finance_model->gagal_konfirmasi($id_pendaftaran) == TRUE) {
 						$this->session->set_flashdata('message', '<div class="alert alert-success"> Data tidak valid '.$id_pendaftaran.'</div>');
@@ -172,6 +245,11 @@ class Finance extends CI_Controller {
 					}
 			}
 	public function cek_id_daftar_ulang(){
+		if($this->session->userdata('level') == 4 || $this->session->userdata('level') == 1){
+			redirect(base_url('dashboard'));
+		} else {
+			redirect(base_url('login'));
+		}
 		$id = $this->input->post('id_daftar_ulang');
 		$this->finance_model->cek_id_daftar_ulang($id);
 	}

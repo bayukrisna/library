@@ -10,6 +10,7 @@ class Mahasiswa extends CI_Controller {
 		$this->load->model('daftar_ulang_model');
 		$this->load->model('konsentrasi_model');
 		$this->load->model('kurikulum_model');
+		$this->load->model('user_model');
 	}
 	public function index()
 	{		
@@ -113,10 +114,11 @@ class Mahasiswa extends CI_Controller {
 	public function krs_mahasiswa()
 	{
 			if($this->session->userdata('level') == 5){
-				$id_mahasiswa = $this->session->userdata('id_mahasiswa');
-				$session = $this->mahasiswa_model->session_mahasiswa($id_mahasiswa);
+				$username = $this->session->userdata('username');
+				$session = $this->mahasiswa_model->session_mahasiswa($username);
 				$id_prodi = $session->id_prodi;
 				$semester_aktif = $session->semester_aktif;
+				$id_mahasiswa = $session->id_mahasiswa;
 			} else {
 				$id_mahasiswa = $this->uri->segment(3);
 				$id_prodi = $this->uri->segment(4);
@@ -133,10 +135,11 @@ class Mahasiswa extends CI_Controller {
 	public function jadwal_mhs()
 	{
 			if($this->session->userdata('level') == 5){
-				$id_mahasiswa = $this->session->userdata('id_mahasiswa');
-				$session = $this->mahasiswa_model->session_mahasiswa($id_mahasiswa);
+				$username = $this->session->userdata('username');
+				$session = $this->mahasiswa_model->session_mahasiswa($username);
 				$id_prodi = $session->id_prodi;
 				$semester_aktif = $session->semester_aktif;
+				$id_mahasiswa = $session->id_mahasiswa;
 			} else {
 				$id_mahasiswa = $this->uri->segment(3);
 				$id_prodi = $this->uri->segment(4);
@@ -174,8 +177,10 @@ class Mahasiswa extends CI_Controller {
 
 	public function history_nilai()
 	{
-			if($this->session->userdata('id_mahasiswa') != null){
-				$id_mahasiswa = $this->session->userdata('id_mahasiswa');
+			if($this->session->userdata('level') == 5){
+				$username = $this->session->userdata('username');
+				$session = $this->mahasiswa_model->session_mahasiswa($username);
+				$id_mahasiswa = $session->id_mahasiswa;
 			} else {
 				$id_mahasiswa = $this->uri->segment(3);
 			}
@@ -188,8 +193,10 @@ class Mahasiswa extends CI_Controller {
 
 	public function aktivitas_perkuliahan()
 	{
-			if($this->session->userdata('id_mahasiswa') != null){
-				$id_mahasiswa = $this->session->userdata('id_mahasiswa');
+			if($this->session->userdata('level') == 5){
+				$username = $this->session->userdata('username');
+				$session = $this->mahasiswa_model->session_mahasiswa($username);
+				$id_mahasiswa = $session->id_mahasiswa;
 			} else {
 				$id_mahasiswa = $this->uri->segment(3);
 			}
@@ -249,9 +256,11 @@ class Mahasiswa extends CI_Controller {
 
 	public function history_pendidikan()
 	{
-			if($this->session->userdata('id_mahasiswa') != null){
-				$id_mahasiswa = $this->session->userdata('id_mahasiswa');
-				$history = $this->session->userdata('id_mahasiswa');
+			if($this->session->userdata('level') == 5){
+				$username = $this->session->userdata('username');
+				$session = $this->mahasiswa_model->session_mahasiswa($username);
+				$id_mahasiswa = $session->id_mahasiswa;
+				$history = $id_mahasiswa;
 			} else {
 				$id_mahasiswa = $this->uri->segment(3);
 				$history = $this->uri->segment(3);
@@ -296,8 +305,10 @@ class Mahasiswa extends CI_Controller {
 
 	public function prestasi()
 	{
-			if($this->session->userdata('id_mahasiswa') != null){
-				$id_mahasiswa = $this->session->userdata('id_mahasiswa');
+			if($this->session->userdata('level') == 5){
+				$username = $this->session->userdata('username');
+				$session = $this->mahasiswa_model->session_mahasiswa($username);
+				$id_mahasiswa = $session->id_mahasiswa;
 			} else {
 				$id_mahasiswa = $this->uri->segment(3);
 			}

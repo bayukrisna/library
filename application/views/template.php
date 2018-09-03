@@ -151,7 +151,7 @@ a:hover .tooltiptext {
             <li><a href="<?php echo base_url(); ?>dashboard"> <i class="fa fa-dashboard"></i> <span>Dashboard</span></a></li>
 
             <li><a href="<?php echo base_url(); ?>master_asal_sekolah"><i class="fa fa-building-o"></i><span> Asal Sekolah</span></a></li>
-            <li><a href="<?php echo base_url(); ?>tamu"><i class="fa fa-group"></i><span>Data Tamu</span></a></li>
+            <li><a href="<?php echo base_url(); ?>tamu/data_tamu"><i class="fa fa-group"></i><span>Data Tamu</span></a></li>
             <li><a href="<?php echo base_url(); ?>daftar_ulang/data_peserta_tes"><i class="fa fa-male"></i><span>Data Peserta Tes</span></a></li>
             <li><a href="<?php echo base_url(); ?>tamu/data_sgs"><i class="fa  fa-file"></i><span>Data Student Get Student</span></a>
             <li><a href="<?php echo base_url(); ?>mahasiswa/mahasiswa_data"><i class="fa  fa-file"></i><span>Data Mahasiswa</span></a></li>
@@ -172,7 +172,7 @@ a:hover .tooltiptext {
           <?php } else if($this->session->userdata('level') == 4) { ?>
             <li><a href="<?php echo base_url(); ?>dashboard"><i class="fa fa-dashboard"></i><span>Dashboard</span></a></li>
             <li><a href="<?php echo base_url(); ?>master_biaya_sekolah"><i class="fa fa-money"></i> <span>Biaya Kuliah</span></a></li>
-            <li><a href="<?php echo base_url(); ?>finance"><i class="fa fa-check-square"></i><span>Konfirmasi Registrasi</span></a></li>
+            <li><a href="<?php echo base_url(); ?>finance/data_registrasi"><i class="fa fa-check-square"></i><span>Konfirmasi Registrasi</span></a></li>
             <li><a href="<?php echo base_url(); ?>finance/data_lunas"><i class="fa fa-database"></i><span>Data Registrasi Lunas</span></a></li>
             <li><a href="<?php echo base_url(); ?>finance/pembayaran"><i class="fa fa-bank"></i><span>Pembayaran</span></a></li>
 
@@ -230,7 +230,7 @@ a:hover .tooltiptext {
             </span>
           </a>
           <ul class="treeview-menu">
-            <li><a href="<?php echo base_url(); ?>tamu"><i class="fa fa-circle-o"></i>Data Tamu</a></li>
+            <li><a href="<?php echo base_url(); ?>tamu/data_tamu"><i class="fa fa-circle-o"></i>Data Tamu</a></li>
             <li><a href="<?php echo base_url(); ?>daftar_ulang/data_peserta_tes"><i class="fa fa-circle-o"></i>Data Peserta Tes</a></li>
             <li><a href="<?php echo base_url(); ?>tamu/data_sgs"><i class="fa fa-circle-o"></i>Data Student Get Student</a>
             <li><a href="<?php echo base_url(); ?>mahasiswa/mahasiswa_data"><i class="fa fa-circle-o"></i>Data Mahasiswa</a></li>
@@ -245,8 +245,7 @@ a:hover .tooltiptext {
             </span>
           </a>
           <ul class="treeview-menu">
-            <li><a href="<?php echo base_url(); ?>finance/dashboard_finance"><i class="fa fa-circle-o"></i>Dashboard</a></li>
-            <li><a href="<?php echo base_url(); ?>finance"><i class="fa fa-circle-o"></i>Konfirmasi Registrasi</a></li>
+            <li><a href="<?php echo base_url(); ?>finance/data_registrasi"><i class="fa fa-circle-o"></i>Konfirmasi Registrasi</a></li>
             <li><a href="<?php echo base_url(); ?>finance/data_lunas"><i class="fa fa-circle-o"></i>Data Registrasi Lunas</a></li>
             <li><a href="<?php echo base_url(); ?>finance/pembayaran"><i class="fa fa-circle-o"></i>Pembayaran</a></li>
           </ul>

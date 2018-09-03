@@ -64,19 +64,29 @@ class daftar_ulang extends CI_Controller {
 
 	public function data_peserta_tes()
 	{
+		if($this->session->userdata('level') == 3 || $this->session->userdata('level') == 1){
 			$data['du'] = $this->daftar_ulang_model->data_peserta_tes();
 			$data['main_view'] = 'Daftar/data_daftarulang_view';
 			$this->load->view('template', $data);
+		} else {
+			redirect(base_url('login'));
+		}
+			
 	}
 
 	public function detail_nilai()
 	{
+		if($this->session->userdata('level') == 3 || $this->session->userdata('level') == 1){
 			$id_du = $this->uri->segment(3);
 			$data['edit'] = $this->daftar_ulang_model->detail_nilai($id_du);
 			$data['getProdi'] = $this->daftar_ulang_model->getProdi();
 			$data['getPreschool'] = $this->daftar_ulang_model->getPreschool();
 			$data['main_view'] = 'Tes/detail_hasil_tes_view';
 			$this->load->view('template', $data);
+		} else {
+			redirect(base_url('login'));
+		}
+			
 	}
 
 	public function print_ljk(){

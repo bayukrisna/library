@@ -12,25 +12,42 @@ class Tamu extends CI_Controller {
 	}
 
 	public function index(){
+		if($this->session->userdata('level') == 3 || $this->session->userdata('level') == 1){
+			redirect(base_url('dashboard'));
+		} else {
+			redirect(base_url('login'));
+		}
+		
+	}
+	public function data_tamu(){
+		if($this->session->userdata('level') == 3 || $this->session->userdata('level') == 1){
 				$data['tamu'] = $this->tamu_model->data_tamu();
 				$data['main_view'] = 'Tamu/data_tamu_view';
 				$this->load->view('template', $data);
-			
+		} else {
+			redirect(base_url('login'));
+		}
 		
-	}
 
+	}
 	public function page_tambah_tamu(){
+		if($this->session->userdata('level') == 3 || $this->session->userdata('level') == 1){
 				$data['kodeunik'] = $this->tamu_model->buat_kode();
 				$data['getProdi'] = $this->daftar_ulang_model->getProdi();
 				$data['getPreschool'] = $this->daftar_ulang_model->getPreschool();
 				$data['mahasiswa'] = $this->mahasiswa_model->data_mahasiswa();
 				$data['main_view'] = 'Tamu/tambah_tamu_view';
 				$this->load->view('template', $data);
+		} else {
+			redirect(base_url('login'));
+		}
+		
 
 	}
 
 	public function detail_tamu()
 	{
+		if($this->session->userdata('level') == 3 || $this->session->userdata('level') == 1){
 			$id_du = $this->uri->segment(3);
 			$data['edit'] = $this->tamu_model->detail_tamu($id_du);
 			$data['getProdi'] = $this->daftar_ulang_model->getProdi();
@@ -38,51 +55,79 @@ class Tamu extends CI_Controller {
 			$data['getPreschool'] = $this->daftar_ulang_model->getPreschool();
 			$data['main_view'] = 'Tamu/detail_tamu_view';
 			$this->load->view('template', $data);
+		} else {
+			redirect(base_url('login'));
+		}
+		
 	}
 
 	public function data_out()
 	{
+		if($this->session->userdata('level') == 3 || $this->session->userdata('level') == 1){
 			$data['edit'] = $this->tamu_model->data_tamu_out();
 			$data['main_view'] = 'Tamu/data_non_aktif_view';
 			$this->load->view('template', $data);
+		} else {
+			redirect(base_url('login'));
+		}
+		
 	}
 
 	public function detail_out()
 	{
+		if($this->session->userdata('level') == 3 || $this->session->userdata('level') == 1){
 			$id_du = $this->uri->segment(3);
 			$data['edit'] = $this->tamu_model->detail_tamu($id_du);
 			$data['main_view'] = 'Tamu/detail_non_aktif_view';
 			$this->load->view('template', $data);
+		} else {
+			redirect(base_url('login'));
+		}
+		
 	}
 
 	public function save_tamu()
 	{
+		if($this->session->userdata('level') == 3 || $this->session->userdata('level') == 1){
 			if($this->tamu_model->save_tamu() == TRUE){
 				$nama_pendaftar = $this->input->post('nama_pendaftar');
 				$this->session->set_flashdata('message', '<div class="col-md-12 alert alert-success"> Data '.$nama_pendaftar.' berhasil didaftarkan. </div>');
-            	redirect('tamu');
+            	redirect('tamu/data_tamu');
 			} else{
 				$this->session->set_flashdata('message', '<div class="col-md-12 alert alert-danger"> Username/password sudah ada. </div>');
-            	redirect('tamu');
+            	redirect('tamu/data_tamu');
 			} 
+		} else {
+			redirect(base_url('login'));
+		}
+		
 	} 
 
 	public function hapus_tamu($id_tamu){
-		if ($this->tamu_model->hapus_tamu($id_tamu) == TRUE) {
-			$this->session->set_flashdata('message', 'HapusTamu Berhasil');
-			redirect('tamu');
+		if($this->session->userdata('level') == 3 || $this->session->userdata('level') == 1){
+			if ($this->tamu_model->hapus_tamu($id_tamu) == TRUE) {
+				$this->session->set_flashdata('message', 'HapusTamu Berhasil');
+				redirect('tamu/data_tamu');
+			} else {
+				$this->session->set_flashdata('message', 'Hapus Tamu Gagal');
+				redirect('tamu/data_tamu');
+			}
 		} else {
-			$this->session->set_flashdata('message', 'Hapus Tamu Gagal');
-			redirect('tamu');
+			redirect(base_url('login'));
 		}
+		
 	}
 
 
 	public function page_upload(){
+		if($this->session->userdata('level') == 3 || $this->session->userdata('level') == 1){
 			$id_pendaftaran = $this->uri->segment(3);
 			$data['edit'] = $this->tamu_model->get_tamu_by_id($id_pendaftaran);
 			$data['main_view'] = 'Tamu/upload_bukti_view';
 			$this->load->view('template', $data);
+		} else {
+			redirect(base_url('login'));
+		}
 		
 	}
 
@@ -95,7 +140,7 @@ class Tamu extends CI_Controller {
 	    if($this->upload->do_upload('bukti_transfer')){
 	      if($this->tamu_model->save_bukti_transfer($this->upload->data(), $this->uri->segment(3)) == TRUE){
 	        $this->session->set_flashdata('success', 'Upload Bukti Berhasil');
-	            redirect('tamu');
+	            redirect('tamu/data_tamu');
 	      } else {
 	        $this->session->set_flashdata('failed', 'Update foto gagal');
 	            redirect('tamu/page_upload');
@@ -131,7 +176,7 @@ class Tamu extends CI_Controller {
       	  $id_du = $this->uri->segment(3);
           if ($this->tamu_model->save_f1($id_du) == TRUE) {
             $data['message'] = 'Tambah Follow Up 1 berhasil';
-            redirect('tamu');
+            redirect('tamu/data_tamu');
           } else {
             $data['main_view'] = 'Tamu/f1_view';
             $data['message'] = 'Tamu/f1_view';

@@ -27,7 +27,7 @@ class Mahasiswa_model extends CI_Model {
           $kodejadi = "M".$kodemax;    // hasilnya ODJ-991-0001 dst.
           return $kodejadi; 
     }
-    public function session_mahasiswa($id_mahasiswa){
+    public function session_mahasiswa($nim){
       return $this->db->join('tb_konsentrasi','tb_konsentrasi.id_konsentrasi=tb_mahasiswa.id_konsentrasi')
               ->join('tb_prodi','tb_prodi.id_prodi=tb_konsentrasi.id_prodi')
               ->join('tb_alamat','tb_alamat.id_mahasiswa=tb_mahasiswa.id_mahasiswa')  
@@ -38,7 +38,7 @@ class Mahasiswa_model extends CI_Model {
               ->join('tb_status_mhs','tb_status_mhs.id_status=tb_mahasiswa.id_status')
               ->join('tb_agama','tb_agama.id_agama=tb_bio.id_agama')
               ->join('tb_kelamin','tb_kelamin.id_kelamin=tb_bio.id_kelamin')
-              ->where('tb_mahasiswa.id_mahasiswa', $id_mahasiswa)
+              ->where('tb_mahasiswa.nim', $nim)
               ->get('tb_mahasiswa')
               ->row();
     }
@@ -51,7 +51,7 @@ class Mahasiswa_model extends CI_Model {
               ->join('tb_kontak','tb_kontak.id_mahasiswa=tb_mahasiswa.id_mahasiswa')
               ->join('tb_waktu','tb_waktu.id_waktu=tb_mahasiswa.id_waktu') 
               ->join('tb_mhs_add','tb_mhs_add.id_mahasiswa=tb_mahasiswa.id_mahasiswa')
-              ->join('tb_status_mhs','tb_status_mhs.id_status=tb_bio.id_status')
+              ->join('tb_status_mhs','tb_status_mhs.id_status=tb_mahasiswa.id_status')
               ->join('tb_agama','tb_agama.id_agama=tb_bio.id_agama')
               ->join('tb_kelamin','tb_kelamin.id_kelamin=tb_bio.id_kelamin')
               ->where('tb_mahasiswa.id_status', '1')
@@ -1020,7 +1020,15 @@ class Mahasiswa_model extends CI_Model {
      return $query->result();
   }
 
+  public function data_user_mhs($username){
+        $this->db->select('*');
+        $this->db->from('tb_user');
+        $this->db->join('tb_mahasiswa', 'tb_mahasiswa.id_mahasiswa=tb_user.username', 'left')
+                  ->where('tb_mahasiswa.nim', $username);
 
+        $query = $this->db->get();
+        return $query->result();
+    }
               
               
               

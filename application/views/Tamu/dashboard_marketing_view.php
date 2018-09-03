@@ -46,7 +46,7 @@
               <p>Data Tamu</p>
             </div>
             <div class="icon">
-              <i class="ion ion-stats-bars"></i>
+              <i class="fa fa-newspaper-o"></i>
             </div>
             <a href="<?php echo base_url(); ?>tamu" class="small-box-footer">Lihat Data <i class="fa fa-arrow-circle-right"></i></a>
           </div>
@@ -61,9 +61,9 @@
               <p>Data Peserta Tes</p>
             </div>
             <div class="icon">
-              <i class="ion ion-stats-bars"></i>
+              <i class="fa fa-list-alt"></i>
             </div>
-            <a href="<?php echo base_url(); ?>daftar_ulang/data_peserta_tes" class="small-box-footer">Lihat Data<i class="fa fa-arrow-circle-right"></i></a>
+            <a href="<?php echo base_url(); ?>daftar_ulang/data_peserta_tes" class="small-box-footer">Lihat Data <i class="fa fa-arrow-circle-right"></i></a>
           </div>
         </div>
         <!-- ./col -->
@@ -71,35 +71,36 @@
         <!-- ./col -->
         <div class="col-lg-3 col-xs-6">
           <!-- small box -->
-          <div class="small-box bg-green">
+          <div class="small-box bg-yellow">
             <div class="inner">
               <h3><?php echo $dashboard['data_sgs']; ?><sup style="font-size: 20px"></sup></h3>
 
-              <p>Data Student Get Student</p>
+              <p >Data Student Get Student</p>
             </div>
             <div class="icon">
-              <i class="ion ion-stats-bars"></i>
+              <i class="fa fa-handshake-o"></i>
             </div>
-            <a href="<?php echo base_url(); ?>tamu/data_sgs" class="small-box-footer">Lihat Data<i class="fa fa-arrow-circle-right"></i></a>
+            <a href="<?php echo base_url(); ?>tamu/data_sgs" class="small-box-footer">Lihat Data <i class="fa fa-arrow-circle-right"></i></a>
           </div>
         </div>
 
         <div class="col-lg-3 col-xs-6">
           <!-- small box -->
-          <div class="small-box bg-green">
+          <div class="small-box bg-red">
             <div class="inner">
               <h3><?php echo $dashboard['data_mhs']; ?><sup style="font-size: 20px"></sup></h3>
 
               <p>Data Mahasiswa</p>
             </div>
             <div class="icon">
-              <i class="ion ion-stats-bars"></i>
+              <i class="fa fa-database"></i>
             </div>
-            <a href="<?php echo base_url(); ?>mahasiswa/mahasiswa_data" class="small-box-footer">Lihat Data<i class="fa fa-arrow-circle-right"></i></a>
+            <a href="<?php echo base_url(); ?>mahasiswa/mahasiswa_data" class="small-box-footer">Lihat Data <i class="fa fa-arrow-circle-right"></i></a>
           </div>
         </div>
       </div>
     </div>
+    <link href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous">
 <script src="<?php echo base_url(); ?>assets/plugins/jQuery/jquery-2.2.3.min.js"></script>
 <!-- Bootstrap 3.3.6 -->
 
