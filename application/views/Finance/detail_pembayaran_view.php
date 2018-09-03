@@ -68,9 +68,7 @@
                 <tbody> 
                   <?php 
                 $no = 0;
-
                 foreach ($data_pembayaran as $i) {
-
                   if ($i->jenis_biaya == 'Angsuran Tahun 1'){
                     $dataea = $i->jumlah_biaya * $i->diskon / 100;
                     $iae = $i->jumlah_biaya - $dataea;

@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 4.8.1
+-- version 4.8.2
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Sep 03, 2018 at 04:45 AM
--- Server version: 10.1.33-MariaDB
--- PHP Version: 7.1.18
+-- Generation Time: Sep 03, 2018 at 05:22 AM
+-- Server version: 10.1.34-MariaDB
+-- PHP Version: 7.2.7
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET AUTOCOMMIT = 0;
@@ -139,7 +139,7 @@ CREATE TABLE `tb_biaya` (
 --
 
 INSERT INTO `tb_biaya` (`id_biaya`, `jenis_biaya`, `nama_biaya`, `jumlah_biaya`, `periode`, `id_waktu`) VALUES
-('BS001', 'Registrasi', 'Ranking 1', 360000, '2019/2022', '1'),
+('BS001', 'Registrasi', 'Ranking 1', 360000, '2018/2019', '1'),
 ('BS002', 'Registrasi', 'Ranking 2', 3900000, '2018/2019', '1'),
 ('BS003', 'Registrasi', 'Ranking 3', 4500000, '2018/2019', '1'),
 ('BS004', 'Registrasi', 'Non-Beasiswa', 6000000, '2018/2019', '1'),
@@ -320,7 +320,8 @@ INSERT INTO `tb_detail_pembayaran` (`no`, `kode_pembayaran`, `id_mahasiswa`, `id
 (43, 'KP013', 'M0006', 'BS041', '24-08-2018', '', '4', 1, 1, ''),
 (44, 'KP014', 'M0004', 'BS002', '24-08-2018', '', '5', 1, 1, ''),
 (45, 'KP015', 'M0007', 'BS002', '25-08-2018', '', '3', 0, 0, ''),
-(46, 'KP015', 'M0007', 'BS005', '25-08-2018', '', '3', 0, 0, '');
+(46, 'KP015', 'M0007', 'BS005', '25-08-2018', '', '3', 0, 0, ''),
+(47, 'KP016', 'M0001', 'BS005', '03-09-2018', '', '1', 0, 0, '');
 
 -- --------------------------------------------------------
 
@@ -850,7 +851,7 @@ CREATE TABLE `tb_mahasiswa` (
 --
 
 INSERT INTO `tb_mahasiswa` (`id_mahasiswa`, `id_du`, `nama_mahasiswa`, `nim`, `id_status`, `id_konsentrasi`, `id_hasil_tes`, `id_sekolah`, `id_waktu`, `id_grade`, `semester_aktif`) VALUES
-('M0001', '', 'Britney', '5345', '19', 'KO003', '', '', '', '1', 1);
+('M0001', '', 'Britney', '5345', '19', 'KO003', '', '', '1', '1', 1);
 
 -- --------------------------------------------------------
 
@@ -912,31 +913,30 @@ INSERT INTO `tb_mhs_add` (`id_mahasiswa`, `tgl_du`, `id_transportasi`, `id_jt`, 
 
 CREATE TABLE `tb_pembayaran` (
   `kode_pembayaran` varchar(6) NOT NULL,
-  `id_mahasiswa` varchar(7) NOT NULL,
-  `total_biaya` varchar(10) NOT NULL,
-  `tanggal_pembayaran` varchar(20) NOT NULL
+  `id_mahasiswa` varchar(7) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `tb_pembayaran`
 --
 
-INSERT INTO `tb_pembayaran` (`kode_pembayaran`, `id_mahasiswa`, `total_biaya`, `tanggal_pembayaran`) VALUES
-('KP001', '4546', '877500', '06-08-2018'),
-('KP002', '4546', '360000', '07-08-2018'),
-('KP003', '4546', '360000', '07-08-2018'),
-('KP004', '4546', '2160000', '07-08-2018'),
-('KP005', '5435', '2570000', '07-08-2018'),
-('KP006', '23123', '780000', '09-08-2018'),
-('KP007', 'M0003', '', ''),
-('KP008', 'M0006', '', ''),
-('KP009', 'M0003', '', ''),
-('KP010', 'M0006', '', ''),
-('KP011', 'M0003', '', ''),
-('KP012', 'M0006', '', ''),
-('KP013', 'M0006', '', ''),
-('KP014', 'M0004', '', ''),
-('KP015', 'M0007', '', '');
+INSERT INTO `tb_pembayaran` (`kode_pembayaran`, `id_mahasiswa`) VALUES
+('KP001', '4546'),
+('KP002', '4546'),
+('KP003', '4546'),
+('KP004', '4546'),
+('KP005', '5435'),
+('KP006', '23123'),
+('KP007', 'M0003'),
+('KP008', 'M0006'),
+('KP009', 'M0003'),
+('KP010', 'M0006'),
+('KP011', 'M0003'),
+('KP012', 'M0006'),
+('KP013', 'M0006'),
+('KP014', 'M0004'),
+('KP015', 'M0007'),
+('KP016', 'M0001');
 
 -- --------------------------------------------------------
 
@@ -1278,19 +1278,20 @@ CREATE TABLE `tb_user` (
   `username` varchar(20) NOT NULL,
   `password` varchar(100) NOT NULL,
   `id_mahasiswa` varchar(11) NOT NULL,
-  `id_level` varchar(7) NOT NULL
+  `id_level` varchar(7) NOT NULL,
+  `foto` text NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `tb_user`
 --
 
-INSERT INTO `tb_user` (`username`, `password`, `id_mahasiswa`, `id_level`) VALUES
-('admin', '$2b$10$MQlZmmJPyWLNhaA3BQ.2i.vx1f8vfvcAT/CrF5aefTVN80Qv0cJdK', 'M0000', '1'),
-('akademik', '$2a$08$A93qO2QEb6CJm8poAEhjtemxbapXQBaXWDnV/XWkIIj.syLTEQ3oi', '', '6'),
-('aldi', '$2a$08$WWAwBJ646n1sYWgkOwwhiet8qlqXrQcONdo.gq6X0cHKjQD1vjPAe', 'M0003', '5'),
-('finance', '$2a$08$.0B5SBwkpvmBsjsevsHr3ekW8cPnMzkhCK96s1J7zeWvIxX2AN7/.', '', '4'),
-('marketing', '$2a$08$HevO5xRCCuSIPfT6mXPHEOPWvGDNxopv6uinMU2szCBzwgFljYBFu', '', '3');
+INSERT INTO `tb_user` (`username`, `password`, `id_mahasiswa`, `id_level`, `foto`) VALUES
+('admin', '$2b$10$MQlZmmJPyWLNhaA3BQ.2i.vx1f8vfvcAT/CrF5aefTVN80Qv0cJdK', 'M0000', '1', ''),
+('akademik', '$2a$08$A93qO2QEb6CJm8poAEhjtemxbapXQBaXWDnV/XWkIIj.syLTEQ3oi', '', '6', ''),
+('aldi', '$2a$08$WWAwBJ646n1sYWgkOwwhiet8qlqXrQcONdo.gq6X0cHKjQD1vjPAe', 'M0003', '5', ''),
+('finance', '$2a$08$.0B5SBwkpvmBsjsevsHr3ekW8cPnMzkhCK96s1J7zeWvIxX2AN7/.', '', '4', ''),
+('marketing', '$2a$08$HevO5xRCCuSIPfT6mXPHEOPWvGDNxopv6uinMU2szCBzwgFljYBFu', '', '3', '');
 
 -- --------------------------------------------------------
 
@@ -1659,7 +1660,7 @@ ALTER TABLE `tb_detail_kurikulum`
 -- AUTO_INCREMENT for table `tb_detail_pembayaran`
 --
 ALTER TABLE `tb_detail_pembayaran`
-  MODIFY `no` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=47;
+  MODIFY `no` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=48;
 
 --
 -- AUTO_INCREMENT for table `tb_grade`

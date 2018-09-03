@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Aug 06, 2018 at 11:02 AM
+-- Generation Time: Sep 03, 2018 at 05:19 AM
 -- Server version: 10.1.34-MariaDB
 -- PHP Version: 7.2.7
 
@@ -42,12 +42,12 @@ CREATE TABLE `tb_biaya` (
 --
 
 INSERT INTO `tb_biaya` (`id_biaya`, `jenis_biaya`, `nama_biaya`, `jumlah_biaya`, `periode`, `id_waktu`) VALUES
-('BS001', '', 'Ranking 1', 360000, '2019/2022', '1'),
-('BS002', '', 'Ranking 2', 3900000, '2018/2019', '1'),
-('BS003', '', 'Ranking 3', 4500000, '2018/2019', '1'),
-('BS004', '', 'Non-Beasiswa', 6000000, '2018/2019', '1'),
-('BS005', 'Angsuran Tahun 1', 'Angsuran 1', 1200000, '2018', '1'),
-('BS006', 'Angsuran Tahun 1', 'Angsuran 2', 600000, '2018', '1'),
+('BS001', 'Registrasi', 'Ranking 1', 360000, '2018/2019', '1'),
+('BS002', 'Registrasi', 'Ranking 2', 3900000, '2018/2019', '1'),
+('BS003', 'Registrasi', 'Ranking 3', 4500000, '2018/2019', '1'),
+('BS004', 'Registrasi', 'Non-Beasiswa', 6000000, '2018/2019', '1'),
+('BS005', 'Angsuran Tahun 1', 'Angsuran 1', 1200000, '2018/2019', '1'),
+('BS006', 'Angsuran Tahun 1', 'Angsuran 2', 600000, '2018/2019', '1'),
 ('BS007', 'Angsuran Tahun 1', 'Angsuran 3', 600000, '2018/2019', '1'),
 ('BS008', 'Angsuran Tahun 1', 'Angsuran 4', 600000, '2018/2019', '1'),
 ('BS009', 'Angsuran Tahun 1', 'Angsuran 5', 600000, '2018/2019', '1'),
@@ -82,7 +82,7 @@ INSERT INTO `tb_biaya` (`id_biaya`, `jenis_biaya`, `nama_biaya`, `jumlah_biaya`,
 ('BS038', 'Angsuran Tahun 4', 'Angsuran 7', 850000, '2018/2019', '1'),
 ('BS039', 'Angsuran Tahun 4', 'Angsuran 8', 850000, '2018/2019', '1'),
 ('BS040', 'Angsuran Tahun 4', 'Angsuran 9', 850000, '2018/2019', '1'),
-('BS041', 'Angsuran Tahun 1', 'Angsuran 1', 2570000, '2018/2019', '2'),
+('BS041', 'Angsuran Tahun 1', 'Angsuran 1', 2570022, '2018/2019', '2'),
 ('BS042', 'Angsuran Tahun 1', 'Angsuran 2', 850000, '2018/2019', '2'),
 ('BS043', 'Angsuran Tahun 1', 'Angsuran 3', 850000, '2018/2019', '2'),
 ('BS044', 'Angsuran Tahun 1', 'Angsuran 4', 850000, '2018/2019', '2'),
@@ -120,7 +120,9 @@ INSERT INTO `tb_biaya` (`id_biaya`, `jenis_biaya`, `nama_biaya`, `jumlah_biaya`,
 ('BS076', 'Angsuran Tahun 4', 'Angsuran 8', 1120000, '2018/2019', '2'),
 ('BS077', 'Angsuran Tahun 4', 'Angsuran 9', 1120000, '2018/2019', '2'),
 ('BS078', 'KRS', 'KRS Mengulang', 52500, '2018/2019', '1'),
-('BS079', 'KRS', 'KRS Mengulang', 52500, '2018/2019', '2');
+('BS079', 'KRS', 'KRS Mengulang', 52500, '2018/2019', '2'),
+('BS080', 'Angsuran Tahun 1', 'Angsuran 1', 1200000, '2019/2020', '1'),
+('BS081', 'Registrasi', 'Ranking 1', 400000, '2019/2020', '1');
 
 --
 -- Indexes for dumped tables
