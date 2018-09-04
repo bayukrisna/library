@@ -17,7 +17,7 @@
                       </div>
                       <div class="form-group">
                         <label for="number">NIDN / NUP/ NIDK</label>
-                        <input type="text" name="kode_dosen" class="form-control" id="kode_dosen" value="<?php echo $dosen->kode_dosen; ?>">
+                        <input type="text" name="id_dosen" class="form-control" id="id_dosen" readonly="" value="<?php echo $dosen->id_dosen; ?>">
                       </div>
                       <div class="form-group">
                         <label for="text">NIP</label>

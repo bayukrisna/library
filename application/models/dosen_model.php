@@ -24,8 +24,15 @@ class Dosen_model extends CI_Model {
               ->join('tb_status_dosen','tb_status_dosen.id_status_dosen=tb_dosen.jenis_dosen')
               ->join('tb_agama','tb_agama.id_agama=tb_dosen.id_agama')
               ->join('tb_kelamin','tb_kelamin.id_kelamin=tb_dosen.id_kelamin')
+              ->join('tb_user','tb_user.username=tb_dosen.id_dosen')
               ->where('id_dosen', $id_dosen)
               ->get('tb_dosen')
+              ->row();
+  }
+
+  public function foto_dosen($id_dosen){
+    return $this->db->where('username', $id_dosen)
+              ->get('tb_user')
               ->row();
   }
 
@@ -57,19 +64,18 @@ class Dosen_model extends CI_Model {
         }
     }
 
-     public function  buat_kode_dosen()   {
+     /*public function  buat_kode_dosen()   {
           $this->db->select("MAX(id_dosen)+1 AS id");
           $this->db->from("tb_dosen");
           $query = $this->db->get();
 
           return $query->row()->id;
-    } 
+    }  */
 
     public function edit_dosen($id_dosen){
     $data = array(
             'id_dosen'        => $this->input->post('id_dosen'),
             'nama_dosen'        => $this->input->post('nama_dosen'),
-            'kode_dosen'        => $this->input->post('kode_dosen'),
             'no_hp'         => $this->input->post('no_telepon'),
             'nip'       => $this->input->post('nip'),
             'tgl_lahir'       => $this->input->post('tanggal_lahir'),
@@ -84,6 +90,21 @@ class Dosen_model extends CI_Model {
    if (!empty($data)) {
             $this->db->where('id_dosen', $id_dosen)
         ->update('tb_dosen', $data);
+
+          return true;
+        } else {
+            return null;
+        }
+  }
+
+  public function edit_username($id_dosen){
+    $data = array(
+            'username'        => $this->input->post('id_dosen'),
+      );
+
+   if (!empty($data)) {
+            $this->db->where('username', $id_dosen)
+        ->update('tb_user', $data);
 
           return true;
         } else {

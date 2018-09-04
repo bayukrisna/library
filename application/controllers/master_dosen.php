@@ -24,7 +24,13 @@ class Master_dosen extends CI_Controller {
 	}
 
 	public function page_edit_dosen(){
+		if($this->session->userdata('level') == 2){
+				$username = $this->session->userdata('username');
+				$session = $this->dosen_model->detail_dosen($username);
+				$id_dosen = $session->id_dosen;
+			} else {
 		$id_dosen = $this->uri->segment(3);
+		}
 		$data['dosen'] = $this->dosen_model->detail_dosen($id_dosen);
 		$data['main_view'] = 'Dosen/edit_dosen_view';
 		$this->load->view('template', $data);
@@ -35,8 +41,10 @@ class Master_dosen extends CI_Controller {
 				$username = $this->session->userdata('username');
 				$session = $this->dosen_model->detail_dosen($username);
 				$id_dosen = $session->id_dosen;
+				$data['foto_dosen'] = $this->dosen_model->foto_dosen($id_dosen);
 			} else {
 		$id_dosen = $this->uri->segment(3);
+		$data['foto_dosen'] = $this->dosen_model->foto_dosen($id_dosen);
 		}
 		$data['dosen'] = $this->dosen_model->detail_dosen($id_dosen);
 		$data['main_view'] = 'Dosen/detail_dosen_view';
@@ -58,10 +66,17 @@ class Master_dosen extends CI_Controller {
 	public function edit_dosen()
 	{
 		$id_dosen = $this->uri->segment(3);
-			if($this->dosen_model->edit_dosen($id_dosen) == TRUE){
-				$dosen = $this->input->post('id_dosen');
-				$this->session->set_flashdata('message', '<div class="alert alert-success"> Data '.$nama_dosen.' berhasil ditambahkan. </div>');
+			if($this->dosen_model->edit_dosen($id_dosen) == TRUE  && $this->dosen_model->edit_username($id_dosen) == TRUE){
+				if ($this->session->userdata('level') == 2) {
+					$dosen = $this->input->post('id_dosen');
+				$this->session->set_flashdata('message', '<div class="alert alert-success"> Data  berhasil diubah </div>');
+            	redirect('master_dosen/detail_dosen/'.$id_dosen);
+				} else {
+					$dosen = $this->input->post('id_dosen');
+				$this->session->set_flashdata('message', '<div class="alert alert-success"> Data  berhasil diubah </div>');
             	redirect('master_dosen');
+				}
+				
 			} else{
 				$this->session->set_flashdata('message', '<div class="alert alert-success"> Data '.$nama_dosen.' gagal ditambahkan. </div>');
             	redirect('master_dosen/edit_tambah_dosen/'.$id_dosen);

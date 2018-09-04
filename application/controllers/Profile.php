@@ -8,6 +8,7 @@ class Profile extends CI_Controller {
 		parent::__construct();
         $this->load->model('user_model');
         $this->load->model('mahasiswa_model');
+        $this->load->model('dosen_model');
 	}
 
 	public function index()
@@ -21,7 +22,14 @@ class Profile extends CI_Controller {
             $data['mahasiswa'] = $this->mahasiswa_model->detail_mahasiswa_dikti($id_mahasiswa);
             $data['main_view'] = 'Mahasiswa/lihat_mahasiswa_dikti_view';
             $this->load->view('template', $data);   
-        } else {
+        } else if($this->session->userdata('level') == 2) {
+            $username = $this->session->userdata('username');
+            $data['data_user'] = $this->user_model->data_session();
+            $data['dosen'] = $this->dosen_model->detail_dosen($username);
+            $data['main_view'] = 'Dosen/detail_dosen_view';
+            $this->load->view('template', $data);  
+
+        }   else {
             $data['data_user'] = $this->user_model->data_session();
     	    $data['main_view'] = 'profile';
             $this->load->view('template', $data);	
@@ -41,8 +49,14 @@ class Profile extends CI_Controller {
             if($this->user_model->save_data($username,$password, $password_baru) == TRUE){
                 if($this->upload->do_upload('foto')){
                   if($this->user_model->save_foto($this->upload->data(), $username) == TRUE){
-                    $this->session->set_flashdata('message', '<div class="alert alert-success"> Profil Berhasil diganti </div>');
-                        redirect('profile');
+                    if ($this->session->userdata('level') == 2) {
+                         $this->session->set_flashdata('message', '<div class="alert alert-success"> Profil Berhasil diganti </div>');
+                         redirect('index');
+                    } else {
+                         $this->session->set_flashdata('message', '<div class="alert alert-success"> Profil Berhasil diganti </div>');
+                        redirect('profile'); 
+                    }
+                    
                   } else {
                     $this->session->set_flashdata('message', '<div class="alert alert-danger"> Profil gagal diganti </div>');
                         redirect('profile');
