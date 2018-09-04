@@ -138,6 +138,8 @@
               <a href="'.base_url('mahasiswa/kelas_mhs/'.$mahasiswa->id_mahasiswa.'/'.$mahasiswa->id_prodi.'/'.$mahasiswa->semester_aktif).'" class="btn btn-warning  btn-sm pull-right">Lihat KRS Semester Ini</a>
               ';
             } ?>
+
+             
             <!-- /.box-body -->
           </div>
           <!-- /.box -->

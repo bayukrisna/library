@@ -159,8 +159,9 @@ class Mahasiswa extends CI_Controller {
 	public function kelas_mhs()
 	{
 			if($this->session->userdata('level') == 5){
-				$id_mahasiswa = $this->session->userdata('id_mahasiswa');
-				$session = $this->mahasiswa_model->session_mahasiswa($id_mahasiswa);
+				$username = $this->session->userdata('username');
+				$session = $this->mahasiswa_model->session_mahasiswa($username);
+				$id_mahasiswa = $session->id_mahasiswa;
 				$id_prodi = $session->id_prodi;
 				$semester_aktif = $session->semester_aktif;
 			} else {
