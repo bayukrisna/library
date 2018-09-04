@@ -8,6 +8,7 @@ class Master_dosen extends CI_Controller {
 		parent::__construct();
 		$this->load->model('dosen_model');
 		$this->load->model('nilai_perkuliahan_model');
+		$this->load->model('user_model');
 	}
 
 	public function index()
@@ -18,7 +19,6 @@ class Master_dosen extends CI_Controller {
 	}
 
 	public function page_tambah_dosen(){
-		$data['kd'] = $this->dosen_model->buat_kode_dosen();
 		$data['main_view'] = 'Dosen/tambah_dosen_view';
 		$this->load->view('template', $data);
 	}
@@ -41,10 +41,8 @@ class Master_dosen extends CI_Controller {
 				$username = $this->session->userdata('username');
 				$session = $this->dosen_model->detail_dosen($username);
 				$id_dosen = $session->id_dosen;
-				$data['foto_dosen'] = $this->dosen_model->foto_dosen($id_dosen);
 			} else {
 		$id_dosen = $this->uri->segment(3);
-		$data['foto_dosen'] = $this->dosen_model->foto_dosen($id_dosen);
 		}
 		$data['dosen'] = $this->dosen_model->detail_dosen($id_dosen);
 		$data['main_view'] = 'Dosen/detail_dosen_view';
@@ -54,14 +52,52 @@ class Master_dosen extends CI_Controller {
 	public function save_dosen()
 	{
 			if($this->dosen_model->save_dosen() == TRUE){
-				$dosen = $this->input->post('nama_dosen');
-				$this->session->set_flashdata('message', '<div class="alert alert-success"> Data '.$nama_dosen.' berhasil ditambahkan. </div>');
-            	redirect('master_dosen');
+				$pass = $this->random_password();
+				$nim = $this->input->post('id_dosen');
+				$this->user_model->signup_dosen($nim, $pass);
+				$this->load->library('email');
+						$config = array(
+							'protocol' => 'smtp',
+							'smtp_host' 	=> 'ssl://smtp.googlemail.com',
+							'smtp_port' 	=> 465,
+							'smtp_user' 	=> 'bayukrisnaovo@gmail.com',
+							'smtp_pass' 	=> 'pacnut12',
+							'mailtype'		=> 'html',
+							'wordwrap'	=> TRUE
+						);
+						$this->email->initialize($config);
+						$this->email->set_newline("\r\n");
+						$this->email->from('bayukrisnaovo@gmail.com','Panitia PSB');
+						$this->email->to($this->input->post('email'));
+						$this->email->subject('STIE Jakarta International College');
+						$this->email->message('
+							<h2> Akun Login Mahasiswa!</h2>
+							<br> Username : '.$nim.'
+							<br> Password : '.$pass.' <br><br>
+							Terimakasih');
+						
+						if($this->email->send()){
+								$this->session->set_flashdata('message', '<div class="col-md-12 alert alert-success"> Data dosen berhasil ditambah </div>');
+				            	redirect('master_dosen');
+						}
 			} else{
 				$this->session->set_flashdata('message', '<div class="alert alert-success"> Data '.$nama_dosen.' gagal ditambahkan. </div>');
             	redirect('master_dosen/page_tambah_dosen');
 			} 
 	} 
+
+	function random_password() 
+    {
+        $alphabet = 'abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ1234567890';
+        $password = array(); 
+        $alpha_length = strlen($alphabet) - 1; 
+        for ($i = 0; $i < 8; $i++) 
+        {
+            $n = rand(0, $alpha_length);
+            $password[] = $alphabet[$n];
+        }
+        return implode($password); 
+    }
 
 	public function edit_dosen()
 	{

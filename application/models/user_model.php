@@ -172,6 +172,28 @@ class User_model extends CI_Model {
         }
 
     }
+
+    public function signup_dosen($nim, $pass)
+    {
+        $password = $pass;
+        $hash = $this->bcrypt->hash_password($password);
+        $data = array(
+            'username'      => $nim,
+            'password'  => $hash,
+            'id_level'     => 2
+        );
+    
+        $this->db->insert('tb_user', $data);
+
+        if($this->db->affected_rows() > 0){
+            
+                return true;
+        } else {
+            return false;
+            
+        }
+
+    }
 	
 
 }

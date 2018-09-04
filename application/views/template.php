@@ -178,7 +178,6 @@ a:hover .tooltiptext {
 
           <?php } else if($this->session->userdata('level') == 2) { ?>
             <li><a href="<?php echo base_url(); ?>dashboard"><i class="fa fa-dashboard"></i><span>Dashboard</span></a></li>
-            <li><a href="<?php echo base_url(); ?>master_dosen/detail_dosen"><i class="fa fa-money"></i> <span>Detail Dosen</span></a></li>
             <li><a href="<?php echo base_url(); ?>master_dosen/jadwal_dosen"><i class="fa fa-money"></i> <span>Jadwal Kelas</span></a></li>
             <li><a href="<?php echo base_url(); ?>master_dosen/nilai_dosen"><i class="fa fa-check-square"></i><span>Input nilai</span></a></li>
 

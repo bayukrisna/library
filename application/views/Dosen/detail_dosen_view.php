@@ -50,7 +50,9 @@
           <div class="nav-tabs-custom">
             <ul class="nav nav-tabs">
             <li class="active"><a href="#tab_0" data-toggle="tab">Profil</a></li>
+            <?php if($this->session->userdata('level') == 2){ ?>
             <li><a href="#tab_1" data-toggle="tab">Ganti Password</a></li>
+          <?php } ?>
               <!--<li><a href="#tab_4" data-toggle="tab">Kebutuhan Khusus</a></li> -->
              
                         <a class="btn btn-success pull-right" href="<?php echo base_url();?>master_dosen/page_edit_dosen/<?php echo $dosen->id_dosen; ?>">Ubah</a>
@@ -69,14 +71,26 @@
                     <td class="left_column" width="15%">NIP</td>
                     <td colspan="6">:  <?php echo $dosen->nip; ?>
                     </td>
+
+                    <?php if($this->session->userdata('level') == 2){ ?>
                     <td rowspan="8" width="15%">
                       <form  method="post" runat="server" action="<?php echo base_url(); ?>profile/save_data" enctype="multipart/form-data">
                         <div class="btn btn-file" >
-              <img src="<?php echo base_url();?>uploads/<?php echo $foto_dosen->foto; ?>" onerror="this.src='<?php echo base_url();?>uploads/user.jpg'" id="avatar" height="200" width="200"  alt="avatar">
+              <img src="<?php echo base_url();?>uploads/<?php echo $dosen->foto; ?>" onerror="this.src='<?php echo base_url();?>uploads/user.jpg'" id="avatar" height="200" width="200"  alt="avatar">
               <input type="file" id="foto" name="foto" onchange="loadFile(event)">
 
             </div>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<button class="btn btn-primary" type="submit"><i class="glyphicon glyphicon-ok-sign"></i> Save</button>
           </form></td>
+            <?php } else { ?>
+          <td rowspan="8" width="15%">
+                      
+                        <div class="btn btn-file" >
+              <img src="<?php echo base_url();?>uploads/<?php echo $dosen->foto; ?>" onerror="this.src='<?php echo base_url();?>uploads/user.jpg'" id="avatar" height="200" width="200"  alt="avatar">
+              
+
+            </div>
+          </td>
+            <?php } ?>
                 </tr>
                 <tr>
                     <td class="left_column" width="15%">NIDN/NUP/NIDK</td>

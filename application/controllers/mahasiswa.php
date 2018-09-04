@@ -369,16 +369,15 @@ class Mahasiswa extends CI_Controller {
 							'protocol' => 'smtp',
 							'smtp_host' 	=> 'ssl://smtp.googlemail.com',
 							'smtp_port' 	=> 465,
-							'smtp_user' 	=> 'faisalraharja990@gmail.com',
-							'smtp_pass' 	=> '-',
+							'smtp_user' 	=> 'bayukrisnaovo@gmail.com',
+							'smtp_pass' 	=> 'pacnut12',
 							'mailtype'		=> 'html',
 							'wordwrap'	=> TRUE
 						);
 						$this->email->initialize($config);
 						$this->email->set_newline("\r\n");
-						$this->email->from('faisalraharja990@gmail.com','Panitia PSB');
+						$this->email->from('bayukrisnaovo@gmail.com','Panitia PSB');
 						$this->email->to($this->input->post('email'));
-						
 						$this->email->subject('STIE Jakarta International College');
 						$this->email->message('
 							<h2> Akun Login Mahasiswa!</h2>
