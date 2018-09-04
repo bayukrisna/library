@@ -1,5 +1,5 @@
            <?php 
-                if($this->session->userdata('id_dosen') != null){ ?>
+               if($this->session->userdata('level') == 2){ ?>
         <!-- <a class="btn btn-sm btn-primary" href="<?php echo base_url();?>mahasiswa">Detail Mahasiswa</a>
         <a class="btn btn-sm btn-info" href="<?php echo base_url();?>mahasiswa/history_pendidikan">History Pendidikan</a>
         <a class="btn btn-sm btn-primary" href="<?php echo base_url();?>mahasiswa/krs_mahasiswa">KRS Mahasiswa</a>
@@ -75,7 +75,7 @@
                 </tr>
                 <tr>
                     <td class="left_column" width="15%">NIDN/NUP/NIDK</td>
-                    <td colspan="6" size="100">: <?php echo $dosen->kode_dosen; ?></td>
+                    <td colspan="6" size="100">: <?php echo $dosen->id_dosen; ?></td>
                 </tr>
                  <tr>
                     <td class="left_column" width="15%">Email</td>

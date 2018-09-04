@@ -34,7 +34,6 @@ class Dosen_model extends CI_Model {
         $data = array(
             'id_dosen'        => $this->input->post('id_dosen'),
             'nama_dosen'        => $this->input->post('nama_dosen'),
-            'kode_dosen'      	=> $this->input->post('kode_dosen'),
             'no_hp'      		=> $this->input->post('no_telepon'),
             'nip'     	=> $this->input->post('nip'),
             'tgl_lahir'       => $this->input->post('tanggal_lahir'),

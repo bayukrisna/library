@@ -114,6 +114,16 @@ class User_model extends CI_Model {
         $query = $this->db->get();
         return $query->result();
     }
+
+    public function data_dosen(){
+        $this->db->select('*');
+        $this->db->from('tb_user');
+        $this->db->join('tb_dosen', 'tb_dosen.id_dosen=tb_user.username', 'left');
+        $this->db->join('tb_jabatan', 'tb_jabatan.id_level=tb_user.id_level');
+        $query = $this->db->get();
+        return $query->result();
+    }
+
      function dropdown_level()
     {
         return $this->db->get('tb_jabatan')

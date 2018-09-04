@@ -32,11 +32,18 @@
           </div>
           <div class="">
 
-            
+            <?php 
+               if($this->session->userdata('level') == 1){ ?>
 
             <a class="btn btn-primary pull-right"  href="<?php echo base_url(); ?>nilai_perkuliahan"></i> Kembali</a>
+            <?php } ?>
+
+             <?php 
+               if($this->session->userdata('level') == 2){ ?>
 
             <a class="btn btn-info pull-right" style="margin-right: 10px"  href="<?php echo base_url(); ?>master_dosen/nilai_dosen/<?php echo $this->uri->segment(4); ?>"></i> Daftar Kelas </a>
+
+          <?php } ?>
 
             <p class="btn btn-primary pull-right" style="margin-right: 10px" onclick="print1()"> Cetak Absensi</p>
             <br><br>

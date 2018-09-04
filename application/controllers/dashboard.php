@@ -88,6 +88,9 @@ class Dashboard extends CI_Controller {
         } else if($this->session->userdata('level') == 5){
             $data['main_view'] = 'Mahasiswa/dashboard_mahasiswa_view';
             $this->load->view('template', $data);
+        } else if($this->session->userdata('level') == 2){
+            $data['main_view'] = 'Mahasiswa/dashboard_mahasiswa_view';
+            $this->load->view('template', $data);
         } else {
 			redirect(base_url('login'));
 		}

@@ -13,11 +13,11 @@
                       <div class="form-group">
                         <label for="text">Nama Dosen</label>
                         <input type="text" name="nama_dosen" class="form-control" id="nama_dosen">
-                         <input type="hidden" name="id_dosen" class="form-control" id="id_dosen"  value="<?php echo $kd; ?>">
+                         
                       </div>
                       <div class="form-group">
                         <label for="number">NIDN / NUP/ NIDK</label>
-                        <input type="text" name="kode_dosen" class="form-control" id="kode_dosen">
+                        <input type="text" name="id_dosen" class="form-control" id="id_dosen">
                       </div>
                       <div class="form-group">
                         <label for="text">NIP</label>
