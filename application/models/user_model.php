@@ -151,6 +151,27 @@ class User_model extends CI_Model {
         }
 
     }
+    public function signup_mahasiswa($nim, $pass)
+    {
+        $password = $pass;
+        $hash = $this->bcrypt->hash_password($password);
+        $data = array(
+            'username'      => $nim,
+            'password'  => $hash,
+            'id_level'     => 5
+        );
+    
+        $this->db->insert('tb_user', $data);
+
+        if($this->db->affected_rows() > 0){
+            
+                return true;
+        } else {
+            return false;
+            
+        }
+
+    }
 	
 
 }

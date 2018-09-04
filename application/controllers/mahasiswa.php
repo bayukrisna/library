@@ -361,9 +361,38 @@ class Mahasiswa extends CI_Controller {
 	public function save_mahasiswa()
 	{
 			if($this->mahasiswa_model->save_mahasiswa() == TRUE && $this->mahasiswa_model->save_ayah() == TRUE  && $this->mahasiswa_model->save_ibu() == TRUE && $this->mahasiswa_model->save_alamat() == TRUE && $this->mahasiswa_model->save_wali() == TRUE && $this->mahasiswa_model->save_kependudukan() == TRUE && $this->mahasiswa_model->save_bio() == TRUE && $this->mahasiswa_model->save_kontak() == TRUE && $this->mahasiswa_model->save_tgl_du_mhs() == TRUE){
-				$nama_du = $this->input->post('nama_mahasiswa');
-				$this->session->set_flashdata('message', '<div class="col-md-12 alert alert-success"> Data '.$nama_du.' berhasil didaftarkan. </div>');
-            	redirect('mahasiswa/data_mahasiswa');
+				$pass = $this->random_password();
+				$nim = $this->input->post('nim');
+				$this->user_model->signup_mahasiswa($nim, $pass);
+				$this->load->library('email');
+						$config = array(
+							'protocol' => 'smtp',
+							'smtp_host' 	=> 'ssl://smtp.googlemail.com',
+							'smtp_port' 	=> 465,
+							'smtp_user' 	=> 'faisalraharja990@gmail.com',
+							'smtp_pass' 	=> '-',
+							'mailtype'		=> 'html',
+							'wordwrap'	=> TRUE
+						);
+						$this->email->initialize($config);
+						$this->email->set_newline("\r\n");
+						$this->email->from('faisalraharja990@gmail.com','Panitia PSB');
+						$this->email->to($this->input->post('email'));
+						
+						$this->email->subject('STIE Jakarta International College');
+						$this->email->message('
+							<h2> Akun Login Mahasiswa!</h2>
+							<br> Username : '.$nim.'
+							<br> Password : '.$pass.' <br><br>
+							Terimakasih');
+						
+						if($this->email->send()){
+								$nama_du = $this->input->post('nama_mahasiswa');
+								$this->session->set_flashdata('message', '<div class="col-md-12 alert alert-success"> Data '.$nama_du.' berhasil didaftarkan. </div>');
+				            	redirect('mahasiswa/data_mahasiswa');
+						}
+
+				
 			} else{
 				$this->session->set_flashdata('message', '<div class="col-md-12 alert alert-danger"> Data  '.$nama_pendaftar.' Sudah Ada </div>');
             	redirect('mahasiswa/data_mahasiswa');
@@ -441,5 +470,19 @@ class Mahasiswa extends CI_Controller {
 			$data['main_view'] = 'ld/lulus_do_view';
 			$this->load->view('template', $data);
 	}
-		
+	function random_password() 
+    {
+        $alphabet = 'abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ1234567890';
+        $password = array(); 
+        $alpha_length = strlen($alphabet) - 1; 
+        for ($i = 0; $i < 8; $i++) 
+        {
+            $n = rand(0, $alpha_length);
+            $password[] = $alphabet[$n];
+        }
+        return implode($password); 
+    }
+	
+	
+	
 }
