@@ -14,11 +14,15 @@ class Nilai_perkuliahan extends CI_Controller {
 
 
 	public function index(){
+		if ($this->session->userdata('logged_in') == TRUE) {
 				$data['getProdi'] = $this->daftar_ulang_model->getProdi();
 				$data['getPeriode'] = $this->daftar_ulang_model->getPeriode();
 				$data['kp'] = $this->kelas_perkuliahan_model->data_kp();
 				$data['main_view'] = 'Nilai_perkuliahan/nilai_perkuliahan_view';
 				$this->load->view('template', $data);
+			} else {
+			redirect('login');
+		}
 	}
 
 	public function filter_kp()
@@ -40,6 +44,7 @@ class Nilai_perkuliahan extends CI_Controller {
 	}
 
 	public function detail_nilai(){
+		if ($this->session->userdata('logged_in') == TRUE) {
 				$id_kp = $this->uri->segment(3);
 				$data['kp'] = $this->nilai_perkuliahan_model->detail_nilai($id_kp);
 				$data['dsn'] = $this->kelas_perkuliahan_model->jumlah_dosen($id_kp);
@@ -47,14 +52,21 @@ class Nilai_perkuliahan extends CI_Controller {
 				$data['nilai'] = $this->nilai_perkuliahan_model->data_nilai($id_kp);
 				$data['main_view'] = 'Nilai_perkuliahan/detail_nilai_perkuliahan_view';
 				$this->load->view('template', $data);
+			} else {
+			redirect('login');
+		}
 	}
 
 	public function edit_nilai(){
+		if ($this->session->userdata('logged_in') == TRUE) {
 				$id_kp = $this->uri->segment(3);
 				$data['dnilai'] = $this->nilai_perkuliahan_model->edit_nilai($id_kp);
 				$data['skala'] = $this->nilai_perkuliahan_model->data_skala_nilai();
 				$data['main_view'] = 'Nilai_perkuliahan/input_nilai_view';
 				$this->load->view('template', $data);
+		} else {
+			redirect('login');
+		}
 	}
 
 	public function save_edit_nilai(){

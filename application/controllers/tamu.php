@@ -12,6 +12,7 @@ class Tamu extends CI_Controller {
 	}
 
 	public function index(){
+
 		if($this->session->userdata('level') == 3 || $this->session->userdata('level') == 1){
 			redirect(base_url('dashboard'));
 		} else {
@@ -188,10 +189,13 @@ class Tamu extends CI_Controller {
         
 
         public function data_sgs(){
+        	if ($this->session->userdata('logged_in') == TRUE) {
 				$data['edit'] = $this->tamu_model->data_sgs();
 				$data['main_view'] = 'Tamu/sgs_view';
 				$this->load->view('template', $data);
-			
+			} else {
+			redirect('login');
+		}
 		
 	}
 

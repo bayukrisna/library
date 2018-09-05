@@ -13,19 +13,27 @@ class Jadwal extends CI_Controller {
 
 	public function index()
 	{
+		if ($this->session->userdata('logged_in') == TRUE) {
 			$data['jadwal'] = $this->jadwal_model->data_jadwal();
 			$data['getProdi'] = $this->daftar_ulang_model->getProdi();
 			$data['getRuang'] = $this->ruang_model->getRuang();
 			$data['main_view'] = 'jadwal/jadwal_view';
 			$this->load->view('template', $data);
+			} else {
+			redirect('login');
+		}
 	}
 
 	public function detail_jadwal()
 	{
+		if ($this->session->userdata('logged_in') == TRUE) {
 			$id_jadwal = $this->uri->segment(3);
 			$data['jadwal'] = $this->jadwal_model->detail_jadwal($id_jadwal);
 			$data['main_view'] = 'jadwal/edit_jadwal_view';
 			$this->load->view('template', $data);
+			} else {
+			redirect('login');
+		}
 	}
 
 	public function cek_duplikat(){
@@ -72,6 +80,7 @@ class Jadwal extends CI_Controller {
 	}
 
 	public function hapus_jadwal($id_prodi){
+		if ($this->session->userdata('logged_in') == TRUE) {
 		$id_jadwal = $this->uri->segment(3);
 		if ($this->jadwal_model->hapus_jadwal($id_jadwal) == TRUE) {
 			$this->session->set_flashdata('message', '<div class="col-md-12 alert alert-success"> Jadwal berhasil dihapus </div>');
@@ -80,15 +89,22 @@ class Jadwal extends CI_Controller {
 			$this->session->set_flashdata('message', '<div class="col-md-12 alert alert-success"> Jadwal gagal ditambahkan </div>');
 			redirect('jadwal');
 		}
+		} else {
+			redirect('login');
+		}
 	}
 
 	public function jadwal_mhs()
 	{
+		if ($this->session->userdata('logged_in') == TRUE) {
 			$id_mahasiswa = $this->uri->segment(3);
 			$data['jadwal'] = $this->jadwal_model->jadwal_mhs($id_mahasiswa);
 			$data['mahasiswa'] = $this->mahasiswa_model->detail_krs_mahasiswa($id_mahasiswa);
 			$data['main_view'] = 'jadwal/edit_jadwal_view';
 			$this->load->view('template', $data);
+			} else {
+			redirect('login');
+		}
 	}
 		
 }

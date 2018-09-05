@@ -11,6 +11,7 @@ class Dashboard extends CI_Controller {
 
 	public function index()
 	{
+        if ($this->session->userdata('logged_in') == TRUE) {
 		if($this->session->userdata('level') == 4){
 			$data['dashboard'] = $this->dashboard_model->dashboard_finance();
             $data['main_view'] = 'Finance/dashboard_finance_view';
@@ -94,6 +95,9 @@ class Dashboard extends CI_Controller {
         } else {
 			redirect(base_url('login'));
 		}
+        } else {
+            redirect('login');
+        }
 			
 	}
 

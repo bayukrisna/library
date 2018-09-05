@@ -23,32 +23,32 @@ class Kelas_perkuliahan extends CI_Controller {
 	}
 
 	public function index(){
-
+		if ($this->session->userdata('logged_in') == TRUE) {
 				$data['getProdi'] = $this->daftar_ulang_model->getProdi();
 				$data['getPeriode'] = $this->daftar_ulang_model->getPeriode();
 				$data['kp'] = $this->kelas_perkuliahan_model->data_kp();
 				$data['main_view'] = 'Kelas_perkuliahan/kelas_perkuliahan_view';
 				$this->load->view('template', $data);
-	}
-
-	public function page_tambah(){
-				$data['getProdi'] = $this->daftar_ulang_model->getProdi();
-				$data['getPeriode'] = $this->daftar_ulang_model->getPeriode();
-				$data['kodeunik'] = $this->kelas_perkuliahan_model->buat_kode();
-				$data['main_view'] = 'Kelas_perkuliahan/tambah_kelas_perkuliahan_view';
-				$this->load->view('template', $data);
+		} else {
+			redirect('login');
+		}
 	}
 
 	public function detail_kp(){
+		if ($this->session->userdata('logged_in') == TRUE) {
 				$id_kp = $this->uri->segment(3);
 				$data['getProdi'] = $this->daftar_ulang_model->getProdi();
 				$data['getPeriode'] = $this->daftar_ulang_model->getPeriode();
 				$data['kp'] = $this->kelas_perkuliahan_model->detail_kp($id_kp);
 				$data['main_view'] = 'Kelas_perkuliahan/edit_kelas_perkuliahan_view';
 				$this->load->view('template', $data);
+		} else {
+			redirect('login');
+		}
 	}
 
 	public function detail_kelas(){
+		if ($this->session->userdata('logged_in') == TRUE) {
 				$id_kp = $this->uri->segment(3);
 				$data['getProdi'] = $this->daftar_ulang_model->getProdi();
 				$data['getPeriode'] = $this->daftar_ulang_model->getPeriode();
@@ -58,13 +58,20 @@ class Kelas_perkuliahan extends CI_Controller {
 				$data['mhs'] = $this->kelas_perkuliahan_model->data_kelas_mhs($id_kp);
 				$data['main_view'] = 'Kelas_perkuliahan/detail_kelas_perkuliahan_view';
 				$this->load->view('template', $data);
+		} else {
+			redirect('login');
+		}
 	}
 
 	public function page_edit_kelas_mhs(){
+		if ($this->session->userdata('logged_in') == TRUE) {
 				$id_kp = $this->uri->segment(3);
 				$data['mhs'] = $this->kelas_perkuliahan_model->detail_kelas_mhs($id_kp);
 				$data['main_view'] = 'Kelas_perkuliahan/edit_kelas_mhs_view';
 				$this->load->view('template', $data);
+		} else {
+			redirect('login');
+		}
 	}
 
 	public function save_kp()

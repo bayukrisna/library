@@ -12,22 +12,31 @@ class Pendaftaran extends CI_Controller {
 
   public function data_pra_pendaftar()
   {
+    if ($this->session->userdata('logged_in') == TRUE) {
     $data['pra_pendaftar'] = $this->pendaftaran_model->data_pra_pendaftar();
     $data['main_view'] = 'Daftar/data_prapendaftar_view';  
     $this->load->view('template', $data);
+    } else {
+      redirect('login');
+    }
   }
 
 	public function index()
 	{
+    if ($this->session->userdata('logged_in') == TRUE) {
 		$data['kodeunik'] = $this->pendaftaran_model->buat_kode();
     $data['kodeunik2'] = $this->daftar_ulang_model->buat_kode();
 		$data['getPreschool'] = $this->pendaftaran_model->getPreschool();
 		$data['main_view'] = 'Daftar/pendaftaran_view';  
 		$this->load->view('template', $data);
+     } else {
+      redirect('login');
+    }
 	}
 
 	public function save_pendaftaran_pagi()
 	{
+    if ($this->session->userdata('logged_in') == TRUE) {
 			if($this->pendaftaran_model->save_pendaftaran_pagi() == TRUE){
 				$pendaftar = $this->input->post('nama_pendaftar');
 				$this->session->set_flashdata('message', '<div class="col-md-12 alert alert-success"> Data '.$pendaftar.' berhasil didaftarkan. </div>');
@@ -36,6 +45,9 @@ class Pendaftaran extends CI_Controller {
 				$this->session->set_flashdata('message', '<div class="col-md-12 alert alert-danger"> Username/password sudah ada. </div>');
             	redirect('pendaftaran');
 			} 
+       } else {
+      redirect('login');
+    }
 	} 
 	public function get_kelas($param = NULL) {
     $kelas = $param;
@@ -230,11 +242,14 @@ class Pendaftaran extends CI_Controller {
 	}
 
   public function print_pendaftaran(){
-        
+      if ($this->session->userdata('logged_in') == TRUE) {
         $id_pendaftaran = $this->uri->segment(3);
         $data['edit'] = $this->pendaftaran_model->get_pra_pendaftar($id_pendaftaran);
         $data['main_view'] = 'tes_backup';
         $this->load->view('template', $data);
+        } else {
+      redirect('login');
+    }
   }
 
 }

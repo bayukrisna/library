@@ -12,12 +12,15 @@ class Kurikulum extends CI_Controller {
 
 	public function index()
 	{
+		if ($this->session->userdata('logged_in') == TRUE) {
 			$data['getProdi'] = $this->daftar_ulang_model->getProdi();
 			$data['getPeriode'] = $this->daftar_ulang_model->getPeriode();
 			$data['kurikulum'] = $this->kurikulum_model->data_kurikulum();
 			$data['main_view'] = 'kurikulum/kurikulum_view';
 			$this->load->view('template', $data);
-		
+		} else {
+			redirect('login');
+		}
 	}
 
 
@@ -50,6 +53,7 @@ class Kurikulum extends CI_Controller {
 
 	public function detail_kurikulum()
 	{
+		if ($this->session->userdata('logged_in') == TRUE) {
 			$id_kurikulum = $this->uri->segment(3);
 			$data['kurikulum'] = $this->kurikulum_model->detail_kurikulum($id_kurikulum);
 			$detail_dk = $this->uri->segment(3);
@@ -58,24 +62,38 @@ class Kurikulum extends CI_Controller {
 			$data['getProdi'] = $this->daftar_ulang_model->getProdi();
 			$data['main_view'] = 'kurikulum/detail_kurikulum_view';
 			$this->load->view('template', $data);
+			} else{
+				$this->session->set_flashdata('message', '<div class="alert alert-danger"> '.validation_errors().' </div>');
+            	redirect('kurikulum');
+		}
 	}
 
 	public function detail_kurikulum2()
 	{
+		if ($this->session->userdata('logged_in') == TRUE) {
 			$id_kurikulum = $this->uri->segment(3);
 			$data['kurikulum'] = $this->kurikulum_model->detail_kurikulum($id_kurikulum);
 			$data['getPeriode'] = $this->daftar_ulang_model->getPeriode();
 			$data['getProdi'] = $this->daftar_ulang_model->getProdi();
 			$data['main_view'] = 'kurikulum/edit_kurikulum_view';
 			$this->load->view('template', $data);
+			} else{
+				$this->session->set_flashdata('message', '<div class="alert alert-danger"> '.validation_errors().' </div>');
+            	redirect('kurikulum');
+		}
 	}
 
 	public function detail_matkul_kurikulum()
 	{
+		if ($this->session->userdata('logged_in') == TRUE) {
 			$detail_dk = $this->uri->segment(3);
 			$data['kurikulum'] = $this->kurikulum_model->detail_matkul($detail_dk);
 			$data['main_view'] = 'kurikulum/edit_detail_kurikulum_view';
 			$this->load->view('template', $data);
+			} else{
+				$this->session->set_flashdata('message', '<div class="alert alert-danger"> '.validation_errors().' </div>');
+            	redirect('kurikulum');
+		}
 	}
 
 	 function autocomplete(){

@@ -12,14 +12,19 @@ class Finance extends CI_Controller {
 
 		public function index()
 	{
+		if ($this->session->userdata('logged_in') == TRUE) {
 		if($this->session->userdata('level') == 4 || $this->session->userdata('level') == 1){
 			redirect(base_url('dashboard'));
 		} else {
 			redirect(base_url('login'));
 		}
+		} else {
+			redirect('login');
+		}
 		
 	}
 	public function data_registrasi(){
+		
 		if($this->session->userdata('level') == 4 || $this->session->userdata('level') == 1){
 			$data['main_view'] = 'finance_view';
 		// $data['data']=$this->finance_model->data_mahasiswa();

@@ -10,11 +10,13 @@ class Ruang extends CI_Controller {
 	}
 
 	public function index(){
+		if ($this->session->userdata('logged_in') == TRUE) {
 				$data['ruang'] = $this->ruang_model->data_ruang();
 				$data['main_view'] = 'ruang/ruang_view';
 				$this->load->view('template', $data);
-			
-		
+			} else {
+			redirect('login');
+		}
 	}
 
 	public function simpan_ruang()

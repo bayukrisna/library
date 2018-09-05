@@ -11,34 +11,45 @@ class Master_asal_sekolah extends CI_Controller {
 
 	public function index()
 	{		
+		if ($this->session->userdata('logged_in') == TRUE) {
 			$data['asal_sekolah'] = $this->asal_sekolah_model->get_asal_sekolah();
 			$data['main_view'] = 'Asal_sekolah/master_asal_sekolah_view';
 			$this->load->view('template', $data);
+			} else {
+			redirect('login');
+		}
 	}
 	public function page_tambah_asal_sekolah(){
+		if ($this->session->userdata('logged_in') == TRUE) {
 				$data['kodeunik'] = $this->asal_sekolah_model->buat_kode();
 				$data['main_view'] = 'Asal_sekolah/tambah_asal_sekolah_view';
 				$this->load->view('template', $data);
-
+		} else {
+			redirect('login');
+		}
 	}
 	public function edit_asal_sekolah(){
+		if ($this->session->userdata('logged_in') == TRUE) {
 				$data['main_view'] = 'Asal_sekolah/edit_asal_sekolah_view';
 				$id_sekolah = $this->uri->segment(3);
 				$data['edit'] = $this->asal_sekolah_model->get_asal_sekolah_by_id($id_sekolah);
 				$this->load->view('template', $data);
+				} else {
+			redirect('login');
+		}
 	}
 
 	public function save_asal_sekolah()
-	{
-		//set rule di setiap form input
-		
-		
+	{	
+		if ($this->session->userdata('logged_in') == TRUE) {
 			if($this->asal_sekolah_model->save_asal_sekolah() == TRUE){
 				$username = $this->input->post('nama_sekolah');
 				$this->session->set_flashdata('message', '<div class="alert alert-success"> Registrasi '.$username.' berhasil didaftarkan. </div>');
             	redirect('master_asal_sekolah');
 			} 
-			
+		} else {
+			redirect('login');
+		}
 	}
 	public function save_edit_asal_sekolah(){
 			$id_sekolah = $this->uri->segment(3);
