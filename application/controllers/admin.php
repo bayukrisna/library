@@ -33,5 +33,7 @@ class Admin extends CI_Controller {
             	redirect('admin');
 			} 
 	} 
-	
+	public function calendar(){
+        
+    }
 }
