@@ -111,6 +111,17 @@ class Dashboard_model extends CI_Model {
       );
   }
 
+  public function dashboard_dosen($id_dosen){
+    $data_kelas = $this->db->select('count(*) as total')
+                ->where('id_dosen', $id_dosen)
+                ->get('tb_kelas_dosen')
+                ->row();
+     return array(
+      'data_kelas' => $data_kelas->total
+      );
+        
+  }
+
 	
 
 }

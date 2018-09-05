@@ -7,6 +7,7 @@ class Dashboard extends CI_Controller {
 	{
 		parent::__construct();
 		$this->load->model('dashboard_model');
+        $this->load->model('dosen_model');
 	}
 
 	public function index()
@@ -90,7 +91,12 @@ class Dashboard extends CI_Controller {
             $data['main_view'] = 'Mahasiswa/dashboard_mahasiswa_view';
             $this->load->view('template', $data);
         } else if($this->session->userdata('level') == 2){
-            $data['main_view'] = 'Mahasiswa/dashboard_mahasiswa_view';
+            $username = $this->session->userdata('username');
+            $session = $this->dosen_model->detail_dosen($username);
+            $id_dosen = $session->id_dosen;
+            $data['dosen'] = $this->dosen_model->detail_dosen($id_dosen);
+            $data['dashboard'] = $this->dashboard_model->dashboard_dosen($id_dosen);
+            $data['main_view'] = 'Dosen/dashboard_dosen_view';
             $this->load->view('template', $data);
         } else {
 			redirect(base_url('login'));

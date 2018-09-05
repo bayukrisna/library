@@ -18,6 +18,7 @@
 
            ?>
       <?php echo $this->session->flashdata('message');?>
+      <?php if($this->session->userdata('level') == 1 &&  $this->session->userdata('level') == 6) {?>
         <div class="box box-info">
             
             <!-- /.box-header -->
@@ -48,6 +49,8 @@
             </div>
             <!-- /.box-body -->
           </div>
+
+        <?php } ?>
 
 
          <div class="box">

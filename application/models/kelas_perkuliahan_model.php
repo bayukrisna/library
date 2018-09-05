@@ -90,6 +90,7 @@ class Kelas_perkuliahan_model extends CI_Model {
      $this->db->join('tb_bio','tb_bio.id_mahasiswa=tb_kelas_mhs.id_mahasiswa');
      $this->db->join('tb_konsentrasi_kelas','tb_konsentrasi_kelas.id_konsentrasi=tb_mahasiswa.id_konsentrasi');
      $this->db->join('tb_prodi','tb_prodi.id_prodi=tb_konsentrasi_kelas.id_prodi');
+     $this->db->join('tb_kelamin','tb_kelamin.id_kelamin=tb_bio.id_kelamin');
      $this->db->where('tb_kelas_mhs.id_kp', $id_dosen);
      $query = $this->db->get();
      return $query->result();
