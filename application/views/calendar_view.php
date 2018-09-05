@@ -1,5 +1,5 @@
 <div class="row">
-	<div class="col-md-6">
+	<div class="col-md-6" style="display: none">
 	<div class="box box-info">
             <div class="box-header">
               <h3 class="box-title">Tambah Event</h3>
@@ -12,11 +12,11 @@
               </div>
               <div class="form-group">
                 <label>Start:</label>
-                <input type="date" class="form-control">
+                <input type="datetime-local" class="form-control">
               </div>
               <div class="form-group">
                 <label>End:</label>
-                <input type="date" class="form-control">
+                <input type="datetime-local" class="form-control">
               </div>
               <!-- /.form group -->
 
@@ -47,11 +47,12 @@
 
         
               </div>
-<div class="col-md-6">
+<div class="col-md-12">
           <div class="box box-primary">
+          	
             <div class="box-body no-padding">
               <!-- THE CALENDAR -->
-              <div id="calendar" ></div>
+              <div id="calendar"></div>
             </div>
             <!-- /.box-body -->
           </div>
