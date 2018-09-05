@@ -13,9 +13,13 @@ class Aktivitas_perkuliahan extends CI_Controller {
 
 	public function index()
 	{
+		if ($this->session->userdata('logged_in') == TRUE) {
 			$data['aktivitas'] = $this->aktivitas_perkuliahan_model->data_aktivitas_perkuliahan();
 			$data['main_view'] = 'aktivitas_perkuliahan/aktivitas_perkuliahan_view';
 			$this->load->view('template', $data);
+			} else {
+			redirect('login');
+		}
 	}
 
 	public function cek_duplikat(){

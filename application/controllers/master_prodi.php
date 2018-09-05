@@ -11,16 +11,23 @@ class Master_prodi extends CI_Controller {
 
 		public function index()
 	{
+		if ($this->session->userdata('logged_in') == TRUE) {
 		$data['main_view'] = 'Prodi/master_prodi_view';
 		$data['prodi'] = $this->prodi_model->data_prodi();
 		$this->load->view('template', $data);
+		} else {
+			redirect('login');
+		}
 	}
 
 	public function page_tambah_prodi(){
-		
+		if ($this->session->userdata('logged_in') == TRUE) {
 		$data['main_view'] = 'prodi/tambah_prodi_view';
 		$data['kodeunik'] = $this->prodi_model->buat_kode();
 		$this->load->view('template', $data);
+		} else {
+			redirect('login');
+		}
 	}
 
 	public function save_prodi()
@@ -53,12 +60,14 @@ class Master_prodi extends CI_Controller {
 	}
 
 	public function edit_prodi(){
-			
+			if ($this->session->userdata('logged_in') == TRUE) {
 				$data['main_view'] = 'Prodi/edit_prodi_view';
 				$id_prodi = $this->uri->segment(3);
 				$data['edit'] = $this->prodi_model->get_prodi_by_id($id_prodi);
 				$this->load->view('template', $data);
-	
+			} else {
+			redirect('login');
+		}
 
 	}
 

@@ -13,17 +13,26 @@ class Master_dosen extends CI_Controller {
 
 	public function index()
 	{
+		if ($this->session->userdata('logged_in') == TRUE) {
 		$data['main_view'] = 'Dosen/master_dosen_view';
 		$data['dosen'] = $this->dosen_model->data_dosen();
 		$this->load->view('template', $data);
+		} else {
+			redirect('login');
+		}
 	}
 
 	public function page_tambah_dosen(){
+		if ($this->session->userdata('logged_in') == TRUE) {
 		$data['main_view'] = 'Dosen/tambah_dosen_view';
 		$this->load->view('template', $data);
+		} else {
+			redirect('login');
+		}
 	}
 
 	public function page_edit_dosen(){
+		if ($this->session->userdata('logged_in') == TRUE) {
 		if($this->session->userdata('level') == 2){
 				$username = $this->session->userdata('username');
 				$session = $this->dosen_model->detail_dosen($username);
@@ -34,9 +43,13 @@ class Master_dosen extends CI_Controller {
 		$data['dosen'] = $this->dosen_model->detail_dosen($id_dosen);
 		$data['main_view'] = 'Dosen/edit_dosen_view';
 		$this->load->view('template', $data);
+		} else {
+			redirect('login');
+		}
 	}
 
 	public function detail_dosen(){
+		if ($this->session->userdata('logged_in') == TRUE) {
 		if($this->session->userdata('level') == 2){
 				$username = $this->session->userdata('username');
 				$session = $this->dosen_model->detail_dosen($username);
@@ -47,6 +60,9 @@ class Master_dosen extends CI_Controller {
 		$data['dosen'] = $this->dosen_model->detail_dosen($id_dosen);
 		$data['main_view'] = 'Dosen/detail_dosen_view';
 		$this->load->view('template', $data);
+		} else {
+			redirect('login');
+		}
 	}
 
 	public function save_dosen()
@@ -120,6 +136,7 @@ class Master_dosen extends CI_Controller {
 	} 
 
 	public function jadwal_dosen(){
+		if ($this->session->userdata('logged_in') == TRUE) {
 		if($this->session->userdata('level') == 2){
 				$username = $this->session->userdata('username');
 				$session = $this->dosen_model->detail_dosen($username);
@@ -135,6 +152,9 @@ class Master_dosen extends CI_Controller {
 		$data['jumat'] = $this->dosen_model->jadwal_dosen_jumat($id_dosen);
 		$data['main_view'] = 'Dosen/jadwal_dosen_view';
 		$this->load->view('template', $data);
+		} else {
+			redirect('login');
+		}
 
 	}
 
@@ -152,6 +172,7 @@ class Master_dosen extends CI_Controller {
 
 	public function nilai_dosen()
 	{
+		if ($this->session->userdata('logged_in') == TRUE) {
 		if($this->session->userdata('level') == 2){
 				$username = $this->session->userdata('username');
 				$session = $this->dosen_model->detail_dosen($username);
@@ -163,6 +184,9 @@ class Master_dosen extends CI_Controller {
 		$data['nilai'] = $this->dosen_model->data_kp($id_dosen);
 		$data['main_view'] = 'Dosen/nilai_dosen_view';
 		$this->load->view('template', $data);
+		} else {
+			redirect('login');
+		}
 	} 
 
 

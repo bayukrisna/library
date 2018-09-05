@@ -13,6 +13,7 @@ class daftar_ulang extends CI_Controller {
 
 	public function page_du_pagi()
 	{
+		if ($this->session->userdata('logged_in') == TRUE) {
 			$id_pendaftaran = $this->uri->segment(3);
 			$data['du_pagi'] = $this->daftar_ulang_model->page_du_pagi($id_pendaftaran);
 			$data['kodeunik'] = $this->daftar_ulang_model->buat_kode();
@@ -21,6 +22,10 @@ class daftar_ulang extends CI_Controller {
 			$data['getPreschool'] = $this->daftar_ulang_model->getPreschool();
 			$data['main_view'] = 'Daftar/daftarulang_pagi_view';
 			$this->load->view('template', $data);
+			} else {
+			redirect('login');
+		}
+
 	}
 
 	public function save_mahasiswa_pagi()
@@ -36,14 +41,14 @@ class daftar_ulang extends CI_Controller {
 							'protocol' => 'smtp',
 							'smtp_host' 	=> 'ssl://smtp.googlemail.com',
 							'smtp_port' 	=> 465,
-							'smtp_user' 	=> 'faisalraharja990@gmail.com',
-							'smtp_pass' 	=> '-',
+							'smtp_user' 	=> 'bayukrisnaovo@gmail.com',
+							'smtp_pass' 	=> 'pacnut12',
 							'mailtype'		=> 'html',
 							'wordwrap'	=> TRUE
 						);
 						$this->email->initialize($config);
 						$this->email->set_newline("\r\n");
-						$this->email->from('faisalraharja990@gmail.com','Panitia PSB');
+						$this->email->from('bayukrisnaovo@gmail.com','Panitia PSB');
 						$this->email->to($this->input->post('email'));
 						
 						$this->email->subject('STIE Jakarta International College');
@@ -66,6 +71,7 @@ class daftar_ulang extends CI_Controller {
 
 	public function page_du_sore()
 	{
+		if ($this->session->userdata('logged_in') == TRUE) {
 			$id_pendaftaran = $this->uri->segment(3);
 			$data['du_pagi'] = $this->daftar_ulang_model->page_du_pagi($id_pendaftaran);
 			$data['kodeunik_mhs'] = $this->mahasiswa_model->buat_kode_mhs();
@@ -73,6 +79,9 @@ class daftar_ulang extends CI_Controller {
 			$data['getPreschool'] = $this->daftar_ulang_model->getPreschool();
 			$data['main_view'] = 'Daftar/daftarulang_sore_view';
 			$this->load->view('template', $data);
+			} else {
+			redirect('login');
+		}
 	}
 
 	public function save_mahasiswa_sore()
@@ -88,14 +97,14 @@ class daftar_ulang extends CI_Controller {
 							'protocol' => 'smtp',
 							'smtp_host' 	=> 'ssl://smtp.googlemail.com',
 							'smtp_port' 	=> 465,
-							'smtp_user' 	=> 'faisalraharja990@gmail.com',
-							'smtp_pass' 	=> '-',
+							'smtp_user' 	=> 'bayukrisnaovo@gmail.com',
+							'smtp_pass' 	=> 'pacnut12',
 							'mailtype'		=> 'html',
 							'wordwrap'	=> TRUE
 						);
 						$this->email->initialize($config);
 						$this->email->set_newline("\r\n");
-						$this->email->from('faisalraharja990@gmail.com','Panitia PSB');
+						$this->email->from('bayukrisnaovo@gmail.com','Panitia PSB');
 						$this->email->to($this->input->post('email'));
 						
 						$this->email->subject('STIE Jakarta International College');
@@ -118,6 +127,7 @@ class daftar_ulang extends CI_Controller {
 
 	public function data_peserta_tes()
 	{
+		if ($this->session->userdata('logged_in') == TRUE) {
 		if($this->session->userdata('level') == 3 || $this->session->userdata('level') == 1){
 			$data['du'] = $this->daftar_ulang_model->data_peserta_tes();
 			$data['main_view'] = 'Daftar/data_daftarulang_view';
@@ -125,11 +135,16 @@ class daftar_ulang extends CI_Controller {
 		} else {
 			redirect(base_url('login'));
 		}
+		} else {
+			redirect('login');
+		}
+
 			
 	}
 
 	public function detail_nilai()
 	{
+		if ($this->session->userdata('logged_in') == TRUE) {
 		if($this->session->userdata('level') == 3 || $this->session->userdata('level') == 1){
 			$id_du = $this->uri->segment(3);
 			$data['edit'] = $this->daftar_ulang_model->detail_nilai($id_du);
@@ -140,15 +155,21 @@ class daftar_ulang extends CI_Controller {
 		} else {
 			redirect(base_url('login'));
 		}
+		} else {
+			redirect('login');
+		}
 			
 	}
 
 	public function print_ljk(){
-        
+		if ($this->session->userdata('logged_in') == TRUE) {
         $id_mahasiswa= $this->uri->segment(3);
         $data['edit'] = $this->daftar_ulang_model->get_du_by_id($id_mahasiswa);
         $data['main_view'] = 'tes_backup';
         $this->load->view('template', $data);
+        } else {
+			redirect('login');
+		}
    }
 
 	public function get_concentrate($param = NULL) {

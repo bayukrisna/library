@@ -11,13 +11,17 @@ class Admin extends CI_Controller {
 
 	public function index()
 	{
-		if($this->session->userdata('level') == 1){
-			$data['dropdown_level'] = $this->user_model->dropdown_level();
-			$data['data_user'] = $this->user_model->data_user();
-			$data['main_view'] = 'Admin/tambah_user_view';
-			$this->load->view('template', $data);
+		if ($this->session->userdata('logged_in') == TRUE) {
+			if($this->session->userdata('level') == 1){
+				$data['dropdown_level'] = $this->user_model->dropdown_level();
+				$data['data_user'] = $this->user_model->data_user();
+				$data['main_view'] = 'Admin/tambah_user_view';
+				$this->load->view('template', $data);
+			} else {
+				redirect(base_url('login'));
+			}
 		} else {
-			redirect(base_url('login'));
+			redirect('login');
 		}
 			
 	}

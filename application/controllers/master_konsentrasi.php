@@ -11,21 +11,26 @@ class Master_konsentrasi extends CI_Controller {
 	}
 
 	public function index(){
+		if ($this->session->userdata('logged_in') == TRUE) {
 				$data['prodi'] = $this->prodi_model->data_prodi();
 				$data['konsentrasi'] = $this->konsentrasi_model->data_konsentrasi();
 				$data['main_view'] = 'Konsentrasi/master_konsentrasi_view';
 				$this->load->view('template', $data);
-			
-		
+			} else {
+			redirect('login');
+		}
 	}
 
 	public function page_tambah_konsentrasi(){
+		if ($this->session->userdata('logged_in') == TRUE) {
 				$data['kodeunik'] = $this->konsentrasi_model->buat_kode();
 				$data['drop_down_prodi'] = $this->konsentrasi_model->get_prodi();
 				$data['konsentrasi'] = $this->konsentrasi_model->data_konsentrasi();
 				$data['main_view'] = 'Konsentrasi/tambah_konsentrasi_view';
 				$this->load->view('template', $data);
-
+			} else {
+			redirect('login');
+		}
 	}
 
 	public function save_konsentrasi()
@@ -58,12 +63,16 @@ class Master_konsentrasi extends CI_Controller {
 	}
 
 	public function edit_konsentrasi(){
+		if ($this->session->userdata('logged_in') == TRUE) {
 				$data['konsentrasi'] = $this->konsentrasi_model->data_konsentrasi();
 			    $data['drop_down_prodi'] = $this->konsentrasi_model->get_prodi();
 				$data['main_view'] = 'Konsentrasi/edit_konsentrasi_view';
 				$id_konsentrasi = $this->uri->segment(3);
 				$data['edit'] = $this->konsentrasi_model->get_konsentrasi_by_id($id_konsentrasi);
 				$this->load->view('template', $data);
+				} else {
+			redirect('login');
+		}
 	}
 
 

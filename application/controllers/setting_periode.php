@@ -12,18 +12,24 @@ class Setting_periode extends CI_Controller {
 
 	public function index()
 	{
+		if ($this->session->userdata('logged_in') == TRUE) {
 			$data['getProdi'] = $this->daftar_ulang_model->getProdi();
 			$data['data_periode'] = $this->periode_model->data_periode();
 			$data['main_view'] = 'akademi/setting_periode_view';
 			$this->load->view('template', $data);
-		// }
+		} else {
+			redirect('login');
+		}
 	}
 	public function tambah_periode()
 	{
+		if ($this->session->userdata('logged_in') == TRUE) {
 			$data['getProdi'] = $this->daftar_ulang_model->getProdi();
 			$data['main_view'] = 'akademi/tambah_periode_view';
 			$this->load->view('template', $data);
-		// }
+		} else {
+			redirect('login');
+		}
 	}
 	public function simpan_periode()
 	{

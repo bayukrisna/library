@@ -13,6 +13,7 @@ class Profile extends CI_Controller {
 
 	public function index()
 	{
+        if ($this->session->userdata('logged_in') == TRUE) {
         if($this->session->userdata('level') == 5){
 
             $username = $this->session->userdata('username');
@@ -33,6 +34,9 @@ class Profile extends CI_Controller {
             $data['data_user'] = $this->user_model->data_session();
     	    $data['main_view'] = 'profile';
             $this->load->view('template', $data);	
+        }
+        } else {
+            redirect('login');
         }
 			
 	}

@@ -14,6 +14,8 @@ class Mahasiswa extends CI_Controller {
 	}
 	public function index()
 	{		
+		if ($this->session->userdata('logged_in') == TRUE) {
+		
 			if($this->session->userdata('level') == 5){
 				$id_mahasiswa = $this->session->userdata('id_mahasiswa');
 				$data['id_mahasiswa'] = $this->session->userdata('id_mahasiswa');
@@ -23,40 +25,49 @@ class Mahasiswa extends CI_Controller {
 			} else {
 				redirect(base_url('login'));
 			}
+		} else {
+			redirect('login');
+		}
 			
 	}
 	public function mahasiswa_data()
 	{
+		if ($this->session->userdata('logged_in') == TRUE) {
+			
 			$data['mahasiswa'] = $this->mahasiswa_model->data_mahasiswa();
 			$data['main_view'] = 'Mahasiswa/data_mahasiswa_view';
 			$this->load->view('template', $data);
-	}
-
-	public function mahasiswa2()
-	{
-			$data['mahasiswa'] = $this->mahasiswa_model->data_mahasiswa();
-			$data['main_view'] = 'Mahasiswa/data_mahasiswa_view2';
-			$this->load->view('template', $data);
+		} else {
+			redirect('login');
+		}
 	}
 	
 
 	public function detail_mahasiswa()
 	{
+		if ($this->session->userdata('logged_in') == TRUE) {
 			$id_du = $this->uri->segment(3);
 			$data['du'] = $this->daftar_ulang_model->detail_du($id_du);
 			$data['getProdi'] = $this->daftar_ulang_model->getProdi();
 			$data['getPreschool'] = $this->daftar_ulang_model->getPreschool();
 			$data['main_view'] = 'Mahasiswa/detail_mahasiswa_view';
 			$this->load->view('template', $data);
+			} else {
+			redirect('login');
+		}
 	}
 
 
 	public function data_mahasiswa()
 	{
+		if ($this->session->userdata('logged_in') == TRUE) {
 			$data['mahasiswa'] = $this->mahasiswa_model->data_mahasiswa_dikti();
 			$data['drop_down_prodi'] = $this->konsentrasi_model->get_prodi();
 			$data['main_view'] = 'Mahasiswa/mahasiswa_view';
 			$this->load->view('template', $data);
+		} else {
+			redirect('login');
+		}
 	}
 	
 
@@ -102,6 +113,7 @@ class Mahasiswa extends CI_Controller {
 
 	public function detail_mahasiswa_dikti()
 	{
+		if ($this->session->userdata('logged_in') == TRUE) {
 			$id_mahasiswa = $this->uri->segment(3);
 			$data['getStatus'] = $this->mahasiswa_model->getStatus();
 			$data['getGrade'] = $this->mahasiswa_model->getGrade();
@@ -110,9 +122,13 @@ class Mahasiswa extends CI_Controller {
 			$data['mahasiswa'] = $this->mahasiswa_model->detail_mahasiswa_dikti($id_mahasiswa);
 			$data['main_view'] = 'Mahasiswa/detail_mahasiswa_dikti_view';
 			$this->load->view('template', $data);
+			} else {
+			redirect('login');
+		}
 	}
 	public function krs_mahasiswa()
 	{
+		if ($this->session->userdata('logged_in') == TRUE) {
 			if($this->session->userdata('level') == 5){
 				$username = $this->session->userdata('username');
 				$session = $this->mahasiswa_model->session_mahasiswa($username);
@@ -130,10 +146,14 @@ class Mahasiswa extends CI_Controller {
 			$data['periode'] = $this->mahasiswa_model->Periode_krs($id_prodi);
 			$data['main_view'] = 'Mahasiswa/krs_mahasiswa_view';
 			$this->load->view('template', $data);
+			} else {
+			redirect('login');
+		}
 	}
 
 	public function jadwal_mhs()
 	{
+		if ($this->session->userdata('logged_in') == TRUE) {
 			if($this->session->userdata('level') == 5){
 				$username = $this->session->userdata('username');
 				$session = $this->mahasiswa_model->session_mahasiswa($username);
@@ -154,13 +174,18 @@ class Mahasiswa extends CI_Controller {
 			$data['jumat'] = $this->mahasiswa_model->jadwal_mhs_jumat($id_mahasiswa, $semester_aktif);
 			$data['main_view'] = 'Mahasiswa/jadwal_mahasiswa_view';
 			$this->load->view('template', $data);
+			} else {
+			redirect('login');
+		}
 	}
 
 	public function kelas_mhs()
 	{
+		if ($this->session->userdata('logged_in') == TRUE) {
 			if($this->session->userdata('level') == 5){
-				$id_mahasiswa = $this->session->userdata('id_mahasiswa');
-				$session = $this->mahasiswa_model->session_mahasiswa($id_mahasiswa);
+				$username = $this->session->userdata('username');
+				$session = $this->mahasiswa_model->session_mahasiswa($username);
+				$id_mahasiswa = $session->id_mahasiswa;
 				$id_prodi = $session->id_prodi;
 				$semester_aktif = $session->semester_aktif;
 			} else {
@@ -173,10 +198,14 @@ class Mahasiswa extends CI_Controller {
 			$data['kelas'] = $this->mahasiswa_model->kelas_mhs($id_mahasiswa, $semester_aktif);
 			$data['main_view'] = 'Mahasiswa/kelas_mahasiswa_view';
 			$this->load->view('template', $data);
+			} else {
+			redirect('login');
+		}
 	}
 
 	public function history_nilai()
 	{
+		if ($this->session->userdata('logged_in') == TRUE) {
 			if($this->session->userdata('level') == 5){
 				$username = $this->session->userdata('username');
 				$session = $this->mahasiswa_model->session_mahasiswa($username);
@@ -189,10 +218,14 @@ class Mahasiswa extends CI_Controller {
 			$data['nilai2'] = $this->mahasiswa_model->data_nilai_mhs($id_mahasiswa);
 			$data['main_view'] = 'Mahasiswa/history_nilai_view';
 			$this->load->view('template', $data);
+			} else {
+			redirect('login');
+		}
 	}
 
 	public function aktivitas_perkuliahan()
 	{
+		if ($this->session->userdata('logged_in') == TRUE) {
 			if($this->session->userdata('level') == 5){
 				$username = $this->session->userdata('username');
 				$session = $this->mahasiswa_model->session_mahasiswa($username);
@@ -204,10 +237,14 @@ class Mahasiswa extends CI_Controller {
 			$data['aktivitas'] = $this->mahasiswa_model->data_ap($id_mahasiswa);
 			$data['main_view'] = 'mahasiswa/aktivitas_perkuliahan_mahasiswa_view';
 			$this->load->view('template', $data);
+			} else {
+			redirect('login');
+		}
 	}
 
 	public function transkip_nilai()
 	{
+		if ($this->session->userdata('logged_in') == TRUE) {
 			$id_mahasiswa = $this->uri->segment(3);
 			$ipk = $this->uri->segment(4);
 			$id_grade = $this->uri->segment(5);
@@ -215,47 +252,54 @@ class Mahasiswa extends CI_Controller {
 				$this->session->set_flashdata('message', '<div class="alert alert-success"> Update IPK Berhasil </div>');
             	redirect('mahasiswa/transkip_nilai2/'.$id_mahasiswa);
 			} 	
+		} else {
+			redirect('login');
+		}
 	}
 
 	public function transkip_nilai2()
 	{
+		if ($this->session->userdata('logged_in') == TRUE) {
 			$id_mahasiswa = $this->uri->segment(3);
 			$data['mahasiswa'] = $this->mahasiswa_model->detail_krs_mahasiswa($id_mahasiswa);
 			$data['nilai2'] = $this->mahasiswa_model->data_nilai_mhs($id_mahasiswa);
 			$data['main_view'] = 'Mahasiswa/transkip_nilai_view';
 			$this->load->view('template', $data);
-	}
-
-
-
-
-	public function aktivasi_perkuliahan()
-	{
-			$data['main_view'] = 'Mahasiswa/aktivasi_perkuliahan_view';
-			$this->load->view('template', $data);
+			} else {
+			redirect('login');
+		}
 	}
 	
 
 	public function lihat_mahasiswa_dikti()
 	{
+		if ($this->session->userdata('logged_in') == TRUE) {
 			$id_mahasiswa = $this->uri->segment(3);
 			$data['mahasiswa'] = $this->mahasiswa_model->detail_mahasiswa_dikti($id_mahasiswa);
 			$data['main_view'] = 'Mahasiswa/lihat_mahasiswa_dikti_view';
 			$this->load->view('template', $data);
+			} else {
+			redirect('login');
+		}
 	}
 
 	public function page_tambah_mahasiswa()
 	{
+		if ($this->session->userdata('logged_in') == TRUE) {
 			$data['kodeunik_mhs'] = $this->mahasiswa_model->buat_kode_mhs();
 			$data['getStatus'] = $this->mahasiswa_model->getStatus();
 			$data['getGrade'] = $this->mahasiswa_model->getGrade();
 			$data['getProdi'] = $this->daftar_ulang_model->getProdi();
 			$data['main_view'] = 'Mahasiswa/tambah_mahasiswa_view';
 			$this->load->view('template', $data);
+			} else {
+			redirect('login');
+		}
 	}
 
 	public function history_pendidikan()
 	{
+		if ($this->session->userdata('logged_in') == TRUE) {
 			if($this->session->userdata('level') == 5){
 				$username = $this->session->userdata('username');
 				$session = $this->mahasiswa_model->session_mahasiswa($username);
@@ -270,6 +314,9 @@ class Mahasiswa extends CI_Controller {
 			$data['getProdi'] = $this->daftar_ulang_model->getProdi();
 			$data['main_view'] = 'Mahasiswa/history_pendidikan_view';
 			$this->load->view('template', $data);
+			} else {
+			redirect('login');
+		}
 	}
 
 	public function simpan_pendidikan()
@@ -305,6 +352,7 @@ class Mahasiswa extends CI_Controller {
 
 	public function prestasi()
 	{
+		if ($this->session->userdata('logged_in') == TRUE) {
 			if($this->session->userdata('level') == 5){
 				$username = $this->session->userdata('username');
 				$session = $this->mahasiswa_model->session_mahasiswa($username);
@@ -316,14 +364,21 @@ class Mahasiswa extends CI_Controller {
 			$data['prestasi'] = $this->mahasiswa_model->prestasi($id_mahasiswa);
 			$data['main_view'] = 'Mahasiswa/prestasi_mahasiswa_view';
 			$this->load->view('template', $data);
+			} else {
+			redirect('login');
+		}
 	}
 
 	public function detail_prestasi()
 	{
+		if ($this->session->userdata('logged_in') == TRUE) {
 			$id_prestasi = $this->uri->segment(3);
 			$data['prestasi'] = $this->mahasiswa_model->detail_prestasi($id_prestasi);
 			$data['main_view'] = 'Mahasiswa/edit_prestasi_mahasiswa_view';
 			$this->load->view('template', $data);
+			} else {
+			redirect('login');
+		}
 	}
 
 	public function simpan_prestasi()
@@ -418,10 +473,14 @@ class Mahasiswa extends CI_Controller {
 	}
 
 	public function data_ld(){
-		$data['ld'] = $this->mahasiswa_model->data_ld();
-		$data['getProdi'] = $this->daftar_ulang_model->getProdi();
-		$data['main_view'] = 'ld/lulus_do_view';
-		$this->load->view('template', $data);
+		if ($this->session->userdata('logged_in') == TRUE) {
+			$data['ld'] = $this->mahasiswa_model->data_ld();
+			$data['getProdi'] = $this->daftar_ulang_model->getProdi();
+			$data['main_view'] = 'ld/lulus_do_view';
+			$this->load->view('template', $data);
+		} else {
+			redirect('login');
+		}
 	}
 
 	public function get_autocomplete_ipk(){
