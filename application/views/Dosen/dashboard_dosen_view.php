@@ -16,21 +16,51 @@
             <a href="<?php echo base_url(); ?>master_dosen/nilai_dosen/<?php echo $dosen->id_dosen; ?>" class="small-box-footer">Lihat Data <i class="fa fa-arrow-circle-right"></i></a>
           </div>
         </div>
-        <!-- ./col -->
-        
-        <!-- ./col -->
-        
+          </div>
+         <div class="row"> 
+          <div class="col-lg-6 col-xs-12">
+          <div class="box box-info">
+            <div class="box-body">
 
+              <h3 style=""> Information Box </h3>
+          <!-- small box -->
+          <table  class="table table-bordered table-striped">
+                
+                <thead>
+                <tr>
+                  <th>No</th>
+                  <th>Judul Informasi</th>
+                  <th>Deskripsi</th>
+                  <th>Aksi</th>
+                </tr>
+                </thead>
+                <tbody>
+
+                <?php 
+                $no = 0;
+                foreach ($informasi as $data) {
+                  echo '
+                  
+                <tr>
+                  <td>'.++$no.'</td>
+
+                  <td><a href="" data-toggle="modal" data-target="#modal_lihat'.$data->id_info.'">'.$data->judul_info.'</a></td>
+                  <td>'.$data->deskripsi_info.'</td>
+                  <td><a href="" data-toggle="modal" data-target="#modal_edit'.$data->id_info.'"><i class="fa fa-pencil"> </i></a></td>
+                  
+
+       
+                ' ;
+                
+              }
+              ?>
+                </tbody>
+              </table>
+        </div>
+        </div>
+      </div>
 
       </div>
-      <!-- /.row -->
-      <!-- Main row -->
-          <!-- /.box -->
-
-          <!-- quick email widget -->
-          
-            
-          </div>
 <script src="<?php echo base_url(); ?>assets/plugins/jQuery/jquery-2.2.3.min.js"></script>
 <!-- Bootstrap 3.3.6 -->
 

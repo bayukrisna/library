@@ -15,7 +15,7 @@ class Login extends CI_Controller {
 			if($this->session->userdata('level') == 1){ //mahasiswa
 				redirect(base_url('admin'));
 			} else if($this->session->userdata('level') == 2){ // Dosen
-				redirect(base_url('dosen'));
+				redirect(base_url('dashboard'));
 			} else if($this->session->userdata('level') == 3){ // Marketing
 				redirect(base_url('dashboard'));
 			} else if($this->session->userdata('level') == 4){ // Finance

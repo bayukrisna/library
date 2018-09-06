@@ -1,6 +1,29 @@
 <section class="content">
       <!-- Small boxes (Stat box) -->
       <div class="row">
+         <div class="col-md-12">
+          <div class="info-box bg-aqua">
+            <span class="info-box-icon"><i class="glyphicon glyphicon-info-sign"></i></span>
+
+            <div class="info-box-content">
+              <span class="info-box-text"> <b> <i>NEW INFO ! </i></b></span>
+              <span class="info-box-number"><?php foreach ($informasi as $data) { echo $data->judul_info; ?>
+                
+              </span>
+
+              <div class="progress">
+                <div class="progress-bar" style="width: 100%"></div>
+              </div>
+              <span class="progress-description">
+                    <?php echo substr($data->deskripsi_info,0,100); ?> ... 
+                    <a class="pull-right" style="color: white" href="" data-toggle="modal" data-target="#modal_view<?php echo $data->id_info; ?>"><u><i> Read More</i></u> </a>
+                  </span>
+             
+                <?php } ?>
+
+            </div>
+        </div>
+      </div>
         <div class="col-lg-3 col-xs-6">
           <!-- small box -->
           <div class="small-box bg-aqua">

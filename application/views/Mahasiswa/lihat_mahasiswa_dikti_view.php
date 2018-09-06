@@ -84,7 +84,8 @@
                     <td class="left_column" width="15%">NIM</td>
                     <td colspan="6">:  <?php echo $mahasiswa->nim; ?>
                     </td>
-                    <td rowspan="8" width="15%"><div class="btn btn-file" >
+                    <td rowspan="8" width="15%">
+                        <div class="btn btn-file" >
                  
                   <img id="output" height="200" width="150" class="pull-right" width="40%" src="<?php echo base_url(); ?>uploads/<?php echo $mahasiswa->foto_mahasiswa; ?>" alt="Your Image" onerror="this.src='<?php echo base_url();?>uploads/user.jpg'">
                 </div></td>

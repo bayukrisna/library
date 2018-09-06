@@ -11,6 +11,7 @@ class Mahasiswa extends CI_Controller {
 		$this->load->model('konsentrasi_model');
 		$this->load->model('kurikulum_model');
 		$this->load->model('user_model');
+		$this->load->library('encrypt');
 	}
 	public function index()
 	{		
