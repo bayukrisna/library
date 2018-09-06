@@ -14,7 +14,7 @@
         <div class="col-md-4 col-sm-4 col-xs-4 col-lg-4">
           <?php echo $this->session->flashdata('message'); ?>
           <div class="panel panel-default">
-            <div class="panel-heading"><h4>Login Administrator</h4></div>
+            <div class="panel-heading"><h4>Sistem Informasi Akademik</h4></div>
               <div class="panel-body">
               <form action="<?php echo base_url('login/login'); ?>" name="form-login" id="form-login" method="post" onsubmit="return validateForm()">
                 <div class="input-group">
