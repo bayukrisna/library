@@ -204,6 +204,7 @@ class Laporan extends CI_Controller {
 	 } else {
 			redirect('login');
 		}
+	}
 }
 
 
