@@ -13,8 +13,13 @@ class Calendar extends CI_Controller {
 	{
 		$var1 = $this->calendar_model->data();
 		foreach ($var1 as $key) {
+			$key->waktu_start = date('h:i a', strtotime($key->start));
+			$key->waktu_end = date('h:i a', strtotime($key->end));
+			$key->tanggal = date('d F Y', strtotime($key->start));
 			$cek[] = array('title' => $key->title,
 						 'start' => $key->start,
+						 'waktu' => $key->waktu_start.' - '.$key->waktu_end,
+						 'tanggal' => $key->tanggal,
 						 'end' => $key->end,
 						 'backgroundColor' => $key->backgroundColor,
 						 'description' => $key->description,

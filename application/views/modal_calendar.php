@@ -14,24 +14,31 @@
     <div id="fullCalModal" class="modal fade">
         <div class="modal-dialog">
             <div class="modal-content">
-                <div class="modal-header">
-                    <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">×</span> <span class="sr-only">close</span></button>
-                    <h4 id="modalTitle" class="modal-title"></h4>
-                </div>
-                <div class="modal-body">
-                <!-- <div class="form-group">
-                  <label>Text</label>
-                  <input type="text" class="form-control" placeholder="Enter ...">
-                </div> -->
-                <div class="form-group">
-                  <label>Deskripsi</label>
-                  <textarea id="modalBody" class="form-control" readonly=""></textarea>
-                </div>
+              <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                  <span aria-hidden="true">&times;</span></button>
+                <h4 class="modal-title" id="modal-title"></h4>
               </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-                    <!-- <a class="btn btn-primary" id="eventUrl" target="_blank">Event Page</a> -->
-                </div>
+                <div class="modal-body">
+                  <table class="table">
+                    <tr>
+                      <td width="20%">Judul </td>
+                      <td>:&nbsp;</td>
+                      <td id="modalTitle"></td>
+                    </tr>
+                    <tr>
+                      <td width="20%">Waktu </td>
+                      <td>:&nbsp;</td>
+                      <td id="modalWaktu"></td>
+                    </tr>
+                    <tr>
+                      <td width="20%">Deskripsi </td>
+                      <td>:&nbsp;</td>
+                      <td><textarea id="modalBody" class="form-control" readonly=""></textarea></td>
+                    </tr>
+                    
+                  </table>
+              </div>
             </div>
         </div>
     </div>
@@ -55,8 +62,11 @@
         day: 'day'
       },
                 eventClick:  function(event, jsEvent, view) {
+                    document.getElementById("modalTitle").value = event.title;
                     $('#modalTitle').html(event.title);
+                    $('#modal-title').html(event.tanggal);
                     $('#modalBody').html(event.description);
+                    $('#modalWaktu').html(event.waktu);
                     $('#eventUrl').attr('href',event.url);
                     $('#fullCalModal').modal();
                     return false;
