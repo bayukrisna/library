@@ -241,7 +241,6 @@ a:hover .tooltiptext {
           <?php } else { ?>
             <li><a href="<?php echo base_url(); ?>dashboard"><i class="fa fa-dashboard"></i><span>Dashboard</span></a></li>
             <li><a href="<?php echo base_url(); ?>calendar"><i class="fa fa-dashboard"></i><span>Calendar</span></a></li>
-            <li><a href="<?php echo base_url(); ?>calendar/google"><i class="fa fa-dashboard"></i><span>Calendar Google</span></a></li>
         <li class="treeview">
           <a href="#">
             <i class="fa fa-dashboard"></i> <span>Master</span>
@@ -413,8 +412,10 @@ a:hover .tooltiptext {
 
 <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.11.2/moment.min.js"></script>
 <script src="<?php echo base_url(); ?>assets/plugins/fullcalendar/fullcalendar.min.js"></script>
+
 <!-- Page specific script -->
-<script>
+<!-- <script>
+  
   $(function () {
 
     /* initialize the external events
@@ -462,6 +463,13 @@ a:hover .tooltiptext {
         week: 'week',
         day: 'day'
       },
+       eventClick:  function(event, jsEvent, view) {
+                    $('#modalTitle').html(event.title);
+                    $('#modalBody').html(event.description);
+                    $('#eventUrl').attr('href',event.url);
+                    $('#fullCalModal').modal();
+                    return false;
+                },
       //Random default events
       events: <?php echo $calendar;?>,
       editable: false,
@@ -485,16 +493,15 @@ a:hover .tooltiptext {
         $('#calendar').fullCalendar('renderEvent', copiedEventObject, true);
 
         // is the "remove after drop" checkbox checked?
-        if ($('#drop-remove').is(':checked')) {
-          // if so, remove the element from the "Draggable Events" list
-          $(this).remove();
-        }
+        
 
       }
+
+
     });
     
   });
-</script>
+</script> -->
 
 <!-- Bootstrap 3.3.6 -->
 <!-- InputMask -->

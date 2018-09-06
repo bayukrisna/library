@@ -10,7 +10,7 @@ class Calendar_model extends CI_Model {
 	}
 
 	public function data(){
-		return $this->db->get('events')->result();
+		return $this->db->get('tb_events')->result();
 	}
 
   public function edit_calendar(){
@@ -19,12 +19,13 @@ class Calendar_model extends CI_Model {
             'title'                        => $this->input->post('title'),
             'start'                        => $this->input->post('start'),
             'end'                 => $this->input->post('end'),
-            'backgroundColor'          => $this->input->post('backgroundColor')
+            'backgroundColor'          => $this->input->post('backgroundColor'),
+            'description'                 => $this->input->post('description')
       );
     $id = $this->input->post('id');
     if (!empty($data)) {
             $this->db->where('id', $id)
-        ->update('events', $data);
+        ->update('tb_events', $data);
 
           return true;
         } else {
@@ -37,9 +38,10 @@ class Calendar_model extends CI_Model {
             'title'                        => $this->input->post('title'),
             'start'                        => $this->input->post('start'),
             'end'                 => $this->input->post('end'),
-            'backgroundColor'          => $this->input->post('backgroundColor')
+            'backgroundColor'          => $this->input->post('backgroundColor'),
+            'description'                 => $this->input->post('description')
       );
-    $this->db->insert('events', $data);
+    $this->db->insert('tb_events', $data);
 
         if($this->db->affected_rows() > 0){
             
@@ -52,7 +54,7 @@ class Calendar_model extends CI_Model {
 
   public function hapus_calendar($id){
         $this->db->where('id', $id)
-          ->delete('events');
+          ->delete('tb_events');
 
     if ($this->db->affected_rows() > 0) {
       return TRUE;

@@ -94,6 +94,10 @@
                 </div>
                 <!-- /.input group -->
               </div>
+              <div class="form-group">
+                <label>Deskripsi:</label>
+                <textarea name="description" class="form-control"></textarea>
+              </div>
               <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
               <button type="submit" class="btn btn-primary pull-right">Tambah</button>
 
@@ -145,6 +149,10 @@
                   </div>
                 </div>
                 <!-- /.input group -->
+              </div>
+              <div class="form-group">
+                <label>Deskripsi:</label>
+                <textarea name="description" class="form-control"><?php echo $i->description; ?></textarea>
               </div>
               <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
               <button type="submit" class="btn btn-primary pull-right">Edit</button>

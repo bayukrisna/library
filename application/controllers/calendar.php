@@ -17,17 +17,21 @@ class Calendar extends CI_Controller {
 						 'start' => $key->start,
 						 'end' => $key->end,
 						 'backgroundColor' => $key->backgroundColor,
+						 'description' => $key->description,
+						 'url' => '#',
+						 // 'url' => 'http://www.mikesmithdev.com/blog/pdf-secure-access-and-log-downloads/',
 						 'borderColor' => $key->backgroundColor);
 		}
 		$cek = json_encode($cek);
 		
 		$data['calendar'] = $cek;
-		$data['main_view'] = 'calendar_view';
+		$data['aldi'] = 'cek';
+		$data['main_view'] = 'modal_calendar';
 		$this->load->view('template', $data);
 		// }
 	}
 	function google(){
-		$data['main_view'] = 'ss';
+		$data['main_view'] = 'modal_calendar';
 		$this->load->view('template', $data);
 	}
 	function master_calendar(){
