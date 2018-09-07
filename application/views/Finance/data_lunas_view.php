@@ -19,7 +19,7 @@
                   <th>Nama Pendaftar</th>
                   <th>Tanggal Konfirmasi</th>
                   <th>Gambar</th>
-                  <th>Aksi</th>
+                  <!-- <th>Aksi</th> -->
                 </tr>
                 </thead>
                 <tbody>
@@ -45,7 +45,7 @@
                
                   <td> <a href="'.base_url('uploads/'.$data->bukti_transfer).'" class="btn btn-info btn-sm" target="_blank">Lihat Bukti</a>
                   </td>
-                  <td>
+                  
                   
 
        

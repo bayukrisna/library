@@ -1,3 +1,4 @@
+<script type="text/javascript" src="<?php echo base_url().'assets/js/jquery.js'?>"></script>
 <section class="content">
       <div class="row">
         <div class="col-xs-12">
@@ -68,7 +69,7 @@
                       <input type="hidden" name="id_pendaftaran" class="form-control" id="alamat" placeholder="Input Home Address" required="" value="<?php echo $i->id_pendaftaran;?>">
                         <label class="control-label col-xs-3" >No. Registrasi</label>
                         <div class="col-xs-6">
-                            <input type="text" name="id_daftar_ulang" class="form-control input-sm pull-left" id="id_daftar_ulang" placeholder="" required="" onKeyup="checkAvailability()">
+                            <input type="text" name="id_daftar_ulang" class="form-control input-sm pull-left" id="id_daftar_ulang" placeholder="" required="" onBlur="checkAvailability<?php echo $i->id_pendaftaran?>()" value="">
                         </div>
                         <div class="col-xs-1">
                         <span id="user-availability-status"></span> 
@@ -87,14 +88,11 @@
         </div>
 
     <?php endforeach;?>
+    <?php $kui = '12';?>
     <!--END MODAL ADD BARANG-->
-<script>
-  $(document).ready(function(){
-    $('#mydata').DataTable();
-  });
-</script>
 <script type="text/javascript">
-  function checkAvailability() {
+
+  function checkAvailability<?php echo $i->?>() {
                 $.ajax({
                     url: '<?php echo base_url(); ?>finance/cek_id_daftar_ulang/',
                     data: 'id_daftar_ulang='+$("#id_daftar_ulang").val(),
@@ -102,6 +100,7 @@
                     dataType: 'html',
                     success:function(data){
                     $("#user-availability-status").html(data);
+                    console.log(data);
                     },
                     error:function (){}
                 });

@@ -202,11 +202,14 @@ return array(
   }
 
   public function detail_du($id_mahasiswa){
-      return $this->db->join('tb_konsentrasi','tb_konsentrasi.id_konsentrasi=tb_mahasiswa.id_konsentrasi')
+      return $this->db->select('*')
+              ->join('tb_konsentrasi','tb_konsentrasi.id_konsentrasi=tb_mahasiswa.id_konsentrasi')
               ->join('tb_prodi','tb_prodi.id_prodi=tb_konsentrasi.id_prodi')
               ->join('tb_sekolah','tb_sekolah.id_sekolah=tb_mahasiswa.id_sekolah')
               ->join('tb_bio','tb_bio.id_mahasiswa=tb_mahasiswa.id_mahasiswa') 
               ->join('tb_alamat','tb_alamat.id_mahasiswa=tb_mahasiswa.id_mahasiswa') 
+              ->join('tb_kelamin','tb_kelamin.id_kelamin=tb_bio.id_kelamin') 
+              ->join('tb_agama','tb_agama.id_agama=tb_bio.id_agama') 
               ->join('tb_kontak','tb_kontak.id_mahasiswa=tb_mahasiswa.id_mahasiswa') 
               ->join('tb_kependudukan','tb_kependudukan.id_mahasiswa=tb_mahasiswa.id_mahasiswa')
               ->join('tb_ibu','tb_ibu.id_mahasiswa=tb_mahasiswa.id_mahasiswa')

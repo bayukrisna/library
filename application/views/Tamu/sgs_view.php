@@ -16,7 +16,7 @@
                   <th>Mahasiswa Narasumber</th>
                   <th>NIM</th>
                   <th>Tanggal Pendaftaran</th>
-                  <th>Aksi</th>
+                  <!-- <th>Aksi</th> -->
                 </tr>
                 </thead>
                 <tbody>
@@ -37,10 +37,6 @@
                   <td>'.$data->nama_mahasiswa.'</td> 
                   <td>'.$data->nim.'</td> 
                   <td>'.$data->tanggal_pendaftaran.'</td>
-                  <td>
-                       
-
-                  </td>
                 </tr>
                 ';
                 }
