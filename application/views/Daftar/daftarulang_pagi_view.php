@@ -14,7 +14,7 @@
                 <div class="form-group">
                   <label for="no">No. Registrasi</label>
                   <input type="text" name="id_du" class="form-control" id="id_du" placeholder=""  .input-sm value="<?php echo $du_pagi->id_du; ?>" readonly>
-                   <input type="text" name="id_mahasiswa" class="form-control" id="id_mahasiswa" placeholder=""  .input-sm value="<?php echo $kodeunik_mhs; ?>" readonly>
+                   <input type="hidden" name="id_mahasiswa" class="form-control" id="id_mahasiswa" placeholder=""  .input-sm value="<?php echo $kodeunik_mhs; ?>" readonly>
                 </div>
              
                 <div class="form-group">
