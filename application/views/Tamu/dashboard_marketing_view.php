@@ -148,6 +148,14 @@
           <td class="left_column">Deskripsi </td>
             <td>: <?php echo $i->deskripsi_info; ?>          </td>
         </tr> 
+        <tr>
+          <td class="left_column">Pengirim </td>
+            <td>: <?php echo $i->pengirimh; ?>          </td>
+        </tr> 
+         <tr>
+          <td class="left_column">Tanggal Terbit </td>
+            <td>: <?php echo $i->tgl_info; ?>          </td>
+        </tr> 
         
     </table>
 

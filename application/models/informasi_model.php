@@ -10,7 +10,7 @@ class Informasi_model extends CI_Model {
 	}
 
 	public function data_informasi(){
-		$this->db->select('penerima.nama_level as penerimah, pengirim.nama_level as pengirimh, tb_informasi.judul_info, tb_informasi.deskripsi_info,tb_informasi.id_info, tb_informasi.pengirim, tb_informasi.penerima');
+		$this->db->select('penerima.nama_level as penerimah, pengirim.nama_level as pengirimh, tb_informasi.judul_info, tb_informasi.deskripsi_info,tb_informasi.id_info, tb_informasi.pengirim, tb_informasi.penerima, tb_informasi.tgl_info');
 		 $this->db->from('tb_informasi');
 		 $this->db->join('tb_jabatan AS penerima','penerima.id_level=tb_informasi.penerima');
     $this->db->join('tb_jabatan AS pengirim','pengirim.id_level=tb_informasi.pengirim');
@@ -19,7 +19,7 @@ class Informasi_model extends CI_Model {
 	}
 
   public function filter_informasi($id_level){
-   $this->db->select('penerima.nama_level as penerimah, pengirim.nama_level as pengirimh, tb_informasi.judul_info, tb_informasi.deskripsi_info,tb_informasi.id_info, tb_informasi.pengirim, tb_informasi.penerima');
+   $this->db->select('penerima.nama_level as penerimah, pengirim.nama_level as pengirimh, tb_informasi.judul_info, tb_informasi.deskripsi_info,tb_informasi.id_info, tb_informasi.pengirim, tb_informasi.penerima, tb_informasi.tgl_info');
      $this->db->from('tb_informasi');
      $this->db->join('tb_jabatan AS penerima','penerima.id_level=tb_informasi.penerima');
     $this->db->join('tb_jabatan AS pengirim','pengirim.id_level=tb_informasi.pengirim');
@@ -30,7 +30,7 @@ class Informasi_model extends CI_Model {
   }
 
   public function filter_informasi2(){
-   $this->db->select('penerima.nama_level as penerimah, pengirim.nama_level as pengirimh, tb_informasi.judul_info, tb_informasi.deskripsi_info,tb_informasi.id_info, tb_informasi.pengirim, tb_informasi.penerima');
+   $this->db->select('penerima.nama_level as penerimah, pengirim.nama_level as pengirimh, tb_informasi.judul_info, tb_informasi.deskripsi_info,tb_informasi.id_info, tb_informasi.pengirim, tb_informasi.penerima, tb_informasi.tgl_info');
      $this->db->from('tb_informasi');
      $this->db->join('tb_jabatan AS penerima','penerima.id_level=tb_informasi.penerima');
     $this->db->join('tb_jabatan AS pengirim','pengirim.id_level=tb_informasi.pengirim');
@@ -81,9 +81,9 @@ class Informasi_model extends CI_Model {
   public function edit_informasi($id_info){
     $data = array(
       'id_info'        => $this->input->post('id_info', TRUE),
-       'judul_info'        => $this->input->post('judul_info', TRUE),
-        'deskripsi_info'        => $this->input->post('deskripsi_info', TRUE),
-        'id_level'          => $this->input->post('id_level', TRUE)
+        'judul_info'        => $this->input->post('judul_info'),
+            'deskripsi_info'        => $this->input->post('deskripsi_info'),
+            'penerima'          => $this->input->post('id_level')
       );
 
     if (!empty($data)) {
@@ -95,6 +95,7 @@ class Informasi_model extends CI_Model {
             return null;
         }
   }
+
 
 }
 

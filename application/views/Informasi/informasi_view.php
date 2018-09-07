@@ -4,7 +4,7 @@
           <?php echo $this->session->flashdata('message');?>
           <div class="box">
             <div class="box-header">
-              <h3 class="box-title">Data Mahasiswa Lulus atau Drop Out</h3>
+              <h3 class="box-title">Data Informasi</h3>
             </div>
             <div class="box-body">
               <?php if ($this->session->userdata('level') != 5) { ?>
@@ -62,14 +62,14 @@
                   <th>Judul Informasi</th>
                   <th>Pengirim</th>
                   <th>Penerima</th>
-                  <th>Aksi</th>
+                  <th style="width: 10%">Aksi</th>
                 </tr>
                 </thead>
                 <tbody>
 
                 <?php 
                 $no = 0;
-                
+                 $alert = "'Apakah anda yakin menghapus data ini ?'";
 
                 foreach ($informasi as $data) {
                   if($this->session->userdata('level') != 1 AND $this->session->userdata('level') != 6){
@@ -84,14 +84,17 @@
                   <td><a href="" data-toggle="modal" data-target="#modal_lihat'.$data->id_info.'">'.$data->judul_info.'</a></td>
                   <td>'.$data->pengirimh.'</td>
                   <td>'.$data->penerimah.'</td>
-                  <td><a href="" data-toggle="modal" data-target="#modal_edit'.$data->id_info.'"><i class="fa fa-pencil"> </i></a></td>
+                  <td><a href="" data-toggle="modal" data-target="#modal_edit'.$data->id_info.'" class="btn btn-success  btn-sm"><i class="glyphicon glyphicon-pencil"></i><span class="tooltiptext">Edit </span></a>
+
+                  <a href="'.base_url('informasi/hapus_informasi/'.$data->id_info).'" class="btn btn-danger  btn-sm" onclick="return confirm('.$alert.')"><i class="glyphicon glyphicon-trash"></i><span class="tooltiptext">Hapus</span></a>
+
+                  </td>
                   
 
        
                 ' ;
                 }
-              } else {
-                
+              } else { 
                 echo '
                   
                 <tr>
@@ -100,7 +103,13 @@
                   <td><a href="" data-toggle="modal" data-target="#modal_lihat'.$data->id_info.'">'.$data->judul_info.'</a></td>
                   <td>'.$data->pengirimh.'</td>
                   <td>'.$data->penerimah.'</td>
-                  <td><a href="" data-toggle="modal" data-target="#modal_edit'.$data->id_info.'"><i class="fa fa-pencil"> </i></a></td>
+                  <td>
+
+                  <a href="" data-toggle="modal" data-target="#modal_edit'.$data->id_info.'" class="btn btn-success  btn-sm"><i class="glyphicon glyphicon-pencil"></i><span class="tooltiptext">Edit </span></a>
+
+                   <a href="'.base_url('informasi/hapus_informasi/'.$data->id_info).'" class="btn btn-danger  btn-sm" onclick="return confirm('.$alert.')"><i class="glyphicon glyphicon-trash"></i><span class="tooltiptext">Hapus</span></a>
+
+                  </td>
                   
 
        
@@ -122,6 +131,7 @@
                   <th style="width:10%">No</th>
                   <th>Judul Informasi</th>
                   <th>Deskripsi</th>
+                  <th>Pengirim</th>
                 </tr>
                 </thead>
                 <tbody>
@@ -129,6 +139,7 @@
                 <?php 
                 $no = 0;
                 foreach ($informasi as $data) {
+                  if ($data->pengirim == $this->session->userdata('level') OR $data->penerima == $this->session->userdata('level')) {
                   echo '
                   
                 <tr>
@@ -136,11 +147,11 @@
 
                   <td><a href="" data-toggle="modal" data-target="#modal_lihat'.$data->id_info.'">'.$data->judul_info.'</a></td>
                   <td>'.$data->deskripsi_info.'</td>
-                  
+                  <td>'.$data->pengirimh.'</td>
 
        
                 ' ;
-                
+                }
               }
               ?>
                 </tbody>
@@ -284,7 +295,7 @@
           <td class="left_column">Judul <font color="#FF0000">*</font></td>
             <td> 
       <input type="text" name="judul_info" id="judul_info" class="validate[required] text-input" style="width:300px" required="" value="<?php echo $i->judul_info; ?>"> 
-      <input type="text" name="id_info" id="id_info" class="validate[required] text-input" style="width:300px" required="" value="<?php echo $i->id_info; ?>">   
+      <input type="hidden" name="id_info" id="id_info" class="validate[required] text-input" style="width:300px" required="" value="<?php echo $i->id_info; ?>">   
             </td>
         </tr>
         <tr>
@@ -296,7 +307,7 @@
           <td class="left_column">Ditujukan untuk <font color="#FF0000">*</font></td>
             <td> 
          <select name="id_level" required="">
-                        <option value="<?php echo $i->id_level; ?>"><?php echo $i->nama_level; ?></option>
+                        <option value="<?php echo $i->penerima; ?>"><?php echo $i->penerimah; ?></option>
                         <?php 
 
                                         foreach($getJabatan as $row)
@@ -346,8 +357,16 @@
             <td>: <?php echo $i->deskripsi_info; ?>          </td>
         </tr> 
       <tr>
-          <td class="left_column">Ditujukan untuk</td>
-            <td>: <?php echo $i->nama_level; ?>         </td>
+          <td class="left_column">Pengirim</td>
+            <td>: <?php echo $i->penerimah; ?>         </td>
+        </tr> 
+        <tr>
+          <td class="left_column">Penerima</td>
+            <td>: <?php echo $i->pengirimh; ?>         </td>
+        </tr> 
+        <tr>
+          <td class="left_column">Tanggal Terbit</td>
+            <td>: <?php echo $i->tgl_info; ?>         </td>
         </tr> 
         
     </table>

@@ -46,7 +46,11 @@ class Informasi extends CI_Controller {
 		$id_informasi = $this->uri->segment(3);
 		if ($this->informasi_model->hapus_informasi($id_informasi) == TRUE) {
 			$this->session->set_flashdata('message', '<div class="alert alert-success"> Data informasi berhasil dihapus </div>');
-			redirect('informasi');
+			if ($this->session->userdata('level') != 1 AND $this->session->userdata('level') != 1) {
+							redirect('informasi/saring_level/'.$this->session->userdata('level'));
+						} else {
+							redirect('informasi');
+						}
 		} else {
 			$this->session->set_flashdata('message', '<div class="alert alert-danger"> Data informasi gagal dihapus </div>');
 			redirect('informasi');
@@ -58,7 +62,12 @@ class Informasi extends CI_Controller {
 			$id_informasi = $this->input->post('id_info');
 					if ($this->informasi_model->edit_informasi($id_informasi) == TRUE) {
 						$this->session->set_flashdata('message', '<div class="alert alert-success"> Data informasi berhasil diedit </div>');
-						redirect('informasi');
+						if ($this->session->userdata('level') != 1 AND $this->session->userdata('level') != 1) {
+							redirect('informasi/saring_level/'.$this->session->userdata('level'));
+						} else {
+							redirect('informasi');
+						}
+						
 					} else {
 						$this->session->set_flashdata('message', '<div class="alert alert-danger"> Data informasi gagal diedit </div>');
 						redirect('informasi');

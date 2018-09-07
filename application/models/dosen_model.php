@@ -31,7 +31,7 @@ class Dosen_model extends CI_Model {
   }
 
   public function informasi_dosen($id_level){
-     $this->db->select('penerima.nama_level as penerima, pengirim.nama_level as pengirim, tb_informasi.judul_info, tb_informasi.deskripsi_info,tb_informasi.id_info');
+    $this->db->select('penerima.nama_level as penerimah, pengirim.nama_level as pengirimh, tb_informasi.judul_info, tb_informasi.deskripsi_info,tb_informasi.id_info, tb_informasi.pengirim, tb_informasi.penerima, tb_informasi.tgl_info');
      $this->db->from('tb_informasi');
      $this->db->join('tb_jabatan AS penerima','penerima.id_level=tb_informasi.penerima');
     $this->db->join('tb_jabatan AS pengirim','pengirim.id_level=tb_informasi.pengirim');

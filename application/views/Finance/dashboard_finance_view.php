@@ -67,3 +67,48 @@
           </div>
 
         </section>
+
+        <?php 
+        foreach($informasi as $i):
+        ?>
+        <div class="modal fade" id="modal_view<?php echo $i->id_info;?>" >
+            <div class="modal-dialog">
+            <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">x</button>
+                <h3 class="modal-title" id="myModalLabel">Detail Informasi</h3>
+            </div>
+                <div class="modal-body">
+
+                    <div class="form-group">
+                      
+                      <table class="table">
+      <tr>
+          <td class="left_column" style="width:20%">Judul </td>
+            <td>: <?php echo $i->judul_info; ?>   
+            </td>
+        </tr>
+        <tr>
+          <td class="left_column">Deskripsi </td>
+            <td>: <?php echo $i->deskripsi_info; ?>          </td>
+        </tr> 
+        <tr>
+          <td class="left_column">Pengirim </td>
+            <td>: <?php echo $i->pengirimh; ?>          </td>
+        </tr> 
+         <tr>
+          <td class="left_column">Tanggal Terbit </td>
+            <td>: <?php echo $i->tgl_info; ?>          </td>
+        </tr> 
+        
+    </table>
+
+                    </div>
+
+                </div>
+            </div>
+            </div>
+        </div>
+        
+
+    <?php endforeach;?>

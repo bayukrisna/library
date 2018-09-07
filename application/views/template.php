@@ -326,6 +326,8 @@ a:hover .tooltiptext {
             
           </ul>
         </li>
+         <li><a href="<?php echo base_url(); ?>informasi"><i class="fa fa-circle-o"></i>Informasi</a></li>
+
         <li class="treeview">
               <a href="#"><i class="fa fa-share"></i><span>Laporan</span>
                 <span class="pull-right-container">
