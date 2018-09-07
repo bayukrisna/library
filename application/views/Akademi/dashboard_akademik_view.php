@@ -2,7 +2,12 @@
       <!-- Small boxes (Stat box) -->
       <div class="row">
         <div class="col-md-12">
-          <div class="info-box bg-aqua">
+          <div class="info-box bg-aqua" 
+          <?php if($informasi == null){
+            echo 'style="display: none"';
+          }
+          ?>
+          >
             <span class="info-box-icon"><i class="glyphicon glyphicon-info-sign"></i></span>
 
             <div class="info-box-content">
@@ -15,8 +20,9 @@
                 <div class="progress-bar" style="width: 100%"></div>
               </div>
               <span class="progress-description">
-                    <?php echo substr($data->deskripsi_info,0,100); ?> ... 
-                    <a class="pull-right" style="color: white" href="" data-toggle="modal" data-target="#modal_view<?php echo $data->id_info; ?>"><u><i> Read More</i></u> </a>
+                <a href="" style="color: white" data-toggle="modal" data-target="#modal_view<?php echo $data->id_info; ?>"> 
+                    <?php echo substr($data->deskripsi_info,0,100); ?> ... </a>
+                    <a class="pull-right" style="color: white" href="<?php echo base_url(); ?>informasi" ><u><i> Read More</i></u> </a>
                   </span>
              
                 <?php } ?>
