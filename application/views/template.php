@@ -138,7 +138,7 @@ a:hover .tooltiptext {
 
                 <p>
                   <?php echo $this->session->userdata('username')?>
-                  <small>Member since Nov. 2012</small>
+                  <small>STIE JIC | SISTEM INFORMASI AKADEMIK</small>
                 </p>
               </li>
               <!-- Menu Body -->
@@ -245,10 +245,10 @@ a:hover .tooltiptext {
 
           <?php } else { ?>
             <li><a href="<?php echo base_url(); ?>dashboard"><i class="fa fa-dashboard"></i><span>Dashboard</span></a></li>
-            <li><a href="<?php echo base_url(); ?>calendar"><i class="fa fa-dashboard"></i><span>Akademik Calendar</span></a></li>
+            <li><a href="<?php echo base_url(); ?>calendar"><i class="fa fa-calendar"></i><span>Akademik Calendar</span></a></li>
         <li class="treeview">
           <a href="#">
-            <i class="fa fa-dashboard"></i> <span>Master</span>
+            <i class="fa fa-archive"></i> <span>Master</span>
             <span class="pull-right-container">
               <i class="fa fa-angle-left pull-right"></i>
             </span>
@@ -267,7 +267,7 @@ a:hover .tooltiptext {
         </li>
         <li class="treeview">
           <a href="#">
-            <i class="fa fa-dashboard"></i> <span> Pemasaran </span>
+            <i class="fa fa-area-chart"></i> <span> Pemasaran </span>
             <span class="pull-right-container">
               <i class="fa fa-angle-left pull-right"></i>
             </span>
@@ -282,7 +282,7 @@ a:hover .tooltiptext {
         </li>
         <li class="treeview">
           <a href="#">
-            <i class="fa fa-dashboard"></i> <span> Keuangan </span>
+            <i class="fa fa-balance-scale"></i> <span> Keuangan </span>
             <span class="pull-right-container">
               <i class="fa fa-angle-left pull-right"></i>
             </span>
@@ -295,7 +295,7 @@ a:hover .tooltiptext {
         </li>
          <li class="treeview">
           <a href="#">
-            <i class="fa fa-share"></i> <span>Akademik</span>
+            <i class="fa fa-graduation-cap"></i> <span>Akademik</span>
             <span class="pull-right-container">
               <i class="fa fa-angle-left pull-right"></i>
             </span>
@@ -326,7 +326,7 @@ a:hover .tooltiptext {
             
           </ul>
         </li>
-         <li><a href="<?php echo base_url(); ?>informasi"><i class="fa fa-circle-o"></i>Informasi</a></li>
+         <li><a href="<?php echo base_url(); ?>informasi"><i class="fa fa-info-circle"></i>Informasi</a></li>
 
         <li class="treeview">
               <a href="#"><i class="fa fa-share"></i><span>Laporan</span>
