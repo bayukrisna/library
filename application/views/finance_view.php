@@ -90,7 +90,7 @@
                     <div class="form-group">
                       <input type="hidden" name="id_pendaftaran" class="form-control" id="alamat" placeholder="Input Home Address" required="" value="">
                         <label class="control-label col-xs-3" >No. Registrasi</label>
-                        <div class="col-xs-6">
+                        <div class="col-xs-5">
                             <input type="text" name="id_daftar_ulang" class="id_daftar_ulang form-control input-sm pull-left" id="id_daftar_ulang" placeholder="" required="">
                         </div>
                         <div class="col-xs-1">
@@ -152,12 +152,13 @@
                 success : function(data){
                     var html = '';
                     var i;
+                    var a = 1;
                     var alert = "'Apakah anda yakin mengapus data ini ?'";
                     for(i=0; i<data.length; i++){
                         html += '<tr>'+
+                                '<td>'+a+++'</td>'+
                                 '<td>'+data[i].id_pendaftaran+'</td>'+
                                 '<td>'+data[i].nama_pendaftar+'</td>'+
-                                '<td>'+data[i].id_pendaftaran+'</td>'+
                                 '<td>'+data[i].id_pendaftaran+'</td>'+
                                 '<td><a href="<?php echo base_url()?>uploads/'+data[i].bukti_transfer+'" class="btn btn-info btn-sm" target="_blank">Lihat Bukti</a></td>'+
                                 '<td style="text-align:right;">'+

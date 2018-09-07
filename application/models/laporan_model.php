@@ -400,7 +400,7 @@ class Laporan_model extends CI_Model {
         <div class="col-xs-12">
             <!-- /.box-header -->
             <div class="box-body">
-            <h4><b>Laporan Peserta Tes</h4></b>
+            <h4><b>Laporan Student Get Student</h4></b>
             <table>
               <tr>
                 <td width="120px">Perguruan Tinggi</td>

@@ -142,10 +142,12 @@ class Finance_model extends CI_Model {
                     echo '<span class="label label-danger">No Registrasi Tidak Tersedia</span>
                     <input type="hidden" name="reg" class="callout callout-danger" id="reg" value="No Regristrasi Tidak Tersedia">
                     <script>document.getElementById("btn_update").disabled = true;</script>';
+                    $this->db->reconnect();
                 } else{
                 echo '<span class="label label-success">No Registrasi Tersedia</span>
                       <input type="hidden" name="reg" class="btn btn-info" id="reg" value="No Registrasi Tersedia" readonly="">
                       <script>document.getElementById("btn_update").disabled = false;</script>';
+                    $this->db->reconnect();
 
                 
                 }

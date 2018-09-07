@@ -15,7 +15,7 @@
                 <thead>
                 <tr>
                   <th>No</th>
-                  <th>Nama</th>
+                  <!-- <th>Nama</th> -->
                   <th>Username</th>
                   <th>Password</th>
                   <th>Jabatan</th>
@@ -30,7 +30,6 @@
                   
                 <tr>
                   <td>'.++$no.'</td>
-                  <td>'.$data->nama_mahasiswa.'</td>
                   <td>'.$data->username.'</td>
                   <td>'.$data->password.'</td>
                   <td>'.$data->nama_level.'</td>

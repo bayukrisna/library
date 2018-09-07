@@ -206,34 +206,33 @@ class Finance extends CI_Controller {
 	public function data_lunas()
 	{
 		if($this->session->userdata('level') == 4 || $this->session->userdata('level') == 1){
-			redirect(base_url('dashboard'));
+			$data['main_view'] = 'Finance/data_lunas_view';
+		$data['mahasiswa'] = $this->finance_model->data_lunas();
+		$this->load->view('template', $data);
 		} else {
 			redirect(base_url('login'));
 		}
-		$data['main_view'] = 'Finance/data_lunas_view';
-		$data['mahasiswa'] = $this->finance_model->data_lunas();
-		$this->load->view('template', $data);
+		
 	}
 
 	public function konfirmasi(){
 		if($this->session->userdata('level') == 4 || $this->session->userdata('level') == 1){
-			redirect(base_url('dashboard'));
-		} else {
-			redirect(base_url('login'));
-		}				
-				$id_pendaftaran = $this->input->post('id_pendaftaran');
+			$id_pendaftaran = $this->input->post('id_pendaftaran');
 				if ($this->input->post('reg') == 'No Registrasi Tersedia'){
 					if ($this->finance_model->save_konfirmasi($id_pendaftaran) == TRUE) {
 						$this->session->set_flashdata('message', '<div class="alert alert-success"> konfirmasi Berhasil </div>');
-						redirect('finance');
+						redirect('finance/data_registrasi');
 					} else  {
 						$this->session->set_flashdata('message', '<div class="alert alert-danger"> Konfirmasi Gagal </div>');
-						redirect('finance');
+						redirect('finance/data_registrasi');
 					} 	
 				} else {
 					$this->session->set_flashdata('message', '<div class="alert alert-danger"> Konfirmasi Gagal </div>');
-						redirect('finance');}
+						redirect('finance/data_registrasi');}
+		} else {
+			redirect(base_url('login'));
 		}
+	}				
 	public function konfirmasi_gagal($id_pendaftaran){				
 		if($this->session->userdata('level') == 4 || $this->session->userdata('level') == 1){
 			redirect(base_url('dashboard'));
@@ -251,12 +250,11 @@ class Finance extends CI_Controller {
 			}
 	public function cek_id_daftar_ulang(){
 		if($this->session->userdata('level') == 4 || $this->session->userdata('level') == 1){
-			redirect(base_url('dashboard'));
+			$id = $this->input->post('id_daftar_ulang');
+		$this->finance_model->cek_id_daftar_ulang($id);
 		} else {
 			redirect(base_url('login'));
 		}
-		$id = $this->input->post('id_daftar_ulang');
-		$this->finance_model->cek_id_daftar_ulang($id);
 	}
 	public function get_dropdown_pembayaran() {
 		// $layanan =$this->input->post('layanan');
