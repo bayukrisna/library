@@ -458,6 +458,7 @@ class Mahasiswa_model extends CI_Model {
             'nama_mahasiswa'      => $this->input->post('nama_mahasiswa', TRUE),
             'nim'      => $this->input->post('nim', TRUE),
             'id_status'      => '12',
+            'id_grade' => '4',
             'id_konsentrasi'      => $this->input->post('concentrate', TRUE),
             'id_hasil_tes'      => $this->input->post('id_hasil_tes', TRUE),
             'id_sekolah'      => $this->input->post('id_sekolah', TRUE),
