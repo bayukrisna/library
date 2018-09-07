@@ -1,9 +1,11 @@
 <section class="content">
       <div class="row">
+
         <div class="col-xs-12">
+          <?php echo $this->session->flashdata('message');?>
           <div class="box">
             <div class="box-header">
-              <?php echo $this->session->flashdata('message');?>
+              
               <h3 class="box-title">Data Mahasiswa</h3>
             </div>
             <!-- /.box-header -->
@@ -25,6 +27,9 @@
                 <?php 
                
                 foreach ($mahasiswa as $data) {
+                  if ($data->id_status == 19 OR $data->id_status == 1) {
+                    
+                  
                   echo '
                 <tr>
                   <td>'.$data->nim.'</td>
@@ -39,7 +44,7 @@
                   </td>
                 </tr>
                 ';
-                
+                }
               }
               ?>
                 </tbody>

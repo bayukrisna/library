@@ -103,7 +103,7 @@ function lI1IllI111IlI1I1llll1lIIl()
 <P class="p7 ft3">Mengingat kuota BEASISWA ini terbatas setiap gradenya maka diberlakukan <SPAN class="ft6">First In First Served </SPAN>(Pelayanan diutamakan bagi pendaftar terdahulu) jika kuota telah terpenuhi, maka akan masuk grade di bawahnya atau membayar biaya kuliah penuh.</P>
 <P class="p8 ft1">SELAMAT BERGABUNG!!!</P>
 <P class="p9 ft1">STIE JIC</P>
-<P class="p10 ft7">Sheila Septiyai. S.E</P>
+<P class="p10 ft7" style="text-align: center; padding-right: 47px"><?php echo $this->session->userdata('username'); ?></P>
 <P class="p11 ft1">Marketing</P>
 <P class="p1 ft1">Cc: Ketua Yayasan Pendidikan Setiabudi</P>
 </DIV>

@@ -107,7 +107,7 @@ class Tamu extends CI_Controller {
 	public function hapus_tamu($id_tamu){
 		if($this->session->userdata('level') == 3 || $this->session->userdata('level') == 1){
 			if ($this->tamu_model->hapus_tamu($id_tamu) == TRUE) {
-				$this->session->set_flashdata('message', 'HapusTamu Berhasil');
+				$this->session->set_flashdata('message','<div class="alert alert-success">Hapus tamu berhasil </div>');
 				redirect('tamu/data_tamu');
 			} else {
 				$this->session->set_flashdata('message', 'Hapus Tamu Gagal');
@@ -140,10 +140,10 @@ class Tamu extends CI_Controller {
 
 	    if($this->upload->do_upload('bukti_transfer')){
 	      if($this->tamu_model->save_bukti_transfer($this->upload->data(), $this->uri->segment(3)) == TRUE){
-	        $this->session->set_flashdata('success', 'Upload Bukti Berhasil');
+	        $this->session->set_flashdata('message','<div class="alert alert-success">Upload bukti berhasil </div>');
 	            redirect('tamu/data_tamu');
 	      } else {
-	        $this->session->set_flashdata('failed', 'Update foto gagal');
+	        $this->session->set_flashdata('message','<div class="alert alert-success">Hapus tamu berhasil </div>');
 	            redirect('tamu/page_upload');
 	      }
 	    } else {
@@ -155,8 +155,8 @@ class Tamu extends CI_Controller {
 	  public function save_edit_tamu(){
       $id_du = $this->uri->segment(3);
           if ($this->tamu_model->save_edit_tamu($id_du) == TRUE) {
-            $data['message'] = 'Edit Tamu berhasil';
-            redirect('tamu');
+            $this->session->set_flashdata('message','<div class="alert alert-success">Edit tamu berhasil </div>');
+            redirect('tamu/data_tamu');
           } else {
             $data['main_view'] = 'Tamu/detail_tamu_view';
             $data['message'] = 'mahasiswa/detail_mahasiswa';
