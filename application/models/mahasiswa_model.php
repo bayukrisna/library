@@ -54,7 +54,6 @@ class Mahasiswa_model extends CI_Model {
               ->join('tb_status_mhs','tb_status_mhs.id_status=tb_mahasiswa.id_status')
               ->join('tb_agama','tb_agama.id_agama=tb_bio.id_agama')
               ->join('tb_kelamin','tb_kelamin.id_kelamin=tb_bio.id_kelamin')
-              ->where('tb_mahasiswa.id_status', '1')
               ->get('tb_mahasiswa')
               ->result();
 	}
@@ -717,6 +716,23 @@ class Mahasiswa_model extends CI_Model {
         }
   }
 
+  public function save_edit_mahasiswa2($id_tes){
+    $data = array(
+            'nama_mahasiswa'      => $this->input->post('nama_mahasiswa', TRUE),
+            'nim'      => $this->input->post('nim', TRUE),   
+            'id_konsentrasi'      => $this->input->post('concentrate', TRUE)
+      );
+
+    if (!empty($data)) {
+            $this->db->where('id_mahasiswa', $id_tes)
+        ->update('tb_mahasiswa', $data);
+
+          return true;
+        } else {
+            return null;
+        }
+  }
+
   public function save_edit_mhs_add($id_tes){
     $data = array(
             'id_transportasi'      => $this->input->post('id_transportasi', TRUE),
@@ -735,10 +751,10 @@ class Mahasiswa_model extends CI_Model {
 
   public function save_edit_bio($id_tes){
     $data = array(
-            'jenis_kelamin'      => $this->input->post('jenis_kelamin', TRUE),
+            'id_kelamin'      => $this->input->post('id_kelamin', TRUE),
             'tanggal_lahir'      => $this->input->post('tanggal_lahir', TRUE),
             'tempat_lahir'     => $this->input->post('tempat_lahir', TRUE),
-            'agama'     => $this->input->post('agama', TRUE)
+            'id_agama'     => $this->input->post('id_agama', TRUE)
 
       );
 

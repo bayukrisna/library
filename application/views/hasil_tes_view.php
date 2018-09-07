@@ -188,7 +188,7 @@
                   </div>
                   <div class="col-md-5">
                     <input id="grade" name="grade" type="text" class="form-control input-sm" placeholder="" readonly="">
-                    <input id="id_grade" name="id_grade" type="hidden" class="form-control input-sm" placeholder="" readonly="">
+                    <input id="id_grade" name="id_grade" type="text" class="form-control input-sm" placeholder="" readonly="">
                   </div>
                 </div>
               </div>

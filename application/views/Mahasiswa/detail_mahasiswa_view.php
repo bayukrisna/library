@@ -20,8 +20,8 @@
                 </div>
                 <div class="form-group">
                   <label for="gender">Jenis Kelamin</label>
-                  <select id="gender" name="gender" class="form-control">
-            <option value="<?php echo $du->jenis_kelamin; ?>"><?php echo $du->jenis_kelamin; ?></option>
+                  <select id="gender" name="id_kelamin" class="form-control">
+            <option value="<?php echo $du->id_kelamin; ?>"><?php echo $du->jenis_kelamin; ?></option>
             <option value="L">Laki-laki</option>
             <option value="P">Perempuan</option>
 
@@ -38,13 +38,14 @@
                 </div>
                 <div class="form-group">
                   <label for="religion">Agama</label>
-                <select id="agama" name="agama" class="form-control">
-                  <option value="<?php echo $du->agama; ?>"><?php echo $du->agama; ?></option>
-                  <option value="kristen">Kristen</option>
-                  <option value="islam">Islam</option>
-                  <option value="hindu">Hindu</option>
-                  <option value="buddha">Buddha</option>
-                  <option value="konghuchu">Konghuchu</option>
+                <select id="agama" name="id_agama" class="form-control">
+                  <option value="<?php echo $du->id_agama; ?>"><?php echo $du->agama; ?></option>
+                  <option value="1">Islam</option>
+                  <option value="2">Katholik</option>
+                  <option value="3">Kristen</option>
+                  <option value="4">Hindu</option>
+                  <option value="5">Budha</option>
+                  <option value="6">Konghucu</option>
 
                 </select>                                     
                 </div>

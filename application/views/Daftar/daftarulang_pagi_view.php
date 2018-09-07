@@ -14,15 +14,15 @@
                 <div class="form-group">
                   <label for="no">No. Registrasi</label>
                   <input type="text" name="id_du" class="form-control" id="id_du" placeholder=""  .input-sm value="<?php echo $du_pagi->id_du; ?>" readonly>
-                   <input type="text" name="id_mahasiswa" class="form-control" id="id_mahasiswa" placeholder=""  .input-sm value="<?php echo $kodeunik_mhs; ?>" readonly>
+                   <input type="hidden" name="id_mahasiswa" class="form-control" id="id_mahasiswa" placeholder=""  .input-sm value="<?php echo $kodeunik_mhs; ?>" readonly>
                 </div>
              
-                <div class="form-group">
-                  <label for="no">Kode Tes</label>
-                  <input type="text" name="id_hasil_tes" class="form-control" id="id_hasil_tes" placeholder=""  .input-sm value="<?php echo $kodeunik; ?>" readonly>
+                
+                 
+                  <input type="hidden" name="id_hasil_tes" class="form-control" id="id_hasil_tes" placeholder=""  .input-sm value="<?php echo $kodeunik; ?>" readonly>
 
                   
-                </div>
+                
                 <div class="form-group">
                   <label for="email">Nama Lengkap</label>
                   <input type="text" name="nama_mahasiswa" class="form-control" id="nama_mahasiswa" placeholder="Input Full Name" value="<?php echo $du_pagi->nama_pendaftar; ?>" required="">
