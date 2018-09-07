@@ -109,7 +109,7 @@ a:hover .tooltiptext {
       <!-- mini logo for sidebar mini 50x50 pixels -->
       <span class="logo-mini"><b>JIC</b></span>
       <!-- logo for regular state and mobile devices -->
-      <span class="logo-lg"><b>STIE </b>JIC</span>
+      <span class="logo-lg"><img src="<?php echo base_url(); ?>/assets/img/STIE JIC-WHITE-01.png" alt="User Image" style="border: none;width: 120px;margin-top: -10px;"></span>
     </a>
     <!-- Header Navbar: style can be found in header.less -->
     <nav class="navbar navbar-static-top">
@@ -128,13 +128,13 @@ a:hover .tooltiptext {
           <!-- User Account: style can be found in dropdown.less -->
           <li class="dropdown user user-menu">
             <a href="#" class="dropdown-toggle" data-toggle="dropdown">
-              <img src="<?php echo base_url(); ?>/assets/img/jic.png" class="user-image" alt="User Image">
+              <img src="<?php echo base_url(); ?>/assets/img/JIC-WHITE-02.png" class="user-image" alt="User Image">
               <span class="hidden-xs"><?php echo $this->session->userdata('username')?></span>
             </a>
             <ul class="dropdown-menu">
               <!-- User image -->
               <li class="user-header">
-                <img src="<?php echo base_url(); ?>/assets/img/jic.png" class="img-circle" alt="User Image">
+                <img src="<?php echo base_url(); ?>/assets/img/JIC-WHITE-02.png" class="img-circle" alt="User Image">
 
                 <p>
                   <?php echo $this->session->userdata('username')?>
