@@ -21,10 +21,13 @@ if(!empty($ea)){
             <td>:
                 <input type="text" name="nama_mahasiswa" id="nama_mahasiswa" class="text-input" size="10" style="width:70%" value="<?php echo $mahasiswa->nama_mahasiswa; ?>" readonly>    </td>
       
-            <td class="left_column">Nama Ibu <font color="#FF0000">*</font></td>
-            <td>:  <input type="text" name="" id="" class="text-input" size="10" style="width:70%" value="<?php echo $mahasiswa->nama_ibu; ?>" readonly>
+             <td class="left_column">Waktu <font color="#FF0000">*</font></td>
+            <td>:  <select name="id_waktu" id="id_waktu" required="">
+                    <option value="<?php echo $mahasiswa->id_waktu; ?>"> <?php echo $mahasiswa->waktu; ?> </option>
+                    <option value="1">Pagi</option>
+                    <option value="2">Sore</option>
+                    </select></td>
                                   
-            <input type="hidden" name="stat_pd" value="A">
             </td>
            
         </tr>
@@ -39,15 +42,14 @@ if(!empty($ea)){
             <td class="left_column">Jenis Kelamin</td>
             <td>: <input type="text" name="jenis_kelamin" id="jenis_kelamin" class="text-input" size="10" style="width:70%" value="<?php echo $mahasiswa->jenis_kelamin; ?>" readonly></td>
             <td class="left_column">Agama <font color="#FF0000">*</font></td>
-            <td>:  <select name="agama" id="agama">
-            <option value="<?php echo $mahasiswa->agama; ?>"><?php echo $mahasiswa->agama; ?></option>
-            <option value="Islam">Islam</option>
-            <option value="Katholik">Katholik</option>
-             <option value="Kristen">Kristen</option>
-             <option value="Hindu">Hindu</option>
-             <option value="Budha">Budha</option>
-             <option value="Konghucu">Konghucu</option>
-             <option value="Lainnya">Lainnya</option>
+            <td>:  <select name="id_agama" id="id_agama">
+            <option value="<?php echo $mahasiswa->id_agama; ?>"><?php echo $mahasiswa->agama; ?></option>
+           <option value="1">Islam</option>
+            <option value="2">Katholik</option>
+            <option value="3">Kristen</option>
+            <option value="4">Hindu</option>
+            <option value="5">Budha</option>
+            <option value="6">Konghucu</option>
              </select></td>
             </tr>
         </table>

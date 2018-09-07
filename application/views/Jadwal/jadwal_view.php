@@ -1,8 +1,8 @@
-      <?php echo $this->session->flashdata('message');?>
+      
       <section class="content">
       <div class="row">
         <div class="col-xs-12">
-          
+          <?php echo $this->session->flashdata('message');?>
           <div class="box">
             <div class="box-header">
               <h3 class="box-title">Data Jadwal Perkuliahan</h3>
@@ -84,7 +84,7 @@
           <td class="left_column">Mata Kuliah</td>
             <td>: <input type="text" name="nama_matkul" id="nama_matkul" class="text-input" maxlength="80" size="80" style="width:400px">
             <input type="hidden" name="id_detail_kurikulum" id="id_detail_kurikulum" class="text-input" maxlength="80" size="80" style="width:100px">
-            <input type="text" name="id_prodi" id="id_prodi" class="text-input" maxlength="80" size="80" style="width:100px">
+            <input type="hidden" name="id_prodi" id="id_prodi" class="text-input" maxlength="80" size="80" style="width:100px">
           </td>
         </tr>
                      
@@ -204,7 +204,7 @@
         </tr> 
       <tr>
           <td class="left_column">Kelas</td>
-            <td>: <?php echo $i->nama_kelas;?>
+            <td>: <?php echo $i->nama_ruang;?>
           </td>
         </tr>
          <tr>

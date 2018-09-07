@@ -7,7 +7,7 @@
 		<table class="table">
     	  <tr>
             <td class="left_column">Nama Kurikulum <font color="#FF0000">*</font></td>
-            <td>: <input type="text" name="nama_kurikulum" id="nama_kurikulum" class="validate[required] text-input" maxlength="20" size="40" style="width:80%" required="" value="<?php echo $kurikulum->nama_kurikulum; ?>"></td>
+            <td>: <input type="text" name="nama_kurikulum" id="nama_kurikulum" class="validate[required] text-input" maxlength="20" size="80" style="width:80%" required="" value="<?php echo $kurikulum->nama_kurikulum; ?>"></td>
         </tr> 
         <tr>
             <td class="left_column">Program Studi <font color="#FF0000">*</font></td>
@@ -40,12 +40,6 @@
         </td>
         </tr>
         <tr>
-            <td class="left_column">Jumlah SKS</td>
-            <td>: 
-            <input type="text" name="jumlah_sks" id="jumlah_sks" class="text-input" maxlength="2" size="2" readonly style="width:10%; background-color:#E0E0E0" value="<?php echo $kurikulum->jumlah_sks; ?>">            <font color="#999999"><em> ( sks Jumlah bobot mata kuliah wajib + sks Jumlah bobot mata kuliah pilihan)</em></font>
-            </td>
-        </tr>
-        <tr>
             <td class="left_column">Jumlah Bobot Mata Kuliah Wajib (sks)</td>
             <td>: 
             <input type="text" name="bobot_matkul_wajib" id="bobot_matkul_wajib" class="text-input" maxlength="2" size="2" style="width:10%" value="<?php echo $kurikulum->bobot_matkul_wajib; ?>" onkeyup="sum();">  
@@ -65,13 +59,4 @@
     </form>
 </div>
 
-<script>
-function sum() {
-      var bobot_matkul_wajib = document.getElementById('bobot_matkul_wajib').value;
-      var bobot_matkul_pilihan = document.getElementById('bobot_matkul_pilihan').value;
-      var result = parseInt(bobot_matkul_wajib) + parseInt(bobot_matkul_pilihan);
-      if (!isNaN(result)) {
-         document.getElementById('jumlah_sks').value = result;
-      }
-}
-</script>
+

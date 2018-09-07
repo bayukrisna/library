@@ -28,7 +28,7 @@ class Kurikulum extends CI_Controller {
 	{
 			if($this->kurikulum_model->simpan_kurikulum() == TRUE){
 				$prodi = $this->input->post('nama_kurikulum');
-				$this->session->set_flashdata('message', '<div class="alert alert-success"> Registrasi '.$prodi.' berhasil didaftarkan. </div>');
+				$this->session->set_flashdata('message', '<div class="alert alert-success"> Data '.$prodi.' berhasil ditambahkan</div>');
             	redirect('kurikulum');
 			
 			} else{
@@ -134,7 +134,7 @@ class Kurikulum extends CI_Controller {
 	public function hapus_kurikulum(){
 		$id_kurikulum = $this->uri->segment(3);
 		if ($this->kurikulum_model->hapus_kurikulum($id_kurikulum) == TRUE && $this->kurikulum_model->hapus_detail_kurikulum($id_kurikulum) == TRUE) {
-			$this->session->set_flashdata('message', 'Hapus kurikulum Berhasil');
+			$this->session->set_flashdata('message', '<div class="alert alert-success"> Hapus Kurikulum berhasil </div>');
 			redirect('kurikulum');
 		} else {
 			$this->session->set_flashdata('message', 'Hapus kurikulum Berhasil');
@@ -144,9 +144,10 @@ class Kurikulum extends CI_Controller {
 
 	public function hapus_matkul_kurikulum(){
 		$id_detail_kurikulum = $this->uri->segment(3);
+		$id_kurikulum = $this->uri->segment(4);
 		if ($this->kurikulum_model->hapus_matkul_kurikulum($id_detail_kurikulum) == TRUE) {
-			$this->session->set_flashdata('message', 'Hapus Mata Kuliah Berhasil');
-            	redirect('kurikulum');
+			$this->session->set_flashdata('message', '<div class="alert alert-success"> Hapus Mata Kuliah berhasil </div>');
+            	redirect('kurikulum/detail_kurikulum/'.$id_kurikulum);
 		} else {
 			$this->session->set_flashdata('message', 'Hapus Mata Kuliah Berhasil');
             	redirect('kurikulum');
@@ -167,7 +168,7 @@ class Kurikulum extends CI_Controller {
 	public function edit_detail_kurikulum(){
 			$id_detail_kurikulum = $this->uri->segment(3);
 					if ($this->kurikulum_model->edit_detail_kurikulum($id_detail_kurikulum) == TRUE) {
-						$this->session->set_flashdata('message', '<div class="alert alert-success"> Edit Kurikulum berhasil </div>');
+						$this->session->set_flashdata('message', '<div class="alert alert-success"> Edit Mata Kuliah berhasil </div>');
             			$data = $this->input->post('id_kurikulum');
             			redirect('kurikulum/detail_kurikulum/'.$data);
 					} else {

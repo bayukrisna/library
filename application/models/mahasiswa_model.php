@@ -139,6 +139,7 @@ class Mahasiswa_model extends CI_Model {
               ->join('tb_transportasi','tb_transportasi.id_transportasi=tb_mhs_add.id_transportasi','left')
               ->join('tb_agama','tb_agama.id_agama=tb_bio.id_agama')
               ->join('tb_kelamin','tb_kelamin.id_kelamin=tb_bio.id_kelamin')
+              ->join('tb_waktu','tb_waktu.id_waktu=tb_mahasiswa.id_waktu')
               ->where('tb_mahasiswa.id_mahasiswa', $id_mahasiswa)
               ->get('tb_mahasiswa')
               ->row();
@@ -752,7 +753,6 @@ class Mahasiswa_model extends CI_Model {
 
   public function save_edit_bio($id_tes){
     $data = array(
-            'id_kelamin'      => $this->input->post('id_kelamin', TRUE),
             'tanggal_lahir'      => $this->input->post('tanggal_lahir', TRUE),
             'tempat_lahir'     => $this->input->post('tempat_lahir', TRUE),
             'id_agama'     => $this->input->post('id_agama', TRUE)

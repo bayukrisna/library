@@ -25,25 +25,25 @@
 
         <tr>
             <td class="left_column">Bobot Praktikum <font color="#FF0000">*</font></td>
-            <td>: <input type="text" name="bobot_praktikum" id="bobot_praktikum" class="validate[required] text-input" maxlength="20" size="100" style="width:5%; background-color:#E0E0E0" required="" value="<?php echo $kurikulum->bp; ?>">
+            <td>: <input type="text" name="bobot_praktikum" id="bobot_praktikum" class="validate[required] text-input" maxlength="20" size="100" style="width:5%; background-color:#E0E0E0" required="" value="<?php echo $kurikulum->bobot_praktikum; ?>">
             </td>
         </tr> 
 
         <tr>
             <td class="left_column">Bobot Simulasi <font color="#FF0000">*</font></td>
-            <td>: <input type="text" name="bobot_simulasi" id="bobot_simulasi" class="validate[required] text-input" maxlength="20" size="100" style="width:5%; background-color:#E0E0E0" required="" value="<?php echo $kurikulum->bs; ?>">
+            <td>: <input type="text" name="bobot_simulasi" id="bobot_simulasi" class="validate[required] text-input" maxlength="20" size="100" style="width:5%; background-color:#E0E0E0" required="" value="<?php echo $kurikulum->bobot_simulasi; ?>">
             </td>
         </tr> 
 
          <tr>
             <td class="left_column">Bobot Praktik Lapangan <font color="#FF0000">*</font></td>
-            <td>: <input type="text" name="bobot_praktik_lapangan" id="bobot_praktik_lapangan" class="validate[required] text-input" maxlength="20" size="100" style="width:5%; background-color:#E0E0E0" required="" value="<?php echo $kurikulum->bpl; ?>">
+            <td>: <input type="text" name="bobot_praktik_lapangan" id="bobot_praktik_lapangan" class="validate[required] text-input" maxlength="20" size="100" style="width:5%; background-color:#E0E0E0" required="" value="<?php echo $kurikulum->bobot_praktik_lapangan; ?>">
             </td>
         </tr> 
 
          <tr>
             <td class="left_column">Bobot Tatap Muka <font color="#FF0000">*</font></td>
-            <td>:  <input type="text" name="bobot_tatap_muka" id="bobot_tatap_muka" class="validate[required] text-input" maxlength="20" size="100" style="width:5%; background-color:#E0E0E0" required="" value="<?php echo $kurikulum->btm; ?>">
+            <td>:  <input type="text" name="bobot_tatap_muka" id="bobot_tatap_muka" class="validate[required] text-input" maxlength="20" size="100" style="width:5%; background-color:#E0E0E0" required="" value="<?php echo $kurikulum->bobot_tatap_muka; ?>">
             </td>
         </tr> 
             <input type="hidden" name="id_kurikulum" id="id_kurikulum" class="validate[required] text-input" maxlength="20" size="100" style="width:80%" required="" value="<?php echo $kurikulum->id_kurikulum; ?>">

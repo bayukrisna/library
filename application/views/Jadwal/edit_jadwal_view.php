@@ -64,7 +64,16 @@
         </tr>
         <tr>
           <td class="left_column">Ruang</td>
-            <td>: <input type="text" name="ruang" id="ruang" class="text-input" maxlength="80" size="80" style="width:150px" value="<?php echo $jadwal->ruang; ?>"></td>
+            <td>: <select name="id_ruang" id="id_ruang" class="validate[required]" required="" onchange="hai();" style="width: 100px" >
+        <option value="<?php echo $jadwal->id_ruang; ?>"><?php echo $jadwal->nama_ruang; ?></option>
+        <?php 
+
+                                        foreach($getRuang as $row)
+                                        { 
+                                          echo '<option value="'.$row->id_ruang.'">'.$row->nama_ruang.'</option>';
+                                        }
+                                    ?>
+                  </td>
         </tr>
         <tr>
                     <td colspan="4"><button type="submit" class="btn btn-info" id="MyBtn">Simpan</button></td>

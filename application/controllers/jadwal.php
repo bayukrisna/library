@@ -28,6 +28,7 @@ class Jadwal extends CI_Controller {
 	{
 		if ($this->session->userdata('logged_in') == TRUE) {
 			$id_jadwal = $this->uri->segment(3);
+			$data['getRuang'] = $this->ruang_model->getRuang();
 			$data['jadwal'] = $this->jadwal_model->detail_jadwal($id_jadwal);
 			$data['main_view'] = 'jadwal/edit_jadwal_view';
 			$this->load->view('template', $data);

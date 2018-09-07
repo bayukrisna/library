@@ -52,7 +52,7 @@ class Mata_kuliah extends CI_Controller {
 	{
 			if($this->mata_kuliah_model->simpan_matkul() == TRUE){
 				$prodi = $this->input->post('nama_matkul');
-				$this->session->set_flashdata('message', '<div class="alert alert-success"> Registrasi '.$prodi.' berhasil didaftarkan. </div>');
+				$this->session->set_flashdata('message', '<div class="alert alert-success"> Data '.$prodi.' berhasil ditambahkan </div>');
             	redirect('mata_kuliah');
 			
 			} else{
@@ -61,9 +61,9 @@ class Mata_kuliah extends CI_Controller {
 		}
 	}
 	public function edit_matkul(){
-			$id_periode = $this->input->post('kode_matkul');
+			$id_periode = $this->input->post('nama_matkul');
 					if ($this->mata_kuliah_model->edit_matkul($id_periode) == TRUE) {
-						$this->session->set_flashdata('message', '<div class="alert alert-success"> Edit '.$id_periode.' berhasil . </div>');
+						$this->session->set_flashdata('message', '<div class="alert alert-success"> Edit '.$id_periode.' berhasil </div>');
             			redirect('mata_kuliah');
 					} else {
 						$this->session->set_flashdata('message', '<div class="alert alert-danger"> Edit '.$id_periode.' gagal . </div>');

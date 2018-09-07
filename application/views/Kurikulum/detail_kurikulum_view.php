@@ -121,7 +121,7 @@
   
         </td >
         <td style="text-align:center">
-                <a href="<?php echo base_url(); ?>kurikulum/hapus_matkul_kurikulum/<?php echo $data->id_detail_kurikulum; ?>" onclick="return confirm(<?php echo $alert; ?>)" class="btn btn-danger btn-sm"><i class="glyphicon glyphicon-trash"></i><span class="tooltiptext">Hapus Matkul</span></a>
+                <a href="<?php echo base_url(); ?>kurikulum/hapus_matkul_kurikulum/<?php echo $data->id_detail_kurikulum; ?>/<?php echo $this->uri->segment(3); ?>" onclick="return confirm(<?php echo $alert; ?>)" class="btn btn-danger btn-sm"><i class="glyphicon glyphicon-trash"></i><span class="tooltiptext">Hapus Matkul</span></a>
 
                 <a href="<?php echo base_url(); ?>kurikulum/detail_matkul_kurikulum/<?php echo $data->id_detail_kurikulum; ?>" class="btn btn-warning btn-sm"><i class="glyphicon glyphicon-pencil"></i><span class="tooltiptext">Detail Matkul</span></a>
 

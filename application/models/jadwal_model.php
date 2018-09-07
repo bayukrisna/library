@@ -30,6 +30,7 @@ class Jadwal_model extends CI_Model {
               ->join('tb_waktu','tb_waktu.id_waktu=tb_jadwal.id_waktu')
               ->join('tb_detail_kurikulum','tb_detail_kurikulum.id_detail_kurikulum=tb_jadwal.id_detail_kurikulum')
               ->join('tb_matkul','tb_matkul.kode_matkul=tb_detail_kurikulum.kode_matkul')
+              ->join('tb_ruang','tb_ruang.id_ruang=tb_jadwal.id_ruang')
               ->where('id_jadwal', $id_jadwal)
               ->get('tb_jadwal')
               ->row();
@@ -114,7 +115,7 @@ class Jadwal_model extends CI_Model {
             'id_waktu'      => $this->input->post('id_waktu', TRUE),
             'id_konsentrasi'      => $this->input->post('id_konsentrasi', TRUE),
             'id_detail_kurikulum'      => $this->input->post('id_detail_kurikulum', TRUE),
-            'id_ruang'      => $this->input->post('ruang', TRUE)
+            'id_ruang'      => $this->input->post('id_ruang', TRUE)
       );
 
     if (!empty($data)) {

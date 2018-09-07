@@ -312,7 +312,6 @@ class Kelas_perkuliahan_model extends CI_Model {
             'id_dosen'        => $this->input->post('id_dosen'),
             'rencana'          => $this->input->post('rencana'),
             'realisasi'          => $this->input->post('realisasi'),
-            'bobot_dosen'          => $this->input->post('bobot_dosen'),
             'jenis_evaluasi'          => $this->input->post('jenis_evaluasi')
       );
 
