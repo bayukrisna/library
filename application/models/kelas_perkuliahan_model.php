@@ -250,11 +250,7 @@ class Kelas_perkuliahan_model extends CI_Model {
 
   public function save_edit_kp($id_kp){
     $data = array(
-            'id_kp'        => $this->input->post('id_kp'),
             'nama_kelas'       => $this->input->post('nama_kelas'),
-            'id_prodi'          => $this->input->post('id_prodi'),
-            'id_periode'          => $this->input->post('id_periode'),
-            'id_detail_kurikulum'          => $this->input->post('kode_matkul'),
             'bahasan'          => $this->input->post('bahasan'),
             'tgl_mulai'          => $this->input->post('tgl_mulai'),
             'tgl_akhir'          => $this->input->post('tgl_akhir')

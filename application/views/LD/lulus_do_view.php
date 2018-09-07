@@ -256,7 +256,7 @@
         </tr>
          <tr>
           <td class="left_column">IPK</td>
-            <td>: <input type="text" name="ipk" id="ipk"class="text-input" maxlength="4" size="4" style="width:10%; background-color: #E0E0E0;" value="<?php echo $i->ipk_ak; ?>"></td>
+            <td>: <input type="text" name="ipk" id="ipk"class="text-input" maxlength="4" size="4" style="width:10%; background-color: #E0E0E0;" value="<?php echo $i->ipk; ?>"></td>
         </tr>
          <tr>
           <td class="left_column">No seri Ijazah</td>

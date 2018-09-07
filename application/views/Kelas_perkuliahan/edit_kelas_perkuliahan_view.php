@@ -68,20 +68,36 @@
   <script src="//code.jquery.com/jquery-1.12.4.min.js"></script>
   <script src="//code.jquery.com/ui/1.12.0/jquery-ui.min.js"></script>
  <script>
-       document.getElementById("nama_matkul").style.visibility = 'visible';
+       document.getElementById("jadwal").style.visibility = 'visible';
 
     jQuery(document).ready(function($){
-    $('#nama_matkul').autocomplete({
-      source:'<?php echo base_url(); ?>kelas_perkuliahan/get_autocomplete_mk', 
+    $('#jadwal').autocomplete({
+      source:'<?php echo base_url(); ?>kelas_perkuliahan/get_autocomplete_jadwal', 
       minLength:1,
       select: function(event, ui){
-        $('#nama_matkul').val(ui.item.label)  ;
-        $('#kode_matkul').val(ui.item.idk);
-        $('#bobot_dosen').val(ui.item.bobot);
-        $('#nama_kurikulum').val(ui.item.kurikulum);
+        $('#jadwal').val(ui.item.label);
+        $('#id_jadwal').val(ui.item.id);
+        $('#ruang').val(ui.item.ruang);
+        $('#prodi').val(ui.item.prodi);
+        $('#konsentrasi').val(ui.item.konsentrasi);
       }
     });    
   });
 
   </script>
+<script type="text/javascript">
+            function get_prodi_periode2(p) {
+                var id_prodi = p;
+
+                $.ajax({
+                    url: '<?php echo base_url(); ?>kurikulum/get_prodi_periode/'+id_prodi,
+                    data: 'id_prodi='+id_prodi,
+                    type: 'GET',
+                    dataType: 'html',
+                    success: function(msg) {
+                        $("#id_periode2").html(msg);
+                    }
+                });
+            }
+</script>
 

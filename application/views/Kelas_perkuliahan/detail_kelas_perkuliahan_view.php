@@ -474,19 +474,19 @@
                          <tr>
             <td class="left_column">Nama Mahasiswa <font color="#FF0000">*</font></td>
             <td>: <input type="text" name="nama_mahasiswa" id="nama_mahasiswa" class="validate[required] text-input" maxlength="50" size="50" style="width:80%" required="" >
-              <input type="text" name="id_mahasiswa" id="id_mahasiswa" class="validate[required] text-input" maxlength="20" size="40" style="width:80%" required=""><span id="user-availability-status"></span>
+              <input type="hidden" name="id_mahasiswa" id="id_mahasiswa" class="validate[required] text-input" maxlength="20" size="40" style="width:80%" required=""><span id="user-availability-status"></span>
 
-              <input type="text" name="prodi" id="prodimhs" class="validate[required] text-input" maxlength="20" size="40" style="width:80%" >
+              <input type="hidden" name="prodi" id="prodimhs" class="validate[required] text-input" maxlength="20" size="40" style="width:80%" >
               
-              <input type="text" name="prodi" id="prodikp" class="validate[required] text-input" maxlength="20" size="40" style="width:80%" required="" value="<?php echo $kp->id_prodi; ?>">
+              <input type="hidden" name="prodi" id="prodikp" class="validate[required] text-input" maxlength="20" size="40" style="width:80%" required="" value="<?php echo $kp->id_prodi; ?>">
 
 
 
-            <input type="text" name="id_kp" id="id_kp2" class="validate[required] text-input" maxlength="20" size="40" style="width:80%" value="<?php echo $this->uri->segment(3); ?>">
+            <input type="hidden" name="id_kp" id="id_kp2" class="validate[required] text-input" maxlength="20" size="40" style="width:80%" value="<?php echo $this->uri->segment(3); ?>">
 
-            <input type="text" name="id_status" id="id_status" class="validate[required] text-input" maxlength="20" size="40" style="width:80%" >
+            <input type="hidden" name="id_status" id="id_status" class="validate[required] text-input" maxlength="20" size="40" style="width:80%" >
 
-            <input type="text" name="id_periode" id="id_periode" class="validate[required] text-input" maxlength="20" size="40" style="width:80%" value="<?php echo $kp->id_periode; ?>">
+            <input type="hidden" name="id_periode" id="id_periode" class="validate[required] text-input" maxlength="20" size="40" style="width:80%" value="<?php echo $kp->id_periode; ?>">
 
           
 

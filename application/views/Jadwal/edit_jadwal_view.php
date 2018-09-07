@@ -9,7 +9,7 @@
           <td class="left_column">Mata Kuliah</td>
             <td>: <input type="text" name="nama_matkul" id="nama_matkul" class="text-input" maxlength="80" size="80" style="width:400px" value="<?php echo $jadwal->nama_matkul; ?>">
             <input type="hidden" name="id_detail_kurikulum" id="id_detail_kurikulum" class="text-input" maxlength="80" size="80" style="width:100px" value="<?php echo $jadwal->id_detail_kurikulum; ?>">
-            <input type="hidden" name="id_prodi" id="id_prodi" class="text-input" maxlength="80" size="80" style="width:100px">
+            
           </td>
         </tr>
                      
@@ -95,6 +95,7 @@
         $('#nama_matkul').val(ui.item.label);
         $('#id_prodi').val(ui.item.prodi);
         $('#id_detail_kurikulum').val(ui.item.idk);
+       
         get_concentrate();
         get_prodi_periode();
       }
