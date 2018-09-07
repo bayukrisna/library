@@ -168,6 +168,7 @@ a:hover .tooltiptext {
       <!-- /.search form -->
       <!-- sidebar menu: : style can be found in sidebar.less -->
       <ul class="sidebar-menu">
+        <li class="header">MAIN NAVIGATION</li>
         <?php 
           if($this->session->userdata('level') == 5){ ?>
             <li><a href="<?php echo base_url(); ?>dashboard"> <i class="fa fa-dashboard"></i> <span>Dashboard</span></a></li>
