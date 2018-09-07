@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 4.8.2
+-- version 4.8.1
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Sep 03, 2018 at 05:22 AM
--- Server version: 10.1.34-MariaDB
--- PHP Version: 7.2.7
+-- Generation Time: Sep 07, 2018 at 03:31 AM
+-- Server version: 10.1.33-MariaDB
+-- PHP Version: 7.1.18
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET AUTOCOMMIT = 0;
@@ -94,7 +94,12 @@ CREATE TABLE `tb_alamat` (
 --
 
 INSERT INTO `tb_alamat` (`id_mahasiswa`, `jalan`, `dusun`, `kelurahan`, `kecamatan`, `rt`, `rw`, `kode_pos`, `alamat_mhs`, `jurusan`) VALUES
-('M0001', '', '', 'waw', 'wew', '', '', '', '', '');
+('M0001', '', '', 'waw', 'wew', '', '', '', '', ''),
+('M0002', '', '', 'waw', 'wew', '', '', '', '', ''),
+('M0003', 'Jl.ksmsms RT.2 RW 2 ', '', 'efef', '65165', '', '', '65165', '', ''),
+('M0004', '', '', 'fewf', '35325', '', '', '', '', ''),
+('M0005', '', '', 'efef', 'waw', '', '', '', '', ''),
+('M0006', '', '', 'hello', 'hai', '', '', '', '', '');
 
 -- --------------------------------------------------------
 
@@ -117,7 +122,12 @@ CREATE TABLE `tb_ayah` (
 --
 
 INSERT INTO `tb_ayah` (`id_mahasiswa`, `nama_ayah`, `nik_ayah`, `tanggal_lahir_ayah`, `pendidikan_ayah`, `pekerjaan_ayah`, `penghasilan_ayah`) VALUES
-('M0001', '', '', '0000-00-00', '', '', '');
+('M0001', '', '', '0000-00-00', '', '', ''),
+('M0002', '', '', '0000-00-00', '', '', ''),
+('M0003', '', '', '0000-00-00', '', '', ''),
+('M0004', '', '', '0000-00-00', '', '', ''),
+('M0005', '', '', '0000-00-00', '', '', ''),
+('M0006', '', '', '0000-00-00', '', '', '');
 
 -- --------------------------------------------------------
 
@@ -139,7 +149,7 @@ CREATE TABLE `tb_biaya` (
 --
 
 INSERT INTO `tb_biaya` (`id_biaya`, `jenis_biaya`, `nama_biaya`, `jumlah_biaya`, `periode`, `id_waktu`) VALUES
-('BS001', 'Registrasi', 'Ranking 1', 360000, '2018/2019', '1'),
+('BS001', 'Registrasi', 'Ranking 1', 360000, '2019/2022', '1'),
 ('BS002', 'Registrasi', 'Ranking 2', 3900000, '2018/2019', '1'),
 ('BS003', 'Registrasi', 'Ranking 3', 4500000, '2018/2019', '1'),
 ('BS004', 'Registrasi', 'Non-Beasiswa', 6000000, '2018/2019', '1'),
@@ -242,7 +252,12 @@ CREATE TABLE `tb_bio` (
 --
 
 INSERT INTO `tb_bio` (`id_mahasiswa`, `id_kelamin`, `tempat_lahir`, `tanggal_lahir`, `id_agama`, `foto_mahasiswa`, `angkatan`) VALUES
-('M0001', 'P', 'Malang', '2018-08-02', '1', 'britney1.jpg', '2018');
+('M0001', 'P', 'MALANG', '2018-09-13', '2', '', '2018'),
+('M0002', 'L', 'MALANG', '2018-09-06', '2', 'original6.jpg', '2018'),
+('M0003', 'L', 'MALANG', '2018-09-13', '1', '', '2018'),
+('M0004', 'P', 'MALANG', '2018-09-06', '2', '', '2018'),
+('M0005', 'L', 'taek', '2018-09-01', '1', '', '2018'),
+('M0006', 'P', 'MALANG', '2018-09-06', '1', '', '2018');
 
 -- --------------------------------------------------------
 
@@ -320,8 +335,7 @@ INSERT INTO `tb_detail_pembayaran` (`no`, `kode_pembayaran`, `id_mahasiswa`, `id
 (43, 'KP013', 'M0006', 'BS041', '24-08-2018', '', '4', 1, 1, ''),
 (44, 'KP014', 'M0004', 'BS002', '24-08-2018', '', '5', 1, 1, ''),
 (45, 'KP015', 'M0007', 'BS002', '25-08-2018', '', '3', 0, 0, ''),
-(46, 'KP015', 'M0007', 'BS005', '25-08-2018', '', '3', 0, 0, ''),
-(47, 'KP016', 'M0001', 'BS005', '03-09-2018', '', '1', 0, 0, '');
+(46, 'KP015', 'M0007', 'BS005', '25-08-2018', '', '3', 0, 0, '');
 
 -- --------------------------------------------------------
 
@@ -330,9 +344,8 @@ INSERT INTO `tb_detail_pembayaran` (`no`, `kode_pembayaran`, `id_mahasiswa`, `id
 --
 
 CREATE TABLE `tb_dosen` (
-  `id_dosen` int(4) NOT NULL,
+  `id_dosen` varchar(20) NOT NULL,
   `nama_dosen` varchar(255) NOT NULL,
-  `kode_dosen` varchar(255) NOT NULL,
   `no_hp` varchar(250) NOT NULL,
   `nip` varchar(20) NOT NULL,
   `tgl_lahir` date NOT NULL,
@@ -348,13 +361,33 @@ CREATE TABLE `tb_dosen` (
 -- Dumping data for table `tb_dosen`
 --
 
-INSERT INTO `tb_dosen` (`id_dosen`, `nama_dosen`, `kode_dosen`, `no_hp`, `nip`, `tgl_lahir`, `status`, `email`, `jenis_dosen`, `id_kelamin`, `id_agama`, `alamat`) VALUES
-(1, 'Dr. Ir. Agus Susanto, MM', 'AS', '2147483647', '', '0000-00-00', '1', '', '1', 'L', '1', ''),
-(2, 'bella swan', 'bs', '876', '', '0000-00-00', '1', '', '1', 'P', '2', 'h'),
-(3, 'Dr. Stephanie Hwang', 'T001', '0987654', '65', '0000-00-00', '1', 'tiffny@gmail.co', '1', 'P', '3', ''),
-(4, 'Miss Jessica Jung', '9058', '784923', '23432', '2018-08-11', '1', 'yoona@gmail.com', '1', 'P', '4', ''),
-(5, 'Mr. Smith', '9378', '0812321321', '0397852', '2018-08-11', '1', 'as@asd.sads', '1', 'L', '5', ''),
-(6, 'Ir. Charles', '43664', '53535', '35345', '0000-00-00', '1', 'yoona@gmail.com', '1', 'L', '1', 'his');
+INSERT INTO `tb_dosen` (`id_dosen`, `nama_dosen`, `no_hp`, `nip`, `tgl_lahir`, `status`, `email`, `jenis_dosen`, `id_kelamin`, `id_agama`, `alamat`) VALUES
+('123', 'Dr. Stephanie Hwang', '087701535437', '432', '2018-09-18', '1', 'bayuchrisna3@gmail.com', '1', 'P', '1', 'Los Angeles'),
+('999', 'Miss Jessica Jung', '423', '1234', '2018-09-01', '1', 'bayuchrisna3@gmail.com', '1', 'L', '1', 'Los Angeles');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `tb_events`
+--
+
+CREATE TABLE `tb_events` (
+  `id` int(11) NOT NULL,
+  `title` varchar(255) NOT NULL,
+  `start` datetime NOT NULL,
+  `end` datetime NOT NULL,
+  `backgroundColor` varchar(10) NOT NULL,
+  `description` text NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `tb_events`
+--
+
+INSERT INTO `tb_events` (`id`, `title`, `start`, `end`, `backgroundColor`, `description`) VALUES
+(1, 'cek', '2018-09-05 01:00:00', '2018-09-05 14:00:00', '#188ec9', 'desripsinya2'),
+(2, 'yy', '2018-09-06 15:12:00', '2018-09-06 16:01:00', '#eb2323', 'desripsinya'),
+(3, 'kelas kelaskelas kelaskelas kelaskelas kelaskelas kelas', '2018-09-05 00:00:00', '2018-09-08 13:00:00', '#3da1cc', 'desripsinya');
 
 -- --------------------------------------------------------
 
@@ -449,7 +482,48 @@ CREATE TABLE `tb_ibu` (
 --
 
 INSERT INTO `tb_ibu` (`id_mahasiswa`, `nama_ibu`, `nik_ibu`, `tanggal_lahir_ibu`, `pendidikan_ibu`, `pekerjaan_ibu`, `penghasilan_ibu`) VALUES
-('M0001', '', '5235', '0000-00-00', '', '', '');
+('M0001', 'wa', '', '0000-00-00', '', '', ''),
+('M0002', 'haaai', '', '0000-00-00', '', '', ''),
+('M0003', '', '767', '0000-00-00', '', '', ''),
+('M0004', 'waw', '', '0000-00-00', '', '', ''),
+('M0005', 'waw', '', '0000-00-00', '', '', ''),
+('M0006', 'waw', '', '0000-00-00', '', '', '');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `tb_informasi`
+--
+
+CREATE TABLE `tb_informasi` (
+  `id_info` int(3) NOT NULL,
+  `judul_info` varchar(50) NOT NULL,
+  `deskripsi_info` text NOT NULL,
+  `penerima` varchar(2) NOT NULL,
+  `pengirim` varchar(2) NOT NULL,
+  `tgl_info` date NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `tb_informasi`
+--
+
+INSERT INTO `tb_informasi` (`id_info`, `judul_info`, `deskripsi_info`, `penerima`, `pengirim`, `tgl_info`) VALUES
+(1, 'hais', 'hohoh', '2', '3', '0000-00-00'),
+(2, 'Pengelolaan Sampah', 'ugwuyduyqw dqwd qwdqgwdqwd qwd qwdgwygdygdy wegd ye', '3', '4', '0000-00-00'),
+(3, 'fwef', 'ewfwef', '3', '5', '0000-00-00'),
+(4, 'ewfewf', 'efwefewf', '3', '6', '0000-00-00'),
+(5, 'efwef', 'ewfwef', '3', '1', '0000-00-00'),
+(6, 'ewfewf', 'ewfewfewf', '3', '2', '0000-00-00'),
+(7, 'hai', 'waw', '3', '2', '0000-00-00'),
+(8, 'yaa', 'wow', '1', '2', '0000-00-00'),
+(9, 'PEngumaman pentig', 'njewbf  weg   f njewbf  weg   f njewbf  weg   f njewbf  weg   f njewbf  weg   f njewbf  weg   f njewbf  weg   f njewbf  weg   f njewbf  weg   f njewbf  weg   f njewbf  weg   f njewbf  weg   f njewbf  weg   f njewbf  weg   f njewbf  weg   f njewbf  weg   f njewbf  weg   f njewbf  weg   f njewbf  weg   f njewbf  weg   f njewbf  weg   f njewbf  weg   f njewbf  weg   f njewbf  weg   f njewbf  weg   f njewbf  weg   f njewbf  weg   f ', '3', '5', '0000-00-00'),
+(10, 'abc', 'def', '2', '3', '2018-09-06'),
+(11, 'hai', 'wew', '1', '4', '2018-09-06'),
+(12, 'wow', 'wow', '5', '4', '2018-09-06'),
+(13, 'waw', 'wew', '4', '4', '2018-09-06'),
+(14, 'hai finance', 'd', '4', '6', '2018-09-06'),
+(15, 'jessica', 'wew', '3', '4', '2018-09-06');
 
 -- --------------------------------------------------------
 
@@ -471,7 +545,8 @@ INSERT INTO `tb_jabatan` (`id_level`, `nama_level`) VALUES
 ('2', 'Dosen'),
 ('3', 'Pemasaran'),
 ('4', 'Keuangan'),
-('5', 'Mahasiswa');
+('5', 'Mahasiswa'),
+('6', 'Akademik');
 
 -- --------------------------------------------------------
 
@@ -631,10 +706,7 @@ CREATE TABLE `tb_kelas_dosen` (
 --
 
 INSERT INTO `tb_kelas_dosen` (`id_kp`, `id_dosen`, `rencana`, `realisasi`, `jenis_evaluasi`) VALUES
-('1', '4', 1, 1, 'waw'),
-('2', '4', 1, 1, ''),
-('4', '3', 5, 5, '1'),
-('5', '3', 1, 1, 'waw');
+('5', '123', 5, 5, 'apa');
 
 -- --------------------------------------------------------
 
@@ -660,12 +732,10 @@ CREATE TABLE `tb_kelas_mhs` (
 --
 
 INSERT INTO `tb_kelas_mhs` (`id_kelas_mhs`, `id_mahasiswa`, `id_kp`, `id_skala_nilai`, `nilai_d`, `semester`, `nilai_tugas`, `absensi`, `nilai_uts`, `nilai_uas`) VALUES
-(8, 'M0003', '2', '16', 70, '1', 0, 0, 0, 0),
-(11, 'M0004', '2', '21', 68, '1', 32, 45, 43, 54),
-(12, 'M0004', '4', '14', 78, '1', 0, 0, 78, 0),
-(13, 'M0003', '4', '14', 80, '', 0, 0, 0, 0),
-(14, 'M0003', '', '', 0, '1', 0, 0, 0, 0),
-(15, 'M0003', '5', '14', 79, '', 0, 5, 0, 0);
+(16, 'M0001', '5', '', 90, '', 80, 0, 70, 0),
+(17, 'M0001', '4', '', 0, '1', 65, 0, 0, 0),
+(19, 'M0006', '4', '', 0, '1', 0, 0, 0, 0),
+(20, 'M0006', '5', '', 0, '1', 0, 0, 78, 0);
 
 -- --------------------------------------------------------
 
@@ -688,7 +758,12 @@ CREATE TABLE `tb_kependudukan` (
 --
 
 INSERT INTO `tb_kependudukan` (`id_mahasiswa`, `nik`, `nisn`, `npwp`, `kps`, `no_kps`, `kewarganegaraan`) VALUES
-('M0001', '32424', '', '', '', '', 'fefef');
+('M0001', '232523', '', '', 'Tidak', '', 'indonesia'),
+('M0002', '5345345', '', '', 'Tidak', '', 'indonesia'),
+('M0003', '87', '', '', 'Tidak', '', 'indonesia'),
+('M0004', '5555', '', '', 'Tidak', '', 'indonesia'),
+('M0005', '1234456', '', '', 'Tidak', '', 'indonesia'),
+('M0006', '4556', '', '', 'Tidak', '', 'indonesia');
 
 -- --------------------------------------------------------
 
@@ -755,14 +830,11 @@ CREATE TABLE `tb_kontak` (
 
 INSERT INTO `tb_kontak` (`id_mahasiswa`, `no_telepon`, `no_hp`, `email`) VALUES
 ('M0001', 0, 0, ''),
-('M0003', 0, 0, ''),
-('M0004', 0, 0, ''),
-('M0005', 90789678, 9968767, 'yoona@gmail.com'),
-('M0006', 43646, 867, 'as@asd.sads'),
-('M0007', 435, 86786, 'yoona@gmail.com'),
-('M0008', 7865, 4535, 'yoona@gmail.com'),
-('M0009', 0, 0, ''),
-('M0010', 0, 0, '');
+('M0002', 0, 0, 'bayukrisnaovo@gmail.com'),
+('M0003', 867, 0, 'bayuchrisna3@gmail.com'),
+('M0004', 0, 0, 'bayuchrisna3@gmail.com'),
+('M0005', 0, 0, 'bayuchrisna3@gmail.com'),
+('M0006', 0, 0, 'bayu_krisna_24rpl@student.smktelkom-mlg.sch.id');
 
 -- --------------------------------------------------------
 
@@ -785,8 +857,8 @@ CREATE TABLE `tb_kp` (
 
 INSERT INTO `tb_kp` (`id_kp`, `nama_kelas`, `bahasan`, `tgl_mulai`, `tgl_akhir`, `id_jadwal`) VALUES
 (2, '01', 'waw', '2018-08-01', '2018-08-28', '3'),
-(4, '01', 'waw', '2018-08-01', '2018-08-28', '7'),
-(5, '02', 'waw', '2018-08-09', '2018-09-01', '3');
+(4, '01', 'waw', '2018-08-01', '2018-09-14', '7'),
+(5, '02', 'waw', '2018-08-09', '2018-09-21', '3');
 
 -- --------------------------------------------------------
 
@@ -851,7 +923,12 @@ CREATE TABLE `tb_mahasiswa` (
 --
 
 INSERT INTO `tb_mahasiswa` (`id_mahasiswa`, `id_du`, `nama_mahasiswa`, `nim`, `id_status`, `id_konsentrasi`, `id_hasil_tes`, `id_sekolah`, `id_waktu`, `id_grade`, `semester_aktif`) VALUES
-('M0001', '', 'Britney', '5345', '19', 'KO003', '', '', '1', '1', 1);
+('M0001', '', 'Jessica Jung', '1111', '19', 'KO003', '', '', '1', '5', 1),
+('M0002', '', 'Jaden Smith', '2222', '19', 'KO003', '', '', '1', '4', 1),
+('M0003', '', 'hi', '8765', '19', 'KO003', '', '', '1', '5', 1),
+('M0004', '', 'Paris Hilton', '8765', '19', 'KO003', '', '', '1', '3', 1),
+('M0005', '', 'taek', 'silit', '19', 'KO002', '', '', '1', '5', 1),
+('M0006', '', 'Tiffany', '6666', '1', 'KO003', '', '', '1', '5', 1);
 
 -- --------------------------------------------------------
 
@@ -903,7 +980,12 @@ CREATE TABLE `tb_mhs_add` (
 --
 
 INSERT INTO `tb_mhs_add` (`id_mahasiswa`, `tgl_du`, `id_transportasi`, `id_jt`, `ipk`) VALUES
-('M0001', '2018-08-22', '', '', 0);
+('M0001', '2018-09-19', '', '', 0),
+('M0002', '2018-09-20', '', '', 0),
+('M0003', '2018-09-20', '', '', 0),
+('M0004', '2018-09-12', '', '', 0),
+('M0005', '2018-09-27', '', '', 0),
+('M0006', '2018-09-19', '', '', 0);
 
 -- --------------------------------------------------------
 
@@ -913,30 +995,31 @@ INSERT INTO `tb_mhs_add` (`id_mahasiswa`, `tgl_du`, `id_transportasi`, `id_jt`, 
 
 CREATE TABLE `tb_pembayaran` (
   `kode_pembayaran` varchar(6) NOT NULL,
-  `id_mahasiswa` varchar(7) NOT NULL
+  `id_mahasiswa` varchar(7) NOT NULL,
+  `total_biaya` varchar(10) NOT NULL,
+  `tanggal_pembayaran` varchar(20) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `tb_pembayaran`
 --
 
-INSERT INTO `tb_pembayaran` (`kode_pembayaran`, `id_mahasiswa`) VALUES
-('KP001', '4546'),
-('KP002', '4546'),
-('KP003', '4546'),
-('KP004', '4546'),
-('KP005', '5435'),
-('KP006', '23123'),
-('KP007', 'M0003'),
-('KP008', 'M0006'),
-('KP009', 'M0003'),
-('KP010', 'M0006'),
-('KP011', 'M0003'),
-('KP012', 'M0006'),
-('KP013', 'M0006'),
-('KP014', 'M0004'),
-('KP015', 'M0007'),
-('KP016', 'M0001');
+INSERT INTO `tb_pembayaran` (`kode_pembayaran`, `id_mahasiswa`, `total_biaya`, `tanggal_pembayaran`) VALUES
+('KP001', '4546', '877500', '06-08-2018'),
+('KP002', '4546', '360000', '07-08-2018'),
+('KP003', '4546', '360000', '07-08-2018'),
+('KP004', '4546', '2160000', '07-08-2018'),
+('KP005', '5435', '2570000', '07-08-2018'),
+('KP006', '23123', '780000', '09-08-2018'),
+('KP007', 'M0003', '', ''),
+('KP008', 'M0006', '', ''),
+('KP009', 'M0003', '', ''),
+('KP010', 'M0006', '', ''),
+('KP011', 'M0003', '', ''),
+('KP012', 'M0006', '', ''),
+('KP013', 'M0006', '', ''),
+('KP014', 'M0004', '', ''),
+('KP015', 'M0007', '', '');
 
 -- --------------------------------------------------------
 
@@ -1277,7 +1360,6 @@ INSERT INTO `tb_transportasi` (`id_transportasi`, `transportasi`) VALUES
 CREATE TABLE `tb_user` (
   `username` varchar(20) NOT NULL,
   `password` varchar(100) NOT NULL,
-  `id_mahasiswa` varchar(11) NOT NULL,
   `id_level` varchar(7) NOT NULL,
   `foto` text NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
@@ -1286,12 +1368,21 @@ CREATE TABLE `tb_user` (
 -- Dumping data for table `tb_user`
 --
 
-INSERT INTO `tb_user` (`username`, `password`, `id_mahasiswa`, `id_level`, `foto`) VALUES
-('admin', '$2b$10$MQlZmmJPyWLNhaA3BQ.2i.vx1f8vfvcAT/CrF5aefTVN80Qv0cJdK', 'M0000', '1', ''),
-('akademik', '$2a$08$A93qO2QEb6CJm8poAEhjtemxbapXQBaXWDnV/XWkIIj.syLTEQ3oi', '', '6', ''),
-('aldi', '$2a$08$WWAwBJ646n1sYWgkOwwhiet8qlqXrQcONdo.gq6X0cHKjQD1vjPAe', 'M0003', '5', ''),
-('finance', '$2a$08$.0B5SBwkpvmBsjsevsHr3ekW8cPnMzkhCK96s1J7zeWvIxX2AN7/.', '', '4', ''),
-('marketing', '$2a$08$HevO5xRCCuSIPfT6mXPHEOPWvGDNxopv6uinMU2szCBzwgFljYBFu', '', '3', '');
+INSERT INTO `tb_user` (`username`, `password`, `id_level`, `foto`) VALUES
+('1111', '$2a$08$BsZC4/w.Ctp6xoFRLb0TYOs4wsAV9RQJsV8WERXvtDWjY2CWP0yAy', '5', ''),
+('123', '$2a$08$it3tQfFx5rNDwjuQ/fdmUeaH7ypO16NZfIp0C0AzwL5dCu6qHNi5i', '2', ''),
+('1234', '$2a$08$g0u71Cljm5mhMHtUhoyk4OvxlDmeleFdSUQm3r3PX9K34WO.ECFEy', '5', ''),
+('2222', '$2a$08$xSFN71mBDNr59koZvFqdYedM3tpVAl00gPedryGBvuxVEbYi/Qs/K', '5', ''),
+('54321', '$2a$08$th/SAorfHtqIpagb2vpIMO5hO9HSNm3OWH6lfDWeL2Tq4Rm8xs1d.', '5', ''),
+('654', '$2a$08$zLbNY4TNQezDglUi49lNsOBgA6PTVd3vIHHtrHFMgsMgxLRZ5pEOG', '5', ''),
+('6666', '$2a$08$yMHq7yiD0k9gxcTz46Ip1u5D5o.7i/BTxGh8rXvggxMsLx4dld38q', '5', ''),
+('8765', '$2a$08$5pDb3Q1WumJxiT3Z24IYHe7z9JGl6adpMGNudzPPutqwDlukS0dDG', '5', ''),
+('999', '$2a$08$AtzMmScbl1NUxe2Ukl8Beunct/soccoTPKNBSw50ueRi8AGOGos8K', '2', 'jessica-jung.png'),
+('admin', '$2b$10$MQlZmmJPyWLNhaA3BQ.2i.vx1f8vfvcAT/CrF5aefTVN80Qv0cJdK', '1', 'britney8.jpg'),
+('akademik', '$2a$08$A93qO2QEb6CJm8poAEhjtemxbapXQBaXWDnV/XWkIIj.syLTEQ3oi', '6', 'britney9.jpg'),
+('finance', '$2a$08$.0B5SBwkpvmBsjsevsHr3ekW8cPnMzkhCK96s1J7zeWvIxX2AN7/.', '4', ''),
+('marketing', '$2a$08$HevO5xRCCuSIPfT6mXPHEOPWvGDNxopv6uinMU2szCBzwgFljYBFu', '3', 'IMG_000211.jpg'),
+('silit', '$2a$08$9Rq5xyMTG1LjphiOgldpPOeNws2z5vpdg/hwV1Loui.Rn/heYn6L.', '5', '');
 
 -- --------------------------------------------------------
 
@@ -1332,7 +1423,12 @@ CREATE TABLE `tb_wali` (
 --
 
 INSERT INTO `tb_wali` (`id_mahasiswa`, `nama_wali`, `tanggal_lahir_wali`, `pendidikan_wali`, `pekerjaan_wali`, `penghasilan_wali`) VALUES
-('M0001', '', '0000-00-00', '', '', '');
+('M0001', '', '0000-00-00', '', '', ''),
+('M0002', '', '0000-00-00', '', '', ''),
+('M0003', '', '0000-00-00', '', '', ''),
+('M0004', '', '0000-00-00', '', '', ''),
+('M0005', '', '0000-00-00', '', '', ''),
+('M0006', '', '0000-00-00', '', '', '');
 
 --
 -- Indexes for dumped tables
@@ -1394,6 +1490,12 @@ ALTER TABLE `tb_dosen`
   ADD UNIQUE KEY `nama_dosen` (`nama_dosen`);
 
 --
+-- Indexes for table `tb_events`
+--
+ALTER TABLE `tb_events`
+  ADD PRIMARY KEY (`id`);
+
+--
 -- Indexes for table `tb_grade`
 --
 ALTER TABLE `tb_grade`
@@ -1416,6 +1518,12 @@ ALTER TABLE `tb_hasil_tes`
 --
 ALTER TABLE `tb_ibu`
   ADD PRIMARY KEY (`id_mahasiswa`);
+
+--
+-- Indexes for table `tb_informasi`
+--
+ALTER TABLE `tb_informasi`
+  ADD PRIMARY KEY (`id_info`);
 
 --
 -- Indexes for table `tb_jabatan`
@@ -1660,7 +1768,13 @@ ALTER TABLE `tb_detail_kurikulum`
 -- AUTO_INCREMENT for table `tb_detail_pembayaran`
 --
 ALTER TABLE `tb_detail_pembayaran`
-  MODIFY `no` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=48;
+  MODIFY `no` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=47;
+
+--
+-- AUTO_INCREMENT for table `tb_events`
+--
+ALTER TABLE `tb_events`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- AUTO_INCREMENT for table `tb_grade`
@@ -1673,6 +1787,12 @@ ALTER TABLE `tb_grade`
 --
 ALTER TABLE `tb_hari`
   MODIFY `id_hari` int(1) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
+
+--
+-- AUTO_INCREMENT for table `tb_informasi`
+--
+ALTER TABLE `tb_informasi`
+  MODIFY `id_info` int(3) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=16;
 
 --
 -- AUTO_INCREMENT for table `tb_jadwal`
@@ -1702,7 +1822,7 @@ ALTER TABLE `tb_jenis_tinggal`
 -- AUTO_INCREMENT for table `tb_kelas_mhs`
 --
 ALTER TABLE `tb_kelas_mhs`
-  MODIFY `id_kelas_mhs` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=16;
+  MODIFY `id_kelas_mhs` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=21;
 
 --
 -- AUTO_INCREMENT for table `tb_kp`
