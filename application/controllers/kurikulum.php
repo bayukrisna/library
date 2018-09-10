@@ -197,4 +197,12 @@ class Kurikulum extends CI_Controller {
 		$ea = $result->semester;
 		echo $ea;
 	}
+
+	function remove(){
+			foreach ($_POST['id'] as $id) {
+				$this->kurikulum_model->delete($id);
+			}
+			$this->session->set_flashdata('message', '<div class="alert alert-success"> Hapus Mata Kuliah Berhasil </div>');
+			redirect('kurikulum');
+		}
 }

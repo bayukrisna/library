@@ -1,3 +1,4 @@
+      <script src="https://code.jquery.com/jquery-1.10.2.js"></script>
       <section class="content">
       <div class="row">
         <div class="col-xs-12">
@@ -10,6 +11,8 @@
             
             <!-- /.box-header -->
             <div class="box-body">
+              <?php echo form_open('mata_kuliah/remove'); ?>
+              
               <table id="example3" class="table2 table-bordered table-striped">
                 <a href="<?php echo base_url(); ?>mata_kuliah/tambah_matkul" class="btn btn-info btn-sm" ><i class="fa fa-plus"></i> Tambah</a> <br> <br>
                 <thead>
@@ -21,6 +24,7 @@
                   <th>Program Studi</th>
                   <th>Jenis MK</th>
                   <th>Aksi</th>
+                  <th style="width: 2%">Check</th>
                 </tr>
                 </thead>
                 <tbody>
@@ -38,16 +42,22 @@
                   <td>'.$data->bobot_matkul.'</td>
                   <td>'.$data->nama_prodi.'</td>
                   <td>'.$data->nama_jenis_matkul.'</td>
-                  <td> 
+                  <td style="text-align:center"> 
                   <a href="'.base_url('mata_kuliah/detail_matkul/'.$data->kode_matkul).'" class="btn btn-success  btn-sm"><i class="glyphicon glyphicon-pencil"></i><span class="tooltiptext">Detail Mata Kuliah</span></a>
 
                    <a href="'.base_url('mata_kuliah/hapus_matkul/'.$data->kode_matkul).'" class="btn btn-danger  btn-sm" onclick="return confirm('.$alert.')"><i class="glyphicon glyphicon-trash"></i><span class="tooltiptext">Hapus Mata Kuliah</span></a>
+                   </td>
+                   <td><input type="checkbox" name="id[]" value="'.$data->kode_matkul.'"></td>
                 ' ;
                 
               }
               ?>
                 </tbody>
               </table>
+              <input type="submit" value="Hapus Mata Kuliah Terpilih" onclick="return confirm('Anda yakin menghapus data yang sudah anda pilih ?')" class="btn btn-danger pull-right">
+              <br>
+             
+              <?php echo form_close()?>
             </div>
             
             <!-- /.box-body -->
@@ -256,3 +266,11 @@ function sum() {
       }
 }
 </script>
+<script type="text/javascript">
+    $(document).ready(function() {
+      $("input[name='checkAll']").click(function() {
+        var checked = $(this).attr("checked");
+        $("#myTable tr td input:checkbox").attr("checked", checked);
+      });
+    });
+  </script>

@@ -188,6 +188,11 @@ class Kurikulum_model extends CI_Model {
         return FALSE;
       }
     }
+
+    public function delete($id){
+    $this->db->where('id_detail_kurikulum', $id);
+    $this->db->delete('tb_detail_kurikulum');
+  }
     
 }
 

@@ -80,4 +80,12 @@ class Mata_kuliah extends CI_Controller {
 			redirect('mata_kuliah');
 		}
 	}
+
+	function remove(){
+			foreach ($_POST['id'] as $id) {
+				$this->mata_kuliah_model->delete($id);
+			}
+			$this->session->set_flashdata('message', '<div class="alert alert-success"> Hapus Mata Kuliah Berhasil </div>');
+			redirect('mata_kuliah');
+		}
 }
