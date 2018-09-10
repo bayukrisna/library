@@ -67,6 +67,8 @@
 
 
           <div class="box box-info">
+            <?php echo form_open('kurikulum/remove'); ?>
+ 
             <table class="table2 table-bordered table-striped">
   <thead>
   <tr>
@@ -76,7 +78,8 @@
     <th  style="text-align:center" colspan="5">Bobot Mata Kuliah</th>
     <th  style="text-align:center" rowspan="2">Semester</th>
     <th style="text-align:center" rowspan="2">Wajib</th>
-        <th style="text-align:center" rowspan="2"> Aksi</th>
+    <th style="text-align:center" rowspan="2"> Aksi</th>
+    <th style="text-align:center" rowspan="2"> Check</th>
   </tr>
   <tr>
     <th  style="text-align:center">Mata Kuliah</th>
@@ -123,7 +126,8 @@
         <td style="text-align:center">
                 <a href="<?php echo base_url(); ?>kurikulum/hapus_matkul_kurikulum/<?php echo $data->id_detail_kurikulum; ?>/<?php echo $this->uri->segment(3); ?>" onclick="return confirm(<?php echo $alert; ?>)" class="btn btn-danger btn-sm"><i class="glyphicon glyphicon-trash"></i><span class="tooltiptext">Hapus Matkul</span></a>
 
-                <a href="<?php echo base_url(); ?>kurikulum/detail_matkul_kurikulum/<?php echo $data->id_detail_kurikulum; ?>" class="btn btn-warning btn-sm"><i class="glyphicon glyphicon-pencil"></i><span class="tooltiptext">Detail Matkul</span></a>
+                <a href="<?php echo base_url(); ?>kurikulum/detail_matkul_kurikulum/<?php echo $data->id_detail_kurikulum; ?>" class="btn btn-warning btn-sm"><i class="glyphicon glyphicon-pencil"></i><span class="tooltiptext">Detail Matkul</span></a> </td>
+          <td style="text-align:center"><input type="checkbox" name="id[]" value="<?php echo $data->id_detail_kurikulum; ?>"></td>
 
     </tr>
 <?php endforeach; ?>
@@ -135,13 +139,17 @@
         <td style="text-align:center"><?php echo $totalpl; ?></td>
         <td style="text-align:center"><?php echo $totalsim; ?></td>
         <td style="text-align:center" colspan="2"></td >
-        <td style="text-align:center">
+        <td style="text-align:center" colspan="2">
                 
                         </td>
     </tr>
   
   </tbody>
 </table>
+<input type="submit" value="Hapus Mata Kuliah Terpilih" onclick="return confirm('Anda yakin menghapus data yang sudah anda pilih ?')" class="btn btn-danger pull-right"> 
+              <br>
+              
+              <?php echo form_close()?>
 
           </div>
           

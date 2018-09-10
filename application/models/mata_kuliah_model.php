@@ -93,6 +93,11 @@ class Mata_kuliah_model extends CI_Model {
         return FALSE;
       }
     }
+
+    public function delete($id){
+    $this->db->where('kode_matkul', $id);
+    $this->db->delete('tb_matkul');
+  }
     
 }
 

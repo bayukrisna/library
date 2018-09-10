@@ -52,7 +52,7 @@ class Mata_kuliah extends CI_Controller {
 	{
 			if($this->mata_kuliah_model->simpan_matkul() == TRUE){
 				$prodi = $this->input->post('nama_matkul');
-				$this->session->set_flashdata('message', '<div class="alert alert-success"> Data '.$prodi.' berhasil ditambahkan </div>');
+				$this->session->set_flashdata('message', '<div class="alert alert-success"> Mata Kuliah '.$prodi.' berhasil ditambahkan </div>');
             	redirect('mata_kuliah');
 			
 			} else{
@@ -80,4 +80,12 @@ class Mata_kuliah extends CI_Controller {
 			redirect('mata_kuliah');
 		}
 	}
+
+	function remove(){
+			foreach ($_POST['id'] as $id) {
+				$this->mata_kuliah_model->delete($id);
+			}
+			$this->session->set_flashdata('message', '<div class="alert alert-success"> Hapus Mata Kuliah Berhasil </div>');
+			redirect('mata_kuliah');
+		}
 }
