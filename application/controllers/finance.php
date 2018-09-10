@@ -235,11 +235,7 @@ class Finance extends CI_Controller {
 	}				
 	public function konfirmasi_gagal($id_pendaftaran){				
 		if($this->session->userdata('level') == 4 || $this->session->userdata('level') == 1){
-			redirect(base_url('dashboard'));
-		} else {
-			redirect(base_url('login'));
-		}
-				$id_pendaftaran = $this->uri->segment(3);
+			$id_pendaftaran = $this->uri->segment(3);
 				if ($this->finance_model->gagal_konfirmasi($id_pendaftaran) == TRUE) {
 						$this->session->set_flashdata('message', '<div class="alert alert-success"> Data tidak valid '.$id_pendaftaran.'</div>');
 						redirect('finance');
@@ -247,7 +243,11 @@ class Finance extends CI_Controller {
 						$this->session->set_flashdata('message', '<div class="alert alert-danger"> Konfirmasi Gagal </div>');
 						redirect('finance');
 					}
+			} else {
+			redirect(base_url('login'));
 			}
+		
+		}
 	public function cek_id_daftar_ulang(){
 		if($this->session->userdata('level') == 4 || $this->session->userdata('level') == 1){
 			$id = $this->input->post('id_daftar_ulang');
