@@ -11,6 +11,7 @@ class Calendar extends CI_Controller {
 
 	public function index()
 	{
+		ini_set('display_errors', 0);
 		$var1 = $this->calendar_model->data();
 		foreach ($var1 as $key) {
 			$key->waktu_start = date('h:i a', strtotime($key->start));
