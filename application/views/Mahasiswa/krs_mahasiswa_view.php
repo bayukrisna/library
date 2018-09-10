@@ -15,7 +15,7 @@
 
          <a class="btn btn-sm btn-primary" href="<?php echo base_url();?>mahasiswa/lihat_mahasiswa_dikti/<?php echo $mahasiswa->id_mahasiswa; ?>">Detail Mahasiswa</a>
         <a class="btn btn-sm btn-info" href="<?php echo base_url();?>mahasiswa/history_pendidikan/<?php echo $mahasiswa->id_mahasiswa; ?>">History Pendidikan</a>
-        <a class="btn btn-sm btn-primary" href="<?php echo base_url();?>mahasiswa/krs_mahasiswa/<?php echo $mahasiswa->id_mahasiswa ?>/<?php echo $mahasiswa->id_prodi; ?>/<?php echo $mahasiswa->semester_aktif; ?>">KRS Mahasiswa</a>
+        <a class="btn btn-sm btn-primary" href="<?php echo base_url();?>mahasiswa/krs_mahasiswa/<?php echo $mahasiswa->id_mahasiswa ?>/<?php echo $mahasiswa->id_prodi; ?>/<?php echo $mahasiswa->semester_aktif; ?>/<?php echo $mahasiswa->id_konsentrasi; ?>">KRS Mahasiswa</a>
         <a class="btn btn-sm btn-info" href="<?php echo base_url();?>mahasiswa/jadwal_mhs/<?php echo $mahasiswa->id_mahasiswa ?>/<?php echo $mahasiswa->id_prodi; ?>/<?php echo $mahasiswa->semester_aktif; ?>">Jadwal Kuliah</a>
         <a class="btn btn-sm btn-primary" href="<?php echo base_url();?>mahasiswa/history_nilai/<?php echo $mahasiswa->id_mahasiswa; ?>">History Nilai</a>
         <a class="btn btn-sm btn-info" href="<?php echo base_url();?>mahasiswa/aktivitas_perkuliahan/<?php echo $mahasiswa->id_mahasiswa; ?>">Aktivitas Perkuliahan</a>
@@ -61,12 +61,14 @@
           
             <div class="box-header">
               <h3 class="box-title">Data KRS</h3>
+              <?php if($mahasiswa->semester_aktif == 3 AND 5 AND 7) { ?>
 
               <button type="button" class="btn btn-primary pull-right" data-toggle="modal" data-target="#modal-default">
                 <i class="fa fa-plus"></i> Tambah Matkul Mengulang
               </button>
               <br>
               <br>
+            <?php } ?>
 
             
             <!-- /.box-header -->
@@ -88,6 +90,7 @@
                 $id_kp = '';
                 if ($mahasiswa->id_status != '1') {
                 foreach ($krs as $i) {
+                  if ($i->id_konsentrasi == $this->uri->segment(6) OR $i->nama_konsentrasi == 'Semua' OR $i->id_konsentrasi == $mahasiswa->id_konsentrasi) {
                        
                   $total_mahasiswa = $this->db->query("SELECT count(*) AS total FROM tb_kelas_mhs WHERE id_kp = '$i->id_kp'")->row();
                   if(date('Y-m-d') > $i->tgl_mulai AND date('Y-m-d') < $i->tgl_akhir){
@@ -103,6 +106,7 @@
                   <td>'.$i->nama_dosen.'</td>
                 </tr>
                 ' ;
+                  
                 }   
               } else {
                 echo '
@@ -110,7 +114,7 @@
                     <td colspan="6"> Waktu mengisi KRS sudah melebihi batas akhir</td>
                   </tr>
                 ';
-              }
+              } }
             }
           } else {
             echo '

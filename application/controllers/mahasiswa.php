@@ -141,7 +141,7 @@ class Mahasiswa extends CI_Controller {
 				$semester_aktif = $this->uri->segment(5);
 			}
 			$data['mahasiswa'] = $this->mahasiswa_model->detail_krs_mahasiswa($id_mahasiswa);
-			$data['krs'] = $this->mahasiswa_model->data_krs_mhs($id_mahasiswa, $id_prodi, $semester_aktif);
+			$data['krs'] = $this->mahasiswa_model->data_krs_mhs($id_mahasiswa, $semester_aktif);
 			//$data['periode2'] = $this->mahasiswa_model->getPer($id_prodi);
 			$data['periode'] = $this->mahasiswa_model->Periode_krs($id_prodi);
 			$data['main_view'] = 'Mahasiswa/krs_mahasiswa_view';
@@ -334,7 +334,7 @@ class Mahasiswa extends CI_Controller {
 		$id_prodi = $this->uri->segment(3);
 		$semester_aktif = $this->uri->segment(4);
 			if($this->mahasiswa_model->simpan_krs_mhs() == TRUE && $this->mahasiswa_model->update_status($id_mahasiswa) == TRUE){
-				$this->session->set_flashdata('message', '<div class="alert alert-success"> Tambah History Pendidikan Berhasil </div>');
+				$this->session->set_flashdata('message', '<div class="alert alert-success"> Anda berhasil menambahkan KRS untuk semester ini </div>');
             	redirect('mahasiswa/kelas_mhs/'.$id_mahasiswa.'/'.$id_prodi.'/'.$semester_aktif);
 			} 
 	}
@@ -345,7 +345,7 @@ class Mahasiswa extends CI_Controller {
 		$id_prodi = $this->uri->segment(3);
 		$semester_aktif = $this->uri->segment(4);
 			if($this->mahasiswa_model->simpan_krs_mengulang() == TRUE){
-				$this->session->set_flashdata('message', '<div class="alert alert-success"> Tambah History Pendidikan Berhasil </div>');
+				$this->session->set_flashdata('message', '<div class="alert alert-success"> Mata kuliah mengulang berhasil ditambahkan </div>');
             	redirect('mahasiswa/kelas_mhs/'.$id_mahasiswa.'/'.$id_prodi.'/'.$semester_aktif);
 			} 
 	}

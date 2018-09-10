@@ -73,7 +73,7 @@ class Nilai_perkuliahan extends CI_Controller {
 			$id_kelas_mhs = $this->uri->segment(3);
 
 					if ($this->nilai_perkuliahan_model->save_edit_nilai($id_kelas_mhs) == TRUE) {
-						$this->session->set_flashdata('message', '<div class="alert alert-success"> Edit Mahasiswa berhasil </div>');
+						$this->session->set_flashdata('message', '<div class="alert alert-success"> Input Nilai Berhasil </div>');
             			$id_kp = $this->input->post('id_kp');
             			redirect('nilai_perkuliahan/detail_nilai/'.$id_kp);
 					} else {

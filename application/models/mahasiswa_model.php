@@ -154,7 +154,7 @@ class Mahasiswa_model extends CI_Model {
               ->row();
   } 
 
-  public function data_krs_mhs($id_mahasiswa, $id_prodi, $semester_aktif){
+  public function data_krs_mhs($id_mahasiswa, $semester_aktif){
       return $this->db->join('tb_jadwal','tb_jadwal.id_jadwal=tb_kp.id_jadwal')
               ->join('tb_detail_kurikulum','tb_detail_kurikulum.id_detail_kurikulum=tb_jadwal.id_detail_kurikulum')
               ->join('tb_matkul','tb_matkul.kode_matkul=tb_detail_kurikulum.kode_matkul')
@@ -165,7 +165,8 @@ class Mahasiswa_model extends CI_Model {
               ->join('tb_kelas_dosen','tb_kelas_dosen.id_kp=tb_kp.id_kp','left')
               ->join('tb_dosen','tb_dosen.id_dosen=tb_kelas_dosen.id_dosen','left')
               ->where('tb_detail_kurikulum.semester_kurikulum', $semester_aktif)
-              ->where('tb_prodi.id_prodi', $id_prodi)
+              
+              //->where('tb_jadwal.id_konsentrasi', $id_konsentrasi)
               ->where('tgl_mulai <=', date('Y-m-d'))
               ->where('tgl_akhir >=', date('Y-m-d'))
               ->get('tb_kp')

@@ -109,7 +109,7 @@
                 var id_prodi = document.getElementById('id_prodi').value;
 
                 $.ajax({
-                    url: '<?php echo base_url(); ?>daftar_ulang/get_concentrate/'+id_prodi,
+                    url: '<?php echo base_url(); ?>kelas_perkuliahan/get_concentrate2/'+id_prodi,
                     data: 'id_prodi='+id_prodi,
                     type: 'GET',
                     dataType: 'html',

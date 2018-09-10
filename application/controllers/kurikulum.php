@@ -41,7 +41,7 @@ class Kurikulum extends CI_Controller {
 	{
 		$id_kurikulum = $this->uri->segment(3);
 			if($this->kurikulum_model->simpan_detail_kurikulum() == TRUE){
-				$this->session->set_flashdata('message', '<div class="alert alert-success"> Mata kuliah berhasil tambahkan. </div>');
+				$this->session->set_flashdata('message', '<div class="alert alert-success"> Mata kuliah berhasil ditambahkan </div>');
 				$data = $this->input->post('id_kurikulum');
             	redirect('kurikulum/detail_kurikulum/'.$data);
 			
