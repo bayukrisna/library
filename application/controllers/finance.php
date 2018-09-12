@@ -23,10 +23,6 @@ class Finance extends CI_Controller {
 		}
 		
 	}
-	public function invoice(){
-		$data['main_view'] = 'Finance/template_invoice';
-		$this->load->view('template', $data);
-	}
 	public function data_registrasi(){
 		
 		if($this->session->userdata('level') == 4 || $this->session->userdata('level') == 1){
