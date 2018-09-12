@@ -74,10 +74,7 @@ class Dashboard_model extends CI_Model {
       );
   }
   public function dashboard_akademik(){
-    $data_mhs_aktif = $this->db->select('count(*) as total')
-                ->where('id_status', 1)
-                ->get('tb_mahasiswa')
-                ->row();
+    $data_mhs_aktif = $this->db->query("SELECT count(*) AS total FROM tb_mahasiswa where id_status = '1' OR id_status = '19' ")->row();
 
     $data_prodi = $this->db->select('count(*) as total')
                 ->get('tb_prodi')

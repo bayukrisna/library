@@ -1,9 +1,10 @@
 <section class="content">
       <div class="row">
         <div class="col-xs-12">
+          <?php echo $this->session->flashdata('message');?>
           <div class="box">
             <div class="box-header">
-              <?php echo $this->session->flashdata('message');?>
+              
               <h3 class="box-title">Data Peserta Tes</h3>
             </div>
             <!-- /.box-header -->

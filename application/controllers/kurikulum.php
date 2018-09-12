@@ -57,6 +57,7 @@ class Kurikulum extends CI_Controller {
 			$id_kurikulum = $this->uri->segment(3);
 			$data['kurikulum'] = $this->kurikulum_model->detail_kurikulum($id_kurikulum);
 			$detail_dk = $this->uri->segment(3);
+			$data['getKurikulum'] = $this->kurikulum_model->getKurikulum();
 			$data['dk'] = $this->kurikulum_model->detail_dk($detail_dk);
 			$data['getPeriode'] = $this->daftar_ulang_model->getPeriode();
 			$data['getProdi'] = $this->daftar_ulang_model->getProdi();
@@ -199,10 +200,31 @@ class Kurikulum extends CI_Controller {
 	}
 
 	function remove(){
+		$id_kurikulum = $this->uri->segment(3);
 			foreach ($_POST['id'] as $id) {
 				$this->kurikulum_model->delete($id);
 			}
 			$this->session->set_flashdata('message', '<div class="alert alert-success"> Hapus Mata Kuliah Berhasil </div>');
-			redirect('kurikulum');
+			redirect('kurikulum/detail_kurikulum/'.$id_kurikulum);
 		}
+
+	public function salin_matkul()
+	{
+			$id_kurikulum_get=$this->input->get('id_kurikulum');
+			$id_kurikulum = $this->uri->segment(3);
+			$data['kurikulum'] = $this->kurikulum_model->detail_kurikulum($id_kurikulum);
+			$data['kurikulum2'] = $this->kurikulum_model->detail_kurikulum($id_kurikulum_get);
+			$data['dk'] = $this->kurikulum_model->salin_matkul($id_kurikulum_get);
+			$data['main_view'] = 'Kurikulum/salin_matkul_view';
+			$this->load->view('template', $data);
+	}
+
+	public function simpan_salin_matkul()
+	{
+		$id_kurikulum = $this->input->post('id_kurikulum');
+			if($this->kurikulum_model->simpan_salin_matkul() == TRUE){
+				$this->session->set_flashdata('message', '<div class="alert alert-success"> Mata Kuliah berhasil disalin </div>');
+            	redirect('kurikulum/detail_kurikulum/'.$id_kurikulum);
+			} 
+	}
 }

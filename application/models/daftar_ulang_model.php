@@ -147,6 +147,7 @@ class Daftar_ulang_model extends CI_Model {
     public function save_update_status($id_tes){
     $data = array(
        'id_status'     => '19',
+       'semester_aktif' => '1',
        'id_grade'     => $this->input->post('id_grade', TRUE)
       );
 
@@ -208,8 +209,6 @@ return array(
               ->join('tb_sekolah','tb_sekolah.id_sekolah=tb_mahasiswa.id_sekolah')
               ->join('tb_bio','tb_bio.id_mahasiswa=tb_mahasiswa.id_mahasiswa') 
               ->join('tb_alamat','tb_alamat.id_mahasiswa=tb_mahasiswa.id_mahasiswa') 
-              ->join('tb_kelamin','tb_kelamin.id_kelamin=tb_bio.id_kelamin') 
-              ->join('tb_agama','tb_agama.id_agama=tb_bio.id_agama') 
               ->join('tb_kontak','tb_kontak.id_mahasiswa=tb_mahasiswa.id_mahasiswa') 
               ->join('tb_kependudukan','tb_kependudukan.id_mahasiswa=tb_mahasiswa.id_mahasiswa')
               ->join('tb_ibu','tb_ibu.id_mahasiswa=tb_mahasiswa.id_mahasiswa')

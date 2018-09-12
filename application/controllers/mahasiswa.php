@@ -11,6 +11,7 @@ class Mahasiswa extends CI_Controller {
 		$this->load->model('konsentrasi_model');
 		$this->load->model('kurikulum_model');
 		$this->load->model('user_model');
+		$this->load->model('kelas_perkuliahan_model');
 	}
 	public function index()
 	{		
@@ -333,7 +334,8 @@ class Mahasiswa extends CI_Controller {
 		$id_mahasiswa = $this->input->post('id_mahasiswa');
 		$id_prodi = $this->uri->segment(3);
 		$semester_aktif = $this->uri->segment(4);
-			if($this->mahasiswa_model->simpan_krs_mhs() == TRUE && $this->mahasiswa_model->update_status($id_mahasiswa) == TRUE){
+		$id_periode = $this->uri->segment(5);
+			if($this->mahasiswa_model->simpan_krs_mhs() == TRUE && $this->mahasiswa_model->update_status($id_mahasiswa) == TRUE && $this->kelas_perkuliahan_model->update_status_aktivitas($id_mahasiswa, $id_periode) == TRUE){
 				$this->session->set_flashdata('message', '<div class="alert alert-success"> Anda berhasil menambahkan KRS untuk semester ini </div>');
             	redirect('mahasiswa/kelas_mhs/'.$id_mahasiswa.'/'.$id_prodi.'/'.$semester_aktif);
 			} 

@@ -63,6 +63,41 @@ class Kurikulum_model extends CI_Model {
 
     }
 
+    public function getKurikulum(){
+      return $this->db->get('tb_kurikulum')->result();
+    }
+
+     public function simpan_salin_matkul()
+    {
+      $kode_matkul = explode(',', $this->input->post('kode_matkul'));
+      $semester_kurikulum = explode(',', $this->input->post('semester_kurikulum'));
+      $wajib = explode(',', $this->input->post('wajib'));
+      for($i=0; $i+1<count($kode_matkul);$i++)
+        for($i=0; $i+1<count($semester_kurikulum);$i++)
+          for($i=0; $i+1<count($wajib);$i++){
+        $data = array('id_kurikulum'        => $this->input->post('id_kurikulum'),
+                      'kode_matkul'        => $kode_matkul[$i], 
+                      'semester_kurikulum'        => $semester_kurikulum[$i], 
+                      'wajib'        => $wajib[$i], 
+                    );
+        $this->db->insert('tb_detail_kurikulum', $data);
+      }
+      if($this->db->affected_rows() > 0){
+                return true;
+        } else {
+            return false;
+        }
+    }
+
+     public function salin_matkul($id_kurikulum_get){
+       return $this->db->join('tb_kurikulum','tb_kurikulum.id_kurikulum=tb_detail_kurikulum.id_kurikulum')
+              ->join('tb_matkul','tb_matkul.kode_matkul=tb_detail_kurikulum.kode_matkul')
+              ->where('tb_kurikulum.id_kurikulum', $id_kurikulum_get)
+              ->order_by('semester_kurikulum')
+              ->get('tb_detail_kurikulum')
+              ->result();
+    }
+
   public function data_kurikulum(){
 
    return $this->db->join('tb_prodi','tb_prodi.id_prodi=tb_kurikulum.id_prodi')
