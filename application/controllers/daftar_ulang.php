@@ -118,7 +118,7 @@ class daftar_ulang extends CI_Controller {
 						if($this->email->send()){
 							$nama_du = $this->input->post('nama_mahasiswa');
 							$this->session->set_flashdata('message', '<div class="col-md-12 alert alert-success"> Data '.$nama_du.' berhasil didaftarkan. </div>');
-			            	redirect('mahasiswa/data_mahasiswa');
+			            	redirect('mahasiswa/mahasiswa_data');
 						}
 			} else{
 				$this->session->set_flashdata('message', '<div class="col-md-12 alert alert-danger"> Data  '.$nama_pendaftar.' Sudah Ada </div>');

@@ -370,86 +370,11 @@
                               
                 
             </table>
+        </div>
         <?php } ?>
 
-              </div>
-              <div class="tab-pane" id="tab_1">
-                <table width="90%" class="table">
-                <tr>
-                    <td class="left_column" width="15%">NIK <font color="#FF0000">*</font></td>
-                    <td colspan="4">:  <?php echo $mahasiswa->nik; ?>
-                    </td>
-                </tr>
-        <tr>
-                    <td class="left_column" width="15%">NISN</td>
-                    <td colspan="5">: <?php echo $mahasiswa->nisn; ?></td>
-                </tr>
-        <tr>
-                    <td class="left_column" width="15%">NPWP</td>
-                    <td colspan="5">: <?php echo $mahasiswa->npwp; ?></td>
-                </tr>
-                <tr>
-                    <td class="left_column">Kewarganegaraan <font color="#FF0000">*</font></td>
-                    <td colspan="5">: 
-                    <?php echo $mahasiswa->kewarganegaraan; ?>
-                    </td>
-                </tr>
-                <tr>
-                    <td class="left_column" width="15%">Jalan</td>
-                    <td colspan="5">: <?php echo $mahasiswa->jalan; ?></td>
-                </tr>
-                <tr>
-                    <td class="left_column">Dusun</td>
-                    <td>: <?php echo $mahasiswa->dusun; ?></td>
-                    <td class="left_column">RT</td>
-                    <td>: <?php echo $mahasiswa->rt; ?> </td>
-                    <td class="left_column">RW</td>
-                    <td>: <?php echo $mahasiswa->rw; ?></td>
-                </tr>
-                <tr>
-                    <td class="left_column">Kelurahan <font color="#FF0000">*</font></td>
-                    <td>: <?php echo $mahasiswa->kelurahan; ?></td>
-                    <td class="left_column">Kodepos</td>
-                    <td colspan="4">: <?php echo $mahasiswa->kode_pos; ?></td>
-                </tr>
-                <tr>
-                    <td class="left_column">Kecamatan <font color="#FF0000">*</font></td>
-                    <td colspan="5">: 
-                    <?php echo $mahasiswa->kecamatan; ?>
-                    </td>
-                </tr>
-                <tr>
-                    <td class="left_column">Jenis Tinggal</td>
-                    <td colspan="5">: <?php echo $mahasiswa->jenis_tinggal; ?></td>
-                </tr>
-                 <tr>
-                    <td class="left_column">Alat Transportasi</td>
-                    <td colspan="5">: <?php echo $mahasiswa->transportasi; ?></td>
-                </tr>
-                <tr>
-                    <td class="left_column">Telepon</td>
-                    <td>: <?php echo $mahasiswa->no_telepon; ?></td>
-                    <td class="left_column">HP</td>
-                    <td colspan="4">: <?php echo $mahasiswa->no_hp; ?></td>
-                </tr>
-                <tr>
-                    <td class="left_column">Email</td>
-                    <td colspan="5">: <?php echo $mahasiswa->email; ?></td>
-                </tr>
-                <tr>
-                    <td class="left_column">Penerima KPS ? <font color="#FF0000">*</font></td>
-                    <td>: 
-                    <?php echo $mahasiswa->kps; ?>
-                </td>
-                    <td class="left_column">No KPS</td>
-                    <td colspan = '4'>: <?php echo $mahasiswa->no_kps; ?></td>
-                </tr>
-
-
-
-
-          </table>
-              </div>
+              
+              
             </div>
             <!-- /.tab-content -->
           </div>

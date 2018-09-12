@@ -58,16 +58,39 @@
             <!-- /.box-body -->
           </div>
           <div class="">
-            <a class="btn btn-primary pull-right"  href="<?php echo base_url(); ?>kurikulum" style="margin-left: 10px">
+           
+
+              <form method="get" action="<?php echo base_url(); ?>kurikulum/salin_matkul/<?php echo $kurikulum->id_kurikulum; ?>/" enctype="multipart/form-data">
+               <a class="btn btn-primary pull-right"  href="<?php echo base_url(); ?>kurikulum" style="margin-left: 10px">
               Kembali</a> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-            <a class="btn btn-primary pull-right"  data-toggle="modal" data-target="#modal_tambah">
-              <i class="fa fa-plus"></i> Tambah Mata Kuliah</a> <br><br>
+            <a class="btn btn-primary pull-right"  data-toggle="modal" data-target="#modal_tambah" style="margin-left: 10px">
+
+              <i class="fa fa-plus"></i> Tambah Mata Kuliah</a> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;   
+            <button type="submit" class="btn btn-info pull-right" > Salin Mata Kuliah </button>
+          <div class="col-xs-3 pull-right">
+             <select name="id_kurikulum" class="form-control">
+                        <option value=""> Pilih Kurikulum & Salin </option>
+                        <?php 
+
+                                        foreach($getKurikulum as $row)
+                                        { 
+                                          echo '<option value="'.$row->id_kurikulum.'">'.$row->nama_kurikulum.'</option>';
+                                        }
+                                    ?>
+                      </select>
+                    </div>
+              </form>
+
+
+
+
+            <br>
             
           </div>
 
 
           <div class="box box-info">
-            <?php echo form_open('kurikulum/remove'); ?>
+            <?php echo form_open('kurikulum/remove/'.$this->uri->segment(3)); ?>
  
             <table class="table2 table-bordered table-striped">
   <thead>
@@ -237,6 +260,7 @@
   });
 
   </script>
+ 
 
   
 

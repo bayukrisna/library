@@ -191,7 +191,7 @@ class Mahasiswa_model extends CI_Model {
   } 
 
    public function Periode_krs($id_prodi){
-      return $this->db->select('semester')
+      return $this->db->select('semester, id_periode')
               ->where('tb_periode.tgl_awal_kul <=', date('Y-m-d'))
               ->where('tb_periode.tgl_akhir_kul >=', date('Y-m-d'))
               ->where('id_prodi', $id_prodi)
@@ -489,7 +489,8 @@ class Mahasiswa_model extends CI_Model {
             'id_konsentrasi'      => $this->input->post('concentrate', TRUE),
             'id_sekolah'      => $this->input->post('id_sekolah', TRUE),
             'id_waktu'      => '2',
-            'id_grade'      => '4'
+            'id_grade'      => '4',
+            'semester_aktif'  => '1',
         );
     
         $this->db->insert('tb_mahasiswa', $data);

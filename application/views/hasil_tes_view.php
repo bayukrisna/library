@@ -81,7 +81,7 @@
                
                 <div class="form-group">
                   <div class="col-md-3">
-                  <label for="inputEmail3" class="control-label pull-left">Nilai</label>
+                  <label for="inputEmail3" class="control-label pull-left">Jawaban Benar</label>
                 </div>
                   <div class="col-md-2">
                     <input type="text" id="mtk" name="mtk" class="form-control input-sm"  placeholder="MTK" onkeyup="sum(); sum2();" required="">
@@ -187,7 +187,7 @@
                   <label for="inputEmail3" class="control-label pull-left">Ranking</label>
                   </div>
                   <div class="col-md-5">
-                    <input id="grade" name="grade" type="text" class="form-control input-sm" placeholder="" readonly="">
+                    <input id="grade" name="grade" type="hidden" class="form-control input-sm" placeholder="" readonly="">
                     <input id="id_grade" name="id_grade" type="text" class="form-control input-sm" placeholder="" readonly="">
                   </div>
                 </div>

@@ -126,7 +126,7 @@
               </table>
 
             </div>
-            <?php echo form_open('mahasiswa/simpan_krs_mhs/'.$mahasiswa->id_prodi.'/'.$mahasiswa->semester_aktif);?>
+            <?php echo form_open('mahasiswa/simpan_krs_mhs/'.$mahasiswa->id_prodi.'/'.$mahasiswa->semester_aktif.'/'.$periode->id_periode);?>
               <input type="hidden" class="form-control" id="id_mahasiswa" name="id_mahasiswa" value="<?php echo $id_mahasiswa ?>">
               <input type="hidden" class="form-control" id="semester_aktif" name="semester_aktif" value="<?php echo $semester_aktif ?>">
                <input type="hidden" class="form-control" id="id_kp" name="id_kp" value="<?php echo $id_kp ?>">
