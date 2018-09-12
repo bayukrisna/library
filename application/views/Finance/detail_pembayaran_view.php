@@ -117,13 +117,15 @@
     <table class="table table-bordered table-striped table-hover">
       <thead>
         <tr>
-          <th>#</th>
-          <th>Nama Mahasiswa</th>
-          <th>Jenis Pembayaran</th>
-          <th>Pembayaran</th>
-          <th>Harga</th>
-          <th>Subtotal</th>
-        </tr>
+              <th>No</th>
+              <th>Jenis Pembayaran</th>
+              <th>Nama Pembayaran</th>
+              <th>Biaya</th>
+              <th>Denda</th>
+              <th>Potongan</th>
+              <th>Keterangan</th>
+              <th>Total Biaya</th>
+            </tr>
       </thead>
       <tbody>
         <?php 
@@ -133,10 +135,12 @@
         ?>
         <tr>
           <td><?= $i?></td>
-          <td><?= $items['name'] ?></td>
           <td><?= $items['jp'] ?></td>
           <td><?= $items['pembayaran'] ?></td>
-          <td align="right"><?= number_format($items['price'],0,',','.') ?></td>
+          <td align="right"><?= number_format($items['harga'],0,',','.') ?></td>
+          <td align="right"><?= number_format($items['denda'],0,',','.') ?></td>
+          <td align="right"><?= number_format($items['potongan'],0,',','.') ?></td>
+          <td><?= $items['keterangan'] ?></td>
           <td align="right"><?= number_format($items['subtotal'],0,',','.') ?></td>
         </tr>
         
@@ -162,63 +166,130 @@
                         <input type="hidden" class="form-control" id="kodeku_pembayaran" name="kodeku_pembayaran" value="<?= $items['kode'] ?>">
                         <input type="hidden" class="form-control" id="id_mhsa" name="id_mhsa" value="<?= $items['idmhsa'] ?>">
                 <?php endforeach; ?>
-                <div id="yoyo" style="display: none ">
-  <table align="left">
-<tbody>
-<tr style="height: 18px;">
-<td style="width: 300px; height: 18px;"><strong>STIE Jakarta International College</strong></td>
-<td rowspan="4"><img src="http://www.jic-stie.ac.id/jic/wp-content/uploads/2017/12/STIE-011-e1512463419656.png" alt="" width="400" height="75" /></td>
-</tr>
-<tr style="height: 18px;">
-<td style="width: 300px; height: 18px;">Jl.Perunggu No.54</td>
-</tr>
-<tr style="height: 18px;">
-<td style="width: 300px; height: 18px;">Jakarta Pusat</td>
-</tr>
-<tr style="height: 10px;">
-<td style="width: 300px; height: 10px;">Tel 021</td>
-</tr>
-</tbody>
-</table><br><br><br><br><br>
-<p>0988 /STIE JIC-CRV/.../...</p>
+                <div id="yoyo" style="display:  none">
+  <section class="invoice" id="invoice">
+      <!-- title row -->
+      <div class="row" style="display: none">
+        <div class="col-xs-12">
+          <h2 class="page-header">
+            <i class="fa fa-globe"></i> AdminLTE, Inc.
+            <small class="pull-right">Date: 2/10/2014</small>
+          </h2>
+        </div>
+        <!-- /.col -->
+      </div>
+      <!-- info row -->
+      <div class="row invoice-info">
+        <div class="col-sm-3 invoice-col">
+          <address style="text-align: left">
+            <strong>STIE Jakarta International College</strong><br>
+            Jl.Perunggu No 54<br>
+            Jakarta Pusat<br>
+            Tel : 021-4257369
+          </address>
+        </div>
+        <!-- /.col -->
+        <div class="col-sm-5 invoice-col">
+            <table>
+              <tr>
+                <td width="120px"><strong>Nama Mahasiswa</strong></td>
+                <td>: <?php echo $data->nama_mahasiswa ?></td>
+              </tr>
+              <tr>
+                <td width="120px"><strong>NIM</strong></td>
+                <td>: <?php echo $data->nim ?></td>
+              </tr>
+              <tr>
+                <td width="120px"><strong>Metode</strong></td>
+                <td>: Transfer</td>
+              </tr>
+              <tr>
+                <td width="120px"><strong>Tanggal Terima</strong></td>
+                <td>: <?php echo date('d-m-Y'); ?></td>
+              </tr>
+            </table>
+        </div>
+        <!-- /.col -->
+        <div class="col-sm-4 invoice-col">
+          <img class="pull-right" src="<?php echo base_url(); ?>/uploads/jiclogo.png">
+        </div>
+        <!-- /.col -->
+      </div>
+      <!-- /.row -->
 
-  <table class="table table-bordered table-striped table-hover">
-      <thead>
-        <tr>
-          <th>#</th>
-          <th>Nama Mahasiswa</th>
-          <th>Jenis Pembayaran</th>
-          <th>Pembayaran</th>
-          <th>Price</th>
-          <th>Subtotal</th>
-        </tr>
-      </thead>
-      <tbody>
-        <?php 
+      <!-- Table row -->
+      <div class="row">
+        <div class="col-xs-12 table-responsive">
+          <table class="table table-striped">
+            <thead>
+            <tr>
+              <th>No</th>
+              <th>Jenis Pembayaran</th>
+              <th>Nama Pembayaran</th>
+              <th>Biaya</th>
+              <th>Denda</th>
+              <th>Potongan</th>
+              <th>Keterangan</th>
+              <th>Total Biaya</th>
+            </tr>
+            </thead>
+            <tbody>
+            <?php 
           $i=0;
           foreach ($this->cart->contents() as $items) : 
           $i++;
         ?>
         <tr>
           <td><?= $i?></td>
-          <td><?= $items['name'] ?></td>
           <td><?= $items['jp'] ?></td>
           <td><?= $items['pembayaran'] ?></td>
-          <td align="right"><?= number_format($items['price'],0,',','.') ?></td>
+          <td align="right"><?= number_format($items['harga'],0,',','.') ?></td>
+          <td align="right"><?= number_format($items['denda'],0,',','.') ?></td>
+          <td align="right"><?= number_format($items['potongan'],0,',','.') ?></td>
+          <td><?= $items['keterangan'] ?></td>
           <td align="right"><?= number_format($items['subtotal'],0,',','.') ?></td>
         </tr>
         
         <?php endforeach; ?>
+            </tbody>
+          </table>
+        </div>
+        <!-- /.col -->
+      </div>
+      <!-- /.row -->
 
-      </tbody>
-      <tfoot>
-        <tr>
-          <td align="right" colspan="5">Total </td>
-          <td align="right"><?= number_format($this->cart->total(),0,',','.'); ?></td>
-        </tr>
-      </tfoot>
+      <div class="row">
+        <!-- accepted payments column -->
+        <div class="col-xs-6" style="">
+        </div>
+        <!-- /.col -->
+        <div class="col-xs-6" >
+          <div class="table-responsive">
+            <table class="table">
+              <tr>
+                <th style="width:50%">Subtotal:</th>
+                <td><?= number_format($this->cart->total(),0,',','.'); ?></td>
+              </tr>
+            </table>
+          </div>
+        </div>
+        <!-- /.col -->
+      </div>
+      <!-- /.row -->
 
-    </table>
+      <!-- this row will not appear when printing -->
+      <div class="row no-print" style="display: none">
+        <div class="col-xs-12">
+          <p class="btn btn-primary" onclick="print2()"> Cetak </p>
+          <a href="invoice-print.html" target="_blank" class="btn btn-default"><i class="fa fa-print"></i> Print</a>
+          <button type="button" class="btn btn-success pull-right"><i class="fa fa-credit-card"></i> Submit Payment
+          </button>
+          <button type="button" class="btn btn-primary pull-right" style="margin-right: 5px;">
+            <i class="fa fa-download"></i> Generate PDF
+          </button>
+        </div>
+      </div>
+    </section>
 </div>
                 <?php $cart_check = $this->cart->contents();
                 if(empty($cart_check)) {
@@ -226,7 +297,7 @@
                 
                 } else {
                   echo '<button type="submit" class="btn btn-success" > Simpan </button>';
-                  // echo '&nbsp;<p class="btn btn-primary" onclick="print1()"> Cetak </p>';
+                  echo '&nbsp;<p class="btn btn-primary" onclick="print1()"> Cetak </p>';
 
                 } ?> 
                 

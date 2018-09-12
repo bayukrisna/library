@@ -23,6 +23,10 @@ class Finance extends CI_Controller {
 		}
 		
 	}
+	public function invoice(){
+		$data['main_view'] = 'Finance/template_invoice';
+		$this->load->view('template', $data);
+	}
 	public function data_registrasi(){
 		
 		if($this->session->userdata('level') == 4 || $this->session->userdata('level') == 1){
@@ -70,10 +74,18 @@ class Finance extends CI_Controller {
 			$ea = $this->uri->segment(3);
 			$product_id = $this->input->post('pembayaran');
 			$product = $this->finance_model->find($product_id);
+			if($this->input->post('potongan') == '' && $this->input->post('denda') == ''){
+	            $potongan = 0;
+	            $denda = 0;
+	          } else {
+	          	$potongan = $this->input->post('potongan');
+	          	$denda = $this->input->post('denda');
+	          }
 			$data = array(
 						   'id'      => $this->input->post('pembayaran'),
 						   'qty'     => 1,
 						   'price'   => $this->input->post('biaya'),
+						   'harga'   => $this->input->post('biayaku'),
 						   'name'    => $this->input->post('nama_mhsa'),
 						   'idmhsa'    => $this->input->post('id_mhsa'),
 						   'tgl'    => $this->input->post('tanggal_pembayaran'),
@@ -82,8 +94,8 @@ class Finance extends CI_Controller {
 						   'kdmatkul'    => $this->input->post('kode_matkul'),
 						   'kode'    => $this->input->post('kode_pembayaran'),
 						   'idgrade'    => $this->input->post('id_grade'),
-						   'potongan'    => $this->input->post('potongan'),
-						   'denda'    => $this->input->post('denda'),
+						   'potongan'    => $potongan,
+						   'denda'    => $denda,
 						   'keterangan'    => $this->input->post('keterangan')
 						);
 
