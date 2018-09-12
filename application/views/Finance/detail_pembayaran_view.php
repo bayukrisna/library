@@ -31,7 +31,8 @@
             <td class="left_column">Kelas </td>
             <td>: <?php echo $data->waktu ?></td>
             <input type="hidden" name="waktu" id="waktu" value="<?php echo $data->waktu ?>">
-            
+            <td class="left_column">Semester <font color="#FF0000">*</font></td>
+            <td>: <?php echo $data->semester_aktif; ?></td>
           </tr>
         </table>
             </div>
