@@ -59,11 +59,13 @@ class Kelas_perkuliahan_model extends CI_Model {
   public function filter_kp($id_prodi, $id_periode){
     $this->db->select('*');
      $this->db->from('tb_kp');
-     $this->db->join('tb_prodi','tb_prodi.id_prodi=tb_kp.id_prodi');
-     
-    
-     
-     $this->db->join('tb_dosen','tb_dosen.id_dosen=tb_kp.id_dosen');
+     $this->db->join('tb_jadwal','tb_jadwal.id_jadwal=tb_kp.id_jadwal');
+     $this->db->join('tb_ruang','tb_ruang.id_ruang=tb_jadwal.id_ruang');
+     $this->db->join('tb_konsentrasi_kelas','tb_konsentrasi_kelas.id_konsentrasi=tb_jadwal.id_konsentrasi');
+     $this->db->join('tb_prodi','tb_prodi.id_prodi=tb_konsentrasi_kelas.id_prodi');
+     $this->db->join('tb_detail_kurikulum','tb_detail_kurikulum.id_detail_kurikulum=tb_jadwal.id_detail_kurikulum');
+     $this->db->join('tb_matkul','tb_matkul.kode_matkul=tb_detail_kurikulum.kode_matkul');
+     $this->db->join('tb_periode','tb_periode.id_periode=tb_jadwal.id_periode');
      $this->db->like('tb_prodi.id_prodi',$id_prodi);
      $this->db->like('tb_periode.id_periode',$id_periode);
      $query = $this->db->get();

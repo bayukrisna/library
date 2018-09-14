@@ -12,6 +12,7 @@ class Aktivitas_perkuliahan_model extends CI_Model {
 	public function data_aktivitas_perkuliahan(){
 		return $this->db->join('tb_mahasiswa','tb_mahasiswa.id_mahasiswa=tb_aktivitas_perkuliahan.id_mahasiswa')
               ->join('tb_bio','tb_bio.id_mahasiswa=tb_mahasiswa.id_mahasiswa')
+              ->join('tb_mhs_add','tb_mhs_add.id_mahasiswa=tb_mahasiswa.id_mahasiswa')
               ->join('tb_periode','tb_periode.id_periode=tb_aktivitas_perkuliahan.id_periode')
               ->join('tb_konsentrasi','tb_konsentrasi.id_konsentrasi=tb_mahasiswa.id_konsentrasi')
               ->join('tb_prodi','tb_prodi.id_prodi=tb_konsentrasi.id_prodi')
@@ -19,6 +20,20 @@ class Aktivitas_perkuliahan_model extends CI_Model {
               ->get('tb_aktivitas_perkuliahan')
               ->result();
 	}
+
+  public function filter_data_ap($id_prodi, $id_periode){
+    return $this->db->join('tb_mahasiswa','tb_mahasiswa.id_mahasiswa=tb_aktivitas_perkuliahan.id_mahasiswa')
+              ->join('tb_bio','tb_bio.id_mahasiswa=tb_mahasiswa.id_mahasiswa')
+              ->join('tb_mhs_add','tb_mhs_add.id_mahasiswa=tb_mahasiswa.id_mahasiswa')
+              ->join('tb_periode','tb_periode.id_periode=tb_aktivitas_perkuliahan.id_periode')
+              ->join('tb_konsentrasi','tb_konsentrasi.id_konsentrasi=tb_mahasiswa.id_konsentrasi')
+              ->join('tb_prodi','tb_prodi.id_prodi=tb_konsentrasi.id_prodi')
+              ->join('tb_status_mhs','tb_status_mhs.id_status=tb_aktivitas_perkuliahan.id_status')
+              ->like('tb_prodi.id_prodi', $id_prodi)
+              ->like('tb_aktivitas_perkuliahan.id_periode', $id_periode)
+              ->get('tb_aktivitas_perkuliahan')
+              ->result();
+  }
 
   function cek_duplikat($id_mahasiswa, $id_periode){
       $query = $this->db->select('*')

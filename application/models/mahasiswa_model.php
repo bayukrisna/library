@@ -59,31 +59,37 @@ class Mahasiswa_model extends CI_Model {
 	}
 
   public function data_mahasiswa_dikti(){
-    $this->db->select('*');
-     $this->db->from('tb_mahasiswa');
-     $this->db->join('tb_konsentrasi','tb_konsentrasi.id_konsentrasi=tb_mahasiswa.id_konsentrasi');
-     $this->db->join('tb_prodi','tb_prodi.id_prodi=tb_konsentrasi.id_prodi');
-     $this->db->join('tb_bio','tb_bio.id_mahasiswa=tb_mahasiswa.id_mahasiswa');
-     $this->db->join('tb_status_mhs','tb_status_mhs.id_status=tb_mahasiswa.id_status');
-     $this->db->join('tb_agama','tb_agama.id_agama=tb_bio.id_agama');
-     $this->db->join('tb_kelamin','tb_kelamin.id_kelamin=tb_bio.id_kelamin');
-     $query = $this->db->get();
-     return $query->result();
+    return $this->db->join('tb_konsentrasi','tb_konsentrasi.id_konsentrasi=tb_mahasiswa.id_konsentrasi')
+              ->join('tb_prodi','tb_prodi.id_prodi=tb_konsentrasi.id_prodi')
+              ->join('tb_alamat','tb_alamat.id_mahasiswa=tb_mahasiswa.id_mahasiswa')  
+              ->join('tb_bio','tb_bio.id_mahasiswa=tb_mahasiswa.id_mahasiswa') 
+              ->join('tb_kontak','tb_kontak.id_mahasiswa=tb_mahasiswa.id_mahasiswa')
+              ->join('tb_waktu','tb_waktu.id_waktu=tb_mahasiswa.id_waktu') 
+              ->join('tb_mhs_add','tb_mhs_add.id_mahasiswa=tb_mahasiswa.id_mahasiswa')
+              ->join('tb_status_mhs','tb_status_mhs.id_status=tb_mahasiswa.id_status')
+              ->join('tb_agama','tb_agama.id_agama=tb_bio.id_agama')
+              ->join('tb_kelamin','tb_kelamin.id_kelamin=tb_bio.id_kelamin')
+              ->get('tb_mahasiswa')
+              ->result();
   }
 
-  public function filter_mahasiswa($id_prodi, $agama, $jenis_kelamin){
-    $this->db->select('*');
-     $this->db->from('tb_mahasiswa');
-     $this->db->join('tb_konsentrasi','tb_konsentrasi.id_konsentrasi=tb_mahasiswa.id_konsentrasi');
-     $this->db->join('tb_prodi','tb_prodi.id_prodi=tb_konsentrasi.id_prodi');
-     $this->db->join('tb_bio','tb_bio.id_mahasiswa=tb_mahasiswa.id_mahasiswa');
-    $this->db->join('tb_agama','tb_agama.id_agama=tb_bio.id_agama');
-     $this->db->join('tb_kelamin','tb_kelamin.id_kelamin=tb_bio.id_kelamin');
-     $this->db->like('tb_prodi.id_prodi',$id_prodi);
-     $this->db->like('tb_bio.agama',$agama);
-     $this->db->like('tb_bio.jenis_kelamin',$jenis_kelamin);
-     $query = $this->db->get();
-     return $query->result();
+  public function filter_mahasiswa($id_prodi, $id_agama, $id_kelamin, $angkatan){
+   return $this->db->join('tb_konsentrasi','tb_konsentrasi.id_konsentrasi=tb_mahasiswa.id_konsentrasi')
+              ->join('tb_prodi','tb_prodi.id_prodi=tb_konsentrasi.id_prodi')
+              ->join('tb_alamat','tb_alamat.id_mahasiswa=tb_mahasiswa.id_mahasiswa')  
+              ->join('tb_bio','tb_bio.id_mahasiswa=tb_mahasiswa.id_mahasiswa') 
+              ->join('tb_kontak','tb_kontak.id_mahasiswa=tb_mahasiswa.id_mahasiswa')
+              ->join('tb_waktu','tb_waktu.id_waktu=tb_mahasiswa.id_waktu') 
+              ->join('tb_mhs_add','tb_mhs_add.id_mahasiswa=tb_mahasiswa.id_mahasiswa')
+              ->join('tb_status_mhs','tb_status_mhs.id_status=tb_mahasiswa.id_status')
+              ->join('tb_agama','tb_agama.id_agama=tb_bio.id_agama')
+              ->join('tb_kelamin','tb_kelamin.id_kelamin=tb_bio.id_kelamin')
+              ->like('tb_prodi.id_prodi', $id_prodi)
+              ->like('tb_bio.id_agama', $id_agama)
+              ->like('tb_bio.id_kelamin', $id_kelamin)
+              ->like('tb_mhs_add.tgl_du', $angkatan)
+              ->get('tb_mahasiswa')
+              ->result();
   }
 
    function filter_nilai($id_mahasiswa,$id_periode){

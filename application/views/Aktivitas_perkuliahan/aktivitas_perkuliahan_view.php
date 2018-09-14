@@ -13,7 +13,7 @@
             <div class="box-body">
               <table class="">
                 <tbody>
-                  <form method="get" action="<?php echo base_url("kelas_perkuliahan/filter_kp/")?>">
+                  <form method="get" action="<?php echo base_url("aktivitas_perkuliahan/filter_data_ap/")?>">
                   <tr>
                     <th>Filter</th>
                   </tr>
@@ -90,7 +90,7 @@
                   <td><a href="'.base_url('kelas_perkuliahan/detail_kelas/'.$data->id_aktivitas).'">'.$data->nim.'</a></td>
                   <td>'.$data->nama_mahasiswa.'</td>
                   <td>'.$data->nama_prodi.'</td>
-                  <td>'.$data->angkatan.'</td>
+                  <td>'.substr($data->tgl_du,0,4).'</td>
                   <td>'.$data->semester.'</td>
                   <td>'.$data->status_mhs.'</td>
                   <td>'.$data->ips.'</td>
@@ -251,4 +251,19 @@
                     error:function (){}
                 });
               }
+</script>
+<script type="text/javascript">
+            function get_prodi_periode2(p) {
+                var id_prodi = p;
+
+                $.ajax({
+                    url: '<?php echo base_url(); ?>kurikulum/get_prodi_periode/'+id_prodi,
+                    data: 'id_prodi='+id_prodi,
+                    type: 'GET',
+                    dataType: 'html',
+                    success: function(msg) {
+                        $("#id_periode2").html(msg);
+                    }
+                });
+            }
 </script>
