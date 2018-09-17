@@ -172,7 +172,7 @@ a:hover .tooltiptext {
         <?php 
           if($this->session->userdata('level') == 5){ ?>
             <li><a href="<?php echo base_url(); ?>dashboard"> <i class="fa fa-dashboard"></i> <span>Dashboard</span></a></li>
-            <li><a href="<?php echo base_url(); ?>calendar"><i class="fa fa-calendar"></i><span>Akademik Calendar</span></a></li>
+            <li><a href="<?php echo base_url(); ?>calendar"><i class="fa fa-calendar"></i><span>Kalender Akademik</span></a></li>
             <li><a href="<?php echo base_url(); ?>mahasiswa/history_pendidikan"><i class="fa fa-history"></i> <span>History Pendidikan</span></a></li>
             <li><a href="<?php echo base_url(); ?>mahasiswa/krs_mahasiswa"><i class="fa fa-book"></i> <span>KRS Mahasiswa</span></a></li>
             <li><a href="<?php echo base_url(); ?>mahasiswa/history_nilai"><i class="fa fa-file-text"></i> <span>History Nilai</span></a></li>
@@ -183,7 +183,7 @@ a:hover .tooltiptext {
 
           <?php } else if($this->session->userdata('level') == 3) { ?>
             <li><a href="<?php echo base_url(); ?>dashboard"> <i class="fa fa-dashboard"></i> <span>Dashboard</span></a></li>
-            <li><a href="<?php echo base_url(); ?>calendar"><i class="fa fa-calendar"></i><span>Akademik Calendar</span></a></li>
+            <li><a href="<?php echo base_url(); ?>calendar"><i class="fa fa-calendar"></i><span>Kalender Akademik</span></a></li>
             <li><a href="<?php echo base_url(); ?>master_asal_sekolah"><i class="fa fa-building-o"></i><span> Asal Sekolah</span></a></li>
             <li><a href="<?php echo base_url(); ?>tamu/data_tamu"><i class="fa fa-group"></i><span>Data Tamu</span></a></li>
             <li><a href="<?php echo base_url(); ?>daftar_ulang/data_peserta_tes"><i class="fa fa-male"></i><span>Data Peserta Tes</span></a></li>
@@ -206,7 +206,7 @@ a:hover .tooltiptext {
 
           <?php } else if($this->session->userdata('level') == 4) { ?>
             <li><a href="<?php echo base_url(); ?>dashboard"><i class="fa fa-dashboard"></i><span>Dashboard</span></a></li>
-            <li><a href="<?php echo base_url(); ?>calendar"><i class="fa fa-calendar"></i><span>Akademik Calendar</span></a></li>
+            <li><a href="<?php echo base_url(); ?>calendar"><i class="fa fa-calendar"></i><span>Kalender Akademik</span></a></li>
             <li><a href="<?php echo base_url(); ?>master_biaya_sekolah"><i class="fa fa-money"></i> <span>Biaya Kuliah</span></a></li>
             <li><a href="<?php echo base_url(); ?>finance/data_registrasi"><i class="fa fa-check-square"></i><span>Konfirmasi Registrasi</span></a></li>
             <li><a href="<?php echo base_url(); ?>finance/data_lunas"><i class="fa fa-database"></i><span>Data Registrasi Lunas</span></a></li>
@@ -215,14 +215,14 @@ a:hover .tooltiptext {
 
           <?php } else if($this->session->userdata('level') == 2) { ?>
             <li><a href="<?php echo base_url(); ?>dashboard"><i class="fa fa-dashboard"></i><span>Dashboard</span></a></li>
-            <li><a href="<?php echo base_url(); ?>calendar"><i class="fa fa-calendar"></i><span>Akademik Calendar</span></a></li>
+            <li><a href="<?php echo base_url(); ?>calendar"><i class="fa fa-calendar"></i><span>Kalender Akademik</span></a></li>
             <li><a href="<?php echo base_url(); ?>master_dosen/jadwal_dosen"><i class="fa fa-money"></i> <span>Jadwal Kelas</span></a></li>
             <li><a href="<?php echo base_url(); ?>master_dosen/nilai_dosen"><i class="fa fa-check-square"></i><span>Input nilai</span></a></li>
             <li><a href="<?php echo base_url(); ?>informasi/saring_level/<?php echo $this->session->userdata('level'); ?>"><i class="fa  fa-info-circle"></i>Informasi</a></li>
 
           <?php } else if($this->session->userdata('level') == 6) { ?>
             <li><a href="<?php echo base_url(); ?>dashboard"><i class="fa fa-dashboard"></i><span>Dashboard</span></a></li>
-            <li><a href="<?php echo base_url(); ?>calendar"><i class="fa fa-calendar"></i><span>Akademik Calendar</span></a></li>
+            <li><a href="<?php echo base_url(); ?>calendar"><i class="fa fa-calendar"></i><span>Kalender Akademik</span></a></li>
             <li><a href="<?php echo base_url(); ?>master_dosen"><i class="fa fa-archive"></i> <span>Dosen</span></a></li>
             <li><a href="<?php echo base_url(); ?>mahasiswa/data_mahasiswa"><i class="fa fa-user"></i><span>Mahasiswa</span></a></li>
              <li><a href="<?php echo base_url(); ?>mata_kuliah"><i class="fa fa-book"></i><span>Mata Kuliah</span></a></li>
@@ -250,7 +250,8 @@ a:hover .tooltiptext {
 
           <?php } else { ?>
             <li><a href="<?php echo base_url(); ?>dashboard"><i class="fa fa-dashboard"></i><span>Dashboard</span></a></li>
-            <li><a href="<?php echo base_url(); ?>calendar"><i class="fa fa-calendar"></i><span>Akademik Calendar</span></a></li>
+            <li><a href="<?php echo base_url(); ?>calendar"><i class="fa fa-calendar"></i><span>Kelender Akademik</span></a></li>
+            <li><a href="<?php echo base_url(); ?>calendar/master_calendar"><i class="fa fa-calendar"></i><span>Data Kalender</span></a></li>
         <li class="treeview">
           <a href="#">
             <i class="fa fa-archive"></i> <span>Master</span>
@@ -260,7 +261,7 @@ a:hover .tooltiptext {
           </a>
           <ul class="treeview-menu">
             <li><a href="<?php echo base_url(); ?>admin"><i class="fa fa-circle-o"></i> User</a></li>
-            <li><a href="<?php echo base_url(); ?>calendar/master_calendar"><i class="fa fa-circle-o"></i> Master Calendar</a></li>
+            <li><a href="<?php echo base_url(); ?>calendar/master_calendar"><i class="fa fa-circle-o"></i> Data Kalender</a></li>
             <li><a href="<?php echo base_url(); ?>master_prodi"><i class="fa fa-circle-o"></i> Prodi</a></li>
             <li><a href="<?php echo base_url(); ?>master_konsentrasi"><i class="fa fa-circle-o"></i> Konsentrasi</a
               ></li>

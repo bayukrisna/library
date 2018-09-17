@@ -34,7 +34,7 @@
             <td class="left_column" width="15%">Program Studi</td>
             <td width="35%">: <?php echo $mahasiswa->nama_prodi; ?>            </td>
             <td class="left_column" width="15%">Angkatan</td>
-            <td>: <?php echo $mahasiswa->angkatan; ?>           </td>
+            <td>: <?php echo substr($mahasiswa->tgl_du,0,4); ?>           </td>
         </tr>
         <tr>
             <td class="left_column" width="15%">Periode</td>

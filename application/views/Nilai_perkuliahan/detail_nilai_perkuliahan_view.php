@@ -80,7 +80,7 @@
       <td><?php echo ++$no;?></td>
         <td style="text-align:center"><?php echo $data->nim;?></td>
         <td style="text-align:center"><?php echo $data->nama_mahasiswa;?></td>
-        <td style="text-align:center"><?php echo $data->angkatan;?></td>
+        <td style="text-align:center"><?php echo substr($data->tgl_du, 0, 4);?></td>
         <td style="text-align:center"><?php if ($data->absensi == 0) {
           $a = '<font style="color:red" class="glyphicon glyphicon-warning-sign"></font>';
         } else {

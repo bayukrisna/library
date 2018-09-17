@@ -155,6 +155,7 @@ class Mahasiswa_model extends CI_Model {
       return $this->db->join('tb_konsentrasi','tb_konsentrasi.id_konsentrasi=tb_mahasiswa.id_konsentrasi')
               ->join('tb_prodi','tb_prodi.id_prodi=tb_konsentrasi.id_prodi')
               ->join('tb_bio','tb_bio.id_mahasiswa=tb_mahasiswa.id_mahasiswa')
+              ->join('tb_mhs_add','tb_mhs_add.id_mahasiswa=tb_mahasiswa.id_mahasiswa')
               ->where('tb_mahasiswa.id_mahasiswa', $id_mahasiswa)
               ->get('tb_mahasiswa')
               ->row();
@@ -471,6 +472,7 @@ class Mahasiswa_model extends CI_Model {
             'id_hasil_tes'      => $this->input->post('id_hasil_tes', TRUE),
             'id_sekolah'      => $this->input->post('id_sekolah', TRUE),
             'id_waktu'      => '19',
+            'semester_aktif'      => '1'
         );
     
         $this->db->insert('tb_mahasiswa', $data);
@@ -496,7 +498,7 @@ class Mahasiswa_model extends CI_Model {
             'id_sekolah'      => $this->input->post('id_sekolah', TRUE),
             'id_waktu'      => '2',
             'id_grade'      => '4',
-            'semester_aktif'  => '1',
+            'semester_aktif'  => '1'
         );
     
         $this->db->insert('tb_mahasiswa', $data);
@@ -517,8 +519,7 @@ class Mahasiswa_model extends CI_Model {
             'id_kelamin'      => $this->input->post('jenis_kelamin', TRUE),
             'tanggal_lahir'      => $this->input->post('tanggal_lahir', TRUE),
             'tempat_lahir'     => $this->input->post('tempat_lahir', TRUE),
-            'id_agama'     => $this->input->post('agama', TRUE),
-            'angkatan'     => date('Y')
+            'id_agama'     => $this->input->post('agama', TRUE)
         );
     
         $this->db->insert('tb_bio', $data);

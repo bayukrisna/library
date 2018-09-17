@@ -4,7 +4,7 @@
         <div>
           <div class="panel panel-primary">
             <div class="panel-heading">
-            <i class="fa fa-user-plus"></i> Edit Prodi</div>
+            <i class="fa fa-user-plus"></i> Unggah Bukti</div>
             <div class="panel-body">
               <div class="row">
                 <div class="col-lg-12">
