@@ -2,7 +2,7 @@
       <!-- Small boxes (Stat box) -->
       <div class="row">
         <div class="col-md-12">
-          <?php echo $informasi2;?>
+          <!-- <?php echo $informasi2;?> -->
           <div class="info-box bg-aqua">
             <span class="info-box-icon"><i class="glyphicon glyphicon-info-sign"></i></span>
 
