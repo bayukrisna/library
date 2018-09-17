@@ -43,7 +43,7 @@
             <td width="35%">: <?php echo $mahasiswa->nama_prodi; ?>        </td>
             <td class="left_column" width="15%">Angkatan <font color="#FF0000">*</font></td>
             <td>:
-               <?php echo $mahasiswa->angkatan; ?>                        </td>
+               <?php echo substr($mahasiswa->tgl_du,0,4); ?>                        </td>
         </tr>
         
         </table>

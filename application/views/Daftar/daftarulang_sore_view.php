@@ -25,7 +25,7 @@
                   <input type="text" name="nama_mahasiswa" class="form-control" id="nama_mahasiswa" placeholder="Input Full Name" value="<?php echo $du_pagi->nama_pendaftar; ?>" required="">
                 </div>
                 <div class="form-group">
-                  <label for="gender">Jenis Kelamin</label>
+                  <label for="gender">L / P</label>
                   <select id="jenis_kelamin" name="jenis_kelamin" class="form-control" required="">
             <option value="<?php echo $du_pagi->jk_pendaftar; ?>"><?php echo $du_pagi->jk_pendaftar; ?></option>
             <option value="L">Laki - laki</option>

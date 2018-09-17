@@ -55,6 +55,7 @@ class Nilai_perkuliahan_model extends CI_Model {
   public function data_nilai($id_kp){
       return $this->db->join('tb_mahasiswa','tb_mahasiswa.id_mahasiswa=tb_kelas_mhs.id_mahasiswa','left')
               ->join('tb_bio','tb_bio.id_mahasiswa=tb_mahasiswa.id_mahasiswa')
+              ->join('tb_mhs_add','tb_mhs_add.id_mahasiswa=tb_mahasiswa.id_mahasiswa')
               ->join('tb_kp','tb_kp.id_kp=tb_kelas_mhs.id_kp','left')
               ->join('tb_jadwal','tb_jadwal.id_jadwal=tb_kp.id_jadwal')
               ->join('tb_konsentrasi_kelas','tb_konsentrasi_kelas.id_konsentrasi=tb_jadwal.id_konsentrasi')
