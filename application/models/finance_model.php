@@ -201,8 +201,7 @@ class Finance_model extends CI_Model {
         $data = array(
             'id_mahasiswa'                        => $this->input->post('id_mhsa'),
             'id_biaya'                        => $this->input->post('pembayaran'),
-            'total_biaya'                 => $this->input->post('biaya'),
-            'tanggal_pembayaran'          => $this->input->post('tanggal_pembayaran')
+            'total_biaya'                 => $this->input->post('biaya')
             
         );
     
