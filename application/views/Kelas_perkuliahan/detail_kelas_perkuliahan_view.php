@@ -187,7 +187,7 @@
                     <th>No</th>
                     <th width="10%">NIM</th>
                     <th>Nama Mahasiwa</th>
-                    <th>L/P</th>
+                    <th>Jenis Kelamin</th>
                     <th>Prodi</th>
                     <th>Angkatan</th>
                     <th>Aksi</th>
@@ -209,7 +209,7 @@
                   <td>'.$data->nama_mahasiswa.'</td>
                   <td>'.$data->jenis_kelamin.'</td>
                   <td>'.$data->nama_prodi.'</td>
-                  <td>'.$data->angkatan.'</td>
+                  <td>'.substr($data->tgl_du,0,4).'</td>
                   <td>
                         <a href="'.base_url('kelas_perkuliahan/hapus_kelas_mhs/'.$data->id_kelas_mhs.'/'.$data->id_kp).'" class="btn btn-danger  btn-sm" onclick="return confirm('.$alert.')"><i class="glyphicon glyphicon-trash"></i><span class="tooltiptext">Hapus</span></a>
 
@@ -480,7 +480,9 @@
               
               <input type="hidden" name="prodi" id="prodikp" class="validate[required] text-input" maxlength="20" size="40" style="width:80%" required="" value="<?php echo $kp->id_prodi; ?>">
 
+              <input type="hidden" name="semester_aktif" id="semester_aktif" class="validate[required] text-input" maxlength="20" size="40" style="width:80%" >
 
+              <input type="hidden" name="semester_kurikulum" id="semester_kurikulum" class="validate[required] text-input" maxlength="20" size="40" style="width:80%" value="<?php echo $kp->semester_kurikulum; ?>">
 
             <input type="hidden" name="id_kp" id="id_kp2" class="validate[required] text-input" maxlength="20" size="40" style="width:80%" value="<?php echo $this->uri->segment(3); ?>">
 
@@ -521,6 +523,7 @@
         $('#id_mahasiswa').val(ui.item.id);
         $('#prodimhs').val(ui.item.prodi);
         $('#id_status').val(ui.item.status);
+        $('#semester_aktif').val(ui.item.semester_aktif);
         ea();
         
       }
@@ -536,14 +539,16 @@
     function ea(){
      var prodimhs = document.getElementById('prodimhs').value;
     var prodikp = document.getElementById('prodikp').value;
+     var semester_aktif = document.getElementById('semester_aktif').value;
+    var semester_kurikulum = document.getElementById('semester_kurikulum').value;
+   
 
-    if (prodikp == prodimhs && hai() == true)
+    if (prodikp == prodimhs && semester_aktif == semester_kurikulum && hai() == true)
       {
          document.getElementById("myBtn").disabled = false;
       } else {
         document.getElementById("myBtn").disabled = true;
       }
-      
     
     }
 </script>
@@ -555,7 +560,7 @@
   function hai(){
    $.ajax({
                     url: '<?php echo base_url(); ?>kelas_perkuliahan/cek_mahasiswa/',
-                    data: 'id_mahasiswa='+$("#id_mahasiswa").val()+'&id_kp2='+$("#id_kp2").val(),
+                    data: 'id_mahasiswa='+$("#id_mahasiswa").val()+'&id_kp2='+$("#id_kp2").val()+'&semester_aktif='+$("#semester_aktif").val(),
                     type: 'POST',
                     dataType: 'html',
                     success:function(data){
