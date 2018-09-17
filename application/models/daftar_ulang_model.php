@@ -27,7 +27,7 @@ class Daftar_ulang_model extends CI_Model {
           return $kodejadi; 
     }
 
-  
+    
     function cek_nim($nim){
       $query = $this->db->select('*')
                 ->from('tb_mahasiswa')
@@ -218,7 +218,31 @@ return array(
               ->get('tb_mahasiswa')
               ->row();
   }
-
+  public function insert_registrasi($cc, $id_mahasiswa){
+    $query = $this->db->where('jenis_biaya', 'Registrasi')
+                    ->like('nama_biaya', 'Uang Pendaftaran')
+                    ->or_like('nama_biaya', 'Almamater')
+                    ->or_like('nama_biaya', 'Amenities') 
+                    ->order_by('periode', 'DESC')
+                    ->limit(3)
+                    ->get('tb_biaya')
+                    ->result();
+    foreach ($query as $key) {
+      $arr = array('kode_pembayaran' => $cc,
+                    'id_mahasiswa' => $id_mahasiswa,
+                    'tanggal_pembayaran' => date('d-m-Y'),
+                    'id_grade' => 4,
+                    'id_biaya' => $key->id_biaya
+         );
+      $this->db->insert('tb_detail_pembayaran', $arr);
+    }
+    $invoice = array(
+             'kode_pembayaran'      => $cc,
+             'id_mahasiswa'   => $id_mahasiswa
+            
+        );
+        $this->db->insert('tb_pembayaran', $invoice);
+  }
 
 
   /*

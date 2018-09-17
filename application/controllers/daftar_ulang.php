@@ -10,6 +10,7 @@ class daftar_ulang extends CI_Controller {
 		$this->load->model('tamu_model');
 		$this->load->model('mahasiswa_model');
 		$this->load->model('user_model');
+		$this->load->model('finance_model');
 	}
 
 	public function page_du_pagi()
@@ -28,7 +29,6 @@ class daftar_ulang extends CI_Controller {
 		}
 
 	}
-
 	public function save_mahasiswa_pagi()
 	{
 			if($this->mahasiswa_model->save_mahasiswa_pagi() == TRUE && $this->mahasiswa_model->save_ayah() == TRUE  && $this->mahasiswa_model->save_ibu() == TRUE && $this->mahasiswa_model->save_alamat() == TRUE && $this->mahasiswa_model->save_wali() == TRUE && $this->mahasiswa_model->save_kependudukan() == TRUE && $this->mahasiswa_model->save_bio() == TRUE && $this->mahasiswa_model->save_kontak() == TRUE && $this->mahasiswa_model->save_tgl_du() == TRUE){
@@ -37,6 +37,9 @@ class daftar_ulang extends CI_Controller {
 				$pass = $this->random_password();
 				$nim = $this->input->post('nim');
 				$this->user_model->signup_mahasiswa($nim, $pass);
+				$cc = $this->finance_model->buat_kode();
+				$id_mahasiswa = $this->input->post('id_mahasiswa');
+				$this->daftar_ulang_model->insert_registrasi($cc, $id_mahasiswa);
 				$this->load->library('email');
 						$config = array(
 							'protocol' => 'smtp',
@@ -92,6 +95,9 @@ class daftar_ulang extends CI_Controller {
 				$this->tamu_model->save_update_status2($id_du);
 				$pass = $this->random_password();
 				$nim = $this->input->post('nim');
+				$cc = $this->finance_model->buat_kode();
+				$id_mahasiswa = $this->input->post('id_mahasiswa');
+				$this->daftar_ulang_model->insert_registrasi($cc, $id_mahasiswa);
 				$this->user_model->signup_mahasiswa($nim, $pass);
 				$this->load->library('email');
 						$config = array(
