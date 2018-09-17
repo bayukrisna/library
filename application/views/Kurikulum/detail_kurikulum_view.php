@@ -69,7 +69,6 @@
             <button type="submit" class="btn btn-info pull-right" > Salin Mata Kuliah </button>
           <div class="col-xs-3 pull-right">
              <select name="id_kurikulum" class="form-control">
-                        <option value=""> Pilih Kurikulum & Salin </option>
                         <?php 
 
                                         foreach($getKurikulum as $row)

@@ -33,15 +33,14 @@
                     </td>                                            
                     <td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Agama</td>     
                     <td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                      <select name="agama">
+                      <select name="id_agama">
                         <option value="">-- Semua --</option>
-                        <option value="Islam">Islam</option>
-                        <option value="Kristen">Kristen</option>
-                        <option value="Katholik">Katholik</option>
-                        <option value="Konghucu">Konghucu</option>
-                        <option value="Budha">Budha</option>
-                        <option value="Hindu">Hindu</option>
-                        <option value="Lainnya">Lainya</option>
+                        <option value="1">Islam</option>
+                              <option value="2">Katholik</option>
+                              <option value="3">Kristen</option>
+                              <option value="4">Hindu</option>
+                              <option value="5">Budha</option>
+                              <option value="6">Konghucu</option>
                       </select>
                     </td>
                     <td>
@@ -53,7 +52,7 @@
                   <tr>
                     <td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Jenis Kelamin</td>     
                     <td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                      <select name="jenis_kelamin">
+                      <select name="id_kelamin">
                         <option value="">-- Semua --</option>
                         <option value="L">Laki-Laki</option>
                         <option value="P">Perempuan</option>
@@ -63,7 +62,13 @@
                     <td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
                       <select name="angkatan">
                         <option value="">-- Semua --</option>
-                        
+                        <option value="2017">2017</option>
+                        <option value="2018">2018</option>
+                        <option value="2019">2019</option>
+                        <option value="2020">2020</option>
+                        <option value="2021">2021</option>
+                        <option value="2022">2022</option>
+                        <option value="2023">2023</option>
                       </select>   
                     </td>                                                         
                   </tr>
@@ -115,7 +120,7 @@
                   <td>'.$data->tanggal_lahir.'</td>
                   <td>'.$data->nama_prodi.'</td>
                   <td>'.$status.'</td>
-                  <td>'.$data->angkatan.'</td>
+                  <td>'.substr($data->tgl_du,0,4).'</td>
                   <td>
                     <a href="'.base_url('mahasiswa/detail_mahasiswa_dikti/'.$data->id_mahasiswa).'" class="btn btn-success  btn-sm"><i class="glyphicon glyphicon-pencil"></i><span class="tooltiptext">Detail Mahasiswa</span></a>
                     
