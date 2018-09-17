@@ -41,7 +41,7 @@
           <input type="hidden" name="id_mahasiswa" id="id_mahasiswa" value="<?php echo $data->id_mahasiswa ?>"> 
     <section class="content">
       <div class="row">
-        
+        <?php echo $this->session->flashdata('message');?>
           <div class="box">
             <div class="box-header">
               <h3 class="box-title">Riwayat Pembayaran</h3>

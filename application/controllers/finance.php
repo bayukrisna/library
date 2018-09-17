@@ -108,6 +108,7 @@ class Finance extends CI_Controller {
 			if($this->finance_model->simpan_pembayaran() == TRUE){
 				$this->cart->destroy();
 				$ea = $this->uri->segment(3);
+				$this->session->set_flashdata('message', '<div class="alert alert-success"> Pembayaran Sudah Tersimpan </div>');
             	redirect(base_url('finance/detail_pembayaran/'.$ea));
 			} 
 		} else {
