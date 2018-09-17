@@ -8,6 +8,7 @@ class Dashboard extends CI_Controller {
 		parent::__construct();
 		$this->load->model('dashboard_model');
         $this->load->model('dosen_model');
+        $this->load->model('mahasiswa_model');
 	}
 
 	public function index()
@@ -96,7 +97,13 @@ class Dashboard extends CI_Controller {
             $data['main_view'] = 'Admin/dashboard_admin_view';
             $this->load->view('template', $data);
         } else if($this->session->userdata('level') == 5){
-             $id_level = $this->session->userdata('level');
+            $id_level = $this->session->userdata('level');
+            $username = $this->session->userdata('username');
+            $session = $this->mahasiswa_model->session_mahasiswa($username);
+            $semester_aktif = $session->semester_aktif;
+            $id_mahasiswa = $session->id_mahasiswa;
+            $id_waktu = $session->id_waktu;
+            $data['informasi2'] = $this->dashboard_model->notifikasi_pembayaran($id_mahasiswa, $semester_aktif, $id_waktu);
             $data['informasi'] = $this->dosen_model->informasi_dosen($id_level);
             $data['main_view'] = 'Mahasiswa/dashboard_mahasiswa_view';
             $this->load->view('template', $data);

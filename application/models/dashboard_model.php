@@ -119,6 +119,20 @@ class Dashboard_model extends CI_Model {
         
   }
 
+  public function notifikasi_pembayaran($id_mahasiswa, $semester_aktif, $id_waktu){
+    if($id_waktu == '1'){
+      if($semester_aktif == '1'){
+        $cek = $this->db->select('count(*) as total')
+                ->where('tb_detail_pembayaran.id_mahasiswa', $id_mahasiswa)
+                ->join('tb_biaya','tb_biaya.id_biaya=tb_detail_pembayaran.id_biaya')
+                ->get('tb_detail_pembayaran')
+                ->row();
+        if($cek->total != 5){
+          return '<div class="alert alert-danger"> Harap Lunasi Angsuran </div>';
+        }
+      }
+    }
+  }
 	
 
 }

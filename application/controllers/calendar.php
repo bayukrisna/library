@@ -7,11 +7,15 @@ class Calendar extends CI_Controller {
 	{
 		parent::__construct();
 		$this->load->model('calendar_model');
+		ini_set('display_errors', 0);
+		if ($this->session->userdata('logged_in') != TRUE) {
+			redirect('login');
+		}
 	}
 
 	public function index()
 	{
-		ini_set('display_errors', 0);
+		
 		$var1 = $this->calendar_model->data();
 		foreach ($var1 as $key) {
 			$key->waktu_start = date('h:i a', strtotime($key->start));
