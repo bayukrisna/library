@@ -6,10 +6,12 @@ class Landing extends CI_Controller {
 	public function __construct()
 	{
 		parent::__construct();
+		$this->load->model('calendar_model');
 	}
 
 	public function index()
 	{
-		$this->load->view('landing');
+		$data['calendar'] = $this->calendar_model->calendar_landing();
+		$this->load->view('landing', $data);
 	}
 }

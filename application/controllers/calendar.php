@@ -8,9 +8,6 @@ class Calendar extends CI_Controller {
 		parent::__construct();
 		$this->load->model('calendar_model');
 		ini_set('display_errors', 0);
-		if ($this->session->userdata('logged_in') != TRUE) {
-			redirect('login');
-		}
 	}
 
 	public function index()
@@ -37,6 +34,32 @@ class Calendar extends CI_Controller {
 		$data['aldi'] = 'cek';
 		$data['main_view'] = 'modal_calendar';
 		$this->load->view('template', $data);
+		// }
+	}
+
+	public function calendar_landing()
+	{
+		$var1 = $this->calendar_model->data();
+		foreach ($var1 as $key) {
+			$key->waktu_start = date('h:i a', strtotime($key->start));
+			$key->waktu_end = date('h:i a', strtotime($key->end));
+			$key->tanggal = date('d F Y', strtotime($key->start));
+			$cek[] = array('title' => $key->title,
+						 'start' => $key->start,
+						 'waktu' => $key->waktu_start.' - '.$key->waktu_end,
+						 'tanggal' => $key->tanggal,
+						 'end' => $key->end,
+						 'backgroundColor' => $key->backgroundColor,
+						 'description' => $key->description,
+						 'url' => '#',
+						 // 'url' => 'http://www.mikesmithdev.com/blog/pdf-secure-access-and-log-downloads/',
+						 'borderColor' => $key->backgroundColor);
+		}
+		$cek = json_encode($cek);
+		
+		$data['calendar'] = $cek;
+		$data['aldi'] = 'cek';
+		$this->load->view('modal_calendar_landing', $data);
 		// }
 	}
 	function google(){

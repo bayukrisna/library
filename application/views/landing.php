@@ -25,6 +25,21 @@
 
   <!-- Font Awesome -->
   <!-- DataTables -->
+  <link rel="stylesheet" href="<?php echo base_url(); ?>assets/plugins/datatables/dataTables.bootstrap.css">
+
+  <!-- asdsdada -->  <!-- asdsdada -->  <!-- asdsdada -->  <!-- asdsdada -->  <!-- asdsdada -->
+    <link rel="stylesheet" href="<?php echo base_url(); ?>assets/bootstrap/css/bootstrap.min.css">
+
+  <!-- daterange picker -->
+  <link rel="stylesheet" href="<?php echo base_url(); ?>assets/plugins/daterangepicker/daterangepicker.css">
+  <!-- bootstrap datepicker -->
+  <link rel="stylesheet" href="<?php echo base_url(); ?>assets/plugins/datepicker/datepicker3.css">
+  <!-- iCheck for checkboxes and radio inputs -->
+  <link rel="stylesheet" href="<?php echo base_url(); ?>assets/plugins/iCheck/all.css">
+  <!-- Bootstrap Color Picker -->
+  <link rel="stylesheet" href="<?php echo base_url(); ?>assets/plugins/colorpicker/bootstrap-colorpicker.min.css">
+  <!-- Bootstrap time Picker -->
+  <link rel="stylesheet" href="<?php echo base_url(); ?>assets/plugins/timepicker/bootstrap-timepicker.min.css">
   <!-- Select2 -->
 
   <!-- Theme style -->
@@ -33,32 +48,27 @@
        folder instead of downloading all of them to reduce the load. -->
   <link rel="stylesheet" href="<?php echo base_url(); ?>assets/dist/css/skins/_all-skins.min.css">
   <!-- Bootstrap 3.3.6 -->
+  
+  <link rel="stylesheet" href="<?php echo base_url(); ?>assets/plugins/fullcalendar/fullcalendar.min.css">
+  <link rel="stylesheet" href="<?php echo base_url(); ?>assets/plugins/fullcalendar/fullcalendar.print.css" media="print">
   <!-- Theme style -->
   <link rel="stylesheet" href="<?php echo base_url(); ?>assets/dist/css/AdminLTE.min.css">
-
-  <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
-  <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
-  <!--[if lt IE 9]>
-  <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
-  <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
-  <![endif]-->
-
-  <!-- Google Font -->
-  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,600,700,300italic,400italic,600italic">
 </head>
 <!-- ADD THE CLASS layout-top-nav TO REMOVE THE SIDEBAR. -->
-<body class="hold-transition skin-blue layout-top-nav">
-<div class="wrapper">
+<body class="hold-transition layout-top-nav">
+
 
   <header class="main-header">
-    <nav class="navbar navbar-static-top">
-      <div class="container">
-        <div class="navbar-header">
-          <a href="<?php echo base_url(); ?>assets/index2.html" class="navbar-brand">STIE<b> JIC</b></a>
-          <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar-collapse">
-            <i class="fa fa-bars"></i>
-          </button>
-        </div>
+    <nav class="navbar navbar-static-top" style="background-color: maroon">
+      <div class="pull-left">
+        
+         
+      <!-- mini logo for sidebar mini 50x50 pixels -->
+      <!-- logo for regular state and mobile devices -->
+      <span class="logo-lg pull-left"><img src="<?php echo base_url(); ?>/assets/img/STIE JIC-WHITE-01.png" alt="User Image" style="border: none;width: 120px;margin-top: -10px;"></span>
+
+          
+      
 
         <!-- Collect the nav links, forms, and other content for toggling -->
         <!-- /.navbar-collapse -->
@@ -213,7 +223,7 @@
     </nav>
   </header>
   <!-- Full Width Column -->
-  <div class="content-wrapper" style="background-color: white">
+  
     <div class="conner">
       <!-- Content Header (Page header) -->
       <!-- <section class="content-header">
@@ -304,14 +314,44 @@
             </div>
           </div>
         </div>
+        <div class="col-lg-4 col-xs-6">
+          <!-- small box -->
+          <div class="box box-primary">
+            <div class="box-header with-border bg-aqua">
+              <h3 class="box-title">Kalender Akademik</h3>
+
+            
+            </div>
+
+            <div>
+              <table class="table table-bordered table-striped">
+                  
+                    <?php foreach ($calendar as $data) { ?>
+                <tr>
+                      <td><?php $format = date('d M', strtotime($data->start )); echo $format; ?></td>
+                  
+                      <td><?php echo substr($data->description,0,50); ?></td>
+                      </tr>
+                      <?php } ?>
+                </table>
+            </div>
+            <div class="box-footer text-center">
+              <a href="<?php echo base_url(); ?>calendar/calendar_landing" class="uppercase">View All Data</a>
+            </div>
+            <!-- /.box-footer -->
+          </div>
+        </div>
       </section>
       <!-- /.content -->
     </div>
     <!-- /.container -->
-  </div>
+
   <!-- /.content-wrapper -->
   
-</div>
+
+
+
+ 
 <!-- ./wrapper -->
 
 <!-- jQuery 3 -->

@@ -13,6 +13,10 @@ class Calendar_model extends CI_Model {
 		return $this->db->get('tb_events')->result();
 	}
 
+  public function calendar_landing(){
+    return $this->db->limit(5, 'DESC')->order_by('start','ASC')->get('tb_events')->result();
+  }
+
   public function edit_calendar(){
     // $start = date('dd.MM.yyyy HH:mm:ss', strtotime($this->input->post('start')));
     $data = array(
