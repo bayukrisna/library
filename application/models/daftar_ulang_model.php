@@ -227,6 +227,12 @@ return array(
                     ->limit(3)
                     ->get('tb_biaya')
                     ->result();
+    $invoice = array(
+             'kode_pembayaran'      => $cc,
+             'id_mahasiswa'   => $id_mahasiswa
+            
+        );
+        $this->db->insert('tb_pembayaran', $invoice);
     foreach ($query as $key) {
       $arr = array('kode_pembayaran' => $cc,
                     'id_mahasiswa' => $id_mahasiswa,
@@ -236,12 +242,6 @@ return array(
          );
       $this->db->insert('tb_detail_pembayaran', $arr);
     }
-    $invoice = array(
-             'kode_pembayaran'      => $cc,
-             'id_mahasiswa'   => $id_mahasiswa
-            
-        );
-        $this->db->insert('tb_pembayaran', $invoice);
   }
 
 
