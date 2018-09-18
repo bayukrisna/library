@@ -8,6 +8,7 @@ class Finance extends CI_Controller {
 		parent::__construct();
 		$this->load->model('finance_model');
 		$this->load->model('biaya_sekolah_model');
+		ini_set('display_errors', 0);
 	}
 
 		public function index()
