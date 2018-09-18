@@ -25,14 +25,11 @@
                 
                 <div class="form-group">
                   <label for="email">Nama Lengkap</label>
-                  <input type="text" name="nama_mahasiswa" class="form-control" id="nama_mahasiswa" placeholder="Input Full Name" value="<?php echo $du_pagi->nama_pendaftar; ?>" required="">
+                  <input type="text" name="nama_mahasiswa" class="form-control" id="nama_mahasiswa" placeholder="Input Full Name" value="<?php echo $du_pagi->nama_pendaftar; ?>" required="" readonly>
                 </div>
                 <div class="form-group">
                   <label for="gender">L / P</label>
-                  <select id="jenis_kelamin" name="jenis_kelamin" class="form-control" required="">
-            <option value="<?php echo $du_pagi->jk_pendaftar; ?>"><?php echo $du_pagi->jk_pendaftar; ?></option>
-            <option value="L">Laki - laki</option>
-            <option value="P">Perempuan</option>
+                   <input type="text" name="jenis_kelamin" class="form-control" id="jenis_kelamin" placeholder="Input Full Name" value="<?php echo $du_pagi->jk_pendaftar; ?>" required="" readonly>
 
           </select>                                     
                   
@@ -43,7 +40,7 @@
                 </div>
                 <div class="form-group">
                   <label for="place">Tempat Lahir</label>
-                  <input type="text" name="tempat_lahir" class="form-control" id="tempat_lahir" placeholder="Input Birth Place" required="">
+                  <input type="text" name="tempat_lahir" class="form-control" id="tempat_lahir" placeholder="Masukan tempat lahir" required="">
                 </div>
                 <div class="form-group">
                   <label for="religion">Agama</label>
@@ -68,14 +65,14 @@
                 </div>
                 <div class="form-group">
                   <label for="phone">Nomor HP</label>
-                  <input type="number" name="no_hp" class="form-control" id="no_hp" placeholder="Input Mobile Phone Number" required="">
+                  <input type="number" name="no_hp" class="form-control" id="no_hp" placeholder="Masukkan nomor HP" required="">
                 </div>
 
               </div>
               <div class="col-md-6">
                 <div class="form-group">
                   <label for="email">Email</label>
-                  <input type="email" name="email" class="form-control" id="email" placeholder="Input Email" value="<?php echo $du_pagi->email; ?>" required="">
+                  <input type="email" name="email" class="form-control" id="email" placeholder="Input Email" value="<?php echo $du_pagi->email; ?>" required="" readonly>
                 </div>
                  <div class="form-group">
                   <label for="email">Kode Pos</label>
@@ -83,36 +80,25 @@
                 </div>
                 <div class="form-group">
                   <label for="preschool">Asal Sekolah</label>
-                  <select id="id_sekolah" name="id_sekolah"class="form-control" required="">
-                  <option value="<?php echo $du_pagi->id_sekolah; ?>"><?php echo $du_pagi->nama_sekolah; ?></option>
-                  <?php 
-
-                  foreach($getPreschool as $row)
-                  { 
-                    echo '<option value="'.$row->id_sekolah.'">'.$row->nama_sekolah.'</option>';
-                  }
-                  ?>
+                  <select id="id_sekolah" name="id_sekolah"class="form-control" required="" readonly>
+                  <option value="<?php echo $du_pagi->id_sekolah; ?>"><?php echo $du_pagi->nama_sekolah; ?>
 
                 </select>   
                 </div>
                 <div class="form-group">
                   <label for="major">Jurusan Asal Sekolah</label>
-                <select id="jurusan" name="jurusan" class="form-control" required="">
+                <select id="jurusan" name="jurusan" class="form-control" required="" readonly>
                   <option value="<?php echo $du_pagi->jurusan; ?>"><?php echo $du_pagi->jurusan; ?></option>
-                  <option value="IPA">IPA</option>
-                  <option value="IPS">IPS</option>
-                  <option value="TKJ">TKJ</option>
-                  <option value="RPL">RPL</option>
-                  <option value="Lainnya">Lainnya</option>
+                  
                 </select>                                     
                 </div>
                 <div class="form-group">
                   <label for="nik">NIK</label>
-                  <input type="number" name="nik" class="form-control" id="nik" placeholder="Input NIK" required="">
+                  <input type="number" name="nik" class="form-control" id="nik" placeholder="Masukkan NIK" required="">
                 </div>
                 <div class="form-group">
                   <label for="mother">Nama Ibu</label>
-                  <input type="text" name="nama_ibu" class="form-control" id="nama_ibu" placeholder="Input your mother Name" required="">
+                  <input type="text" name="nama_ibu" class="form-control" id="nama_ibu" placeholder="Masukkan nama ibu kandung" required="">
                 </div>
                 <div class="form-group">
                   <label for="prodi">Program Studi</label>
