@@ -213,8 +213,8 @@
     </nav>
   </header>
   <!-- Full Width Column -->
-  <div class="content-wrapper">
-    <div class="container">
+  <div class="content-wrapper" style="background-color: white">
+    <div class="conner">
       <!-- Content Header (Page header) -->
       <!-- <section class="content-header">
         <h1>
@@ -243,7 +243,7 @@
             </div>
           </div>
         </div>
-        <div class="col-lg-2 col-xs-6">
+        <a href="http://dashboard.jic.ac.id/dev/login"><div class="col-lg-2 col-xs-6">
           <!-- small box -->
           <div class="small-box bg-green">
             <div class="inner" style="height: 130px">
@@ -255,6 +255,7 @@
             </div>
           </div>
         </div>
+        </a>
         <div class="col-lg-2 col-xs-6">
           <!-- small box -->
           <div class="small-box bg-blue">
@@ -309,16 +310,7 @@
     <!-- /.container -->
   </div>
   <!-- /.content-wrapper -->
-  <footer class="main-footer">
-    <div class="container">
-      <div class="pull-right hidden-xs">
-        <b>Version</b> 2.4.0
-      </div>
-      <strong>Copyright &copy; 2014-2016 <a href="https://adminlte.io">Almsaeed Studio</a>.</strong> All rights
-      reserved.
-    </div>
-    <!-- /.container -->
-  </footer>
+  
 </div>
 <!-- ./wrapper -->
 
