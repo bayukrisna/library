@@ -61,6 +61,7 @@ class Nilai_perkuliahan_model extends CI_Model {
               ->join('tb_konsentrasi_kelas','tb_konsentrasi_kelas.id_konsentrasi=tb_jadwal.id_konsentrasi')
               ->join('tb_prodi','tb_prodi.id_prodi=tb_konsentrasi_kelas.id_prodi')
               ->join('tb_skala_nilai','tb_skala_nilai.id_skala_nilai=tb_kelas_mhs.id_skala_nilai','left')
+              ->join('tb_periode','tb_periode.id_periode=tb_jadwal.id_periode')
               ->where('tb_kelas_mhs.id_kp', $id_kp)
               ->get('tb_kelas_mhs')
               ->result();

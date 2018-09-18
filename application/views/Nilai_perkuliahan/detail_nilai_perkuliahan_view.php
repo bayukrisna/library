@@ -103,7 +103,11 @@
           $a = $data->nilai_d; }; echo $a;?></td>
         <td style="text-align:center"><?php echo $data->nilai_huruf;?> ( <?php echo $data->nilai_indeks;?> ) </td >
         <td style="text-align:center"> 
+          <?php if ($data->tgl_awal_kul <= date('Y-m-d') AND $data->tgl_akhir_kul >= date('Y-m-d')){ ?>
+
                  <a href="<?php echo base_url(); ?>nilai_perkuliahan/edit_nilai/<?php echo $data->id_kelas_mhs; ?>/<?php echo $data->id_kp; ?>" class="btn btn-warning  btn-sm"><i class="glyphicon glyphicon-pencil"></i><span class="tooltiptext"> Input Nilai </span></a>
+          <?php } ?>
+
     </tr>
 <?php endforeach; ?>
   

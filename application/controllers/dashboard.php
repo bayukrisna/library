@@ -103,7 +103,8 @@ class Dashboard extends CI_Controller {
             $semester_aktif = $session->semester_aktif;
             $id_mahasiswa = $session->id_mahasiswa;
             $id_waktu = $session->id_waktu;
-            // $data['informasi2'] = $this->dashboard_model->notifikasi_pembayaran($id_mahasiswa, $semester_aktif, $id_waktu);
+            $data['mahasiswa'] = $this->mahasiswa_model->detail_mahasiswa_dikti($id_mahasiswa);
+            $data['informasi2'] = $this->dashboard_model->notifikasi_pembayaran($id_mahasiswa, $semester_aktif, $id_waktu);
             $data['informasi'] = $this->dosen_model->informasi_dosen($id_level);
             $data['main_view'] = 'Mahasiswa/dashboard_mahasiswa_view';
             $this->load->view('template', $data);
