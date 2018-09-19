@@ -6,7 +6,7 @@ class Pendaftaran extends CI_Controller {
   public function __construct()
   {
     parent::__construct();
-    $this->load->model('pendaftaran_model');
+    $this->load->model('Pendaftaran_model');
   }
 
   public function index()

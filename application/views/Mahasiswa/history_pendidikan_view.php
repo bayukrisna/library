@@ -289,19 +289,19 @@
                     <div class="form-group">
                         <label class=" col-xs-4" >Jumlah Sks di akui</label>
                         <div class="col-xs-6">
-                            <input type="text" name="id_daftar_ulang" class="form-control input-sm pull-left" id="id_daftar_ulang" placeholder="" required="" >
+                            <input type="text" name="id_daftar_ulang" class="form-control input-sm pull-left" id="id_daftar_ulang" placeholder="" value="" >
                         </div>
                     </div>
                     <div class="form-group">
                         <label class=" col-xs-4" >Asal Perguruan Tinggi</label>
                         <div class="col-xs-6">
-                            <input type="text" name="id_daftar_ulang" class="form-control input-sm pull-left" id="id_daftar_ulang" placeholder="" required="" >
+                            <input type="text" name="id_daftar_ulang" class="form-control input-sm pull-left" id="id_daftar_ulang" placeholder="" value="" >
                         </div>
                     </div>
                     <div class="form-group">
                         <label class=" col-xs-4" >Asal Program Studi</label>
                         <div class="col-xs-6">
-                            <input type="text" name="id_daftar_ulang" class="form-control input-sm pull-left" id="id_daftar_ulang" placeholder="" required="" >
+                            <input type="text" name="id_daftar_ulang" class="form-control input-sm pull-left" id="id_daftar_ulang" placeholder="" value="" >
                         </div>
                     </div>
 

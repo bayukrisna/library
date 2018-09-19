@@ -10,11 +10,11 @@
                 <div class="col-lg-12">
                   <?php echo $this->session->flashdata('message');?>
                        <div class="form-group">
-                            <label>Foto</label> <br>
+                            <label>Foto </label> (format JPG, PNG, PDF)<br>
                             <img id="output"/>
                         </div>
                         <div class="form-group">
-                                            <input type="file" id="bukti_transfer" name="bukti_transfer" onchange="loadFile(event)">
+                                            <input type="file" id="bukti_transfer" name="bukti_transfer" onchange="loadFile(event)" required="">
                                           </div>
                                         <div>
                       

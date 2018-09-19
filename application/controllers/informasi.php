@@ -7,6 +7,8 @@ class Informasi extends CI_Controller {
 	{
 		parent::__construct();
 		$this->load->model('informasi_model');
+		$this->load->model('dosen_model');
+		$this->load->model('mahasiswa_model');
 	}
 
 	public function index(){
@@ -85,6 +87,13 @@ class Informasi extends CI_Controller {
 
 	public function saring_level()
 	{
+		if ($this->session->userdata('level') == 2) {
+			$username = $this->session->userdata('username');
+			$data['dosen'] = $this->dosen_model->detail_dosen($username);
+		} else if ($this->session->userdata('level') == 5) {
+			$id_mahasiswa = $this->session->userdata('username');
+			$data['mahasiswa'] = $this->mahasiswa_model->session_mahasiswa($id_mahasiswa);
+		}
 			$id_level= $this->uri->segment(3);
 			$data['getJabatan'] = $this->informasi_model->getJabatan();
 			$data['informasi'] = $this->informasi_model->filter_informasi2($id_level);

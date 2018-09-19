@@ -358,11 +358,11 @@
         </tr> 
       <tr>
           <td class="left_column">Pengirim</td>
-            <td>: <?php echo $i->penerimah; ?>         </td>
+            <td>: <?php echo $i->pengirimh; ?>         </td>
         </tr> 
         <tr>
           <td class="left_column">Penerima</td>
-            <td>: <?php echo $i->pengirimh; ?>         </td>
+            <td>: <?php echo $i->penerimah; ?>         </td>
         </tr> 
         <tr>
           <td class="left_column">Tanggal Terbit</td>

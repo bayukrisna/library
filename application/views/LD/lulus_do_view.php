@@ -99,7 +99,7 @@
 
                   <td><a href="" data-toggle="modal" data-target="#modal_lihat'.$data->id_mahasiswa.'">'.$data->nim.'</a></td>
                   <td>'.$data->nama_mahasiswa.'</td>
-                  <td>'.$data->angkatan.'</td>
+                  <td>'.substr($data->tgl_du,0,4).'</td>
                   <td>'.$data->nama_prodi.'</td>
                   <td>'.$data->status_mhs.'</td>
                   <td>'.$data->tanggal_keluar.'</td>

@@ -311,7 +311,7 @@ a:hover .tooltiptext {
             <li <?php if($this->uri->segment(2) == 'pembayaran') echo 'class="active"'; else echo  '';?>><a href="<?php echo base_url(); ?>finance/pembayaran"><i class="fa fa-circle-o"></i>Pembayaran</a></li>
           </ul>
         </li>
-         <li class="treeview <?php if($this->uri->segment(2) == 'data_mahasiswa' OR $this->uri->segment(1) == 'mata_kuliah' OR $this->uri->segment(1) == 'kurikulum' OR $this->uri->segment(1) == 'jadwal' OR $this->uri->segment(1) == 'kelas_perkuliahan' OR $this->uri->segment(1) == 'nilai_perkuliahan' OR $this->uri->segment(1) == 'aktivitas_perkuliahan' OR $this->uri->segment(2) == 'data_ld') echo 'active'; else echo  '';?>">
+         <li class="treeview <?php if($this->uri->segment(2) == 'data_mahasiswa' OR $this->uri->segment(1) == 'mata_kuliah' OR $this->uri->segment(1) == 'kurikulum' OR $this->uri->segment(1) == 'jadwal' OR $this->uri->segment(1) == 'kelas_perkuliahan' OR $this->uri->segment(1) == 'nilai_perkuliahan' OR $this->uri->segment(1) == 'aktivitas_perkuliahan' OR $this->uri->segment(2) == 'data_ld' OR $this->uri->segment(1) == 'nilai' OR $this->uri->segment(1) == 'setting_periode') echo 'active'; else echo  '';?>">
           <a href="#">
             <i class="fa fa-graduation-cap"></i> <span>Akademik</span>
             <span class="pull-right-container">
@@ -329,7 +329,7 @@ a:hover .tooltiptext {
              <li <?php if($this->uri->segment(1) == 'aktivitas_perkuliahan') echo 'class="active"'; else echo  '';?>><a href="<?php echo base_url(); ?>aktivitas_perkuliahan"><i class="fa fa-circle-o"></i>Aktivitas Perkuliahan</a></li>
              <li <?php if($this->uri->segment(2) == 'data_ld') echo 'class="active"'; else echo  '';?>><a href="<?php echo base_url(); ?>mahasiswa/data_ld"><i class="fa fa-circle-o"></i>Mahasiswa Lulus / DO</a></li>
              
-            <li class="treeview <?php if($this->uri->segment(1) == 'nilai' OR $this->uri->segment(1) == 'setting_periode') echo 'class="active"'; else echo  '';?>">
+            <li class="treeview <?php if($this->uri->segment(1) == 'nilai' OR $this->uri->segment(1) == 'setting_periode') echo 'active'; else echo  '';?>">
               <a href="#"><i class="fa fa-circle-o"></i>Pelengkap
                 <span class="pull-right-container">
                   <i class="fa fa-angle-left pull-right"></i>
