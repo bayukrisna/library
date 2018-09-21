@@ -172,8 +172,6 @@ class Mahasiswa_model extends CI_Model {
               ->join('tb_kelas_dosen','tb_kelas_dosen.id_kp=tb_kp.id_kp','left')
               ->join('tb_dosen','tb_dosen.id_dosen=tb_kelas_dosen.id_dosen','left')
               ->where('tb_detail_kurikulum.semester_kurikulum', $semester_aktif)
-              
-              //->where('tb_jadwal.id_konsentrasi', $id_konsentrasi)
               ->where('tgl_mulai <=', date('Y-m-d'))
               ->where('tgl_akhir >=', date('Y-m-d'))
               ->get('tb_kp')
@@ -239,7 +237,7 @@ class Mahasiswa_model extends CI_Model {
               ->join('tb_kelas_dosen','tb_kelas_dosen.id_kp=tb_kp.id_kp','left')
               ->join('tb_dosen','tb_dosen.id_dosen=tb_kelas_dosen.id_dosen','left')
 
-              ->where('tb_kelas_mhs.semester', $semester_aktif)
+              ->where('tb_detail_kurikulum.semester_kurikulum', $semester_aktif)
               ->where('tb_kelas_mhs.id_mahasiswa', $id_mahasiswa)
               ->where('tb_jadwal.id_hari', '1')
               ->get('tb_kelas_mhs')
@@ -254,7 +252,7 @@ class Mahasiswa_model extends CI_Model {
               ->join('tb_ruang','tb_ruang.id_ruang=tb_jadwal.id_ruang')
               ->join('tb_kelas_dosen','tb_kelas_dosen.id_kp=tb_kp.id_kp','right')
               ->join('tb_dosen','tb_dosen.id_dosen=tb_kelas_dosen.id_dosen')
-              ->where('tb_kelas_mhs.semester', $semester_aktif)
+              ->where('tb_detail_kurikulum.semester_kurikulum', $semester_aktif)
               ->where('tb_kelas_mhs.id_mahasiswa', $id_mahasiswa)
               ->where('tb_jadwal.id_hari', '2')
               ->get('tb_kelas_mhs')
@@ -269,8 +267,7 @@ class Mahasiswa_model extends CI_Model {
               ->join('tb_ruang','tb_ruang.id_ruang=tb_jadwal.id_ruang')
               ->join('tb_kelas_dosen','tb_kelas_dosen.id_kp=tb_kp.id_kp','right')
               ->join('tb_dosen','tb_dosen.id_dosen=tb_kelas_dosen.id_dosen')
-              
-              ->where('tb_kelas_mhs.semester', $semester_aktif)
+              ->where('tb_detail_kurikulum.semester_kurikulum', $semester_aktif)
               ->where('tb_kelas_mhs.id_mahasiswa', $id_mahasiswa)
               ->where('tb_jadwal.id_hari', '3')
               ->get('tb_kelas_mhs')
@@ -286,7 +283,7 @@ class Mahasiswa_model extends CI_Model {
               ->join('tb_kelas_dosen','tb_kelas_dosen.id_kp=tb_kp.id_kp','right')
               ->join('tb_dosen','tb_dosen.id_dosen=tb_kelas_dosen.id_dosen')
               
-              ->where('tb_kelas_mhs.semester', $semester_aktif)
+              ->where('tb_detail_kurikulum.semester_kurikulum', $semester_aktif)
               ->where('tb_kelas_mhs.id_mahasiswa', $id_mahasiswa)
               ->where('tb_jadwal.id_hari', '4')
               ->get('tb_kelas_mhs')
@@ -302,7 +299,7 @@ class Mahasiswa_model extends CI_Model {
               ->join('tb_kelas_dosen','tb_kelas_dosen.id_kp=tb_kp.id_kp','right')
               ->join('tb_dosen','tb_dosen.id_dosen=tb_kelas_dosen.id_dosen')
               
-              ->where('tb_kelas_mhs.semester', $semester_aktif)
+              ->where('tb_detail_kurikulum.semester_kurikulum', $semester_aktif)
               ->where('tb_kelas_mhs.id_mahasiswa', $id_mahasiswa)
               ->where('tb_jadwal.id_hari', '5')
               ->get('tb_kelas_mhs')
@@ -349,7 +346,6 @@ class Mahasiswa_model extends CI_Model {
       $id_kp2 = explode(',', $this->input->post('id_kp'));
       for($i=0; $i+1<count($id_kp2);$i++){
         $data = array('id_mahasiswa'        => $this->input->post('id_mahasiswa'),
-                      'semester'        => $this->input->post('semester_aktif'),
                       'id_kp'        => $id_kp2[$i]);
         $this->db->insert('tb_kelas_mhs', $data);
       }

@@ -30,10 +30,10 @@ class Admin extends CI_Controller {
 	{
 			if($this->user_model->signup() == TRUE){
 				$username = $this->input->post('username');
-				$this->session->set_flashdata('message', '<div class="alert alert-success"> Registrasi '.$username.' berhasil didaftarkan. </div>');
+				$this->session->set_flashdata('message', '<div class="alert alert-success"> User '.$username.' berhasil didaftarkan </div>');
             	redirect('admin');
 			} else{
-				$this->session->set_flashdata('message', '<div class="alert alert-danger"> Username/password sudah ada. </div>');
+				$this->session->set_flashdata('message', '<div class="alert alert-danger"> Tambah User gagal </div>');
             	redirect('admin');
 			} 
 	} 

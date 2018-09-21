@@ -236,7 +236,7 @@ class Mahasiswa extends CI_Controller {
 			}
 			$data['mahasiswa'] = $this->mahasiswa_model->detail_krs_mahasiswa($id_mahasiswa);
 			$data['aktivitas'] = $this->mahasiswa_model->data_ap($id_mahasiswa);
-			$data['main_view'] = 'mahasiswa/aktivitas_perkuliahan_mahasiswa_view';
+			$data['main_view'] = 'Mahasiswa/aktivitas_perkuliahan_mahasiswa_view';
 			$this->load->view('template', $data);
 			} else {
 			redirect('login');
@@ -478,7 +478,7 @@ class Mahasiswa extends CI_Controller {
 		if ($this->session->userdata('logged_in') == TRUE) {
 			$data['ld'] = $this->mahasiswa_model->data_ld();
 			$data['getProdi'] = $this->daftar_ulang_model->getProdi();
-			$data['main_view'] = 'ld/lulus_do_view';
+			$data['main_view'] = 'LD/lulus_do_view';
 			$this->load->view('template', $data);
 		} else {
 			redirect('login');
@@ -527,7 +527,7 @@ class Mahasiswa extends CI_Controller {
 			$id_status=$this->input->get('id_status');
 			$angkatan=$this->input->get('angkatan');
 			$data['ld'] = $this->mahasiswa_model->filter_ld($id_prodi,$id_status,$angkatan);
-			$data['main_view'] = 'ld/lulus_do_view';
+			$data['main_view'] = 'Ld/lulus_do_view';
 			$this->load->view('template', $data);
 	}
 	function random_password() 

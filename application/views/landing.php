@@ -294,11 +294,11 @@
           <!-- small box -->
           <div class="small-box bg-maroon">
             <div class="inner" style="height: 130px">
-              <h4>Kalender Akademik</h4>
+              <h4>Perpustakaan</h4>
             </div>
             <div class="icon">
               <p style="visibility: hidden;">e</p>
-              <i class="fa fa-calendar"></i>
+              <i class="fa fa-book"></i>
             </div>
           </div>
         </div>
@@ -339,6 +339,18 @@
               <a href="<?php echo base_url(); ?>calendar/calendar_landing" class="uppercase">View All Data</a>
             </div>
             <!-- /.box-footer -->
+          </div>
+        </div>
+        <div class="col-lg-2 col-xs-6">
+          <!-- small box -->
+          <div class="small-box bg-green">
+            <div class="inner" style="height: 130px">
+              <h4>IT Support</h4>
+            </div>
+            <div class="icon">
+              <p style="visibility: hidden;">e</p>
+              <i class="fa fa-cogs"></i>
+            </div>
           </div>
         </div>
       </section>

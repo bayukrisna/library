@@ -27,7 +27,7 @@
                   <input type="password" id="password" name="password" autofocus value="" required="" placeholder="Password" class="form-control" />
                 </div>
                 <br>
-                <div class="g-recaptcha" data-sitekey="6LcMU20UAAAAACiZUAOaCfw0YDu2rHirY7Z0DjNT"></div>
+                <div class="g-recaptcha" data-sitekey="6LdJNXEUAAAAAFTF9Mli1NghDiiTI9doXUlREvh3"></div>
                 <font color="red"><span id="myspan"> </font></span>
                 <br>
                 <input type="submit" name="submit" value="LOGIN" class="btn btn-block btn-sm btn-primary">

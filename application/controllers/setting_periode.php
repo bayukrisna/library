@@ -15,7 +15,7 @@ class Setting_periode extends CI_Controller {
 		if ($this->session->userdata('logged_in') == TRUE) {
 			$data['getProdi'] = $this->daftar_ulang_model->getProdi();
 			$data['data_periode'] = $this->periode_model->data_periode();
-			$data['main_view'] = 'akademi/setting_periode_view';
+			$data['main_view'] = 'Akademi/setting_periode_view';
 			$this->load->view('template', $data);
 		} else {
 			redirect('login');
@@ -25,7 +25,7 @@ class Setting_periode extends CI_Controller {
 	{
 		if ($this->session->userdata('logged_in') == TRUE) {
 			$data['getProdi'] = $this->daftar_ulang_model->getProdi();
-			$data['main_view'] = 'akademi/tambah_periode_view';
+			$data['main_view'] = 'Akademi/tambah_periode_view';
 			$this->load->view('template', $data);
 		} else {
 			redirect('login');

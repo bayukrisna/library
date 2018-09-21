@@ -17,7 +17,7 @@ class Jadwal extends CI_Controller {
 			$data['jadwal'] = $this->jadwal_model->data_jadwal();
 			$data['getProdi'] = $this->daftar_ulang_model->getProdi();
 			$data['getRuang'] = $this->ruang_model->getRuang();
-			$data['main_view'] = 'jadwal/jadwal_view';
+			$data['main_view'] = 'Jadwal/jadwal_view';
 			$this->load->view('template', $data);
 			} else {
 			redirect('login');
@@ -30,7 +30,7 @@ class Jadwal extends CI_Controller {
 			$id_jadwal = $this->uri->segment(3);
 			$data['getRuang'] = $this->ruang_model->getRuang();
 			$data['jadwal'] = $this->jadwal_model->detail_jadwal($id_jadwal);
-			$data['main_view'] = 'jadwal/edit_jadwal_view';
+			$data['main_view'] = 'Jadwal/edit_jadwal_view';
 			$this->load->view('template', $data);
 			} else {
 			redirect('login');
@@ -52,7 +52,7 @@ class Jadwal extends CI_Controller {
 			$id_periode = $this->input->get('id_periode');
 			$data['nilai'] = $this->aktivitas_perkuliahan_model->filter_ap($id_mahasiswa,$id_periode);
 			$data['nilai2'] = $this->aktivitas_perkuliahan_model->data_nilai_mhs($id_mahasiswa);
-			$data['main_view'] = 'aktivitas_perkuliahan/aktivitas_perkuliahan_view2';
+			$data['main_view'] = 'Aktivitas_perkuliahan/aktivitas_perkuliahan_view2';
 			$this->load->view('template', $data);
 	}
 
@@ -101,7 +101,7 @@ class Jadwal extends CI_Controller {
 			$id_mahasiswa = $this->uri->segment(3);
 			$data['jadwal'] = $this->jadwal_model->jadwal_mhs($id_mahasiswa);
 			$data['mahasiswa'] = $this->mahasiswa_model->detail_krs_mahasiswa($id_mahasiswa);
-			$data['main_view'] = 'jadwal/edit_jadwal_view';
+			$data['main_view'] = 'Jadwal/edit_jadwal_view';
 			$this->load->view('template', $data);
 			} else {
 			redirect('login');

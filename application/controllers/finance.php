@@ -157,7 +157,7 @@ class Finance extends CI_Controller {
 	function pembayaran(){
 		if($this->session->userdata('level') == 4 || $this->session->userdata('level') == 1){
 			$this->cart->destroy();
-			$data['main_view'] = 'finance/pembayaran_view';
+			$data['main_view'] = 'Finance/pembayaran_view';
 			$this->load->view('template', $data);
 		} else {
 			redirect(base_url('login'));

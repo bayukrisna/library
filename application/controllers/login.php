@@ -33,8 +33,8 @@ class Login extends CI_Controller {
 
 	public function login()
 	{
-		$site_key = '6LcMU20UAAAAACiZUAOaCfw0YDu2rHirY7Z0DjNT'; // Diisi dengan site_key API Google reCapthca yang sobat miliki
-	    $secret_key = '6LcMU20UAAAAACIL5_uXmqO3T5J01aBTZmkYddka'; // Diisi dengan secret_key API Google reCapthca yang sobat miliki
+		$site_key = '6LdJNXEUAAAAAFTF9Mli1NghDiiTI9doXUlREvh3'; // Diisi dengan site_key API Google reCapthca yang sobat miliki
+	    $secret_key = '6LdJNXEUAAAAALJchW37uZx4LTzI4ap9ah7i2_kr'; // Diisi dengan secret_key API Google reCapthca yang sobat miliki
 	 
 	    $api_url = 'https://www.google.com/recaptcha/api/siteverify?secret=' . $secret_key . '&response='.$_POST['g-recaptcha-response'];
 	    $response = @file_get_contents($api_url);

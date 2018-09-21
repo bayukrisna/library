@@ -12,7 +12,7 @@ class Ruang extends CI_Controller {
 	public function index(){
 		if ($this->session->userdata('logged_in') == TRUE) {
 				$data['ruang'] = $this->ruang_model->data_ruang();
-				$data['main_view'] = 'ruang/ruang_view';
+				$data['main_view'] = 'Ruang/ruang_view';
 				$this->load->view('template', $data);
 			} else {
 			redirect('login');
@@ -23,7 +23,7 @@ class Ruang extends CI_Controller {
 	{
 			if($this->ruang_model->simpan_ruang() == TRUE){
 				$username = $this->input->post('nama_ruang');
-				$this->session->set_flashdata('message', '<div class="alert alert-success"> Registrasi '.$username.' berhasil didaftarkan. </div>');
+				$this->session->set_flashdata('message', '<div class="alert alert-success">Ruangan '.$username.' berhasil ditambahkan </div>');
             	redirect('ruang'); 
 			} else{
 				$this->session->set_flashdata('message', '<div class="alert alert-danger"> '.validation_errors().' </div>');

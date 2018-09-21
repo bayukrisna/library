@@ -15,9 +15,9 @@ class Aktivitas_perkuliahan extends CI_Controller {
 	{
 		if ($this->session->userdata('logged_in') == TRUE) {
 			$data['getProdi'] = $this->daftar_ulang_model->getProdi();
-				$data['getPeriode'] = $this->daftar_ulang_model->getPeriode();
+			$data['getPeriode'] = $this->daftar_ulang_model->getPeriode();
 			$data['aktivitas'] = $this->aktivitas_perkuliahan_model->data_aktivitas_perkuliahan();
-			$data['main_view'] = 'aktivitas_perkuliahan/aktivitas_perkuliahan_view';
+			$data['main_view'] = 'Aktivitas_perkuliahan/aktivitas_perkuliahan_view';
 			$this->load->view('template', $data);
 			} else {
 			redirect('login');
@@ -37,7 +37,7 @@ class Aktivitas_perkuliahan extends CI_Controller {
 			$id_periode = $this->input->get('id_periode');
 			$data['nilai'] = $this->aktivitas_perkuliahan_model->filter_ap($id_mahasiswa,$id_periode);
 			$data['nilai2'] = $this->mahasiswa_model->data_nilai_mhs($id_mahasiswa);
-			$data['main_view'] = 'aktivitas_perkuliahan/aktivitas_perkuliahan_view2';
+			$data['main_view'] = 'Aktivitas_perkuliahan/aktivitas_perkuliahan_view2';
 			$this->load->view('template', $data);
 	}
 
@@ -48,7 +48,7 @@ class Aktivitas_perkuliahan extends CI_Controller {
 			$data['getProdi'] = $this->daftar_ulang_model->getProdi();
 			$data['getPeriode'] = $this->daftar_ulang_model->getPeriode();
 			$data['aktivitas'] = $this->aktivitas_perkuliahan_model->filter_data_ap($id_prodi,$id_periode);
-			$data['main_view'] = 'aktivitas_perkuliahan/aktivitas_perkuliahan_view';
+			$data['main_view'] = 'Aktivitas_perkuliahan/aktivitas_perkuliahan_view';
 			$this->load->view('template', $data);
 	}
 

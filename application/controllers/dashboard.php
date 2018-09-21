@@ -54,7 +54,7 @@ class Dashboard extends CI_Controller {
             $data['encode2'] = $ea2;
             $id_level = $this->session->userdata('level');
             $data['informasi'] = $this->dosen_model->informasi_dosen($id_level);
-            $data['main_view'] = 'tamu/dashboard_marketing_view';
+            $data['main_view'] = 'Tamu/dashboard_marketing_view';
             $this->load->view('template', $data);
         } else if($this->session->userdata('level') == 6){
             $var1 = $this->dashboard_model->dashboard_marketing_data();
