@@ -215,7 +215,7 @@ class Laporan_model extends CI_Model {
                   <th>NIM</th>
                   <th>Nama Mahasiswa</th>
                   <th>Tempat, Tanggal Lahir</th>
-                  <th>Nama Ibu Kandung</th>
+                  <th>Ibu Kandung</th>
                   <th>Agama</th>
                   <th>NIK</th>
                   <th>Kelurahan</th>
@@ -318,7 +318,14 @@ class Laporan_model extends CI_Model {
                 </tr>
                 </thead>
                 <tbody>';
+
                   foreach ($row as $data) {
+                    if ($data->id_status == 19) {
+                       $status_a = 'Aktif';
+                    } else {
+                      $status_a = $data->status_mhs;
+                    }
+
                     $option .= "
                     <tr>
                       <td>".++$no."</td>
@@ -327,7 +334,7 @@ class Laporan_model extends CI_Model {
                       <td>".$data->nama_prodi."</td>
                       <td>".$data->nama_konsentrasi."</td>
                       <td>".$data->waktu."</td>
-                      <td>".$data->status_mhs."</td>
+                      <td>".$status_a."</td>
                     </tr>";
                     
                   }

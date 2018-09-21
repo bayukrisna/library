@@ -17,13 +17,14 @@
                   <th>Id Prodi</th>
                   <th>Nama Prodi</th>
                   <th>Ketua Prodi</th>
-                  <th>Aksi</th>
+                  <th style="width: 10%">Aksi</th>
                 </tr>
                 </thead>
                 <tbody>
 
                 <?php 
                 $no = 0;
+                $alert = "'Apakah anda yakin mengapus data ini ?'";
                 foreach ($prodi as $data) {
                   echo '
                   
@@ -34,8 +35,8 @@
                   <td>'.$data->nama_prodi.'</td>
                   <td>'.$data->ketua_prodi.'</td>
                   <td>
-                      <a href="'.base_url('index.php/master_prodi/edit_prodi/'.$data->id_prodi).'" class="btn btn-warning btn-sm" >Edit </a>
-                      <a href="'.base_url('index.php/master_prodi/hapus_prodi/'.$data->id_prodi).'" class="btn btn-danger btn-sm">Hapus</a>
+                  <a href="'.base_url('index.php/master_prodi/edit_prodi/'.$data->id_prodi).'" class="btn btn-success  btn-sm"><i class="glyphicon glyphicon-pencil"></i><span class="tooltiptext">Detail</span></a>
+                  <a href="'.base_url('index.php/master_prodi/hapus_prodi/'.$data->id_prodi).'" class="btn btn-danger  btn-sm" onclick="return confirm('.$alert.')"><i class="glyphicon glyphicon-trash"></i><span class="tooltiptext">Hapus</span></a>
                   </td>
                 </tr>
                 ';

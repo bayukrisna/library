@@ -1,7 +1,8 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title>PSB Online SMK Telkom Malang</title>
+    <title>STIE Jakarta International College</title>
+    <link href='logo.png' rel='shortcut icon'>
     <link rel="stylesheet" type="text/css" href="<?php echo base_url(); ?>assets/css/bootstrap.min.css">
     <link rel="stylesheet" type="text/css" href="<?php echo base_url(); ?>assets/css/style.css">
     <link rel="stylesheet" href="<?php echo base_url(); ?>assets/dist/css/AdminLTE.min.css">

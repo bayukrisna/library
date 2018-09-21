@@ -3,7 +3,8 @@
 <head>
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <title>AdminLTE 2 | General Form Elements</title>
+  <title>STIE Jakarta International College</title>
+  <link href='logo.png' rel='shortcut icon'>
   <!-- Tell the browser to be responsive to screen width -->
   <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
   <!-- Bootstrap 3.3.6 -->
@@ -267,7 +268,7 @@ a:hover .tooltiptext {
 
           <?php } else { ?>
             <li <?php if($this->uri->segment(1) == 'dashboard') echo 'class="active"'; else echo  '';?>><a href="<?php echo base_url(); ?>dashboard"><i class="fa fa-dashboard"></i><span>Dashboard</span></a></li>
-            <li <?php if($this->uri->segment(1) == 'calendar' AND $this->uri->segment(2) == '') echo 'class="active"'; else echo  '';?>><a href="<?php echo base_url(); ?>calendar"><i class="fa fa-calendar"></i><span>Kelender Akademik</span></a></li>
+            <li <?php if($this->uri->segment(1) == 'calendar' AND $this->uri->segment(2) == '') echo 'class="active"'; else echo  '';?>><a href="<?php echo base_url(); ?>calendar"><i class="fa fa-calendar"></i><span>Kalender Akademik</span></a></li>
         <li class="treeview <?php if($this->uri->segment(1) == 'admin' OR $this->uri->segment(2) == 'master_calendar' OR $this->uri->segment(1) == 'master_prodi' OR $this->uri->segment(1) == 'master_konsentrasi' OR $this->uri->segment(1) == 'master_asal_sekolah' OR $this->uri->segment(1) == 'master_biaya_sekolah' OR $this->uri->segment(1) == 'master_dosen' OR $this->uri->segment(1) == 'ruang') echo 'active'; else echo  '';?>">
           <a href="#">
             <i class="fa fa-archive"></i> <span>Master</span>

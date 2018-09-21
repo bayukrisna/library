@@ -24,7 +24,7 @@
                   <th>Program Studi</th>
                   <th>Jenis MK</th>
                   <th>Aksi</th>
-                  <th style="width: 2%">Check</th>
+                  <th style="width: 2%" >Check</th>
                 </tr>
                 </thead>
                 <tbody>
@@ -47,7 +47,7 @@
 
                    <a href="'.base_url('mata_kuliah/hapus_matkul/'.$data->kode_matkul).'" class="btn btn-danger  btn-sm" onclick="return confirm('.$alert.')"><i class="glyphicon glyphicon-trash"></i><span class="tooltiptext">Hapus Mata Kuliah</span></a>
                    </td>
-                   <td><input type="checkbox" name="id[]" value="'.$data->kode_matkul.'"></td>
+                   <td style="text-align: center"><input type="checkbox" name="id[]" value="'.$data->kode_matkul.'"></td>
                 ' ;
                 
               }

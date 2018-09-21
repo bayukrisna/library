@@ -103,10 +103,9 @@
                   <td>'.$data->nama_prodi.'</td>
                   <td>'.$data->status_mhs.'</td>
                   <td>'.$data->tanggal_keluar.'</td>
-                  <td><a href="" data-toggle="modal" data-target="#modal_edit'.$data->id_mahasiswa.'"><i class="fa fa-pencil"> </i></a></td>
-                  
+                  <td>
 
-       
+                  <a  href="" data-toggle="modal" data-target="#modal_edit'.$data->id_mahasiswa.'" class="btn btn-success btn-sm" ><i class="glyphicon glyphicon-pencil"></i><span class="tooltiptext">Ubah</span></a>
                 ' ;
                 
               }

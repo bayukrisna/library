@@ -39,10 +39,9 @@
                   <td>'.$data->target_mhs_baru.'</td>
                   <td>'.$data->tgl_awal_kul.'</td>
                   <td>'.$data->tgl_akhir_kul.'</td>
-                  <td><a href="" data-toggle="modal" data-target="#modal_edit'.$data->id_periode.'"><i class="fa fa-pencil"> </i></a></td>
-                  
-
-       
+                  <td>
+                  <a href="" data-toggle="modal" data-target="#modal_edit'.$data->id_periode.'" class="btn btn-success  btn-sm" ><i class="glyphicon glyphicon-pencil"></i><span class="tooltiptext">Ubah</span></a>
+                
                 ' ;
                 
               }
