@@ -91,7 +91,7 @@ class Calendar extends CI_Controller {
         	redirect('calendar/master_calendar');
         }
 	}
-	public function hapus_asal_sekolah($id){
+	public function hapus_calendar($id){
 		if ($this->calendar_model->hapus_calendar($id) == TRUE) {
 			$this->session->set_flashdata('message', '<div class="alert alert-success">Hapus Kalender Berhasil</div>');
 			redirect('calendar/master_calendar');

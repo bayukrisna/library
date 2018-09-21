@@ -25,7 +25,24 @@ class Admin extends CI_Controller {
 		}
 			
 	}
-
+	public function hapus_user(){
+		if ($this->session->userdata('logged_in') == TRUE) {
+			if($this->session->userdata('level') == 1){
+				$username = $this->uri->segment(3);
+				if ($this->user_model->hapus_user($username) == TRUE) {
+					$this->session->set_flashdata('message', '<div class="alert alert-success"> Hapus '.$username.' Berhasil </div>');
+					redirect('admin');
+				} else {
+					$this->session->set_flashdata('message', '<div class="alert alert-success"> Hapus '.$username.' Gagal </div>');
+					redirect('admin');
+				}
+			} else {
+				redirect(base_url('login'));
+			}
+		} else {
+			redirect('login');
+		}
+	}
 	public function signup()
 	{
 			if($this->user_model->signup() == TRUE){

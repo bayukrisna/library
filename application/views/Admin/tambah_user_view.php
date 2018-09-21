@@ -19,12 +19,14 @@
                   <th>Username</th>
                   <th>Password</th>
                   <th>Jabatan</th>
+                  <th>Aksi</th>
                 </tr>
                 </thead>
                 <tbody>
 
                 <?php 
                 $no = 0;
+                $alert = "'Apakah anda yakin mengapus data ini ?'";
                 foreach ($data_user as $data) {
                   echo '
                   
@@ -33,7 +35,9 @@
                   <td>'.$data->username.'</td>
                   <td>'.$data->password.'</td>
                   <td>'.$data->nama_level.'</td>
-                  
+                  <td>
+                  <a href="'.base_url('admin/hapus_user/'.$data->username).'" class="btn btn-danger  btn-sm" onclick="return confirm('.$alert.')"><i class="glyphicon glyphicon-trash"></i><span class="tooltiptext">Hapus</span></a>
+                  </td>
 
        
                 ' ;

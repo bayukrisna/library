@@ -26,6 +26,7 @@
 
                 <?php 
                 $no = 0;
+                $alert = "'Apakah anda yakin mengapus data ini ?'";
                 foreach ($calendar as $data) {
                   echo '
                   
@@ -36,8 +37,8 @@
                   <td>'.$data->end.'</td>
                   <td><span style="background-color:'.$data->backgroundColor.';" class="badge">'.$data->backgroundColor.'</span></td>
                   <td>
-                  <a href="" data-toggle="modal" data-target="#modal_edit'.$data->id.'"><i class="fa fa-pencil"><span class="tooltiptext" style="width: 50px">Edit</span> </i></a>&nbsp;
-                  <a href="'.base_url('calendar/hapus_calendar/'.$data->id).'" ><i class="fa fa-trash"> <span class="tooltiptext" style="width: 50px">Hapus</span></i></a>
+                  <a href="" data-toggle="modal" data-target="#modal_edit'.$data->id.'" class="btn btn-success  btn-sm" ><i class="glyphicon glyphicon-pencil"></i><span class="tooltiptext">Edit</span></a>
+                  <a href="'.base_url('calendar/hapus_calendar/'.$data->id).'" class="btn btn-danger  btn-sm" onclick="return confirm('.$alert.')"><i class="glyphicon glyphicon-trash"></i><span class="tooltiptext">Hapus</span></a>
                   </td>
                   
 
