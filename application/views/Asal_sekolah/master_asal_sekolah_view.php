@@ -24,6 +24,7 @@
 
                 <?php 
                 $no = 0;
+                $alert = "'Apakah anda yakin mengapus data ini ?'";
                 foreach ($asal_sekolah as $data) {
                   echo '
                   
@@ -35,8 +36,8 @@
                   <td>'.$data->alamat_sekolah.'</td>
                   <td>'.$data->jenis_sekolah.'</td>
                   <td>
-                      <a href="'.base_url('master_asal_sekolah/edit_asal_sekolah/'.$data->id_sekolah).'" class="btn btn-warning btn-sm" >Edit </a>
-                      <a href="'.base_url('master_asal_sekolah/hapus_asal_sekolah/'.$data->id_sekolah).'" class="btn btn-danger btn-sm">Hapus</a>
+                    <a href="'.base_url('master_asal_sekolah/edit_asal_sekolah/'.$data->id_sekolah).'" class="btn btn-success  btn-sm" ><i class="glyphicon glyphicon-pencil"></i><span class="tooltiptext">Edit</span></a>
+                    <a href="'.base_url('master_asal_sekolah/hapus_asal_sekolah/'.$data->id_sekolah).'" class="btn btn-danger  btn-sm" onclick="return confirm('.$alert.')"><i class="glyphicon glyphicon-trash"></i><span class="tooltiptext">Hapus</span></a>
                   </td>
                 </tr>
                 ';

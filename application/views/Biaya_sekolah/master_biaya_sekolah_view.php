@@ -40,8 +40,8 @@
                   <td>'.$data->periode.'</td>
                   <td>'.$data->waktu.'</td>
                   <td>
-                      <a href="'.base_url('master_biaya_sekolah/edit_biaya_sekolah/'.$data->id_biaya).'" class="btn btn-warning btn-sm" >Edit </a>
-                      <a href="'.base_url('master_biaya_sekolah/hapus_biaya_sekolah/'.$data->id_biaya).'" class="btn btn-danger btn-sm" onclick="return confirm('.$alert.')">Hapus</a>
+                    <a href="'.base_url('master_biaya_sekolah/edit_biaya_sekolah/'.$data->id_biaya).'" class="btn btn-success  btn-sm" ><i class="glyphicon glyphicon-pencil"></i><span class="tooltiptext">Edit</span></a>
+                    <a href="'.base_url('master_biaya_sekolah/hapus_biaya_sekolah/'.$data->id_biaya).'" class="btn btn-danger  btn-sm" onclick="return confirm('.$alert.')"><i class="glyphicon glyphicon-trash"></i><span class="tooltiptext">Hapus</span></a>
                   </td>
                 </tr>
                 ';
