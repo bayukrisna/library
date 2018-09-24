@@ -9,8 +9,7 @@
         <a class="btn btn-sm btn-primary" href="<?php echo base_url();?>mahasiswa/aktivitas_perkuliahan">Aktivitas Perkuliahan</a>
         <a class="btn btn-sm btn-info" href="<?php echo base_url();?>mahasiswa/prestasi">Prestasi</a> -->
         
-           <?php } else {
-           $id_mahasiswa = $mahasiswa->id_mahasiswa; $semester_aktif = $mahasiswa->semester_aktif?>
+           <?php } else { ?>
            
 
          <a class="btn btn-sm btn-primary" href="<?php echo base_url();?>mahasiswa/lihat_mahasiswa_dikti/<?php echo $mahasiswa->id_mahasiswa; ?>">Detail Mahasiswa</a>
@@ -20,7 +19,8 @@
         <a class="btn btn-sm btn-primary" href="<?php echo base_url();?>mahasiswa/history_nilai/<?php echo $mahasiswa->id_mahasiswa; ?>">History Nilai</a>
         <a class="btn btn-sm btn-info" href="<?php echo base_url();?>mahasiswa/aktivitas_perkuliahan/<?php echo $mahasiswa->id_mahasiswa; ?>">Aktivitas Perkuliahan</a>
         <a class="btn btn-sm btn-primary" href="<?php echo base_url();?>mahasiswa/prestasi/<?php echo $mahasiswa->id_mahasiswa; ?>">Prestasi</a>
-        <a class="btn btn-sm btn-info" href="<?php echo base_url(); ?>mahasiswa/data_mahasiswa">Kembali</a>
+        <a class="btn btn-sm btn-info" href="<?php echo base_url();?>mahasiswa/checklist_pembayaran/<?php echo $mahasiswa->id_mahasiswa; ?>/<?php echo $mahasiswa->id_prodi; ?>">Pembayaran</a>
+        <a class="btn btn-sm btn-primary" href="<?php echo base_url(); ?>mahasiswa/data_mahasiswa">Kembali</a>
          <br/><br/>  
            <?php }           ?>
         <div class="box box-info">
@@ -60,15 +60,15 @@
         
           
             <div class="box-header">
-              <h3 class="box-title">Data KRS</h3>
-              <?php if($mahasiswa->semester_aktif == 3 AND 5 AND 7) { ?>
+              <h3 class="box-title">Riwayat Pembayaran</h3>
+          
 
-              <button type="button" class="btn btn-primary pull-right" data-toggle="modal" data-target="#modal-default">
+              <!-- <button type="button" class="btn btn-primary pull-right" data-toggle="modal" data-target="#modal-default">
                 <i class="fa fa-plus"></i> Tambah Matkul Mengulang
               </button>
               <br>
-              <br>
-            <?php } ?>
+              <br> -->
+      
 
             
             <!-- /.box-header -->
@@ -80,16 +80,18 @@
                   <th>Kode</th>
                   <th>Nama Biaya</th>
                   <th>Jenis Biaya</th>
-                  <th>Nominal</th>
-                  <th>Tanggal Setor</th>
+                  <th>Biaya</th>
+                  <th>Diskon</th>
+                  <th>Denda</th>
+                  <th>Total</th>
                 </tr>
                 </thead>
                 <tbody> 
                     
                   <?php 
-          
+                  $no = 0;
                 foreach ($riwayat as $i) {
-                        
+                  $total = $i->jumlah_biaya - $i->potongan + $i->denda;
                   echo '
                   
                 <tr>
@@ -97,45 +99,21 @@
                   <td>'.$i->kode_pembayaran.'</td>
                   <td>'.$i->nama_biaya.'</td>
                   <td>'.$i->jenis_biaya.'</td>
-                  <td>'.$i->tanggal_pembayaran.'</td>
+                  <td>'.$i->jumlah_biaya.'</td>
+                  <td>'.$i->potongan.'</td>
+                  <td>'.$i->denda.'</td>
+                  <td>'.$total.'</td>
                 </tr>
                 ' ;
                   
                 }   
-              } else {
-                echo '
-                 <tr>
-                    <td colspan="6"> Waktu mengisi KRS sudah melebihi batas akhir</td>
-                  </tr>
-                ';
-              } }
-            }
-          } else {
-            echo '
-              <td colspan="6"> Anda sudah mengisi KRS</td>
-            ';
-          }
+              
             ?>
                 </tbody>
               </table>
 
             </div>
-            <?php echo form_open('mahasiswa/simpan_krs_mhs/'.$mahasiswa->id_prodi.'/'.$mahasiswa->semester_aktif.'/'.$periode->id_periode);?>
-              <input type="hidden" class="form-control" id="id_mahasiswa" name="id_mahasiswa" value="<?php echo $id_mahasiswa ?>">
-              <input type="hidden" class="form-control" id="semester_aktif" name="semester_aktif" value="<?php echo $semester_aktif ?>">
-               <input type="hidden" class="form-control" id="id_kp" name="id_kp" value="<?php echo $id_kp ?>">
-               <?php
-               if ($mahasiswa->id_status != '1') { echo ' 
-              <button type="submit"  class="btn btn-success">Simpan</button> ';
-            } 
-                 ?>
- <?php echo form_close();?>
-              <?php 
-              if ($mahasiswa->id_status == '1') { echo '
-              <br>
-              <a href="'.base_url('mahasiswa/kelas_mhs/'.$mahasiswa->id_mahasiswa.'/'.$mahasiswa->id_prodi.'/'.$mahasiswa->semester_aktif).'" class="btn btn-warning  btn-sm pull-right">Lihat KRS Semester Ini</a>
-              ';
-            } ?>
+           
 
              
             <!-- /.box-body -->
@@ -201,21 +179,4 @@
             </div>
         </div>
 
-        <link rel="stylesheet" href="//code.jquery.com/ui/1.12.0/themes/smoothness/jquery-ui.css">
-  <script src="//code.jquery.com/jquery-1.12.4.min.js"></script>
-  <script src="//code.jquery.com/ui/1.12.0/jquery-ui.min.js"></script>
- <script>
-       document.getElementById("nama_matkul").style.visibility = 'visible';
-
-    jQuery(document).ready(function($){
-    $('#nama_matkul').autocomplete({
-      source:'<?php echo base_url(); ?>kelas_perkuliahan/get_autocomplete_kp', 
-      minLength:1,
-      select: function(event, ui){
-        $('#nama_matkul').val(ui.item.label);
-        $('#id_kp2').val(ui.item.id);
-      }
-    });    
-  });
-
-  </script>
+        

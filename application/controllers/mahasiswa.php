@@ -554,10 +554,70 @@ class Mahasiswa extends CI_Controller {
 				$id_mahasiswa = $session->id_mahasiswa;
 			} else {
 				$id_mahasiswa = $this->uri->segment(3);
+				$id_prodi = $this->uri->segment(4);
 			}
+			$data['periode'] = $this->mahasiswa_model->Periode_krs($id_prodi);
 			$data['mahasiswa'] = $this->mahasiswa_model->detail_krs_mahasiswa($id_mahasiswa);
 			$data['riwayat'] = $this->mahasiswa_model->data_riwayat_pembayaran($id_mahasiswa);
 			$data['main_view'] = 'Mahasiswa/riwayat_pembayaran_mahasiswa_view';
+			$this->load->view('template', $data);
+			} else {
+			redirect('login');
+		}
+	}
+
+	public function checklist_pembayaran()
+	{
+		if ($this->session->userdata('logged_in') == TRUE) {
+			if($this->session->userdata('level') == 5){
+				$username = $this->session->userdata('username');
+				$session = $this->mahasiswa_model->session_mahasiswa($username);
+				$id_prodi = $session->id_prodi;
+				$semester_aktif = $session->semester_aktif;
+				$id_mahasiswa = $session->id_mahasiswa;
+			} else {
+				$id_mahasiswa = $this->uri->segment(3);
+				$id_prodi = $this->uri->segment(4);
+			}
+			$data['periode'] = $this->mahasiswa_model->Periode_krs($id_prodi);
+			$data['mahasiswa'] = $this->mahasiswa_model->detail_krs_mahasiswa($id_mahasiswa);
+			$data['a11'] = $this->mahasiswa_model->checklist_11($id_mahasiswa);
+			$data['a12'] = $this->mahasiswa_model->checklist_12($id_mahasiswa);
+			$data['a13'] = $this->mahasiswa_model->checklist_13($id_mahasiswa);
+			$data['a14'] = $this->mahasiswa_model->checklist_14($id_mahasiswa);
+			$data['a15'] = $this->mahasiswa_model->checklist_15($id_mahasiswa);
+			$data['a16'] = $this->mahasiswa_model->checklist_16($id_mahasiswa);
+			$data['a17'] = $this->mahasiswa_model->checklist_17($id_mahasiswa);
+			$data['a18'] = $this->mahasiswa_model->checklist_18($id_mahasiswa);
+			$data['a19'] = $this->mahasiswa_model->checklist_19($id_mahasiswa);
+			$data['a21'] = $this->mahasiswa_model->checklist_21($id_mahasiswa);
+			$data['a22'] = $this->mahasiswa_model->checklist_22($id_mahasiswa);
+			$data['a23'] = $this->mahasiswa_model->checklist_23($id_mahasiswa);
+			$data['a24'] = $this->mahasiswa_model->checklist_24($id_mahasiswa);
+			$data['a25'] = $this->mahasiswa_model->checklist_25($id_mahasiswa);
+			$data['a26'] = $this->mahasiswa_model->checklist_26($id_mahasiswa);
+			$data['a27'] = $this->mahasiswa_model->checklist_27($id_mahasiswa);
+			$data['a28'] = $this->mahasiswa_model->checklist_28($id_mahasiswa);
+			$data['a29'] = $this->mahasiswa_model->checklist_29($id_mahasiswa);
+			$data['a31'] = $this->mahasiswa_model->checklist_31($id_mahasiswa);
+			$data['a32'] = $this->mahasiswa_model->checklist_32($id_mahasiswa);
+			$data['a33'] = $this->mahasiswa_model->checklist_33($id_mahasiswa);
+			$data['a34'] = $this->mahasiswa_model->checklist_34($id_mahasiswa);
+			$data['a35'] = $this->mahasiswa_model->checklist_35($id_mahasiswa);
+			$data['a36'] = $this->mahasiswa_model->checklist_36($id_mahasiswa);
+			$data['a37'] = $this->mahasiswa_model->checklist_37($id_mahasiswa);
+			$data['a38'] = $this->mahasiswa_model->checklist_38($id_mahasiswa);
+			$data['a39'] = $this->mahasiswa_model->checklist_39($id_mahasiswa);
+			$data['a41'] = $this->mahasiswa_model->checklist_41($id_mahasiswa);
+			$data['a42'] = $this->mahasiswa_model->checklist_42($id_mahasiswa);
+			$data['a43'] = $this->mahasiswa_model->checklist_43($id_mahasiswa);
+			$data['a44'] = $this->mahasiswa_model->checklist_44($id_mahasiswa);
+			$data['a45'] = $this->mahasiswa_model->checklist_45($id_mahasiswa);
+			$data['a46'] = $this->mahasiswa_model->checklist_46($id_mahasiswa);
+			$data['a47'] = $this->mahasiswa_model->checklist_47($id_mahasiswa);
+			$data['a48'] = $this->mahasiswa_model->checklist_48($id_mahasiswa);
+			$data['a49'] = $this->mahasiswa_model->checklist_49($id_mahasiswa);
+			$data['main_view'] = 'Mahasiswa/checklist_pembayaran_mahasiswa_view';
 			$this->load->view('template', $data);
 			} else {
 			redirect('login');
