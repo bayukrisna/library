@@ -106,6 +106,7 @@ class Daftar_ulang_model extends CI_Model {
               ->join('tb_status_mhs','tb_status_mhs.id_status=tb_mahasiswa.id_status')
               ->join('tb_mhs_add','tb_mhs_add.id_mahasiswa=tb_mahasiswa.id_mahasiswa')
               ->where('tb_mahasiswa.id_waktu', '1')
+              ->where('tb_mahasiswa.semester_aktif', '1')
               ->get('tb_mahasiswa')
               ->result();
   }

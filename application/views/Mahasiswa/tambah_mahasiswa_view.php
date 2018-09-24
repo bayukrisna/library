@@ -204,7 +204,7 @@
                 </tr>
                 <tr>
                     <td class="left_column">Email</td>
-                    <td colspan="5">: <input type="text" name="email" id="email" class="text-input" maxlength="60" size="60" style="width:30%"></td>
+                    <td colspan="5">: <input type="text" name="email" id="email" class="text-input" maxlength="60" size="60" style="width:30%" required=""></td>
                 </tr>
                 <tr>
                     <td class="left_column">Penerima KPS ? <font color="#FF0000">*</font></td>

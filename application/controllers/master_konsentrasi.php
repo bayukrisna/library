@@ -41,9 +41,9 @@ class Master_konsentrasi extends CI_Controller {
 		$this->form_validation->set_rules('id_prodi', 'Nama Prodi', 'trim|required');	
 		
 		if ($this->form_validation->run() == TRUE){
-			if($this->konsentrasi_model->save_konsentrasi() == TRUE){
+			if($this->konsentrasi_model->save_konsentrasi() == TRUE && $this->konsentrasi_model->save_konsentrasi2() == TRUE){
 				$username = $this->input->post('nama_konsentrasi');
-				$this->session->set_flashdata('message', '<div class="alert alert-success"> Registrasi '.$username.' berhasil didaftarkan. </div>');
+				$this->session->set_flashdata('message', '<div class="alert alert-success"> Data '.$username.' berhasil ditambahkan </div>');
             	redirect('master_konsentrasi');
 			} 
 			} else{
@@ -52,12 +52,13 @@ class Master_konsentrasi extends CI_Controller {
 		}
 	}
 
-	public function hapus_konsentrasi($id_konsentrasi){
-		if ($this->konsentrasi_model->hapus_konsentrasi($id_konsentrasi) == TRUE) {
-			$this->session->set_flashdata('message', 'Hapus Konsentrasi Berhasil');
+	public function hapus_konsentrasi(){
+		$id_konsentrasi = $this->uri->segment(3);
+		if ($this->konsentrasi_model->hapus_konsentrasi($id_konsentrasi) == TRUE && $this->konsentrasi_model->hapus_konsentrasi2($id_konsentrasi)) {
+			$this->session->set_flashdata('message', '<div class="alert alert-success"> Data konsentrasi berhasil dihapus </div>');
 			redirect('master_konsentrasi');
 		} else {
-			$this->session->set_flashdata('message', 'Hapus Konsentrasi Berhasil');
+			$this->session->set_flashdata('message', '<div class="alert alert-danger"> Data konsentrasi gagal dihapus </div>');
 			redirect('master_konsentrasi');
 		}
 	}
@@ -78,12 +79,14 @@ class Master_konsentrasi extends CI_Controller {
 
 	public function save_edit_konsentrasi(){
 			$id_konsentrasi = $this->uri->segment(3);
-					if ($this->konsentrasi_model->save_edit_konsentrasi($id_konsentrasi) == TRUE) {
-						$data['message'] = 'Edit Konsentrasi berhasil';
+					if ($this->konsentrasi_model->save_edit_konsentrasi($id_konsentrasi) == TRUE && $this->konsentrasi_model->save_edit_konsentrasi2($id_konsentrasi) == TRUE) {
+						$username = $this->input->post('nama_konsentrasi');
+						$this->session->set_flashdata('message', '<div class="alert alert-success"> Data '.$username.' berhasil diedit </div>');
 						redirect('master_konsentrasi');
 					} else {
 						$data['main_view'] = 'Prodi/master_konsentrasi_view';
-						$data['message'] = 'Edit Konsentrasi gagal';
+						$username = $this->input->post('nama_konsentrasi');
+						$this->session->set_flashdata('message', '<div class="alert alert-danger"> Data '.$username.' gagal diedit </div>');
 						redirect('master_konsentrasi/edit_konsentrasi');
 					}
 			}

@@ -3,8 +3,8 @@
         <div class="box-body">
           <div class="nav-tabs-custom">
             <ul class="nav nav-tabs">
-            <li class="active"><a href="#tab_0" data-toggle="tab">Rincian Data IPS Periode <?php echo $this->input->get('semester') ?></a></li>
-             <li><a href="#tab_1" data-toggle="tab">Rincian Data IPK Hingga Periode <?php echo $this->input->get('semester') ?></a></li> 
+            <li class="active"><a href="#tab_0" data-toggle="tab">Rincian Data IPS Periode <?php echo $ap->semester; ?></a></li>
+             <li><a href="#tab_1" data-toggle="tab">Rincian Data IPK Hingga Periode <?php echo $ap->semester; ?></a></li> 
             
              
             </ul>
@@ -166,73 +166,44 @@
  </div>
 </div>
 <div class="box ">
-<?php echo form_open('aktivitas_perkuliahan/save_ap'); ?>
+<?php echo form_open('aktivitas_perkuliahan/save_edit_ap'); ?>
 
               <table class="table">
         <tr>
             <td width="15%" class="left_column">Nama</td>
-            <td>: <input type="text" name="nama" id="nama" class="text-input" maxlength="16" style="width:40%" value="<?php echo $this->input->get('nama_m'); ?>" readonly>
-              <input type="hidden" name="id_mahasiswa" id="id_mahasiswa" class="text-input" maxlength="16" style="width:40%" value="<?php echo $this->input->get('id_mahasiswa'); ?>" readonly>
-              <input type="hidden" name="semester_ak" id="semester_ak" class="text-input" maxlength="16" style="width:40%" value="<?php echo $this->input->get('semester_aktif'); ?>" readonly>
+            <td>: <input type="text" name="nama" id="nama" class="text-input" maxlength="16" style="width:40%" value="<?php echo $ap->nama_mahasiswa; ?>" readonly>
+              <input type="hidden" name="id_mahasiswa" id="id_mahasiswa" class="text-input" maxlength="16" style="width:40%" value="<?php echo $ap->id_mahasiswa; ?>" readonly>
+              <input type="hidden" name="id_aktivitas" id="id_aktivitas" class="text-input" maxlength="16" style="width:40%" value="<?php echo $ap->id_aktivitas; ?>" readonly>
              
             </td>
             <td width="15%" class="left_column">Periode</td>
-            <td>: <input type="text" name="semester" id="semester" class="text-input" maxlength="16" style="width:80%" value="<?php echo $this->input->get('semester') ?>">
-              <input type="hidden" name="id_periode" id="id_periode" class="text-input" maxlength="16" style="width:40%" value="<?php echo $this->input->get('id_periode') ?>">
+            <td>: <input type="text" name="semester" id="semester" class="text-input" maxlength="16" style="width:80%" value="<?php echo $ap->semester; ?>">
+              <input type="hidden" name="id_periode" id="id_periode" class="text-input" maxlength="16" style="width:40%" value="<?php echo $ap->id_periode; ?>">
 
-              <input type="hidden" name="semester_aktif" id="semester_aktif" class="text-input" maxlength="16" style="width:40%" value="<?php 
-              if($this->input->get('id_status_ak') == '19'){
-              echo $this->input->get('semester_aktif') + 1;
-              } else {
-                echo $this->input->get('semester_aktif'); 
-              }
-              ?>">
+              <input type="hidden" name="semester_aktif" id="semester_aktif" class="text-input" maxlength="16" style="width:40%" value="<?php echo $ap->semester_ak + 1; ?>">
               
             </td>
         </tr>
         <tr>
              <td width="15%" class="left_column">Status Mahasiswa</td>
-            <td>: <input type="text" name="Status" id="Status" class="text-input" maxlength="16" style="width:40%" value="<?php 
-            if ($this->input->get('id_status_ak') == 19){
-              $a = 'Aktif'; }
-              else if ($this->input->get('id_status_ak') == 2){
-              $a = 'Non Aktif'; }
-              else {
-                $a = 'Cuti';
+            <td>: <input type="text" name="Status" id="Status" class="text-input" maxlength="16" style="width:40%" value="<?php
+            if($ap->id_status == 1){
+              echo 'Aktif';
+            } else if ($ap->id_status == '2'){
+              echo 'Non-Aktif'; }
+              else if($ap->id_status == '3'){
+                echo 'Cuti';
               }
-            echo $a; ?>" readonly>
-               <input type="hidden" name="id_status_ak" id="id_status_ak" class="text-input" maxlength="16" style="width:40%" value="<?php echo $this->input->get('id_status_ak') ?>">
+             ?>" readonly>
+               <input type="hidden" name="id_status_ak" id="id_status_ak" class="text-input" maxlength="16" style="width:40%" value="<?php echo $ap->id_status; ?>">
             </td>
 
             <td class="left_column" width="15%">IPS</td>
-            <td>: <input type="text" name="ips" id="ips" class="text-input" maxlength="16" size="30" style="width:40%" value="<?php 
-              if ($this->input->get('id_status_ak') == 19){
-              $a = round($ips,2);}
-              else if ($this->input->get('id_status_ak') == 2){
-              $a = '0'; }
-              else {
-                $a = '0';
-              }
-            echo$a;
-
-            ?>">          </td>
+            <td>: <input type="text" name="ips" id="ips" class="text-input" maxlength="16" size="30" style="width:40%" value="<?php echo round($ips,2); ?>">          </td>
         </tr>
         <tr>
              <td width="15%" class="left_column">Jumlah SKS Semester</td>
-            <td>: <input type="text" name="sks_semester" id="sks_semester" class="text-input" maxlength="16" size="30" style="width:40%" value="<?php 
-            if ($this->input->get('id_status_ak') == 19){
-              if ($totalbobot == 1){
-                $ab = '0';
-              } else {
-                $ab = $totalbobot;
-              }
-              $a = $ab; }
-              else if ($this->input->get('id_status_ak') == 2){
-              $a = '0'; }
-              else {
-                $a = '0';
-              }
-            echo $a; ?>" readonly>
+            <td>: <input type="text" name="sks_semester" id="sks_semester" class="text-input" maxlength="16" size="30" style="width:40%" value="<?php echo $totalbobot; ?>" readonly>
               
             </td>
             <td class="left_column" width="15%">IPK</td>

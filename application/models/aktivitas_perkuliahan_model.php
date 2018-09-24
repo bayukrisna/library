@@ -77,7 +77,8 @@ class Aktivitas_perkuliahan_model extends CI_Model {
             'ips'     => $this->input->post('ips', TRUE),
             'ipk_ak'      => $this->input->post('ipk_ak', TRUE),
             'sks_semester'      => $this->input->post('sks_semester', TRUE),
-            'sks_total'      => $this->input->post('sks_total', TRUE)
+            'sks_total'      => $this->input->post('sks_total', TRUE),
+            'semester_ak' => $this->input->post('semester_ak', TRUE)
             
         );
         $this->db->insert('tb_aktivitas_perkuliahan', $data);
@@ -87,6 +88,26 @@ class Aktivitas_perkuliahan_model extends CI_Model {
             return false;
         }
     }
+
+    public function save_edit_ap($id_aktivitas){
+    $data = array(
+            'id_aktivitas'      => $this->input->post('id_aktivitas', TRUE),
+            'id_status'     => $this->input->post('id_status_ak', TRUE),
+            'ips'     => $this->input->post('ips', TRUE),
+            'ipk_ak'      => $this->input->post('ipk_ak', TRUE),
+            'sks_semester'      => $this->input->post('sks_semester', TRUE),
+            'sks_total'      => $this->input->post('sks_total', TRUE)
+      );
+
+    if (!empty($data)) {
+            $this->db->where('id_aktivitas', $id_aktivitas)
+        ->update('tb_aktivitas_perkuliahan', $data);
+
+          return true;
+        } else {
+            return null;
+        }
+  }
 
       
 
@@ -134,6 +155,32 @@ class Aktivitas_perkuliahan_model extends CI_Model {
       return $this->db->get('tb_grade')
               ->result();
   } 
+
+  public function detail_ap($id_aktivitas){
+    return $this->db->join('tb_mahasiswa','tb_mahasiswa.id_mahasiswa=tb_aktivitas_perkuliahan.id_mahasiswa')
+              ->join('tb_bio','tb_bio.id_mahasiswa=tb_mahasiswa.id_mahasiswa')
+              ->join('tb_periode','tb_periode.id_periode=tb_aktivitas_perkuliahan.id_periode')
+              ->join('tb_konsentrasi','tb_konsentrasi.id_konsentrasi=tb_mahasiswa.id_konsentrasi')
+              ->join('tb_prodi','tb_prodi.id_prodi=tb_konsentrasi.id_prodi')
+              ->join('tb_status_mhs','tb_status_mhs.id_status=tb_aktivitas_perkuliahan.id_status')
+              ->where('id_aktivitas', $id_aktivitas)
+              ->get('tb_aktivitas_perkuliahan')
+              ->row();
+  }
+
+  public function data_ipk($id_mahasiswa, $semester_ak){
+    return $this->db->join('tb_mahasiswa','tb_mahasiswa.id_mahasiswa=tb_kelas_mhs.id_mahasiswa')
+              ->join('tb_kp','tb_kp.id_kp=tb_kelas_mhs.id_kp')
+              ->join('tb_jadwal','tb_jadwal.id_jadwal=tb_kp.id_jadwal')
+              ->join('tb_detail_kurikulum','tb_detail_kurikulum.id_detail_kurikulum=tb_jadwal.id_detail_kurikulum')
+              ->join('tb_matkul','tb_matkul.kode_matkul=tb_detail_kurikulum.kode_matkul')
+              ->join('tb_skala_nilai','tb_skala_nilai.id_skala_nilai=tb_kelas_mhs.id_skala_nilai')
+              ->join('tb_periode','tb_periode.id_periode=tb_jadwal.id_periode')
+              ->where('tb_detail_kurikulum.semester_kurikulum >=' , '1')
+              ->where('tb_detail_kurikulum.semester_kurikulum <=', $semester_ak)
+              ->get('tb_kelas_mhs')
+              ->result();
+  }
 
 
 }

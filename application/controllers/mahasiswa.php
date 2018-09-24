@@ -542,6 +542,27 @@ class Mahasiswa extends CI_Controller {
         }
         return implode($password); 
     }
+
+    public function riwayat_pembayaran()
+	{
+		if ($this->session->userdata('logged_in') == TRUE) {
+			if($this->session->userdata('level') == 5){
+				$username = $this->session->userdata('username');
+				$session = $this->mahasiswa_model->session_mahasiswa($username);
+				$id_prodi = $session->id_prodi;
+				$semester_aktif = $session->semester_aktif;
+				$id_mahasiswa = $session->id_mahasiswa;
+			} else {
+				$id_mahasiswa = $this->uri->segment(3);
+			}
+			$data['mahasiswa'] = $this->mahasiswa_model->detail_krs_mahasiswa($id_mahasiswa);
+			$data['riwayat'] = $this->mahasiswa_model->data_riwayat_pembayaran($id_mahasiswa);
+			$data['main_view'] = 'Mahasiswa/riwayat_pembayaran_mahasiswa_view';
+			$this->load->view('template', $data);
+			} else {
+			redirect('login');
+		}
+	}
 	
 	
 	

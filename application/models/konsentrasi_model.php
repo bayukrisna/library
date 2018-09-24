@@ -70,9 +70,41 @@ class Konsentrasi_model extends CI_Model {
 
     }
 
-    public function hapus_konsentrasi($id_sekolah){
-        $this->db->where('id_sekolah', $id_sekolah)
-          ->delete('tb_sekolah');
+    public function save_konsentrasi2()
+    {
+        $data = array(
+            'id_konsentrasi'        => $this->input->post('id_konsentrasi'),
+            'nama_konsentrasi'        => $this->input->post('nama_konsentrasi'),
+            'id_prodi'          => $this->input->post('id_prodi')
+            
+        );
+    
+        $this->db->insert('tb_konsentrasi_kelas', $data);
+
+        if($this->db->affected_rows() > 0){
+            
+                return true;
+        } else {
+            return false;
+            
+        }
+
+    }
+
+    public function hapus_konsentrasi($id_konsentrasi){
+        $this->db->where('id_konsentrasi', $id_konsentrasi)
+          ->delete('tb_konsentrasi');
+
+    if ($this->db->affected_rows() > 0) {
+      return TRUE;
+      } else {
+        return FALSE;
+      }
+    }
+
+    public function hapus_konsentrasi2($id_konsentrasi){
+        $this->db->where('id_konsentrasi', $id_konsentrasi)
+          ->delete('tb_konsentrasi_kelas');
 
     if ($this->db->affected_rows() > 0) {
       return TRUE;
@@ -94,6 +126,23 @@ class Konsentrasi_model extends CI_Model {
     if (!empty($data)) {
             $this->db->where('id_konsentrasi', $id_sekolah)
         ->update('tb_konsentrasi', $data);
+
+          return true;
+        } else {
+            return null;
+        }
+  }
+
+  public function save_edit_konsentrasi2($id_sekolah){
+    $data = array(
+       'id_konsentrasi'     => $this->input->post('id_konsentrasi'),
+        'nama_konsentrasi'  => $this->input->post('nama_konsentrasi'),
+        'id_prodi'         => $this->input->post('id_prodi')
+      );
+
+    if (!empty($data)) {
+            $this->db->where('id_konsentrasi', $id_sekolah)
+        ->update('tb_konsentrasi_kelas', $data);
 
           return true;
         } else {

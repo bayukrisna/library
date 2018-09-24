@@ -32,11 +32,13 @@
                                     ?>
                             </select>
                         <br>
+                        <br>
+
                        <div class="form-group mb-n">
 
                   <div class="col-sm-8">
                   <label for="exampleInputFile" class="">    </label>
-                    <input type="submit" name="submit" class="btn btn-iinfo" background_color="orange" id="largeinput" placeholder="Large Input" value="Update">
+                    <input type="submit" name="submit" class="btn btn-iinfo" background_color="orange" id="largeinput" placeholder="Large Input" value="Ubah">
                   </div>
                
               </div></div>

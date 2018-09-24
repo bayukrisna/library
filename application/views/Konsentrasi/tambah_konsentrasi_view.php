@@ -31,6 +31,7 @@
                                     ?>
                             </select>
                         <br>
+                        <br>
 
                       <button type="submit" class="btn btn-info">Tambah</button>
                       <button type="reset" class="btn btn-default">Reset</button>

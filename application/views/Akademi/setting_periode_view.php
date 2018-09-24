@@ -139,7 +139,7 @@
                       <table class="table">
       <tr>
           <td>Semester <font color="#FF0000">*</font></td>
-            <td colspan="9">:  <input type="text" name="semester" id="id_smt" value="<?php echo $i->semester ?>"  readonly="" />
+            <td colspan="9">:  <input type="text" name="semester" id="id_smt" value="<?php echo $i->semester ?>"   />
         </tr>
       <tr>
           <td class="left_column" width="40%">Program Studi <font color="#FF0000">*</font></td>

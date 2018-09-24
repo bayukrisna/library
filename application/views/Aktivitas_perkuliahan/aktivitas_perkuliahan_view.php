@@ -1,10 +1,10 @@
 
-<?php echo $this->session->flashdata('message');?>
+
     <section class="content">
 
       <div class="row">
         <div class="col-xs-12">
-          
+          <?php echo $this->session->flashdata('message');?>
           <div class="box">
 
             <div class="box-header">
@@ -66,6 +66,7 @@
                   <th rowspan="2" style="text-align: center">IPS</th>
                   <th rowspan="2" style="text-align: center">IPK</th>
                   <th colspan="2" style="text-align: center">SKS</th>
+                  <th rowspan="2" style="text-align: center">Aksi</th>
                 </tr>
                 <tr>
                   <th>Smt</th>
@@ -87,7 +88,7 @@
                   echo '                  
                 <tr>
                   <td>'.++$no.'</td>
-                  <td><a href="'.base_url('kelas_perkuliahan/detail_kelas/'.$data->id_aktivitas).'">'.$data->nim.'</a></td>
+                  <td><a href="'.base_url('aktivitas_perkuliahan/detail_ap/'.$data->id_aktivitas.'/'.$data->id_mahasiswa.'/'.$data->id_periode.'/'.$data->semester_ak).'">'.$data->nim.'</a></td>
                   <td>'.$data->nama_mahasiswa.'</td>
                   <td>'.$data->nama_prodi.'</td>
                   <td>'.substr($data->tgl_du,0,4).'</td>
@@ -97,6 +98,8 @@
                   <td>'.$data->ipk_ak.'</td>
                   <td>'.$data->sks_semester.'</td>
                   <td>'.$data->sks_total.'</td>
+                  <td> <a href="'.base_url('aktivitas_perkuliahan/edit_ap/'.$data->id_aktivitas.'/'.$data->id_mahasiswa.'/'.$data->id_periode).'" class="btn btn-success  btn-sm" ><i class="glyphicon glyphicon-pencil"></i><span class="tooltiptext">Edit</span></a>
+                  </td>
                   
                   </tr>
                 ' ;
