@@ -193,6 +193,7 @@ a:hover .tooltiptext {
             <li <?php if($this->uri->segment(2) == 'jadwal_mhs') echo 'class="active"'; else echo  '';?>><a href="<?php echo base_url(); ?>mahasiswa/jadwal_mhs"><i class="fa fa-file-text"></i> <span>Jadwal</span></a></li>
             <li <?php if($this->uri->segment(2) == 'aktivitas_perkuliahan') echo 'class="active"'; else echo  '';?>><a href="<?php echo base_url(); ?>mahasiswa/aktivitas_perkuliahan"><i class="fa fa-calendar-o"></i> <span>Aktivitas Perkuliahan</span></a></li>
             <li <?php if($this->uri->segment(2) == 'prestasi') echo 'class="active"'; else echo  '';?>><a href="<?php echo base_url(); ?>mahasiswa/prestasi"><i class="fa fa-graduation-cap"></i> <span>Prestasi</span></a></li>
+            <li <?php if($this->uri->segment(2) == 'checklist_pembayaran' OR $this->uri->segment(2) == 'riwayat_pembayaran') echo 'class="active"'; else echo  '';?>><a href="<?php echo base_url(); ?>mahasiswa/checklist_pembayaran"><i class="fa  fa-money"></i> <span>Pembayaran</span></a></li>
             <li <?php if($this->uri->segment(2) == 'saring_level') echo 'class="active"'; else echo  '';?>><a href="<?php echo base_url(); ?>informasi/saring_level/<?php echo $this->session->userdata('level'); ?>"><i class="fa  fa-info-circle"></i>Informasi</a></li>
 
           <?php } else if($this->session->userdata('level') == 3) { ?>

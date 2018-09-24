@@ -573,7 +573,6 @@ class Mahasiswa extends CI_Controller {
 				$username = $this->session->userdata('username');
 				$session = $this->mahasiswa_model->session_mahasiswa($username);
 				$id_prodi = $session->id_prodi;
-				$semester_aktif = $session->semester_aktif;
 				$id_mahasiswa = $session->id_mahasiswa;
 			} else {
 				$id_mahasiswa = $this->uri->segment(3);

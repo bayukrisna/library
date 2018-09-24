@@ -63,11 +63,13 @@
               <h3 class="box-title">Tabel Angsuran </h3>
           
 
-              <!-- <button type="button" class="btn btn-primary pull-right" data-toggle="modal" data-target="#modal-default">
-                <i class="fa fa-plus"></i> Tambah Matkul Mengulang
+               <a class="pull-right" href="<?php echo base_url(); ?>mahasiswa/riwayat_pembayaran/<?php echo $mahasiswa->id_mahasiswa; ?>/<?php echo $mahasiswa->id_prodi; ?>"><button type="button" class="btn btn-warning pull-right">
+                 Riwayat Pembayaran
               </button>
+              </a>
+
               <br>
-              <br> -->
+              <br> 
       
 
             
