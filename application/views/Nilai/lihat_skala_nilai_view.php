@@ -45,7 +45,7 @@
         <?php echo $nilai->tanggal_akhir_efektif; ?>            </td>
         </tr>
         <tr>
-          <td> <a class="btn btn-primary" value="Ubah" href="<?php echo base_url(); ?>nilai/detail_skala_nilai/<?php echo $nilai->id_skala_nilai; ?>"> Ubah</a>
+          <td> <a class="btn btn-warning btn-flat" value="Ubah" href="<?php echo base_url(); ?>nilai/detail_skala_nilai/<?php echo $nilai->id_skala_nilai; ?>"><i class="fa fa-pencil"></i> Edit</a>
         </tr>
     </table>
     </div> 

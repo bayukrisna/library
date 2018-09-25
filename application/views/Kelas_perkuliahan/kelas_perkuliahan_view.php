@@ -7,8 +7,8 @@
           <?php echo $this->session->flashdata('message');?>
           <div class="box">
 
-            <div class="box-header">
-              <h3 class="box-title">Data Kelas Perkuliahan</h3>
+            <div class="box-header with-border">
+              <h3 class="box-title">KELAS PERKULIAHAN</h3>
             </div>
             <div class="box-body">
               <table class="">
@@ -41,7 +41,7 @@
                       </select>
                     </td>
                     <td>
-                      &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<input type="submit" class="btn btn-primary" value="Cari">  
+                      &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<input type="submit" class="btn btn-primary btn-xs btn-flat" value="Cari">  
                     </td>
 
                   </tr>
@@ -52,8 +52,8 @@
                </form>
                <br>
 
-              <table id="example3" class="table2 table-bordered table-striped">
-                <a class="btn btn-info btn-sm" href="" data-toggle="modal" data-target="#modal_tambah"><i class="fa fa-plus"></i> Tambah Kelas</a> <br> <br>
+              <table id="example3" class="table2 table-hover table-striped table-condensed" style="text-transform: uppercase;">
+                <a class="btn btn-primary btn-sm btn-flat" href="" data-toggle="modal" data-target="#modal_tambah"><i class="fa fa-plus"></i> Tambah Kelas</a> <br> <br>
                 <thead>
                 <tr>
                   <th>No</th>
@@ -79,7 +79,7 @@
 
                   $nama_dosen = $this->db->query("SELECT nama_dosen AS abc FROM tb_kelas_dosen RIGHT JOIN tb_kp ON tb_kp.id_kp = tb_kelas_dosen.id_kp left JOIN tb_dosen ON tb_dosen.id_dosen = tb_kelas_dosen.id_dosen WHERE tb_kp.id_kp = '$data->id_kp'")->row();
                   if ($nama_dosen->abc == null) {
-                    $a = '<p style="color:red;"><b>Belum diisi </b></p>';
+                    $a = '<a href="'.base_url('kelas_perkuliahan/detail_kelas/'.$data->id_kp).'"><p style="color:red;"><b>Belum diisi </b></p></a>';
                   } else {
                     $a = $nama_dosen->abc;
                   }
@@ -93,8 +93,9 @@
                   <td>'.$a.'</td>
                   <td>'.$total_mahasiswa->total.'</td>
                   <td>
-                        <a href="'.base_url('kelas_perkuliahan/hapus_kp/'.$data->id_kp).'" class="btn btn-danger btn-sm" onclick="return confirm('.$alert.')"><i class="glyphicon glyphicon-trash"></i><span class="tooltiptext">Hapus Kelas</span></a>
-                         <a href="'.base_url('kelas_perkuliahan/detail_kp/'.$data->id_kp).'" class="btn btn-warning  btn-sm"><i class="glyphicon glyphicon-pencil"></i><span class="tooltiptext">Edit Kelas </span></a>
+                       <a href="'.base_url('kelas_perkuliahan/detail_kp/'.$data->id_kp).'" class="btn btn-warning  btn-xs btn-flat"><i class="glyphicon glyphicon-pencil"></i><span class="tooltiptext">Edit Kelas </span></a>
+                        <a href="'.base_url('kelas_perkuliahan/hapus_kp/'.$data->id_kp).'" class="btn btn-danger btn-xs btn-flat" onclick="return confirm('.$alert.')"><i class="glyphicon glyphicon-trash"></i><span class="tooltiptext">Hapus Kelas</span></a>
+                    
                   </td>
                   </tr>
                 ' ;
@@ -121,13 +122,13 @@
             <div class="modal-content">
             <div class="modal-header">
                 <button type="button" class="close" data-dismiss="modal" aria-hidden="true">x</button>
-                <h3 class="modal-title" id="myModalLabel">Tambah Kelas Perkuliahan</h3>
+                <h3 class="modal-title" id="myModalLabel">TAMBAH KELAS PERKULIAHAN</h3>
             </div>
                 <div class="modal-body">
 
                     <div class="form-group">
                       <?php echo form_open('kelas_perkuliahan/save_kp'); ?>
-                      <table class="table">
+                      <table class="table" style="text-transform: uppercase;">
         <tr>
           <td class="left_column">Masukan Jadwal <font color="#FF0000">*</font>
             </td>
@@ -186,7 +187,7 @@
         <input type="date" name="tgl_akhir" id="tgl_akhir" class="text-input hasDatepicker" maxlength="50" size="50" style="width:50%">            </td>
         </tr>
                   <tr>
-                    <td colspan="4"><button type="submit" class="btn btn-info">Simpan</button></td>
+                    <td colspan="4"><button type="submit" class="btn btn-primary btn-flat"><i class="fa fa-save"></i> Save</button></td>
                   </tr>
               <?php echo form_close();?>
 

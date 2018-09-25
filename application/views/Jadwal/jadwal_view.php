@@ -4,16 +4,16 @@
         <div class="col-xs-12">
           <?php echo $this->session->flashdata('message');?>
           <div class="box">
-            <div class="box-header">
-              <h3 class="box-title">Data Jadwal Perkuliahan</h3>
+            <div class="box-header with-border">
+              <h3 class="box-title">JADWAL PERKULIAHAN</h3>
             </div>
             <div class="box-body">
     
 
-              <table id="example1" class="table table-bordered table-striped">
+              <table id="example1" class="table table-hover table-striped table-condensed" style="text-transform: uppercase;">
              
 
-               <a class="btn btn-info btn-sm" href="" data-toggle="modal" data-target="#modal_view"><i class="fa fa-plus"></i> Tambah Jadwal</a>
+               <a class="btn btn-primary btn-sm btn-flat" href="" data-toggle="modal" data-target="#modal_view"><i class="fa fa-plus"></i> Tambah Jadwal</a>
 
                <br> <br>
                 <thead>
@@ -45,8 +45,10 @@
                   <td>'.$data->waktu.'</td>
                   <td>'.$data->nama_ruang.'</td>
                   <td>'.$data->semester.'</td>
-                  <td> <a href="'.base_url('jadwal/hapus_jadwal/'.$data->id_jadwal).'" class="btn btn-danger  btn-sm" onclick="return confirm('.$alert.')"><i class="glyphicon glyphicon-trash"></i><span class="tooltiptext">Hapus Jadwal</span></a>
-                         <a href="'.base_url('jadwal/detail_jadwal/'.$data->id_jadwal).'" class="btn btn-warning  btn-sm"><i class="glyphicon glyphicon-pencil"></i><span class="tooltiptext">Edit Jadwal</span></a>
+                  <td> 
+                  <a href="'.base_url('jadwal/detail_jadwal/'.$data->id_jadwal).'" class="btn btn-warning  btn-xs btn-flat"><i class="glyphicon glyphicon-pencil"></i><span class="tooltiptext">Edit Jadwal</span></a>
+                  <a href="'.base_url('jadwal/hapus_jadwal/'.$data->id_jadwal).'" class="btn btn-danger  btn-xs btn-flat" onclick="return confirm('.$alert.')"><i class="glyphicon glyphicon-trash"></i><span class="tooltiptext">Hapus Jadwal</span></a>
+                         
                   </td>
                   
 
@@ -79,7 +81,7 @@
 
                     <div class="form-group">
                       <?php echo form_open('jadwal/simpan_jadwal'); ?>
-                      <table class="table">
+                      <table class="table" style="text-transform: uppercase;">
                        <tr>
           <td class="left_column">Mata Kuliah</td>
             <td>: <input type="text" name="nama_matkul" id="nama_matkul" class="text-input" maxlength="80" size="80" style="width:400px">
@@ -155,7 +157,7 @@
           <td><span id="user-availability-status"></span></td>
         </tr>
         <tr>
-                    <td colspan="4"><button type="submit" class="btn btn-info" id="MyBtn">Simpan</button></td>
+                    <td colspan="4"><button type="submit" class="btn btn-primary btn-flat" id="MyBtn"><i class="fa fa-save"></i> Save</button></td>
                   </tr>
 
                         </table>

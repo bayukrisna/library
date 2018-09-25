@@ -38,8 +38,7 @@ class Setting_periode extends CI_Controller {
 		
 		if ($this->form_validation->run() == TRUE){
 			if($this->periode_model->simpan_periode() == TRUE){
-				$prodi = $this->input->post('target_mhs_baru');
-				$this->session->set_flashdata('message', '<div class="alert alert-success"> Registrasi '.$prodi.' berhasil didaftarkan. </div>');
+				$this->session->set_flashdata('message', '<div class="alert alert-success"> Periode telah tersimpan </div>');
             	redirect('setting_periode');
 			} 
 			} else{

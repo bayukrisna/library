@@ -4,13 +4,13 @@
         <div class="col-xs-12">
           <?php echo $this->session->flashdata('message');?>
           <div class="box">
-            <div class="box-header">
-              <h3 class="box-title">Data Dosen</h3>
+            <div class="box-header with-border">
+              <h3 class="box-title">DATA DOSEN</h3>
             </div>
             <!-- /.box-header -->
             <div class="box-body">
-              <a class="btn btn-info btn-sm" href="<?php echo base_url(); ?>master_dosen/page_tambah_dosen"><i class="fa fa-plus"></i> Tambah Dosen</a> <br> <br>
-              <table id="example1" class="table table-bordered table-striped">
+              <a class="btn btn-primary btn-sm btn-flat" href="<?php echo base_url(); ?>master_dosen/page_tambah_dosen"><i class="fa fa-plus"></i> Tambah</a> <br> <br>
+              <table id="example1" class="table table-striped table-condensed table-hover" style="text-transform: uppercase;">
                 <thead>
                 <tr>
                   <th>No</th>
@@ -43,9 +43,11 @@
                   <td>'.$data->status_mhs.'</td>
                   <td>'.$data->status_dosen.'</td>
                   <td>   
-                        <a href="'.base_url('master_dosen/hapus_dosen/'.$data->id_dosen).'" class="btn btn-danger  btn-sm" onclick="return confirm('.$alert.')"><i class="glyphicon glyphicon-trash"></i><span class="tooltiptext">Hapus Dosen</span></a>
+                     <a href="'.base_url('master_dosen/page_edit_dosen/'.$data->id_dosen).'" class="btn btn-warning btn-xs btn-flat"><i class="glyphicon glyphicon-pencil"></i><span class="tooltiptext">Edit Dosen</span></a>
 
-                         <a href="'.base_url('master_dosen/page_edit_dosen/'.$data->id_dosen).'" class="btn btn-warning  btn-sm"><i class="glyphicon glyphicon-pencil"></i><span class="tooltiptext">Edit Dosen</span></a>
+                        <a href="'.base_url('master_dosen/hapus_dosen/'.$data->id_dosen).'" class="btn btn-danger btn-xs btn-flat" onclick="return confirm('.$alert.')"><i class="glyphicon glyphicon-trash"></i><span class="tooltiptext">Hapus Dosen</span></a>
+
+                      
                   </td>
                 </tr>
                 ';

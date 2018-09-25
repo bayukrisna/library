@@ -28,8 +28,10 @@
                       </div>
                         <br>
 
-                      <button type="submit" class="btn btn-info">Tambah</button>
-                      <button type="reset" class="btn btn-default">Reset</button>
+                      
+                      <button type="reset" class="btn btn-default btn-flat">Reset</button>
+                      <button type="submit" class="btn btn-primary btn-flat"><i class="fa fa-save"></i> Save</button>
+                      
                   <?php echo form_close();?>
               </div></div>
             </div>

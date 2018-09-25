@@ -63,12 +63,12 @@
 
 
             <?php if( $dsn['dosen'] != 1 OR 0) echo '
-             <a class="btn btn-primary pull-right" style="margin-right: 10px" data-toggle="modal" data-target="#modal_tambah"><i class="fa fa-plus"></i> Tambah Dosen</a>'; else echo '';
+             <a class="btn btn-primary btn-sm btn-flat pull-right" style="margin-right: 10px" data-toggle="modal" data-target="#modal_tambah"><i class="fa fa-plus"></i> Tambah Dosen</a>'; else echo '';
             ?>
 
              <?php $ab = date('Y-m-d'); if( $dsn['jumlah_mhs'] <= 39 && $ab >= $kp->tanggal_mulai && $ab <= $kp->tgl_akhir) echo '
              
-             <a class="btn btn-primary pull-right"  data-toggle="modal" style="margin-right: 10px"data-target="#modal_tambah_mhs"><i class="fa fa-plus"></i> Tambah Mahasiswa</a>'; 
+             <a class="btn btn-primary btn-sm btn-flat pull-right"  data-toggle="modal" style="margin-right: 10px"data-target="#modal_tambah_mhs"><i class="fa fa-plus"></i> Tambah Mahasiswa</a>'; 
              else 
              echo '';
             ?>
@@ -76,7 +76,7 @@
 
               
 
-             <a class="btn btn-primary pull-right" style="margin-right: 10px"  href="<?php echo base_url('kelas_perkuliahan'); ?>"></i> Kembali </a> <br> <br>
+             <a class="btn btn-default btn-sm pull-right" style="margin-right: 10px"  href="<?php echo base_url('kelas_perkuliahan'); ?>"><i class="fa fa-angle-left"></i> Back </a> <br> <br>
 
           </div> <br>
     <div class="nav-tabs-custom">
@@ -131,7 +131,7 @@
                   <td>'.$data->jenis_evaluasi.'</td>
                   <td>
 
-                         <a class="btn btn-warning  btn-sm" data-toggle="modal" data-target="#modal_edit'.$data->id_kp.'"><i class="glyphicon glyphicon-pencil"></i><span class="tooltiptext">Edit Dosen</span></a>
+                         <a class="btn btn-warning btn-xs btn-flat" data-toggle="modal" data-target="#modal_edit'.$data->id_kp.'"><i class="glyphicon glyphicon-pencil"></i><span class="tooltiptext">Edit Dosen</span></a>
                   </td>
 
                 ' ;
@@ -331,7 +331,7 @@
             
         </tr>
                   <tr>
-                    <td colspan="4"><button type="submit" class="btn btn-info">Simpan</button></td>
+                    <td colspan="4"><button type="submit" class="btn btn-primary btn-flat"><i class="fa fa-save"></i> Save</button></td>
                   </tr>
               <?php echo form_close();?>
 
@@ -385,7 +385,7 @@
             <div class="modal-content">
             <div class="modal-header">
                 <button type="button" class="close" data-dismiss="modal" aria-hidden="true">x</button>
-                <h3 class="modal-title" id="myModalLabel">Tambah Kurikulum</h3>
+                <h3 class="modal-title" id="myModalLabel">Edit Dosen</h3>
             </div>
                 <div class="modal-body">
 
@@ -426,7 +426,7 @@
             
         </tr>
                   <tr>
-                    <td colspan="4"><button type="submit" class="btn btn-info">Simpan</button></td>
+                    <td colspan="4"><button type="submit" class="btn btn-primary btn-flat"><i class="fa fa-save"></i>  Save</button></td>
                   </tr>
                    <?php endforeach;?>
               <?php echo form_close();?>
@@ -495,7 +495,7 @@
             
           </td>
                   <tr>
-                    <td colspan="4"><button type="submit" class="btn btn-info" id="myBtn">Simpan</button></td>
+                    <td colspan="4"><button type="submit" class="btn btn-primary btn-flat" id="myBtn"><i class="fa fa-save"></i> Save</button></td>
                   </tr>
               <?php echo form_close();?>
 

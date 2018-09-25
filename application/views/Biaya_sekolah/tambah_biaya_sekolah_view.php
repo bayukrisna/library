@@ -3,7 +3,7 @@
         <div>
           <div class="panel panel-primary">
             <div class="panel-heading">
-            <i class="fa fa-user-plus"></i> Tambah Konsentrasi</div>
+            <i class="fa fa-user-plus"></i> TAMBAH BIAYA PERKULIAHAN</div>
             <div class="panel-body">
               <div class="row">
                 <div class="col-lg-12">
@@ -44,8 +44,9 @@
                         <input type="text" name="periode" class="form-control" id="periode" placeholder="ex 2000/2001">
                         <br>
 
-                      <button type="submit" class="btn btn-info">Tambah</button>
-                      <button type="reset" class="btn btn-default">Reset</button>
+                      <button type="reset" class="btn btn-default btn-flat">Reset</button>
+                      <button type="submit" class="btn btn-primary btn-flat"><i class="fa fa-save"></i> Save</button>
+                     
                   <?php echo form_close();?>
               </div></div>
             </div>

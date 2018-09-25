@@ -231,7 +231,7 @@
               
             </td>
             <td width="15%" class="left_column"></td>
-            <td> <button type="submit" class="btn btn-info">Simpan</button>
+            <td> <button type="submit" class="btn btn-primary btn-flat"><i class="fa fa-save"></i> Save</button>
               
             </td>
         </tr>    

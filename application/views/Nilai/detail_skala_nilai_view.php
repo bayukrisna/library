@@ -51,7 +51,7 @@
                         <input type="date" name="tanggal_akhir_efektif" class="form-control" id="tanggal_akhir_efektif" placeholder="Masukkan Tanggal" value="<?php echo $nilai->tanggal_akhir_efektif; ?>">
                       </div>
                       <br>
-                      <button type="submit" class="btn btn-info pull-right">Update</button>
+                      <button type="submit" class="btn btn-primary btn-flat pull-right"><i class="fa fa-save"></i> Update</button>
                       
                   </form>
                 </div>

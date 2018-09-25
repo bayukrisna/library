@@ -83,7 +83,7 @@
         <input type="date" name="tanggal_akhir" id="tanggal_akhir" class="text-input" maxlength="50" size="50" style="width:60%" value="<?php echo $matkul->tanggal_akhir;?>">            </td>
         </tr>
         <tr>
-          <td colspan="4"><button type="submit" class="btn btn-info">Update</button></td>
+          <td colspan="4"><button type="submit" class="btn btn-primary btn-flat"><i class="fa fa-save"></i> Update</button></td>
         </tr>
 
     </table>

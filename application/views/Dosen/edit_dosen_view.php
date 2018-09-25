@@ -4,7 +4,7 @@
         <div>
           <div class="panel panel-primary">
             <div class="panel-heading">
-            <i class="fa fa-user-plus"></i> Tambah Dosen</div>
+            <i class="fa fa-pencil"></i> EDIT DOSEN</div>
             <div class="panel-body">
               <div class="row">
                 <div class="col-lg-6">
@@ -81,7 +81,7 @@
                           </select> 
                       </div>
                       <div class="form-group">
-                      <button type="submit" class="btn btn-info pull-right">Simpan</button>
+                      <button type="submit" class="btn btn-primary btn-flat pull-right"><i class="fa fa-save"></i> Update</button>
                       </div>
                   <?php echo form_close();?>
               </div></div></div>

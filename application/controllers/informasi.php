@@ -79,8 +79,9 @@ class Informasi extends CI_Controller {
 	public function filter_informasi()
 	{
 			$data['getJabatan'] = $this->informasi_model->getJabatan();
-			$id_level=$this->input->get('id_level');
-			$data['informasi'] = $this->informasi_model->filter_informasi($id_level);
+			$pengirim1=$this->input->get('pengirim1');
+			$penerima1=$this->input->get('penerima1');
+			$data['informasi'] = $this->informasi_model->filter_informasi($pengirim1, $penerima1);
 			$data['main_view'] = 'Informasi/informasi_view';
 			$this->load->view('template', $data);
 	}

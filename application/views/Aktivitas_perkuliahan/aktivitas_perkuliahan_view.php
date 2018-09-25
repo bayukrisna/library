@@ -7,8 +7,8 @@
           <?php echo $this->session->flashdata('message');?>
           <div class="box">
 
-            <div class="box-header">
-              <h3 class="box-title">Data Aktivitas Perkuliahan</h3>
+            <div class="box-header with-border">
+              <h3 class="box-title">AKTIVITAS PERKULIAHAN</h3>
             </div>
             <div class="box-body">
               <table class="">
@@ -41,7 +41,7 @@
                       </select>
                     </td>
                     <td>
-                      &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<input type="submit" class="btn btn-primary" value="Cari">  
+                      &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<input type="submit" class="btn btn-primary btn-xs btn-flat" value="Cari">  
                     </td>
 
                   </tr>
@@ -52,8 +52,8 @@
                </form>
                <br>
 
-              <table id="example3" class="table2 table-bordered table-striped">
-                <a class="btn btn-info btn-sm" href="" data-toggle="modal" data-target="#modal_view"><i class="fa fa-plus"></i> Tambah Akvititas</a> <br> <br>
+              <table id="example3" class="table2 table-hover table-striped table-condensed table-bordered" style="text-transform: uppercase;">
+                <a class="btn btn-primary btn-sm btn-flat" href="" data-toggle="modal" data-target="#modal_view"><i class="fa fa-plus"></i> Tambah Akvititas</a> <br> <br>
                 <thead>
                 <tr>
                   <th rowspan="2" style="text-align: center" width="3px">No</th>
@@ -98,7 +98,7 @@
                   <td>'.$data->ipk_ak.'</td>
                   <td>'.$data->sks_semester.'</td>
                   <td>'.$data->sks_total.'</td>
-                  <td> <a href="'.base_url('aktivitas_perkuliahan/edit_ap/'.$data->id_aktivitas.'/'.$data->id_mahasiswa.'/'.$data->id_periode).'" class="btn btn-success  btn-sm" ><i class="glyphicon glyphicon-pencil"></i><span class="tooltiptext">Edit</span></a>
+                  <td> <a href="'.base_url('aktivitas_perkuliahan/edit_ap/'.$data->id_aktivitas.'/'.$data->id_mahasiswa.'/'.$data->id_periode).'" class="btn btn-warning btn-xs btn-flat" ><i class="glyphicon glyphicon-pencil"></i><span class="tooltiptext">Edit</span></a>
                   </td>
                   
                   </tr>
@@ -126,13 +126,13 @@
             <div class="modal-content">
             <div class="modal-header">
                 <button type="button" class="close" data-dismiss="modal" aria-hidden="true">x</button>
-                <h3 class="modal-title" id="myModalLabel">Tambah Aktivitas Perkuliahan</h3>
+                <h3 class="modal-title" id="myModalLabel">TAMBAH AKTIVITAS PERKULIAHAN</h3>
             </div>
                 <div class="modal-body">
 
                     <div class="form-group">
                       <form method="get" action="<?php echo base_url("aktivitas_perkuliahan/filter_ap/")?>">
-                      <table class="table">
+                      <table class="table" style="text-transform: uppercase;">
                          <tr>
                            <td class="left_column">Mahasiswa <font color="#FF0000">*</font></td>
             <td colspan="9">: 
@@ -165,7 +165,7 @@
 
         
                   <tr>
-                    <td colspan="4"><button type="submit" class="btn btn-info" id="MyBtn">Tampilkan</button></td>
+                    <td colspan="4"><button type="submit" class="btn btn-info btn-flat" id="MyBtn">Tampilkan</button></td>
                   </tr>
               </form>
 

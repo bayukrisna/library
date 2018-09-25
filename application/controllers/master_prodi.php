@@ -22,7 +22,7 @@ class Master_prodi extends CI_Controller {
 
 	public function page_tambah_prodi(){
 		if ($this->session->userdata('logged_in') == TRUE) {
-		$data['main_view'] = 'prodi/tambah_prodi_view';
+		$data['main_view'] = 'Prodi/tambah_prodi_view';
 		$data['kodeunik'] = $this->prodi_model->buat_kode();
 		$this->load->view('template', $data);
 		} else {
@@ -51,7 +51,7 @@ class Master_prodi extends CI_Controller {
 
 	public function hapus_prodi($id_prodi){
 		if ($this->prodi_model->hapus_prodi($id_prodi) == TRUE) {
-			$this->session->set_flashdata('notif', 'Hapus Program Studi Berhasil');
+			$this->session->set_flashdata('notif', '<div class="alert alert-success"> Hapus prodi berhasil </div>');
 			redirect('master_prodi');
 		} else {
 			$this->session->set_flashdata('notif', 'Hapus Program Studi Berhasil');

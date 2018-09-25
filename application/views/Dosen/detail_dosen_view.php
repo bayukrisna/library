@@ -8,10 +8,10 @@
         <a class="btn btn-sm btn-info" href="<?php echo base_url();?>mahasiswa/prestasi">Prestasi</a> -->
         
            <?php } else { ?>
-
-         <a class="btn btn-sm btn-primary" href="<?php echo base_url();?>master_dosen/detail_dosen/<?php echo $dosen->id_dosen; ?>">Profil Dosen</a>
-        <a class="btn btn-sm btn-info" href="<?php echo base_url();?>master_dosen/jadwal_dosen/<?php echo $dosen->id_dosen; ?>">Jadwal Dosen</a>
-        <a class="btn btn-sm btn-info" href="<?php echo base_url(); ?>master_dosen">Kembali</a>
+       <a class="btn btn-sm btn-default btn-flat" href="<?php echo base_url(); ?>master_dosen"><i class="fa fa-angle-left"> </i> Back</a>
+         <a class="btn btn-sm btn-primary btn-flat" href="<?php echo base_url();?>master_dosen/detail_dosen/<?php echo $dosen->id_dosen; ?>">Profil Dosen</a>
+        <a class="btn btn-sm btn-primary btn-flat" href="<?php echo base_url();?>master_dosen/jadwal_dosen/<?php echo $dosen->id_dosen; ?>">Jadwal Dosen</a>
+       
          <br/><br/> 
            <?php }
 
@@ -21,14 +21,14 @@
             
             <!-- /.box-header -->
             <div class="box-body">
-              <table class="table">
+              <table class="table" style="text-transform: uppercase;">
         <tr>
 
-            <td width="15%" class="left_column">Nama <font color="#FF0000">*</font></td>
+            <td width="15%" class="left_column"><b>Nama</b> <font color="#FF0000">*</font></td>
             <td>:
                <?php echo $dosen->nama_dosen; ?> </td>
       
-            <td class="left_column">Tanggal Lahir <font color="#FF0000">*</font></td>
+            <td class="left_column"><b>Tanggal Lahir</b> <font color="#FF0000">*</font></td>
             <td>:  <?php echo $dosen->tgl_lahir; ?>
                                   
             <input type="hidden" name="stat_pd" value="A">
@@ -36,9 +36,9 @@
 
         </tr>
         <tr>
-            <td class="left_column" width="15%" value=>Jenis Kelamin <font color="#FF0000">*</font></td>
+            <td class="left_column" width="15%" value=><b>Jenis Kelamin</b> <font color="#FF0000">*</font></td>
             <td width="35%">: <?php echo $dosen->jenis_kelamin; ?>        </td>
-            <td class="left_column" width="15%">Agama <font color="#FF0000">*</font></td>
+            <td class="left_column" width="15%"><b>Agama</b> <font color="#FF0000">*</font></td>
             <td>:
                 <?php echo $dosen->agama; ?>                           </td>
         </tr>
@@ -49,13 +49,13 @@
           </div>
           <div class="nav-tabs-custom">
             <ul class="nav nav-tabs">
-            <li class="active"><a href="#tab_0" data-toggle="tab">Profil</a></li>
+            <li class="active"><a href="#tab_0" data-toggle="tab">PROFIL</a></li>
             <?php if($this->session->userdata('level') == 2){ ?>
             <li><a href="#tab_1" data-toggle="tab">Ganti Password</a></li>
           <?php } ?>
               <!--<li><a href="#tab_4" data-toggle="tab">Kebutuhan Khusus</a></li> -->
              
-                        <a class="btn btn-success pull-right" href="<?php echo base_url();?>master_dosen/page_edit_dosen/<?php echo $dosen->id_dosen; ?>">Ubah</a>
+                        <a class="btn btn-warning btn-flat pull-right" href="<?php echo base_url();?>master_dosen/page_edit_dosen/<?php echo $dosen->id_dosen; ?>"><i class="fa fa-pencil"></i> EDIT PROFIL</a>
               
               
             </ul>
@@ -65,7 +65,7 @@
             <div class="tab-content">
 
                  <div class="tab-pane active" id="tab_0">
-                <table width="90%" class="table">
+                <table width="90%" class="table" style="text-transform: uppercase;">
                 
                 <tr>
                     <td class="left_column" width="15%">NIP</td>
@@ -122,7 +122,7 @@
               </div>
 
                <div class="tab-pane" id="tab_1">
-                <table width="90%" class="table">
+                <table width="90%" class="table" style="text-transform: uppercase;">
                 <form  method="post" runat="server" action="<?php echo base_url(); ?>profile/save_data" enctype="multipart/form-data">
                 <div class="form-group">
                         <div class="col-xs-12">

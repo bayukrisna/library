@@ -1,6 +1,6 @@
 <div class="panel panel-primary">
             <div class="panel-heading">
-            <i class="fa fa-user-plus"></i> Edit kelas_perkuliahan</div>
+            <i class="fa fa-pencil"></i> Edit Kelas Perkuliahan</div>
             <div class="panel-body">
               <div class="row">
          <form  method="post" action="<?php echo base_url(); ?>kelas_perkuliahan/save_edit_kp/<?php echo $kp->id_kp; ?>" enctype="multipart/form-data">
@@ -43,7 +43,7 @@
         <input type="date" name="tgl_akhir" id="tgl_akhir" class="text-input hasDatepicker" maxlength="50" size="50" style="width:50%" value="<?php echo $kp->tgl_akhir; ?>">            </td>
         </tr>
                   <tr>
-                    <td colspan="4"><button type="submit" class="btn btn-info">Simpan</button></td>
+                    <td colspan="4"><button type="submit" class="btn btn-primary btn-flat"><i class="fa fa-save"></i> Save</button></td>
                   </tr>
     </table>
     </form>

@@ -61,7 +61,7 @@ class Kurikulum extends CI_Controller {
 			$data['dk'] = $this->kurikulum_model->detail_dk($detail_dk);
 			$data['getPeriode'] = $this->daftar_ulang_model->getPeriode();
 			$data['getProdi'] = $this->daftar_ulang_model->getProdi();
-			$data['main_view'] = 'kurikulum/detail_kurikulum_view';
+			$data['main_view'] = 'Kurikulum/detail_kurikulum_view';
 			$this->load->view('template', $data);
 			} else{
 				$this->session->set_flashdata('message', '<div class="alert alert-danger"> '.validation_errors().' </div>');

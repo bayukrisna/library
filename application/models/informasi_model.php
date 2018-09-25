@@ -18,13 +18,13 @@ class Informasi_model extends CI_Model {
 		 return $query->result();
 	}
 
-  public function filter_informasi($id_level){
+  public function filter_informasi($pengirim1, $penerima1){
    $this->db->select('penerima.nama_level as penerimah, pengirim.nama_level as pengirimh, tb_informasi.judul_info, tb_informasi.deskripsi_info,tb_informasi.id_info, tb_informasi.pengirim, tb_informasi.penerima, tb_informasi.tgl_info');
      $this->db->from('tb_informasi');
      $this->db->join('tb_jabatan AS penerima','penerima.id_level=tb_informasi.penerima');
     $this->db->join('tb_jabatan AS pengirim','pengirim.id_level=tb_informasi.pengirim');
-     $this->db->like('tb_informasi.pengirim', $id_level);
-     $this->db->like('tb_informasi.penerima', $id_level);
+     $this->db->like('tb_informasi.pengirim', $pengirim1);
+     $this->db->like('tb_informasi.penerima', $penerima1);
      $query = $this->db->get();
      return $query->result();
   }

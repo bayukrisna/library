@@ -2,14 +2,14 @@
       <div class="row">
         <div class="col-xs-12">
           <div class="box">
-            <div class="box-header">
+            <div class="box-header with-border">
               <?php echo $this->session->flashdata('message');?>
-              <h3 class="box-title">Data Biaya</h3>
+              <h3 class="box-title">BIAYA PERKULIAHAN</h3>
             </div>
             <!-- /.box-header -->
             <div class="box-body">
-              <table id="example1" class="table table-bordered table-striped">
-              <a href="<?php echo base_url() ?>master_biaya_sekolah/page_tambah_biaya_sekolah" class="btn btn-info btn-sm" > Tambah Biaya</a> <br> <br>
+              <table id="example1" class="table table-striped table-condensed table-hover" style="text-transform: uppercase;">
+              <a href="<?php echo base_url() ?>master_biaya_sekolah/page_tambah_biaya_sekolah" class="btn btn-primary btn-sm btn-flat" ><i class="fa fa-plus"></i> Tambah</a> <br> <br>
                 <thead>
                 <tr>
                   <th>No</th>
@@ -40,8 +40,8 @@
                   <td>'.$data->periode.'</td>
                   <td>'.$data->waktu.'</td>
                   <td>
-                    <a href="'.base_url('master_biaya_sekolah/edit_biaya_sekolah/'.$data->id_biaya).'" class="btn btn-success  btn-sm" ><i class="glyphicon glyphicon-pencil"></i><span class="tooltiptext">Edit</span></a>
-                    <a href="'.base_url('master_biaya_sekolah/hapus_biaya_sekolah/'.$data->id_biaya).'" class="btn btn-danger  btn-sm" onclick="return confirm('.$alert.')"><i class="glyphicon glyphicon-trash"></i><span class="tooltiptext">Hapus</span></a>
+                    <a href="'.base_url('master_biaya_sekolah/edit_biaya_sekolah/'.$data->id_biaya).'" class="btn btn-warning btn-xs btn-flat" ><i class="glyphicon glyphicon-pencil"></i><span class="tooltiptext">Edit</span></a>
+                    <a href="'.base_url('master_biaya_sekolah/hapus_biaya_sekolah/'.$data->id_biaya).'" class="btn btn-danger btn-xs btn-flat" onclick="return confirm('.$alert.')"><i class="glyphicon glyphicon-trash"></i><span class="tooltiptext">Hapus</span></a>
                   </td>
                 </tr>
                 ';

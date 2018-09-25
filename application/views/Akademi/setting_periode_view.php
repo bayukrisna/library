@@ -3,15 +3,15 @@
         <div class="col-xs-12">
           <?php echo $this->session->flashdata('message');?>
           <div class="box">
-            <div class="box-header">
-              <h3 class="box-title">Setting Periode Perkuliahan</h3>
+            <div class="box-header with-border">
+              <h3 class="box-title">SETTING PERIODE PERKULIAHAN</h3>
             </div>
 
             
             <!-- /.box-header -->
             <div class="box-body">
-              <table id="example1" class="table table-bordered table-striped">
-                <a href="<?php echo base_url(); ?>setting_periode/tambah_periode" class="btn btn-info btn-sm" ><i class="fa fa-plus"></i> Tambah</a> <br> <br>
+              <table id="example1" class="table table-hover table-striped table-condensed" style="text-transform: uppercase;">
+                <a href="<?php echo base_url(); ?>setting_periode/tambah_periode" class="btn btn-primary btn-sm btn-flat" ><i class="fa fa-plus"></i> Tambah</a> <br> <br>
                 <thead>
                 <tr>
                   <th>No</th>
@@ -40,7 +40,7 @@
                   <td>'.$data->tgl_awal_kul.'</td>
                   <td>'.$data->tgl_akhir_kul.'</td>
                   <td>
-                  <a href="" data-toggle="modal" data-target="#modal_edit'.$data->id_periode.'" class="btn btn-success  btn-sm" ><i class="glyphicon glyphicon-pencil"></i><span class="tooltiptext">Ubah</span></a>
+                  <a href="" data-toggle="modal" data-target="#modal_edit'.$data->id_periode.'" class="btn btn-warning btn-xs btn-flat" ><i class="glyphicon glyphicon-pencil"></i><span class="tooltiptext">Edit</span></a>
                 
                 ' ;
                 
@@ -66,12 +66,12 @@
             <div class="modal-content">
             <div class="modal-header">
                 <button type="button" class="close" data-dismiss="modal" aria-hidden="true">x</button>
-                <h3 class="modal-title" id="myModalLabel">Detail Periode</h3>
+                <h3 class="modal-title" id="myModalLabel">DETAIL PERIODE</h3>
             </div>
                 <div class="modal-body">
 
                     <div class="form-group">
-                      <table class="table">
+                      <table class="table" style="text-transform: uppercase;">
                           <tr>
                               <td class="left_column" width="40%">Semester </td>
                                 <td colspan="9">:  <?php echo $i->semester ?>
@@ -130,16 +130,16 @@
             <div class="modal-content">
             <div class="modal-header">
                 <button type="button" class="close" data-dismiss="modal" aria-hidden="true">x</button>
-                <h3 class="modal-title" id="myModalLabel">Edit Periode</h3>
+                <h3 class="modal-title" id="myModalLabel">EDIT PERIODE</h3>
             </div>
                 <div class="modal-body">
 
                     <div class="form-group">
                       <?php echo form_open('setting_periode/edit_periode'); ?>
-                      <table class="table">
+                      <table class="table" style="text-transform: uppercase;">
       <tr>
           <td>Semester <font color="#FF0000">*</font></td>
-            <td colspan="9">:  <input type="text" name="semester" id="id_smt" value="<?php echo $i->semester ?>"   />
+            <td colspan="9">:  <input type="text" name="semester" id="id_smt" value="<?php echo $i->semester ?>"  readonly="" />
         </tr>
       <tr>
           <td class="left_column" width="40%">Program Studi <font color="#FF0000">*</font></td>
@@ -188,7 +188,7 @@
             <input type="hidden" name="id_periode" value="<?php echo $i->id_periode; ?>">
         </tr> 
         <tr>
-          <td colspan="4"><button type="submit" class="btn btn-info">Edit</button></td>
+          <td colspan="4"><button type="submit" class="btn btn-info btn-flat">Edit</button></td>
         </tr>
     </table>
 

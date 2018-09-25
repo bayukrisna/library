@@ -3,8 +3,8 @@
         <div class="col-xs-12">
           <?php echo $this->session->flashdata('message');?>
           <div class="box">
-            <div class="box-header">
-              <h3 class="box-title">Data Informasi</h3>
+            <div class="box-header with-border">
+              <h3 class="box-title">DATA INFORMASI</h3>
             </div>
             <div class="box-body">
               <?php if ($this->session->userdata('level') != 5) { ?>
@@ -16,10 +16,10 @@
                     <th>Filter</th>
                   </tr>
                   <tr>                                                                    
-                    <td>Jabatan</td>     
+                    <td>Pengirim</td>     
                     <td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
                       
-                      <select name="id_level">
+                      <select name="pengirim1">
                         <option value="">-- Semua --</option>
                         <?php 
 
@@ -30,10 +30,26 @@
                                     ?>
                       </select>
 
-                    </td>                                            
+                    </td>     
+
+                    <td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Penerima</td>     
+                    <td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                      
+                      <select name="penerima1">
+                        <option value="">-- Semua --</option>
+                        <?php 
+
+                                        foreach($getJabatan as $row)
+                                        { 
+                                          echo '<option value="'.$row->id_level.'">'.$row->nama_level.'</option>';
+                                        }
+                                    ?>
+                      </select>
+
+                    </td>                                       
                     
                     <td>
-                      &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<input type="submit" class="btn btn-primary" value="Cari">  
+                      &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<input type="submit" class="btn btn-primary btn-xs btn-flat" value="Cari">  
                     </td>
 
                   </tr>
@@ -45,13 +61,13 @@
                </form>
              <?php } ?>
              <?php if ($this->session->userdata('level') != 5) { ?>
-              <table id="example1" class="table table-bordered table-striped">
+              <table id="example1" class="table table-hover table-striped table-condensed" style="text-transform: uppercase;">
 
                 <br>
                 <?php if($this->session->userdata('level') == 1 OR $this->session->userdata('level') == 6) { ?>
-               <a class="btn btn-info btn-sm" href="" data-toggle="modal" data-target="#modal_view"><i class="fa fa-plus"></i> Tambah </a>
+               <a class="btn btn-primary btn-sm btn-flat" href="" data-toggle="modal" data-target="#modal_view"><i class="fa fa-plus"></i> Tambah </a>
                   <?php } else { ?>
-                <a class="btn btn-info btn-sm" href="" data-toggle="modal" data-target="#modal_view2"><i class="fa fa-plus"></i> Tambah </a>
+                <a class="btn btn-primary btn-sm btn-flat" href="" data-toggle="modal" data-target="#modal_view2"><i class="fa fa-plus"></i> Tambah </a>
                   <?php } ?>
 
                <br> <br>
@@ -84,9 +100,9 @@
                   <td><a href="" data-toggle="modal" data-target="#modal_lihat'.$data->id_info.'">'.$data->judul_info.'</a></td>
                   <td>'.$data->pengirimh.'</td>
                   <td>'.$data->penerimah.'</td>
-                  <td><a href="" data-toggle="modal" data-target="#modal_edit'.$data->id_info.'" class="btn btn-success  btn-sm"><i class="glyphicon glyphicon-pencil"></i><span class="tooltiptext">Edit </span></a>
+                  <td><a href="" data-toggle="modal" data-target="#modal_edit'.$data->id_info.'" class="btn btn-warning btn-xs btn-flat"><i class="glyphicon glyphicon-pencil"></i><span class="tooltiptext">Edit </span></a>
 
-                  <a href="'.base_url('informasi/hapus_informasi/'.$data->id_info).'" class="btn btn-danger  btn-sm" onclick="return confirm('.$alert.')"><i class="glyphicon glyphicon-trash"></i><span class="tooltiptext">Hapus</span></a>
+                  <a href="'.base_url('informasi/hapus_informasi/'.$data->id_info).'" class="btn btn-danger btn-xs btn-flat" onclick="return confirm('.$alert.')"><i class="glyphicon glyphicon-trash"></i><span class="tooltiptext">Hapus</span></a>
 
                   </td>
                   
@@ -105,9 +121,9 @@
                   <td>'.$data->penerimah.'</td>
                   <td>
 
-                  <a href="" data-toggle="modal" data-target="#modal_edit'.$data->id_info.'" class="btn btn-success  btn-sm"><i class="glyphicon glyphicon-pencil"></i><span class="tooltiptext">Edit </span></a>
+                  <a href="" data-toggle="modal" data-target="#modal_edit'.$data->id_info.'" class="btn btn-warning  btn-xs btn-flat"><i class="glyphicon glyphicon-pencil"></i><span class="tooltiptext">Edit </span></a>
 
-                   <a href="'.base_url('informasi/hapus_informasi/'.$data->id_info).'" class="btn btn-danger  btn-sm" onclick="return confirm('.$alert.')"><i class="glyphicon glyphicon-trash"></i><span class="tooltiptext">Hapus</span></a>
+                   <a href="'.base_url('informasi/hapus_informasi/'.$data->id_info).'" class="btn btn-danger  btn-xs btn-flat" onclick="return confirm('.$alert.')"><i class="glyphicon glyphicon-trash"></i><span class="tooltiptext">Hapus</span></a>
 
                   </td>
                   
@@ -122,7 +138,7 @@
                 </tbody>
               </table>
             <?php } else { ?>
-              <table id="example1" class="table table-bordered table-striped">
+              <table id="example1" class="table table-hover table-striped table-condensed" style="text-transform: uppercase;">
 
                 
              
@@ -173,13 +189,13 @@
             <div class="modal-content">
             <div class="modal-header">
                 <button type="button" class="close" data-dismiss="modal" aria-hidden="true">x</button>
-                <h3 class="modal-title" id="myModalLabel">Tambah Informasi</h3>
+                <h3 class="modal-title" id="myModalLabel">TAMBAH INFORMASI</h3>
             </div>
                 <div class="modal-body">
 
                     <div class="form-group">
                       <?php echo form_open('informasi/simpan_informasi2'); ?>
-                      <table class="table">
+                      <table class="table" style="text-transform: uppercase;">
                           <tr>
           <td class="left_column">Judul <font color="#FF0000">*</font></td>
             <td> 
@@ -206,7 +222,7 @@
                       </select>           </td>
         </tr> 
         <tr>
-                    <td colspan="4"><button type="submit" class="btn btn-info" id="MyBtn">Simpan</button></td>
+                    <td colspan="4"><button type="submit" class="btn btn-info btn-flat" id="MyBtn">Simpan</button></td>
                   </tr>
 
                         </table>
@@ -226,13 +242,13 @@
             <div class="modal-content">
             <div class="modal-header">
                 <button type="button" class="close" data-dismiss="modal" aria-hidden="true">x</button>
-                <h3 class="modal-title" id="myModalLabel">Tambah Informasi</h3>
+                <h3 class="modal-title" id="myModalLabel">TAMBAH INFORMASI</h3>
             </div>
                 <div class="modal-body">
 
                     <div class="form-group">
                       <?php echo form_open('informasi/simpan_informasi'); ?>
-                      <table class="table">
+                      <table class="table" style="text-transform: uppercase;">
                           <tr>
           <td class="left_column">Judul <font color="#FF0000">*</font></td>
             <td> 
@@ -259,7 +275,7 @@
                       </select>           </td>
         </tr> 
         <tr>
-                    <td colspan="4"><button type="submit" class="btn btn-info" id="MyBtn">Simpan</button></td>
+                    <td colspan="4"><button type="submit" class="btn btn-info btn-flat" id="MyBtn">Simpan</button></td>
                   </tr>
 
                         </table>
@@ -284,13 +300,13 @@
             <div class="modal-content">
             <div class="modal-header">
                 <button type="button" class="close" data-dismiss="modal" aria-hidden="true">x</button>
-                <h3 class="modal-title" id="myModalLabel">Edit Informasi</h3>
+                <h3 class="modal-title" id="myModalLabel">EDIT INFORMASI</h3>
             </div>
                 <div class="modal-body">
 
                     <div class="form-group">
                       <?php echo form_open('informasi/edit_informasi'); ?>
-                      <table class="table">
+                      <table class="table" style="text-transform: uppercase;">
       <tr>
           <td class="left_column">Judul <font color="#FF0000">*</font></td>
             <td> 
@@ -318,7 +334,7 @@
                       </select>           </td>
         </tr> 
         <tr>
-                    <td colspan="4"><button type="submit" class="btn btn-info" id="MyBtn">Simpan</button></td>
+                    <td colspan="4"><button type="submit" class="btn btn-info btn-flat" id="MyBtn">Simpan</button></td>
                   </tr>
     </table>
 
@@ -340,13 +356,13 @@
             <div class="modal-content">
             <div class="modal-header">
                 <button type="button" class="close" data-dismiss="modal" aria-hidden="true">x</button>
-                <h3 class="modal-title" id="myModalLabel">Detail Informasi</h3>
+                <h3 class="modal-title" id="myModalLabel">DETAIL INFORMASI</h3>
             </div>
                 <div class="modal-body">
 
                     <div class="form-group">
                       
-                      <table class="table">
+                      <table class="table" style="text-transform: uppercase;">
       <tr>
           <td class="left_column" style="width:20%">Judul </td>
             <td>: <?php echo $i->judul_info; ?>   

@@ -8,16 +8,16 @@
         <a class="btn btn-sm btn-info" href="<?php echo base_url();?>mahasiswa/prestasi">Prestasi</a> -->
         
            <?php } else { ?>
-
-       <a class="btn btn-sm btn-primary" href="<?php echo base_url();?>mahasiswa/lihat_mahasiswa_dikti/<?php echo $mahasiswa->id_mahasiswa; ?>">Detail Mahasiswa</a>
-        <a class="btn btn-sm btn-info" href="<?php echo base_url();?>mahasiswa/history_pendidikan/<?php echo $mahasiswa->id_mahasiswa; ?>">History Pendidikan</a>
-        <a class="btn btn-sm btn-primary" href="<?php echo base_url();?>mahasiswa/krs_mahasiswa/<?php echo $mahasiswa->id_mahasiswa ?>/<?php echo $mahasiswa->id_prodi; ?>/<?php echo $mahasiswa->semester_aktif; ?>/<?php echo $mahasiswa->id_konsentrasi; ?>">KRS Mahasiswa</a>
-        <a class="btn btn-sm btn-info" href="<?php echo base_url();?>mahasiswa/jadwal_mhs/<?php echo $mahasiswa->id_mahasiswa ?>/<?php echo $mahasiswa->id_prodi; ?>/<?php echo $mahasiswa->semester_aktif; ?>">Jadwal Kuliah</a>
-        <a class="btn btn-sm btn-primary" href="<?php echo base_url();?>mahasiswa/history_nilai/<?php echo $mahasiswa->id_mahasiswa; ?>">History Nilai</a>
-        <a class="btn btn-sm btn-info" href="<?php echo base_url();?>mahasiswa/aktivitas_perkuliahan/<?php echo $mahasiswa->id_mahasiswa; ?>">Aktivitas Perkuliahan</a>
-        <a class="btn btn-sm btn-primary" href="<?php echo base_url();?>mahasiswa/prestasi/<?php echo $mahasiswa->id_mahasiswa; ?>">Prestasi</a>
-        <a class="btn btn-sm btn-info" href="<?php echo base_url();?>mahasiswa/checklist_pembayaran/<?php echo $mahasiswa->id_mahasiswa; ?>/<?php echo $mahasiswa->id_prodi; ?>">Pembayaran</a>
-        <a class="btn btn-sm btn-primary" href="<?php echo base_url(); ?>mahasiswa/data_mahasiswa">Kembali</a>
+      <a class="btn btn-sm btn-default btn-flat" href="<?php echo base_url(); ?>mahasiswa/data_mahasiswa"><i class="fa fa-angle-left"></i> Back</a>
+       <a class="btn btn-sm btn-primary btn-flat" href="<?php echo base_url();?>mahasiswa/lihat_mahasiswa_dikti/<?php echo $mahasiswa->id_mahasiswa; ?>">Detail Mahasiswa</a>
+        <a class="btn btn-sm btn-primary btn-flat" href="<?php echo base_url();?>mahasiswa/history_pendidikan/<?php echo $mahasiswa->id_mahasiswa; ?>">History Pendidikan</a>
+        <a class="btn btn-sm btn-primary btn-flat" href="<?php echo base_url();?>mahasiswa/krs_mahasiswa/<?php echo $mahasiswa->id_mahasiswa ?>/<?php echo $mahasiswa->id_prodi; ?>/<?php echo $mahasiswa->semester_aktif; ?>/<?php echo $mahasiswa->id_konsentrasi; ?>">KRS Mahasiswa</a>
+        <a class="btn btn-sm btn-primary btn-flat" href="<?php echo base_url();?>mahasiswa/jadwal_mhs/<?php echo $mahasiswa->id_mahasiswa ?>/<?php echo $mahasiswa->id_prodi; ?>/<?php echo $mahasiswa->semester_aktif; ?>">Jadwal Kuliah</a>
+        <a class="btn btn-sm btn-primary btn-flat" href="<?php echo base_url();?>mahasiswa/history_nilai/<?php echo $mahasiswa->id_mahasiswa; ?>">History Nilai</a>
+        <a class="btn btn-sm btn-primary btn-flat" href="<?php echo base_url();?>mahasiswa/aktivitas_perkuliahan/<?php echo $mahasiswa->id_mahasiswa; ?>">Aktivitas Perkuliahan</a>
+        <a class="btn btn-sm btn-warning btn-flat" href="<?php echo base_url();?>mahasiswa/prestasi/<?php echo $mahasiswa->id_mahasiswa; ?>">Prestasi</a>
+        <a class="btn btn-sm btn-primary btn-flat" href="<?php echo base_url();?>mahasiswa/checklist_pembayaran/<?php echo $mahasiswa->id_mahasiswa; ?>/<?php echo $mahasiswa->id_prodi; ?>">Pembayaran</a>
+        
          <br/><br/>  
            <?php }
 
@@ -27,31 +27,32 @@
             <!-- /.box-header -->
             <div class="box-body">
 
-              <table class="table">
+              <table class="table" style="text-transform: uppercase;">
         <tr>
 
 
-            <td width="15%" class="left_column">Nama <font color="#FF0000">*</font></td>
+            <td width="15%" class="left_column">Nama</td>
             <td>: <?php echo $mahasiswa->nama_mahasiswa; ?>   </td>
       
            
                                   
             <input type="hidden" name="stat_pd" value="A">
             </td>
-        </tr>
-        <tr>
-            <td class="left_column" width="15%" value=>Tempat Lahir <font color="#FF0000">*</font></td>
-            <td width="35%">: <?php echo $mahasiswa->tempat_lahir; ?>        </td>
-            <td class="left_column" width="15%">Tanggal Lahir <font color="#FF0000">*</font></td>
+            <td class="left_column" width="15%">Tanggal Lahir</td>
             <td>:
                <?php echo $mahasiswa->tanggal_lahir; ?>                        </td>
         </tr>
         <tr>
+            <td class="left_column" width="15%" value=>Tempat Lahir</td>
+            <td width="35%">: <?php echo $mahasiswa->tempat_lahir; ?>        </td>
+            <td class="left_column">Agama</td>
+            <td>:
+            <?php echo $mahasiswa->agama; ?></td>
+        </tr>
+        <tr>
             <td class="left_column">Jenis Kelamin</td>
             <td>: <?php echo $mahasiswa->jenis_kelamin; ?></td>
-            <td class="left_column">Agama <font color="#FF0000">*</font></td>
-            <td>:
-            <?php echo $mahasiswa->agama; ?>
+            
         </table>
             </div>
             <!-- /.box-body -->
@@ -61,14 +62,14 @@
                 if($this->session->userdata('level') == 5){ ?>
 
                 <?php } else { ?>
-                        <a class="btn btn-primary pull-right"  data-toggle="modal" data-target="#modal_tambah"><i class="fa fa-plus"></i> Tambah Pendidikan</a><br><br>
+                        <a class="btn btn-primary btn-flat btn-sm pull-right"  data-toggle="modal" data-target="#modal_tambah"><i class="fa fa-plus"></i> Tambah Prestasi</a><br><br>
                 <?php } ?>
           </div>
           <?php echo $this->session->flashdata('message');?>
 
-          <div class="box box-info">
-            <div class="box-body">
-            <table class="table table-bordered table-striped" id="example3">
+<div class="box box-info">
+  <div class="box-body">
+  <table class="table table-bordered table-striped" id="example3" style="text-transform: uppercase;">
   <thead>
   <tr>
     <th style="width:5%" style="text-align:center">No.</th>
@@ -174,7 +175,7 @@
             <td>: <input type="text" name="peringkat"  id="peringkat" placeholder="" required="" value=""></td>
         </tr> 
         <tr>
-          <td colspan="4"><button type="submit" class="btn btn-info">Simpan</button></td>
+          <td colspan="4"><button type="submit" class="btn btn-primary btn-flat pull-right"><i class="fa fa-save"></i> Save</button></td>
         </tr>
     </table>
     <?php echo form_close();?>

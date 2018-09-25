@@ -3,14 +3,14 @@
         <div class="col-xs-12">
           <?php echo $this->session->flashdata('message');?>
           <div class="box">
-            <div class="box-header">
+            <div class="box-header with-border">
               <h3 class="box-title">Data Registrasi Lunas</h3>
             </div>
 
             
             <!-- /.box-header -->
             <div class="box-body">
-              <table id="example1" class="table table-bordered table-striped">
+              <table id="example1" class="table table-hover table-striped table-condensed" style="text-transform: uppercase;">
                 <thead>
                 <tr>
                   <th>No</th>
@@ -43,7 +43,7 @@
                   </td>
 
                
-                  <td> <a href="'.base_url('uploads/'.$data->bukti_transfer).'" class="btn btn-info btn-sm" target="_blank">Lihat Bukti</a>
+                  <td> <a href="'.base_url('uploads/'.$data->bukti_transfer).'" class="btn btn-info btn-xs btn-flat" target="_blank">Lihat Bukti</a>
                   </td>
                   
                   

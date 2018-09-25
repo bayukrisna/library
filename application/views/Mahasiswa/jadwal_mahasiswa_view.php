@@ -4,16 +4,16 @@
         
            <?php } else {
            $id_mahasiswa = $mahasiswa->id_mahasiswa;?>
-
-         <a class="btn btn-sm btn-primary" href="<?php echo base_url();?>mahasiswa/lihat_mahasiswa_dikti/<?php echo $mahasiswa->id_mahasiswa; ?>">Detail Mahasiswa</a>
-        <a class="btn btn-sm btn-info" href="<?php echo base_url();?>mahasiswa/history_pendidikan/<?php echo $mahasiswa->id_mahasiswa; ?>">History Pendidikan</a>
-        <a class="btn btn-sm btn-primary" href="<?php echo base_url();?>mahasiswa/krs_mahasiswa/<?php echo $mahasiswa->id_mahasiswa ?>/<?php echo $mahasiswa->id_prodi; ?>/<?php echo $mahasiswa->semester_aktif; ?>/<?php echo $mahasiswa->id_konsentrasi; ?>">KRS Mahasiswa</a>
-        <a class="btn btn-sm btn-info" href="<?php echo base_url();?>mahasiswa/jadwal_mhs/<?php echo $mahasiswa->id_mahasiswa ?>/<?php echo $mahasiswa->id_prodi; ?>/<?php echo $mahasiswa->semester_aktif; ?>">Jadwal Kuliah</a>
-        <a class="btn btn-sm btn-primary" href="<?php echo base_url();?>mahasiswa/history_nilai/<?php echo $mahasiswa->id_mahasiswa; ?>">History Nilai</a>
-        <a class="btn btn-sm btn-info" href="<?php echo base_url();?>mahasiswa/aktivitas_perkuliahan/<?php echo $mahasiswa->id_mahasiswa; ?>">Aktivitas Perkuliahan</a>
-        <a class="btn btn-sm btn-primary" href="<?php echo base_url();?>mahasiswa/prestasi/<?php echo $mahasiswa->id_mahasiswa; ?>">Prestasi</a>
-        <a class="btn btn-sm btn-info" href="<?php echo base_url();?>mahasiswa/checklist_pembayaran/<?php echo $mahasiswa->id_mahasiswa; ?>/<?php echo $mahasiswa->id_prodi; ?>">Pembayaran</a>
-        <a class="btn btn-sm btn-primary" href="<?php echo base_url(); ?>mahasiswa/data_mahasiswa">Kembali</a>
+        <a class="btn btn-sm btn-default btn-flat" href="<?php echo base_url(); ?>mahasiswa/data_mahasiswa"><i class="fa fa-angle-left"></i> Back</a>
+         <a class="btn btn-sm btn-primary btn-flat" href="<?php echo base_url();?>mahasiswa/lihat_mahasiswa_dikti/<?php echo $mahasiswa->id_mahasiswa; ?>">Detail Mahasiswa</a>
+        <a class="btn btn-sm btn-primary btn-flat" href="<?php echo base_url();?>mahasiswa/history_pendidikan/<?php echo $mahasiswa->id_mahasiswa; ?>">History Pendidikan</a>
+        <a class="btn btn-sm btn-primary btn-flat" href="<?php echo base_url();?>mahasiswa/krs_mahasiswa/<?php echo $mahasiswa->id_mahasiswa ?>/<?php echo $mahasiswa->id_prodi; ?>/<?php echo $mahasiswa->semester_aktif; ?>/<?php echo $mahasiswa->id_konsentrasi; ?>">KRS Mahasiswa</a>
+        <a class="btn btn-sm btn-warning btn-flat" href="<?php echo base_url();?>mahasiswa/jadwal_mhs/<?php echo $mahasiswa->id_mahasiswa ?>/<?php echo $mahasiswa->id_prodi; ?>/<?php echo $mahasiswa->semester_aktif; ?>">Jadwal Kuliah</a>
+        <a class="btn btn-sm btn-primary btn-flat" href="<?php echo base_url();?>mahasiswa/history_nilai/<?php echo $mahasiswa->id_mahasiswa; ?>">History Nilai</a>
+        <a class="btn btn-sm btn-primary btn-flat" href="<?php echo base_url();?>mahasiswa/aktivitas_perkuliahan/<?php echo $mahasiswa->id_mahasiswa; ?>">Aktivitas Perkuliahan</a>
+        <a class="btn btn-sm btn-primary btn-flat" href="<?php echo base_url();?>mahasiswa/prestasi/<?php echo $mahasiswa->id_mahasiswa; ?>">Prestasi</a>
+        <a class="btn btn-sm btn-primary btn-flat" href="<?php echo base_url();?>mahasiswa/checklist_pembayaran/<?php echo $mahasiswa->id_mahasiswa; ?>/<?php echo $mahasiswa->id_prodi; ?>">Pembayaran</a>
+      
          <br/><br/>  
            <?php }           ?>
         <div class="box box-info">
@@ -53,7 +53,7 @@
               <h3 class="box-title">Senin</h3>       
             <!-- /.box-header -->
             <div class="box-body">
-              <table  class="table table-bordered table-striped">
+              <table  class="table table-bordered table-striped" style="text-transform: uppercase;">
                 <thead>
                 <tr>
                   <th  style="width:5%">No</th>
@@ -93,7 +93,7 @@
               <h3 class="box-title">Selasa</h3>       
             <!-- /.box-header -->
             <div class="box-body">
-              <table class="table table-bordered table-striped">
+              <table class="table table-bordered table-striped" style="text-transform: uppercase;">
                 <thead>
                  <tr>
                   <th  style="width:5%">No</th>
@@ -133,7 +133,7 @@
               <h3 class="box-title">Rabu</h3>       
             <!-- /.box-header -->
             <div class="box-body">
-              <table class="table table-bordered table-striped">
+              <table class="table table-bordered table-striped" style="text-transform: uppercase;">
                 <thead>
                  <tr>
                   <th  style="width:5%">No</th>
@@ -173,7 +173,7 @@
               <h3 class="box-title">Kamis</h3>       
             <!-- /.box-header -->
             <div class="box-body">
-              <table class="table table-bordered table-striped">
+              <table class="table table-bordered table-striped" style="text-transform: uppercase;">
                 <thead>
                  <tr>
                   <th  style="width:5%">No</th>
@@ -213,7 +213,7 @@
               <h3 class="box-title">Jumat</h3>       
             <!-- /.box-header -->
             <div class="box-body">
-              <table class="table table-bordered table-striped">
+              <table class="table table-bordered table-striped" style="text-transform: uppercase;">
                 <thead>
                  <tr>
                   <th  style="width:5%">No</th>

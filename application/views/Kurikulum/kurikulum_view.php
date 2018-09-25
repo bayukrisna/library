@@ -3,20 +3,20 @@
         <div class="col-xs-12">
           <?php echo $this->session->flashdata('message');?>
           <div class="box">
-            <div class="box-header">
-              <h3 class="box-title">Data Kurikulum</h3>
+            <div class="box-header with-border">
+              <h3 class="box-title">DATA KURIKULUM</h3>
             </div>
             <div class="box-body">
-              <table id="example3" class="table2 table-bordered table-striped">
-                <a class="btn btn-info btn-sm" href="" data-toggle="modal" data-target="#modal_view"><i class="fa fa-plus"></i> Tambah</a> <br> <br>
+              <table id="example3" class="table2 table-hover table-striped table-condensed table-bordered" style="text-transform: uppercase;">
+                <a class="btn btn-primary btn-sm btn-flat" href="" data-toggle="modal" data-target="#modal_view"><i class="fa fa-plus"></i> Tambah</a> <br> <br>
                 <thead>
                 <tr>
-                  <th rowspan="2">No</th>
-                  <th rowspan="2">Nama Kurikulum</th>
-                  <th rowspan="2">Program Studi</th>
-                  <th rowspan="2">Mulai Berlaku</th>
+                  <th rowspan="2" style="vertical-align : middle;">No</th>
+                  <th rowspan="2" style="vertical-align : middle;">Nama Kurikulum</th>
+                  <th rowspan="2" style="vertical-align : middle;">Program Studi</th>
+                  <th rowspan="2" style="vertical-align : middle;">Mulai Berlaku</th>
                   <th colspan="3">Aturan Jumlah SKS</th>
-                  <th rowspan="2">Aksi</th>
+                  <th rowspan="2" style="vertical-align : middle;">Aksi</th>
                 </tr>
                   <th>Lulus</th>
                   <th>Wajib</th>
@@ -41,8 +41,9 @@
                   <td>'.$data->bobot_matkul_wajib.'</td>
                   <td>'.$data->bobot_matkul_pilihan.'</td>
                   <td>
-                        <a href="'.base_url('kurikulum/hapus_kurikulum/'.$data->id_kurikulum).'" class="btn btn-danger  btn-sm" onclick="return confirm('.$alert.')"><i class="glyphicon glyphicon-trash"></i><span class="tooltiptext">Hapus Kurikulum</span></a>
-                         <a href="'.base_url('kurikulum/detail_kurikulum2/'.$data->id_kurikulum).'" class="btn btn-warning  btn-sm"><i class="glyphicon glyphicon-pencil"></i><span class="tooltiptext">Edit Kurikulum</span></a>
+                        <a href="'.base_url('kurikulum/detail_kurikulum2/'.$data->id_kurikulum).'" class="btn btn-warning  btn-xs btn-flat"><i class="glyphicon glyphicon-pencil"></i><span class="tooltiptext">Edit</span></a>
+                        <a href="'.base_url('kurikulum/hapus_kurikulum/'.$data->id_kurikulum).'" class="btn btn-danger  btn-xs btn-flat" onclick="return confirm('.$alert.')"><i class="glyphicon glyphicon-trash"></i><span class="tooltiptext">Hapus</span></a>
+ 
                   </td>
 
                 ' ;
@@ -123,7 +124,7 @@
             </td>
         </tr>
                   <tr>
-                    <td colspan="4"><button type="submit" class="btn btn-info">Simpan</button></td>
+                    <td colspan="4"><button type="submit" class="btn btn-info btn-flat">Simpan</button></td>
                   </tr>
               <?php echo form_close();?>
 

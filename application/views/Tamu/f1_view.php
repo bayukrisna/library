@@ -6,7 +6,7 @@
 
   <div class="box box-primary">
 
-    <h3 style="text-align:center">Follow Up 1</h3>
+    <h3 style="text-align:center">Follow Up</h3>
   <div class="box-body">
     <div class="col-md-6">
             <!-- /.box-header -->

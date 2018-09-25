@@ -4,8 +4,8 @@
         <div class="col-xs-12">
           <?php echo $this->session->flashdata('message');?>
           <div class="box">
-            <div class="box-header">
-              <h3 class="box-title">Data Mata Kuliah</h3>
+            <div class="box-header with-border">
+              <h3 class="box-title">DATA MATA KULIAH</h3>
             </div>
 
             
@@ -13,8 +13,8 @@
             <div class="box-body">
               <?php echo form_open('mata_kuliah/remove'); ?>
               
-              <table id="example3" class="table2 table-bordered table-striped">
-                <a href="<?php echo base_url(); ?>mata_kuliah/tambah_matkul" class="btn btn-info btn-sm" ><i class="fa fa-plus"></i> Tambah</a> <br> <br>
+              <table id="example3" class="table2 table-hover table-striped table-condensed" style="text-transform: uppercase;">
+                <a href="<?php echo base_url(); ?>mata_kuliah/tambah_matkul" class="btn btn-primary btn-sm btn-flat" ><i class="fa fa-plus"></i> Tambah</a> <br> <br>
                 <thead>
                 <tr>
                   <th>No</th>
@@ -43,9 +43,9 @@
                   <td>'.$data->nama_prodi.'</td>
                   <td>'.$data->nama_jenis_matkul.'</td>
                   <td style="text-align:center"> 
-                  <a href="'.base_url('mata_kuliah/detail_matkul/'.$data->kode_matkul).'" class="btn btn-success  btn-sm"><i class="glyphicon glyphicon-pencil"></i><span class="tooltiptext">Detail Mata Kuliah</span></a>
+                  <a href="'.base_url('mata_kuliah/detail_matkul/'.$data->kode_matkul).'" class="btn btn-warning btn-xs btn-flat"><i class="glyphicon glyphicon-pencil"></i><span class="tooltiptext">Edit</span></a>
 
-                   <a href="'.base_url('mata_kuliah/hapus_matkul/'.$data->kode_matkul).'" class="btn btn-danger  btn-sm" onclick="return confirm('.$alert.')"><i class="glyphicon glyphicon-trash"></i><span class="tooltiptext">Hapus Mata Kuliah</span></a>
+                   <a href="'.base_url('mata_kuliah/hapus_matkul/'.$data->kode_matkul).'" class="btn btn-danger  btn-xs btn-flat" onclick="return confirm('.$alert.')"><i class="glyphicon glyphicon-trash"></i><span class="tooltiptext">Hapus</span></a>
                    </td>
                    <td style="text-align: center"><input type="checkbox" name="id[]" value="'.$data->kode_matkul.'"></td>
                 ' ;
@@ -54,7 +54,7 @@
               ?>
                 </tbody>
               </table>
-              <input type="submit" value="Hapus Mata Kuliah Terpilih" onclick="return confirm('Anda yakin menghapus data yang sudah anda pilih ?')" class="btn btn-danger pull-right">
+              <input type="submit" value="Hapus Mata Kuliah Terpilih" onclick="return confirm('Anda yakin menghapus data yang sudah anda pilih ?')" class="btn btn-danger pull-right btn-flat">
               <br>
              
               <?php echo form_close()?>

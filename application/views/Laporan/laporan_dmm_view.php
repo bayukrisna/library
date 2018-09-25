@@ -58,8 +58,8 @@
                       <input type="text" class="form-control" name="nama_dosen" id="nama_dosen" value="">
                       <input type="hidden" class="form-control" name="id_dosen" id="id_dosen" value="">
                       <br>
-                    <p class="btn btn-info" onclick="tampil_dosen()">Tampilkan</p>
-                    <p class="btn btn-primary" onclick="print1()"> Cetak </p>
+                    <p class="btn btn-info btn-flat" onclick="tampil_dosen()">Tampilkan</p>
+                    <p class="btn btn-primary btn-flat" onclick="print1()"> Cetak </p>
                     </div>
                   </div>
 
@@ -95,8 +95,8 @@
                       <input type="text" class="form-control" name="nama_mahasiswa" id="nama_mahasiswa" value="">
                       <input type="hidden" class="form-control" name="id_mahasiswa" id="id_mahasiswa" value="">
                       <br>
-                    <p class="btn btn-info" onclick="tampil_mahasiswa()">Tampilkan</p>
-                    <p class="btn btn-primary" onclick="print1()"> Cetak </p>
+                    <p class="btn btn-info btn-flat" onclick="tampil_mahasiswa()">Tampilkan</p>
+                    <p class="btn btn-primary btn-flat" onclick="print1()"> Cetak </p>
                     </div>
                   </div>
 
@@ -132,8 +132,8 @@
                       <input type="text" class="form-control" name="nama_matakuliah" id="nama_matakuliah" value="">
                       <input type="hidden" class="form-control" name="kode_matkul" id="kode_matkul" value="">
                       <br>
-                    <p class="btn btn-info" onclick="tampil_matkul()">Tampilkan</p>
-                    <p class="btn btn-primary" onclick="print1()"> Cetak </p>
+                    <p class="btn btn-info btn-flat" onclick="tampil_matkul()">Tampilkan</p>
+                    <p class="btn btn-primary btn-flat" onclick="print1()"> Cetak </p>
                     </div>
                   </div>
 

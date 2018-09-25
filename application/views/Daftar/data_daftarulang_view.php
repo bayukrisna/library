@@ -3,13 +3,13 @@
         <div class="col-xs-12">
           <?php echo $this->session->flashdata('message');?>
           <div class="box">
-            <div class="box-header">
+            <div class="box-header with-border">
               
               <h3 class="box-title">Data Peserta Tes</h3>
             </div>
             <!-- /.box-header -->
             <div class="box-body">
-              <table id="example1" class="table table-bordered table-striped">
+              <table id="example1" class="table table-hover table-striped table-condensed" style="text-transform: uppercase;">
              
                 <thead>
                 <tr>
@@ -44,8 +44,8 @@
                   <td>'.$data->status_mhs.'</td>
                   <td>
                     
-                     <a href="'.base_url('daftar_ulang/print_ljk/'.$data->id_mahasiswa).'" target="_blank" class="btn btn-warning btn-sm" title="Print Lembar Jawaban"><i class="glyphicon glyphicon-print" ></i><span class="tooltiptext">Print LJK</span></a>
-                     <a href="'.base_url('hasil_tes/page_input_nilai/'.$data->id_mahasiswa).'" class="btn btn-success  btn-sm" title="Input Nilai Tes"><i class="glyphicon glyphicon-pencil"></i><span class="tooltiptext">Input Nilai Tes</span></a>
+                     <a href="'.base_url('daftar_ulang/print_ljk/'.$data->id_mahasiswa).'" target="_blank" class="btn btn-warning btn-xs btn-flat" title="Print Lembar Jawaban"><i class="glyphicon glyphicon-print" ></i><span class="tooltiptext">Print LJK</span></a>
+                     <a href="'.base_url('hasil_tes/page_input_nilai/'.$data->id_mahasiswa).'" class="btn btn-success  btn-xs btn-flat" title="Input Nilai Tes"><i class="glyphicon glyphicon-pencil"></i><span class="tooltiptext">Input Nilai Tes</span></a>
                   </td>
                 </tr>
                 ';
@@ -69,8 +69,8 @@
                   <td>'.$data->tgl_du.'</td>
                   <td>'.$tampil.'</td>
                   <td>
-                    <a href="'.base_url('daftar_ulang/detail_nilai/'.$data->id_mahasiswa).'" class="btn btn-warning btn-sm" title="Detail"><i class="glyphicon glyphicon-list-alt"></i><span class="tooltiptext">Detail</span></a>
-                     <a href="'.base_url('hasil_tes/print_hasil_tes/'.$data->id_mahasiswa.'/'.$data->id_hasil_tes).'" target="_blank" class="btn btn-info btn-sm" title="Print Hasil Tes"><i class="fa fa-print"></i><span class="tooltiptext">Print Hasil Tes</span></a>
+                    <a href="'.base_url('daftar_ulang/detail_nilai/'.$data->id_mahasiswa).'" class="btn btn-warning btn-xs btn-flat" title="Detail"><i class="glyphicon glyphicon-list-alt"></i><span class="tooltiptext">Detail</span></a>
+                     <a href="'.base_url('hasil_tes/print_hasil_tes/'.$data->id_mahasiswa.'/'.$data->id_hasil_tes).'" target="_blank" class="btn btn-info btn-xs btn-flat" title="Print Hasil Tes"><i class="fa fa-print"></i><span class="tooltiptext">Print Hasil Tes</span></a>
                   </td>
                 </tr>
                 ';

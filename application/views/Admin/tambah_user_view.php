@@ -3,23 +3,23 @@
         <div class="col-xs-12">
           <?php echo $this->session->flashdata('message');?>
           <div class="box">
-            <div class="box-header">
-              <h3 class="box-title">User</h3>
+            <div class="box-header with-border">
+              <h3 class="box-title">MASTER USER</h3>
             </div>
 
             
             <!-- /.box-header -->
             <div class="box-body">
-              <table id="example1" class="table table-bordered table-striped">
-                <a href="" class="btn btn-info" data-toggle="modal" data-target="#modal-tambah" ><i class="fa fa-plus"></i> Tambah</a> <br> <br>
+              <table id="example1" class="table table-striped table-condensed table-hover" style="text-transform: uppercase;">
+                <a href="" class="btn btn-primary btn-flat btn-sm" data-toggle="modal" data-target="#modal-tambah" ><i class="fa fa-plus"></i> Tambah</a> <br> <br>
                 <thead>
                 <tr>
-                  <th>No</th>
+                  <th width="20px">No</th>
                   <!-- <th>Nama</th> -->
                   <th>Username</th>
-                  <th>Password</th>
+                  <!-- <th>Password</th> -->
                   <th>Jabatan</th>
-                  <th>Aksi</th>
+                  <th width="20px">Aksi</th>
                 </tr>
                 </thead>
                 <tbody>
@@ -33,10 +33,9 @@
                 <tr>
                   <td>'.++$no.'</td>
                   <td>'.$data->username.'</td>
-                  <td>'.$data->password.'</td>
                   <td>'.$data->nama_level.'</td>
                   <td>
-                  <a href="'.base_url('admin/hapus_user/'.$data->username).'" class="btn btn-danger  btn-sm" onclick="return confirm('.$alert.')"><i class="glyphicon glyphicon-trash"></i><span class="tooltiptext">Hapus</span></a>
+                  <a href="'.base_url('admin/hapus_user/'.$data->username).'" class="btn btn-danger btn-xs btn-flat" onclick="return confirm('.$alert.')"><i class="glyphicon glyphicon-trash"></i><span class="tooltiptext">Hapus</span></a>
                   </td>
 
        
@@ -107,8 +106,8 @@
               </div>
               <!-- /.box-body -->
               <div class="box-footer">
-                <button type="reset" class="btn btn-default">Reset</button>
-                <button type="submit" class="btn btn-info pull-right">Tambah</button>
+                <button type="reset" class="btn btn-default btn-flat">Reset</button>
+                <button type="submit" class="btn btn-primary btn-flat pull-right">Tambah</button>
               </div>
               <!-- /.box-footer -->
             </div>

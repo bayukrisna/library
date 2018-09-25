@@ -3,8 +3,8 @@
         <div class="col-xs-12">
           <?php echo $this->session->flashdata('message');?>
           <div class="box">
-            <div class="box-header">
-              <h3 class="box-title">Data Mahasiswa Lulus atau Drop Out</h3>
+            <div class="box-header with-border">
+              <h3 class="box-title">DATA MAHASISWA LULUS ATAU DROP OUT</h3>
             </div>
             <div class="box-body">
               <table class="">
@@ -58,7 +58,7 @@
                         </select> 
                     </td>
                     <td>
-                      &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<input type="submit" class="btn btn-primary" value="Cari">  
+                      &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<input type="submit" class="btn btn-primary btn-flat btn-xs" value="Cari">  
                     </td>
 
                   </tr>
@@ -69,10 +69,10 @@
                       
                </form>
 
-              <table id="example1" class="table table-bordered table-striped">
+              <table id="example1" class="table table-hover table-striped table-condensed" style="text-transform: uppercase;">
                 <br>
 
-               <a class="btn btn-info btn-sm" href="" data-toggle="modal" data-target="#modal_view"><i class="fa fa-plus"></i> Tambah </a>
+               <a class="btn btn-primary btn-sm btn-flat" href="" data-toggle="modal" data-target="#modal_view"><i class="fa fa-plus"></i> Tambah </a>
 
                <br> <br>
                 <thead>
@@ -105,7 +105,7 @@
                   <td>'.$data->tanggal_keluar.'</td>
                   <td>
 
-                  <a  href="" data-toggle="modal" data-target="#modal_edit'.$data->id_mahasiswa.'" class="btn btn-success btn-sm" ><i class="glyphicon glyphicon-pencil"></i><span class="tooltiptext">Ubah</span></a>
+                  <a  href="" data-toggle="modal" data-target="#modal_edit'.$data->id_mahasiswa.'" class="btn btn-success btn-xs btn-flat" ><i class="glyphicon glyphicon-pencil"></i><span class="tooltiptext">Ubah</span></a>
                 ' ;
                 
               }
@@ -128,13 +128,13 @@
             <div class="modal-content">
             <div class="modal-header">
                 <button type="button" class="close" data-dismiss="modal" aria-hidden="true">x</button>
-                <h3 class="modal-title" id="myModalLabel">Tambah Mahasiswa</h3>
+                <h3 class="modal-title" id="myModalLabel">TAMBAH MAHASISWA</h3>
             </div>
                 <div class="modal-body">
 
                     <div class="form-group">
                       <?php echo form_open('mahasiswa/simpan_ld'); ?>
-                      <table class="table">
+                      <table class="table" style="text-transform: uppercase;">
                           <tr>
           <td class="left_column">Mahasiswa <font color="#FF0000">*</font></td>
             <td>: 
@@ -183,7 +183,7 @@
             <td>: <input type="text" name="no_seri_ijazah" id="no_seri_ijazah" class="text-input" maxlength="80" size="80" style="width:400px"></td>
         </tr>
         <tr>
-                    <td colspan="4"><button type="submit" class="btn btn-info" id="MyBtn">Simpan</button></td>
+                    <td colspan="4"><button type="submit" class="btn btn-info btn-flat" id="MyBtn">Simpan</button></td>
                   </tr>
 
                         </table>
@@ -262,7 +262,7 @@
             <td>: <input type="text" name="no_seri_ijazah" id="no_seri_ijazah" class="text-input" maxlength="80" size="80" style="width:400px" value="<?php echo $i->no_seri_ijazah; ?>"></td>
         </tr>
         <tr>
-                    <td colspan="4"><button type="submit" class="btn btn-info" id="MyBtn">Simpan</button></td>
+                    <td colspan="4"><button type="submit" class="btn btn-info btn-flat" id="MyBtn">Simpan</button></td>
                   </tr>
     </table>
 

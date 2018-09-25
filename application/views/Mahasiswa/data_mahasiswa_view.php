@@ -4,13 +4,13 @@
         <div class="col-xs-12">
           <?php echo $this->session->flashdata('message');?>
           <div class="box">
-            <div class="box-header">
+            <div class="box-header with-border">
               
               <h3 class="box-title">Data Penerimaan Mahasiswa</h3>
             </div>
             <!-- /.box-header -->
             <div class="box-body">
-              <table id="example1" class="table table-bordered table-striped">
+              <table id="example1" class="table table-hover table-striped table-condensed" style="text-transform: uppercase;">
                 <thead>
                 <tr>
                   <th>NIM</th>
@@ -40,7 +40,7 @@
                   <td>'.$data->waktu.'</td>
                   <td>'.$data->tgl_du.'</td>
                   <td>
-                   <a href="'.base_url('mahasiswa/detail_mahasiswa/'.$data->id_mahasiswa).'" class="btn btn-success  btn-sm" ><i class="glyphicon glyphicon-pencil"></i><span class="tooltiptext">Detail</span></a>
+                   <a href="'.base_url('mahasiswa/detail_mahasiswa/'.$data->id_mahasiswa).'" class="btn btn-primary btn-xs btn-flat" ><i class="fa fa-list"></i><span class="tooltiptext">Detail</span></a>
                   </td>
                 </tr>
                 ';

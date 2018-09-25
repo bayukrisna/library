@@ -17,7 +17,7 @@
                     <div class="input-group input-group-sm">
                         <input type="text" class="form-control" id="nama_mhs" name="nama_mhs" value="">
                     <span class="input-group-btn">
-                        <p class="btn btn-info" onclick="cari()">Cari</p>
+                        <p class="btn btn-info btn-flat" onclick="cari()">Cari</p>
                     </span>
                     </div>
                     <input type="hidden" id="id_mahasiswa" name="id_mahasiswa" >

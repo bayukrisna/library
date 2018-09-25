@@ -1,6 +1,6 @@
 <div class="panel panel-primary">
             <div class="panel-heading">
-            <i class="fa fa-user-plus"></i> Edit Jadwal</div>
+            <i class="fa fa-pencil"></i> Edit Jadwal</div>
             <div class="panel-body">
               <div class="row">
          <form  method="post" action="<?php echo base_url(); ?>jadwal/edit_jadwal/<?php echo $jadwal->id_jadwal; ?>" enctype="multipart/form-data">
@@ -76,7 +76,7 @@
                   </td>
         </tr>
         <tr>
-                    <td colspan="4"><button type="submit" class="btn btn-info" id="MyBtn">Simpan</button></td>
+                    <td colspan="4"><button type="submit" class="btn btn-primary btn-flat" id="MyBtn"><i class="fa fa-save"></i> Update</button></td>
                   </tr>
     </table>
     </form>

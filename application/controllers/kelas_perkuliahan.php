@@ -18,7 +18,7 @@ class Kelas_perkuliahan extends CI_Controller {
 			$id_prodi=$this->input->get('id_prodi');
 			$id_periode=$this->input->get('id_periode');
 			$data['kp'] = $this->kelas_perkuliahan_model->filter_kp($id_prodi,$id_periode);
-			$data['main_view'] = 'kelas_perkuliahan/kelas_perkuliahan_view';
+			$data['main_view'] = 'Kelas_perkuliahan/kelas_perkuliahan_view';
 			$this->load->view('template', $data);
 	}
 

@@ -3,15 +3,15 @@
         <div class="col-xs-12">
           <?php echo $this->session->flashdata('message');?>
           <div class="box">
-            <div class="box-header">
-              <h3 class="box-title">Master Calendar</h3>
+            <div class="box-header with-border">
+              <h3 class="box-title">KALENDER AKADEMIK</h3>
             </div>
 
             
             <!-- /.box-header -->
             <div class="box-body">
-              <table id="example1" class="table table-bordered table-striped">
-                <a href="" class="btn btn-info btn-sm" data-toggle="modal" data-target="#modal_tambah"><i class="fa fa-plus"></i> Tambah</a> <br> <br>
+              <table id="example1" class="table table-striped table-condensed table-hover" style="text-transform: uppercase;">
+                <a href="" class="btn btn-primary btn-sm btn-flat" data-toggle="modal" data-target="#modal_tambah"><i class="fa fa-plus"></i> Tambah</a> <br> <br>
                 <thead>
                 <tr>
                   <th>No</th>
@@ -37,8 +37,8 @@
                   <td>'.$data->end.'</td>
                   <td><span style="background-color:'.$data->backgroundColor.';" class="badge">'.$data->backgroundColor.'</span></td>
                   <td>
-                  <a href="" data-toggle="modal" data-target="#modal_edit'.$data->id.'" class="btn btn-success  btn-sm" ><i class="glyphicon glyphicon-pencil"></i><span class="tooltiptext">Edit</span></a>
-                  <a href="'.base_url('calendar/hapus_calendar/'.$data->id).'" class="btn btn-danger  btn-sm" onclick="return confirm('.$alert.')"><i class="glyphicon glyphicon-trash"></i><span class="tooltiptext">Hapus</span></a>
+                  <a href="" data-toggle="modal" data-target="#modal_edit'.$data->id.'" class="btn btn-warning btn-xs btn-flat" ><i class="glyphicon glyphicon-pencil"></i><span class="tooltiptext">Edit</span></a>
+                  <a href="'.base_url('calendar/hapus_calendar/'.$data->id).'" class="btn btn-danger btn-xs btn-flat" onclick="return confirm('.$alert.')"><i class="glyphicon glyphicon-trash"></i><span class="tooltiptext">Hapus</span></a>
                   </td>
                   
 

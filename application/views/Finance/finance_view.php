@@ -60,7 +60,7 @@
             <div class="modal-content">
             <div class="modal-header">
                 <button type="button" class="close" data-dismiss="modal" aria-hidden="true">x</button>
-                <h3 class="modal-title" id="myModalLabel">Edit Barang</h3>
+                <h3 class="modal-title" id="myModalLabel">Konfirmasi Registrasi</h3>
             </div>
             <?php echo form_open('finance/konfirmasi/'.$i->id_pendaftaran); ?>
                 <div class="modal-body">

@@ -61,12 +61,11 @@
            
 
               <form method="get" action="<?php echo base_url(); ?>kurikulum/salin_matkul/<?php echo $kurikulum->id_kurikulum; ?>/" enctype="multipart/form-data">
-               <a class="btn btn-primary pull-right"  href="<?php echo base_url(); ?>kurikulum" style="margin-left: 10px">
-              Kembali</a> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-            <a class="btn btn-primary pull-right"  data-toggle="modal" data-target="#modal_tambah" style="margin-left: 10px">
+               <a class="btn btn-default btn-flat btn-sm pull-right"  href="<?php echo base_url(); ?>kurikulum" style="margin-left: 10px"><i class="fa fa-angle-left"></i> Back</a> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+            <a class="btn btn-primary btn-flat btn-sm pull-right"  data-toggle="modal" data-target="#modal_tambah" style="margin-left: 10px">
 
               <i class="fa fa-plus"></i> Tambah Mata Kuliah</a> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;   
-            <button type="submit" class="btn btn-info pull-right" > Salin Mata Kuliah </button>
+            <button type="submit" class="btn btn-warning btn-flat btn-sm pull-right" ><i class="fa fa-copy"></i> Salin Mata Kuliah </button>
           <div class="col-xs-3 pull-right">
              <select name="id_kurikulum" class="form-control">
                         <?php 
@@ -91,7 +90,7 @@
           <div class="box box-info">
             <?php echo form_open('kurikulum/remove/'.$this->uri->segment(3)); ?>
  
-            <table class="table2 table-bordered table-striped">
+            <table class="table2 table-bordered table-striped" style="text-transform: uppercase;">
   <thead>
   <tr>
     <th  style="text-align:center" rowspan="2">No.</th>
@@ -146,9 +145,9 @@
   
         </td >
         <td style="text-align:center">
-                <a href="<?php echo base_url(); ?>kurikulum/hapus_matkul_kurikulum/<?php echo $data->id_detail_kurikulum; ?>/<?php echo $this->uri->segment(3); ?>" onclick="return confirm(<?php echo $alert; ?>)" class="btn btn-danger btn-sm"><i class="glyphicon glyphicon-trash"></i><span class="tooltiptext">Hapus Matkul</span></a>
+                <a href="<?php echo base_url(); ?>kurikulum/hapus_matkul_kurikulum/<?php echo $data->id_detail_kurikulum; ?>/<?php echo $this->uri->segment(3); ?>" onclick="return confirm(<?php echo $alert; ?>)" class="btn btn-danger btn-xs btn-flat"><i class="glyphicon glyphicon-trash"></i><span class="tooltiptext">Hapus Matkul</span></a>
 
-                <a href="<?php echo base_url(); ?>kurikulum/detail_matkul_kurikulum/<?php echo $data->id_detail_kurikulum; ?>" class="btn btn-warning btn-sm"><i class="glyphicon glyphicon-pencil"></i><span class="tooltiptext">Detail Matkul</span></a> </td>
+                <a href="<?php echo base_url(); ?>kurikulum/detail_matkul_kurikulum/<?php echo $data->id_detail_kurikulum; ?>" class="btn btn-warning btn-xs btn-flat"><i class="glyphicon glyphicon-pencil"></i><span class="tooltiptext">Detail Matkul</span></a> </td>
           <td style="text-align:center"><input type="checkbox" name="id[]" value="<?php echo $data->id_detail_kurikulum; ?>"></td>
 
     </tr>
@@ -168,8 +167,8 @@
   
   </tbody>
 </table>
-<input type="submit" value="Hapus Mata Kuliah Terpilih" onclick="return confirm('Anda yakin menghapus data yang sudah anda pilih ?')" class="btn btn-danger pull-right"> 
-              <br>
+<input type="submit" value="Hapus Mata Kuliah Terpilih" onclick="return confirm('Anda yakin menghapus data yang sudah anda pilih ?')" class="btn btn-danger btn-flat btn-sm pull-right" style="padding-right: 10px;"> 
+              <br><br>
               
               <?php echo form_close()?>
 
@@ -221,7 +220,7 @@
     </tr>
         
                   <tr>
-                    <td colspan="4"><button type="submit" class="btn btn-info">Simpan</button></td>
+                    <td colspan="4"><button type="submit" class="btn btn-primary btn-flat"><i class="fa fa-save"></i> Save</button></td>
                   </tr>
               <?php echo form_close();?>
 

@@ -24,8 +24,8 @@
                             ?>
                     </select>
                     <br>
-                      <p class="btn btn-info" onclick="tampil()">Tampilkan</p>
-                      <p class="btn btn-primary" onclick="print1()"> Cetak </p>
+                      <p class="btn btn-info btn-flat" onclick="tampil()">Tampilkan</p>
+                      <p class="btn btn-primary btn-flat" onclick="print1()"> Cetak </p>
                   </div>
                   </div>
 

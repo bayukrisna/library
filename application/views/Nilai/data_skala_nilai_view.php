@@ -2,9 +2,9 @@
       <div class="row">
         <div class="col-xs-12">
           <div class="box">
-            <div class="box-header">
+            <div class="box-header with-border">
               <?php echo $this->session->flashdata('message');?>
-              <h3 class="box-title">Data Skala Nilai</h3>
+              <h3 class="box-title">DATA SKALA NILAI</h3>
             </div>
             <!-- /.box-header -->
             <div class="box-body">
@@ -31,18 +31,18 @@
 
                     </td>                                            
                     <td>
-                      &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<input type="submit" class="btn btn-primary" value="Cari">  
+                      &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<input type="submit" class="btn btn-primary btn-flat btn-xs" value="Cari">  
                     </td>
                   </tr>
                    </form>
                 </tbody>
               </table>
               <br>
-               <a href="<?php echo base_url(); ?>nilai/tambah_skala_nilai" class="btn btn-primary  btn-sm">Tambahs Skala Nilai</a>
+               <a href="<?php echo base_url(); ?>nilai/tambah_skala_nilai" class="btn btn-primary  btn-sm btn-flat"><i class="fa fa-plus"></i> Tambah Skala Nilai</a>
               
               <br>
               <br>
-              <table id="example1" class="table table-bordered table-striped">
+              <table id="example1" class="table table-hover table-striped table-condensed" style="text-transform: uppercase;">
                 <thead>
                 <tr>
                   <th>No</th>
@@ -73,9 +73,9 @@
                   <td>'.$data->tanggal_mulai_efektif.'</td>
                   <td>'.$data->tanggal_akhir_efektif.'</td>
                   <td>
-                    <a href="'.base_url('nilai/detail_skala_nilai/'.$data->id_skala_nilai).'" class="btn btn-success  btn-sm"><i class="fa fa-pencil"></i><span class="tooltiptext">Ubah Skala Nilai</span></a>
+                    <a href="'.base_url('nilai/detail_skala_nilai/'.$data->id_skala_nilai).'" class="btn btn-warning  btn-xs btn-flat"><i class="fa fa-pencil"></i><span class="tooltiptext">Edit</span></a>
 
-                     <a href="'.base_url('nilai/hapus_skala_nilai/'.$data->id_skala_nilai).'" class="btn btn-danger  btn-sm"><i class="fa fa-trash"></i><span class="tooltiptext">Hapus Skala Nilai</span></a>
+                     <a href="'.base_url('nilai/hapus_skala_nilai/'.$data->id_skala_nilai).'" class="btn btn-danger  btn-xs btn-flat"><i class="fa fa-trash"></i><span class="tooltiptext">Hapus</span></a>
 
                   </td>
                   

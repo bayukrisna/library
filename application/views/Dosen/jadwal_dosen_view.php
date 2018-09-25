@@ -8,11 +8,11 @@
         <a class="btn btn-sm btn-info" href="<?php echo base_url();?>mahasiswa/prestasi">Prestasi</a> -->
         
            <?php } else { ?>
-
-         <a class="btn btn-sm btn-primary" href="<?php echo base_url();?>master_dosen/detail_dosen/<?php echo $dosen->id_dosen; ?>">Profil Dosen</a>
-        <a class="btn btn-sm btn-info" href="<?php echo base_url();?>master_dosen/jadwal_dosen/<?php echo $dosen->id_dosen; ?>">Jadwal Dosen</a>
-        <a class="btn btn-sm btn-info" href="<?php echo base_url();?>master_dosen/nilai_dosen/<?php echo $dosen->id_dosen; ?>">Input Nilai</a>
-        <a class="btn btn-sm btn-info" href="<?php echo base_url(); ?>master_dosen">Kembali</a>
+        <a class="btn btn-sm btn-default btn-flat" href="<?php echo base_url(); ?>master_dosen"><i class="fa fa-angle-left"></i> Back</a>
+         <a class="btn btn-sm btn-primary btn-flat" href="<?php echo base_url();?>master_dosen/detail_dosen/<?php echo $dosen->id_dosen; ?>">Profil Dosen</a>
+        <a class="btn btn-sm btn-primary btn-flat" href="<?php echo base_url();?>master_dosen/jadwal_dosen/<?php echo $dosen->id_dosen; ?>">Jadwal Dosen</a>
+        <a class="btn btn-sm btn-primary btn-flat" href="<?php echo base_url();?>master_dosen/nilai_dosen/<?php echo $dosen->id_dosen; ?>">Input Nilai</a>
+        
          <br/><br/> 
            <?php }
 
@@ -23,7 +23,7 @@
             
             <!-- /.box-header -->
             <div class="box-body">
-              <table class="table">
+              <table class="table" style="text-transform: uppercase;">
         <tr>
 
             <td width="15%" class="left_column">Nama <font color="#FF0000">*</font></td>
@@ -62,7 +62,7 @@
               <h3 class="box-title">Senin</h3>       
             <!-- /.box-header -->
             <div class="box-body">
-              <table  class="table table-bordered table-striped">
+              <table  class="table table-bordered table-striped" style="text-transform: uppercase;">
                 <thead>
                 <tr>
                   <th  style="width:5%">No</th>
@@ -102,7 +102,7 @@
               <h3 class="box-title">Selasa</h3>       
             <!-- /.box-header -->
             <div class="box-body">
-               <table  class="table table-bordered table-striped">
+               <table  class="table table-bordered table-striped" style="text-transform: uppercase;">
                 <thead>
                 <tr>
                   <th  style="width:5%">No</th>
@@ -142,7 +142,7 @@
               <h3 class="box-title">Rabu</h3>       
             <!-- /.box-header -->
             <div class="box-body">
-               <table  class="table table-bordered table-striped">
+               <table  class="table table-bordered table-striped" style="text-transform: uppercase;">
                 <thead>
                 <tr>
                   <th  style="width:5%">No</th>
@@ -182,7 +182,7 @@
               <h3 class="box-title">Kamis</h3>       
             <!-- /.box-header -->
             <div class="box-body">
-              <table  class="table table-bordered table-striped">
+              <table  class="table table-bordered table-striped" style="text-transform: uppercase;">
                 <thead>
                 <tr>
                   <th  style="width:5%">No</th>
@@ -222,7 +222,7 @@
               <h3 class="box-title">Jumat</h3>       
             <!-- /.box-header -->
             <div class="box-body">
-               <table  class="table table-bordered table-striped">
+               <table  class="table table-bordered table-striped" style="text-transform: uppercase;">
                 <thead>
                 <tr>
                   <th  style="width:5%">No</th>

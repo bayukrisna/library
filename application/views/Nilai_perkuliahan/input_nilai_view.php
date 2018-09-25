@@ -1,7 +1,7 @@
 
 <div class="panel panel-primary">
             <div class="panel-heading">
-            <i class="fa fa-user-plus"></i> Input Nilai</div>
+            <i class="fa fa-pencil"></i> Input Nilai</div>
             <div class="panel-body">
               <div class="row">
          <form  method="post" action="<?php echo base_url(); ?>nilai_perkuliahan/save_edit_nilai/<?php echo $dnilai->id_kelas_mhs; ?>" enctype="multipart/form-data">
@@ -50,8 +50,8 @@
         </tr> 
 
                   <tr>
-                    <td colspan="5"><button type="submit" class="btn btn-info">Simpan</button>
-                      <a class="btn btn-primary" style="margin-right: 10px"  href="<?php echo base_url(); ?>nilai_perkuliahan/detail_nilai/<?php echo $this->uri->segment(4); ?>"></i> Kembali </a>
+                    <td colspan="5"><button type="submit" class="btn btn-primary btn-flat"><i class="fa fa-save"></i> Save</button>
+                      <a class="btn btn-default btn-flat" style="margin-right: 10px"  href="<?php echo base_url(); ?>nilai_perkuliahan/detail_nilai/<?php echo $this->uri->segment(4); ?>"><i class="fa fa-angle-left"></i> Back </a>
                     </td>
                     
                   </tr>

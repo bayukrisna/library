@@ -2,13 +2,12 @@
 
         <div class="box box-info">
             <div class="box-header with-border">
-              
+              TAMBAH MAHASISWA
             </div>
             <!-- /.box-header -->
             <div class="box-body">
               <table class="table">
         <tr>
-                  <label for="no">Data Mahasiswa</label>
                   <input type="hidden" name="id_mahasiswa" class="form-control" id="id_mahasiswa" placeholder="" required .input-sm value="<?php echo $kodeunik_mhs ?>" >
 
             <td width="15%" class="left_column">Nama <font color="#FF0000">*</font></td>
@@ -61,7 +60,7 @@
               <li><a href="#tab_3" data-toggle="tab">Wali</a></li>
               <!--<li><a href="#tab_4" data-toggle="tab">Kebutuhan Khusus</a></li> -->
           
-              <li class="pull-right"><button class="btn btn-sm btn-success" >Simpan</button> </li>
+              <li class="pull-right"><button class="btn btn-sm btn-primary btn-flat"><i class="fa fa-save"></i> Save</button> </li>
             </ul>
             <div class="tab-content">
                 <div class="tab-pane active" id="tab_0">
@@ -204,7 +203,7 @@
                 </tr>
                 <tr>
                     <td class="left_column">Email</td>
-                    <td colspan="5">: <input type="text" name="email" id="email" class="text-input" maxlength="60" size="60" style="width:30%" required=""></td>
+                    <td colspan="5">: <input type="text" name="email" id="email" class="text-input" maxlength="60" size="60" style="width:30%"></td>
                 </tr>
                 <tr>
                     <td class="left_column">Penerima KPS ? <font color="#FF0000">*</font></td>

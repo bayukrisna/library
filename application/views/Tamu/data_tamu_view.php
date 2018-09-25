@@ -3,14 +3,14 @@
         <div class="col-xs-12">
           <?php echo $this->session->flashdata('message');?>
           <div class="box">
-            <div class="box-header">
+            <div class="box-header with-border">
               
-              <h3 class="box-title">Data Tamu</h3>
+              <h3 class="box-title">DATA TAMU</h3>
             </div>
             <!-- /.box-header -->
             <div class="box-body">
-              <table id="example1" class="table table-bordered table-striped">
-                 <a href="<?php echo base_url(); ?>tamu/page_tambah_tamu" class="btn btn-info btn-sm" > Tambah Tamu</a> <br> <br>
+              <table id="example1" class="table table-hover table-striped table-condensed" style="text-transform: uppercase;">
+                 <a href="<?php echo base_url(); ?>tamu/page_tambah_tamu" class="btn btn-primary btn-sm btn-flat" ><i class="fa fa-plus"></i> Tambah</a> <br> <br>
              
                 <thead>
                 <tr>
@@ -44,12 +44,12 @@
                   
                   <td>
                   
-                     <a href="'.base_url('tamu/f1/'.$data->id_pendaftaran).'" class="btn btn-warning btn-sm" >FU<span class="tooltiptext">Follow UP</span></a>
+                     <a href="'.base_url('tamu/f1/'.$data->id_pendaftaran).'" class="btn btn-warning btn-xs btn-flat" ><i class="fa fa-phone"></i><span class="tooltiptext">Follow Up</span></a>
 
-                     <a href="'.base_url('tamu/detail_tamu/'.$data->id_pendaftaran).'" class="btn btn-warning btn-sm"><i class="glyphicon glyphicon-list-alt"></i><span class="tooltiptext">Detail Tamu</span></a>
+                     <a href="'.base_url('tamu/detail_tamu/'.$data->id_pendaftaran).'" class="btn btn-info btn-xs btn-flat"><i class="fa fa-file-text-o"></i><span class="tooltiptext">Detail</span></a>
                      
                      
-                      <a href="'.base_url('tamu/page_upload/'.$data->id_pendaftaran).'" class="btn btn-info btn-sm"><i class="fa fa-file-image-o"></i><span class="tooltiptext">Unggah Bukti</span></a>
+                      <a href="'.base_url('tamu/page_upload/'.$data->id_pendaftaran).'" class="btn btn-default btn-xs btn-flat"><i class="fa fa-upload"></i><span class="tooltiptext">UPLOAD</span></a>
 
 
                   
@@ -74,9 +74,9 @@
                   <td>'.$data->status_bayar.'</td>
                   
                   <td>
-                     <a href="'.base_url('uploads/'.$data->bukti_transfer).'" class="btn btn-success btn-sm" target="_blank"><i class="fa fa-file-image-o"></i><span class="tooltiptext">Lihat Bukti</span></a>
-                     <a href="'.base_url('tamu/detail_tamu/'.$data->id_pendaftaran).'" class="btn btn-warning btn-sm"><i class="glyphicon glyphicon-list-alt"></i><span class="tooltiptext">Detail Tamu</span></a>
-                  <a href="'.base_url('daftar_ulang/page_du_pagi/'.$data->id_pendaftaran).'" class="btn btn-info btn-sm"><i class="fa fa-sign-in"></i><span class="tooltiptext">Daftar Ulang</span></a>
+                     <a href="'.base_url('uploads/'.$data->bukti_transfer).'" class="btn btn-success btn-xs btn-flat" target="_blank"><i class="fa fa-file-image-o"></i><span class="tooltiptext">Lihat Bukti</span></a>
+                     <a href="'.base_url('tamu/detail_tamu/'.$data->id_pendaftaran).'" class="btn btn-info btn-xs btn-flat"><i class="fa fa-file-text-o"></i><span class="tooltiptext">Detail</span></a>
+                  <a href="'.base_url('daftar_ulang/page_du_pagi/'.$data->id_pendaftaran).'" class="btn btn-primary btn-xs btn-flat"><i class="fa fa-plus-circle"></i><span class="tooltiptext">REGISTRASI</span></a>
 
 
                   </td>
@@ -98,9 +98,9 @@
                   <td>'.$data->status_bayar.'</td>
                   
                   <td>
-                   <a href="'.base_url('uploads/'.$data->bukti_transfer).'" class="btn btn-success btn-sm" target="_blank"><i class="fa fa-file-image-o"></i><span class="tooltiptext">Lihat Bukti</span></a>
-                   <a href="'.base_url('tamu/detail_tamu/'.$data->id_pendaftaran).'" class="btn btn-warning btn-sm"><i class="glyphicon glyphicon-list-alt"></i><span class="tooltiptext">Detail Tamu</span></a>
-                      <a href="'.base_url('daftar_ulang/page_du_sore/'.$data->id_pendaftaran).'" class="btn btn-info btn-sm"><i class="fa fa-sign-in"></i><span class="tooltiptext">Daftar Ulang</span></a>
+                   <a href="'.base_url('uploads/'.$data->bukti_transfer).'" class="btn btn-success btn-xs btn-flat" target="_blank"><i class="fa fa-file-image-o"></i><span class="tooltiptext">Lihat Bukti</span></a>
+                   <a href="'.base_url('tamu/detail_tamu/'.$data->id_pendaftaran).'" class="btn btn-info btn-xs btn-flat"><i class="fa fa-file-text-o"></i><span class="tooltiptext">Detail</span></a>
+                      <a href="'.base_url('daftar_ulang/page_du_sore/'.$data->id_pendaftaran).'" class="btn btn-primary btn-xs btn-flat"><i class="fa fa-plus-circle"></i><span class="tooltiptext">REGISTRASI</span></a>
                      
                   </td>
                 </tr>
@@ -123,8 +123,8 @@
                   <td>'.$data->tanggal_pendaftaran.'</td>
                   <td>'.$data->status_bayar.'</td>
                   <td>
-                   <a href="'.base_url('uploads/'.$data->bukti_transfer).'" class="btn btn-success btn-sm" target="_blank"><i class="fa fa-file-image-o"></i><span class="tooltiptext">Lihat Bukti</span></a>
-                   <a href="'.base_url('tamu/detail_tamu/'.$data->id_pendaftaran).'" class="btn btn-warning btn-sm"><i class="glyphicon glyphicon-list-alt"></i><span class="tooltiptext">Detail Tamu</span></a>
+                   <a href="'.base_url('uploads/'.$data->bukti_transfer).'" class="btn btn-success btn-xs btn-flat" target="_blank"><i class="fa fa-file-image-o"></i><span class="tooltiptext">Lihat Bukti</span></a>
+                   <a href="'.base_url('tamu/detail_tamu/'.$data->id_pendaftaran).'" class="btn btn-info btn-xs btn-flat"><i class="fa fa-file-text-o"></i><span class="tooltiptext">Detail</span></a>
                      
                   </td>
 

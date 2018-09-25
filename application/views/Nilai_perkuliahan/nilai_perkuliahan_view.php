@@ -7,8 +7,8 @@
           <?php echo $this->session->flashdata('message');?>
           <div class="box">
 
-            <div class="box-header">
-              <h3 class="box-title">Data Nilai Perkuliahan</h3>
+            <div class="box-header with-border">
+              <h3 class="box-title">DATA NILAI PERKULIAHAN</h3>
             </div>
             <div class="box-body">
               <table class="">
@@ -41,7 +41,7 @@
                       </select>
                     </td>
                     <td>
-                      &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<input type="submit" class="btn btn-primary" value="Cari">  
+                      &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<input type="submit" class="btn btn-primary btn-xs btn-flat" value="Cari">  
                     </td>
 
                   </tr>
@@ -52,7 +52,7 @@
                </form>
                <br>
 
-              <table id="example3" class="table2 table-bordered table-striped">
+              <table id="example3" class="table2 table-hover table-striped table-condensed table-bordered" style="text-transform: uppercase;">
                 
                 <thead>
                 <tr>

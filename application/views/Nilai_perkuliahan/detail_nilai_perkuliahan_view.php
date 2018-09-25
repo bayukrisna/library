@@ -35,22 +35,22 @@
             <?php 
                if($this->session->userdata('level') == 1){ ?>
 
-            <a class="btn btn-primary pull-right"  href="<?php echo base_url(); ?>nilai_perkuliahan"></i> Kembali</a>
+            <a class="btn btn-default btn-sm btn-flat pull-right"  href="<?php echo base_url(); ?>nilai_perkuliahan"><i class="fa fa-angle-left"></i> Back</a>
             <?php } ?>
 
              <?php 
                if($this->session->userdata('level') == 2){ ?>
 
-            <a class="btn btn-info pull-right" style="margin-right: 10px"  href="<?php echo base_url(); ?>master_dosen/nilai_dosen/<?php echo $this->uri->segment(4); ?>"></i> Daftar Kelas </a>
+            <a class="btn btn-primary btn-flat btn-sm pull-right" style="margin-right: 10px"  href="<?php echo base_url(); ?>master_dosen/nilai_dosen/<?php echo $this->uri->segment(4); ?>"></i> Daftar Kelas </a>
 
           <?php } ?>
 
-            <p class="btn btn-primary pull-right" style="margin-right: 10px" onclick="print1()"> Cetak Absensi</p>
+            <p class="btn btn-primary btn-flat btn-sm pull-right" style="margin-right: 10px" onclick="print1()"><i class="fa fa-print"></i>  Cetak Absensi</p>
             <br><br>
           </div>
 
           <div class="box box-info">
-            <table class="table table-bordered table-striped" id="example3">
+            <table class="table table-bordered table-striped" id="example3" style="text-transform: uppercase;">
   <thead>
   <tr>
     <th style="width:5%" style="text-align:center" rowspan="2">No.</th>
@@ -105,7 +105,7 @@
         <td style="text-align:center"> 
           <?php if ($data->tgl_awal_kul <= date('Y-m-d') AND $data->tgl_akhir_kul >= date('Y-m-d')){ ?>
 
-                 <a href="<?php echo base_url(); ?>nilai_perkuliahan/edit_nilai/<?php echo $data->id_kelas_mhs; ?>/<?php echo $data->id_kp; ?>" class="btn btn-warning  btn-sm"><i class="glyphicon glyphicon-pencil"></i><span class="tooltiptext"> Input Nilai </span></a>
+                 <a href="<?php echo base_url(); ?>nilai_perkuliahan/edit_nilai/<?php echo $data->id_kelas_mhs; ?>/<?php echo $data->id_kp; ?>" class="btn btn-warning btn-xs btn-flat"><i class="glyphicon glyphicon-pencil"></i><span class="tooltiptext"> Input Nilai </span></a>
           <?php } ?>
 
     </tr>

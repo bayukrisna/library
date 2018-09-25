@@ -1,6 +1,6 @@
 <div class="panel panel-primary">
             <div class="panel-heading">
-            <i class="fa fa-user-plus"></i> Tambah Prodi</div>
+            <i class="fa fa-user-plus"></i> TAMBAH PERIODE</div>
             <div class="panel-body">
               <div class="row">
          <?php echo form_open('setting_periode/simpan_periode'); ?>
@@ -55,8 +55,8 @@
             <td>: <input type="number" name="jumlah_minggu_pertemuan" id="target_mhs_baru" class="text-input" style="width:50px"></td>
         </tr> 
         <tr>
-        	<td colspan="4"><button type="submit" class="btn btn-info">Tambah</button>
-            <button type="reset" class="btn btn-default">Reset</button></td>
+        	<td colspan="4"><button type="submit" class="btn btn-primary btn-flat"><i class="fa fa-save"></i> Save</button>
+            <button type="reset" class="btn btn-default btn-flat">Reset</button></td>
         </tr>
     </table>
     <?php echo form_close();?>

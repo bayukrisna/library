@@ -50,7 +50,7 @@
                         <input type="date" name="tanggal_akhir_efektif" class="form-control" id="tanggal_akhir_efektif" placeholder="Masukkan Tanggal">
                       </div>
                       <br>
-                      <button type="submit" class="btn btn-info pull-right">Tambah</button>
+                      <button type="submit" class="btn btn-primary btn-flat pull-right"><i class="fa fa-save"></i> Save</button>
                       
                   <?php echo form_close();?>
                 </div>
