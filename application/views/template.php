@@ -193,7 +193,7 @@ a:hover .tooltiptext {
           <ul class="treeview-menu">
             <li><a href="<?php echo base_url(); ?>lahan"><i class="fa fa-circle-o"></i>LAHAN</a></li>
             <li><a href="#"><i class="fa fa-circle-o"></i>GEDUNG / BANGUNAN</a></li>
-            <li><a href="#"><i class="fa fa-circle-o"></i>RUANG</a></li>
+            <li><a href="<?php echo base_url(); ?>ruang"><i class="fa fa-circle-o"></i>RUANG</a></li>
             <li><a href="#"><i class="fa fa-circle-o"></i>BARANG</a></li>
           </ul>
         </li>
