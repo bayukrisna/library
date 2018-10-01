@@ -4,23 +4,22 @@
           <?php echo $this->session->flashdata('message');?>
           <div class="box">
             <div class="box-header with-border">
-              <h3 class="box-title">SETTING PERIODE PERKULIAHAN</h3>
+              <h3 class="box-title">DATA LAHAN</h3>
             </div>
 
             
             <!-- /.box-header -->
             <div class="box-body">
               <table id="example1" class="table table-hover table-striped table-condensed" style="text-transform: uppercase;">
-                <a href="<?php echo base_url(); ?>setting_periode/tambah_periode" class="btn btn-primary btn-sm btn-flat" ><i class="fa fa-plus"></i> Tambah</a> <br> <br>
+                <a href="" data-toggle="modal" data-target="#modal_tambah" class="btn btn-primary btn-sm btn-flat" ><i class="fa fa-plus"></i> Tambah</a> <br> <br>
                 <thead>
                 <tr>
                   <th>No</th>
-                  <th>Semester</th>
-
-                  <th>Program Studi</th>
-                  <th>Target Mahasiswa Baru</th>
-                  <th>Tanggal Awal Perkuliahan</th>
-                  <th>Tanggal Akhir Perkuliahan</th>
+                  <th>Nama Lahan</th>
+                  <th>Tgl. Perolehan</th>
+                  <th>Luas (m<sup>2</sup>)</th>
+                  <th>Harga Perolehan</th>
+                  <th>Kepemilikan</th>
                   <th>Aksi</th>
                 </tr>
                 </thead>
@@ -28,19 +27,19 @@
 
                 <?php 
                 $no = 0;
-                foreach ($data_periode as $data) {
+                foreach ($lahan as $data) {
                   echo '
                   
                 <tr>
                   <td>'.++$no.'</td>
 
-                  <td><a href="" data-toggle="modal" data-target="#modal_view'.$data->id_periode.'">'.$data->semester.'</a></td>
-                  <td>'.$data->nama_prodi.'</td>
-                  <td>'.$data->target_mhs_baru.'</td>
-                  <td>'.$data->tgl_awal_kul.'</td>
-                  <td>'.$data->tgl_akhir_kul.'</td>
+                  <td><a href="" data-toggle="modal" data-target="#modal_view'.$data->id_lahan.'">'.$data->nama_lahan.'</a></td>
+                  <td>'.$data->tgl_perolehan.'</td>
+                  <td>'.$data->luas_lahan.'</td>
+                  <td>'.$data->harga_perolehan.'</td>
+                  <td>'.$data->kepemilikan.'</td>
                   <td>
-                  <a href="" data-toggle="modal" data-target="#modal_edit'.$data->id_periode.'" class="btn btn-warning btn-xs btn-flat" ><i class="glyphicon glyphicon-pencil"></i><span class="tooltiptext">Edit</span></a>
+                  <a href="" data-toggle="modal" data-target="#modal_edit'.$data->id_lahan.'" class="btn btn-warning btn-xs btn-flat" ><i class="glyphicon glyphicon-pencil"></i><span class="tooltiptext">Edit</span></a>
                 
                 ' ;
                 
@@ -59,58 +58,45 @@
       <!-- /.row -->
     </section>
 <?php 
-        foreach($data_periode as $i):
+        foreach($lahan as $i):
         ?>
-        <div class="modal fade" id="modal_view<?php echo $i->id_periode;?>" >
+        <div class="modal fade" id="modal_view<?php echo $i->id_lahan;?>" >
             <div class="modal-dialog">
             <div class="modal-content">
             <div class="modal-header">
                 <button type="button" class="close" data-dismiss="modal" aria-hidden="true">x</button>
-                <h3 class="modal-title" id="myModalLabel">DETAIL PERIODE</h3>
+                <h3 class="modal-title" id="myModalLabel">DETAIL LAHAN</h3>
             </div>
                 <div class="modal-body">
 
                     <div class="form-group">
                       <table class="table" style="text-transform: uppercase;">
                           <tr>
-                              <td class="left_column" width="40%">Semester </td>
-                                <td colspan="9">:  <?php echo $i->semester ?>
+                              <td class="left_column" width="40%">Nama Lahan </td>
+                                <td colspan="9">:  <?php echo $i->nama_lahan ?>
                             </tr>
                           <tr>
-                              <td class="left_column" width="20%">Program Studi</td>
+                              <td class="left_column" width="20%">Tgl. Perolehan</td>
                                 <td>: 
-                           <?php echo $i->nama_prodi ?></td>
+                           <?php echo $i->tgl_perolehan ?></td>
                             </tr>
                             <tr>
-                              <td class="left_column">Target Mahasiswa Baru</td>
-                                <td>: <?php echo $i->target_mhs_baru ?></td>
+                              <td class="left_column">Luas Lahan</td>
+                                <td>: <?php echo $i->luas_lahan ?></td>
                             </tr> 
                             <tr>
-                              <td class="left_column">Pendaftar Ikut Seleksi</td>
-                                <td>: <?php echo $i->pendaftar_ikut_seleksi ?></td>
+                              <td class="left_column">Harga Perolehan</td>
+                                <td>: <?php echo $i->harga_perolehan ?></td>
                             </tr> 
                             <tr>
-                              <td class="left_column">Pendaftar Lulus Seleksi</td>
-                                <td>: <?php echo $i->pendaftar_lulus_seleksi ?></td>
+                              <td class="left_column">Kepemilikan</td>
+                                <td>: <?php echo $i->kepemilikan ?></td>
                             </tr> 
                             <tr>
-                              <td class="left_column">Daftar Ulang</td>
-                                <td>: <?php echo $i->daftar_ulang ?></td>
+                              <td class="left_column">Alamat</td>
+                                <td>: <?php echo $i->alamat ?></td>
                             </tr>
-                            <tr>
-                              <td class="left_column">Mengundurkan Diri</td>
-                                <td>: <?php echo $i->mengundurkan_diri ?></td>
-                            </tr> 
-                            <tr>
-                             <td class="left_column">Tanggal Perkuliahan</td>
-                                <td>:
-                            <?php echo $i->tgl_awal_kul;?>              <strong>s/d</strong>
-                            <?php echo $i->tgl_akhir_kul;?>            </td>
-                            </tr>
-                            <tr>
-                              <td class="left_column">Jumlah Minggu Pertemuan </td>
-                                <td>: <?php echo $i->jumlah_minggu_pertemuan ?></td>
-                            </tr> 
+                           
                         </table>
 
                     </div>
@@ -122,10 +108,10 @@
 
     <?php endforeach;?>
 
-    <?php 
+    <!-- <?php 
         foreach($data_periode as $i):
         ?>
-        <div class="modal fade" id="modal_edit<?php echo $i->id_periode;?>" >
+        <div class="modal fade" id="modal_edit<?php echo $i->id_lahan;?>" >
             <div class="modal-dialog">
             <div class="modal-content">
             <div class="modal-header">
@@ -185,7 +171,7 @@
         <tr>
           <td class="left_column">Jumlah Minggu Pertemuan </td>
             <td>: <input value="<?php echo $i->jumlah_minggu_pertemuan; ?>" type="number" name="jumlah_minggu_pertemuan" id="target_mhs_baru" class="text-input" style="width:50px"></td>
-            <input type="hidden" name="id_periode" value="<?php echo $i->id_periode; ?>">
+            <input type="hidden" name="id_lahan" value="<?php echo $i->id_lahan; ?>">
         </tr> 
         <tr>
           <td colspan="4"><button type="submit" class="btn btn-info btn-flat">Edit</button></td>
@@ -200,5 +186,58 @@
         </div>
         <?php echo form_close();?>
 
-    <?php endforeach;?>
+    <?php endforeach;?> -->
+
+
+        <div class="modal fade" id="modal_tambah" >
+            <div class="modal-dialog">
+            <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">x</button>
+                <h3 class="modal-title" id="myModalLabel">TAMBAH LAHAN</h3>
+            </div>
+                <div class="modal-body">
+
+                    <div class="form-group">
+                      <?php echo form_open('Lahan/simpan_lahan'); ?>
+                      <table class="table" style="text-transform: uppercase;">
+      <tr>
+          <td>Nama Lahan <font color="#FF0000">*</font></td>
+            <td>:  <input type="text" name="nama_lahan" id="tgl_perolehan" value="" size="40" style="width:80%" />
+        </tr>
+      <tr>
+          <td>Tgl. Perolehan <font color="#FF0000">*</font></td>
+            <td>:  <input type="date" name="tgl_perolehan" id="tgl_perolehan" value="" />
+        </tr>
+        <tr>
+          <td class="left_column">Luas Lahan</td>
+            <td>: <input type="number" name="luas_lahan" id="luas_lahan" class="text-input" style="width:80px" value=""> m<sup>2</sup></td>
+        </tr> 
+        <tr>
+          <td class="left_column">Harga Perolehan</td>
+            <td>: <input type="number" name="harga_perolehan" id="harga_perolehan" class="text-input" value=""> </td>
+        </tr> 
+        <tr>
+          <td class="left_column">Kepemilikan</td>
+            <td>: <input value="" type="text" name="kepemilikan" id="kepemilikan" class="text-input" ></td>
+        </tr> 
+        <tr>
+          <td class="left_column">Alamat</td>
+            <td>: <textarea wrap="soft" name="alamat" id="alamat" rows="5" cols="40"></textarea> </td>
+        </tr>
+  
+        <tr>
+          <td colspan="4"><button type="submit" class="btn btn-info btn-flat">Simpan</button></td>
+        </tr>
+    </table>
+
+                    </div>
+
+                </div>
+            </div>
+            </div>
+        </div>
+        <?php echo form_close();?>
+
+
 

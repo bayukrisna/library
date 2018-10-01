@@ -79,7 +79,7 @@
                       <table class="table">
                          <tr>
             <td class="left_column">Nama Kurikulum <font color="#FF0000">*</font></td>
-            <td>: <input type="text" name="nama_kurikulum" id="nama_kurikulum" class="validate[required] text-input" maxlength="20" size="40" style="width:80%" required=""></td>
+            <td>: <input type="text" name="nama_kurikulum" id="nama_kurikulum" class="validate[required] text-input" size="40" style="width:80%" required=""></td>
         </tr> 
         <tr>
             <td class="left_column">Program Studi <font color="#FF0000">*</font></td>
