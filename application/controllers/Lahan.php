@@ -20,10 +20,10 @@ class Lahan extends CI_Controller {
 	{
 			if($this->Lahan_model->simpan_lahan() == TRUE){
 				$this->session->set_flashdata('message', '<div class="alert alert-success"> Data lahan berhasil disimpan </div>');
-            	redirect('Lahan');
+            	redirect('lahan');
 			}  else{
 				$this->session->set_flashdata('message', '<div class="alert alert-danger"> '.validation_errors().' </div>');
-            	redirect('Lahan');
+            	redirect('lahan');
 		}
 	}
 	/*public function edit_lahan(){
