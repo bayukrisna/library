@@ -4,23 +4,23 @@
           <?php echo $this->session->flashdata('message');?>
           <div class="box">
             <div class="box-header with-border">
-              <h3 class="box-title">DATA BARANG</h3>
+              <h3 class="box-title">DATA PEMASOK (<i>SUPPLIER</i>)</h3>
             </div>
 
             
             <!-- /.box-header -->
             <div class="box-body">
               <table id="example1" class="table table-hover table-striped table-condensed" style="text-transform: uppercase;">
-                <a href="" data-toggle="modal" data-target="#modal_tambah" class="btn btn-primary btn-sm btn-flat" ><i class="fa fa-plus"></i> Tambah</a> <br> <br>
+                <a href="<?php echo base_url(); ?>supplier/tambah_supplier" class="btn btn-primary btn-sm btn-flat" ><i class="fa fa-plus"></i> Tambah</a> <br> <br>
                 <thead>
                 <tr>
                   <th>No</th>
-                  <th>Nama Barang</th>
-                  <th>Tipe</th>
-                  <th>Merk</th>
-                  <th>Jumlah</th>
-                  <th>Ruang</th>
-                  <th>status</th>
+                  <th>Pemasok</th>
+                  <th>Alamat</th>
+                  <th>Kontak</th>
+                  <th>Email</th>
+                  <th>No. Telepon</th>
+                  <th>Total Aset</th>
                   <th>Aksi</th>
                 </tr>
                 </thead>
@@ -28,20 +28,20 @@
 
                 <?php 
                 $no = 0;
-                foreach ($barang as $data) {
+                foreach ($supplier as $data) {
                   echo '
                   
                 <tr>
                   <td>'.++$no.'</td>
 
-                  <td><a href="" data-toggle="modal" data-target="#modal_view'.$data->id_barang.'">'.$data->nama_barang.'</a></td>
-                  <td>'.$data->tipe_barang.'</td>
-                  <td>'.$data->merk.'</td>
-                  <td>'.$data->jumlah.'</td>
-                  <td>'.$data->nama_ruang.'</td>
-                  <td>'.$data->status.'</td>
+                  <td><a href="" data-toggle="modal" data-target="#modal_view'.$data->id_supplier.'">'.$data->nama_supplier.'</a></td>
+                  <td>'.$data->alamat.'</td>
+                  <td>'.$data->nama_kontak.'</td>
+                  <td>'.$data->email.'</td>
+                  <td>'.$data->no_telp.'</td>
+                  <td>'.$data->nama_supplier.'</td>
                   <td>
-                  <a href="" data-toggle="modal" data-target="#modal_edit'.$data->id_barang.'" class="btn btn-warning btn-xs btn-flat" ><i class="glyphicon glyphicon-pencil"></i><span class="tooltiptext">Edit</span></a>
+                  <a href="" data-toggle="modal" data-target="#modal_edit'.$data->id_supplier.'" class="btn btn-warning btn-xs btn-flat" ><i class="glyphicon glyphicon-pencil"></i><span class="tooltiptext">Edit</span></a>
                 
                 ' ;
                 
@@ -62,7 +62,7 @@
 <!--<?php 
         foreach($ruang as $i):
         ?>
-        <div class="modal fade" id="modal_view<?php echo $i->id_barang;?>" >
+        <div class="modal fade" id="modal_view<?php echo $i->id_supplier;?>" >
             <div class="modal-dialog">
             <div class="modal-content">
             <div class="modal-header">
@@ -113,7 +113,7 @@
     <!-- <?php 
         foreach($data_periode as $i):
         ?>
-        <div class="modal fade" id="modal_edit<?php echo $i->id_barang;?>" >
+        <div class="modal fade" id="modal_edit<?php echo $i->id_supplier;?>" >
             <div class="modal-dialog">
             <div class="modal-content">
             <div class="modal-header">
@@ -173,7 +173,7 @@
         <tr>
           <td class="left_column">Jumlah Minggu Pertemuan </td>
             <td>: <input value="<?php echo $i->jumlah_minggu_pertemuan; ?>" type="number" name="jumlah_minggu_pertemuan" id="target_mhs_baru" class="text-input" style="width:50px"></td>
-            <input type="hidden" name="id_barang" value="<?php echo $i->id_barang; ?>">
+            <input type="hidden" name="id_supplier" value="<?php echo $i->id_supplier; ?>">
         </tr> 
         <tr>
           <td colspan="4"><button type="submit" class="btn btn-info btn-flat">Edit</button></td>
@@ -244,14 +244,14 @@
             <td>: <input type="number" name="jumlah" id="jumlah" class="text-input" style="width:80px" required=""></td>
         </tr> 
          <tr>
-          <td class="left_column">status <font color="#FF0000">*</font></td>
+          <td class="left_column">Kondisi <font color="#FF0000">*</font></td>
             <td>: 
-      <select name="id_status" id="id_status" class="validate[required]" required="">
-            <option value=""> Pilih status </option>
+      <select name="id_kondisi" id="id_kondisi" class="validate[required]" required="">
+            <option value=""> Pilih Kondisi </option>
              <?php 
-                                        foreach($getstatus as $row)
+                                        foreach($getKondisi as $row)
                                         { 
-                                          echo '<option value="'.$row->id_status.'">'.$row->status.'</option>';
+                                          echo '<option value="'.$row->id_kondisi.'">'.$row->kondisi.'</option>';
                                         }
                                     ?>
 

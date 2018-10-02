@@ -19,7 +19,7 @@
                   <th>Luas (m<sup>2</sup>)</th>
                   <th>Kapasitas</th>
                   <th>Gedung</th>
-                  <th>Kondisi</th>
+                  <th>status</th>
                   <th>Aksi</th>
                 </tr>
                 </thead>
@@ -37,7 +37,7 @@
                   <td>'.$data->luas_ruang.'</td>
                   <td>'.$data->kapasitas.'</td>
                   <td>'.$data->nama_gedung.'</td>
-                  <td>'.$data->kondisi.'</td>
+                  <td>'.$data->status.'</td>
                   <td>
                   <a href="" data-toggle="modal" data-target="#modal_edit'.$data->id_ruang.'" class="btn btn-warning btn-xs btn-flat" ><i class="glyphicon glyphicon-pencil"></i><span class="tooltiptext">Edit</span></a>
                 
@@ -228,14 +228,14 @@
             <td>: <input type="number" name="kapasitas" id="kapasitas" class="text-input" style="width:80px" required=""></td>
         </tr> 
          <tr>
-          <td class="left_column">Kondisi <font color="#FF0000">*</font></td>
+          <td class="left_column">status <font color="#FF0000">*</font></td>
             <td>: 
-      <select name="id_kondisi" id="id_kondisi" class="validate[required]" required="">
-            <option value=""> Pilih Kondisi </option>
+      <select name="id_status" id="id_status" class="validate[required]" required="">
+            <option value=""> Pilih status </option>
              <?php 
-                                        foreach($getKondisi as $row)
+                                        foreach($getstatus as $row)
                                         { 
-                                          echo '<option value="'.$row->id_kondisi.'">'.$row->kondisi.'</option>';
+                                          echo '<option value="'.$row->id_status.'">'.$row->status.'</option>';
                                         }
                                     ?>
 

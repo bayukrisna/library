@@ -16,7 +16,7 @@ class Gedung_model extends CI_Model {
             'luas_gedung'                 => $this->input->post('luas_gedung'),
             'kepemilikan'      		=> $this->input->post('kepemilikan'),
             'kegiatan'            => $this->input->post('kegiatan'),
-            'id_kondisi'         => $this->input->post('id_kondisi'),
+            'id_status'         => $this->input->post('id_status'),
             'id_lahan'         => $this->input->post('id_lahan')
         );
     
@@ -32,9 +32,9 @@ class Gedung_model extends CI_Model {
 
     }
   
-    function drop_kondisi()
+    function drop_status()
     {
-        return $this->db->get('tb_kondisi')
+        return $this->db->get('tb_status')
                     ->result();
 
     }
@@ -46,9 +46,9 @@ class Gedung_model extends CI_Model {
     }
 
    public function data_gedung(){
-     return $this->db->select('id_gedung, nama_gedung, luas_gedung, tb_gedung.kepemilikan, kegiatan, tb_gedung.id_lahan, nama_lahan, tb_gedung.id_kondisi, kondisi')
+     return $this->db->select('id_gedung, nama_gedung, luas_gedung, tb_gedung.kepemilikan, kegiatan, tb_gedung.id_lahan, nama_lahan, tb_gedung.id_status, status')
                     ->join('tb_lahan', 'tb_lahan.id_lahan = tb_gedung.id_lahan')
-                    ->join('tb_kondisi', 'tb_kondisi.id_kondisi = tb_gedung.id_kondisi')
+                    ->join('tb_status', 'tb_status.id_status = tb_gedung.id_status')
                     ->get('tb_gedung')->result();
    }
 
@@ -58,7 +58,7 @@ class Gedung_model extends CI_Model {
             'luas_gedung'                 => $this->input->post('luas_gedung'),
             'kepemilikan'           => $this->input->post('kepemilikan'),
             'kegiatan'            => $this->input->post('kegiatan'),
-            'id_kondisi'         => $this->input->post('id_kondisi'),
+            'id_status'         => $this->input->post('id_status'),
             'id_lahan'         => $this->input->post('id_lahan')
       );
 

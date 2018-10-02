@@ -1,47 +1,39 @@
 <?php
 defined('BASEPATH') OR exit('No direct script access allowed');
 
-class Ruang extends CI_Controller {
+class Supplier extends CI_Controller {
 
 	public function __construct()
 	{
 		parent::__construct();
-		$this->load->model('Ruang_model');
+		$this->load->model('Supplier_model');
 	}
 
 	public function index()
 	{
-			$data['getGedung'] = $this->Ruang_model->getGedung();
-			$data['getstatus'] = $this->Ruang_model->getstatus();
-			$data['ruang'] = $this->Ruang_model->data_ruang();
-			$data['main_view'] = 'Ruang/ruang_view';
+			$data['supplier'] = $this->Supplier_model->data_supplier();
+			$data['main_view'] = 'Supplier/supplier_view';
 			$this->load->view('template', $data);
 	}
 
-	public function simpan_ruang()
+	public function tambah_supplier()
 	{
-			if($this->Ruang_model->simpan_ruang() == TRUE){
-				$this->session->set_flashdata('message', '<div class="alert alert-success"> Data ruang berhasil disimpan </div>');
-            	redirect('ruang');
+			$data['main_view'] = 'Supplier/tambah_supplier_view';
+			$this->load->view('template', $data);
+	}
+
+	public function simpan_supplier()
+	{
+			if($this->Supplier_model->simpan_supplier() == TRUE){
+				$this->session->set_flashdata('message', '<div class="alert alert-success"> Data supplier berhasil disimpan </div>');
+            	redirect('supplier');
 			}  else{
 				$this->session->set_flashdata('message', '<div class="alert alert-danger"> '.validation_errors().' </div>');
-            	redirect('ruang');
+            	redirect('supplier');
 		}
 	}
 
-	function getGedung()
-    {
-        return $this->db->get('tb_gedung')
-                    ->result();
 
-    }
-
-    function getstatus()
-    {
-        return $this->db->get('tb_status')
-                    ->result();
-
-    }
 	/*public function edit_lahan(){
 			$id_periode = $this->input->post('id_lahan');
 					if ($this->ruang_model->edit_periode($id_periode) == TRUE) {

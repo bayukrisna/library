@@ -12,7 +12,7 @@ class Gedung extends CI_Controller {
 	public function index()
 	{
 			$data['gedung'] = $this->Gedung_model->data_gedung();
-			$data['drop_kondisi'] = $this->Gedung_model->drop_kondisi();
+			$data['drop_status'] = $this->Gedung_model->drop_status();
 			$data['drop_lahan'] = $this->Gedung_model->drop_lahan();
 			$data['main_view'] = 'Gedung/gedung_view';
 			$this->load->view('template', $data);
