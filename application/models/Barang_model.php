@@ -17,10 +17,27 @@ class Barang_model extends CI_Model {
             'id_tipe'                 => $this->input->post('id_tipe'),
             'merk'      		=> $this->input->post('merk'),
             'jumlah'         => $this->input->post('jumlah'),
-            'id_kondisi'         => $this->input->post('id_kondisi'),
+            'id_status'         => $this->input->post('id_status'),
         );
     
         $this->db->insert('tb_barang', $data);
+
+        if($this->db->affected_rows() > 0){
+            
+                return true;
+        } else {
+            return false;
+            
+        }
+    }
+
+     public function simpan_status()
+    {
+        $data = array(
+            'status'                        => $this->input->post('status')
+        );
+    
+        $this->db->insert('tb_status', $data);
 
         if($this->db->affected_rows() > 0){
             
@@ -37,9 +54,14 @@ class Barang_model extends CI_Model {
      return $this->db->join('tb_ruang','tb_ruang.id_ruang=tb_barang.id_ruang')
                     ->join('tb_gedung','tb_gedung.id_gedung=tb_ruang.id_gedung')
                     ->join('tb_lahan','tb_lahan.id_lahan=tb_gedung.id_lahan')
-                    ->join('tb_kondisi','tb_kondisi.id_kondisi=tb_ruang.id_kondisi')
+                    ->join('tb_status','tb_status.id_status=tb_ruang.id_status')
                     ->join('tb_tipe_barang','tb_tipe_barang.id_tipe=tb_barang.id_tipe')
                     ->get('tb_barang')
+                    ->result();
+   }
+
+    public function data_status(){
+     return $this->db->get('tb_status')
                     ->result();
    }
 

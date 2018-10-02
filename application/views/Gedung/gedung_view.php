@@ -87,8 +87,8 @@
                                 <td>: <?php echo $i->kegiatan ?></td>
                             </tr> 
                             <tr>
-                              <td class="left_column">Kondisi</td>
-                                <td>: <?php echo $i->kondisi ?></td>
+                              <td class="left_column">status</td>
+                                <td>: <?php echo $i->status ?></td>
                             </tr> 
                             <tr>
                               <td class="left_column">Lahan</td>
@@ -139,14 +139,14 @@
             <td>: <textarea wrap="soft" name="kegiatan" id="kegiatan" rows="5"  cols="50"><?php echo $i->kegiatan ?></textarea> </td>
         </tr>
         <tr>
-          <td class="left_column">Kondisi</td>
-            <td>: <select class="text-input" style="width:80%" name="id_kondisi" required="">
-              <option value="<?php echo $i->id_kondisi ?>"><?php echo $i->kondisi ?></option>
+          <td class="left_column">status</td>
+            <td>: <select class="text-input" style="width:80%" name="id_status" required="">
+              <option value="<?php echo $i->id_status ?>"><?php echo $i->status ?></option>
                   <?php 
 
-                  foreach($drop_kondisi as $row)
+                  foreach($drop_status as $row)
                   { 
-                    echo '<option value="'.$row->id_kondisi.'">'.$row->kondisi.'</option>';
+                    echo '<option value="'.$row->id_status.'">'.$row->status.'</option>';
                   }
                   ?>
             </select> </td>
@@ -210,14 +210,14 @@
             <td>: <textarea wrap="soft" name="kegiatan" id="kegiatan" rows="5" cols="50"></textarea> </td>
         </tr>
         <tr>
-          <td class="left_column">Kondisi</td>
-            <td>: <select class="text-input" style="width:80%" name="id_kondisi" required="">
-              <option value="">Pilih Kondisi</option>
+          <td class="left_column">status</td>
+            <td>: <select class="text-input" style="width:80%" name="id_status" required="">
+              <option value="">Pilih status</option>
                   <?php 
 
-                  foreach($drop_kondisi as $row)
+                  foreach($drop_status as $row)
                   { 
-                    echo '<option value="'.$row->id_kondisi.'">'.$row->kondisi.'</option>';
+                    echo '<option value="'.$row->id_status.'">'.$row->status.'</option>';
                   }
                   ?>
             </select> </td>

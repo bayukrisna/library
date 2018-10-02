@@ -20,6 +20,13 @@ class Barang extends CI_Controller {
 			$this->load->view('template', $data);
 	}
 
+	public function status()
+	{
+			$data['status'] = $this->Barang_model->data_status();
+			$data['main_view'] = 'Status/status_view';
+			$this->load->view('template', $data);
+	}
+
 	public function simpan_barang()
 	{
 			if($this->Barang_model->simpan_barang() == TRUE){
@@ -28,6 +35,17 @@ class Barang extends CI_Controller {
 			}  else{
 				$this->session->set_flashdata('message', '<div class="alert alert-danger"> '.validation_errors().' </div>');
             	redirect('barang');
+		}
+	}
+
+	public function simpan_status()
+	{
+			if($this->Barang_model->simpan_status() == TRUE){
+				$this->session->set_flashdata('message', '<div class="alert alert-success"> Data status berhasil disimpan </div>');
+            	redirect('barang/status');
+			}  else{
+				$this->session->set_flashdata('message', '<div class="alert alert-danger"> '.validation_errors().' </div>');
+            	redirect('barang/status');
 		}
 	}
 

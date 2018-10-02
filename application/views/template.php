@@ -104,18 +104,18 @@ a:hover .tooltiptext {
 <body class="hold-transition skin-blue sidebar-mini">
 <div class="wrapper">
 
-  <header class="main-header">
+  <header class="main-header" >
     <!-- Logo -->
-    <a href="../../index2.html" class="logo">
+    <a href="../../index2.html" class="logo" style="background-color: maroon">
       <!-- mini logo for sidebar mini 50x50 pixels -->
       <span class="logo-mini"><b>JIC</b></span>
       <!-- logo for regular state and mobile devices -->
       <span class="logo-lg"><img src="<?php echo base_url(); ?>/assets/img/STIE JIC-WHITE-01.png" alt="User Image" style="border: none;width: 120px;margin-top: -10px;"></span>
     </a>
     <!-- Header Navbar: style can be found in header.less -->
-    <nav class="navbar navbar-static-top">
+    <nav class="navbar navbar-static-top" style="background-color: maroon">
       <!-- Sidebar toggle button-->
-      <a href="#" class="sidebar-toggle" data-toggle="offcanvas" role="button">
+      <a href="#" class="sidebar-toggle" data-toggle="offcanvas" role="button" style="background-color: maroon">
         
       </a>
       <div class="navbar-custom-menu">
@@ -140,7 +140,7 @@ a:hover .tooltiptext {
             </a>
             <ul class="dropdown-menu">
               <!-- User image -->
-              <li class="user-header">
+              <li class="user-header" style="background-color: maroon">
                 <img src="<?php echo base_url(); ?>/assets/img/JIC-WHITE-02.png" class="img-circle" alt="User Image">
 
                 <p>
@@ -176,7 +176,7 @@ a:hover .tooltiptext {
   <!-- Left side column. contains the logo and sidebar -->
   <aside class="main-sidebar">
     <!-- sidebar: style can be found in sidebar.less -->
-    <section class="sidebar">
+    <section class="sidebar" >
       <!-- Sidebar user panel -->
       <!-- /.search form -->
       <!-- sidebar menu: : style can be found in sidebar.less -->

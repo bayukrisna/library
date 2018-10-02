@@ -1,7 +1,7 @@
 <?php
 defined('BASEPATH') OR exit('No direct script access allowed');
 
-class Ruang_model extends CI_Model {
+class Supplier_model extends CI_Model {
 
 
 	public function __construct()
@@ -9,17 +9,23 @@ class Ruang_model extends CI_Model {
 		parent::__construct();
 	}
 
-	 public function simpan_ruang()
+	 public function simpan_supplier()
     {
         $data = array(
-            'id_gedung'                        => $this->input->post('id_gedung'),
-            'luas_ruang'                        => $this->input->post('luas_ruang'),
-            'nama_ruang'                 => $this->input->post('nama_ruang'),
-            'kapasitas'      		=> $this->input->post('kapasitas'),
-            'id_status'         => $this->input->post('id_status'),
+            'nama_supplier'                        => $this->input->post('nama_supplier'),
+            'alamat'                        => $this->input->post('alamat'),
+            'kota'                 => $this->input->post('kota'),
+            'kodepos'      		=> $this->input->post('kodepos'),
+            'nama_kontak'         => $this->input->post('nama_kontak'),
+            'no_telp'         => $this->input->post('no_telp'),
+            'fax'         => $this->input->post('fax'),
+            'email'         => $this->input->post('email'),
+            'url'         => $this->input->post('url'),
+            'keterangan'         => $this->input->post('keterangan'),
+
         );
     
-        $this->db->insert('tb_ruang', $data);
+        $this->db->insert('tb_supplier', $data);
 
         if($this->db->affected_rows() > 0){
             
@@ -32,20 +38,9 @@ class Ruang_model extends CI_Model {
     }
   
 
-   public function data_ruang(){
-     return $this->db->join('tb_gedung','tb_gedung.id_gedung=tb_ruang.id_gedung')
-                    ->join('tb_lahan','tb_lahan.id_lahan=tb_gedung.id_lahan')
-                    ->join('tb_status','tb_status.id_status=tb_ruang.id_status')
-                    ->get('tb_ruang')
+   public function data_supplier(){
+     return $this->db->get('tb_supplier')
                     ->result();
-   }
-
-   public function getGedung(){
-     return $this->db->get('tb_gedung')->result();
-   }
-
-   public function getStatus(){
-     return $this->db->get('tb_status')->result();
    }
 
   public function edit_periode($id_periode){
