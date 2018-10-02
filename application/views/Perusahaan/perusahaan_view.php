@@ -62,18 +62,20 @@
                 <div class="modal-body">
 
                     <div class="form-group">
-                      <?php echo form_open('Perusahaan/edit_perusahaan'); ?>
-                      <table class="table" style="text-transform: uppercase;">
-      <tr>
-        <input type="hidden" name="id_perusahaan" value="<?php echo $i->id_perusahaan; ?>">
-          <td>Nama Gedung <font color="#FF0000">*</font></td>
-            <td>:  <input type="text" name="nama_perusahaan" id="tgl_perolehan" value="<?php echo $i->nama_perusahaan;?>" size="40" style="width:80%" /></td>
-        </tr>
-  
-        <tr>
-          <td colspan="4"><button type="submit" class="btn btn-info btn-flat">Simpan</button></td>
-        </tr>
-    </table>
+                      <?php echo form_open('Perusahaan/edit_perusahaan', 'class="form-horizontal"'); ?>
+                    <!-- Name -->
+                    <div class="form-group ">
+                        <label for="name" class="col-md-3 control-label">Nama Perusahaan</label>
+                        <div class="col-md-7 col-sm-12 required">
+                            <input class="form-control" type="text" name="nama_perusahaan" id="name" value="<?php echo $i->nama_perusahaan ?>" />
+                            <input type="hidden" name="id_perusahaan" value="<?php echo $i->id_perusahaan ?>">
+                            
+                        </div>
+                    </div><!-- Manufacturer -->
+
+                    <div class="box-footer text-right">
+                      <button type="submit" class="btn btn-info"><i class="fa fa-check icon-white"></i> Simpan</button>
+                    </div>    
 
                     </div>
 
@@ -94,21 +96,19 @@
                 <h3 class="modal-title" id="myModalLabel">TAMBAH PERUSAHAAN</h3>
             </div>
                 <div class="modal-body">
+                   <?php echo form_open('Perusahaan/simpan_perusahaan', 'class="form-horizontal"'); ?>
+                    <!-- Name -->
+                    <div class="form-group ">
+                        <label for="name" class="col-md-3 control-label">Nama Perusahaan</label>
+                        <div class="col-md-7 col-sm-12 required">
+                            <input class="form-control" type="text" name="nama_perusahaan" id="name" value="" />
+                            
+                        </div>
+                    </div><!-- Manufacturer -->
 
-                    <div class="form-group">
-                      <?php echo form_open('Perusahaan/simpan_perusahaan'); ?>
-                      <table class="table" style="text-transform: uppercase;">
-      <tr>
-          <td>Nama Perusahaan</td>
-            <td>:  <input type="text" name="nama_perusahaan" value="" size="40" style="width:80%" required="" /></td>
-        </tr>
-  
-        <tr>
-          <td colspan="4"><button type="submit" class="btn btn-info btn-flat">Simpan</button></td>
-        </tr>
-    </table>
-
-                    </div>
+                    <div class="box-footer text-right">
+                      <button type="submit" class="btn btn-info"><i class="fa fa-check icon-white"></i> Simpan</button>
+                    </div>                
 
                 </div>
             </div>

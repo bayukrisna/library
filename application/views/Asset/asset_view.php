@@ -256,7 +256,7 @@
 <div class="form-group ">
     <label for="custom_fieldset" class="col-md-3 control-label">Fieldset</label>
     <div class="col-md-7">
-        <select class="select2" style="width:350px" name="custom_fieldset"><option value="" selected="selected">No custom fields</option><option value="1">Asset with MAC Address</option></select>
+        <select class="select2" style="width:350px" name="fieldset"><option value="" selected="selected">No custom fields</option><option value="1">Asset with MAC Address</option></select>
         
     </div>
 </div>

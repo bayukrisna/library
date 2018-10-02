@@ -19,7 +19,7 @@ class Perusahaan extends CI_Controller {
 	public function simpan_perusahaan()
 	{
 			if($this->Perusahaan_model->simpan_perusahaan() == TRUE){
-				$this->session->set_flashdata('message', '<div class="alert alert-success"> Data lahan berhasil disimpan </div>');
+				$this->session->set_flashdata('message', '<div class="alert alert-success"> Data Perusahaan berhasil disimpan </div>');
             	redirect('perusahaan');
 			}  else{
 				$this->session->set_flashdata('message', '<div class="alert alert-danger"> '.validation_errors().' </div>');
