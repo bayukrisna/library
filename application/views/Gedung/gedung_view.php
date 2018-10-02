@@ -4,7 +4,7 @@
           <?php echo $this->session->flashdata('message');?>
           <div class="box">
             <div class="box-header with-border">
-              <h3 class="box-title">DATA Gedung</h3>
+              <h3 class="box-title">DATA GEDUNG</h3>
             </div>
 
             
@@ -186,7 +186,7 @@
             <div class="modal-content">
             <div class="modal-header">
                 <button type="button" class="close" data-dismiss="modal" aria-hidden="true">x</button>
-                <h3 class="modal-title" id="myModalLabel">TAMBAH Gedung</h3>
+                <h3 class="modal-title" id="myModalLabel">TAMBAH GEDUNG</h3>
             </div>
                 <div class="modal-body">
 

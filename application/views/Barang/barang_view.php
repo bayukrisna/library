@@ -4,7 +4,7 @@
           <?php echo $this->session->flashdata('message');?>
           <div class="box">
             <div class="box-header with-border">
-              <h3 class="box-title">DATA RUANG</h3>
+              <h3 class="box-title">DATA BARANG</h3>
             </div>
 
             
@@ -15,10 +15,11 @@
                 <thead>
                 <tr>
                   <th>No</th>
-                  <th>Nama Ruang</th>
-                  <th>Luas (m<sup>2</sup>)</th>
-                  <th>Kapasitas</th>
-                  <th>Gedung</th>
+                  <th>Nama Barang</th>
+                  <th>Tipe</th>
+                  <th>Merk</th>
+                  <th>Jumlah</th>
+                  <th>Ruang</th>
                   <th>Kondisi</th>
                   <th>Aksi</th>
                 </tr>
@@ -27,19 +28,20 @@
 
                 <?php 
                 $no = 0;
-                foreach ($ruang as $data) {
+                foreach ($barang as $data) {
                   echo '
                   
                 <tr>
                   <td>'.++$no.'</td>
 
-                  <td><a href="" data-toggle="modal" data-target="#modal_view'.$data->id_ruang.'">'.$data->nama_ruang.'</a></td>
-                  <td>'.$data->luas_ruang.'</td>
-                  <td>'.$data->kapasitas.'</td>
-                  <td>'.$data->nama_gedung.'</td>
+                  <td><a href="" data-toggle="modal" data-target="#modal_view'.$data->id_barang.'">'.$data->nama_barang.'</a></td>
+                  <td>'.$data->tipe_barang.'</td>
+                  <td>'.$data->merk.'</td>
+                  <td>'.$data->jumlah.'</td>
+                  <td>'.$data->nama_ruang.'</td>
                   <td>'.$data->kondisi.'</td>
                   <td>
-                  <a href="" data-toggle="modal" data-target="#modal_edit'.$data->id_ruang.'" class="btn btn-warning btn-xs btn-flat" ><i class="glyphicon glyphicon-pencil"></i><span class="tooltiptext">Edit</span></a>
+                  <a href="" data-toggle="modal" data-target="#modal_edit'.$data->id_barang.'" class="btn btn-warning btn-xs btn-flat" ><i class="glyphicon glyphicon-pencil"></i><span class="tooltiptext">Edit</span></a>
                 
                 ' ;
                 
@@ -60,7 +62,7 @@
 <!--<?php 
         foreach($ruang as $i):
         ?>
-        <div class="modal fade" id="modal_view<?php echo $i->id_ruang;?>" >
+        <div class="modal fade" id="modal_view<?php echo $i->id_barang;?>" >
             <div class="modal-dialog">
             <div class="modal-content">
             <div class="modal-header">
@@ -111,7 +113,7 @@
     <!-- <?php 
         foreach($data_periode as $i):
         ?>
-        <div class="modal fade" id="modal_edit<?php echo $i->id_ruang;?>" >
+        <div class="modal fade" id="modal_edit<?php echo $i->id_barang;?>" >
             <div class="modal-dialog">
             <div class="modal-content">
             <div class="modal-header">
@@ -171,7 +173,7 @@
         <tr>
           <td class="left_column">Jumlah Minggu Pertemuan </td>
             <td>: <input value="<?php echo $i->jumlah_minggu_pertemuan; ?>" type="number" name="jumlah_minggu_pertemuan" id="target_mhs_baru" class="text-input" style="width:50px"></td>
-            <input type="hidden" name="id_ruang" value="<?php echo $i->id_ruang; ?>">
+            <input type="hidden" name="id_barang" value="<?php echo $i->id_barang; ?>">
         </tr> 
         <tr>
           <td colspan="4"><button type="submit" class="btn btn-info btn-flat">Edit</button></td>
@@ -194,38 +196,52 @@
             <div class="modal-content">
             <div class="modal-header">
                 <button type="button" class="close" data-dismiss="modal" aria-hidden="true">x</button>
-                <h3 class="modal-title" id="myModalLabel">TAMBAH RUANG</h3>
+                <h3 class="modal-title" id="myModalLabel">TAMBAH BARANG</h3>
             </div>
                 <div class="modal-body">
 
                     <div class="form-group">
-                      <?php echo form_open('ruang/simpan_ruang'); ?>
+                      <?php echo form_open('barang/simpan_barang'); ?>
                       <table class="table" style="text-transform: uppercase;">
       <tr>
-          <td>Nama Ruang <font color="#FF0000">*</font></td>
-            <td>:  <input type="text" name="nama_ruang" id="nama_ruang" value="" size="40" style="width:80%" required="" />
+          <td>Nama Barang <font color="#FF0000">*</font></td>
+            <td>:  <input type="text" name="nama_barang" id="nama_barang" value="" size="40" style="width:80%" required="" />
         </tr>
       <tr>
-          <td class="left_column">Gedung <font color="#FF0000">*</font></td>
+          <td class="left_column">Ruang <font color="#FF0000">*</font></td>
             <td>: 
-      <select name="id_gedung" id="id_gedung" class="validate[required]" required="">
-            <option value=""> Pilih Gedung </option>
+      <select name="id_ruang" id="id_ruang" class="validate[required]" required="">
+            <option value=""> Pilih Ruang </option>
              <?php 
-                                        foreach($getGedung as $row)
+                                        foreach($getRuang as $row)
                                         { 
-                                          echo '<option value="'.$row->id_gedung.'">'.$row->nama_gedung.'</option>';
+                                          echo '<option value="'.$row->id_ruang.'">'.$row->nama_ruang.'</option>';
+                                        }
+                                    ?>
+
+            </select>            </td>
+        </tr> 
+        <tr>
+          <td class="left_column">Tipe<font color="#FF0000">*</font></td>
+            <td>: 
+      <select name="id_tipe" id="id_tpe" class="validate[required]" required="">
+            <option value=""> Pilih Tipe </option>
+             <?php 
+                                        foreach($getTipe as $row)
+                                        { 
+                                          echo '<option value="'.$row->id_tipe.'">'.$row->tipe_barang.'</option>';
                                         }
                                     ?>
 
             </select>            </td>
         </tr> 
       <tr>
-          <td>Luas <font color="#FF0000">*</font></td>
-            <td>:  <input type="number" name="luas_ruang" id="luas_ruang" style="width:80px" required="" /> m<sup>2</sup>
+          <td>Merk <font color="#FF0000">*</font></td>
+            <td>:  <input type="text" name="merk" id="merk" style="width:80px" value="" />
         </tr>
         <tr>
-          <td class="left_column">Kapasitas</td>
-            <td>: <input type="number" name="kapasitas" id="kapasitas" class="text-input" style="width:80px" required=""></td>
+          <td class="left_column">Jumlah</td>
+            <td>: <input type="number" name="jumlah" id="jumlah" class="text-input" style="width:80px" required=""></td>
         </tr> 
          <tr>
           <td class="left_column">Kondisi <font color="#FF0000">*</font></td>

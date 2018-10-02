@@ -1,7 +1,7 @@
 <?php
 defined('BASEPATH') OR exit('No direct script access allowed');
 
-class Ruang_model extends CI_Model {
+class Barang_model extends CI_Model {
 
 
 	public function __construct()
@@ -9,17 +9,18 @@ class Ruang_model extends CI_Model {
 		parent::__construct();
 	}
 
-	 public function simpan_ruang()
+	 public function simpan_barang()
     {
         $data = array(
-            'id_gedung'                        => $this->input->post('id_gedung'),
-            'luas_ruang'                        => $this->input->post('luas_ruang'),
-            'nama_ruang'                 => $this->input->post('nama_ruang'),
-            'kapasitas'      		=> $this->input->post('kapasitas'),
+            'id_ruang'                        => $this->input->post('id_ruang'),
+            'nama_barang'                        => $this->input->post('nama_barang'),
+            'id_tipe'                 => $this->input->post('id_tipe'),
+            'merk'      		=> $this->input->post('merk'),
+            'jumlah'         => $this->input->post('jumlah'),
             'id_kondisi'         => $this->input->post('id_kondisi'),
         );
     
-        $this->db->insert('tb_ruang', $data);
+        $this->db->insert('tb_barang', $data);
 
         if($this->db->affected_rows() > 0){
             
@@ -32,20 +33,22 @@ class Ruang_model extends CI_Model {
     }
   
 
-   public function data_ruang(){
-     return $this->db->join('tb_gedung','tb_gedung.id_gedung=tb_ruang.id_gedung')
+   public function data_barang(){
+     return $this->db->join('tb_ruang','tb_ruang.id_ruang=tb_barang.id_ruang')
+                    ->join('tb_gedung','tb_gedung.id_gedung=tb_ruang.id_gedung')
                     ->join('tb_lahan','tb_lahan.id_lahan=tb_gedung.id_lahan')
                     ->join('tb_kondisi','tb_kondisi.id_kondisi=tb_ruang.id_kondisi')
-                    ->get('tb_ruang')
+                    ->join('tb_tipe_barang','tb_tipe_barang.id_tipe=tb_barang.id_tipe')
+                    ->get('tb_barang')
                     ->result();
    }
 
-   public function getGedung(){
-     return $this->db->get('tb_gedung')->result();
+   public function getRuang(){
+     return $this->db->get('tb_ruang')->result();
    }
 
-   public function getKondisi(){
-     return $this->db->get('tb_kondisi')->result();
+   public function getTipe(){
+     return $this->db->get('tb_tipe_barang')->result();
    }
 
   public function edit_periode($id_periode){
