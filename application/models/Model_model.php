@@ -13,8 +13,7 @@ class Model_model extends CI_Model {
     {
         $data = array(
             'nama_model'                        => $this->input->post('nama_model'),
-            'id_manufacturer'                 => $this->input->post('id_manufacturer'),
-            'id_category'      		=> $this->input->post('id_category'),
+            'id_merk'                 => $this->input->post('id_merk'),
             'model_no'            => $this->input->post('model_no'),
             'eol'         => $this->input->post('eol'),
             'notes'         => $this->input->post('notes'),
@@ -33,9 +32,9 @@ class Model_model extends CI_Model {
 
     }
   
-    function drop_kondisi()
+    function drop_merk()
     {
-        return $this->db->get('tb_kondisi')
+        return $this->db->get('tb_merk')
                     ->result();
 
     }
@@ -47,15 +46,15 @@ class Model_model extends CI_Model {
     }
 
    public function data_model(){
-     return $this->db->get('tb_model')->result();
+     return $this->db->join('tb_merk', 'tb_merk.id_merk = tb_model.id_merk', 'left')
+                    ->get('tb_model')->result();
    }
 
   public function edit_model($id_model, $upload){
 
     $data = array(
             'nama_model'                        => $this->input->post('nama_model'),
-            'id_manufacturer'                 => $this->input->post('id_manufacturer'),
-            'id_category'           => $this->input->post('id_category'),
+            'id_merk'                 => $this->input->post('id_merk'),
             'model_no'            => $this->input->post('model_no'),
             'eol'         => $this->input->post('eol'),
             'notes'         => $this->input->post('notes')

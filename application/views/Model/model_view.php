@@ -16,11 +16,10 @@
                 <tr>
                   <th>ID</th>
                   <th>Gambar</th>
-                  <th>Pabrik</th>
+                  <th>Merk</th>
                   <th>Asset Model</th>
                   <th>Model No.</th>
                   <th>Assets</th>
-          
                   <th>EOL</th>
                   <th>Aksi</th>
                 </tr>
@@ -35,11 +34,10 @@
                 <tr>
                   <td>'.++$no.'</td>
                   <td><img src="'.base_url().'uploads/'.$data->image.'" style="width: 50px" onerror="" ></td>
-                  <td>'.$data->id_merk.'</td>
+                  <td>'.$data->merk.'</td>
                   <td>'.$data->nama_model.'</td>
                   <td>'.$data->model_no.'</td>
                   <td>'.$data->model_no.'</td>
-              
                   <td>'.$data->eol.'</td>
                   <td>
                   <a href="" data-toggle="modal" data-target="#modal_edit'.$data->id_model.'" class="btn btn-warning btn-xs btn-flat" ><i class="glyphicon glyphicon-pencil"></i><span class="tooltiptext">Edit</span></a>
@@ -87,21 +85,20 @@
 <div class="form-group ">
     <label for="manufacturer_id" class="col-md-3 control-label">Perusahaan</label>
     <div class="col-md-7 required">
-        <select class="select2" style="width:100%" name="id_manufacturer">
-            <option value="<?php echo $i->id_manufacturer ?>" selected="selected"><?php echo $i->id_manufacturer ?></option>
+        <select class="select2" style="width:100%" name="id_merk">
+            <option value="<?php echo $i->id_merk ?>" selected="selected"><?php echo $i->merk ?></option>
+            <?php 
+
+                  foreach($drop_merk as $row)
+                  { 
+                    echo '<option value="'.$row->id_merk.'">'.$row->merk.'</option>';
+                  }
+                  ?>
         </select>
         
     </div>
 </div><!-- Category -->
-<div class="form-group ">
-    <label for="category_id" class="col-md-3 control-label">Kategori</label>
-    <div class="col-md-7 col-sm-12 required">
-        <select class="select2" style="width:100%" name="id_category">
-            <option value="<?php echo $i->id_category ?>" selected="selected"><?php echo $i->id_category ?></option>
-        </select>
-        
-    </div>
-</div><!-- Model Number -->
+<!-- Model Number -->
 <div class="form-group ">
     <label for="model_number" class="col-md-3 control-label">Model No.</label>
     <div class="col-md-7">
@@ -143,12 +140,7 @@
 </div>
 
                     <div class="box-footer text-right">
-<<<<<<< HEAD
-    
-    <button type="submit" class="btn btn-success"><i class="fa fa-check icon-white"></i> Save</button>
-=======
     <button type="submit" class="btn btn-success"><i class="fa fa-check icon-white"></i> Simpan</button>
->>>>>>> cb0559e28e227b2a8307c081aaf5c89d0685e976
 </div>                </form>
 
                 </div>
@@ -180,15 +172,21 @@
     </div>
 </div><!-- Manufacturer -->
 <div class="form-group ">
-    <label for="manufacturer_id" class="col-md-3 control-label">Perusahaan</label>
+    <label for="manufacturer_id" class="col-md-3 control-label">Merk</label>
     <div class="col-md-7 required">
-        <select class="select2" style="width:100%" name="id_manufacturer">
+        <select class="select2" style="width:100%" name="id_merk">
             <option value="" selected="selected">Pilih Merk</option>
+            <?php 
+
+                  foreach($drop_merk as $row)
+                  { 
+                    echo '<option value="'.$row->id_merk.'">'.$row->merk.'</option>';
+                  }
+                  ?>
         </select>
         
     </div>
 </div><!-- Category -->
-
 <div class="form-group ">
     <label for="model_number" class="col-md-3 control-label">Model No.</label>
     <div class="col-md-7">

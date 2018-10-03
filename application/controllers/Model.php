@@ -11,6 +11,7 @@ class Model extends CI_Controller {
 
 	public function index()
 	{
+			$data['drop_merk'] = $this->Model_model->drop_merk();
 			$data['model'] = $this->Model_model->data_model();
 			$data['main_view'] = 'Model/model_view';
 			$this->load->view('template', $data);
