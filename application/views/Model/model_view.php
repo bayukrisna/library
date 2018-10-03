@@ -19,10 +19,8 @@
                   <th>Asset Model</th>
                   <th>Model No.</th>
                   <th>Assets</th>
-                  <th>Penyusutan</th>
                   <th>Kategori</th>
                   <th>EOL</th>
-                  <th>Fieldset</th>
                   <th>Aksi</th>
                 </tr>
                 </thead>
@@ -39,10 +37,8 @@
                   <td>'.$data->nama_model.'</td>
                   <td>'.$data->model_no.'</td>
                   <td>'.$data->model_no.'</td>
-                  <td>'.$data->id_depreciation.'</td>
                   <td>'.$data->id_category.'</td>
                   <td>'.$data->eol.'</td>
-                  <td>'.$data->id_fieldset.'</td>
                   <td>
                   <a href="" data-toggle="modal" data-target="#modal_edit'.$data->id_model.'" class="btn btn-warning btn-xs btn-flat" ><i class="glyphicon glyphicon-pencil"></i><span class="tooltiptext">Edit</span></a>
                 
@@ -96,7 +92,7 @@
     </div>
 </div><!-- Category -->
 <div class="form-group ">
-    <label for="category_id" class="col-md-3 control-label">Category</label>
+    <label for="category_id" class="col-md-3 control-label">Kategori</label>
     <div class="col-md-7 col-sm-12 required">
         <select class="select2" style="width:100%" name="id_category">
             <option value="<?php echo $i->id_category ?>" selected="selected"><?php echo $i->id_category ?></option>
@@ -108,14 +104,6 @@
     <label for="model_number" class="col-md-3 control-label">Model No.</label>
     <div class="col-md-7">
     <input class="form-control" type="text" name="model_no" id="model_number" value="<?php echo $i->model_no ?>" />
-        
-    </div>
-</div><!-- Depreciation -->
-<div class="form-group ">
-    <label for="depreciation_id" class="col-md-3 control-label">Depreciation</label>
-    <div class="col-md-7">
-        <select class="select2" style="width:350px" name="id_depreciation">
-            <option value="<?php echo $i->id_depreciation ?>" selected="selected"><?php echo $i->id_depreciation ?></option></select>
         
     </div>
 </div>
@@ -132,21 +120,9 @@
         </div>
     </div>
 </div>
-
-<!-- Custom Fieldset -->
-<div class="form-group ">
-    <label for="custom_fieldset" class="col-md-3 control-label">Fieldset</label>
-    <div class="col-md-7">
-        <select class="select2" style="width:350px" name="id_fieldset">
-          <option value="<?php echo $i->id_fieldset ?>" selected="selected"><?php echo $i->id_fieldset ?></option>
-        </select>
-        
-    </div>
-</div>
-
 <!-- Notes -->
 <div class="form-group ">
-    <label for="notes" class="col-md-3 control-label">Notes</label>
+    <label for="notes" class="col-md-3 control-label">Catatan</label>
     <div class="col-md-7 col-sm-12">
         <textarea class="col-md-6 form-control" id="notes" name="notes"><?php echo $i->notes ?></textarea>
         
@@ -163,8 +139,7 @@
 </div>
 
                     <div class="box-footer text-right">
-    <a class="btn btn-link" href="http://www.jic.ac.id/snipe_it/public/hardware/models">Cancel</a>
-    <button type="submit" class="btn btn-success"><i class="fa fa-check icon-white"></i> Save</button>
+    <button type="submit" class="btn btn-success"><i class="fa fa-check icon-white"></i> Simpan</button>
 </div>                </form>
 
                 </div>
@@ -205,7 +180,7 @@
     </div>
 </div><!-- Category -->
 <div class="form-group ">
-    <label for="category_id" class="col-md-3 control-label">Category</label>
+    <label for="category_id" class="col-md-3 control-label">Kategori</label>
     <div class="col-md-7 col-sm-12 required">
         <select class="select2" style="width:100%" name="id_category">
             <option value="" selected="selected">Select a Category</option>
@@ -217,14 +192,6 @@
     <label for="model_number" class="col-md-3 control-label">Model No.</label>
     <div class="col-md-7">
     <input class="form-control" type="text" name="model_no" id="model_number" value="" />
-        
-    </div>
-</div><!-- Depreciation -->
-<div class="form-group ">
-    <label for="depreciation_id" class="col-md-3 control-label">Depreciation</label>
-    <div class="col-md-7">
-        <select class="select2" style="width:350px" name="id_depreciation">
-            <option value="" selected="selected">Do Not Depreciate</option></select>
         
     </div>
 </div>
@@ -242,18 +209,9 @@
     </div>
 </div>
 
-<!-- Custom Fieldset -->
-<div class="form-group ">
-    <label for="custom_fieldset" class="col-md-3 control-label">Fieldset</label>
-    <div class="col-md-7">
-        <select class="select2" style="width:350px" name="id_fieldset"><option value="" selected="selected">No custom fields</option><option value="1">Asset with MAC Address</option></select>
-        
-    </div>
-</div>
-
 <!-- Notes -->
 <div class="form-group ">
-    <label for="notes" class="col-md-3 control-label">Notes</label>
+    <label for="notes" class="col-md-3 control-label">Catatan</label>
     <div class="col-md-7 col-sm-12">
         <textarea class="col-md-6 form-control" id="notes" name="notes"></textarea>
         
@@ -262,7 +220,7 @@
 <!-- Image -->
 
 <div class="form-group ">
-    <label class="col-md-3 control-label" for="image">Upload Image</label>
+    <label class="col-md-3 control-label" for="image">Unggah Gambar</label>
     <div class="col-md-5">
         <input name="image" type="file" id="image">
         
@@ -270,8 +228,7 @@
 </div>
 
                     <div class="box-footer text-right">
-    <a class="btn btn-link" href="http://www.jic.ac.id/snipe_it/public/hardware/models">Cancel</a>
-    <button type="submit" class="btn btn-success"><i class="fa fa-check icon-white"></i> Save</button>
+    <button type="submit" class="btn btn-success"><i class="fa fa-check icon-white"></i> Simpan</button>
 </div>                </form>
 
                 </div>
