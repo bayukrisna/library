@@ -1,30 +1,29 @@
 <?php
 defined('BASEPATH') OR exit('No direct script access allowed');
 
-class Merk extends CI_Controller {
+class Kategori extends CI_Controller {
 
 	public function __construct()
 	{
 		parent::__construct();
-		$this->load->model('Merk_model');
+		$this->load->model('Kategori_model');
 	}
 
 	public function index()
 	{
-			$data['getKategori'] = $this->Merk_model->getKategori();
-			$data['merk'] = $this->Merk_model->data_merk();
-			$data['main_view'] = 'Merk/merk_view';
+			$data['kategori'] = $this->Kategori_model->data_ruang();
+			$data['main_view'] = 'Kategori/kategori_view';
 			$this->load->view('template', $data);
 	}
 
-	public function simpan_merk()
+	public function simpan_kategori()
 	{
-			if($this->Merk_model->simpan_merk() == TRUE){
-				$this->session->set_flashdata('message', '<div class="alert alert-success"> Data merk berhasil disimpan </div>');
-            	redirect('merk');
+			if($this->Kategori_model->simpan_kategori() == TRUE){
+				$this->session->set_flashdata('message', '<div class="alert alert-success"> Data kategori berhasil disimpan </div>');
+            	redirect('kategori');
 			}  else{
 				$this->session->set_flashdata('message', '<div class="alert alert-danger"> '.validation_errors().' </div>');
-            	redirect('merk');
+            	redirect('kategori');
 		}
 	}
 

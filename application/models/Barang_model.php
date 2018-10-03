@@ -50,13 +50,27 @@ class Barang_model extends CI_Model {
     }
   
 
-   public function data_barang(){
+   public function data_barang($id_kategori){
      return $this->db->join('tb_ruang','tb_ruang.id_ruang=tb_barang.id_ruang')
                     ->join('tb_gedung','tb_gedung.id_gedung=tb_ruang.id_gedung')
                     ->join('tb_lahan','tb_lahan.id_lahan=tb_gedung.id_lahan')
                     ->join('tb_status','tb_status.id_status=tb_ruang.id_status')
-                    ->join('tb_tipe_barang','tb_tipe_barang.id_tipe=tb_barang.id_tipe')
+                    ->join('tb_model','tb_model.id_model=tb_barang.id_model')
+                    ->join('tb_merk','tb_merk.id_merk=tb_model.id_merk')
+                    ->join('tb_kategori','tb_kategori.id_kategori=tb_merk.id_kategori')
+                    ->where('tb_kategori.id_kategori', $id_kategori)
                     ->get('tb_barang')
+                    ->result();
+   }
+
+   public function detail_kategori($id_kategori){
+     return $this->db->where('tb_kategori.id_kategori', $id_kategori)
+                    ->get('tb_kategori')
+                    ->row();
+   }
+
+    public function data_kategori_barang(){
+     return $this->db->get('tb_kategori')
                     ->result();
    }
 
@@ -65,12 +79,21 @@ class Barang_model extends CI_Model {
                     ->result();
    }
 
-   public function getRuang(){
-     return $this->db->get('tb_ruang')->result();
+   public function get_merk_by_kategori($id_kategori){
+     return $this->db->where('tb_merk.id_kategori', $id_kategori)
+                    ->get('tb_merk')->result();
    }
 
-   public function getTipe(){
-     return $this->db->get('tb_tipe_barang')->result();
+   public function getPerusahaan(){
+     return $this->db->get('tb_perusahaan')->result();
+   }
+
+   public function getSupplier(){
+     return $this->db->get('tb_perusahaan')->result();
+   }
+
+   public function getModel(){
+     return $this->db->get('tb_perusahaan')->result();
    }
 
   public function edit_periode($id_periode){

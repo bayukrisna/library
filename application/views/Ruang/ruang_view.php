@@ -203,12 +203,13 @@
                       <table class="table" style="text-transform: uppercase;">
       <tr>
           <td>Nama Ruang <font color="#FF0000">*</font></td>
-            <td>:  <input type="text" name="nama_ruang" id="nama_ruang" value="" size="40" style="width:80%" required="" />
+            <td>:  <input type="text" name="nama_ruang" id="nama_ruang" value="" size="40" style="width:80%" required="" class="text-input" />
         </tr>
       <tr>
+        
           <td class="left_column">Gedung <font color="#FF0000">*</font></td>
             <td>: 
-      <select name="id_gedung" id="id_gedung" class="validate[required]" required="">
+      <select name="id_gedung" id="id_gedung" class="validate[required]" required="" class="text-input select2">
             <option value=""> Pilih Gedung </option>
              <?php 
                                         foreach($getGedung as $row)

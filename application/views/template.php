@@ -194,10 +194,35 @@ a:hover .tooltiptext {
             </span>
           </a>
           <ul class="treeview-menu">
+            <li><a href="<?php echo base_url(); ?>perusahaan"><i class="fa fa-circle-o"></i>PERUSAHAAN</a></li>
+            <li><a href="<?php echo base_url(); ?>barang/status"><i class="fa fa-circle-o"></i>STATUS</a></li>
+            <li><a href="<?php echo base_url(); ?>merk"><i class="fa fa-circle-o"></i>MERK / BRAND</a></li>
+            <li><a href="<?php echo base_url(); ?>model"><i class="fa fa-circle-o"></i>MODEL / TIPE</a></li>
+            <li><a href="<?php echo base_url(); ?>supplier"><i class="fa fa-circle-o"></i>PEMASOK / SUPPLIER</a></li>
+          </ul>
+        </li>
+        <li class="treeview">
+          <a href="#">
+            <i class="fa fa-dashboard"></i> <span>PRASARANA</span>
+            <span class="pull-right-container">
+              <i class="fa fa-angle-left pull-right"></i>
+            </span>
+          </a>
+          <ul class="treeview-menu">
             <li><a href="<?php echo base_url(); ?>lahan"><i class="fa fa-circle-o"></i>LAHAN</a></li>
             <li><a href="<?php echo base_url(); ?>gedung"><i class="fa fa-circle-o"></i>GEDUNG / BANGUNAN</a></li>
             <li><a href="<?php echo base_url(); ?>ruang"><i class="fa fa-circle-o"></i>RUANG</a></li>
-            <li><a href="<?php echo base_url(); ?>barang"><i class="fa fa-circle-o"></i>BARANG</a></li>
+          </ul>
+        </li>
+        <li class="treeview">
+          <a href="#">
+            <i class="fa fa-dashboard"></i> <span>SARANA</span>
+            <span class="pull-right-container">
+              <i class="fa fa-angle-left pull-right"></i>
+            </span>
+          </a>
+          <ul class="treeview-menu">
+            <li><a href="<?php echo base_url(); ?>barang"><i class="fa fa-circle-o"></i>BARANG / ASET</a></li>
           </ul>
         </li>
         

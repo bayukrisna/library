@@ -1,7 +1,7 @@
 <?php
 defined('BASEPATH') OR exit('No direct script access allowed');
 
-class Merk_model extends CI_Model {
+class Kategori_model extends CI_Model {
 
 
 	public function __construct()
@@ -9,14 +9,13 @@ class Merk_model extends CI_Model {
 		parent::__construct();
 	}
 
-	 public function simpan_merk()
+	 public function simpan_kategori()
     {
         $data = array(
-            'merk'                        => $this->input->post('merk'),
-            'id_kategori'                        => $this->input->post('id_kategori'),
+            'kategori'                        => $this->input->post('kategori'),
         );
     
-        $this->db->insert('tb_merk', $data);
+        $this->db->insert('tb_kategori', $data);
 
         if($this->db->affected_rows() > 0){
             
@@ -29,13 +28,7 @@ class Merk_model extends CI_Model {
     }
   
 
-   public function data_merk(){
-     return $this->db->join('tb_kategori', 'tb_kategori.id_kategori=tb_merk.id_kategori')
-                    ->get('tb_merk')
-                    ->result();
-   }
-
-   public function getKategori(){
+   public function data_ruang(){
      return $this->db->get('tb_kategori')
                     ->result();
    }

@@ -12,12 +12,54 @@ class Barang extends CI_Controller {
 
 	public function index()
 	{
-			$data['getRuang'] = $this->Barang_model->getRuang();
-			$data['getKondisi'] = $this->Ruang_model->getKondisi();
-			$data['getTipe'] = $this->Barang_model->getTipe();
-			$data['barang'] = $this->Barang_model->data_barang();
+			$data['kategori'] = $this->Barang_model->data_kategori_barang();
+			$data['main_view'] = 'Barang/kategori_barang_view';
+			$this->load->view('template', $data);
+	}
+
+	public function data_barang()
+	{
+			$id_kategori = $this->uri->segment(3);
+			$data['kategori'] = $this->Barang_model->detail_kategori($id_kategori);
+			$data['barang'] = $this->Barang_model->data_barang($id_kategori);
 			$data['main_view'] = 'Barang/barang_view';
 			$this->load->view('template', $data);
+	}
+
+	public function tambah_barang()
+	{
+			$id_kategori = $this->uri->segment(3);
+			$data['getSupplier'] = $this->Barang_model->getSupplier();
+			$data['getPerusahaan'] = $this->Barang_model->getPerusahaan();
+			$data['kategori'] = $this->Barang_model->detail_kategori($id_kategori);
+			$data['main_view'] = 'Barang/tambah_barang_view';
+			$this->load->view('template', $data);
+	}
+
+	public function get_merk_by_kategori($param = NULL){
+		$id_kategori = $param;
+		$result = $this->Barang_model->get_merk_by_kategori($id_kategori);
+		$option = "";
+		$option .= '<option value=""> Pilih Merk </option>';
+		foreach ($result as $data) {
+			$option = 
+			$option .= "<option value='".$data->id_merk."'>".$data->merk."</option>";
+			
+		}
+		echo $option;
+	}
+
+	public function get_model_by_merk($param = NULL){
+		$id_merk = $param;
+		$result = $this->Barang_model->get_model_by_merk($id_merk);
+		$option = "";
+		$option .= '<option value=""> Pilih Model </option>';
+		foreach ($result as $data) {
+			$option = 
+			$option .= "<option value='".$data->id_model."'>".$data->nama_model."</option>";
+			
+		}
+		echo $option;
 	}
 
 	public function status()

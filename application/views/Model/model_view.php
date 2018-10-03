@@ -163,7 +163,7 @@
 </div>
 
                     <div class="box-footer text-right">
-    <a class="btn btn-link" href="http://www.jic.ac.id/snipe_it/public/hardware/models">Cancel</a>
+    
     <button type="submit" class="btn btn-success"><i class="fa fa-check icon-white"></i> Save</button>
 </div>                </form>
 
