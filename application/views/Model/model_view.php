@@ -20,7 +20,7 @@
                   <th>Asset Model</th>
                   <th>Model No.</th>
                   <th>Assets</th>
-                  <th>Kategori</th>
+          
                   <th>EOL</th>
                   <th>Aksi</th>
                 </tr>
@@ -35,11 +35,11 @@
                 <tr>
                   <td>'.++$no.'</td>
                   <td><img src="'.base_url().'uploads/'.$data->image.'" style="width: 50px" onerror="" ></td>
-                  <td>'.$data->id_manufacturer.'</td>
+                  <td>'.$data->id_merk.'</td>
                   <td>'.$data->nama_model.'</td>
                   <td>'.$data->model_no.'</td>
                   <td>'.$data->model_no.'</td>
-                  <td>'.$data->id_category.'</td>
+              
                   <td>'.$data->eol.'</td>
                   <td>
                   <a href="" data-toggle="modal" data-target="#modal_edit'.$data->id_model.'" class="btn btn-warning btn-xs btn-flat" ><i class="glyphicon glyphicon-pencil"></i><span class="tooltiptext">Edit</span></a>
@@ -183,20 +183,12 @@
     <label for="manufacturer_id" class="col-md-3 control-label">Perusahaan</label>
     <div class="col-md-7 required">
         <select class="select2" style="width:100%" name="id_manufacturer">
-            <option value="" selected="selected">Select a Manufacturer</option>
+            <option value="" selected="selected">Pilih Merk</option>
         </select>
         
     </div>
 </div><!-- Category -->
-<div class="form-group ">
-    <label for="category_id" class="col-md-3 control-label">Kategori</label>
-    <div class="col-md-7 col-sm-12 required">
-        <select class="select2" style="width:100%" name="id_category">
-            <option value="" selected="selected">Select a Category</option>
-        </select>
-        
-    </div>
-</div><!-- Model Number -->
+
 <div class="form-group ">
     <label for="model_number" class="col-md-3 control-label">Model No.</label>
     <div class="col-md-7">
