@@ -15,6 +15,7 @@
                 <thead>
                 <tr>
                   <th>ID</th>
+                  <th>Gambar</th>
                   <th>Pabrik</th>
                   <th>Asset Model</th>
                   <th>Model No.</th>
@@ -33,6 +34,7 @@
                   
                 <tr>
                   <td>'.++$no.'</td>
+                  <td><img src="'.base_url().'uploads/'.$data->image.'" style="width: 50px" onerror="" ></td>
                   <td>'.$data->id_manufacturer.'</td>
                   <td>'.$data->nama_model.'</td>
                   <td>'.$data->model_no.'</td>
@@ -131,8 +133,10 @@
 <!-- Image -->
 
 <div class="form-group ">
-    <label class="col-md-3 control-label" for="image">Upload Image</label>
+
+    <label class="col-md-3 control-label" for="image">Unggah Gambar</label>
     <div class="col-md-5">
+      <img src="<?php echo base_url().'uploads/'.$i->image?>" style="width: 50px" onerror="" >
         <input name="image" type="file" id="image">
         
     </div>
