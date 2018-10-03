@@ -16,7 +16,6 @@ class Model_model extends CI_Model {
             'id_manufacturer'                 => $this->input->post('id_manufacturer'),
             'id_category'      		=> $this->input->post('id_category'),
             'model_no'            => $this->input->post('model_no'),
-            'id_depreciation'         => $this->input->post('id_depreciation'),
             'eol'         => $this->input->post('eol'),
             'notes'         => $this->input->post('notes'),
             'image'         => $upload['file_name']
@@ -58,7 +57,6 @@ class Model_model extends CI_Model {
             'id_manufacturer'                 => $this->input->post('id_manufacturer'),
             'id_category'           => $this->input->post('id_category'),
             'model_no'            => $this->input->post('model_no'),
-            'id_depreciation'         => $this->input->post('id_depreciation'),
             'eol'         => $this->input->post('eol'),
             'notes'         => $this->input->post('notes')
         );
