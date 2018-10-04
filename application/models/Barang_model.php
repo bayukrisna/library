@@ -111,6 +111,19 @@ class Barang_model extends CI_Model {
                     ->result();
    }
 
+   public function data_barang_semua(){
+     return $this->db->join('tb_ruang','tb_ruang.id_ruang=tb_barang.id_ruang')
+                    ->join('tb_gedung','tb_gedung.id_gedung=tb_ruang.id_gedung')
+                    ->join('tb_lahan','tb_lahan.id_lahan=tb_gedung.id_lahan')
+                    ->join('tb_status','tb_status.id_status=tb_ruang.id_status')
+                    ->join('tb_model','tb_model.id_model=tb_barang.id_model')
+                    ->join('tb_merk','tb_merk.id_merk=tb_model.id_merk')
+                    ->join('tb_kategori','tb_kategori.id_kategori=tb_merk.id_kategori')
+                    ->join('tb_perusahaan','tb_perusahaan.id_perusahaan=tb_barang.id_perusahaan')         
+                    ->get('tb_barang')
+                    ->result();
+   }
+
    public function detail_barang($id_barang){
      return $this->db->join('tb_ruang','tb_ruang.id_ruang=tb_barang.id_ruang')
                     ->join('tb_gedung','tb_gedung.id_gedung=tb_ruang.id_gedung')
@@ -158,14 +171,14 @@ class Barang_model extends CI_Model {
                     ->result();
    }
 
-   public function get_merk_by_kategori($id_kategori){
-     return $this->db->where('tb_merk.id_kategori', $id_kategori)
-                    ->get('tb_merk')->result();
-   }
-
    public function get_model_by_merk($id_merk){
      return $this->db->where('tb_model.id_merk', $id_merk)
                     ->get('tb_model')->result();
+   }
+
+   public function get_merk_by_kategori($id_kategori){
+     return $this->db->where('tb_merk.id_kategori', $id_kategori)
+                    ->get('tb_merk')->result();
    }
 
    public function getPerusahaan(){
@@ -186,6 +199,10 @@ class Barang_model extends CI_Model {
 
    public function getTipe(){
      return $this->db->get('tb_tipe_pemeliharaan')->result();
+   }
+
+   public function getKategori(){
+     return $this->db->get('tb_kategori')->result();
    }
 
 

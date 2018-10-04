@@ -21,7 +21,7 @@
 </div>
 <div class="">   
 
-            <a href="<?php echo base_url(); ?>barang/tambah_barang/<?php echo $kategori->id_kategori; ?>" class="btn btn-primary btn-sm btn-flat pull-right" ><i class="fa fa-plus"></i> Tambah</a>
+            <a href="<?php echo base_url(); ?>barang/tambah_barang_by_kategori/<?php echo $kategori->id_kategori; ?>" class="btn btn-primary btn-sm btn-flat pull-right" ><i class="fa fa-plus"></i> Tambah</a>
 
              <a class="btn btn-default btn-sm pull-right" style="margin-right: 10px"  href="<?php echo base_url('barang'); ?>"><i class="fa fa-angle-left"></i> Back </a> <br> <br>
 

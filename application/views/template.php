@@ -212,7 +212,19 @@ a:hover .tooltiptext {
             </span>
           </a>
           <ul class="treeview-menu">
-            <li><a href="<?php echo base_url(); ?>barang"><i class="fa fa-circle-o"></i>BARANG / ASET</a></li>
+            <li class="treeview">
+          <a href="#">
+            <i class="fa fa-circle-o"></i> <span>BARANG / ASET</span>
+            <span class="pull-right-container">
+              <i class="fa fa-angle-left"></i>
+            </span>
+          </a>
+          <ul class="treeview-menu">
+            <li><a href="<?php echo base_url(); ?>barang/data_aset"><i class="fa fa-circle-o"></i>SEMUA</a></li>
+            <li><a href="<?php echo base_url(); ?>barang"><i class="fa fa-circle-o"></i>PER KATEGORI</a></li>
+          </ul>
+        </li>
+
           </ul>
         </li>
         
