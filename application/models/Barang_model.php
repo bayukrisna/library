@@ -9,7 +9,7 @@ class Barang_model extends CI_Model {
 		parent::__construct();
 	}
 
-	 public function simpan_barang()
+	 public function simpan_barang($upload)
     {
         $data = array(
             'id_ruang'                        => $this->input->post('id_ruang'),
@@ -21,9 +21,29 @@ class Barang_model extends CI_Model {
             'tgl_pembelian'         => $this->input->post('tgl_pembelian'),
             'id_supplier'         => $this->input->post('id_supplier'),
             'requestable'         => $this->input->post('requestable'),
+            'foto_barang'         => $upload['file_name']
         );
     
         $this->db->insert('tb_barang', $data);
+
+        if($this->db->affected_rows() > 0){
+            
+                return true;
+        } else {
+            return false;
+            
+        }
+    }
+
+    public function simpan_berkas($upload)
+    {
+        $data = array(
+            'id_barang'                        => $this->input->post('id_barang'),
+            'keterangan_berkas'         => $this->input->post('keterangan_berkas'),
+            'nama_berkas'         => $upload['file_name']
+        );
+    
+        $this->db->insert('tb_berkas', $data);
 
         if($this->db->affected_rows() > 0){
             
@@ -51,6 +71,30 @@ class Barang_model extends CI_Model {
         }
 
     }
+
+    public function simpan_pemeliharaan()
+    {
+        $data = array(
+            'id_barang'     => $this->input->post('id_barang'),
+            'id_tipe_pemeliharaan'     => $this->input->post('id_tipe_pemeliharaan'),
+            'id_supplier'     => $this->input->post('id_supplier'),
+            'tgl_mulai_perbaikan'     => $this->input->post('tgl_mulai_perbaikan'),
+            'tgl_selesai_perbaikan'     => $this->input->post('tgl_selesai_perbaikan'),
+            'harga_perbaikan'     => $this->input->post('harga_perbaikan'),
+            'permasalahan'     => $this->input->post('permasalahan'),
+        );
+    
+        $this->db->insert('tb_pemeliharaan', $data);
+
+        if($this->db->affected_rows() > 0){
+            
+                return true;
+        } else {
+            return false;
+            
+        }
+
+    }
   
 
    public function data_barang($id_kategori){
@@ -61,10 +105,40 @@ class Barang_model extends CI_Model {
                     ->join('tb_model','tb_model.id_model=tb_barang.id_model')
                     ->join('tb_merk','tb_merk.id_merk=tb_model.id_merk')
                     ->join('tb_kategori','tb_kategori.id_kategori=tb_merk.id_kategori')
-                    ->join('tb_perusahaan','tb_perusahaan.id_perusahaan=tb_barang.id_perusahaan')
-                    
+                    ->join('tb_perusahaan','tb_perusahaan.id_perusahaan=tb_barang.id_perusahaan')         
                     ->where('tb_kategori.id_kategori', $id_kategori)
                     ->get('tb_barang')
+                    ->result();
+   }
+
+   public function detail_barang($id_barang){
+     return $this->db->join('tb_ruang','tb_ruang.id_ruang=tb_barang.id_ruang')
+                    ->join('tb_gedung','tb_gedung.id_gedung=tb_ruang.id_gedung')
+                    ->join('tb_lahan','tb_lahan.id_lahan=tb_gedung.id_lahan')
+                    ->join('tb_status','tb_status.id_status=tb_ruang.id_status')
+                    ->join('tb_model','tb_model.id_model=tb_barang.id_model')
+                    ->join('tb_merk','tb_merk.id_merk=tb_model.id_merk')
+                    ->join('tb_kategori','tb_kategori.id_kategori=tb_merk.id_kategori')
+                    ->join('tb_perusahaan','tb_perusahaan.id_perusahaan=tb_barang.id_perusahaan')
+                    ->join('tb_supplier','tb_supplier.id_supplier=tb_barang.id_supplier')         
+                    ->where('tb_barang.id_barang', $id_barang)
+                    ->get('tb_barang')
+                    ->row();
+   }
+
+    public function data_pemeliharaan($id_barang){
+     return $this->db->join('tb_barang','tb_barang.id_barang=tb_pemeliharaan.id_barang')  
+                    ->join('tb_tipe_pemeliharaan','tb_tipe_pemeliharaan.id_tipe_pemeliharaan=tb_pemeliharaan.id_tipe_pemeliharaan') 
+                    ->join('tb_supplier','tb_supplier.id_supplier=tb_pemeliharaan.id_supplier')     
+                    ->where('tb_pemeliharaan.id_barang', $id_barang)
+                    ->get('tb_pemeliharaan')
+                    ->result();
+   }
+
+   public function data_berkas($id_barang){
+     return $this->db->join('tb_barang','tb_barang.id_barang=tb_berkas.id_barang')  
+                    ->where('tb_berkas.id_barang', $id_barang)
+                    ->get('tb_berkas')
                     ->result();
    }
 
@@ -108,6 +182,10 @@ class Barang_model extends CI_Model {
 
    public function getStatus(){
      return $this->db->get('tb_status')->result();
+   }
+
+   public function getTipe(){
+     return $this->db->get('tb_tipe_pemeliharaan')->result();
    }
 
 

@@ -20,7 +20,7 @@ class Model extends CI_Controller {
 	public function simpan_model()
 	{
 		$config['upload_path'] = './uploads/';
-        $config['allowed_types'] = 'jpg|png|jpeg|pdf';
+        $config['allowed_types'] = 'jpg|png|jpeg';
         $this->load->library('upload', $config);
         $this->upload->do_upload('image');
 			if($this->Model_model->simpan_model($this->upload->data()) == TRUE){

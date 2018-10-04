@@ -30,7 +30,7 @@
 
     <div class="box box-info">
   <div class="box-body">
-  <table class="table table-bordered table-striped" id="example3" style="text-transform: uppercase;">
+  <table class="table2 table-bordered table-striped" id="example3" style="text-transform: uppercase;">
   <thead>
   <tr>
     <th style="width:5%" style="text-align:center">No.</th>
@@ -50,7 +50,7 @@
       ?>
       <tr>
       <td><?php echo ++$no;?></td>
-        <td style="text-align:center"><?php echo $data->nama_barang;?></td>
+        <td style="text-align:center"><a href="<?php echo base_url(); ?>barang/detail_barang/<?php echo $data->id_barang; ?>"><?php echo $data->nama_barang;?></a></td>
         <td style="text-align:center"><?php echo $data->merk;?></td>
         <td style="text-align:center"><?php echo $data->nama_model;?></td>
         <td style="text-align:center"><?php echo $data->nama_perusahaan;?></td>
