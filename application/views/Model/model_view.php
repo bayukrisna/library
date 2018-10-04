@@ -4,7 +4,7 @@
           <?php echo $this->session->flashdata('message');?>
           <div class="box">
             <div class="box-header with-border">
-              <h3 class="box-title">DATA MODEL ASSET </h3>
+              <h3 class="box-title">DATA MODEL</h3>
             </div>
 
             
@@ -15,11 +15,11 @@
                 <thead>
                 <tr>
                   <th>ID</th>
-                  <th>Gambar</th>
+                 <th>Model</th>
                   <th>Merk</th>
-                  <th>Asset Model</th>
+                  
                   <th>Model No.</th>
-                  <th>Assets</th>
+                 
                   <th>EOL</th>
                   <th>Aksi</th>
                 </tr>
@@ -33,11 +33,11 @@
                   
                 <tr>
                   <td>'.++$no.'</td>
-                  <td><img src="'.base_url().'uploads/'.$data->image.'" style="width: 50px" onerror="" ></td>
-                  <td>'.$data->merk.'</td>
                   <td>'.$data->nama_model.'</td>
+                  <td>'.$data->merk.'</td>
+                  
                   <td>'.$data->model_no.'</td>
-                  <td>'.$data->model_no.'</td>
+                 
                   <td>'.$data->eol.'</td>
                   <td>
                   <a href="" data-toggle="modal" data-target="#modal_edit'.$data->id_model.'" class="btn btn-warning btn-xs btn-flat" ><i class="glyphicon glyphicon-pencil"></i><span class="tooltiptext">Edit</span></a>
@@ -165,7 +165,7 @@
                     
 <!-- Name -->
 <div class="form-group ">
-    <label for="name" class="col-md-3 control-label">Nama Model Asset</label>
+    <label for="name" class="col-md-3 control-label">Model</label>
     <div class="col-md-7 col-sm-12 required">
         <input class="form-control" type="text" name="nama_model" id="name" value="" required="" />
         

@@ -196,6 +196,7 @@ a:hover .tooltiptext {
           <ul class="treeview-menu">
             <li><a href="<?php echo base_url(); ?>perusahaan"><i class="fa fa-circle-o"></i>PERUSAHAAN</a></li>
             <li><a href="<?php echo base_url(); ?>barang/status"><i class="fa fa-circle-o"></i>STATUS</a></li>
+            <li><a href="<?php echo base_url(); ?>kategori"><i class="fa fa-circle-o"></i>KATEGORI BARANG</a></li>
             <li><a href="<?php echo base_url(); ?>merk"><i class="fa fa-circle-o"></i>MERK / BRAND</a></li>
             <li><a href="<?php echo base_url(); ?>model"><i class="fa fa-circle-o"></i>MODEL / TIPE</a></li>
             <li><a href="<?php echo base_url(); ?>supplier"><i class="fa fa-circle-o"></i>PEMASOK / SUPPLIER</a></li>

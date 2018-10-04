@@ -31,6 +31,8 @@ class Barang extends CI_Controller {
 			$id_kategori = $this->uri->segment(3);
 			$data['getSupplier'] = $this->Barang_model->getSupplier();
 			$data['getPerusahaan'] = $this->Barang_model->getPerusahaan();
+			$data['getRuang'] = $this->Barang_model->getRuang();
+			$data['getStatus'] = $this->Barang_model->getStatus();
 			$data['kategori'] = $this->Barang_model->detail_kategori($id_kategori);
 			$data['main_view'] = 'Barang/tambah_barang_view';
 			$this->load->view('template', $data);
@@ -71,9 +73,10 @@ class Barang extends CI_Controller {
 
 	public function simpan_barang()
 	{
+		$id_kategori = $this->uri->segment(3);
 			if($this->Barang_model->simpan_barang() == TRUE){
 				$this->session->set_flashdata('message', '<div class="alert alert-success"> Data barang berhasil disimpan </div>');
-            	redirect('barang');
+            	redirect('barang/data_barang/'.$this->uri->segment(3));
 			}  else{
 				$this->session->set_flashdata('message', '<div class="alert alert-danger"> '.validation_errors().' </div>');
             	redirect('barang');

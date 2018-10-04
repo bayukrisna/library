@@ -14,10 +14,13 @@ class Barang_model extends CI_Model {
         $data = array(
             'id_ruang'                        => $this->input->post('id_ruang'),
             'nama_barang'                        => $this->input->post('nama_barang'),
-            'id_tipe'                 => $this->input->post('id_tipe'),
-            'merk'      		=> $this->input->post('merk'),
-            'jumlah'         => $this->input->post('jumlah'),
             'id_status'         => $this->input->post('id_status'),
+            'id_model'         => $this->input->post('id_model'),
+            'id_perusahaan'         => $this->input->post('id_perusahaan'),
+            'harga_barang'         => $this->input->post('harga_barang'),
+            'tgl_pembelian'         => $this->input->post('tgl_pembelian'),
+            'id_supplier'         => $this->input->post('id_supplier'),
+            'requestable'         => $this->input->post('requestable'),
         );
     
         $this->db->insert('tb_barang', $data);
@@ -58,6 +61,8 @@ class Barang_model extends CI_Model {
                     ->join('tb_model','tb_model.id_model=tb_barang.id_model')
                     ->join('tb_merk','tb_merk.id_merk=tb_model.id_merk')
                     ->join('tb_kategori','tb_kategori.id_kategori=tb_merk.id_kategori')
+                    ->join('tb_perusahaan','tb_perusahaan.id_perusahaan=tb_barang.id_perusahaan')
+                    
                     ->where('tb_kategori.id_kategori', $id_kategori)
                     ->get('tb_barang')
                     ->result();
@@ -84,17 +89,27 @@ class Barang_model extends CI_Model {
                     ->get('tb_merk')->result();
    }
 
+   public function get_model_by_merk($id_merk){
+     return $this->db->where('tb_model.id_merk', $id_merk)
+                    ->get('tb_model')->result();
+   }
+
    public function getPerusahaan(){
      return $this->db->get('tb_perusahaan')->result();
    }
 
    public function getSupplier(){
-     return $this->db->get('tb_perusahaan')->result();
+     return $this->db->get('tb_supplier')->result();
    }
 
-   public function getModel(){
-     return $this->db->get('tb_perusahaan')->result();
+   public function getRuang(){
+     return $this->db->get('tb_ruang')->result();
    }
+
+   public function getStatus(){
+     return $this->db->get('tb_status')->result();
+   }
+
 
   public function edit_periode($id_periode){
     $data = array(

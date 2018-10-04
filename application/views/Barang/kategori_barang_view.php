@@ -4,7 +4,7 @@
           <?php echo $this->session->flashdata('message');?>
           <div class="box">
             <div class="box-header with-border">
-              <h3 class="box-title">DATA KATEGORI BARANG ATAU ASET</h3>
+              <h3 class="box-title">DATA BARANG / ASET BERDASARKAN KATEGORI</h3>
             </div>
 
             
@@ -25,13 +25,15 @@
                 <?php 
                 $no = 0;
                 foreach ($kategori as $data) {
+                   $total_barang = $this->db->query("SELECT count(*) AS total FROM tb_barang JOIN tb_model ON tb_model.id_model=tb_barang.id_model JOIN tb_merk ON tb_merk.id_merk=tb_model.id_merk JOIN tb_kategori ON tb_kategori.id_kategori=tb_merk.id_kategori WHERE tb_kategori.id_kategori = '$data->id_kategori'")->row();
+
                   echo '
                   
                 <tr>
                   <td>'.++$no.'</td>
 
                   <td><a href="'.base_url('barang/data_barang/'.$data->id_kategori).'">'.$data->kategori.'</a></td>
-                  <td></td>
+                  <td>'.$total_barang->total.'</td>
                 
                   <td>
                   <a href="" data-toggle="modal" data-target="#modal_edit'.$data->id_kategori.'" class="btn btn-warning btn-xs btn-flat" ><i class="glyphicon glyphicon-pencil"></i><span class="tooltiptext">Edit</span></a>

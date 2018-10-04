@@ -8,11 +8,11 @@
               <div class="row" >
                 <div class="col-lg-6">
                   <?php echo $this->session->flashdata('message');?>
-                  <?php echo form_open('barang/simpan_barang'); ?>
+                  <?php echo form_open('barang/simpan_barang/'.$kategori->id_kategori); ?>
                       <div class="form-group ">
-                          <label>Perusahaan</label>
+                          <label>Perusahaan (Kepemilikan)</label>
                           <div class="form-group">
-                              <select class="select2" style="width:100%" name="perusahaan">
+                              <select class="select2" style="width:100%" name="id_perusahaan">
                                   <option value="" selected="selected"> Pilih Perusahaan </option>
                                       <?php 
 
@@ -40,6 +40,7 @@
                           <label>Model</label>
                           <div class="form-group">
                               <select name="id_model" id="id_model" class="select2" style="width:100%">
+                              <option> Pilih Merk terlebih dahulu</option>
                         
                     
                             </select>
@@ -47,38 +48,85 @@
                           </div>
                       </div>
                       <div class="form-group">
-                        <label for="email">No. Telepon</label>
-                        <input type="text" name="no_telp" class="form-control" id="no_telp" placeholder="Wajib Diisi" required="" >
-                      </div>
-                       <div class="form-group">
-                        <label for="email">Kota</label>
-                        <input type="text" name="kota" class="form-control" id="kota" placeholder="Wajib Diisi" required="" >
+                        <label for="email">Nama Aset / Barang</label>
+                        <input type="text" name="nama_barang" class="form-control" id="nama_barang" placeholder="Wajib Diisi" required="" >
                       </div>
                       <div class="form-group">
-                        <label for="email">Alamat</label>
-                        <textarea name="alamat" id="alamat" class="form-control" placeholder="Wajib Disii" required=""></textarea>
+                        <label for="email">Harga</label>
+                        <input type="number" name="harga_barang" class="form-control" id="harga_barang" placeholder="Wajib Diisi" required="" >
+                      </div>
+                      <div class="form-group">
+                        <label for="email">Tanggal Pembelian</label>
+                        <input type="date" name="tgl_pembelian" class="form-control" id="tgl_pembelian" placeholder="Wajib Diisi" required="" >
                       </div>
                     </div>
                     <div class="col-lg-6">
-                       <div class="form-group">
-                        <label for="email">Kode Pos</label>
-                        <input type="text" name="kodepos" class="form-control" id="kodepos" placeholder="Wajib Diisi" required="" >
+                       <div class="form-group ">
+                          <label>Pemasok / Supplier</label>
+                          <div class="form-group">
+                              <select class="select2" style="width:100%" name="id_supplier">
+                                  <option value="" selected="selected"> Pilih Pemasok </option>
+                                      <?php 
+
+                                    foreach($getSupplier as $row)
+                                    { 
+                                      echo '<option value="'.$row->id_supplier.'">'.$row->nama_supplier.'</option>';
+                                    }
+                                    ?>
+                              </select>
+                               
+                              
+                          </div>
                       </div>
-                      <div class="form-group">
-                        <label for="email">Fax</label>
-                        <input type="text" name="fax" class="form-control" id="fax" value="" placeholder="Isi Bila Ada">
+                       
+                      <div class="form-group ">
+                          <label>Ditempatkan di </label>
+                          <div class="form-group">
+                              <select class="select2" style="width:100%" name="id_ruang">
+                                  <option value="" selected="selected"> Pilih Ruang </option>
+                                      <?php 
+
+                                    foreach($getRuang as $row)
+                                    { 
+                                      echo '<option value="'.$row->id_ruang.'">'.$row->nama_ruang.'</option>';
+                                    }
+                                    ?>
+                              </select>
+                              
+                              
+                          </div>
                       </div>
-                      <div class="form-group">
-                        <label for="email">Email</label>
-                        <input type="email" name="email" class="form-control" id="email" value="" placeholder="Isi Bila Ada">
+                      <div class="form-group ">
+                          <label>Status </label>
+                          <div class="form-group">
+                              <select class="select2" style="width:100%" name="id_status">
+                                  <option value="" selected="selected"> Pilih Status </option>
+                                      <?php 
+
+                                    foreach($getStatus as $row)
+                                    { 
+                                      echo '<option value="'.$row->id_status.'">'.$row->status.'</option>';
+                                    }
+                                    ?>
+                              </select>
+                              
+                              
+                          </div>
                       </div>
-                      <div class="form-group">
-                        <label for="email">Url</label>
-                        <input type="text" name="url" class="form-control" id="url" value="" placeholder="Isi Bila Ada">
+                      <div class="form-group ">
+                          <label>Bisa Dipinjam (Requestable) </label>
+                          <div class="form-group">
+                              <select class="select2" style="width:100%" name="requestable">
+                                  <option value="Y" selected="selected"> Ya </option>
+                                   <option value="N"> Tidak </option>
+                                     
+                              </select>
+                               
+                          </div>
                       </div>
                       <div class="form-group">
                         <label for="email">Keterangan</label>
-                        <textarea name="keterangan" id="keterangan" class="form-control" placeholder="Isi Bila Ada">  </textarea>
+                        <textarea name="keterangan" id="keterangan" class="form-control" placeholder="Isi Bila Ada"></textarea>
                       </div>
                       <br>
                       <br>
