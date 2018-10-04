@@ -133,12 +133,7 @@ a:hover .tooltiptext {
           <li class="dropdown user user-menu">
             <a href="#" class="dropdown-toggle" data-toggle="dropdown">
               <img src="<?php echo base_url(); ?>/assets/img/JIC-WHITE-02.png" class="user-image" alt="User Image">
-              <span class="hidden-xs"><?php if ($this->session->userdata('level') == 2) { 
-                      echo $dosen->nama_dosen;} else if ($this->session->userdata('level') == 5) {
-                        echo $mahasiswa->nama_mahasiswa;} else {
-                          echo $this->session->userdata('username');
-                        }
-                      
+              <span class="hidden-xs"><?php echo $this->session->userdata('username');
                ?></span>
             </a>
             <ul class="dropdown-menu">
@@ -147,13 +142,7 @@ a:hover .tooltiptext {
                 <img src="<?php echo base_url(); ?>/assets/img/JIC-WHITE-02.png" class="img-circle" alt="User Image">
 
                 <p>
-                  <?php if ($this->session->userdata('level') == 2) { 
-                      echo $dosen->nama_dosen;} else if ($this->session->userdata('level') == 5) {
-                        echo $mahasiswa->nama_mahasiswa;} else {
-                          echo $this->session->userdata('username');
-                        }
-                      
-               ?>
+                  <?php echo $this->session->userdata('username'); ?>
                   <small>STIE JIC | SISTEM INFORMASI AKADEMIK</small>
                 </p>
               </li>
