@@ -1,5 +1,6 @@
 <div class="row" > 
     <div class="col-md-12" >
+      <?php echo $this->session->flashdata('message');?>
         <div >
           <div class="panel panel-danger">
             <div class="panel-heading">
@@ -7,8 +8,7 @@
             <div class="panel-body" >
               <div class="row" >
                 <div class="col-lg-6">
-                  <?php echo $this->session->flashdata('message');?>
-                  <?php echo form_open('barang/simpan_barang/'.$kategori->id_kategori); ?>
+                  <?php echo form_open('barang/simpan_barang/'.$kategori->id_kategori ,' method="post" role="form" enctype="multipart/form-data"'); ?>
                       <div class="form-group ">
                           <label>Perusahaan (Kepemilikan)</label>
                           <div class="form-group">
@@ -125,12 +125,15 @@
                           </div>
                       </div>
                       <div class="form-group">
+                        <label for="email">Foto Barang</label>
+                        <input type="file" name="foto_barang" class="form-control" id="foto_barang"  >
+                      </div>
+                      <div class="form-group">
                         <label for="email">Keterangan</label>
                         <textarea name="keterangan" id="keterangan" class="form-control" placeholder="Isi Bila Ada"></textarea>
                       </div>
                       <br>
-                      <br>
-                      <br>
+                      
 
                        <button type="submit" class="btn btn-info pull-right">Simpan</button>
                     </div>
