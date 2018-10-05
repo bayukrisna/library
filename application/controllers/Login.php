@@ -51,9 +51,16 @@ class Login extends CI_Controller {
 			                $sess_data['group'] = substr($ss[0],3);
 			                $sess_data['email'] = $sess['mail'][0];
 			            }
-			            $this->session->set_userdata($sess_data);
-			            @ldap_close($ldap);
-			            redirect(base_url('dashboard'));
+			            if($sess_data['group'] == 'ITGroup' or $sess_data['group'] == 'IT' or $sess_data['group'] or 'AccountingGroup' or $sess_data['group'] == 'AcademicGroup'){
+			            	$this->user_model->create_user($sess_data['username'], $sess_data['group']);
+			            	$this->session->set_userdata($sess_data);
+				            @ldap_close($ldap);
+				            redirect(base_url('dashboard'));	
+			            } else {
+			            	$this->session->set_flashdata('message', '<div class="alert alert-danger"><p>Anda Tidak Mendapatkan Akses '.$sess_data['group'].'</p></div>');
+							redirect(base_url('login'));
+			            }
+			            
 				    } else {
 				        $this->session->set_flashdata('message', '<div class="alert alert-danger"><p>Email atau Password Salah</p></div>');
 						redirect(base_url('login'));

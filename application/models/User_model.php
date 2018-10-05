@@ -9,7 +9,23 @@ class User_model extends CI_Model {
 	{
 		parent::__construct();
 	}
-
+    public function create_user($username, $group) {
+        $query = $this->db->select('*')
+                ->from('tb_user')
+                ->where('username', $username)
+                ->get();
+        if ($query->num_rows() != 1)
+            {
+                $data = array(
+                    'username' => $username,
+                    'groupname' => $group,
+                    'status_user' => '1'
+                );
+            
+                $this->db->insert('tb_user', $data);
+                return true;
+            }
+    }
     public function masuk() {
         $username = $this->input->post('username');
         $password = $this->input->post('password');
