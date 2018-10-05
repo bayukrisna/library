@@ -112,6 +112,23 @@
                           </div>
                       </div>
                       <div class="form-group ">
+                          <label>Pengguna </label>
+                          <div class="form-group">
+                              <select class="select2" style="width:100%" name="id_ruang">
+                                  <option value="" selected="selected"> Pilih Pengguna </option>
+                                      <?php 
+
+                                    foreach($getPengguna as $row)
+                                    { 
+                                      echo '<option value="'.$row['username'].'">'.$row['username'].'</option>';
+                                    }
+                                    ?>
+                              </select>
+                              
+                              
+                          </div>
+                      </div>
+                      <div class="form-group ">
                           <label>Status </label>
                           <div class="form-group">
                               <select class="select2" style="width:100%" name="id_status">

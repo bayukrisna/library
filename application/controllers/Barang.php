@@ -61,6 +61,7 @@ class Barang extends CI_Controller {
 	public function tambah_barang()
 	{
 			$id_kategori = $this->uri->segment(3);
+			$data['getPengguna'] = $this->ldapku();
 			$data['getKategori'] = $this->Barang_model->getKategori();
 			$data['getSupplier'] = $this->Barang_model->getSupplier();
 			$data['getPerusahaan'] = $this->Barang_model->getPerusahaan();
@@ -69,6 +70,30 @@ class Barang extends CI_Controller {
 			$data['kategori'] = $this->Barang_model->detail_kategori($id_kategori);
 			$data['main_view'] = 'Barang/tambah_barang2_view';
 			$this->load->view('template', $data);
+	}
+	public function ldapku(){
+		$adServer = "10.10.0.1";
+	
+				    $ldap = ldap_connect($adServer);
+				    $username = 'bayu.krisna';
+				    $password = '12345678';
+
+				    $ldaprdn = $username.'@jic.ac.id';
+
+				    ldap_set_option($ldap, LDAP_OPT_PROTOCOL_VERSION, 3);
+				    ldap_set_option($ldap, LDAP_OPT_REFERRALS, 0);
+
+				    $bind = @ldap_bind($ldap, $ldaprdn, $password);
+				    if ($bind) {
+				        $filter="(sAMAccountName=*)";
+				        $result = ldap_search($ldap,"dc=jic,dc=ac,dc=id",$filter);
+				        $info = ldap_get_entries($ldap, $result);
+				        foreach ($info as $sess) {
+				        	$tes[] = array('username' =>  $sess['cn'][0]);
+			            }
+			        }
+			        return $tes;
+
 	}
 
 	public function get_merk_by_kategori($param = NULL){
