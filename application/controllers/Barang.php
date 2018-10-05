@@ -27,6 +27,13 @@ class Barang extends CI_Controller {
 			$this->load->view('template', $data);
 	}
 
+	public function data_aset()
+	{
+			$data['barang'] = $this->Barang_model->data_barang_semua();
+			$data['main_view'] = 'Barang/data_barang_view';
+			$this->load->view('template', $data);
+	}
+
 	public function detail_barang()
 	{
 			$id_barang = $this->uri->segment(3);
@@ -39,7 +46,7 @@ class Barang extends CI_Controller {
 			$this->load->view('template', $data);
 	}
 
-	public function tambah_barang()
+	public function tambah_barang_by_kategori()
 	{
 			$id_kategori = $this->uri->segment(3);
 			$data['getSupplier'] = $this->Barang_model->getSupplier();
@@ -48,6 +55,19 @@ class Barang extends CI_Controller {
 			$data['getStatus'] = $this->Barang_model->getStatus();
 			$data['kategori'] = $this->Barang_model->detail_kategori($id_kategori);
 			$data['main_view'] = 'Barang/tambah_barang_view';
+			$this->load->view('template', $data);
+	}
+
+	public function tambah_barang()
+	{
+			$id_kategori = $this->uri->segment(3);
+			$data['getKategori'] = $this->Barang_model->getKategori();
+			$data['getSupplier'] = $this->Barang_model->getSupplier();
+			$data['getPerusahaan'] = $this->Barang_model->getPerusahaan();
+			$data['getRuang'] = $this->Barang_model->getRuang();
+			$data['getStatus'] = $this->Barang_model->getStatus();
+			$data['kategori'] = $this->Barang_model->detail_kategori($id_kategori);
+			$data['main_view'] = 'Barang/tambah_barang2_view';
 			$this->load->view('template', $data);
 	}
 
@@ -77,6 +97,7 @@ class Barang extends CI_Controller {
 		echo $option;
 	}
 
+	
 	public function status()
 	{
 			$data['status'] = $this->Barang_model->data_status();
@@ -93,10 +114,25 @@ class Barang extends CI_Controller {
         $this->upload->do_upload('foto_barang');
 			if($this->Barang_model->simpan_barang($this->upload->data()) == TRUE){
 				$this->session->set_flashdata('message', '<div class="alert alert-success"> Data Barang berhasil disimpan </div>');
-            	redirect('barang/tambah_barang/'.$id_kategori);
+            	redirect('barang/tambah_barang_by_kategori/'.$id_kategori);
 			}  else{
 				$this->session->set_flashdata('message', '<div class="alert alert-danger"> '.validation_errors().' </div>');
-            	redirect('barang/tambah_barang/'.$id_kategori);
+            	redirect('barang/tambah_barang_by_kategori/'.$id_kategori);
+		}
+	}
+
+	public function simpan_barang2()
+	{
+		$config['upload_path'] = './uploads/';
+        $config['allowed_types'] = 'jpg|png|jpeg';
+        $this->load->library('upload', $config);
+        $this->upload->do_upload('foto_barang');
+			if($this->Barang_model->simpan_barang($this->upload->data()) == TRUE){
+				$this->session->set_flashdata('message', '<div class="alert alert-success"> Data Barang berhasil disimpan </div>');
+            	redirect('barang/tambah_barang');
+			}  else{
+				$this->session->set_flashdata('message', '<div class="alert alert-danger"> '.validation_errors().' </div>');
+            	redirect('barang/tambah_barang');
 		}
 	}
 
