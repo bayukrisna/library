@@ -21,7 +21,8 @@ class Barang_model extends CI_Model {
             'tgl_pembelian'         => $this->input->post('tgl_pembelian'),
             'id_supplier'         => $this->input->post('id_supplier'),
             'requestable'         => $this->input->post('requestable'),
-            'foto_barang'         => $upload['file_name']
+            'foto_barang'         => $upload['file_name'],
+            'pengguna'         => $this->input->post('pengguna')
         );
     
         $this->db->insert('tb_barang', $data);

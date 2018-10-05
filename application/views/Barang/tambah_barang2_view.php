@@ -114,7 +114,7 @@
                       <div class="form-group ">
                           <label>Pengguna </label>
                           <div class="form-group">
-                              <select class="select2" style="width:100%" name="id_ruang">
+                              <select class="select2" style="width:100%" name="pengguna">
                                   <option value="" selected="selected"> Pilih Pengguna </option>
                                       <?php 
 
