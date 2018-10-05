@@ -12,7 +12,7 @@
             <td class="left_column" width="15%">Ditempatkan di</td>
             <td width="35%">: <?php echo $barang->nama_ruang; ?>            </td>
             <td class="left_column" width="15%">Pengguna</td>
-            <td>: pengguna          </td>
+            <td>: <?php echo $barang->pengguna; ?>         </td>
         </tr>
                
 
@@ -46,6 +46,14 @@
                  
                   <img id="output" width="225" class="pull-right" width="40%" src="<?php echo base_url(); ?>uploads/<?php echo $barang->foto_barang; ?>" alt="Your Image" onerror="this.src='<?php echo base_url();?>uploads/user.jpg'">
                 </div></td>
+                </tr>
+                <tr>
+                    <td class="left_column" width="15%"> Bisa Dipinjam</td>
+                    <td colspan="6" size="100">: <?php if ($barang->requestable == 'Y') {
+                        $a = 'Ya';
+                    } else {
+                        $a = 'Tidak';
+                    }; echo $a; ?></td>
                 </tr>
                 <tr>
                     <td class="left_column" width="15%"> Perusahaan</td>
@@ -88,7 +96,7 @@
 
         <a href="" data-toggle="modal" data-target="#modal_tambah" class="btn btn-primary btn-sm btn-flat" ><i class="fa fa-plus"></i> Tambah</a> <br> <br>
 
-
+<div class="table-responsive">
         <table class="table2 table-bordered table-striped" id="example3" >
     <thead>
     <tr>
@@ -126,14 +134,52 @@
   
   </tbody>
     </table>
+</div>
+    </div>
+
+    <div class="tab-pane" id="tab_2">
+
+       
+        <div class="table-responsive">
+        <table class="table2 table-bordered table-striped" id="example1" >
+    <thead>
+    <tr>
+        <th style="width:5%;text-align:center">No.</th>
+        <th style="text-align:center" >Waktu</th>
+        <th style="text-align:center" >User</th>
+        <th style="text-align:center" >Aktivitas</th>
+    </tr>
+    </thead>
+    <tbody>
+    <?php 
+
+        $no = 0;
+        foreach($riwayat as $data):
+        ;
+      ?>
+      <tr>
+      <td><?php echo ++$no;?></td>
+        <td><?php echo $data->waktu_log;?></td>
+        <td><?php echo $data->user_log;?></td>
+        <td><?php echo $data->aktivitas?></td>
+    </tr>
+   
+<?php endforeach; ?>
+
+    
+
+  
+  </tbody>
+    </table>
+</div>
     </div>
 
     <div class="tab-pane" id="tab_3">
 
         <a href="" data-toggle="modal" data-target="#modal_tambah_berkas" class="btn btn-primary btn-sm btn-flat" ><i class="fa fa-plus"></i> Tambah</a> <br> <br>
 
-
-        <table class="table2 table-bordered table-striped" id="example1" >
+        <div class="table-responsive">
+        <table class="table2 table-bordered table-striped" id="example2" >
     <thead>
     <tr>
         <th style="width:5%;text-align:center">No.</th>
@@ -168,6 +214,7 @@
   
   </tbody>
     </table>
+</div>
     </div>
 
      </div>

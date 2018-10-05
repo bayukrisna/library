@@ -65,6 +65,7 @@
                       <div class="form-group">
                         <label for="email">Nama Aset / Barang</label>
                         <input type="text" name="nama_barang" class="form-control" id="nama_barang" placeholder="Wajib Diisi" required="" >
+                        <input type="hidden" name="id_barang" class="form-control" id="id_barang" value="<?php echo $getLogBarang; ?>" >
                       </div>
                       <div class="form-group">
                         <label for="email">Harga</label>

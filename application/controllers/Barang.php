@@ -37,6 +37,7 @@ class Barang extends CI_Controller {
 	public function detail_barang()
 	{
 			$id_barang = $this->uri->segment(3);
+			$data['riwayat'] = $this->Barang_model->data_riwayat($id_barang);
 			$data['barang'] = $this->Barang_model->detail_barang($id_barang);
 			$data['getTipe'] = $this->Barang_model->getTipe();
 			$data['getSupplier'] = $this->Barang_model->getSupplier();
@@ -49,6 +50,7 @@ class Barang extends CI_Controller {
 	public function tambah_barang_by_kategori()
 	{
 			$id_kategori = $this->uri->segment(3);
+			$data['getPengguna'] = $this->ldapku();
 			$data['getSupplier'] = $this->Barang_model->getSupplier();
 			$data['getPerusahaan'] = $this->Barang_model->getPerusahaan();
 			$data['getRuang'] = $this->Barang_model->getRuang();
@@ -61,6 +63,7 @@ class Barang extends CI_Controller {
 	public function tambah_barang()
 	{
 			$id_kategori = $this->uri->segment(3);
+			$data['getLogBarang'] = $this->Barang_model->getLogBarang();
 			$data['getPengguna'] = $this->ldapku();
 			$data['getKategori'] = $this->Barang_model->getKategori();
 			$data['getSupplier'] = $this->Barang_model->getSupplier();
@@ -71,6 +74,7 @@ class Barang extends CI_Controller {
 			$data['main_view'] = 'Barang/tambah_barang2_view';
 			$this->load->view('template', $data);
 	}
+
 	public function ldapku(){
 		$adServer = "10.10.0.1";
 	
@@ -137,7 +141,7 @@ class Barang extends CI_Controller {
         $config['allowed_types'] = 'jpg|png|jpeg';
         $this->load->library('upload', $config);
         $this->upload->do_upload('foto_barang');
-			if($this->Barang_model->simpan_barang($this->upload->data()) == TRUE){
+			if($this->Barang_model->simpan_barang($this->upload->data()) == TRUE && $this->Barang_model->simpan_log_barang() == TRUE){
 				$this->session->set_flashdata('message', '<div class="alert alert-success"> Data Barang berhasil disimpan </div>');
             	redirect('barang/tambah_barang_by_kategori/'.$id_kategori);
 			}  else{
@@ -152,7 +156,7 @@ class Barang extends CI_Controller {
         $config['allowed_types'] = 'jpg|png|jpeg';
         $this->load->library('upload', $config);
         $this->upload->do_upload('foto_barang');
-			if($this->Barang_model->simpan_barang($this->upload->data()) == TRUE){
+			if($this->Barang_model->simpan_barang($this->upload->data()) == TRUE && $this->Barang_model->simpan_log_barang() == TRUE){
 				$this->session->set_flashdata('message', '<div class="alert alert-success"> Data Barang berhasil disimpan </div>');
             	redirect('barang/tambah_barang');
 			}  else{

@@ -6,7 +6,8 @@ class Laporan extends CI_Controller {
 	public function __construct()
 	{
 		parent::__construct();
-		$this->load->model('laporan_model');
+		$this->load->model('Laporan_model');
+		$this->load->model('Barang_model');
 	}
 
 	public function index()
@@ -20,25 +21,41 @@ class Laporan extends CI_Controller {
 	}
 
 	/////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-	public function laporan_tamu(){
-		if ($this->session->userdata('logged_in') == TRUE) {
-		$data['main_view'] = 'Laporan/laporan_tamu_view';
+	public function laporan_barang(){
+		
+		$data['main_view'] = 'Laporan/laporan_barang_view';
+		$data['getKategori'] = $this->Barang_model->getKategori();
 		$this->load->view('template', $data);	
-		} else {
-			redirect('login');
-		}
+		
 	}
-	public function laporan_tamuku(){
-		if ($this->session->userdata('logged_in') == TRUE) {
-    $tanggal_pendaftaran = $this->input->get('tanggal_pendaftaran');
-    $tanggal_pendaftaran2 = $this->input->get('tanggal_pendaftaran2');
-    $this->laporan_model->laporan_tamu($tanggal_pendaftaran, $tanggal_pendaftaran2);
-    } else {
-			redirect('login');
-		}
+	public function laporan_barangku(){
+		
+    $tgl_pembelian1 = $this->input->get('tgl_pembelian1');
+    $tgl_pembelian2 = $this->input->get('tgl_pembelian2');
+    $id_kategori = $this->input->get('id_kategori');
+    $this->Laporan_model->laporan_barang($tgl_pembelian1, $tgl_pembelian2, $id_kategori);
+    
+  	}
+
+  	public function laporan_pemeliharaan(){
+		
+		$data['main_view'] = 'Laporan/laporan_pemeliharaan_view';
+		$data['getKategori'] = $this->Barang_model->getKategori();
+		$data['getTipe'] = $this->Barang_model->getTipe();
+		$this->load->view('template', $data);	
+		
+	}
+	public function laporan_pemeliharaanku(){
+		
+    $tgl_perbaikan1 = $this->input->get('tgl_perbaikan1');
+    $tgl_perbaikan2 = $this->input->get('tgl_perbaikan2');
+    $id_kategori = $this->input->get('id_kategori');
+    $id_tipe_pemeliharaan = $this->input->get('id_tipe_pemeliharaan');
+    $this->Laporan_model->laporan_pemeliharaan($tgl_perbaikan1, $tgl_perbaikan2, $id_kategori, $id_tipe_pemeliharaan);
+    
   	}
   	/////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-  	public function laporan_mahasiswa(){
+  	/*public function laporan_mahasiswa(){
   		if ($this->session->userdata('logged_in') == TRUE) {
 		$data['main_view'] = 'Laporan/laporan_mahasiswa_view';
 		$data['getPeriode'] = $this->laporan_model->getPeriode();
@@ -227,7 +244,7 @@ class Laporan extends CI_Controller {
     } else {
 			redirect('login');
 		}	
-  	}
+  	} */
 }
 
 

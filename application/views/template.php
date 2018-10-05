@@ -224,7 +224,18 @@ a:hover .tooltiptext {
             <li><a href="<?php echo base_url(); ?>barang"><i class="fa fa-circle-o"></i>PER KATEGORI</a></li>
           </ul>
         </li>
-
+          </ul>
+        </li>
+        <li class="treeview">
+          <a href="#">
+            <i class="fa fa-dashboard"></i> <span>LAPORAN</span>
+            <span class="pull-right-container">
+              <i class="fa fa-angle-left pull-right"></i>
+            </span>
+          </a>
+          <ul class="treeview-menu">
+            <li><a href="<?php echo base_url(); ?>laporan/laporan_barang"><i class="fa fa-circle-o"></i>LAPORAN BARANG</a></li>
+            <li><a href="<?php echo base_url(); ?>laporan/laporan_pemeliharaan"><i class="fa fa-circle-o"></i>LAPORAN PEMELIHARAAN</a></li>
           </ul>
         </li>
         

@@ -2,17 +2,39 @@
           <!-- Horizontal Form -->
           <div class="box box-info">
             <div class="box-header with-border">
-              <h3 class="box-title">Laporan Mahasiswa Per Periode</h3>
+              <h3 class="box-title">LAPORAN PEMBELIAN BARANG</h3>
             </div>
             <!-- /.box-header -->
             <!-- form start -->
-            <form class="form-horizontal">
-              <div class="box-body">
+            <br>
+
+            <form class="form-horizontal col-sm-5">
+              
+                <div class="form-group">
+                  <label for="inputEmail3" class="col-sm-2">Kategori</label>
+
+                  <div class="col-sm-10">
+
+                    <select class="select2" style="width:100%" name="id_kategori" id="id_kategori">
+                              <option value="9876" selected="selected"> Pilih Kategori </option>
+                              <option value=""> Semua </option>
+                                      <?php 
+
+                                    foreach($getKategori as $row)
+                                    { 
+                                      echo '<option value="'.$row->id_kategori.'">'.$row->kategori.'</option>';
+                                    }
+                                    ?>
+                              </select>
+                              <br>
+                  </div>
+
+                </div>
                 <div class="form-group">
                   <label for="inputEmail3" class="col-sm-2 control-label">Tanggal Awal</label>
 
                   <div class="col-sm-10">
-                    <input type="date" class="col-sm-4" name="ss" id="ss" required=""><br>
+                    <input type="date" class="form-control" name="tgl_pembelian1" id="tgl_pembelian1" required="">
                   </div>
 
                 </div>
@@ -20,15 +42,13 @@
                   <label for="inputEmail3" class="col-sm-2 control-label">Tanggal Akhir</label>
 
                   <div class="col-sm-10">
-                    <input type="date" class="col-sm-4" name="sa" id="sa" required=""><br><br>
+                    <input type="date" class="form-control" name="tgl_pembelian2" id="tgl_pembelian2" required=""><br>
                     <p class="btn btn-info btn-flat" onclick="tampil()">Tampilkan</p>
                     <p class="btn btn-primary btn-flat" onclick="print1()"> Cetak </p>
                   </div>
 
                 </div>
                 
-
-              </div>
               <!-- /.box-body -->
               <!-- /.box-footer -->
             </form>
@@ -38,8 +58,8 @@
 <script type="text/javascript">
   function tampil(){
       $.ajax({
-                    url: '<?php echo base_url(); ?>laporan/laporan_tamuku/',
-                    data: 'tanggal_pendaftaran='+document.getElementById("ss").value+'&tanggal_pendaftaran2='+document.getElementById("sa").value,
+                    url: '<?php echo base_url(); ?>laporan/laporan_barangku/',
+                    data: 'tgl_pembelian1='+document.getElementById("tgl_pembelian1").value+'&tgl_pembelian2='+document.getElementById("tgl_pembelian2").value+'&id_kategori='+document.getElementById("id_kategori").value,
                     type: 'GET',
                     dataType: 'html',
                     success:function(data){

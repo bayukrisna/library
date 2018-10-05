@@ -47,7 +47,7 @@ class Login extends CI_Controller {
 				            $ss = explode(",",$userDn);
 				            
 				            $sess_data['logged_in'] = TRUE;
-			                $sess_data['username'] = $sess['givenname'][0];
+			                $sess_data['username'] = $sess['cn'][0];
 			                $sess_data['group'] = substr($ss[0],3);
 			                $sess_data['email'] = $sess['mail'][0];
 			            }

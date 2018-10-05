@@ -8,87 +8,112 @@ class Laporan_model extends CI_Model {
 	{
 		parent::__construct();
 	}
-    function laporan_tamu($tanggal_pendaftaran, $tanggal_pendaftaran2){
+    function laporan_barang($tgl_pembelian1, $tgl_pembelian2, $id_kategori){
       $query = $this->db->select('*')
-                ->from('tb_pendaftaran')
-                ->join('tb_prodi','tb_prodi.id_prodi=tb_pendaftaran.id_prodi')
-                ->join('tb_sekolah','tb_sekolah.id_sekolah=tb_pendaftaran.id_sekolah')
-                ->where('tanggal_pendaftaran >=', $tanggal_pendaftaran)
-                ->where('tanggal_pendaftaran <=', $tanggal_pendaftaran2)
-                ->order_by("tanggal_pendaftaran", "asc")
+                ->from('tb_barang')
+                ->join('tb_model','tb_model.id_model=tb_barang.id_model')
+                ->join('tb_merk','tb_merk.id_merk=tb_model.id_merk')
+                ->join('tb_kategori','tb_kategori.id_kategori=tb_merk.id_kategori')
+                ->where('tb_barang.tgl_pembelian >=', $tgl_pembelian1)
+                ->where('tb_barang.tgl_pembelian <=', $tgl_pembelian2)
+                ->like('tb_kategori.id_kategori', $id_kategori)
+                ->order_by("tb_barang.tgl_pembelian", "asc")
                 ->get();
       $row = $query->result();
-      $coo = $this->db->select('count(tb_pendaftaran.nama_pendaftar) as total')
-                ->from('tb_pendaftaran')
-                ->join('tb_prodi','tb_prodi.id_prodi=tb_pendaftaran.id_prodi')
-                ->join('tb_sekolah','tb_sekolah.id_sekolah=tb_pendaftaran.id_sekolah')
-                ->where('tanggal_pendaftaran >=', $tanggal_pendaftaran)
-                ->where('tanggal_pendaftaran <=', $tanggal_pendaftaran2)
+      $pp = $this->db->select('kategori')
+            ->where('id_kategori', $id_kategori)
+            ->get('tb_kategori')
+            ->row();
+      $coo = $this->db->select('count(*) as total')
+               ->from('tb_barang')
+                ->join('tb_model','tb_model.id_model=tb_barang.id_model')
+                ->join('tb_merk','tb_merk.id_merk=tb_model.id_merk')
+                ->join('tb_kategori','tb_kategori.id_kategori=tb_merk.id_kategori')
+                ->where('tb_barang.tgl_pembelian >=', $tgl_pembelian1)
+                ->where('tb_barang.tgl_pembelian <=', $tgl_pembelian2)
+                ->like('tb_kategori.id_kategori', $id_kategori)
+                ->order_by("tb_barang.tgl_pembelian", "asc")
                 ->get();
-      $eee = $coo->row();
+      $total = $coo->row();
 
                 if ($query->num_rows() > 0)
                 { 
-                  $tanggal_pendaftaran = date("d-m-Y", strtotime($tanggal_pendaftaran));
-                  $tanggal_pendaftaran2 = date("d-m-Y", strtotime($tanggal_pendaftaran2));
+                  if(empty($pp->kategori)){
+                    $cc = 'Semua';
+                  } else {
+                    $cc = $pp->kategori;
+                  }
                   $no = 0;
+                  $total_harga = 0;
                   $option = "";
                   $option .= '<section class="content" id="ea">
-      <div class="row">
+
+     <div class="row">
         <div class="col-xs-12">
-            <!-- /.box-header -->
-            <div class="box-body">
-            <h4><b>Laporan Jumlah Tamu</h4></b>
+          
+            <h4><b>LAPORAN PEMBELIAN BARANG</h4></b>
             <table>
               <tr>
-                <td width="120px">Perguruan Tinggi</td>
-                <td width="300px">: 033082 - STIE Jakarta International College</td>
-                <td width="120px">Alamat</td>
-                <td>: Jalan Perunggu No 53-54 10640</td>
-              </tr>
-              <tr>
+                <td width="120px">Kategori</td>
+                <td width="300px">: '.$cc.'</td>
                 <td width="120px">Tanggal Awal</td>
-                <td width="300px">: '.$tanggal_pendaftaran.'</td>
-                <td width="120px">Tanggal Akhir</td>
-                <td>: '.$tanggal_pendaftaran2.'</td>
+                <td>: '.$tgl_pembelian1.'</td>
               </tr>
               <tr>
-                <td width="120px">Jumlah Tamu</td>
-                <td width="300px">: '.$eee->total.'</td>
+                <td width="120px">Jumlah Barang</td>
+                <td width="300px">: '.$total->total.'</td>
+                <td width="120px">Tanggal Akhir</td>
+                <td>: '.$tgl_pembelian2.'</td>
               </tr>
             </table>
             <br>
+            <!-- /.box-header -->
+            <div class="box-body">
               <table id="example1" class="table table-bordered table-striped">
                 <thead>
                 <tr>
                   <th>No</th>
-                  <th>Nama Tamu</th>
-                  <th>Asal Sekolah</th>
-                  <th>Minat Prodi</th>
-                  <th>Waktu</th>
-                  <th>Tanggal</th>
+                  <th>Kategori</th>
+                  <th>Nama Barang</th>
+                  <th>Merk</th>
+                  <th>Model</th>
+                  <th>Harga</th>
+                  <th>Tgl. Pembelian</th>
                 </tr>
                 </thead>
                 <tbody>';
+
                   foreach ($row as $data) {
+
+                    $total_harga += $data->harga_barang;
+
                     $option .= "
                     <tr>
                       <td>".++$no."</td>
-                      <td>".$data->nama_pendaftar."</td>
-                      <td>".$data->nama_sekolah."</td>
-                      <td>".$data->nama_prodi."</td>
-                      <td>".$data->waktu."</td>
-                      <td>".$data->tanggal_pendaftaran."</td>
-                    </tr>";
+                      <td>".$data->kategori."</td>
+                      <td>".$data->nama_barang."</td>
+                      <td>".$data->merk."</td>
+                      <td>".$data->nama_model."</td>
+                      <td>".$data->harga_barang."</td>
+                      <td>".$data->tgl_pembelian."</td>
+                    </tr>"
+                    ;
                     
                   }
-                  $option .= '</tbody>
+                  $option .= '
+                    <tr>
+                      <td colspan="5" style="text-align:right"><b>Total Harga</b></td>
+                      <td colspan="2"><b>Rp. '.$total_harga.',00</b></td>
+                    </tr>
+                  </tbody>
+
               </table>
             </div>
             
             <!-- /.box-body -->
-          </div>
+          
           <!-- /.box -->
+        </div>
         <!-- /.col -->
       </div>
       <!-- /.row -->
@@ -96,39 +121,149 @@ class Laporan_model extends CI_Model {
                   echo $option;
 
                 } else{
-                $option = "";
-                  $option .= '
-                  <section class="content" id="ea">
-      <div class="row">
+                echo '<span class="label label-success"> Tidak Ada Data.</span>';
+                
+                }
+    }
+
+    function laporan_pemeliharaan($tgl_perbaikan1, $tgl_perbaikan2, $id_kategori, $id_tipe_pemeliharaan){
+      $query = $this->db->select('*')
+                ->from('tb_pemeliharaan')
+                ->join('tb_barang','tb_barang.id_barang=tb_pemeliharaan.id_barang')
+                ->join('tb_model','tb_model.id_model=tb_barang.id_model')
+                ->join('tb_merk','tb_merk.id_merk=tb_model.id_merk')
+                ->join('tb_kategori','tb_kategori.id_kategori=tb_merk.id_kategori')
+                ->join('tb_tipe_pemeliharaan','tb_tipe_pemeliharaan.id_tipe_pemeliharaan=tb_pemeliharaan.id_tipe_pemeliharaan')
+                ->where('tb_pemeliharaan.tgl_mulai_perbaikan >=', $tgl_perbaikan1)
+                ->where('tb_pemeliharaan.tgl_mulai_perbaikan <=', $tgl_perbaikan2)
+                ->like('tb_kategori.id_kategori', $id_kategori)
+                ->like('tb_tipe_pemeliharaan.id_tipe_pemeliharaan', $id_tipe_pemeliharaan)
+                ->order_by("tb_pemeliharaan.tgl_mulai_perbaikan", "asc")
+                ->get();
+      $row = $query->result();
+      $pp = $this->db->select('kategori')
+            ->where('id_kategori', $id_kategori)
+            ->get('tb_kategori')
+            ->row();
+      $qq = $this->db->select('tipe_pemeliharaan')
+            ->where('id_tipe_pemeliharaan', $id_tipe_pemeliharaan)
+            ->get('tb_tipe_pemeliharaan')
+            ->row();
+      $coo = $this->db->select('count(*) as total')
+                ->from('tb_pemeliharaan')
+                ->join('tb_barang','tb_barang.id_barang=tb_pemeliharaan.id_barang')
+                ->join('tb_model','tb_model.id_model=tb_barang.id_model')
+                ->join('tb_merk','tb_merk.id_merk=tb_model.id_merk')
+                ->join('tb_kategori','tb_kategori.id_kategori=tb_merk.id_kategori')
+                ->join('tb_tipe_pemeliharaan','tb_tipe_pemeliharaan.id_tipe_pemeliharaan=tb_pemeliharaan.id_tipe_pemeliharaan')
+                ->where('tb_pemeliharaan.tgl_mulai_perbaikan >=', $tgl_perbaikan1)
+                ->where('tb_pemeliharaan.tgl_mulai_perbaikan <=', $tgl_perbaikan2)
+                ->like('tb_kategori.id_kategori', $id_kategori)
+                ->like('tb_tipe_pemeliharaan.id_tipe_pemeliharaan', $id_tipe_pemeliharaan)
+                ->order_by("tb_pemeliharaan.tgl_mulai_perbaikan", "asc")
+                ->get();
+      $total = $coo->row();
+
+                if ($query->num_rows() > 0)
+                { 
+                  if(empty($pp->kategori)){
+                    $cc = 'Semua';
+                  } else {
+                    $cc = $pp->kategori;
+                  }
+                  if (empty($qq->tipe_pemeliharaan)) {
+                    $dd = 'Semua';
+                  } else {
+                    $dd = $qq->tipe_pemeliharaan;
+                  }
+                  $no = 0;
+                  $total_harga = 0;
+                  $option = "";
+                  $option .= '<section class="content" id="ea">
+
+     <div class="row">
         <div class="col-xs-12">
+          
+            <h4><b>LAPORAN PEMBELIAN BARANG</h4></b>
+            <table>
+              <tr>
+                <td width="120px">Kategori</td>
+                <td width="300px">: '.$cc.'</td>
+                <td width="120px">Tanggal Awal</td>
+                <td>: '.$tgl_perbaikan1.'</td>
+              </tr>
+              <tr>
+                <td width="120px">Jumlah Barang</td>
+                <td width="300px">: '.$total->total.'</td>
+                <td width="120px">Tanggal Akhir</td>
+                <td>: '.$tgl_perbaikan2.'</td>
+              </tr>
+              <tr>
+                <td width="120px">Tipe Pemeliharaan</td>
+                <td width="300px">: '.$dd.'</td>
+              </tr>
+            </table>
+            <br>
             <!-- /.box-header -->
             <div class="box-body">
               <table id="example1" class="table table-bordered table-striped">
                 <thead>
                 <tr>
                   <th>No</th>
-                  <th>Semester</th>
+                  <th>Tipe</th>
+                  <th>Kategori</th>
+                  <th>Nama Barang</th>
+                  <th>Permasalahan</th>
+                  <th>Harga</th>
+                  <th>Tgl. Perbaikan</th>
                 </tr>
                 </thead>
-                <tbody>
-                  <td></td><td></td>
+                <tbody>';
+
+                  foreach ($row as $data) {
+
+                    $total_harga += $data->harga_perbaikan;
+
+                    $option .= "
+                    <tr>
+                      <td>".++$no."</td>
+                      <td>".$data->tipe_pemeliharaan."</td>
+                      <td>".$data->kategori."</td>
+                      <td>".$data->nama_barang."</td>
+                      <td>".$data->permasalahan."</td>
+                      <td>".$data->harga_perbaikan."</td>
+                      <td>".$data->tgl_mulai_perbaikan."</td>
+                    </tr>"
+                    ;
+                    
+                  }
+                  $option .= '
+                    <tr>
+                      <td colspan="5" style="text-align:right"><b>Total Harga</b></td>
+                      <td colspan="2"><b>Rp. '.$total_harga.',00</b></td>
+                    </tr>
                   </tbody>
+
               </table>
             </div>
             
             <!-- /.box-body -->
-          </div>
+          
           <!-- /.box -->
+        </div>
         <!-- /.col -->
       </div>
       <!-- /.row -->
     </section>';
-
                   echo $option;
+
+                } else{
+                echo '<span class="label label-success"> Tidak Ada Data.</span>';
                 
                 }
     }
-    function laporan_mahasiswa($id_periode, $id_prodi){
+    
+    /*function laporan_mahasiswa($id_periode, $id_prodi){
       $query = $this->db->select('tb_prodi.id_prodi, tb_mahasiswa.nama_mahasiswa, tb_mahasiswa.nim, tb_bio.tempat_lahir, tb_bio.tanggal_lahir, tb_ibu.nama_ibu, tb_agama.agama, tb_kependudukan.nik, tb_alamat.kecamatan, tb_alamat.kelurahan, tb_sekolah.nama_sekolah')
                 ->distinct()
                 ->from('tb_mahasiswa')
@@ -1283,7 +1418,7 @@ class Laporan_model extends CI_Model {
      $this->db->like('nim',$nama);
      $query = $this->db->get();
      return $query->result();
-  }
+  } */
 }
 
 /* End of file prodi_model.php */

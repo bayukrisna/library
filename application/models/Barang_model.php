@@ -73,6 +73,26 @@ class Barang_model extends CI_Model {
 
     }
 
+    public function simpan_log_barang()
+    {
+        $data = array(
+            'user_log'      => $this->session->userdata('username'),
+            'aktivitas'     => 'created',
+            'id_barang'     => $this->input->post('id_barang'),
+        );
+    
+        $this->db->insert('tb_log', $data);
+
+        if($this->db->affected_rows() > 0){
+            
+                return true;
+        } else {
+            return false;
+            
+        }
+
+    }
+
     public function simpan_pemeliharaan()
     {
         $data = array(
@@ -96,6 +116,13 @@ class Barang_model extends CI_Model {
         }
 
     }
+
+    public function getLogBarang()   {
+          $this->db->select("MAX(id_barang)+1 AS id");
+          $this->db->from("tb_barang");
+          $query = $this->db->get();
+          return $query->row()->id;
+        }
   
 
    public function data_barang($id_kategori){
@@ -146,6 +173,13 @@ class Barang_model extends CI_Model {
                     ->join('tb_supplier','tb_supplier.id_supplier=tb_pemeliharaan.id_supplier')     
                     ->where('tb_pemeliharaan.id_barang', $id_barang)
                     ->get('tb_pemeliharaan')
+                    ->result();
+   }
+
+   public function data_riwayat($id_barang){
+     return $this->db->join('tb_barang','tb_barang.id_barang=tb_log.id_barang')     
+                    ->where('tb_log.id_barang', $id_barang)
+                    ->get('tb_log')
                     ->result();
    }
 

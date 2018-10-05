@@ -30,6 +30,7 @@
 
     <div class="box box-info">
   <div class="box-body">
+    <div class="table-responsive">
   <table class="table2 table-bordered table-striped" id="example3" style="text-transform: uppercase;">
   <thead>
   <tr>
@@ -62,6 +63,7 @@
   
   </tbody>
 </table>
+</div>
 </div>
 
 

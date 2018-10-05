@@ -10,6 +10,7 @@
             
             <!-- /.box-header -->
             <div class="box-body">
+              <div class="table-responsive">
               <table id="example1" class="table table-hover table-striped table-condensed" style="text-transform: uppercase;">
                 <a href="" data-toggle="modal" data-target="#modal_tambah" class="btn btn-primary btn-sm btn-flat" ><i class="fa fa-plus"></i> Tambah</a> <br> <br>
                 <thead>
@@ -39,6 +40,7 @@
               ?>
                 </tbody>
               </table>
+            </div>
             </div>
             
             <!-- /.box-body -->
