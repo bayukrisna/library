@@ -25,6 +25,12 @@ class Admin extends CI_Controller {
 		}
 			
 	}
+	public function tambah_user()
+	{
+		$data['main_view'] = 'tambah_user_view';
+		$this->load->view('template', $data);
+			
+	}
 
 	public function signup()
 	{
