@@ -32,8 +32,9 @@ class Admin extends CI_Controller {
 		}
 			
 	}
-	public function tambah_user()
+	public function akses($id_user)
 	{
+		$data['cek'] = $this->db->where('id_user', $id_user)->get('tb_akses')->row();
 		$data['main_view'] = 'tambah_user_view';
 		$this->load->view('template', $data);
 			

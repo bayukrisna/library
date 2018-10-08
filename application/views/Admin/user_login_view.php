@@ -30,7 +30,7 @@
                 <tr>
                   <td>'.++$no.'</td>
                   <td>'.$data->username.'</td>
-                  <td>
+                  <td><a href="'.base_url().'admin/akses/'.$data->id_user.'" class="btn">Akses</a>
                  </td>
                 
                 ' ;
