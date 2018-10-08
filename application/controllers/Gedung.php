@@ -12,8 +12,8 @@ class Gedung extends CI_Controller {
 	public function index()
 	{
 			$data['gedung'] = $this->Gedung_model->data_gedung();
-			$data['drop_status'] = $this->Gedung_model->drop_status();
-			$data['drop_lahan'] = $this->Gedung_model->drop_lahan();
+			$data['getStatus'] = $this->Gedung_model->drop_status();
+			$data['getLahan'] = $this->Gedung_model->drop_lahan();
 			$data['main_view'] = 'Gedung/gedung_view';
 			$this->load->view('template', $data);
 	}
@@ -21,7 +21,7 @@ class Gedung extends CI_Controller {
 	public function simpan_gedung()
 	{
 			if($this->Gedung_model->simpan_gedung() == TRUE){
-				$this->session->set_flashdata('message', '<div class="alert alert-success"> Data lahan berhasil disimpan </div>');
+				$this->session->set_flashdata('message', '<div class="alert alert-success"> Data gedung berhasil disimpan </div>');
             	redirect('gedung');
 			}  else{
 				$this->session->set_flashdata('message', '<div class="alert alert-danger"> '.validation_errors().' </div>');

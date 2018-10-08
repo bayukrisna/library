@@ -12,7 +12,7 @@ class Ruang extends CI_Controller {
 	public function index()
 	{
 			$data['getGedung'] = $this->Ruang_model->getGedung();
-			$data['getstatus'] = $this->Ruang_model->getstatus();
+			$data['getStatus'] = $this->Ruang_model->getstatus();
 			$data['ruang'] = $this->Ruang_model->data_ruang();
 			$data['main_view'] = 'Ruang/ruang_view';
 			$this->load->view('template', $data);

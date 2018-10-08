@@ -18,7 +18,7 @@
                   <th>No</th>
                   <th>Nama Gedung</th>
                   <th>Luas (m<sup>2</sup>)</th>
-                  <th>Kepemilikan</th>
+                  <th>Perusahaan</th>
                   <th>Kegiatan</th>
                   <th>Aksi</th>
                 </tr>
@@ -35,7 +35,7 @@
 
                   <td><a href="" data-toggle="modal" data-target="#modal_view'.$data->id_gedung.'">'.$data->nama_gedung.'</a></td>
                   <td>'.$data->luas_gedung.'</td>
-                  <td>'.$data->kepemilikan.'</td>
+                  <td>'.$data->nama_perusahaan.'</td>
                   <td>'.$data->kegiatan.'</td>
                   <td>
                   <a href="" data-toggle="modal" data-target="#modal_edit'.$data->id_lahan.'" class="btn btn-warning btn-xs btn-flat" ><i class="glyphicon glyphicon-pencil"></i><span class="tooltiptext">Edit</span></a>
@@ -80,9 +80,9 @@
                                 <td>: <?php echo $i->luas_gedung ?></td>
                             </tr> 
                             <tr>
-                              <td class="left_column" width="20%">Kepemilikan</td>
+                              <td class="left_column" width="20%">Perusahaan</td>
                                 <td>: 
-                           <?php echo $i->kepemilikan ?></td>
+                           <?php echo $i->nama_perusahaan ?></td>
                             </tr>
                             <tr>
                               <td class="left_column">Kegiatan</td>
@@ -183,7 +183,7 @@
     <?php endforeach;?>
 
 
-        <div class="modal fade" id="modal_tambah" >
+      <div class="modal fade" id="modal_tambah" >
             <div class="modal-dialog">
             <div class="modal-content">
             <div class="modal-header">
@@ -191,63 +191,75 @@
                 <h3 class="modal-title" id="myModalLabel">TAMBAH GEDUNG</h3>
             </div>
                 <div class="modal-body">
+                        <?php echo form_open('gedung/simpan_gedung', 'class="form-horizontal" method="post" role="form" enctype="multipart/form-data"'); ?>
+                    <!-- CSRF Token -->
+                    
+<!-- Name -->
+<div class="form-group ">
+    <label for="name" class="col-md-3 control-label">Nama Gedung</label>
+    <div class="col-md-7 col-sm-12 required">
+        <input class="form-control" type="text" name="nama_gedung" id="nama_gedung" value="" required="" />
+        
+    </div>
+</div>
+<div class="form-group ">
+    <label for="eol" class="col-md-3 control-label">Luas Gedung</label>
+    <div class="col-md-6">
+        <div class="input-group">
+            <input class="col-md-2 form-control" type="number" name="luas_gedung" id="luas_gedung" value="" />
+            <span class="input-group-addon">
+                m<sup>2</sup>
+            </span>
+        </div>
+    </div>
+</div><!-- Manufacturer -->
+<div class="form-group ">
+    <label for="model_number" class="col-md-3 control-label">Kegiatan</label>
+    <div class="col-md-7">
+    <textarea name="kegiatan" name="kegiatan" class="form-control"></textarea>
+        
+    </div>
+</div>
+<div class="form-group ">
+    <label for="manufacturer_id" class="col-md-3 control-label">Lahan</label>
+    <div class="col-md-7 required">
+        <select class="select2" style="width:100%" name="id_lahan">
+            <option value="" selected="selected">Pilih Lahan</option>
+            <?php 
 
-                    <div class="form-group">
-                      <?php echo form_open('Gedung/simpan_gedung'); ?>
-                      <table class="table" style="text-transform: uppercase;">
-      <tr>
-          <td>Nama Gedung <font color="#FF0000">*</font></td>
-            <td>:  <input type="text" name="nama_gedung" id="tgl_perolehan" value="" size="40" style="width:80%" /></td>
-        </tr>
-        <tr>
-          <td class="left_column">Luas Gedung</td>
-            <td>: <input type="number" name="luas_gedung" id="luas_lahan" class="text-input" style="width:80px" value=""> m<sup>2</sup></td>
-        </tr>
-        <tr>
-          <td class="left_column">Kepemilikan</td>
-            <td>: <input value="" type="text" name="kepemilikan" id="kepemilikan" class="text-input" style="width:80%"></td>
-        </tr> 
-        <tr>
-          <td class="left_column">Kegiatan</td>
-            <td>: <textarea wrap="soft" name="kegiatan" id="kegiatan" rows="5" cols="50"></textarea> </td>
-        </tr>
-        <tr>
-          <td class="left_column">status</td>
-            <td>: <select class="text-input" style="width:80%" name="id_status" required="">
-              <option value="">Pilih status</option>
-                  <?php 
-
-                  foreach($drop_status as $row)
-                  { 
-                    echo '<option value="'.$row->id_status.'">'.$row->status.'</option>';
-                  }
-                  ?>
-            </select> </td>
-        </tr>
-        <tr>
-          <td class="left_column">Lahan</td>
-            <td>: <select class="text-input" style="width:80%" name="id_lahan" required="">
-              <option value="">Pilih Lahan</option>
-                  <?php 
-
-                  foreach($drop_lahan as $row)
+                  foreach($getLahan as $row)
                   { 
                     echo '<option value="'.$row->id_lahan.'">'.$row->nama_lahan.'</option>';
                   }
                   ?>
-            </select> </td>
-        </tr>
-  
-        <tr>
-          <td colspan="4"><button type="submit" class="btn btn-info btn-flat">Simpan</button></td>
-        </tr>
-    </table>
+        </select>
+        
+    </div>
+</div>
+<div class="form-group ">
+    <label for="manufacturer_id" class="col-md-3 control-label">Status</label>
+    <div class="col-md-7 required">
+        <select class="select2" style="width:100%" name="id_status">
+            <option value="" selected="selected">Pilih Status</option>
+            <?php 
 
-                    </div>
+                  foreach($getStatus as $row)
+                  { 
+                    echo '<option value="'.$row->id_status.'">'.$row->status.'</option>';
+                  }
+                  ?>
+        </select>
+        
+    </div>
+</div>
+
+
+                    <div class="box-footer text-right">
+    <button type="submit" class="btn btn-success"><i class="fa fa-check icon-white"></i> Simpan</button>
+</div>                </form>
 
                 </div>
             </div>
             </div>
         </div>
         <?php echo form_close();?>
-

@@ -14,7 +14,6 @@ class Gedung_model extends CI_Model {
         $data = array(
             'nama_gedung'                        => $this->input->post('nama_gedung'),
             'luas_gedung'                 => $this->input->post('luas_gedung'),
-            'kepemilikan'      		=> $this->input->post('kepemilikan'),
             'kegiatan'            => $this->input->post('kegiatan'),
             'id_status'         => $this->input->post('id_status'),
             'id_lahan'         => $this->input->post('id_lahan')
@@ -46,9 +45,9 @@ class Gedung_model extends CI_Model {
     }
 
    public function data_gedung(){
-     return $this->db->select('id_gedung, nama_gedung, luas_gedung, tb_gedung.kepemilikan, kegiatan, tb_gedung.id_lahan, nama_lahan, tb_gedung.id_status, status')
-                    ->join('tb_lahan', 'tb_lahan.id_lahan = tb_gedung.id_lahan')
+     return $this->db->join('tb_lahan', 'tb_lahan.id_lahan = tb_gedung.id_lahan')
                     ->join('tb_status', 'tb_status.id_status = tb_gedung.id_status')
+                    ->join('tb_perusahaan', 'tb_perusahaan.id_perusahaan=tb_lahan.id_perusahaan')
                     ->get('tb_gedung')->result();
    }
 
