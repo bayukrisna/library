@@ -159,7 +159,7 @@
             <div class="modal-content">
             <div class="modal-header">
                 <button type="button" class="close" data-dismiss="modal" aria-hidden="true">x</button>
-                <h3 class="modal-title" id="myModalLabel">TAMBAH MODEL ASSET</h3>
+                <h3 class="modal-title" id="myModalLabel">TAMBAH MODEL</h3>
             </div>
                 <div class="modal-body">
                         <?php echo form_open('Model/simpan_model', 'class="form-horizontal" method="post" role="form" enctype="multipart/form-data"'); ?>

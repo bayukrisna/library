@@ -92,7 +92,7 @@
                   <th>Tgl. Perolehan</th>
                   <th>Luas (m<sup>2</sup>)</th>
                   <th>Harga Perolehan</th>
-                  <th>Kepemilikan</th>
+                  <th>Perusahaan</th>
                   <th>Aksi</th>
                 </tr>
                 </thead>
@@ -110,7 +110,7 @@
                   <td>'.$data->tgl_perolehan.'</td>
                   <td>'.$data->luas_lahan.'</td>
                   <td>'.$data->harga_perolehan.'</td>
-                  <td>'.$data->kepemilikan.'</td>
+                  <td>'.$data->nama_perusahaan.'</td>
                   <td>
                   <a href="" data-toggle="modal" data-target="#modal_edit'.$data->id_lahan.'" class="btn btn-warning btn-xs btn-flat" ><i class="glyphicon glyphicon-pencil"></i><span class="tooltiptext">Edit</span></a>
                 
@@ -163,8 +163,8 @@
                                 <td>: <?php echo $i->harga_perolehan ?></td>
                             </tr> 
                             <tr>
-                              <td class="left_column">Kepemilikan</td>
-                                <td>: <?php echo $i->kepemilikan ?></td>
+                              <td class="left_column">Perusahaan</td>
+                                <td>: <?php echo $i->nama_perusahaan ?></td>
                             </tr> 
                             <tr>
                               <td class="left_column">Alamat</td>
@@ -262,8 +262,7 @@
 
     <?php endforeach;?> -->
 
-
-        <div class="modal fade" id="modal_tambah" >
+<div class="modal fade" id="modal_tambah" >
             <div class="modal-dialog">
             <div class="modal-content">
             <div class="modal-header">
@@ -271,41 +270,73 @@
                 <h3 class="modal-title" id="myModalLabel">TAMBAH LAHAN</h3>
             </div>
                 <div class="modal-body">
+                        <?php echo form_open('Lahan/simpan_lahan', 'class="form-horizontal" method="post" role="form" enctype="multipart/form-data"'); ?>
+                    <!-- CSRF Token -->
+                    
+<!-- Name -->
+<div class="form-group ">
+    <label for="name" class="col-md-3 control-label">Nama Lahan</label>
+    <div class="col-md-7 col-sm-12 required">
+        <input class="form-control" type="text" name="nama_lahan" id="nama_lahan" value="" required="" />
+        
+    </div>
+</div>
+<div class="form-group ">
+    <label for="name" class="col-md-3 control-label">Tgl. Perolehan</label>
+    <div class="col-md-7 col-sm-12 required">
+        <input class="form-control" type="date" name="tgl_perolehan" id="tgl_perolehan" value="" required="" />
+        
+    </div>
+</div>
+<div class="form-group ">
+    <label for="eol" class="col-md-3 control-label">Luas Lahan</label>
+    <div class="col-md-6">
+        <div class="input-group">
+            <input class="col-md-2 form-control" type="number" name="luas_lahan" id="luas_lahan" value="" />
+            <span class="input-group-addon">
+                m<sup>2</sup>
+            </span>
+        </div>
+    </div>
+</div><!-- Manufacturer -->
+<div class="form-group ">
+    <label for="eol" class="col-md-3 control-label">Harga Perolehan</label>
+    <div class="col-md-6">
+        <div class="input-group">
+            <input class="col-md-2 form-control" type="number" name="harga_perolehan" id="harga_perolehan" value="" />
+            <span class="input-group-addon">
+                Rupiah
+            </span>
+        </div>
+    </div>
+</div>
+<div class="form-group ">
+    <label for="manufacturer_id" class="col-md-3 control-label">Perusahaan</label>
+    <div class="col-md-7 required">
+        <select class="select2" style="width:100%" name="id_perusahaan">
+            <option value="" selected="selected">Pilih Perusahaan</option>
+            <?php 
 
-                    <div class="form-group">
-                      <?php echo form_open('Lahan/simpan_lahan'); ?>
-                      <table class="table" style="text-transform: uppercase;">
-      <tr>
-          <td>Nama Lahan <font color="#FF0000">*</font></td>
-            <td>:  <input type="text" name="nama_lahan" id="tgl_perolehan" value="" size="40" style="width:80%" />
-        </tr>
-      <tr>
-          <td>Tgl. Perolehan <font color="#FF0000">*</font></td>
-            <td>:  <input type="date" name="tgl_perolehan" id="tgl_perolehan" value="" />
-        </tr>
-        <tr>
-          <td class="left_column">Luas Lahan</td>
-            <td>: <input type="number" name="luas_lahan" id="luas_lahan" class="text-input" style="width:80px" value=""> m<sup>2</sup></td>
-        </tr> 
-        <tr>
-          <td class="left_column">Harga Perolehan</td>
-            <td>: <input type="number" name="harga_perolehan" id="harga_perolehan" class="text-input" value=""> </td>
-        </tr> 
-        <tr>
-          <td class="left_column">Kepemilikan</td>
-            <td>: <input value="" type="text" name="kepemilikan" id="kepemilikan" class="text-input" ></td>
-        </tr> 
-        <tr>
-          <td class="left_column">Alamat</td>
-            <td>: <textarea wrap="soft" name="alamat" id="alamat" rows="5" cols="40"></textarea> </td>
-        </tr>
-  
-        <tr>
-          <td colspan="4"><button type="submit" class="btn btn-info btn-flat">Simpan</button></td>
-        </tr>
-    </table>
+                  foreach($getPerusahaan as $row)
+                  { 
+                    echo '<option value="'.$row->id_perusahaan.'">'.$row->nama_perusahaan.'</option>';
+                  }
+                  ?>
+        </select>
+        
+    </div>
+</div><!-- Category -->
+<div class="form-group ">
+    <label for="model_number" class="col-md-3 control-label">Alamat</label>
+    <div class="col-md-7">
+    <textarea name="alamat" name="alamat" class="form-control"></textarea>
+        
+    </div>
+</div>
 
-                    </div>
+                    <div class="box-footer text-right">
+    <button type="submit" class="btn btn-success"><i class="fa fa-check icon-white"></i> Simpan</button>
+</div>                </form>
 
                 </div>
             </div>
@@ -314,4 +345,4 @@
         <?php echo form_close();?>
 
 
-
+        

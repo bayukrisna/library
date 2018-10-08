@@ -8,7 +8,11 @@ class Login extends CI_Controller {
 		parent::__construct();
 		$this->load->model('user_model');
 	}
+	public function tes(){
+		$c = $this->db->from('tb_user')->where('username', 'Bayu Krisna')->get()->row();
+		print_r($c);
 
+	}
 	public function index()
 	{
 		$data['site_key'] = '6LcMU20UAAAAACiZUAOaCfw0YDu2rHirY7Z0DjNT';
@@ -42,7 +46,11 @@ class Login extends CI_Controller {
 				        $filter="(sAMAccountName=$username)";
 				        $result = ldap_search($ldap,"dc=jic,dc=ac,dc=id",$filter);
 				        $info = ldap_get_entries($ldap, $result);
+				        
 				        foreach ($info as $sess) {
+				        	$kk = $sess['cn'][0];
+				        	$id_user = $this->db->from('tb_user')->where('username', $kk)->get()->row();
+				        	$akses = $this->db->from('tb_akses')->join('tb_user', 'tb_user.id_user=tb_akses.id_user')->where('tb_user.username', $kk)->get()->row();
 				        	$userDn = $sess['memberof'][0];
 				            $ss = explode(",",$userDn);
 				            
@@ -50,6 +58,9 @@ class Login extends CI_Controller {
 			                $sess_data['username'] = $sess['cn'][0];
 			                $sess_data['group'] = substr($ss[0],3);
 			                $sess_data['email'] = $sess['mail'][0];
+			                $sess_data['id_user'] = $id_user->id_user;
+			                $sess_data['v_per'] = $akses->v_per;
+
 			            }
 			            if($sess_data['group'] == 'ITGroup' or $sess_data['group'] == 'IT' or $sess_data['group'] or 'AccountingGroup' or $sess_data['group'] == 'AcademicGroup'){
 			            	$this->user_model->create_user($sess_data['username'], $sess_data['group']);
@@ -62,7 +73,7 @@ class Login extends CI_Controller {
 			            }
 			            
 				    } else {
-				        $this->session->set_flashdata('message', '<div class="alert alert-danger"><p>Email atau Password Salah</p></div>');
+				        $this->session->set_flashdata('message', '<div class="alert alert-danger"><p>Username atau Password Salah</p></div>');
 						redirect(base_url('login'));
 				    }
 	        } else {

@@ -76,7 +76,7 @@ class Barang_model extends CI_Model {
     public function simpan_log_barang()
     {
         $data = array(
-            'user_log'      => $this->session->userdata('username'),
+            'user_log'      => $this->session->userdata('id_user'),
             'aktivitas'     => 'created',
             'id_barang'     => $this->input->post('id_barang'),
         );
@@ -238,6 +238,10 @@ class Barang_model extends CI_Model {
 
    public function getKategori(){
      return $this->db->get('tb_kategori')->result();
+   }
+
+   public function getPengguna(){
+     return $this->db->get('tb_user')->result();
    }
 
 

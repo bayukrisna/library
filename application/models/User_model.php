@@ -9,7 +9,7 @@ class User_model extends CI_Model {
 	{
 		parent::__construct();
 	}
-    public function create_user($username, $group) {
+    public function create_user($username) {
         $query = $this->db->select('*')
                 ->from('tb_user')
                 ->where('username', $username)
@@ -18,7 +18,6 @@ class User_model extends CI_Model {
             {
                 $data = array(
                     'username' => $username,
-                    'groupname' => $group,
                     'status_user' => '1'
                 );
             
@@ -26,44 +25,36 @@ class User_model extends CI_Model {
                 return true;
             }
     }
-    public function masuk() {
-        $username = $this->input->post('username');
-        $password = $this->input->post('password');
 
-        $this->db->where('username',$username);
-        $result = $this->getUsers($password);        
+    public function signup()
+    {
+        $data = array(
+            'username'         => $this->input->post('username'),
+            'status_user'      => '1',
+        );
+    
+        $this->db->insert('tb_user', $data);
 
-        if (!empty($result)) {
-            return $result;
-        } else {
-            return null;
-        }
-    }
-    function getUsers($password) {
-        $query = $this->db->get('tb_user');
-
-        if ($query->num_rows() == 1) {
+        if($this->db->affected_rows() > 0){
             
-            $result = $query->row_array();
-
-            if ($this->bcrypt->check_password($password, $result['password'])) {
-                foreach ($query->result() as $sess) {
-                $sess_data['logged_in'] = TRUE;
-                $sess_data['username'] = $sess->username;
-                $sess_data['level'] = $sess->id_level;
-                }
-                $this->session->set_userdata($sess_data);
-                return $result;
-            } else {
-                //Wrong password
-                return array();
-            }
-
+                return true;
         } else {
-            return array();
+            return false;
+            
         }
     }
-	
+
+     public function data_user(){
+     return $this->db->get('tb_user')
+                    ->result();
+   }
+
+    public function data_user_login(){
+     return $this->db->join('tb_user', 'tb_user.id_user=tb_akses.id_user')
+                    ->get('tb_akses')
+                    ->result();
+   }
+
 
 }
 

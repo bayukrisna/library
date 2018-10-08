@@ -7,11 +7,13 @@ class Lahan extends CI_Controller {
 	{
 		parent::__construct();
 		$this->load->model('Lahan_model');
+		$this->load->model('Barang_model');
 	}
 
 	public function index()
 	{
 			$data['lahan'] = $this->Lahan_model->data_lahan();
+			$data['getPerusahaan'] = $this->Barang_model->getPerusahaan();
 			$data['main_view'] = 'Lahan/lahan_view';
 			$this->load->view('template', $data);
 	}

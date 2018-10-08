@@ -189,6 +189,19 @@ a:hover .tooltiptext {
             <li><a href="<?php echo base_url(); ?>merk"><i class="fa fa-circle-o"></i>MERK / BRAND</a></li>
             <li><a href="<?php echo base_url(); ?>model"><i class="fa fa-circle-o"></i>MODEL / TIPE</a></li>
             <li><a href="<?php echo base_url(); ?>supplier"><i class="fa fa-circle-o"></i>PEMASOK / SUPPLIER</a></li>
+
+          </ul>
+        </li>
+        <li class="treeview">
+          <a href="#">
+            <i class="fa fa-dashboard"></i> <span>PENGGUNA</span>
+            <span class="pull-right-container">
+              <i class="fa fa-angle-left pull-right"></i>
+            </span>
+          </a>
+          <ul class="treeview-menu">
+            <li><a href="<?php echo base_url(); ?>admin"><i class="fa fa-circle-o"></i>SEMUA</a></li>
+            <li><a href="<?php echo base_url(); ?>admin/user_login"><i class="fa fa-circle-o"></i>USER LOGIN</a></li>
           </ul>
         </li>
         <li class="treeview">

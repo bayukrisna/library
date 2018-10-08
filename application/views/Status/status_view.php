@@ -197,8 +197,8 @@
                       <?php echo form_open('barang/simpan_status'); ?>
                       <table class="table" style="text-transform: uppercase;">
       <tr>
-          <td>Nama Barang <font color="#FF0000">*</font></td>
-            <td>:  <input type="text" name="status" id="status" value="" size="40" style="width:80%" required="" />
+          <td>Status <font color="#FF0000">*</font></td>
+            <td>  <input type="text" name="status" id="status" value="" size="40" style="width:80%" required="" />
         </tr>
   
        

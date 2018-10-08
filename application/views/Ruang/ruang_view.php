@@ -199,64 +199,77 @@
                 <h3 class="modal-title" id="myModalLabel">TAMBAH RUANG</h3>
             </div>
                 <div class="modal-body">
-
-                    <div class="form-group">
-                      <?php echo form_open('ruang/simpan_ruang'); ?>
-                      <table class="table" style="text-transform: uppercase;">
-      <tr>
-          <td>Nama Ruang <font color="#FF0000">*</font></td>
-            <td>:  <input type="text" name="nama_ruang" id="nama_ruang" value="" size="40" style="width:80%" required="" class="text-input" />
-        </tr>
-      <tr>
+                        <?php echo form_open('ruang/simpan_ruang', 'class="form-horizontal" method="post" role="form" enctype="multipart/form-data"'); ?>
+                    <!-- CSRF Token -->
+                    
+<!-- Name -->
+<div class="form-group ">
+    <label for="name" class="col-md-3 control-label">Nama Ruang</label>
+    <div class="col-md-7 col-sm-12 required">
+        <input class="form-control" type="text" name="nama_ruang" id="nama_ruang" value="" required="" />
         
-          <td class="left_column">Gedung <font color="#FF0000">*</font></td>
-            <td>: 
-      <select name="id_gedung" id="id_gedung" class="validate[required]" required="" class="text-input select2">
-            <option value=""> Pilih Gedung </option>
-             <?php 
-                                        foreach($getGedung as $row)
-                                        { 
-                                          echo '<option value="'.$row->id_gedung.'">'.$row->nama_gedung.'</option>';
-                                        }
-                                    ?>
+    </div>
+</div>
+<div class="form-group ">
+    <label for="eol" class="col-md-3 control-label">Luas Ruang</label>
+    <div class="col-md-6">
+        <div class="input-group">
+            <input class="col-md-2 form-control" type="number" name="luas_ruang" id="luas_ruang" value="" />
+            <span class="input-group-addon">
+                m<sup>2</sup>
+            </span>
+        </div>
+    </div>
+</div>
+<div class="form-group ">
+    <label for="name" class="col-md-3 control-label">Kapasitas</label>
+    <div class="col-md-7 col-sm-12 required">
+        <input class="form-control" type="text" name="kapasitas" id="kapasitas" value="" required="" />
+        
+    </div>
+</div><!-- Manufacturer -->
+<div class="form-group ">
+    <label for="manufacturer_id" class="col-md-3 control-label">Gedung</label>
+    <div class="col-md-7 required">
+        <select class="select2" style="width:100%" name="id_gedung">
+            <option value="" selected="selected">Pilih Gedung</option>
+            <?php 
 
-            </select>            </td>
-        </tr> 
-      <tr>
-          <td>Luas <font color="#FF0000">*</font></td>
-            <td>:  <input type="number" name="luas_ruang" id="luas_ruang" style="width:80px" required="" /> m<sup>2</sup>
-        </tr>
-        <tr>
-          <td class="left_column">Kapasitas</td>
-            <td>: <input type="number" name="kapasitas" id="kapasitas" class="text-input" style="width:80px" required=""></td>
-        </tr> 
-         <tr>
-          <td class="left_column">status <font color="#FF0000">*</font></td>
-            <td>: 
-      <select name="id_status" id="id_status" class="validate[required]" required="">
-            <option value=""> Pilih status </option>
-             <?php 
-                                        foreach($getstatus as $row)
-                                        { 
-                                          echo '<option value="'.$row->id_status.'">'.$row->status.'</option>';
-                                        }
-                                    ?>
+                  foreach($getGedung as $row)
+                  { 
+                    echo '<option value="'.$row->id_gedung.'">'.$row->nama_gedung.'</option>';
+                  }
+                  ?>
+        </select>
+        
+    </div>
+</div>
+<div class="form-group ">
+    <label for="manufacturer_id" class="col-md-3 control-label">Status</label>
+    <div class="col-md-7 required">
+        <select class="select2" style="width:100%" name="id_status">
+            <option value="" selected="selected">Pilih Status</option>
+            <?php 
 
-            </select>            </td>
-        </tr> 
-  
-        <tr>
-          <td colspan="4"><button type="submit" class="btn btn-info btn-flat">Simpan</button></td>
-        </tr>
-    </table>
+                  foreach($getStatus as $row)
+                  { 
+                    echo '<option value="'.$row->id_status.'">'.$row->status.'</option>';
+                  }
+                  ?>
+        </select>
+        
+    </div>
+</div>
 
-                    </div>
+
+                    <div class="box-footer text-right">
+    <button type="submit" class="btn btn-success"><i class="fa fa-check icon-white"></i> Simpan</button>
+</div>                </form>
 
                 </div>
             </div>
             </div>
         </div>
         <?php echo form_close();?>
-
 
 

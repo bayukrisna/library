@@ -50,7 +50,7 @@ class Barang extends CI_Controller {
 	public function tambah_barang_by_kategori()
 	{
 			$id_kategori = $this->uri->segment(3);
-			$data['getPengguna'] = $this->ldapku();
+			$data['getPengguna'] = $this->Barang_model->getPengguna();
 			$data['getSupplier'] = $this->Barang_model->getSupplier();
 			$data['getPerusahaan'] = $this->Barang_model->getPerusahaan();
 			$data['getRuang'] = $this->Barang_model->getRuang();
@@ -64,7 +64,7 @@ class Barang extends CI_Controller {
 	{
 			$id_kategori = $this->uri->segment(3);
 			$data['getLogBarang'] = $this->Barang_model->getLogBarang();
-			$data['getPengguna'] = $this->ldapku();
+			$data['getPengguna'] = $this->Barang_model->getPengguna();
 			$data['getKategori'] = $this->Barang_model->getKategori();
 			$data['getSupplier'] = $this->Barang_model->getSupplier();
 			$data['getPerusahaan'] = $this->Barang_model->getPerusahaan();

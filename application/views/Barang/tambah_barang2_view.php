@@ -121,7 +121,7 @@
 
                                     foreach($getPengguna as $row)
                                     { 
-                                      echo '<option value="'.$row['username'].'">'.$row['username'].'</option>';
+                                      echo '<option value="'.$row->id_user.'">'.$row->username.'</option>';
                                     }
                                     ?>
                               </select>
