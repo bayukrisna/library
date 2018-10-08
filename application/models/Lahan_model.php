@@ -16,7 +16,7 @@ class Lahan_model extends CI_Model {
             'tgl_perolehan'                        => $this->input->post('tgl_perolehan'),
             'luas_lahan'                 => $this->input->post('luas_lahan'),
             'harga_perolehan'      	  => $this->input->post('harga_perolehan'),
-            'kepemilikan'      		=> $this->input->post('kepemilikan'),
+            'id_perusahaan'      		=> $this->input->post('id_perusahaan'),
             'alamat'         => $this->input->post('alamat'),
         );
     
@@ -34,7 +34,8 @@ class Lahan_model extends CI_Model {
   
 
    public function data_lahan(){
-     return $this->db->get('tb_lahan')->result();
+     return $this->db->join('tb_perusahaan', 'tb_perusahaan.id_perusahaan=tb_lahan.id_perusahaan')
+                    ->get('tb_lahan')->result();
    }
 
   public function edit_periode($id_periode){

@@ -101,11 +101,11 @@
                           <div class="form-group">
                               <select class="select2" style="width:100%" name="pengguna">
                                   <option value="" selected="selected"> Pilih Pengguna </option>
-                                      <?php 
+                                     <?php 
 
                                     foreach($getPengguna as $row)
                                     { 
-                                      echo '<option value="'.$row['username'].'">'.$row['username'].'</option>';
+                                      echo '<option value="'.$row->id_user.'">'.$row->username.'</option>';
                                     }
                                     ?>
                               </select>
