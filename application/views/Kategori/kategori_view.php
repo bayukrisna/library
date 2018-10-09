@@ -15,15 +15,16 @@
                 <a href="" data-toggle="modal" data-target="#modal_tambah" class="btn btn-primary btn-sm btn-flat" ><i class="fa fa-plus"></i> Tambah</a> <br> <br>
                 <thead>
                 <tr>
-                  <th>No</th>
+                  <th style="width:5%">No</th>
                   <th>Kategori</th>
-                  <th>Aksi</th>
+                  <th style="width: 10%">Aksi</th>
                 </tr>
                 </thead>
                 <tbody>
 
                 <?php 
                 $no = 0;
+                $alert = "'Anda yakin menghapus data ini ?'";
                 foreach ($kategori as $data) {
                   echo '
                   
@@ -33,6 +34,10 @@
                   <td><a href="" data-toggle="modal" data-target="#modal_view'.$data->id_kategori.'">'.$data->kategori.'</a></td>
                   <td>
                   <a href="" data-toggle="modal" data-target="#modal_edit'.$data->id_kategori.'" class="btn btn-warning btn-xs btn-flat" ><i class="glyphicon glyphicon-pencil"></i><span class="tooltiptext">Edit</span></a>
+
+                  <a href="'.base_url('kategori/hapus_kategori/'.$data->id_kategori).'" onclick="return confirm('.$alert.')" class="btn btn-danger btn-xs btn-flat" ><i class="glyphicon glyphicon-trash"></i><span class="tooltiptext">Hapus</span></a>
+
+                  </td>
                 
                 ' ;
                 
@@ -53,64 +58,28 @@
     </section>
 
 
-    <!--<?php 
-        foreach($gedung as $i):
+    <?php 
+        foreach($kategori as $i):
         ?>
-        <div class="modal fade" id="modal_edit<?php echo $i->id_gedung;?>" >
+        <div class="modal fade" id="modal_edit<?php echo $i->id_kategori;?>" >
             <div class="modal-dialog">
             <div class="modal-content">
             <div class="modal-header">
                 <button type="button" class="close" data-dismiss="modal" aria-hidden="true">x</button>
-                <h3 class="modal-title" id="myModalLabel">EDIT Gedung</h3>
+                <h3 class="modal-title" id="myModalLabel">EDIT KATEGORI</h3>
             </div>
                 <div class="modal-body">
 
                     <div class="form-group">
-                      <?php echo form_open('Gedung/edit_gedung'); ?>
+                      <?php echo form_open('kategori/edit_kategori'); ?>
                       <table class="table" style="text-transform: uppercase;">
       <tr>
-        <input type="hidden" name="id_gedung" value="<?php echo $i->id_gedung ?>">
-          <td>Nama Gedung <font color="#FF0000">*</font></td>
-            <td>:  <input type="text" name="nama_gedung" id="tgl_perolehan" value="<?php echo $i->nama_gedung ?>" size="40" style="width:80%" /></td>
+          <td>Nama Kategori <font color="#FF0000">*</font></td>
+            <td>:  <input type="text" name="kategori" id="kategori" value="<?php echo $i->kategori; ?>" size="40" style="width:80%" />
+              <input type="hidden" name="id_kategori" id="id_kategori" value="<?php echo $i->id_kategori; ?>" size="40" style="width:80%" />
+            </td>
         </tr>
-        <tr>
-          <td class="left_column">Luas Gedung</td>
-            <td>: <input type="number" name="luas_gedung" id="luas_lahan" class="text-input" style="width:80px" value="<?php echo $i->luas_gedung ?>"> m<sup>2</sup></td>
-        </tr>
-        <tr>
-          <td class="left_column">Kepemilikan</td>
-            <td>: <input type="text" name="kepemilikan" value="<?php echo $i->kepemilikan ?>" id="kepemilikan" class="text-input" style="width:80%"></td>
-        </tr> 
-        <tr>
-          <td class="left_column">Kegiatan</td>
-            <td>: <textarea wrap="soft" name="kegiatan" id="kegiatan" rows="5"  cols="50"><?php echo $i->kegiatan ?></textarea> </td>
-        </tr>
-        <tr>
-          <td class="left_column">status</td>
-            <td>: <select class="text-input" style="width:80%" name="id_status" required="">
-              <option value="<?php echo $i->id_status ?>"><?php echo $i->status ?></option>
-                  <?php 
-
-                  foreach($drop_status as $row)
-                  { 
-                    echo '<option value="'.$row->id_status.'">'.$row->status.'</option>';
-                  }
-                  ?>
-            </select> </td>
-        </tr>
-        <tr>
-          <td class="left_column">Lahan</td>
-            <td>: <select class="text-input" style="width:80%" name="id_lahan" required="">
-              <option value="<?php echo $i->id_lahan ?>"><?php echo $i->nama_lahan ?></option>
-                  <?php 
-
-                  foreach($drop_lahan as $row)
-                  { 
-                    echo '<option value="'.$row->id_lahan.'">'.$row->nama_lahan.'</option>';
-                  }
-                  ?>
-            </select> </td>
-        </tr>
+        
   
         <tr>
           <td colspan="4"><button type="submit" class="btn btn-info btn-flat">Simpan</button></td>
@@ -125,7 +94,8 @@
         </div>
         <?php echo form_close();?>
 
-    <?php endforeach;?> -->
+
+    <?php endforeach;?> 
 
 
         <div class="modal fade" id="modal_tambah" >

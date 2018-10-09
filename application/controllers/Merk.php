@@ -28,14 +28,26 @@ class Merk extends CI_Controller {
 		}
 	}
 
-	/*public function edit_lahan(){
-			$id_periode = $this->input->post('id_lahan');
-					if ($this->ruang_model->edit_periode($id_periode) == TRUE) {
-						$this->session->set_flashdata('message', '<div class="alert alert-success"> Edit '.$id_periode.' berhasil . </div>');
-            			redirect('Lahan');
-					} else {
-						$this->session->set_flashdata('message', '<div class="alert alert-danger"> Edit '.$id_periode.' gagal . </div>');
-            			redirect('Lahan');
-					}
-		} */
+	public function edit_merk()
+	{
+		$id_merk = $this->input->post('id_merk');
+			if($this->Merk_model->edit_merk($id_merk) == TRUE){
+				$this->session->set_flashdata('message', '<div class="alert alert-success"> Merk Berhasil Diubah </div>');
+            	redirect('merk');
+			}  else{
+				$this->session->set_flashdata('message', '<div class="alert alert-danger"> '.validation_errors().' </div>');
+            	redirect('merk');
+		}
+	}
+
+	public function hapus_merk(){
+		$id_merk = $this->uri->segment(3);
+		if ($this->Merk_model->hapus_merk($id_merk) == TRUE) {
+			$this->session->set_flashdata('message', '<div class="alert alert-success"> Merk berhasil dihapus </div>');
+			redirect('merk');
+		} else {
+			$this->session->set_flashdata('message', '<div class="alert alert-danger"> Merk gagal dihapus </div>');
+			redirect('merk');
+		}
+	}
 }

@@ -25,11 +25,13 @@
     <th width="15%" style="text-align:center">Perusahaan</th>
     <th width="15%" style="text-align:center">Ruang</th>
     <th width="15%" style="text-align:center">Status</th>
+    <th width="15%" style="text-align:center">Aksi</th>
   </tr>
   </thead>
   <tbody>
     <?php 
         $no = 0;
+        $alert = "'Anda yakin menghapus data ini ?'";
         foreach($barang as $data):
         ;
       ?>
@@ -42,6 +44,12 @@
         <td><?php echo $data->nama_perusahaan;?></td>
         <td><?php echo $data->nama_ruang;?></td>
         <td><?php echo $data->status;?></td>
+        <td>
+          
+        <a href="<?php echo base_url(); ?>barang/page_edit_barang/<?php echo $data->id_barang; ?>"  class="btn btn-warning btn-xs btn-flat" ><i class="glyphicon glyphicon-pencil"></i><span class="tooltiptext">Edit</span></a>
+
+        <a href="<?php echo base_url(); ?>barang/hapus_barang/<?php echo $data->id_barang; ?>" onclick="return confirm(<?php $alert; ?>)" class="btn btn-danger btn-xs btn-flat" ><i class="glyphicon glyphicon-trash"></i><span class="tooltiptext">Hapus</span></a>
+        </td>
         
     </tr>
 <?php endforeach; ?>

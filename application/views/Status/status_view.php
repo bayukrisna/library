@@ -24,6 +24,7 @@
 
                 <?php 
                 $no = 0;
+                $alert = "'Apakah anda yakin mengapus data ini ?'";
                 foreach ($status as $data) {
                   echo '
                   
@@ -34,6 +35,9 @@
                  
                   <td>
                   <a href="" data-toggle="modal" data-target="#modal_edit'.$data->id_status.'" class="btn btn-warning btn-xs btn-flat" ><i class="glyphicon glyphicon-pencil"></i><span class="tooltiptext">Edit</span></a>
+
+                  <a href="'.base_url('barang/hapus_status/'.$data->id_status).'" onclick="return confirm('.$alert.')" class="btn btn-danger btn-xs btn-flat" ><i class="glyphicon glyphicon-trash"></i><span class="tooltiptext">Hapus</span></a>
+                  </td>
                 
                 ' ;
                 
@@ -62,7 +66,7 @@
             <div class="modal-content">
             <div class="modal-header">
                 <button type="button" class="close" data-dismiss="modal" aria-hidden="true">x</button>
-                <h3 class="modal-title" id="myModalLabel">TAMBAH STATUS</h3>
+                <h3 class="modal-title" id="myModalLabel">EDIT STATUS</h3>
             </div>
                 <div class="modal-body">
 

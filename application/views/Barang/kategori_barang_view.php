@@ -12,9 +12,9 @@
             <div class="box-body">
               <div class="table-responsive">
               <table id="example1" class="table table-hover table-striped table-condensed" style="text-transform: uppercase;">
-                <?php $c =  $this->db->where('id_user', $this->session->userdata('id_user'))->get('tb_akses')->row();
-        if ($c->c_bar == 1) { ?>
-                <a href="" data-toggle="modal" data-target="#modal_tambah" class="btn btn-primary btn-sm btn-flat" ><i class="fa fa-plus"></i> Tambah</a> <br> <br> <?php } ?>
+                 <?php $c =  $this->db->where('id_user', $this->session->userdata('id_user'))->get('tb_akses')->row();
+                if ($c->c_bar == 1) { ?>
+                <a href="<?php echo base_url(); ?>barang/tambah_barang" class="btn btn-primary btn-sm btn-flat" ><i class="fa fa-plus"></i> Tambah</a> <br> <br> <?php } ?>
                 <thead>
                 <tr>
                   <th>No</th>

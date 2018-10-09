@@ -11,8 +11,8 @@
         <tr>
             <td class="left_column" width="15%">Ditempatkan di</td>
             <td width="35%">: <?php echo $barang->nama_ruang; ?>            </td>
-            <td class="left_column" width="15%">Pengguna</td>
-            <td>: <?php echo $barang->pengguna; ?>         </td>
+            <td class="left_column" width="15%">Pengguna (User)</td>
+            <td>: <?php echo $barang->username; ?>         </td>
         </tr>
                
 

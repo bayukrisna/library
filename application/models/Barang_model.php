@@ -16,13 +16,13 @@ class Barang_model extends CI_Model {
             'nama_barang'                        => $this->input->post('nama_barang'),
             'id_status'         => $this->input->post('id_status'),
             'id_model'         => $this->input->post('id_model'),
-            'id_perusahaan'         => $this->input->post('id_perusahaan'),
             'harga_barang'         => $this->input->post('harga_barang'),
             'tgl_pembelian'         => $this->input->post('tgl_pembelian'),
             'id_supplier'         => $this->input->post('id_supplier'),
             'requestable'         => $this->input->post('requestable'),
             'foto_barang'         => $upload['file_name'],
-            'pengguna'         => $this->input->post('pengguna')
+            'id_user'         => $this->input->post('id_user'),
+            'ket_bar'         => $this->input->post('keterangan'),
         );
     
         $this->db->insert('tb_barang', $data);
@@ -35,6 +35,30 @@ class Barang_model extends CI_Model {
             
         }
     }
+
+    public function edit_barang($id_barang){
+    $data = array(
+            'nama_barang'        => $this->input->post('nama_barang'),
+            'id_status'         => $this->input->post('id_status'),
+            'id_model'         => $this->input->post('id_model'),
+            'harga_barang'         => $this->input->post('harga_barang'),
+            'tgl_pembelian'         => $this->input->post('tgl_pembelian'),
+            'id_supplier'         => $this->input->post('id_supplier'),
+            'requestable'         => $this->input->post('requestable'),
+            'foto_barang'         => $upload['file_name'],
+            'id_user'         => $this->input->post('id_user'),
+            'ket_bar'         => $this->input->post('keterangan'),
+      );
+
+    if (!empty($data)) {
+            $this->db->where('id_barang', $id_barang)
+        ->update('tb_barang', $data);
+
+          return true;
+        } else {
+            return null;
+        }
+  }
 
     public function simpan_berkas($upload)
     {
@@ -129,11 +153,11 @@ class Barang_model extends CI_Model {
      return $this->db->join('tb_ruang','tb_ruang.id_ruang=tb_barang.id_ruang')
                     ->join('tb_gedung','tb_gedung.id_gedung=tb_ruang.id_gedung')
                     ->join('tb_lahan','tb_lahan.id_lahan=tb_gedung.id_lahan')
+                    ->join('tb_perusahaan','tb_perusahaan.id_perusahaan=tb_lahan.id_perusahaan') 
                     ->join('tb_status','tb_status.id_status=tb_ruang.id_status')
                     ->join('tb_model','tb_model.id_model=tb_barang.id_model')
                     ->join('tb_merk','tb_merk.id_merk=tb_model.id_merk')
                     ->join('tb_kategori','tb_kategori.id_kategori=tb_merk.id_kategori')
-                    ->join('tb_perusahaan','tb_perusahaan.id_perusahaan=tb_barang.id_perusahaan')         
                     ->where('tb_kategori.id_kategori', $id_kategori)
                     ->get('tb_barang')
                     ->result();
@@ -143,11 +167,11 @@ class Barang_model extends CI_Model {
      return $this->db->join('tb_ruang','tb_ruang.id_ruang=tb_barang.id_ruang')
                     ->join('tb_gedung','tb_gedung.id_gedung=tb_ruang.id_gedung')
                     ->join('tb_lahan','tb_lahan.id_lahan=tb_gedung.id_lahan')
+                    ->join('tb_perusahaan','tb_perusahaan.id_perusahaan=tb_lahan.id_perusahaan')
                     ->join('tb_status','tb_status.id_status=tb_ruang.id_status')
                     ->join('tb_model','tb_model.id_model=tb_barang.id_model')
                     ->join('tb_merk','tb_merk.id_merk=tb_model.id_merk')
-                    ->join('tb_kategori','tb_kategori.id_kategori=tb_merk.id_kategori')
-                    ->join('tb_perusahaan','tb_perusahaan.id_perusahaan=tb_barang.id_perusahaan')         
+                    ->join('tb_kategori','tb_kategori.id_kategori=tb_merk.id_kategori')       
                     ->get('tb_barang')
                     ->result();
    }
@@ -156,12 +180,13 @@ class Barang_model extends CI_Model {
      return $this->db->join('tb_ruang','tb_ruang.id_ruang=tb_barang.id_ruang')
                     ->join('tb_gedung','tb_gedung.id_gedung=tb_ruang.id_gedung')
                     ->join('tb_lahan','tb_lahan.id_lahan=tb_gedung.id_lahan')
+                    ->join('tb_perusahaan','tb_perusahaan.id_perusahaan=tb_lahan.id_perusahaan')
                     ->join('tb_status','tb_status.id_status=tb_ruang.id_status')
                     ->join('tb_model','tb_model.id_model=tb_barang.id_model')
                     ->join('tb_merk','tb_merk.id_merk=tb_model.id_merk')
                     ->join('tb_kategori','tb_kategori.id_kategori=tb_merk.id_kategori')
-                    ->join('tb_perusahaan','tb_perusahaan.id_perusahaan=tb_barang.id_perusahaan')
-                    ->join('tb_supplier','tb_supplier.id_supplier=tb_barang.id_supplier')         
+                    ->join('tb_supplier','tb_supplier.id_supplier=tb_barang.id_supplier')
+                    ->join('tb_user','tb_user.id_user=tb_barang.id_user')          
                     ->where('tb_barang.id_barang', $id_barang)
                     ->get('tb_barang')
                     ->row();
@@ -216,6 +241,15 @@ class Barang_model extends CI_Model {
                     ->get('tb_merk')->result();
    }
 
+   public function get_ruang_by_perusahaan($id_perusahaan){
+     return $this->db->join('tb_gedung','tb_gedung.id_gedung=tb_ruang.id_gedung')
+                    ->join('tb_lahan','tb_lahan.id_lahan=tb_gedung.id_lahan')
+                    ->join('tb_perusahaan','tb_perusahaan.id_perusahaan=tb_lahan.id_perusahaan')
+                    ->where('tb_perusahaan.id_perusahaan', $id_perusahaan)
+                    ->get('tb_ruang')
+                    ->result();
+   }
+
    public function getPerusahaan(){
      return $this->db->get('tb_perusahaan')->result();
    }
@@ -260,6 +294,17 @@ class Barang_model extends CI_Model {
             return null;
         }
   }
+
+   public function hapus_status($id_status){
+        $this->db->where('id_status', $id_status)
+          ->delete('tb_status');
+
+    if ($this->db->affected_rows() > 0) {
+      return TRUE;
+      } else {
+        return FALSE;
+      }
+    }
     
 }
 

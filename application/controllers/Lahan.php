@@ -40,7 +40,7 @@ class Lahan extends CI_Controller {
 		} 
 	public function delete($id_lahan){
 		if ($this->db->where('id_lahan', $id_lahan)->delete('tb_lahan') == TRUE) {
-			$this->session->set_flashdata('message', 'Hapus Lahan Berhasil');
+			$this->session->set_flashdata('message', ' <div class="alert alert-success"> Hapus Lahan Berhasil </div>');
 			redirect('lahan');
 		} else {
 			$this->session->set_flashdata('message', 'Hapus Lahan Berhasil');

@@ -12,8 +12,8 @@
                       <div class="form-group ">
                           <label>Perusahaan (Kepemilikan)</label>
                           <div class="form-group">
-                              <select class="select2" style="width:100%" name="id_perusahaan" onchange="return get_ruang(this.value)">
-                                  <option value="" selected="selected"> Pilih Perusahaan </option>
+                              <select class="select2" style="width:100%" name="id_perusahaan">
+                                  <option value="<?php echo $barang->id_perusahaan; ?>" selected="selected"><?php echo $barang->nama_perusahaan; ?></option>
                                       <?php 
 
                                     foreach($getPerusahaan as $row)
@@ -28,7 +28,7 @@
                           <label>Kategori Barang</label>
                           <div class="form-group">
                               <select class="select2" style="width:100%" name="id_kategori" id="id_kategori" onchange="return get_merk(this.value)">
-                                  <option value="" selected="selected"> Pilih Kategori </option>
+                                  <option value="<?php echo $barang->id_kategori; ?>" selected="selected"><?php echo $barang->kategori; ?></option>
                                       <?php 
 
                                     foreach($getKategori as $row)
@@ -45,7 +45,7 @@
                           <label>Merk</label>
                           <div class="form-group">
                               <select name="id_merk" id="id_merk" class="select2" style="width:100%" onchange="return get_model(this.value)">
-                              <option value="" selected="selected"> Pilih Kategori terlebih Dahulu </option>
+                              <option value="<?php echo $barang->id_merk; ?>" selected="selected"><?php echo $barang->merk; ?></option>
                     
                             </select>
                               
@@ -55,7 +55,7 @@
                           <label>Model</label>
                           <div class="form-group">
                               <select name="id_model" id="id_model" class="select2" style="width:100%">
-                              <option> Pilih Merk terlebih dahulu</option>
+                              <option value="<?php echo $barang->id_model; ?>"><?php echo $barang->nama_model; ?></option>
                         
                     
                             </select>
@@ -64,16 +64,16 @@
                       </div>
                       <div class="form-group">
                         <label for="email">Nama Aset / Barang</label>
-                        <input type="text" name="nama_barang" class="form-control" id="nama_barang" placeholder="Wajib Diisi" required="" >
+                        <input type="text" name="nama_barang" class="form-control" id="nama_barang" placeholder="Wajib Diisi" required="" value="<?php echo $barang->nama_barang; ?>">
                         <input type="hidden" name="id_barang" class="form-control" id="id_barang" value="<?php echo $getLogBarang; ?>" >
                       </div>
                       <div class="form-group">
                         <label for="email">Harga</label>
-                        <input type="number" name="harga_barang" class="form-control" id="harga_barang" placeholder="Wajib Diisi" required="" >
+                        <input type="number" name="harga_barang" class="form-control" id="harga_barang" placeholder="Wajib Diisi" required="" value="<?php echo $barang->harga_barang; ?>">
                       </div>
                       <div class="form-group">
                         <label for="email">Tanggal Pembelian</label>
-                        <input type="date" name="tgl_pembelian" class="form-control" id="tgl_pembelian" placeholder="Wajib Diisi" required="" >
+                        <input type="date" name="tgl_pembelian" class="form-control" id="tgl_pembelian" placeholder="Wajib Diisi" required="" value="<?php echo $barang->tgl_barang; ?>">
                       </div>
                     </div>
                     <div class="col-lg-6">
@@ -81,7 +81,7 @@
                           <label>Pemasok / Supplier</label>
                           <div class="form-group">
                               <select class="select2" style="width:100%" name="id_supplier">
-                                  <option value="" selected="selected"> Pilih Pemasok </option>
+                                  <option value="<?php echo $barang->id_supplier; ?>" selected="selected"><?php echo $barang->nama_supplier; ?></option>
                                       <?php 
 
                                     foreach($getSupplier as $row)
@@ -98,9 +98,15 @@
                       <div class="form-group ">
                           <label>Ditempatkan di </label>
                           <div class="form-group">
-                              <select class="select2" style="width:100%" name="id_ruang" id="id_ruang">
-                                  <option value="" selected="selected"> Pilih Perusahaan Terlebih Dahulu </option>
-                                      
+                              <select class="select2" style="width:100%" name="id_ruang">
+                                  <option value="<?php echo $barang->id_ruang; ?>" selected="selected"><?php echo $barang->nama_ruang; ?></option>
+                                      <?php 
+
+                                    foreach($getRuang as $row)
+                                    { 
+                                      echo '<option value="'.$row->id_ruang.'">'.$row->nama_ruang.'</option>';
+                                    }
+                                    ?>
                               </select>
                               
                               
@@ -109,8 +115,8 @@
                       <div class="form-group ">
                           <label>Pengguna </label>
                           <div class="form-group">
-                              <select class="select2" style="width:100%" name="id_user" id="id_user">
-                                  <option value="" selected="selected"> Pilih Pengguna </option>
+                              <select class="select2" style="width:100%" name="pengguna">
+                                  <option value="<?php echo $barang->id_user; ?>" selected="selected"><?php echo $barang->nama_user; ?></option>
                                       <?php 
 
                                     foreach($getPengguna as $row)
@@ -127,7 +133,7 @@
                           <label>Status </label>
                           <div class="form-group">
                               <select class="select2" style="width:100%" name="id_status">
-                                  <option value="" selected="selected"> Pilih Status </option>
+                                  <option value="<?php echo $barang->id_status; ?>" selected="selected"><?php echo $barang->status; ?></option>
                                       <?php 
 
                                     foreach($getStatus as $row)
@@ -144,8 +150,14 @@
                           <label>Bisa Dipinjam (Requestable) </label>
                           <div class="form-group">
                               <select class="select2" style="width:100%" name="requestable">
+                                <?php if ($barang->requestable == 'Y') { ?>
                                   <option value="Y" selected="selected"> Ya </option>
                                    <option value="N"> Tidak </option>
+
+                                <?php } else { ?>
+                                   <option value="Y"> Ya </option>
+                                   <option value="N" selected="selected"> Tidak </option>
+                                <?php } ?>
                                      
                               </select>
                                
@@ -153,11 +165,11 @@
                       </div>
                       <div class="form-group">
                         <label for="email">Foto Barang</label>
-                        <input type="file" name="foto_barang" class="form-control" id="foto_barang"  >
+                        <input type="file" name="foto_barang" class="form-control" id="foto_barang" value="<?php echo $barang->foto_barang; ?>" >
                       </div>
                       <div class="form-group">
                         <label for="email">Keterangan</label>
-                        <textarea name="keterangan" id="keterangan" class="form-control" placeholder="Isi Bila Ada"></textarea>
+                        <textarea name="keterangan" id="keterangan" class="form-control" placeholder="Isi Bila Ada"><?php echo $barang->keterangan; ?></textarea>
                       </div>
                       <br>
                       
@@ -203,23 +215,6 @@
                     dataType: 'html',
                     success: function(msg) {
                         $("#id_model").html(msg);
-
-                    }
-                });
-            }
-</script>
-
-<script type="text/javascript">
-            function get_ruang(p) {
-                var id_perusahaan = p;
-
-                $.ajax({
-                    url: '<?php echo base_url(); ?>barang/get_ruang_by_perusahaan/'+id_perusahaan,
-                    data: 'id_perusahaan='+id_perusahaan,
-                    type: 'GET',
-                    dataType: 'html',
-                    success: function(msg) {
-                        $("#id_ruang").html(msg);
 
                     }
                 });

@@ -27,14 +27,26 @@ class Kategori extends CI_Controller {
 		}
 	}
 
-	/*public function edit_lahan(){
-			$id_periode = $this->input->post('id_lahan');
-					if ($this->ruang_model->edit_periode($id_periode) == TRUE) {
-						$this->session->set_flashdata('message', '<div class="alert alert-success"> Edit '.$id_periode.' berhasil . </div>');
-            			redirect('Lahan');
-					} else {
-						$this->session->set_flashdata('message', '<div class="alert alert-danger"> Edit '.$id_periode.' gagal . </div>');
-            			redirect('Lahan');
-					}
-		} */
+	public function edit_kategori()
+	{
+		$id_kategori = $this->input->post('id_kategori');
+			if($this->Kategori_model->edit_kategori($id_kategori) == TRUE){
+				$this->session->set_flashdata('message', '<div class="alert alert-success"> Kategori Berhasil Diubah </div>');
+            	redirect('kategori');
+			}  else{
+				$this->session->set_flashdata('message', '<div class="alert alert-danger"> '.validation_errors().' </div>');
+            	redirect('kategori');
+		}
+	}
+
+	public function hapus_kategori(){
+		$id_kategori = $this->uri->segment(3);
+		if ($this->Kategori_model->hapus_kategori($id_kategori) == TRUE) {
+			$this->session->set_flashdata('message', '<div class="alert alert-success"> Kategori berhasil dihapus </div>');
+			redirect('kategori');
+		} else {
+			$this->session->set_flashdata('message', '<div class="alert alert-danger"> Kategori gagal dihapus </div>');
+			redirect('kategori');
+		}
+	}
 }

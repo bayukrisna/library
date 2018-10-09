@@ -33,15 +33,44 @@ class Supplier extends CI_Controller {
 		}
 	}
 
+	public function page_edit_supplier()
+	{
+			$id_supplier = $this->uri->segment(3);
+			$data['supplier'] = $this->Supplier_model->detail_supplier($id_supplier);
+			$data['main_view'] = 'Supplier/edit_supplier_view';
+			$this->load->view('template', $data);
+	}
 
-	/*public function edit_lahan(){
-			$id_periode = $this->input->post('id_lahan');
-					if ($this->ruang_model->edit_periode($id_periode) == TRUE) {
-						$this->session->set_flashdata('message', '<div class="alert alert-success"> Edit '.$id_periode.' berhasil . </div>');
-            			redirect('Lahan');
+	public function detail_supplier()
+	{
+			$id_supplier = $this->uri->segment(3);
+			$data['supplier'] = $this->Supplier_model->detail_supplier($id_supplier);
+			$data['main_view'] = 'Supplier/detail_supplier_view';
+			$this->load->view('template', $data);
+	}
+
+	public function edit_supplier(){
+			$id_supplier = $this->uri->segment(3);
+			$nama_supplier = $this->input->post('nama_supplier');
+					if ($this->Supplier_model->edit_supplier($id_supplier) == TRUE) {
+						$this->session->set_flashdata('message', '<div class="alert alert-success"> Edit '.$nama_supplier.' berhasil </div>');
+            			redirect('supplier');
 					} else {
-						$this->session->set_flashdata('message', '<div class="alert alert-danger"> Edit '.$id_periode.' gagal . </div>');
-            			redirect('Lahan');
+						$this->session->set_flashdata('message', '<div class="alert alert-danger"> Edit '.$nama_supplier.' gagal </div>');
+            			redirect('supplier');
 					}
-		} */
+		} 
+
+	public function hapus_supplier(){
+		$id_supplier = $this->uri->segment(3);
+		if ($this->db->where('id_supplier', $id_supplier)->delete('tb_supplier') == TRUE) {
+			$this->session->set_flashdata('message', '<div class="alert alert-success"> Hapus Supplier Berhasil </div>');
+			redirect('supplier');
+		} else {
+			$this->session->set_flashdata('message', '<div class="alert alert-danger"> Hapus Supplier Gagal </div>');
+			redirect('supplier');
+		}
+	}
+
+
 }

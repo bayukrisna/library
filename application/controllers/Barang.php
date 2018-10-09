@@ -47,6 +47,20 @@ class Barang extends CI_Controller {
 			$this->load->view('template', $data);
 	}
 
+	public function page_edit_barang()
+	{
+			$id_kategori = $this->uri->segment(3);
+			$data['getLogBarang'] = $this->Barang_model->getLogBarang();
+			$data['getPengguna'] = $this->Barang_model->getPengguna();
+			$data['getKategori'] = $this->Barang_model->getKategori();
+			$data['getSupplier'] = $this->Barang_model->getSupplier();
+			$data['getPerusahaan'] = $this->Barang_model->getPerusahaan();
+			$data['getStatus'] = $this->Barang_model->getStatus();
+			$data['kategori'] = $this->Barang_model->detail_kategori($id_kategori);
+			$data['main_view'] = 'Barang/edit_barang_view';
+			$this->load->view('template', $data);
+	}
+
 	public function tambah_barang_by_kategori()
 	{
 			$id_kategori = $this->uri->segment(3);
@@ -68,7 +82,6 @@ class Barang extends CI_Controller {
 			$data['getKategori'] = $this->Barang_model->getKategori();
 			$data['getSupplier'] = $this->Barang_model->getSupplier();
 			$data['getPerusahaan'] = $this->Barang_model->getPerusahaan();
-			$data['getRuang'] = $this->Barang_model->getRuang();
 			$data['getStatus'] = $this->Barang_model->getStatus();
 			$data['kategori'] = $this->Barang_model->detail_kategori($id_kategori);
 			$data['main_view'] = 'Barang/tambah_barang2_view';
@@ -121,6 +134,19 @@ class Barang extends CI_Controller {
 		foreach ($result as $data) {
 			$option = 
 			$option .= "<option value='".$data->id_model."'>".$data->nama_model."</option>";
+			
+		}
+		echo $option;
+	}
+
+	public function get_ruang_by_perusahaan($param = NULL){
+		$id_perusahaan = $param;
+		$result = $this->Barang_model->get_ruang_by_perusahaan($id_perusahaan);
+		$option = "";
+		$option .= '<option value=""> Pilih Ruang </option>';
+		foreach ($result as $data) {
+			$option = 
+			$option .= "<option value='".$data->id_ruang."'>".$data->nama_ruang."</option>";
 			
 		}
 		echo $option;
@@ -222,14 +248,14 @@ class Barang extends CI_Controller {
 	}
 
 
-	/*public function edit_lahan(){
-			$id_periode = $this->input->post('id_lahan');
-					if ($this->ruang_model->edit_periode($id_periode) == TRUE) {
-						$this->session->set_flashdata('message', '<div class="alert alert-success"> Edit '.$id_periode.' berhasil . </div>');
-            			redirect('Lahan');
-					} else {
-						$this->session->set_flashdata('message', '<div class="alert alert-danger"> Edit '.$id_periode.' gagal . </div>');
-            			redirect('Lahan');
-					}
-		} */
+	public function hapus_status(){
+		$id_status = $this->uri->segment(3);
+		if ($this->Barang_model->hapus_status($id_status) == TRUE) {
+			$this->session->set_flashdata('message', '<div class="alert alert-success"> Status berhasil dihapus </div>');
+			redirect('barang/status');
+		} else {
+			$this->session->set_flashdata('message', '<div class="alert alert-danger"> Status gagal dihapus </div>');
+			redirect('barang/status');
+		}
+	}
 }

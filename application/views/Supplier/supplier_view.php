@@ -29,20 +29,25 @@
 
                 <?php 
                 $no = 0;
+                $alert = "'Anda yakin menghapus data ini ?'";
                 foreach ($supplier as $data) {
                   echo '
                   
                 <tr>
                   <td>'.++$no.'</td>
 
-                  <td><a href="" data-toggle="modal" data-target="#modal_view'.$data->id_supplier.'">'.$data->nama_supplier.'</a></td>
+                  <td><a href="'.base_url('supplier/detail_supplier/'.$data->id_supplier).'">'.$data->nama_supplier.'</a></td>
                   <td>'.$data->alamat.'</td>
                   <td>'.$data->nama_kontak.'</td>
                   <td>'.$data->email.'</td>
                   <td>'.$data->no_telp.'</td>
                   <td>'.$data->nama_supplier.'</td>
                   <td>
-                  <a href="" data-toggle="modal" data-target="#modal_edit'.$data->id_supplier.'" class="btn btn-warning btn-xs btn-flat" ><i class="glyphicon glyphicon-pencil"></i><span class="tooltiptext">Edit</span></a>
+                  <a href="'.base_url('supplier/page_edit_supplier/'.$data->id_supplier).'" class="btn btn-warning btn-xs btn-flat" ><i class="glyphicon glyphicon-pencil"></i><span class="tooltiptext">Edit</span></a>
+
+                  <a href="'.base_url('supplier/hapus_supplier/'.$data->id_supplier).'" onclick="return confirm('.$alert.')" class="btn btn-danger btn-xs btn-flat" ><i class="glyphicon glyphicon-trash"></i><span class="tooltiptext">Hapus</span></a>
+
+                  </td>
                 
                 ' ;
                 
