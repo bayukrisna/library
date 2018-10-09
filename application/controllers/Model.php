@@ -46,4 +46,13 @@ class Model extends CI_Controller {
             			redirect('model');
 					}
 		} 
+	public function delete($id_model){
+		if ($this->db->where('id_model', $id_model)->delete('tb_model') == TRUE) {
+			$this->session->set_flashdata('message', '<div class="alert alert-success"> Hapus  berhasil . </div>');
+			redirect('model');
+		} else {
+			$this->session->set_flashdata('message', '<div class="alert alert-danger"> Hapus  gagal . </div>');
+			redirect('model');
+		}
+	}
 }

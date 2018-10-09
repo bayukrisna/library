@@ -29,6 +29,7 @@
 
                 <?php 
                 $no = 0;
+                $alert = "'Apakah anda yakin mengapus data ini ?'";
                 foreach ($model as $data) {
                   echo '
                   
@@ -42,6 +43,7 @@
                   <td>'.$data->eol.'</td>
                   <td>
                   <a href="" data-toggle="modal" data-target="#modal_edit'.$data->id_model.'" class="btn btn-warning btn-xs btn-flat" ><i class="glyphicon glyphicon-pencil"></i><span class="tooltiptext">Edit</span></a>
+                  <a href="'.base_url('model/delete/'.$data->id_model).'" class="btn btn-danger btn-xs btn-flat" onclick="return confirm('.$alert.')"><i class="glyphicon glyphicon-trash"></i><span class="tooltiptext">Hapus</span></a>
                 
                 ' ;
                 
@@ -130,13 +132,12 @@
     </div>
 </div>
 <!-- Image -->
-
 <div class="form-group ">
 
     <label class="col-md-3 control-label" for="image">Unggah Gambar</label>
     <div class="col-md-5">
-      <img src="<?php echo base_url().'uploads/'.$i->image?>" style="width: 50px" onerror="" >
-        <input name="image" type="file" id="image">
+      <img  src="<?php echo base_url().'uploads/'.$i->image?>" id="output" style="width: 200px" onerror="" >
+        <input name="image" onchange="loadFile(event)" type="file" id="image">
         
     </div>
 </div>
@@ -223,7 +224,8 @@
 <div class="form-group ">
     <label class="col-md-3 control-label" for="image">Unggah Gambar</label>
     <div class="col-md-5">
-        <input name="image" type="file" id="image">
+      <img   id="output2" style="width: 200px" onerror="" >
+        <input name="image" onchange="loadFile2(event)" type="file" id="image">
         
     </div>
 </div>
@@ -238,3 +240,15 @@
         </div>
         <?php echo form_close();?>
 
+<script>
+  var loadFile = function(event) {
+    var output = document.getElementById('output');
+    output.src = URL.createObjectURL(event.target.files[0]);
+  };
+</script>
+<script>
+  var loadFile2 = function(event) {
+    var output = document.getElementById('output2');
+    output.src = URL.createObjectURL(event.target.files[0]);
+  };
+</script>

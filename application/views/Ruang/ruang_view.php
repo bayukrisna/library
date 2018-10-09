@@ -28,6 +28,7 @@
 
                 <?php 
                 $no = 0;
+                $alert = "'Apakah anda yakin mengapus data ini ?'";
                 foreach ($ruang as $data) {
                   echo '
                   
@@ -41,6 +42,7 @@
                   <td>'.$data->status.'</td>
                   <td>
                   <a href="" data-toggle="modal" data-target="#modal_edit'.$data->id_ruang.'" class="btn btn-warning btn-xs btn-flat" ><i class="glyphicon glyphicon-pencil"></i><span class="tooltiptext">Edit</span></a>
+                  <a href="'.base_url('ruang/delete/'.$data->id_ruang).'" class="btn btn-danger btn-xs btn-flat" onclick="return confirm('.$alert.')"><i class="glyphicon glyphicon-trash"></i><span class="tooltiptext">Hapus</span></a>
                 
                 ' ;
                 
@@ -59,7 +61,7 @@
       </div>
       <!-- /.row -->
     </section>
-<!--<?php 
+<?php 
         foreach($ruang as $i):
         ?>
         <div class="modal fade" id="modal_view<?php echo $i->id_ruang;?>" >
@@ -91,8 +93,8 @@
                                 <td>: <?php echo $i->harga_perolehan ?></td>
                             </tr> 
                             <tr>
-                              <td class="left_column">Kepemilikan</td>
-                                <td>: <?php echo $i->kepemilikan ?></td>
+                              <td class="left_column">Nama Perusahaan</td>
+                                <td>: <?php echo $i->nama_perusahaan ?></td>
                             </tr> 
                             <tr>
                               <td class="left_column">Alamat</td>
@@ -110,75 +112,86 @@
 
     <?php endforeach;?>
 
-    <!-- <?php 
-        foreach($data_periode as $i):
+    <?php 
+        foreach($ruang as $i):
         ?>
         <div class="modal fade" id="modal_edit<?php echo $i->id_ruang;?>" >
             <div class="modal-dialog">
             <div class="modal-content">
             <div class="modal-header">
                 <button type="button" class="close" data-dismiss="modal" aria-hidden="true">x</button>
-                <h3 class="modal-title" id="myModalLabel">EDIT PERIODE</h3>
+                <h3 class="modal-title" id="myModalLabel">EDIT RUANG</h3>
             </div>
                 <div class="modal-body">
 
                     <div class="form-group">
-                      <?php echo form_open('setting_periode/edit_periode'); ?>
-                      <table class="table" style="text-transform: uppercase;">
-      <tr>
-          <td>Semester <font color="#FF0000">*</font></td>
-            <td colspan="9">:  <input type="text" name="semester" id="id_smt" value="<?php echo $i->semester ?>"  readonly="" />
-        </tr>
-      <tr>
-          <td class="left_column" width="40%">Program Studi <font color="#FF0000">*</font></td>
-            <td>: 
-       <select id="id_prodi" required="" name="id_prodi">
-                    <option value="<?php echo $i->id_prodi ?>"><?php echo $i->nama_prodi; ?></option>   
-                    <?php 
+                      <?php echo form_open('ruang/edit_ruang', 'class="form-horizontal" method="post" role="form" enctype="multipart/form-data"'); ?>
+                    <!-- CSRF Token -->
+                    
+<!-- Name -->
+<div class="form-group ">
+    <label for="name" class="col-md-3 control-label">Nama Ruang</label>
+    <div class="col-md-7 col-sm-12 required">
+      <input type="hidden" name="id_ruang" value="<?php echo $i->id_ruang ?>">
+        <input class="form-control" type="text" name="nama_ruang" id="nama_ruang" value="<?php echo $i->nama_ruang ?>" required="" />
+        
+    </div>
+</div>
+<div class="form-group ">
+    <label for="eol" class="col-md-3 control-label">Luas Ruang</label>
+    <div class="col-md-6">
+        <div class="input-group">
+            <input class="col-md-2 form-control" type="number" name="luas_ruang" id="luas_ruang" value="<?php echo $i->luas_ruang ?>" />
+            <span class="input-group-addon">
+                m<sup>2</sup>
+            </span>
+        </div>
+    </div>
+</div>
+<div class="form-group ">
+    <label for="name" class="col-md-3 control-label">Kapasitas</label>
+    <div class="col-md-7 col-sm-12 required">
+        <input class="form-control" type="text" name="kapasitas" id="kapasitas" value="<?php echo $i->kapasitas ?>" required="" />
+        
+    </div>
+</div><!-- Manufacturer -->
+<div class="form-group ">
+    <label for="manufacturer_id" class="col-md-3 control-label">Gedung</label>
+    <div class="col-md-7 required">
+        <select class="select2" style="width:100%" name="id_gedung">
+            <option value="<?php echo $i->id_gedung ?>" selected="selected"><?php echo $i->nama_gedung ?></option>
+            <?php 
 
-                  foreach($getProdi as $row)
+                  foreach($getGedung as $row)
                   { 
-                    echo '<option value="'.$row->id_prodi.'">'.$row->nama_prodi.'</option>';
+                    echo '<option value="'.$row->id_gedung.'">'.$row->nama_gedung.'</option>';
                   }
                   ?>
-                  </select> 
-             </td>
-        </tr>
-        <tr>
-          <td class="left_column">Target Mahasiswa Baru</td>
-            <td>: <input type="number" name="target_mhs_baru" id="target_mhs_baru" class="text-input" style="width:50px" value="<?php echo $i->target_mhs_baru; ?>"></td>
-        </tr> 
-        <tr>
-          <td class="left_column">Pendaftar Ikut Seleksi</td>
-            <td>: <input type="number" name="pendaftar_ikut_seleksi" id="pendaftar_ikut_seleksi" class="text-input" style="width:50px" value="<?php echo $i->pendaftar_ikut_seleksi; ?>"></td>
-        </tr> 
-        <tr>
-          <td class="left_column">Pendaftar Lulus Seleksi</td>
-            <td>: <input value="<?php echo $i->pendaftar_lulus_seleksi; ?>" type="number" name="pendaftar_lulus_seleksi" id="target_mhs_baru" class="text-input" style="width:50px"></td>
-        </tr> 
-        <tr>
-          <td class="left_column">Daftar Ulang</td>
-            <td>: <input value="<?php echo $i->daftar_ulang; ?>" type="number" name="daftar_ulang" id="target_mhs_baru" class="text-input" style="width:50px"></td>
-        </tr>
-        <tr>
-          <td class="left_column">Mengundurkan Diri</td>
-            <td>: <input value="<?php echo $i->mengundurkan_diri; ?>" type="number" name="mengundurkan_diri" id="target_mhs_baru" class="text-input" style="width:50px"></td>
-        </tr> 
-        <tr>
-         <td class="left_column">Tanggal Perkuliahan  <font color="#FF0000">*</font></td>
-            <td>:
-        <input type="date" value="<?php echo $i->tgl_awal_kul; ?>" name="tgl_awal_kul" id="tgl_awal_kul"  maxlength="50" size="50" style="width:45%">               <strong>s/d</strong>
-        <input type="date" value="<?php echo $i->tgl_akhir_kul; ?>" name="tgl_akhir_kul" id="tgl_akhir_kul"  text-input" maxlength="50" size="50" style="width:45%">            </td>
-        </tr>
-        <tr>
-          <td class="left_column">Jumlah Minggu Pertemuan </td>
-            <td>: <input value="<?php echo $i->jumlah_minggu_pertemuan; ?>" type="number" name="jumlah_minggu_pertemuan" id="target_mhs_baru" class="text-input" style="width:50px"></td>
-            <input type="hidden" name="id_ruang" value="<?php echo $i->id_ruang; ?>">
-        </tr> 
-        <tr>
-          <td colspan="4"><button type="submit" class="btn btn-info btn-flat">Edit</button></td>
-        </tr>
-    </table>
+        </select>
+        
+    </div>
+</div>
+<div class="form-group ">
+    <label for="manufacturer_id" class="col-md-3 control-label">Status</label>
+    <div class="col-md-7 required">
+        <select class="select2" style="width:100%" name="id_status">
+            <option value="<?php echo $i->id_status ?>" selected="selected"><?php echo $i->status ?></option>
+            <?php 
+
+                  foreach($getStatus as $row)
+                  { 
+                    echo '<option value="'.$row->id_status.'">'.$row->status.'</option>';
+                  }
+                  ?>
+        </select>
+        
+    </div>
+</div>
+
+
+                    <div class="box-footer text-right">
+    <button type="submit" class="btn btn-success"><i class="fa fa-check icon-white"></i> Simpan</button>
+</div>                </form>
 
                     </div>
 
@@ -188,7 +201,7 @@
         </div>
         <?php echo form_close();?>
 
-    <?php endforeach;?> -->
+    <?php endforeach;?>
 
 
         <div class="modal fade" id="modal_tambah" >

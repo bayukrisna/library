@@ -28,14 +28,23 @@ class Lahan extends CI_Controller {
             	redirect('lahan');
 		}
 	}
-	/*public function edit_lahan(){
+	public function edit_lahan(){
 			$id_periode = $this->input->post('id_lahan');
-					if ($this->Lahan_model->edit_periode($id_periode) == TRUE) {
+					if ($this->Lahan_model->edit_lahan($id_periode) == TRUE) {
 						$this->session->set_flashdata('message', '<div class="alert alert-success"> Edit '.$id_periode.' berhasil . </div>');
             			redirect('Lahan');
 					} else {
 						$this->session->set_flashdata('message', '<div class="alert alert-danger"> Edit '.$id_periode.' gagal . </div>');
             			redirect('Lahan');
 					}
-		} */
+		} 
+	public function delete($id_lahan){
+		if ($this->db->where('id_lahan', $id_lahan)->delete('tb_lahan') == TRUE) {
+			$this->session->set_flashdata('message', 'Hapus Lahan Berhasil');
+			redirect('lahan');
+		} else {
+			$this->session->set_flashdata('message', 'Hapus Lahan Berhasil');
+			redirect('lahan');
+		}
+	}
 }

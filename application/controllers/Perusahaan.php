@@ -37,4 +37,13 @@ class Perusahaan extends CI_Controller {
             			redirect('perusahaan');
 					}
 		} 
+	public function delete($id_perusahaan){
+		if ($this->db->where('id_perusahaan', $id_perusahaan)->delete('tb_perusahaan') == TRUE) {
+			$this->session->set_flashdata('message', '<div class="alert alert-success"> Hapus  berhasil . </div>');
+			redirect('perusahaan');
+		} else {
+			$this->session->set_flashdata('message', '<div class="alert alert-danger"> Hapus  gagal . </div>');
+			redirect('perusahaan');
+		}
+	}
 }

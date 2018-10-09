@@ -42,14 +42,23 @@ class Ruang extends CI_Controller {
                     ->result();
 
     }
-	/*public function edit_lahan(){
-			$id_periode = $this->input->post('id_lahan');
-					if ($this->ruang_model->edit_periode($id_periode) == TRUE) {
+	public function edit_ruang(){
+			$id_periode = $this->input->post('id_ruang');
+					if ($this->Ruang_model->edit_ruang($id_periode) == TRUE) {
 						$this->session->set_flashdata('message', '<div class="alert alert-success"> Edit '.$id_periode.' berhasil . </div>');
-            			redirect('Lahan');
+            			redirect('ruang');
 					} else {
 						$this->session->set_flashdata('message', '<div class="alert alert-danger"> Edit '.$id_periode.' gagal . </div>');
-            			redirect('Lahan');
+            			redirect('ruang');
 					}
-		} */
+		} 
+	public function delete($id_ruang){
+		if ($this->db->where('id_ruang', $id_ruang)->delete('tb_ruang') == TRUE) {
+			$this->session->set_flashdata('message', '<div class="alert alert-success"> Hapus  berhasil . </div>');
+			redirect('ruang');
+		} else {
+			$this->session->set_flashdata('message', '<div class="alert alert-danger"> Hapus  gagal . </div>');
+			redirect('ruang');
+		}
+	}
 }
