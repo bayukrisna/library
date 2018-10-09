@@ -46,7 +46,10 @@ class Laporan_model extends CI_Model {
                   $no = 0;
                   $total_harga = 0;
                   $option = "";
-                  $option .= '<section class="content" id="ea">
+                  $option .= '
+
+
+    <section class="content" id="ea">
 
      <div class="row">
         <div class="col-xs-12">
@@ -69,16 +72,16 @@ class Laporan_model extends CI_Model {
             <br>
             <!-- /.box-header -->
             <div class="box-body">
-              <table id="example1" class="table table-bordered table-striped">
+              <table  class="table2 table-bordered table-striped table-hover dataTable js-exportable " style="text-transform: uppercase;">
                 <thead>
                 <tr>
                   <th>No</th>
+                  <th>Tgl. Pembelian</th>
                   <th>Kategori</th>
                   <th>Nama Barang</th>
                   <th>Merk</th>
                   <th>Model</th>
                   <th>Harga</th>
-                  <th>Tgl. Pembelian</th>
                 </tr>
                 </thead>
                 <tbody>';
@@ -90,20 +93,20 @@ class Laporan_model extends CI_Model {
                     $option .= "
                     <tr>
                       <td>".++$no."</td>
+                      <td>".$data->tgl_pembelian."</td>
                       <td>".$data->kategori."</td>
                       <td>".$data->nama_barang."</td>
                       <td>".$data->merk."</td>
                       <td>".$data->nama_model."</td>
                       <td>".$data->harga_barang."</td>
-                      <td>".$data->tgl_pembelian."</td>
                     </tr>"
                     ;
                     
                   }
                   $option .= '
                     <tr>
-                      <td colspan="5" style="text-align:right"><b>Total Harga</b></td>
-                      <td colspan="2"><b>Rp. '.$total_harga.',00</b></td>
+                      <td colspan="6" style="text-align:right"><b>Total Harga</b></td>
+                      <td><b>Rp. '.$total_harga.',00</b></td>
                     </tr>
                   </tbody>
 
@@ -206,16 +209,16 @@ class Laporan_model extends CI_Model {
             <br>
             <!-- /.box-header -->
             <div class="box-body">
-              <table id="example1" class="table table-bordered table-striped">
+              <table  class="table2 table-bordered table-striped table-hover dataTable js-exportable " style="text-transform: uppercase;">
                 <thead>
                 <tr>
                   <th>No</th>
+                  <th>Tgl. Perbaikan</th>
                   <th>Tipe</th>
                   <th>Kategori</th>
                   <th>Nama Barang</th>
                   <th>Permasalahan</th>
                   <th>Harga</th>
-                  <th>Tgl. Perbaikan</th>
                 </tr>
                 </thead>
                 <tbody>';
@@ -227,20 +230,20 @@ class Laporan_model extends CI_Model {
                     $option .= "
                     <tr>
                       <td>".++$no."</td>
+                      <td>".$data->tgl_mulai_perbaikan."</td>
                       <td>".$data->tipe_pemeliharaan."</td>
                       <td>".$data->kategori."</td>
                       <td>".$data->nama_barang."</td>
                       <td>".$data->permasalahan."</td>
                       <td>".$data->harga_perbaikan."</td>
-                      <td>".$data->tgl_mulai_perbaikan."</td>
                     </tr>"
                     ;
                     
                   }
                   $option .= '
                     <tr>
-                      <td colspan="5" style="text-align:right"><b>Total Harga</b></td>
-                      <td colspan="2"><b>Rp. '.$total_harga.',00</b></td>
+                      <td colspan="6" style="text-align:right"><b>Total Harga</b></td>
+                      <td><b>Rp. '.$total_harga.',00</b></td>
                     </tr>
                   </tbody>
 

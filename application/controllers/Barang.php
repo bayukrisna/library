@@ -165,10 +165,23 @@ class Barang extends CI_Controller {
 		}
 	}
 
+
 	public function simpan_status()
 	{
 			if($this->Barang_model->simpan_status() == TRUE){
 				$this->session->set_flashdata('message', '<div class="alert alert-success"> Data status berhasil disimpan </div>');
+            	redirect('barang/status');
+			}  else{
+				$this->session->set_flashdata('message', '<div class="alert alert-danger"> '.validation_errors().' </div>');
+            	redirect('barang/status');
+		}
+	}
+
+	public function edit_status()
+	{
+		$id_status = $this->input->post('id_status');
+			if($this->Barang_model->edit_status($id_status) == TRUE){
+				$this->session->set_flashdata('message', '<div class="alert alert-success"> Status Berhasil Diubah </div>');
             	redirect('barang/status');
 			}  else{
 				$this->session->set_flashdata('message', '<div class="alert alert-danger"> '.validation_errors().' </div>');

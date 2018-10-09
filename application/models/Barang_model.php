@@ -245,23 +245,15 @@ class Barang_model extends CI_Model {
    }
 
 
-  public function edit_periode($id_periode){
+  public function edit_status($id_status){
     $data = array(
-            'semester'                        => $this->input->post('semester'),
-            'id_prodi'                        => $this->input->post('id_prodi'),
-            'target_mhs_baru'                 => $this->input->post('target_mhs_baru'),
-            'pendaftar_ikut_seleksi'          => $this->input->post('pendaftar_ikut_seleksi'),
-            'pendaftar_lulus_seleksi'         => $this->input->post('pendaftar_lulus_seleksi'),
-            'daftar_ulang'         => $this->input->post('daftar_ulang'),
-            'mengundurkan_diri'         => $this->input->post('mengundurkan_diri'),
-            'tgl_awal_kul'         => $this->input->post('tgl_awal_kul'),
-            'tgl_akhir_kul'         => $this->input->post('tgl_akhir_kul'),
-            'jumlah_minggu_pertemuan'         => $this->input->post('jumlah_minggu_pertemuan')
+            'id_status' => $this->input->post('id_status'),
+            'status' => $this->input->post('status')
       );
 
     if (!empty($data)) {
-            $this->db->where('id_periode', $id_periode)
-        ->update('tb_periode', $data);
+            $this->db->where('id_status', $id_status)
+        ->update('tb_status', $data);
 
           return true;
         } else {

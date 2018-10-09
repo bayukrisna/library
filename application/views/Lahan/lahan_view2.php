@@ -1,3 +1,71 @@
+<style type="text/css">
+        .buttons-copy {
+        background:#2C97DF;
+  color:white;
+  border-top:0;
+  border-left:0;
+  border-right:0;
+  border-bottom:4px solid #2A80B9;
+  padding:2px 4px;
+  text-decoration:none;
+  font-family:sans-serif;
+  font-size:11pt;
+        }
+    .buttons-pdf {
+        background:red;
+  color:white;
+  border-top:0;
+  border-left:0;
+  border-right:0;
+  border-bottom:4px solid black;
+  padding:2px 4px;
+  text-decoration:none;
+  font-family:sans-serif;
+  font-size:11pt;
+  margin-left: 5px;
+        }
+
+        .buttons-csv {
+        background:maroon;
+  color:white;
+  border-top:0;
+  border-left:0;
+  border-right:0;
+  border-bottom:4px solid black;
+  padding:2px 4px;
+  text-decoration:none;
+  font-family:sans-serif;
+  font-size:11pt;
+  margin-left: 5px;
+        }
+
+    .buttons-print {
+        background:grey;
+  color:white;
+  border-top:0;
+  border-left:0;
+  border-right:0;
+  border-bottom:4px solid black;
+  padding:2px 4px;
+  text-decoration:none;
+  font-family:sans-serif;
+  font-size:11pt;
+  margin-left: 5px;
+        }
+
+      .buttons-excel {
+        background:green;
+  color:white;
+  border-top:0;
+  border-left:0;
+  border-right:0;
+  border-bottom:4px solid black;
+  padding:2px 4px;
+  text-decoration:none;
+  font-family:sans-serif;
+  font-size:11pt;
+  margin-left: 5px;
+        }
 
     </style>
       <section class="content">
@@ -13,7 +81,7 @@
             <!-- /.box-header -->
             <div class="box-body">
               <div class="table-responsive">
-              <table id="example1" class="table table-bordered table-striped table-hover" style="text-transform: uppercase;">
+              <table  class="table table-bordered table-striped table-hover dataTable js-exportable " style="text-transform: uppercase;">
 
                 <a href="" data-toggle="modal" data-target="#modal_tambah" class="btn btn-primary btn-sm btn-flat" ><i class="fa fa-plus"></i> Tambah</a> <br> <br>
 

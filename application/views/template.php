@@ -173,7 +173,8 @@ a:hover .tooltiptext {
       <!-- /.search form -->
       <!-- sidebar menu: : style can be found in sidebar.less -->
       <ul class="sidebar-menu" data-widget="tree">
-        <li class="header">MAIN NAVIGATION</li>
+        <li class="header">MAIN NAVIGATION <?= $this->session->userdata('id_user')?></li>
+
         
         <li class="treeview">
           <a href="#">
@@ -194,7 +195,7 @@ a:hover .tooltiptext {
         </li>
         <li class="treeview">
           <a href="#">
-            <i class="fa fa-dashboard"></i> <span>PENGGUNA</span>
+            <i class="fa fa-dashboard"></i> <span>PENGGUNA (<i>USER</i>)</span>
             <span class="pull-right-container">
               <i class="fa fa-angle-left pull-right"></i>
             </span>
@@ -217,6 +218,8 @@ a:hover .tooltiptext {
             <li><a href="<?php echo base_url(); ?>ruang"><i class="fa fa-circle-o"></i>RUANG</a></li>
           </ul>
         </li>
+        <?php $c =  $this->db->where('id_user', $this->session->userdata('id_user'))->get('tb_akses')->row();
+        if ($c->v_bar == 1) { ?>
         <li class="treeview">
           <a href="#">
             <i class="fa fa-dashboard"></i> <span>SARANA</span>
@@ -239,6 +242,7 @@ a:hover .tooltiptext {
         </li>
           </ul>
         </li>
+      <?php } ?>
         <li class="treeview">
           <a href="#">
             <i class="fa fa-dashboard"></i> <span>LAPORAN</span>

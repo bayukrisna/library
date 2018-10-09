@@ -20,8 +20,11 @@
     </tbody></table>
 </div>
 <div class="">   
+      <?php $c =  $this->db->where('id_user', $this->session->userdata('id_user'))->get('tb_akses')->row();
+        if ($c->c_bar == 1) { ?>
 
             <a href="<?php echo base_url(); ?>barang/tambah_barang_by_kategori/<?php echo $kategori->id_kategori; ?>" class="btn btn-primary btn-sm btn-flat pull-right" ><i class="fa fa-plus"></i> Tambah</a>
+          <?php } ?>
 
              <a class="btn btn-default btn-sm pull-right" style="margin-right: 10px"  href="<?php echo base_url('barang'); ?>"><i class="fa fa-angle-left"></i> Back </a> <br> <br>
 
@@ -41,6 +44,7 @@
     <th width="15%" style="text-align:center">Perusahaan</th>
     <th width="15%" style="text-align:center">Ruang</th>
     <th width="15%" style="text-align:center">Status</th>
+    <th width="15%" style="text-align:center">Aksi</th>
   </tr>
   </thead>
   <tbody>
@@ -57,6 +61,8 @@
         <td style="text-align:center"><?php echo $data->nama_perusahaan;?></td>
         <td style="text-align:center"><?php echo $data->nama_ruang;?></td>
         <td style="text-align:center"><?php echo $data->status;?></td>
+        <td style="text-align:center"></td>
+
         
     </tr>
 <?php endforeach; ?>

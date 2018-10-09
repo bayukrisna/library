@@ -12,7 +12,9 @@
             <div class="box-body">
               <div class="table-responsive">
               <table class="table2 table-bordered table-striped" id="example3" style="text-transform: uppercase;">
-                <a href="<?php echo base_url(); ?>barang/tambah_barang" class="btn btn-primary btn-sm btn-flat" ><i class="fa fa-plus"></i> Tambah</a> <br> <br>
+                 <?php $c =  $this->db->where('id_user', $this->session->userdata('id_user'))->get('tb_akses')->row();
+                if ($c->c_bar == 1) { ?>
+                <a href="<?php echo base_url(); ?>barang/tambah_barang" class="btn btn-primary btn-sm btn-flat" ><i class="fa fa-plus"></i> Tambah</a> <br> <br> <?php } ?>
   <thead>
   <tr>
     <th style="width:5%" style="text-align:center">No.</th>

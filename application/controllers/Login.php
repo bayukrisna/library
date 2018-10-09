@@ -7,6 +7,7 @@ class Login extends CI_Controller {
 	{
 		parent::__construct();
 		$this->load->model('user_model');
+		$this->load->model('user_model');
 	}
 	public function tes(){
 		$c = $this->db->from('tb_user')->where('username', 'Bayu Krisna')->get()->row();
@@ -43,14 +44,21 @@ class Login extends CI_Controller {
 
 				    $bind = @ldap_bind($ldap, $ldaprdn, $password);
 				    if ($bind) {
+				    	
 				        $filter="(sAMAccountName=$username)";
 				        $result = ldap_search($ldap,"dc=jic,dc=ac,dc=id",$filter);
 				        $info = ldap_get_entries($ldap, $result);
-				        
+				        foreach ($info as $sesd) {
+			                $sess_data2['username'] = $sesd['cn'][0];
+			                $userDn = $sesd['memberof'][0];
+				            $ss = explode(",",$userDn);
+ 							$sess_data2['group'] = substr($ss[0],3);
+			            }
+			            $this->user_model->create_user($sess_data2['username']);
+
 				        foreach ($info as $sess) {
 				        	$kk = $sess['cn'][0];
 				        	$id_user = $this->db->from('tb_user')->where('username', $kk)->get()->row();
-				        	$akses = $this->db->from('tb_akses')->join('tb_user', 'tb_user.id_user=tb_akses.id_user')->where('tb_user.username', $kk)->get()->row();
 				        	$userDn = $sess['memberof'][0];
 				            $ss = explode(",",$userDn);
 				            
@@ -59,16 +67,15 @@ class Login extends CI_Controller {
 			                $sess_data['group'] = substr($ss[0],3);
 			                $sess_data['email'] = $sess['mail'][0];
 			                $sess_data['id_user'] = $id_user->id_user;
-			                $sess_data['v_per'] = $akses->v_per;
 
 			            }
-			            if($sess_data['group'] == 'ITGroup' or $sess_data['group'] == 'IT' or $sess_data['group'] or 'AccountingGroup' or $sess_data['group'] == 'AcademicGroup'){
-			            	$this->user_model->create_user($sess_data['username'], $sess_data['group']);
+			            if($sess_data['group'] == 'IT' || $sess_data['group'] == 'ITGroup' || $sess_data['group'] == 'AcademicGroup' || $sess_data['group'] == 'AccountingGroup'){
+			            	$this->user_model->create_akses($sess_data['id_user']);
 			            	$this->session->set_userdata($sess_data);
 				            @ldap_close($ldap);
 				            redirect(base_url('dashboard'));	
 			            } else {
-			            	$this->session->set_flashdata('message', '<div class="alert alert-danger"><p>Anda Tidak Mendapatkan Akses '.$sess_data['group'].'</p></div>');
+			            	$this->session->set_flashdata('message', '<div class="alert alert-danger"><p>Anda Tidak Mendapatkan Akses </p></div>');
 							redirect(base_url('login'));
 			            }
 			            

@@ -39,6 +39,7 @@
                   <td>'.$data->kegiatan.'</td>
                   <td>
                   <a href="" data-toggle="modal" data-target="#modal_edit'.$data->id_lahan.'" class="btn btn-warning btn-xs btn-flat" ><i class="glyphicon glyphicon-pencil"></i><span class="tooltiptext">Edit</span></a>
+                  </td>
                 
                 ' ;
                 

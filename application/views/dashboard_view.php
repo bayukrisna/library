@@ -9,7 +9,7 @@
             <div class="icon">
               <i class="fa fa-barcode"></i>
             </div>
-            <a href="http://localhost/dev/admin" class="small-box-footer">Lihat Data <i class="fa fa-arrow-circle-right"></i></a>
+            <a href="<?php echo base_url(); ?>perusahaan" class="small-box-footer">Lihat Data <i class="fa fa-arrow-circle-right"></i></a>
           </div>
         </div>
         <div class="col-lg-3 col-xs-6">
@@ -23,7 +23,7 @@
             <div class="icon">
               <i class="fa fa-floppy-o"></i>
             </div>
-            <a href="http://localhost/dev/admin" class="small-box-footer">Lihat Data <i class="fa fa-arrow-circle-right"></i></a>
+            <a href="<?php echo base_url(); ?>barang/data_aset" class="small-box-footer">Lihat Data <i class="fa fa-arrow-circle-right"></i></a>
           </div>
         </div>
         <div class="col-lg-3 col-xs-6">
@@ -37,7 +37,7 @@
             <div class="icon">
               <i class="fa fa-keyboard-o"></i>
             </div>
-            <a href="http://localhost/dev/admin" class="small-box-footer">Lihat Data <i class="fa fa-arrow-circle-right"></i></a>
+            <a href="<?php echo base_url(); ?>merk" class="small-box-footer">Lihat Data <i class="fa fa-arrow-circle-right"></i></a>
           </div>
         </div>
         <div class="col-lg-3 col-xs-6">
@@ -51,7 +51,7 @@
             <div class="icon">
               <i class="fa fa-tint"></i>
             </div>
-            <a href="http://localhost/dev/admin" class="small-box-footer">Lihat Data <i class="fa fa-arrow-circle-right"></i></a>
+            <a href="<?php echo base_url(); ?>model" class="small-box-footer">Lihat Data <i class="fa fa-arrow-circle-right"></i></a>
           </div>
         </div>
 

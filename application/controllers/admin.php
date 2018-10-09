@@ -35,20 +35,25 @@ class Admin extends CI_Controller {
 	public function akses($id_user)
 	{
 		$data['cek'] = $this->db->where('id_user', $id_user)->get('tb_akses')->row();
-		$data['main_view'] = 'tambah_user_view';
+		$data['main_view'] = 'Admin/akses_user_view';
 		$this->load->view('template', $data);
 			
 	}
+	public function kk(){
+		$s = $this->db->select('MAX(id_user) as id_user')->from('tb_user')->get()->row();
+        $kk = $s->id_user + 1;
+        echo $kk;
+	}
 
-	public function signup()
+	public function update_akses()
 	{
-			if($this->User_model->signup() == TRUE){
-				$username = $this->input->post('username');
-				$this->session->set_flashdata('message', '<div class="alert alert-success"> User '.$username.' berhasil ditambahkan </div>');
-            	redirect('admin');
+		$id_user = $this->uri->segment(3);
+			if($this->User_model->update_akses($id_user) == TRUE){
+				$this->session->set_flashdata('message', '<div class="alert alert-success"> Data akses user berhasil diubah </div>');
+            	redirect('admin/user_login');
 			} else{
 				$this->session->set_flashdata('message', '<div class="alert alert-danger"> Username/password sudah ada. </div>');
-            	redirect('admin');
+            	redirect('admin/user_login');
 			} 
 	} 
 	public function calendar(){
