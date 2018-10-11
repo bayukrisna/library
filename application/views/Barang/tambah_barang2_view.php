@@ -27,7 +27,7 @@
                       <div class="form-group ">
                           <label>Kategori Barang</label>
                           <div class="form-group">
-                              <select class="select2" style="width:100%" name="id_kategori" id="id_kategori" onchange="return get_merk(this.value)">
+                              <select class="select2" style="width:100%" name="id_kategori" id="id_kategori">
                                   <option value="" selected="selected"> Pilih Kategori </option>
                                       <?php 
 
@@ -46,6 +46,13 @@
                           <div class="form-group">
                               <select name="id_merk" id="id_merk" class="select2" style="width:100%" onchange="return get_model(this.value)">
                               <option value="" selected="selected"> Pilih Kategori terlebih Dahulu </option>
+                              <?php 
+
+                                    foreach($getMerk as $row)
+                                    { 
+                                      echo '<option value="'.$row->id_merk.'">'.$row->merk.'</option>';
+                                    }
+                                    ?>
                     
                             </select>
                               

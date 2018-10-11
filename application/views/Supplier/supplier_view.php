@@ -15,14 +15,14 @@
                 <a href="<?php echo base_url(); ?>supplier/tambah_supplier" class="btn btn-primary btn-sm btn-flat" ><i class="fa fa-plus"></i> Tambah</a> <br> <br>
                 <thead>
                 <tr>
-                  <th>No</th>
+                  <th style="width: 2%">No</th>
                   <th>Pemasok</th>
                   <th>Alamat</th>
                   <th>Kontak</th>
                   <th>Email</th>
                   <th>No. Telepon</th>
                   <th>Total Aset</th>
-                  <th>Aksi</th>
+                  <th style="width: 7%">Aksi</th>
                 </tr>
                 </thead>
                 <tbody>
@@ -41,7 +41,7 @@
                   <td>'.$data->nama_kontak.'</td>
                   <td>'.$data->email.'</td>
                   <td>'.$data->no_telp.'</td>
-                  <td>'.$data->nama_supplier.'</td>
+                  <td></td>
                   <td>
                   <a href="'.base_url('supplier/page_edit_supplier/'.$data->id_supplier).'" class="btn btn-warning btn-xs btn-flat" ><i class="glyphicon glyphicon-pencil"></i><span class="tooltiptext">Edit</span></a>
 

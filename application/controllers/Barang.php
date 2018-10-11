@@ -81,6 +81,7 @@ class Barang extends CI_Controller {
 			$data['getPengguna'] = $this->Barang_model->getPengguna();
 			$data['getKategori'] = $this->Barang_model->getKategori();
 			$data['getSupplier'] = $this->Barang_model->getSupplier();
+			$data['getMerk'] = $this->Barang_model->getMerk();
 			$data['getPerusahaan'] = $this->Barang_model->getPerusahaan();
 			$data['getStatus'] = $this->Barang_model->getStatus();
 			$data['kategori'] = $this->Barang_model->detail_kategori($id_kategori);

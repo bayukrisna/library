@@ -11,7 +11,6 @@ class Merk extends CI_Controller {
 
 	public function index()
 	{
-			$data['getKategori'] = $this->Merk_model->getKategori();
 			$data['merk'] = $this->Merk_model->data_merk();
 			$data['main_view'] = 'Merk/merk_view';
 			$this->load->view('template', $data);

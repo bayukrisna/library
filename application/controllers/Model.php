@@ -13,6 +13,7 @@ class Model extends CI_Controller {
 	{
 			$data['drop_merk'] = $this->Model_model->drop_merk();
 			$data['model'] = $this->Model_model->data_model();
+			$data['drop_kategori'] = $this->Model_model->drop_kategori();
 			$data['main_view'] = 'Model/model_view';
 			$this->load->view('template', $data);
 	}

@@ -13,7 +13,6 @@ class Merk_model extends CI_Model {
     {
         $data = array(
             'merk'                        => $this->input->post('merk'),
-            'id_kategori'                        => $this->input->post('id_kategori'),
         );
     
         $this->db->insert('tb_merk', $data);
@@ -30,20 +29,14 @@ class Merk_model extends CI_Model {
   
 
    public function data_merk(){
-     return $this->db->join('tb_kategori', 'tb_kategori.id_kategori=tb_merk.id_kategori')
-                    ->get('tb_merk')
+     return $this->db->get('tb_merk')
                     ->result();
    }
 
-   public function getKategori(){
-     return $this->db->get('tb_kategori')
-                    ->result();
-   }
 
   public function edit_merk($id_merk){
     $data = array(
             'id_merk' => $this->input->post('id_merk'),
-            'id_kategori'   => $this->input->post('id_kategori'),
             'merk' => $this->input->post('merk')
       );
 

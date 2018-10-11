@@ -17,7 +17,6 @@
                 <tr>
                   <th>No</th>
                   <th>Nama Merk / Brand</th>
-                  <th>Kategori</th>
                   <th>Aksi</th>
                 </tr>
                 </thead>
@@ -33,7 +32,6 @@
                   <td>'.++$no.'</td>
 
                   <td><a href="" data-toggle="modal" data-target="#modal_view'.$data->id_merk.'">'.$data->merk.'</a></td>
-                  <td>'.$data->kategori.'</td>
                  
                   <td>
                   <a href="" data-toggle="modal" data-target="#modal_edit'.$data->id_merk.'" class="btn btn-warning btn-xs btn-flat" ><i class="glyphicon glyphicon-pencil"></i><span class="tooltiptext">Edit</span></a>
@@ -139,21 +137,7 @@
         
     </div>
 </div><!-- Manufacturer -->
-<div class="form-group ">
-    <label for="manufacturer_id" class="col-md-3 control-label">Kategori</label>
-    <div class="col-md-7 required">
-        <select class="select2" style="width:100%" name="id_kategori">
-            <option value="" selected="selected"> Pilih Kategori</option>
-             <?php 
-                                        foreach($getKategori as $row)
-                                        { 
-                                          echo '<option value="'.$row->id_kategori.'">'.$row->kategori.'</option>';
-                                        }
-                                    ?>
-        </select>
-        
-    </div>
-</div><!-- Category -->
+
 
 
 

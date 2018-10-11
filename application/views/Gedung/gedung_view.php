@@ -135,7 +135,7 @@
         </tr>
         <tr>
           <td class="left_column">Kepemilikan</td>
-            <td>: <input type="text" name="kepemilikan" value="<?php echo $i->kepemilikan ?>" id="kepemilikan" class="text-input" style="width:80%"></td>
+            <td>: <input type="text" name="kepemilikan" value="<?php echo $i->nama_perusahaan ?>" id="kepemilikan" class="text-input" style="width:80%"></td>
         </tr> 
         <tr>
           <td class="left_column">Kegiatan</td>

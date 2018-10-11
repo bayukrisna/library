@@ -15,13 +15,13 @@
                 <a href="" data-toggle="modal" data-target="#modal_tambah" class="btn btn-primary btn-sm btn-flat" ><i class="fa fa-plus"></i> Tambah</a> <br> <br>
                 <thead>
                 <tr>
-                  <th>ID</th>
+                  <th>No. </th>
                  <th>Model</th>
                   <th>Merk</th>
                   
                   <th>Model No.</th>
                  
-                  <th>EOL</th>
+                  <th>Kategori</th>
                   <th>Aksi</th>
                 </tr>
                 </thead>
@@ -40,7 +40,7 @@
                   
                   <td>'.$data->model_no.'</td>
                  
-                  <td>'.$data->eol.'</td>
+                  <td>'.$data->kategori.'</td>
                   <td>
                   <a href="" data-toggle="modal" data-target="#modal_edit'.$data->id_model.'" class="btn btn-warning btn-xs btn-flat" ><i class="glyphicon glyphicon-pencil"></i><span class="tooltiptext">Edit</span></a>
                   <a href="'.base_url('model/delete/'.$data->id_model).'" class="btn btn-danger btn-xs btn-flat" onclick="return confirm('.$alert.')"><i class="glyphicon glyphicon-trash"></i><span class="tooltiptext">Hapus</span></a>
@@ -72,7 +72,7 @@
             <div class="modal-content">
             <div class="modal-header">
                 <button type="button" class="close" data-dismiss="modal" aria-hidden="true">x</button>
-                <h3 class="modal-title" id="myModalLabel">EDIT Model</h3>
+                <h3 class="modal-title" id="myModalLabel">EDIT MODEL</h3>
             </div>
                 <div class="modal-body">
                   <?php echo form_open('Model/edit_model', 'class="form-horizontal" method="post" role="form" enctype="multipart/form-data"'); ?>
@@ -189,7 +189,25 @@
         </select>
         
     </div>
-</div><!-- Category -->
+  </div>
+
+  <div class="form-group ">
+    <label for="manufacturer_id" class="col-md-3 control-label">Kategori</label>
+    <div class="col-md-7 required">
+        <select class="select2" style="width:100%" name="id_kategori">
+            <option value="" selected="selected">Pilih Kategori</option>
+            <?php 
+
+                  foreach($drop_kategori as $row)
+                  { 
+                    echo '<option value="'.$row->id_kategori.'">'.$row->kategori.'</option>';
+                  }
+                  ?>
+        </select>
+        
+    </div>
+  </div>
+
 <div class="form-group ">
     <label for="model_number" class="col-md-3 control-label">Model No.</label>
     <div class="col-md-7">

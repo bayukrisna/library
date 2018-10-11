@@ -14,6 +14,7 @@ class Model_model extends CI_Model {
         $data = array(
             'nama_model'                        => $this->input->post('nama_model'),
             'id_merk'                 => $this->input->post('id_merk'),
+            'id_kategori'                 => $this->input->post('id_kategori'),
             'model_no'            => $this->input->post('model_no'),
             'eol'         => $this->input->post('eol'),
             'notes'         => $this->input->post('notes'),
@@ -45,8 +46,16 @@ class Model_model extends CI_Model {
 
     }
 
+    function drop_kategori()
+    {
+        return $this->db->get('tb_kategori')
+                    ->result();
+
+    }
+
    public function data_model(){
-     return $this->db->join('tb_merk', 'tb_merk.id_merk = tb_model.id_merk', 'left')
+     return $this->db->join('tb_kategori', 'tb_kategori.id_kategori = tb_model.id_kategori', 'left')
+                    ->join('tb_merk', 'tb_merk.id_merk = tb_model.id_merk', 'left')
                     ->get('tb_model')->result();
    }
 
@@ -54,6 +63,7 @@ class Model_model extends CI_Model {
 
     $data = array(
             'nama_model'                        => $this->input->post('nama_model'),
+            'id_kategori'                 => $this->input->post('id_kategori'),
             'id_merk'                 => $this->input->post('id_merk'),
             'model_no'            => $this->input->post('model_no'),
             'eol'         => $this->input->post('eol'),
