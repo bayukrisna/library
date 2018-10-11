@@ -51,14 +51,16 @@ class Barang extends CI_Controller {
 
 	public function page_edit_barang()
 	{
-			$id_kategori = $this->uri->segment(3);
+			$id_barang = $this->uri->segment(3);
 			$data['getLogBarang'] = $this->Barang_model->getLogBarang();
 			$data['getPengguna'] = $this->Barang_model->getPengguna();
 			$data['getKategori'] = $this->Barang_model->getKategori();
 			$data['getSupplier'] = $this->Barang_model->getSupplier();
+			$data['getMerk'] = $this->Barang_model->getMerk();
 			$data['getPerusahaan'] = $this->Barang_model->getPerusahaan();
 			$data['getStatus'] = $this->Barang_model->getStatus();
-			$data['kategori'] = $this->Barang_model->detail_kategori($id_kategori);
+			$data['getStatus'] = $this->Barang_model->getStatus();
+			$data['barang'] = $this->Barang_model->detail_barang($id_barang);
 			$data['main_view'] = 'Barang/edit_barang_view';
 			$this->load->view('template', $data);
 	}
@@ -215,6 +217,18 @@ class Barang extends CI_Controller {
 			}  else{
 				$this->session->set_flashdata('message', '<div class="alert alert-danger"> '.validation_errors().' </div>');
             	redirect('barang/status');
+		}
+	}
+
+	public function edit_barang()
+	{
+		$id_barang = $this->input->post('id_barang');
+			if($this->Barang_model->edit_barang($id_barang) == TRUE){
+				$this->session->set_flashdata('message', '<div class="alert alert-success"> Edit Barang Berhasil </div>');
+            	redirect('barang/data_aset');
+			}  else{
+				$this->session->set_flashdata('message', '<div class="alert alert-danger"> '.validation_errors().' </div>');
+            	redirect('barang/data_aset');
 		}
 	}
 

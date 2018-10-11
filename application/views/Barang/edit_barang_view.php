@@ -4,15 +4,15 @@
         <div >
           <div class="panel panel-danger">
             <div class="panel-heading">
-            <i class="fa fa-user-plus"></i> TAMBAH ASET</div>
+            <i class="fa fa-user-plus"></i> EDIT BARANG / ASET</div>
             <div class="panel-body" >
               <div class="row" >
                 <div class="col-lg-6">
-                  <?php echo form_open('Barang/simpan_barang2', ' method="post" role="form" enctype="multipart/form-data"'); ?>
+                  <?php echo form_open('barang/edit_barang/'.$barang->id_barang); ?>
                       <div class="form-group ">
                           <label>Perusahaan (Kepemilikan)</label>
                           <div class="form-group">
-                              <select class="select2" style="width:100%" name="id_perusahaan">
+                              <select class="select2" style="width:100%" name="id_perusahaan" onchange="return get_ruang(this.value)">
                                   <option value="<?php echo $barang->id_perusahaan; ?>" selected="selected"><?php echo $barang->nama_perusahaan; ?></option>
                                       <?php 
 
@@ -27,7 +27,7 @@
                       <div class="form-group ">
                           <label>Kategori Barang</label>
                           <div class="form-group">
-                              <select class="select2" style="width:100%" name="id_kategori" id="id_kategori" onchange="return get_merk(this.value)">
+                              <select class="select2" style="width:100%" name="id_kategori" id="id_kategori">
                                   <option value="<?php echo $barang->id_kategori; ?>" selected="selected"><?php echo $barang->kategori; ?></option>
                                       <?php 
 
@@ -46,6 +46,13 @@
                           <div class="form-group">
                               <select name="id_merk" id="id_merk" class="select2" style="width:100%" onchange="return get_model(this.value)">
                               <option value="<?php echo $barang->id_merk; ?>" selected="selected"><?php echo $barang->merk; ?></option>
+                              <?php 
+
+                                    foreach($getMerk as $row)
+                                    { 
+                                      echo '<option value="'.$row->id_merk.'">'.$row->merk.'</option>';
+                                    }
+                                    ?>
                     
                             </select>
                               
@@ -65,7 +72,7 @@
                       <div class="form-group">
                         <label for="email">Nama Aset / Barang</label>
                         <input type="text" name="nama_barang" class="form-control" id="nama_barang" placeholder="Wajib Diisi" required="" value="<?php echo $barang->nama_barang; ?>">
-                        <input type="hidden" name="id_barang" class="form-control" id="id_barang" value="<?php echo $getLogBarang; ?>" >
+                        <input type="hidden" name="id_barang" class="form-control" id="id_barang" value="<?php echo $barang->id_barang; ?>" >
                       </div>
                       <div class="form-group">
                         <label for="email">Harga</label>
@@ -73,7 +80,7 @@
                       </div>
                       <div class="form-group">
                         <label for="email">Tanggal Pembelian</label>
-                        <input type="date" name="tgl_pembelian" class="form-control" id="tgl_pembelian" placeholder="Wajib Diisi" required="" value="<?php echo $barang->tgl_barang; ?>">
+                        <input type="date" name="tgl_pembelian" class="form-control" id="tgl_pembelian" placeholder="Wajib Diisi" required="" value="<?php echo $barang->tgl_pembelian; ?>">
                       </div>
                     </div>
                     <div class="col-lg-6">
@@ -98,15 +105,9 @@
                       <div class="form-group ">
                           <label>Ditempatkan di </label>
                           <div class="form-group">
-                              <select class="select2" style="width:100%" name="id_ruang">
+                              <select class="select2" style="width:100%" name="id_ruang" id="id_ruang">
                                   <option value="<?php echo $barang->id_ruang; ?>" selected="selected"><?php echo $barang->nama_ruang; ?></option>
-                                      <?php 
-
-                                    foreach($getRuang as $row)
-                                    { 
-                                      echo '<option value="'.$row->id_ruang.'">'.$row->nama_ruang.'</option>';
-                                    }
-                                    ?>
+                              
                               </select>
                               
                               
@@ -115,8 +116,8 @@
                       <div class="form-group ">
                           <label>Pengguna </label>
                           <div class="form-group">
-                              <select class="select2" style="width:100%" name="pengguna">
-                                  <option value="<?php echo $barang->id_user; ?>" selected="selected"><?php echo $barang->nama_user; ?></option>
+                              <select class="select2" style="width:100%" name="id_user">
+                                  <option value="<?php echo $barang->id_user; ?>" selected="selected"><?php echo $barang->username; ?></option>
                                       <?php 
 
                                     foreach($getPengguna as $row)
@@ -164,10 +165,6 @@
                           </div>
                       </div>
                       <div class="form-group">
-                        <label for="email">Foto Barang</label>
-                        <input type="file" name="foto_barang" class="form-control" id="foto_barang" value="<?php echo $barang->foto_barang; ?>" >
-                      </div>
-                      <div class="form-group">
                         <label for="email">Keterangan</label>
                         <textarea name="keterangan" id="keterangan" class="form-control" placeholder="Isi Bila Ada"><?php echo $barang->keterangan; ?></textarea>
                       </div>
@@ -184,25 +181,10 @@
           </div>
         </div>
           </div>
+
 <link rel="stylesheet" href="//code.jquery.com/ui/1.12.0/themes/smoothness/jquery-ui.css">
   <script src="//code.jquery.com/jquery-1.12.4.min.js"></script>
   <script src="//code.jquery.com/ui/1.12.0/jquery-ui.min.js"></script>
-<script type="text/javascript">
-            function get_merk(p) {
-                var id_kategori = p;
-
-                $.ajax({
-                    url: '<?php echo base_url(); ?>barang/get_merk_by_kategori/'+id_kategori,
-                    data: 'id_kategori='+id_kategori,
-                    type: 'GET',
-                    dataType: 'html',
-                    success: function(msg) {
-                        $("#id_merk").html(msg);
-
-                    }
-                });
-            }
-</script>
 
 <script type="text/javascript">
             function get_model(p) {
@@ -215,6 +197,23 @@
                     dataType: 'html',
                     success: function(msg) {
                         $("#id_model").html(msg);
+
+                    }
+                });
+            }
+</script>
+
+<script type="text/javascript">
+            function get_ruang(p) {
+                var id_perusahaan = p;
+
+                $.ajax({
+                    url: '<?php echo base_url(); ?>barang/get_ruang_by_perusahaan/'+id_perusahaan,
+                    data: 'id_perusahaan='+id_perusahaan,
+                    type: 'GET',
+                    dataType: 'html',
+                    success: function(msg) {
+                        $("#id_ruang").html(msg);
 
                     }
                 });

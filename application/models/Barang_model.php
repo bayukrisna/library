@@ -20,7 +20,6 @@ class Barang_model extends CI_Model {
             'tgl_pembelian'         => $this->input->post('tgl_pembelian'),
             'id_supplier'         => $this->input->post('id_supplier'),
             'requestable'         => $this->input->post('requestable'),
-            'foto_barang'         => $upload['file_name'],
             'id_user'         => $this->input->post('id_user'),
             'ket_bar'         => $this->input->post('keterangan'),
             'id_kategori'         => $this->input->post('id_kategori'),
@@ -39,14 +38,15 @@ class Barang_model extends CI_Model {
 
     public function edit_barang($id_barang){
     $data = array(
+            'id_barang'        => $this->input->post('id_barang'),
             'nama_barang'        => $this->input->post('nama_barang'),
             'id_status'         => $this->input->post('id_status'),
             'id_model'         => $this->input->post('id_model'),
+            'id_kategori'         => $this->input->post('id_kategori'),
             'harga_barang'         => $this->input->post('harga_barang'),
             'tgl_pembelian'         => $this->input->post('tgl_pembelian'),
             'id_supplier'         => $this->input->post('id_supplier'),
             'requestable'         => $this->input->post('requestable'),
-            'foto_barang'         => $upload['file_name'],
             'id_user'         => $this->input->post('id_user'),
             'ket_bar'         => $this->input->post('keterangan'),
       );

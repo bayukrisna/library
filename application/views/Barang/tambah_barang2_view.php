@@ -12,7 +12,7 @@
                       <div class="form-group ">
                           <label>Perusahaan (Kepemilikan)</label>
                           <div class="form-group">
-                              <select class="select2" style="width:100%" name="id_perusahaan" onchange="return get_ruang(this.value)">
+                              <select class="select2" style="width:100%" name="id_perusahaan" onchange="return get_ruang(this.value)" required="">
                                   <option value="" selected="selected"> Pilih Perusahaan </option>
                                       <?php 
 
@@ -27,7 +27,7 @@
                       <div class="form-group ">
                           <label>Kategori Barang</label>
                           <div class="form-group">
-                              <select class="select2" style="width:100%" name="id_kategori" id="id_kategori">
+                              <select class="select2" style="width:100%" name="id_kategori" id="id_kategori" required="">
                                   <option value="" selected="selected"> Pilih Kategori </option>
                                       <?php 
 
@@ -44,7 +44,7 @@
                       <div class="form-group ">
                           <label>Merk</label>
                           <div class="form-group">
-                              <select name="id_merk" id="id_merk" class="select2" style="width:100%" onchange="return get_model(this.value)">
+                              <select name="id_merk" id="id_merk" class="select2" style="width:100%" onchange="return get_model(this.value)" required="">
                               <option value="" selected="selected"> Pilih Kategori terlebih Dahulu </option>
                               <?php 
 
@@ -61,7 +61,7 @@
                       <div class="form-group ">
                           <label>Model</label>
                           <div class="form-group">
-                              <select name="id_model" id="id_model" class="select2" style="width:100%">
+                              <select name="id_model" id="id_model" class="select2" style="width:100%" required="">
                               <option> Pilih Merk terlebih dahulu</option>
                         
                     
@@ -87,7 +87,7 @@
                        <div class="form-group ">
                           <label>Pemasok / Supplier</label>
                           <div class="form-group">
-                              <select class="select2" style="width:100%" name="id_supplier">
+                              <select class="select2" style="width:100%" name="id_supplier" required="">
                                   <option value="" selected="selected"> Pilih Pemasok </option>
                                       <?php 
 
@@ -105,7 +105,7 @@
                       <div class="form-group ">
                           <label>Ditempatkan di </label>
                           <div class="form-group">
-                              <select class="select2" style="width:100%" name="id_ruang" id="id_ruang">
+                              <select class="select2" style="width:100%" name="id_ruang" id="id_ruang" required="">
                                   <option value="" selected="selected"> Pilih Perusahaan Terlebih Dahulu </option>
                                       
                               </select>
@@ -116,7 +116,7 @@
                       <div class="form-group ">
                           <label>Pengguna </label>
                           <div class="form-group">
-                              <select class="select2" style="width:100%" name="id_user" id="id_user">
+                              <select class="select2" style="width:100%" name="id_user" id="id_user" required="">
                                   <option value="" selected="selected"> Pilih Pengguna </option>
                                       <?php 
 
@@ -133,7 +133,7 @@
                       <div class="form-group ">
                           <label>Status </label>
                           <div class="form-group">
-                              <select class="select2" style="width:100%" name="id_status">
+                              <select class="select2" style="width:100%" name="id_status" required="">
                                   <option value="" selected="selected"> Pilih Status </option>
                                       <?php 
 
@@ -158,10 +158,7 @@
                                
                           </div>
                       </div>
-                      <div class="form-group">
-                        <label for="email">Foto Barang</label>
-                        <input type="file" name="foto_barang" class="form-control" id="foto_barang"  >
-                      </div>
+                      
                       <div class="form-group">
                         <label for="email">Keterangan</label>
                         <textarea name="keterangan" id="keterangan" class="form-control" placeholder="Isi Bila Ada"></textarea>
