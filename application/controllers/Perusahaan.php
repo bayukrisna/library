@@ -7,6 +7,9 @@ class Perusahaan extends CI_Controller {
 	{
 		parent::__construct();
 		$this->load->model('Perusahaan_model');
+		if ($this->session->userdata('logged_in') != TRUE) {
+			redirect('login');
+		}
 	}
 
 	public function index()

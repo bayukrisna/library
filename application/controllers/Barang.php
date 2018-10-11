@@ -9,6 +9,9 @@ class Barang extends CI_Controller {
 		$this->load->model('Ruang_model');
 		$this->load->model('Barang_model');
 		$this->load->helper(array('url','download'));
+		if ($this->session->userdata('logged_in') != TRUE) {
+			redirect('login');
+		}
 	}
 
 	public function index()

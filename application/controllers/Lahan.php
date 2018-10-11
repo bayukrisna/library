@@ -8,6 +8,9 @@ class Lahan extends CI_Controller {
 		parent::__construct();
 		$this->load->model('Lahan_model');
 		$this->load->model('Barang_model');
+		if ($this->session->userdata('logged_in') != TRUE) {
+			redirect('login');
+		}
 	}
 
 	public function index()
