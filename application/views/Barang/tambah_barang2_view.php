@@ -27,7 +27,7 @@
                       <div class="form-group ">
                           <label>Kategori Barang</label>
                           <div class="form-group">
-                              <select class="select2" style="width:100%" name="id_kategori" id="id_kategori" required="">
+                              <select class="select2" style="width:100%" name="id_kategori" id="id_kategori" required="" onchange="return get_model(this.value)">
                                   <option value="" selected="selected"> Pilih Kategori </option>
                                       <?php 
 
@@ -181,30 +181,13 @@
   <script src="//code.jquery.com/ui/1.12.0/jquery-ui.min.js"></script>
 
 <script type="text/javascript">
-            function get_model(p,q) {
-                var id_merk = p;
-                var id_kategori = q;
-
-                $.ajax({
-                    url: '<?php echo base_url(); ?>barang/get_model_by_merk/'+id_merk,
-                    data: 'id_merk='+id_merk,
-                    type: 'GET',
-                    dataType: 'html',
-                    success: function(msg) {
-                        $("#id_model").html(msg);
-
-                    }
-                });
-            }
-</script>
-<script type="text/javascript">
-            function get_skala(p) {
+            function get_model(p) {
                 var id_merk = document.getElementById('id_merk').value;
                 var id_kategori = document.getElementById('id_kategori').value;
 
                 $.ajax({
                     url: '<?php echo base_url(); ?>barang/get_model_by_mk/',
-                    data: 'nilai='+nilai+'&id_prodi='+id_prodi,
+                    data: 'id_merk='+id_merk+'&id_kategori='+id_kategori,
                     type: 'POST',
                     dataType: 'html',
                     success: function(msg) {

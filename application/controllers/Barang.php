@@ -131,9 +131,10 @@ class Barang extends CI_Controller {
 		echo $option;
 	}
 
-	public function get_model_by_merk($param = NULL){
-		$id_merk = $param;
-		$result = $this->Barang_model->get_model_by_merk($id_merk);
+	public function get_model_by_mk(){
+		$id_kategori = $this->input->post('id_kategori');
+		$id_merk = $this->input->post('id_merk');
+		$result = $this->Barang_model->get_model_by_mk($id_merk, $id_kategori);
 		$option = "";
 		$option .= '<option value=""> Pilih Model </option>';
 		foreach ($result as $data) {

@@ -22,7 +22,6 @@ class Barang_model extends CI_Model {
             'requestable'         => $this->input->post('requestable'),
             'id_user'         => $this->input->post('id_user'),
             'ket_bar'         => $this->input->post('keterangan'),
-            'id_kategori'         => $this->input->post('id_kategori'),
         );
     
         $this->db->insert('tb_barang', $data);
@@ -49,7 +48,6 @@ class Barang_model extends CI_Model {
             'requestable'         => $this->input->post('requestable'),
             'id_user'         => $this->input->post('id_user'),
             'ket_bar'         => $this->input->post('keterangan'),
-            'id_kategori'         => $this->input->post('id_kategori'),
       );
 
     if (!empty($data)) {
@@ -159,7 +157,7 @@ class Barang_model extends CI_Model {
                     ->join('tb_status','tb_status.id_status=tb_ruang.id_status')
                     ->join('tb_model','tb_model.id_model=tb_barang.id_model')
                     ->join('tb_merk','tb_merk.id_merk=tb_model.id_merk')
-                    ->join('tb_kategori','tb_kategori.id_kategori=tb_barang.id_kategori')
+                    ->join('tb_kategori','tb_kategori.id_kategori=tb_model.id_kategori')
                     ->where('tb_kategori.id_kategori', $id_kategori)
                     ->get('tb_barang')
                     ->result();
@@ -173,7 +171,7 @@ class Barang_model extends CI_Model {
                     ->join('tb_status','tb_status.id_status=tb_ruang.id_status')
                     ->join('tb_model','tb_model.id_model=tb_barang.id_model')
                     ->join('tb_merk','tb_merk.id_merk=tb_model.id_merk')
-                    ->join('tb_kategori','tb_kategori.id_kategori=tb_barang.id_kategori')       
+                    ->join('tb_kategori','tb_kategori.id_kategori=tb_model.id_kategori')       
                     ->get('tb_barang')
                     ->result();
    }
@@ -186,7 +184,7 @@ class Barang_model extends CI_Model {
                     ->join('tb_status','tb_status.id_status=tb_ruang.id_status')
                     ->join('tb_model','tb_model.id_model=tb_barang.id_model')
                     ->join('tb_merk','tb_merk.id_merk=tb_model.id_merk')
-                    ->join('tb_kategori','tb_kategori.id_kategori=tb_barang.id_kategori')
+                    ->join('tb_kategori','tb_kategori.id_kategori=tb_model.id_kategori')
                     ->join('tb_supplier','tb_supplier.id_supplier=tb_barang.id_supplier')
                     ->join('tb_user','tb_user.id_user=tb_barang.id_user')          
                     ->where('tb_barang.id_barang', $id_barang)
@@ -234,8 +232,9 @@ class Barang_model extends CI_Model {
                     ->result();
    }
 
-   public function get_model_by_merk($id_merk){
+   public function get_model_by_mk($id_merk, $id_kategori){
      return $this->db->where('tb_model.id_merk', $id_merk)
+                    ->where('tb_model.id_kategori', $id_kategori)
                     ->get('tb_model')->result();
    }
 
