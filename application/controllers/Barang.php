@@ -13,7 +13,6 @@ class Barang extends CI_Controller {
 			redirect('login');
 		}
 	}
-
 	public function index()
 	{
 			$data['kategori'] = $this->Barang_model->data_kategori_barang();
