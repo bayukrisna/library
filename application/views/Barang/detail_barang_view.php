@@ -44,7 +44,7 @@
                     <td rowspan="8" width="15%">
                         <div class="btn btn-file" >
                  
-                  <img id="output" width="225" class="pull-right" width="40%" src="<?php echo base_url(); ?>uploads/<?php echo $barang->foto_barang; ?>" alt="Your Image" onerror="this.src='<?php echo base_url();?>uploads/user.jpg'">
+                  <img id="output" width="225" class="pull-right" width="40%" src="<?php echo base_url(); ?>uploads/<?php echo $barang->image; ?>" alt="Your Image" onerror="this.src='<?php echo base_url();?>uploads/user.jpg'">
                 </div></td>
                 </tr>
                 <tr>
