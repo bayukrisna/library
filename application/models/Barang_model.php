@@ -35,10 +35,9 @@ class Barang_model extends CI_Model {
         }
     }
 
-    public function edit_barang($id_barang){
+     public function edit_barang($id_barang){
     $data = array(
-            'id_barang'           => $this->input->post('id_barang'),
-            'id_ruang'           => $this->input->post('id_ruang'),
+             'id_ruang'           => $this->input->post('id_ruang'),
             'nama_barang'        => $this->input->post('nama_barang'),
             'id_status'         => $this->input->post('id_status'),
             'id_model'         => $this->input->post('id_model'),
@@ -299,6 +298,17 @@ class Barang_model extends CI_Model {
    public function hapus_status($id_status){
         $this->db->where('id_status', $id_status)
           ->delete('tb_status');
+
+    if ($this->db->affected_rows() > 0) {
+      return TRUE;
+      } else {
+        return FALSE;
+      }
+    }
+
+    public function hapus_barang($id_barang){
+        $this->db->where('id_barang', $id_barang)
+          ->delete('tb_barang');
 
     if ($this->db->affected_rows() > 0) {
       return TRUE;

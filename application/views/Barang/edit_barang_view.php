@@ -27,7 +27,7 @@
                       <div class="form-group ">
                           <label>Kategori Barang</label>
                           <div class="form-group">
-                              <select class="select2" style="width:100%" name="id_kategori" id="id_kategori">
+                              <select class="select2" style="width:100%" name="id_kategori" id="id_kategori" onchange="return get_model(this.value)">
                                   <option value="<?php echo $barang->id_kategori; ?>" selected="selected"><?php echo $barang->kategori; ?></option>
                                       <?php 
 
@@ -166,7 +166,7 @@
                       </div>
                       <div class="form-group">
                         <label for="email">Keterangan</label>
-                        <textarea name="keterangan" id="keterangan" class="form-control" placeholder="Isi Bila Ada"><?php echo $barang->keterangan; ?></textarea>
+                        <textarea name="keterangan" id="keterangan" class="form-control" placeholder="Isi Bila Ada"><?php echo $barang->ket_bar; ?></textarea>
                       </div>
                       <br>
                       
@@ -188,17 +188,19 @@
 
 <script type="text/javascript">
             function get_model(p) {
-                var id_merk = p;
+                var id_merk = document.getElementById('id_merk').value;
+                var id_kategori = document.getElementById('id_kategori').value;
 
                 $.ajax({
-                    url: '<?php echo base_url(); ?>barang/get_model_by_merk/'+id_merk,
-                    data: 'id_merk='+id_merk,
-                    type: 'GET',
+                    url: '<?php echo base_url(); ?>barang/get_model_by_mk/',
+                    data: 'id_merk='+id_merk+'&id_kategori='+id_kategori,
+                    type: 'POST',
                     dataType: 'html',
                     success: function(msg) {
                         $("#id_model").html(msg);
 
-                    }
+                    },
+                    error:function (){}
                 });
             }
 </script>

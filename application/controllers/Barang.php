@@ -221,17 +221,16 @@ class Barang extends CI_Controller {
 		}
 	}
 
-	public function edit_barang()
-	{
-		$id_barang = $this->uri->segment(3);
-			if($this->Barang_model->edit_barang($id_barang) == TRUE){
-				$this->session->set_flashdata('message', '<div class="alert alert-success"> Edit Barang Berhasil </div>');
-            	redirect('barang/data_aset');
-			}  else{
-				$this->session->set_flashdata('message', '<div class="alert alert-danger"> '.validation_errors().' </div>');
-            	redirect('barang/data_aset');
-		}
-	}
+	public function edit_barang($id_barang){
+			$nama_barang = $this->input->post('nama_barang');
+					if ($this->Barang_model->edit_barang($id_barang) == TRUE) {
+						$this->session->set_flashdata('message', '<div class="alert alert-success"> Edit '.$nama_barang.' berhasil </div>');
+            			redirect('barang/data_aset');
+					} else {
+						$this->session->set_flashdata('message', '<div class="alert alert-danger"> Edit '.$nama_barang.' gagal </div>');
+            			redirect('barang/data_aset');
+					}
+		} 
 
 	public function simpan_pemeliharaan()
 	{
@@ -274,6 +273,17 @@ class Barang extends CI_Controller {
 		} else {
 			$this->session->set_flashdata('message', '<div class="alert alert-danger"> Status gagal dihapus </div>');
 			redirect('barang/status');
+		}
+	}
+
+	public function hapus_barang(){
+		$id_barang = $this->uri->segment(3);
+		if ($this->Barang_model->hapus_barang($id_barang) == TRUE) {
+			$this->session->set_flashdata('message', '<div class="alert alert-success"> Hapus Berhasil </div>');
+			redirect('barang/data_aset');
+		} else {
+			$this->session->set_flashdata('message', '<div class="alert alert-danger"> Hapus Gagal </div>');
+			redirect('barang/data_aset');
 		}
 	}
 }

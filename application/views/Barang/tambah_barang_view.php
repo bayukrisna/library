@@ -166,30 +166,35 @@
   <script src="//code.jquery.com/jquery-1.12.4.min.js"></script>
   <script src="//code.jquery.com/ui/1.12.0/jquery-ui.min.js"></script>
 <script type="text/javascript">
+            function get_model(p) {
+                var id_merk = document.getElementById('id_merk').value;
                 var id_kategori = document.getElementById('id_kategori').value;
 
                 $.ajax({
-                    url: '<?php echo base_url(); ?>barang/get_merk_by_kategori/'+id_kategori,
-                    data: 'id_kategori='+id_kategori,
-                    type: 'GET',
-                    dataType: 'html',
-                    success: function(msg) {
-                        $("#id_merk").html(msg);
-                    }
-                });                       
-</script>
-
-<script type="text/javascript">
-            function get_model(p) {
-                var id_merk = p;
-
-                $.ajax({
-                    url: '<?php echo base_url(); ?>barang/get_model_by_merk/'+id_merk,
-                    data: 'id_merk='+id_merk,
-                    type: 'GET',
+                    url: '<?php echo base_url(); ?>barang/get_model_by_mk/',
+                    data: 'id_merk='+id_merk+'&id_kategori='+id_kategori,
+                    type: 'POST',
                     dataType: 'html',
                     success: function(msg) {
                         $("#id_model").html(msg);
+
+                    },
+                    error:function (){}
+                });
+            }
+</script>
+
+<script type="text/javascript">
+            function get_ruang(p) {
+                var id_perusahaan = p;
+
+                $.ajax({
+                    url: '<?php echo base_url(); ?>barang/get_ruang_by_perusahaan/'+id_perusahaan,
+                    data: 'id_perusahaan='+id_perusahaan,
+                    type: 'GET',
+                    dataType: 'html',
+                    success: function(msg) {
+                        $("#id_ruang").html(msg);
 
                     }
                 });
