@@ -223,7 +223,7 @@ class Barang extends CI_Controller {
 
 	public function edit_barang()
 	{
-		$id_barang = $this->input->post('id_barang');
+		$id_barang = $this->uri->segment(3);
 			if($this->Barang_model->edit_barang($id_barang) == TRUE){
 				$this->session->set_flashdata('message', '<div class="alert alert-success"> Edit Barang Berhasil </div>');
             	redirect('barang/data_aset');

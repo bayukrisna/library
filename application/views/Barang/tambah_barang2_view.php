@@ -179,26 +179,11 @@
 <link rel="stylesheet" href="//code.jquery.com/ui/1.12.0/themes/smoothness/jquery-ui.css">
   <script src="//code.jquery.com/jquery-1.12.4.min.js"></script>
   <script src="//code.jquery.com/ui/1.12.0/jquery-ui.min.js"></script>
-<script type="text/javascript">
-            function get_merk(p) {
-                var id_kategori = p;
-
-                $.ajax({
-                    url: '<?php echo base_url(); ?>barang/get_merk_by_kategori/'+id_kategori,
-                    data: 'id_kategori='+id_kategori,
-                    type: 'GET',
-                    dataType: 'html',
-                    success: function(msg) {
-                        $("#id_merk").html(msg);
-
-                    }
-                });
-            }
-</script>
 
 <script type="text/javascript">
-            function get_model(p) {
+            function get_model(p,q) {
                 var id_merk = p;
+                var id_kategori = q;
 
                 $.ajax({
                     url: '<?php echo base_url(); ?>barang/get_model_by_merk/'+id_merk,
@@ -209,6 +194,24 @@
                         $("#id_model").html(msg);
 
                     }
+                });
+            }
+</script>
+<script type="text/javascript">
+            function get_skala(p) {
+                var id_merk = document.getElementById('id_merk').value;
+                var id_kategori = document.getElementById('id_kategori').value;
+
+                $.ajax({
+                    url: '<?php echo base_url(); ?>barang/get_model_by_mk/',
+                    data: 'nilai='+nilai+'&id_prodi='+id_prodi,
+                    type: 'POST',
+                    dataType: 'html',
+                    success: function(msg) {
+                        $("#id_model").html(msg);
+
+                    },
+                    error:function (){}
                 });
             }
 </script>
