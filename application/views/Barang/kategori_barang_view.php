@@ -28,7 +28,7 @@
                 <?php 
                 $no = 0;
                 foreach ($kategori as $data) {
-                   $total_barang = $this->db->query("SELECT count(*) AS total FROM tb_barang JOIN tb_model ON tb_model.id_model=tb_barang.id_model JOIN tb_merk ON tb_merk.id_merk=tb_model.id_merk JOIN tb_kategori ON tb_kategori.id_kategori=tb_merk.id_kategori WHERE tb_kategori.id_kategori = '$data->id_kategori'")->row();
+                   $total_barang = $this->db->query("SELECT count(*) AS total FROM tb_barang JOIN tb_model ON tb_model.id_model=tb_barang.id_model JOIN tb_merk ON tb_merk.id_merk=tb_model.id_merk JOIN tb_kategori ON tb_kategori.id_kategori=tb_model.id_kategori WHERE tb_kategori.id_kategori = '$data->id_kategori'")->row();
 
                   echo '
                   

@@ -203,7 +203,8 @@ class Barang_model extends CI_Model {
    }
 
    public function data_riwayat($id_barang){
-     return $this->db->join('tb_barang','tb_barang.id_barang=tb_log.id_barang')     
+     return $this->db->join('tb_barang','tb_barang.id_barang=tb_log.id_barang')
+                    ->join('tb_user','tb_user.id_user=tb_log.user_log')     
                     ->where('tb_log.id_barang', $id_barang)
                     ->get('tb_log')
                     ->result();
@@ -237,9 +238,8 @@ class Barang_model extends CI_Model {
                     ->get('tb_model')->result();
    }
 
-   public function get_merk_by_kategori($id_kategori){
-     return $this->db->where('tb_model.id_kategori', $id_kategori)
-                    ->get('tb_merk')->result();
+   public function getMerk(){
+     return $this->db->get('tb_merk')->result();
    }
 
    public function get_ruang_by_perusahaan($id_perusahaan){

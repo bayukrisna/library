@@ -85,7 +85,7 @@
                 </tr>
                 <tr>
                     <td class="left_column" width="15%"> Keterangan </td>
-                    <td colspan="6" size="100">: <?php echo $barang->keterangan; ?></td>
+                    <td colspan="6" size="100">: <?php echo $barang->ket_bar; ?></td>
                 </tr>
                 
             </table>
@@ -160,7 +160,7 @@
       <tr>
       <td><?php echo ++$no;?></td>
         <td><?php echo $data->waktu_log;?></td>
-        <td><?php echo $data->user_log;?></td>
+        <td><?php echo $data->username;?></td>
         <td><?php echo $data->aktivitas?></td>
     </tr>
    

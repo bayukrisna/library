@@ -10,7 +10,7 @@
         </tr>
         <tr>
           <td class="left_column">Total  </td>
-            <td colspan="3">:  <?php $total_barang = $this->db->query("SELECT count(*) AS total FROM tb_barang JOIN tb_model ON tb_model.id_model=tb_barang.id_model JOIN tb_merk ON tb_merk.id_merk=tb_model.id_merk JOIN tb_kategori ON tb_kategori.id_kategori=tb_merk.id_kategori WHERE tb_kategori.id_kategori = $kategori->id_kategori")->row(); ?>
+            <td colspan="3">:  <?php $total_barang = $this->db->query("SELECT count(*) AS total FROM tb_barang JOIN tb_model ON tb_model.id_model=tb_barang.id_model JOIN tb_merk ON tb_merk.id_merk=tb_model.id_merk JOIN tb_kategori ON tb_kategori.id_kategori=tb_model.id_kategori WHERE tb_kategori.id_kategori = $kategori->id_kategori")->row(); ?>
       <?php echo $total_barang->total; ?>           
             </td>
         </tr>
