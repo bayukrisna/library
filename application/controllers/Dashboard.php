@@ -14,6 +14,7 @@ class Dashboard extends CI_Controller {
 
 	public function index()
 	{
+		$data['log'] = $this->Dashboard_model->data_log();
 		$data['dashboard'] = $this->Dashboard_model->dashboard_admin();
 		$data['main_view'] = 'dashboard_view';
 		$this->load->view('template', $data);

@@ -32,6 +32,18 @@ class Dashboard_model extends CI_Model {
 
 	      );
 	  }
+	public function data_log(){
+     return $this->db->select('user1.username as username, user2.username as to, tb_log.waktu_log, tb_log.aktivitas, tb_log.waktu_log, tb_barang.nama_barang')
+     				->from('tb_log')
+     				->join('tb_user as user1','user1.id_user=tb_log.user_log')
+     				->join('tb_barang','tb_barang.id_barang=tb_log.id_barang')
+     				->join('tb_user as user2','user2.id_user=tb_barang.id_user')
+     				
+     				->order_by('tb_log.waktu_log', 'desc')
+     				->limit(10)
+                    ->get('')                    
+                    ->result();
+   }
 	
 
 }
