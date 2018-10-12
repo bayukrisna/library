@@ -136,6 +136,26 @@ class Barang_model extends CI_Model {
 
     }
 
+    public function log_simpan_pemeliharaan($id_barang)
+    {
+        $data = array(
+            'user_log'      => $this->session->userdata('id_user'),
+            'aktivitas'     => 'item maintenance',
+            'id_barang'     => $id_barang,
+        );
+    
+        $this->db->insert('tb_log', $data);
+
+        if($this->db->affected_rows() > 0){
+            
+                return true;
+        } else {
+            return false;
+            
+        }
+
+    }
+
     public function simpan_pemeliharaan()
     {
         $data = array(

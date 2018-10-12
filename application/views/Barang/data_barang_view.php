@@ -46,9 +46,17 @@
         <td><?php echo $data->status;?></td>
         <td>
           
+          <?php $c =  $this->db->where('id_user', $this->session->userdata('id_user'))->get('tb_akses')->row();
+        if ($c->u_bar == 1) { ?>
         <a href="<?php echo base_url(); ?>barang/page_edit_barang/<?php echo $data->id_barang; ?>"  class="btn btn-warning btn-xs btn-flat" ><i class="glyphicon glyphicon-pencil"></i><span class="tooltiptext">Edit</span></a>
 
+          <?php } ?>
+
+           <?php $c =  $this->db->where('id_user', $this->session->userdata('id_user'))->get('tb_akses')->row();
+        if ($c->d_bar == 1) { ?>
+
         <a href="<?php echo base_url(); ?>barang/hapus_barang/<?php echo $data->id_barang; ?>" onclick="return confirm(<?php $alert; ?>)" class="btn btn-danger btn-xs btn-flat" ><i class="glyphicon glyphicon-trash"></i><span class="tooltiptext">Hapus</span></a>
+        <?php } ?>
         </td>
         
     </tr>

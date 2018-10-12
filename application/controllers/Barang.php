@@ -235,7 +235,7 @@ class Barang extends CI_Controller {
 	public function simpan_pemeliharaan()
 	{
 		$id_barang = $this->uri->segment(3);
-			if($this->Barang_model->simpan_pemeliharaan() == TRUE){
+			if($this->Barang_model->simpan_pemeliharaan() == TRUE && $this->Barang_model->log_simpan_pemeliharaan($id_barang) == TRUE){
 				$this->session->set_flashdata('message', '<div class="alert alert-success"> Data pemeliharaan berhasil disimpan </div>');
             	redirect('barang/detail_barang/'.$id_barang);
 			}  else{
