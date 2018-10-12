@@ -11,15 +11,52 @@ class Admin extends CI_Controller {
 			redirect('login');
 		}
 	}
-	public function kk(){
-		$data['main_view'] = 'kk';
-				$this->load->view('template', $data);
-	}
+	
 	public function index()
 	{
 		if ($this->session->userdata('logged_in') == TRUE) {
 				$data['user'] = $this->User_model->data_user();
 				$data['main_view'] = 'Admin/user_view';
+				$this->load->view('template', $data);
+		} else {
+			redirect('login');
+		}
+			
+	}
+
+	public function data_log()
+	{
+		if ($this->session->userdata('logged_in') == TRUE) {
+				$data['log'] = $this->User_model->data_log();
+				$data['main_view'] = 'Log/log_view';
+				$this->load->view('template', $data);
+		} else {
+			redirect('login');
+		}
+			
+	}
+
+	public function user_log()
+	{
+		if ($this->session->userdata('logged_in') == TRUE) {
+				$id_user = $this->uri->segment(3);
+				$data['user'] = $this->User_model->detail_user($id_user);
+				$data['log'] = $this->User_model->user_log($id_user);
+				$data['main_view'] = 'Log/user_log_view';
+				$this->load->view('template', $data);
+		} else {
+			redirect('login');
+		}
+			
+	}
+
+	public function history_log()
+	{
+		if ($this->session->userdata('logged_in') == TRUE) {
+				$id_user = $this->uri->segment(3);
+				$data['user'] = $this->User_model->detail_user($id_user);
+				$data['log'] = $this->User_model->user_log($id_user);
+				$data['main_view'] = 'Log/user_log_view';
 				$this->load->view('template', $data);
 		} else {
 			redirect('login');

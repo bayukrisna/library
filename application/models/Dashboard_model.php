@@ -12,7 +12,7 @@ class Dashboard_model extends CI_Model {
 
      public function dashboard_admin(){
      	$t_perusahaan = $this->db->select('count(*) as total')
-	                ->get('tb_perusahaan')
+	                ->get('tb_kategori')
 	                ->row();
 	    $t_barang = $this->db->select('count(*) as total')
 	                ->get('tb_barang')

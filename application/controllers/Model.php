@@ -59,4 +59,13 @@ class Model extends CI_Controller {
 			redirect('model');
 		}
 	}
+
+	public function detail_model()
+	{
+			$id_model = $this->uri->segment(3);
+			$data['model'] = $this->Model_model->detail_model($id_model);
+			$data['barang'] = $this->Model_model->data_barang($id_model);
+			$data['main_view'] = 'Model/detail_model_view';
+			$this->load->view('template', $data);
+	}
 }

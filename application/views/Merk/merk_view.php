@@ -17,6 +17,7 @@
                 <tr>
                   <th>No</th>
                   <th>Nama Merk / Brand</th>
+                  <th>Total Aset</th>
                   <th>Aksi</th>
                 </tr>
                 </thead>
@@ -26,12 +27,14 @@
                 $no = 0;
                 $alert = "'Anda yakin menghapus data ini ?'";
                 foreach ($merk as $data) {
+                  $total_barang = $this->db->query("SELECT count(*) AS total FROM tb_barang JOIN tb_model ON tb_model.id_model=tb_barang.id_model JOIN tb_merk ON tb_merk.id_merk=tb_model.id_merk WHERE tb_merk.id_merk = '$data->id_merk'")->row();
                   echo '
                   
                 <tr>
                   <td>'.++$no.'</td>
 
-                  <td><a href="" data-toggle="modal" data-target="#modal_view'.$data->id_merk.'">'.$data->merk.'</a></td>
+                  <td><a href="'.base_url('merk/detail_merk/'.$data->id_merk).'">'.$data->merk.'</a></td>
+                  <td>'.$total_barang->total.'</td>
                  
                   <td>
                   <a href="" data-toggle="modal" data-target="#modal_edit'.$data->id_merk.'" class="btn btn-warning btn-xs btn-flat" ><i class="glyphicon glyphicon-pencil"></i><span class="tooltiptext">Edit</span></a>

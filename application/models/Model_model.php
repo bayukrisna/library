@@ -82,6 +82,25 @@ class Model_model extends CI_Model {
             return null;
         }
   }
+
+  public function data_barang($id_model){
+     return $this->db->join('tb_ruang','tb_ruang.id_ruang=tb_barang.id_ruang')
+                    ->join('tb_gedung','tb_gedung.id_gedung=tb_ruang.id_gedung')
+                    ->join('tb_lahan','tb_lahan.id_lahan=tb_gedung.id_lahan')
+                    ->join('tb_perusahaan','tb_perusahaan.id_perusahaan=tb_lahan.id_perusahaan') 
+                    ->join('tb_status','tb_status.id_status=tb_ruang.id_status')
+                    ->join('tb_model','tb_model.id_model=tb_barang.id_model')
+                    ->join('tb_merk','tb_merk.id_merk=tb_model.id_merk')
+                    ->join('tb_kategori','tb_kategori.id_kategori=tb_model.id_kategori')
+                    ->where('tb_model.id_model', $id_model)
+                    ->get('tb_barang')
+                    ->result();
+   }
+ public function detail_model($id_model){
+     return $this->db->where('tb_model.id_model', $id_model)
+                    ->get('tb_model')
+                    ->row();
+   }
     
 }
 

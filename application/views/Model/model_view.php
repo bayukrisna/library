@@ -18,10 +18,9 @@
                   <th>No. </th>
                  <th>Model</th>
                   <th>Merk</th>
-                  
                   <th>Model No.</th>
-                 
                   <th>Kategori</th>
+                  <th>Total Aset</th>
                   <th>Aksi</th>
                 </tr>
                 </thead>
@@ -31,16 +30,16 @@
                 $no = 0;
                 $alert = "'Apakah anda yakin mengapus data ini ?'";
                 foreach ($model as $data) {
+                  $total_barang = $this->db->query("SELECT count(*) AS total FROM tb_barang WHERE tb_barang.id_model = '$data->id_model'")->row();
                   echo '
                   
                 <tr>
                   <td>'.++$no.'</td>
-                  <td>'.$data->nama_model.'</td>
+                  <td><a href="'.base_url('model/detail_model/'.$data->id_model).'">'.$data->nama_model.'</a></td>
                   <td>'.$data->merk.'</td>
-                  
                   <td>'.$data->model_no.'</td>
-                 
                   <td>'.$data->kategori.'</td>
+                  <td>'.$total_barang->total.'</td>
                   <td>
                   <a href="" data-toggle="modal" data-target="#modal_edit'.$data->id_model.'" class="btn btn-warning btn-xs btn-flat" ><i class="glyphicon glyphicon-pencil"></i><span class="tooltiptext">Edit</span></a>
                   <a href="'.base_url('model/delete/'.$data->id_model).'" class="btn btn-danger btn-xs btn-flat" onclick="return confirm('.$alert.')"><i class="glyphicon glyphicon-trash"></i><span class="tooltiptext">Hapus</span></a>

@@ -75,6 +75,12 @@ class User_model extends CI_Model {
                     ->result();
    }
 
+   public function detail_user($id_user){
+     return $this->db->where('id_user', $id_user)
+                    ->get('tb_user')
+                    ->row();
+   }
+
     public function data_user_login(){
      return $this->db->join('tb_user', 'tb_user.id_user=tb_akses.id_user')
                     ->get('tb_akses')
@@ -98,6 +104,29 @@ class User_model extends CI_Model {
             return null;
         }
   }
+
+  public function data_log(){
+     return $this->db->select('user1.username as username, user2.username as to, tb_log.waktu_log, tb_log.aktivitas, tb_log.waktu_log, tb_barang.nama_barang')
+                    ->from('tb_log')
+                    ->join('tb_user as user1','user1.id_user=tb_log.user_log')
+                    ->join('tb_barang','tb_barang.id_barang=tb_log.id_barang')
+                    ->join('tb_user as user2','user2.id_user=tb_barang.id_user')   
+                    ->order_by('tb_log.waktu_log', 'desc')
+                    ->get('')                    
+                    ->result();
+   }
+
+   public function user_log($id_user){
+     return $this->db->select('user1.username as username, user2.username as to, tb_log.waktu_log, tb_log.aktivitas, tb_log.waktu_log, tb_barang.nama_barang')
+                    ->from('tb_log')
+                    ->join('tb_user as user1','user1.id_user=tb_log.user_log')
+                    ->join('tb_barang','tb_barang.id_barang=tb_log.id_barang')
+                    ->join('tb_user as user2','user2.id_user=tb_barang.id_user') 
+                    ->where('tb_log.user_log', $id_user)  
+                    ->order_by('tb_log.waktu_log', 'desc')
+                    ->get('')                    
+                    ->result();
+   }
 
 
 }

@@ -20,7 +20,6 @@
                   <th>No</th>
                   <th>Kategori Barang</th>
                   <th>Total</th>
-                  <th>Aksi</th>
                 </tr>
                 </thead>
                 <tbody>
@@ -38,8 +37,7 @@
                   <td><a href="'.base_url('barang/data_barang/'.$data->id_kategori).'">'.$data->kategori.'</a></td>
                   <td>'.$total_barang->total.'</td>
                 
-                  <td>
-                  <a href="" data-toggle="modal" data-target="#modal_edit'.$data->id_kategori.'" class="btn btn-warning btn-xs btn-flat" ><i class="glyphicon glyphicon-pencil"></i><span class="tooltiptext">Edit</span></a>
+                 
                 
                 ';
                 
