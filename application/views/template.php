@@ -174,7 +174,7 @@ a:hover .tooltiptext {
       <!-- sidebar menu: : style can be found in sidebar.less -->
       <ul class="sidebar-menu" data-widget="tree">
         <li class="header">MAIN NAVIGATION</li>
-         <li <?php if($this->uri->segment(1) == 'dashboard') echo 'class="active"'; else echo  '';?>><a href="<?php echo base_url(); ?>dashboard"><i class="fa fa-dashboard"></i>DASHBOARD</a></li>
+         <li <?php if($this->uri->segment(1) == 'dashboard') echo 'class="active"'; else echo  '';?>><a href="<?php echo base_url(); ?>dashboard"><i class="fa fa-dashboard"></i><span>Dashboard</span></a></li>
         
         <li class="treeview <?php if($this->uri->segment(1) == 'perusahaan' OR $this->uri->segment(2) == 'status' OR $this->uri->segment(1) == 'kategori' OR $this->uri->segment(1) == 'merk' OR $this->uri->segment(1) == 'model' OR $this->uri->segment(1) == 'supplier') echo 'active'; else echo  '';?>">
           <a href="#">
