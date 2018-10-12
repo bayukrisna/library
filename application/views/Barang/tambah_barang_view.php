@@ -12,7 +12,7 @@
                       <div class="form-group ">
                           <label>Perusahaan (Kepemilikan)</label>
                           <div class="form-group">
-                              <select class="select2" style="width:100%" name="id_perusahaan">
+                              <select class="select2" style="width:100%" name="id_perusahaan" id="id_perusahaan" onchange="return get_ruang(this.value)">
                                   <option value="" selected="selected"> Pilih Perusahaan </option>
                                       <?php 
 
@@ -23,14 +23,30 @@
                                     ?>
                               </select>
                                <input type="hidden" name="id_kategori" class="form-control" id="id_kategori" placeholder="Wajib Diisi" value="<?php echo $kategori->id_kategori; ?>">
+                               <input type="hidden" name="id_barang" class="form-control" id="id_barang" value="<?php echo $getLogBarang; ?>" >
                               
                           </div>
                       </div>
                       <div class="form-group ">
+                          <label>Kategori</label>
+                          <div class="form-group">
+                             <input type="text" name="kategori" class="form-control" id="kategori" placeholder="Wajib Diisi" value="<?php echo $kategori->kategori; ?>" readonly>
+                              
+                          </div>
+                      </div>
+                      
+                        <div class="form-group ">
                           <label>Merk</label>
                           <div class="form-group">
-                              <select name="id_merk" id="id_merk" class="select2" style="width:100%" onchange="return get_model(this.value)">
-                        
+                              <select name="id_merk" id="id_merk" class="select2" style="width:100%" onchange="return get_model(this.value)" required="">
+                              <option value="" selected="selected"> Pilih Kategori terlebih Dahulu </option>
+                              <?php 
+
+                                    foreach($getMerk as $row)
+                                    { 
+                                      echo '<option value="'.$row->id_merk.'">'.$row->merk.'</option>';
+                                    }
+                                    ?>
                     
                             </select>
                               
@@ -82,7 +98,7 @@
                       <div class="form-group ">
                           <label>Ditempatkan di </label>
                           <div class="form-group">
-                              <select class="select2" style="width:100%" name="id_ruang">
+                              <select class="select2" style="width:100%" name="id_ruang" id="id_ruang">
                                   <option value="" selected="selected"> Pilih Ruang </option>
                                       <?php 
 
@@ -99,7 +115,7 @@
                       <div class="form-group ">
                           <label>Pengguna </label>
                           <div class="form-group">
-                              <select class="select2" style="width:100%" name="pengguna">
+                              <select class="select2" style="width:100%" name="id_user">
                                   <option value="" selected="selected"> Pilih Pengguna </option>
                                      <?php 
 
@@ -141,10 +157,7 @@
                                
                           </div>
                       </div>
-                      <div class="form-group">
-                        <label for="email">Foto Barang</label>
-                        <input type="file" name="foto_barang" class="form-control" id="foto_barang"  >
-                      </div>
+                  
                       <div class="form-group">
                         <label for="email">Keterangan</label>
                         <textarea name="keterangan" id="keterangan" class="form-control" placeholder="Isi Bila Ada"></textarea>

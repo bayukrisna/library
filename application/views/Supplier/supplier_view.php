@@ -31,6 +31,7 @@
                 $no = 0;
                 $alert = "'Anda yakin menghapus data ini ?'";
                 foreach ($supplier as $data) {
+                  $total_barang = $this->db->query("SELECT count(*) AS total FROM tb_barang WHERE tb_barang.id_supplier = '$data->id_supplier'")->row();
                   echo '
                   
                 <tr>
@@ -41,7 +42,7 @@
                   <td>'.$data->nama_kontak.'</td>
                   <td>'.$data->email.'</td>
                   <td>'.$data->no_telp.'</td>
-                  <td></td>
+                  <td>'.$total_barang->total.'</td>
                   <td>
                   <a href="'.base_url('supplier/page_edit_supplier/'.$data->id_supplier).'" class="btn btn-warning btn-xs btn-flat" ><i class="glyphicon glyphicon-pencil"></i><span class="tooltiptext">Edit</span></a>
 

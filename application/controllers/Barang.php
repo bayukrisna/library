@@ -68,19 +68,6 @@ class Barang extends CI_Controller {
 	public function tambah_barang_by_kategori()
 	{
 			$id_kategori = $this->uri->segment(3);
-			$data['getPengguna'] = $this->Barang_model->getPengguna();
-			$data['getSupplier'] = $this->Barang_model->getSupplier();
-			$data['getPerusahaan'] = $this->Barang_model->getPerusahaan();
-			$data['getRuang'] = $this->Barang_model->getRuang();
-			$data['getStatus'] = $this->Barang_model->getStatus();
-			$data['kategori'] = $this->Barang_model->detail_kategori($id_kategori);
-			$data['main_view'] = 'Barang/tambah_barang_view';
-			$this->load->view('template', $data);
-	}
-
-	public function tambah_barang()
-	{
-			$id_kategori = $this->uri->segment(3);
 			$data['getLogBarang'] = $this->Barang_model->getLogBarang();
 			$data['getPengguna'] = $this->Barang_model->getPengguna();
 			$data['getKategori'] = $this->Barang_model->getKategori();
@@ -89,6 +76,19 @@ class Barang extends CI_Controller {
 			$data['getPerusahaan'] = $this->Barang_model->getPerusahaan();
 			$data['getStatus'] = $this->Barang_model->getStatus();
 			$data['kategori'] = $this->Barang_model->detail_kategori($id_kategori);
+			$data['main_view'] = 'Barang/tambah_barang_view';
+			$this->load->view('template', $data);
+	}
+
+	public function tambah_barang()
+	{
+			$data['getLogBarang'] = $this->Barang_model->getLogBarang();
+			$data['getPengguna'] = $this->Barang_model->getPengguna();
+			$data['getKategori'] = $this->Barang_model->getKategori();
+			$data['getSupplier'] = $this->Barang_model->getSupplier();
+			$data['getMerk'] = $this->Barang_model->getMerk();
+			$data['getPerusahaan'] = $this->Barang_model->getPerusahaan();
+			$data['getStatus'] = $this->Barang_model->getStatus();
 			$data['main_view'] = 'Barang/tambah_barang2_view';
 			$this->load->view('template', $data);
 	}
@@ -169,11 +169,12 @@ class Barang extends CI_Controller {
 	public function simpan_barang()
 	{
 		$id_kategori = $this->uri->segment(3);
+		$id_barang = $this->uri->segment(4);
 		$config['upload_path'] = './uploads/';
         $config['allowed_types'] = 'jpg|png|jpeg';
         $this->load->library('upload', $config);
         $this->upload->do_upload('foto_barang');
-			if($this->Barang_model->simpan_barang($this->upload->data()) == TRUE && $this->Barang_model->simpan_log_barang() == TRUE){
+			if($this->Barang_model->simpan_barang($this->upload->data()) == TRUE && $this->Barang_model->simpan_log_barang($id_barang) == TRUE){
 				$this->session->set_flashdata('message', '<div class="alert alert-success"> Data Barang berhasil disimpan </div>');
             	redirect('barang/tambah_barang_by_kategori/'.$id_kategori);
 			}  else{
@@ -284,6 +285,18 @@ class Barang extends CI_Controller {
 		} else {
 			$this->session->set_flashdata('message', '<div class="alert alert-danger"> Hapus Gagal </div>');
 			redirect('barang/data_aset');
+		}
+	}
+
+	public function hapus_barang2(){
+		$id_barang = $this->uri->segment(3);
+		$id_kategori = $this->uri->segment(4);
+		if ($this->Barang_model->hapus_barang($id_barang) == TRUE) {
+			$this->session->set_flashdata('message', '<div class="alert alert-success"> Hapus Berhasil </div>');
+			redirect('barang/data_barang/'.$id_kategori);
+		} else {
+			$this->session->set_flashdata('message', '<div class="alert alert-danger"> Hapus Gagal </div>');
+			redirect('barang/data_barang/'.$id_kategori);
 		}
 	}
 }

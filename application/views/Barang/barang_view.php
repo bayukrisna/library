@@ -71,7 +71,7 @@
            <?php $c =  $this->db->where('id_user', $this->session->userdata('id_user'))->get('tb_akses')->row();
         if ($c->d_bar == 1) { ?>
 
-        <a href="<?php echo base_url(); ?>barang/hapus_barang/<?php echo $data->id_barang; ?>" onclick="return confirm(<?php $alert; ?>)" class="btn btn-danger btn-xs btn-flat" ><i class="glyphicon glyphicon-trash"></i><span class="tooltiptext">Hapus</span></a>
+        <a href="<?php echo base_url(); ?>barang/hapus_barang2/<?php echo $data->id_barang; ?>/<?php echo $data->id_kategori; ?>" onclick="return confirm(<?php $alert; ?>)" class="btn btn-danger btn-xs btn-flat" ><i class="glyphicon glyphicon-trash"></i><span class="tooltiptext">Hapus</span></a>
         <?php } ?>
 
         </td>

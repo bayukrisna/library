@@ -20,7 +20,8 @@
                   <th>Luas (m<sup>2</sup>)</th>
                   <th>Kapasitas</th>
                   <th>Gedung</th>
-                  <th>status</th>
+                  <th>Status</th>
+                  <th>Total Aset</th>
                   <th>Aksi</th>
                 </tr>
                 </thead>
@@ -30,6 +31,7 @@
                 $no = 0;
                 $alert = "'Apakah anda yakin mengapus data ini ?'";
                 foreach ($ruang as $data) {
+                  $total_barang = $this->db->query("SELECT count(*) AS total FROM tb_barang WHERE tb_barang.id_ruang = '$data->id_ruang'")->row();
                   echo '
                   
                 <tr>
@@ -40,6 +42,7 @@
                   <td>'.$data->kapasitas.'</td>
                   <td>'.$data->nama_gedung.'</td>
                   <td>'.$data->status.'</td>
+                  <td>'.$total_barang->total.'</td>
                   <td>
                   <a href="" data-toggle="modal" data-target="#modal_edit'.$data->id_ruang.'" class="btn btn-warning btn-xs btn-flat" ><i class="glyphicon glyphicon-pencil"></i><span class="tooltiptext">Edit</span></a>
                   <a href="'.base_url('ruang/delete/'.$data->id_ruang).'" class="btn btn-danger btn-xs btn-flat" onclick="return confirm('.$alert.')"><i class="glyphicon glyphicon-trash"></i><span class="tooltiptext">Hapus</span></a>
