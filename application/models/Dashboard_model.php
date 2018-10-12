@@ -40,7 +40,7 @@ class Dashboard_model extends CI_Model {
      				->join('tb_user as user2','user2.id_user=tb_barang.id_user')
      				
      				->order_by('tb_log.waktu_log', 'desc')
-     				->limit(10)
+     				->limit(5)
                     ->get('')                    
                     ->result();
    }

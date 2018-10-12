@@ -56,7 +56,8 @@
             <a href="<?php echo base_url(); ?>model" class="small-box-footer">Lihat Data <i class="fa fa-arrow-circle-right"></i></a>
           </div>
         </div>
-        <div class="col-lg-12 col-xs-6  box">
+        <div class="col-lg-9 col-xs-6">
+        <div class="box">
           <!-- small box -->
           <div class="table-responsive">
             <div class="box-header with-border">
@@ -95,4 +96,5 @@
               </table>
             </div>
         </div>
+      </div>
         
