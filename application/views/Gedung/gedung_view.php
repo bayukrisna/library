@@ -15,7 +15,7 @@
                 <a href="" data-toggle="modal" data-target="#modal_tambah" class="btn btn-primary btn-sm btn-flat" ><i class="fa fa-plus"></i> Tambah</a> <br> <br>
                 <thead>
                 <tr>
-                  <th>No</th>
+                  <th style="width: 2%">No</th>
                   <th>Nama Gedung</th>
                   <th>Luas (m<sup>2</sup>)</th>
                   <th>Perusahaan</th>

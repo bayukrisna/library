@@ -15,7 +15,7 @@
                 
                 <thead>
                 <tr>
-                  <th>ID</th>
+                  <th style="width: 2%">No. </th>
                   <th>Nama</th>
                   <th>Total Aset</th>
                 </tr>
