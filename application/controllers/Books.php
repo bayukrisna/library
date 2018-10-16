@@ -1,24 +1,22 @@
 <?php
 defined('BASEPATH') OR exit('No direct script access allowed');
 
-class Barang extends CI_Controller {
+class Books extends CI_Controller {
 
 	public function __construct()
 	{
 		parent::__construct();
-		$this->load->model('Ruang_model');
-		$this->load->model('Barang_model');
+		$this->load->model('Books_model');
 		$this->load->helper(array('url','download'));
-		if ($this->session->userdata('logged_in') != TRUE) {
-			redirect('login');
-		}
 	}
 	public function index()
 	{
-			$data['kategori'] = $this->Barang_model->data_kategori_barang();
-			$data['main_view'] = 'Barang/kategori_barang_view';
+			$data['books'] = $this->Books_model->data_books();
+			$data['main_view'] = 'Books/data_books_view';
 			$this->load->view('template', $data);
 	}
+
+	/*
 
 	public function data_barang()
 	{
@@ -298,5 +296,5 @@ class Barang extends CI_Controller {
 			$this->session->set_flashdata('message', '<div class="alert alert-danger"> Hapus Gagal </div>');
 			redirect('barang/data_barang/'.$id_kategori);
 		}
-	}
+	} */
 }

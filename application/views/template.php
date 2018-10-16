@@ -49,8 +49,7 @@
   <link rel="stylesheet" href="<?php echo base_url(); ?>assets/dist/css/skins/_all-skins.min.css">
   <!-- Bootstrap 3.3.6 -->
   
-  <link rel="stylesheet" href="<?php echo base_url(); ?>assets/plugins/fullcalendar/fullcalendar.min.css">
-  <link rel="stylesheet" href="<?php echo base_url(); ?>assets/plugins/fullcalendar/fullcalendar.print.css" media="print">
+
   <!-- Theme style -->
   <link rel="stylesheet" href="<?php echo base_url(); ?>assets/dist/css/AdminLTE.min.css">
 
@@ -178,13 +177,13 @@ a:hover .tooltiptext {
         
         <li class="treeview <?php if($this->uri->segment(1) == 'perusahaan' OR $this->uri->segment(2) == 'status' OR $this->uri->segment(1) == 'kategori' OR $this->uri->segment(1) == 'merk' OR $this->uri->segment(1) == 'model' OR $this->uri->segment(1) == 'supplier') echo 'active'; else echo  '';?>">
           <a href="#">
-            <i class="fa fa-dashboard"></i> <span>MASTER</span>
+            <i class="fa fa-dashboard"></i> <span>BOOKS</span>
             <span class="pull-right-container">
               <i class="fa fa-angle-left pull-right"></i>
             </span>
           </a>
           <ul class="treeview-menu">
-            <li <?php if($this->uri->segment(1) == 'perusahaan') echo 'class="active"'; else echo  '';?>><a href="<?php echo base_url(); ?>perusahaan"><i class="fa fa-circle-o"></i>PERUSAHAAN</a></li>
+            <li <?php if($this->uri->segment(1) == 'perusahaan') echo 'class="active"'; else echo  '';?>><a href="<?php echo base_url(); ?>books"><i class="fa fa-circle-o"></i>ALL BOOKS</a></li>
             <li <?php if($this->uri->segment(2) == 'status') echo 'class="active"'; else echo  '';?>><a href="<?php echo base_url(); ?>barang/status"><i class="fa fa-circle-o"></i>STATUS</a></li>
             <li <?php if($this->uri->segment(1) == 'kategori') echo 'class="active"'; else echo  '';?>><a href="<?php echo base_url(); ?>kategori"><i class="fa fa-circle-o"></i>KATEGORI BARANG</a></li>
             <li <?php if($this->uri->segment(1) == 'merk') echo 'class="active"'; else echo  '';?>><a href="<?php echo base_url(); ?>merk"><i class="fa fa-circle-o"></i>MERK / BRAND</a></li>
@@ -219,8 +218,7 @@ a:hover .tooltiptext {
             <li <?php if($this->uri->segment(1) == 'ruang') echo 'class="active"'; else echo  '';?>><a href="<?php echo base_url(); ?>ruang"><i class="fa fa-circle-o"></i>RUANG</a></li>
           </ul>
         </li>
-        <?php $c =  $this->db->where('id_user', $this->session->userdata('id_user'))->get('tb_akses')->row();
-        if ($c->v_bar == 1) { ?>
+        
         <li class="treeview <?php if($this->uri->segment(2) == 'data_aset' OR $this->uri->segment(1) == 'barang' && $this->uri->segment(2) == '') echo 'active'; else echo  '';?>">
           <a href="#">
             <i class="fa fa-dashboard"></i> <span>SARANA</span>
@@ -243,7 +241,7 @@ a:hover .tooltiptext {
         </li>
           </ul>
         </li>
-      <?php } ?>
+    
         <li class="treeview <?php if($this->uri->segment(2) == 'laporan_barang' OR $this->uri->segment(2) == 'laporan_pemeliharaan') echo 'active'; else echo  '';?>">
           <a href="#">
             <i class="fa fa-dashboard"></i> <span>LAPORAN</span>
@@ -439,13 +437,7 @@ a:hover .tooltiptext {
 
     
     <script src="<?php echo base_url(); ?>assets/plugins/jquery-datatable/skin/bootstrap/js/dataTables.bootstrap.js"></script>
-    <script src="<?php echo base_url(); ?>assets/plugins/jquery-datatable/extensions/export/dataTables.buttons.min.js"></script>
-    <script src="<?php echo base_url(); ?>assets/plugins/jquery-datatable/extensions/export/buttons.flash.min.js"></script>
-    <script src="<?php echo base_url(); ?>assets/plugins/jquery-datatable/extensions/export/jszip.min.js"></script>
-    <script src="<?php echo base_url(); ?>assets/plugins/jquery-datatable/extensions/export/pdfmake.min.js"></script>
-    <script src="<?php echo base_url(); ?>assets/plugins/jquery-datatable/extensions/export/vfs_fonts.js"></script>
-    <script src="<?php echo base_url(); ?>assets/plugins/jquery-datatable/extensions/export/buttons.html5.min.js"></script>
-    <script src="<?php echo base_url(); ?>assets/plugins/jquery-datatable/extensions/export/buttons.print.min.js"></script>
+  
 <script src="<?php echo base_url(); ?>assets/js/pages/tables/jquery-datatable.js"></script>
 <!-- SlimScroll 1.3.0 -->
 

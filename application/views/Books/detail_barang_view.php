@@ -77,7 +77,7 @@
                 </tr>
                 <tr>
                     <td class="left_column" width="15%"> Harga Beli</td>
-                    <td colspan="6" size="100">: <?php echo $barang->harga_barang; ?></td>
+                    <td colspan="6" size="100">: Rp. <?php echo number_format($barang->harga_barang,2,',','.'); ?></td>
                 </tr>
                 <tr>
                     <td class="left_column" width="15%"> Pemasok / Supplier </td>
