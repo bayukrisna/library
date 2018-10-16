@@ -13,7 +13,7 @@
               <div class="table-responsive">
               <table id="example1" class="table2 table-hover table-striped table-condensed" style="text-transform: uppercase;">
                 
-                <a href="#" class="btn btn-primary btn-sm btn-flat" ><i class="fa fa-plus"></i> Tambah</a> <br> <br> 
+                <a href="<?= base_url()?>books/add_books" class="btn btn-primary btn-sm btn-flat" ><i class="fa fa-plus"></i> Tambah</a> <br> <br> 
   <thead>
   <tr>
     <th style="width:5%" style="text-align:center">No.</th>

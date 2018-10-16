@@ -11,12 +11,14 @@ class Books extends CI_Controller {
 	}
 	public function index()
 	{
+
 			$data['books'] = $this->Books_model->data_books();
 			$data['main_view'] = 'Books/data_books_view';
 			$this->load->view('template', $data);
 	}
 
 	public function add_books(){
+		$this->destroy();
 		$data['main_view'] = 'Books/tambah_buku_view';
 		$data['getCG'] = $this->Books_model->getCG();
 		$this->load->view('template', $data);
@@ -34,6 +36,7 @@ class Books extends CI_Controller {
 		}
 		echo $option;
 	}
+<<<<<<< HEAD
 
 	
 	/*
@@ -161,160 +164,74 @@ class Books extends CI_Controller {
 			
 		}
 		echo $option;
+=======
+	public function cek(){
+		print_r($this->cart->contents());
 	}
-
-	public function get_ruang_by_perusahaan($param = NULL){
-		$id_perusahaan = $param;
-		$result = $this->Barang_model->get_ruang_by_perusahaan($id_perusahaan);
-		$option = "";
-		$option .= '<option value=""> Pilih Ruang </option>';
-		foreach ($result as $data) {
-			$option = 
-			$option .= "<option value='".$data->id_ruang."'>".$data->nama_ruang."</option>";
+	public function destroy(){
+		$this->cart->destroy();
+	}
+	public function add_to_cart()
+	{
+			$a = count($this->cart->contents())+1;	
+			$book_number = $this->input->post('book_number');
+			$data = array(
+			        'id'      => $a,
+			        'qty'     => 1,
+			        'price'   => 1,
+			        'name'    => 'buku',
+			        'book_number' => $book_number
+			);
+			$this->cart->insert($data);
 			
-		}
-		echo $option;
+			$this->show_cart();
+		
+>>>>>>> 8a4cb2094383033596878bb664a24f9ba024f011
 	}
-
-	
-	public function status()
-	{
-			$data['status'] = $this->Barang_model->data_status();
-			$data['main_view'] = 'Status/status_view';
-			$this->load->view('template', $data);
+	public function show_cart(){
+			$option = "";
+          	$i = 1;
+			foreach ($this->cart->contents() as $items) {
+				$option .= '<tr>
+							<td>'.$i++.'</td>
+							<td>'.$items['book_number'].'</td>
+							<td> Avaliable </td>
+							<td><button  type="button" title="Delete data" class="btn btn-xs btn-danger fa fa-trash-o" onclick="delete_cart(this.value)" value="'.$items['rowid'].'"></button></td>
+							</tr>';	
+				
+				
+			}
+			
+			echo $option;
 	}
-
-	public function simpan_barang()
+	public function delete_cart($p)	{
+		$data = array(
+           'rowid' => $p,
+           'qty'   => 0
+        );
+		$this->cart->update($data);
+		$this->show_cart();
+	}
+	public function simpan_buku()
 	{
-		$id_kategori = $this->uri->segment(3);
-		$id_barang = $this->uri->segment(4);
 		$config['upload_path'] = './uploads/';
         $config['allowed_types'] = 'jpg|png|jpeg';
         $this->load->library('upload', $config);
-        $this->upload->do_upload('foto_barang');
-			if($this->Barang_model->simpan_barang($this->upload->data()) == TRUE && $this->Barang_model->simpan_log_barang($id_barang) == TRUE){
-				$this->session->set_flashdata('message', '<div class="alert alert-success"> Data Barang berhasil disimpan </div>');
-            	redirect('barang/tambah_barang_by_kategori/'.$id_kategori);
+        $this->upload->do_upload('image');
+			if($this->Books_model->simpan_buku($this->upload->data()) == TRUE){
+				foreach($this->cart->contents() as $item){
+		          $data = array(
+		            'id_number'    => $this->input->post('id_number'),
+		            'book_number'    => $item['book_number'],
+		            'id_bookstatus' => '1'
+		          );
+		          $this->db->insert('booknumber2', $data);
+		        }
+				$this->session->set_flashdata('message', '<div class="alert alert-success"> Data Model berhasil disimpan </div>');
+            	redirect(base_url('books'));	
 			}  else{
 				$this->session->set_flashdata('message', '<div class="alert alert-danger"> '.validation_errors().' </div>');
-            	redirect('barang/tambah_barang_by_kategori/'.$id_kategori);
+            	redirect(base_url('books'));	
 		}
 	}
-
-	public function simpan_barang2()
-	{
-		$config['upload_path'] = './uploads/';
-        $config['allowed_types'] = 'jpg|png|jpeg';
-        $this->load->library('upload', $config);
-        $this->upload->do_upload('foto_barang');
-			if($this->Barang_model->simpan_barang($this->upload->data()) == TRUE && $this->Barang_model->simpan_log_barang() == TRUE){
-				$this->session->set_flashdata('message', '<div class="alert alert-success"> Data Barang berhasil disimpan </div>');
-            	redirect('barang/tambah_barang');
-			}  else{
-				$this->session->set_flashdata('message', '<div class="alert alert-danger"> '.validation_errors().' </div>');
-            	redirect('barang/tambah_barang');
-		}
-	}
-
-
-	public function simpan_status()
-	{
-			if($this->Barang_model->simpan_status() == TRUE){
-				$this->session->set_flashdata('message', '<div class="alert alert-success"> Data status berhasil disimpan </div>');
-            	redirect('barang/status');
-			}  else{
-				$this->session->set_flashdata('message', '<div class="alert alert-danger"> '.validation_errors().' </div>');
-            	redirect('barang/status');
-		}
-	}
-
-	public function edit_status()
-	{
-		$id_status = $this->input->post('id_status');
-			if($this->Barang_model->edit_status($id_status) == TRUE){
-				$this->session->set_flashdata('message', '<div class="alert alert-success"> Status Berhasil Diubah </div>');
-            	redirect('barang/status');
-			}  else{
-				$this->session->set_flashdata('message', '<div class="alert alert-danger"> '.validation_errors().' </div>');
-            	redirect('barang/status');
-		}
-	}
-
-	public function edit_barang($id_barang){
-			$nama_barang = $this->input->post('nama_barang');
-					if ($this->Barang_model->edit_barang($id_barang) == TRUE  && $this->Barang_model->log_edit_barang($id_barang) == TRUE) {
-						$this->session->set_flashdata('message', '<div class="alert alert-success"> Edit '.$nama_barang.' berhasil </div>');
-            			redirect('barang/data_aset');
-					} else {
-						$this->session->set_flashdata('message', '<div class="alert alert-danger"> Edit '.$nama_barang.' gagal </div>');
-            			redirect('barang/data_aset');
-					}
-		} 
-
-	public function simpan_pemeliharaan()
-	{
-		$id_barang = $this->uri->segment(3);
-			if($this->Barang_model->simpan_pemeliharaan() == TRUE && $this->Barang_model->log_simpan_pemeliharaan($id_barang) == TRUE){
-				$this->session->set_flashdata('message', '<div class="alert alert-success"> Data pemeliharaan berhasil disimpan </div>');
-            	redirect('barang/detail_barang/'.$id_barang);
-			}  else{
-				$this->session->set_flashdata('message', '<div class="alert alert-danger"> '.validation_errors().' </div>');
-            	redirect('barang/detail_barang/'.$id_barang);
-		}
-	}
-
-	public function simpan_berkas()
-	{
-		$id_barang = $this->uri->segment(3);
-		$config['upload_path'] = './uploads/';
-        $config['allowed_types'] = 'jpg|png|jpeg|zip|rar|pdf|doc|docx|txt|gif';
-        $this->load->library('upload', $config);
-        $this->upload->do_upload('nama_berkas');
-			if($this->Barang_model->simpan_berkas($this->upload->data()) == TRUE){
-				$this->session->set_flashdata('message', '<div class="alert alert-success"> Data Berkas berhasil disimpan </div>');
-            	redirect('barang/detail_barang/'.$id_barang);
-			}  else{
-				$this->session->set_flashdata('message', '<div class="alert alert-danger"> '.validation_errors().' </div>');
-            	redirect('barang/detail_barang/'.$id_barang);
-		}
-	}
-
-	public function download_berkas(){				
-		force_download('uploads/'.$this->uri->segment(3),NULL);
-	}
-
-
-	public function hapus_status(){
-		$id_status = $this->uri->segment(3);
-		if ($this->Barang_model->hapus_status($id_status) == TRUE) {
-			$this->session->set_flashdata('message', '<div class="alert alert-success"> Status berhasil dihapus </div>');
-			redirect('barang/status');
-		} else {
-			$this->session->set_flashdata('message', '<div class="alert alert-danger"> Status gagal dihapus </div>');
-			redirect('barang/status');
-		}
-	}
-
-	public function hapus_barang(){
-		$id_barang = $this->uri->segment(3);
-		if ($this->Barang_model->hapus_barang($id_barang) == TRUE) {
-			$this->session->set_flashdata('message', '<div class="alert alert-success"> Hapus Berhasil </div>');
-			redirect('barang/data_aset');
-		} else {
-			$this->session->set_flashdata('message', '<div class="alert alert-danger"> Hapus Gagal </div>');
-			redirect('barang/data_aset');
-		}
-	}
-
-	public function hapus_barang2(){
-		$id_barang = $this->uri->segment(3);
-		$id_kategori = $this->uri->segment(4);
-		if ($this->Barang_model->hapus_barang($id_barang) == TRUE) {
-			$this->session->set_flashdata('message', '<div class="alert alert-success"> Hapus Berhasil </div>');
-			redirect('barang/data_barang/'.$id_kategori);
-		} else {
-			$this->session->set_flashdata('message', '<div class="alert alert-danger"> Hapus Gagal </div>');
-			redirect('barang/data_barang/'.$id_kategori);
-		}
-	} */
 }
