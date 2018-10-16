@@ -11,8 +11,7 @@ class Books_model extends CI_Model {
   
 
    public function data_books(){
-     return $this->db->join('detail_catalogue_group','detail_catalogue_group.id_dcg=books.id_dcg','left')
-                    ->join('catalogue_group','catalogue_group.id_cg=detail_catalogue_group.id_cg','left')
+     return $this->db
                     ->get('books')
                     ->result();
    }
