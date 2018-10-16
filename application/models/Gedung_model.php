@@ -53,9 +53,9 @@ class Gedung_model extends CI_Model {
 
   public function edit_gedung($id_gedung){
     $data = array(
+            'id_gedung'                        => $this->input->post('id_gedung'),
             'nama_gedung'                        => $this->input->post('nama_gedung'),
             'luas_gedung'                 => $this->input->post('luas_gedung'),
-            'kepemilikan'           => $this->input->post('kepemilikan'),
             'kegiatan'            => $this->input->post('kegiatan'),
             'id_status'         => $this->input->post('id_status'),
             'id_lahan'         => $this->input->post('id_lahan')

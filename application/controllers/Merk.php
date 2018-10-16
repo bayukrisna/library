@@ -52,4 +52,13 @@ class Merk extends CI_Controller {
 			redirect('merk');
 		}
 	}
+
+	public function detail_merk()
+	{
+			$id_merk = $this->uri->segment(3);
+			$data['merk'] = $this->Merk_model->detail_merk($id_merk);
+			$data['barang'] = $this->Merk_model->data_barang($id_merk);
+			$data['main_view'] = 'Merk/detail_merk_view';
+			$this->load->view('template', $data);
+	}
 }

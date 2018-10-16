@@ -49,8 +49,7 @@
   <link rel="stylesheet" href="<?php echo base_url(); ?>assets/dist/css/skins/_all-skins.min.css">
   <!-- Bootstrap 3.3.6 -->
   
-  <link rel="stylesheet" href="<?php echo base_url(); ?>assets/plugins/fullcalendar/fullcalendar.min.css">
-  <link rel="stylesheet" href="<?php echo base_url(); ?>assets/plugins/fullcalendar/fullcalendar.print.css" media="print">
+
   <!-- Theme style -->
   <link rel="stylesheet" href="<?php echo base_url(); ?>assets/dist/css/AdminLTE.min.css">
 
@@ -151,7 +150,7 @@ a:hover .tooltiptext {
               <!-- Menu Footer-->
               <li class="user-footer">
                 <div class="pull-left">
-                  
+                  <a href="<?php echo base_url(); ?>admin/user_log/<?php echo $this->session->userdata('id_user'); ?>" class="btn btn-default fa fa-detail">History</a>
                 </div>
                 <div class="pull-right">
                   <a href="<?php echo base_url(); ?>login/logout" class="btn btn-default fa fa-sign-out">Logout</a>
@@ -193,7 +192,7 @@ a:hover .tooltiptext {
 
           </ul>
         </li>
-        <li class="treeview <?php if($this->uri->segment(2) == 'user_login' OR $this->uri->segment(1) == 'admin' && $this->uri->segment(2) == '') echo 'active'; else echo  '';?>">
+        <li class="treeview <?php if($this->uri->segment(2) == 'user_login' OR $this->uri->segment(2) == 'data_log' OR $this->uri->segment(1) == 'admin' && $this->uri->segment(2) == '') echo 'active'; else echo  '';?>">
           <a href="#">
             <i class="fa fa-dashboard"></i> <span>PENGGUNA (<i>USER</i>)</span>
             <span class="pull-right-container">
@@ -203,6 +202,7 @@ a:hover .tooltiptext {
           <ul class="treeview-menu">
             <li <?php if($this->uri->segment(1) == 'admin' && $this->uri->segment(2) == '') echo 'class="active"'; else echo  '';?>><a href="<?php echo base_url(); ?>admin"><i class="fa fa-circle-o"></i>SEMUA</a></li>
             <li <?php if($this->uri->segment(2) == 'user_login') echo 'class="active"'; else echo  '';?>><a href="<?php echo base_url(); ?>admin/user_login"><i class="fa fa-circle-o"></i>USER LOGIN</a></li>
+            <li <?php if($this->uri->segment(2) == 'data_log') echo 'class="active"'; else echo  '';?>><a href="<?php echo base_url(); ?>admin/data_log"><i class="fa fa-circle-o"></i>AKTIVITAS USER</a></li>
           </ul>
         </li>
         <li class="treeview <?php if($this->uri->segment(1) == 'lahan' OR $this->uri->segment(1) == 'gedung' OR $this->uri->segment(1) == 'ruang' ) echo 'active'; else echo  '';?>">
@@ -438,13 +438,7 @@ a:hover .tooltiptext {
 
     
     <script src="<?php echo base_url(); ?>assets/plugins/jquery-datatable/skin/bootstrap/js/dataTables.bootstrap.js"></script>
-    <script src="<?php echo base_url(); ?>assets/plugins/jquery-datatable/extensions/export/dataTables.buttons.min.js"></script>
-    <script src="<?php echo base_url(); ?>assets/plugins/jquery-datatable/extensions/export/buttons.flash.min.js"></script>
-    <script src="<?php echo base_url(); ?>assets/plugins/jquery-datatable/extensions/export/jszip.min.js"></script>
-    <script src="<?php echo base_url(); ?>assets/plugins/jquery-datatable/extensions/export/pdfmake.min.js"></script>
-    <script src="<?php echo base_url(); ?>assets/plugins/jquery-datatable/extensions/export/vfs_fonts.js"></script>
-    <script src="<?php echo base_url(); ?>assets/plugins/jquery-datatable/extensions/export/buttons.html5.min.js"></script>
-    <script src="<?php echo base_url(); ?>assets/plugins/jquery-datatable/extensions/export/buttons.print.min.js"></script>
+  
 <script src="<?php echo base_url(); ?>assets/js/pages/tables/jquery-datatable.js"></script>
 <!-- SlimScroll 1.3.0 -->
 

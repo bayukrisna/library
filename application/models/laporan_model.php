@@ -13,7 +13,7 @@ class Laporan_model extends CI_Model {
                 ->from('tb_barang')
                 ->join('tb_model','tb_model.id_model=tb_barang.id_model')
                 ->join('tb_merk','tb_merk.id_merk=tb_model.id_merk')
-                ->join('tb_kategori','tb_kategori.id_kategori=tb_merk.id_kategori')
+                ->join('tb_kategori','tb_kategori.id_kategori=tb_model.id_kategori')
                 ->where('tb_barang.tgl_pembelian >=', $tgl_pembelian1)
                 ->where('tb_barang.tgl_pembelian <=', $tgl_pembelian2)
                 ->like('tb_kategori.id_kategori', $id_kategori)
@@ -28,7 +28,7 @@ class Laporan_model extends CI_Model {
                ->from('tb_barang')
                 ->join('tb_model','tb_model.id_model=tb_barang.id_model')
                 ->join('tb_merk','tb_merk.id_merk=tb_model.id_merk')
-                ->join('tb_kategori','tb_kategori.id_kategori=tb_merk.id_kategori')
+                ->join('tb_kategori','tb_kategori.id_kategori=tb_model.id_kategori')
                 ->where('tb_barang.tgl_pembelian >=', $tgl_pembelian1)
                 ->where('tb_barang.tgl_pembelian <=', $tgl_pembelian2)
                 ->like('tb_kategori.id_kategori', $id_kategori)
@@ -90,23 +90,23 @@ class Laporan_model extends CI_Model {
 
                     $total_harga += $data->harga_barang;
 
-                    $option .= "
+                    $option .= '
                     <tr>
-                      <td>".++$no."</td>
-                      <td>".$data->tgl_pembelian."</td>
-                      <td>".$data->kategori."</td>
-                      <td>".$data->nama_barang."</td>
-                      <td>".$data->merk."</td>
-                      <td>".$data->nama_model."</td>
-                      <td>".$data->harga_barang."</td>
-                    </tr>"
+                      <td>'.++$no.'</td>
+                      <td>'.$data->tgl_pembelian.'</td>
+                      <td>'.$data->kategori.'</td>
+                      <td>'.$data->nama_barang.'</td>
+                      <td>'.$data->merk.'</td>
+                      <td>'.$data->nama_model.'</td>
+                      <td style="text-align:right">'.number_format($data->harga_barang,2,',','.').'</td>
+                    </tr>'
                     ;
                     
                   }
                   $option .= '
                     <tr>
                       <td colspan="6" style="text-align:right"><b>Total Harga</b></td>
-                      <td><b>Rp. '.$total_harga.',00</b></td>
+                      <td style="text-align:right"><b>Rp. '.number_format($total_harga,2,',','.').'</b></td>
                     </tr>
                   </tbody>
 
@@ -135,7 +135,7 @@ class Laporan_model extends CI_Model {
                 ->join('tb_barang','tb_barang.id_barang=tb_pemeliharaan.id_barang')
                 ->join('tb_model','tb_model.id_model=tb_barang.id_model')
                 ->join('tb_merk','tb_merk.id_merk=tb_model.id_merk')
-                ->join('tb_kategori','tb_kategori.id_kategori=tb_merk.id_kategori')
+                ->join('tb_kategori','tb_kategori.id_kategori=tb_model.id_kategori')
                 ->join('tb_tipe_pemeliharaan','tb_tipe_pemeliharaan.id_tipe_pemeliharaan=tb_pemeliharaan.id_tipe_pemeliharaan')
                 ->where('tb_pemeliharaan.tgl_mulai_perbaikan >=', $tgl_perbaikan1)
                 ->where('tb_pemeliharaan.tgl_mulai_perbaikan <=', $tgl_perbaikan2)
@@ -157,7 +157,7 @@ class Laporan_model extends CI_Model {
                 ->join('tb_barang','tb_barang.id_barang=tb_pemeliharaan.id_barang')
                 ->join('tb_model','tb_model.id_model=tb_barang.id_model')
                 ->join('tb_merk','tb_merk.id_merk=tb_model.id_merk')
-                ->join('tb_kategori','tb_kategori.id_kategori=tb_merk.id_kategori')
+                ->join('tb_kategori','tb_kategori.id_kategori=tb_model.id_kategori')
                 ->join('tb_tipe_pemeliharaan','tb_tipe_pemeliharaan.id_tipe_pemeliharaan=tb_pemeliharaan.id_tipe_pemeliharaan')
                 ->where('tb_pemeliharaan.tgl_mulai_perbaikan >=', $tgl_perbaikan1)
                 ->where('tb_pemeliharaan.tgl_mulai_perbaikan <=', $tgl_perbaikan2)
@@ -227,23 +227,23 @@ class Laporan_model extends CI_Model {
 
                     $total_harga += $data->harga_perbaikan;
 
-                    $option .= "
+                    $option .= '
                     <tr>
-                      <td>".++$no."</td>
-                      <td>".$data->tgl_mulai_perbaikan."</td>
-                      <td>".$data->tipe_pemeliharaan."</td>
-                      <td>".$data->kategori."</td>
-                      <td>".$data->nama_barang."</td>
-                      <td>".$data->permasalahan."</td>
-                      <td>".$data->harga_perbaikan."</td>
-                    </tr>"
+                      <td>'.++$no.'</td>
+                      <td>'.$data->tgl_mulai_perbaikan.'</td>
+                      <td>'.$data->tipe_pemeliharaan.'</td>
+                      <td>'.$data->kategori.'</td>
+                      <td>'.$data->nama_barang.'</td>
+                      <td>'.$data->permasalahan.'</td>
+                      <td style="text-align:right">'.number_format($data->harga_perbaikan,2,',','.').'</td>
+                    </tr>'
                     ;
                     
                   }
                   $option .= '
                     <tr>
                       <td colspan="6" style="text-align:right"><b>Total Harga</b></td>
-                      <td><b>Rp. '.$total_harga.',00</b></td>
+                      <td style="text-align:right"><b>Rp. '.number_format($total_harga,2,',','.').'</b></td>
                     </tr>
                   </tbody>
 

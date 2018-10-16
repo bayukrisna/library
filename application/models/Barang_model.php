@@ -244,6 +244,7 @@ class Barang_model extends CI_Model {
      return $this->db->join('tb_barang','tb_barang.id_barang=tb_log.id_barang')
                     ->join('tb_user','tb_user.id_user=tb_log.user_log')     
                     ->where('tb_log.id_barang', $id_barang)
+                    ->order_by('tb_log.waktu_log', 'desc')
                     ->get('tb_log')
                     ->result();
    }

@@ -15,9 +15,9 @@
                 
                 <thead>
                 <tr>
-                  <th>ID</th>
+                  <th style="width: 2%">No. </th>
                   <th>Nama</th>
-                  <th>Aksi</th>
+                  <th>Total Aset</th>
                 </tr>
                 </thead>
                 <tbody>
@@ -25,12 +25,13 @@
                 <?php 
                 $no = 0;
                 foreach ($user as $data) {
+                  $total_barang = $this->db->query("SELECT count(*) AS total FROM tb_barang WHERE tb_barang.id_user = '$data->id_user'")->row();
                   echo '
                   
                 <tr>
                   <td>'.++$no.'</td>
-                  <td>'.$data->username.'</td>
-                  <td>
+                  <td><a href="'.base_url('admin/user_log/'.$data->id_user).'">'.$data->username.'</a></td>
+                  <td>'.$total_barang->total.'
                  </td>
                 
                 ' ;

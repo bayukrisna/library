@@ -19,7 +19,7 @@
 
                 <thead>
                 <tr>
-                  <th>No</th>
+                  <th style="width: 2%">No</th>
                   <th>Nama Lahan</th>
                   <th>Tgl. Perolehan</th>
                   <th>Luas (m<sup>2</sup>)</th>

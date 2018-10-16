@@ -7,6 +7,7 @@ class Kategori extends CI_Controller {
 	{
 		parent::__construct();
 		$this->load->model('Kategori_model');
+		$this->load->model('Barang_model');
 		if ($this->session->userdata('logged_in') != TRUE) {
 			redirect('login');
 		}
@@ -51,5 +52,14 @@ class Kategori extends CI_Controller {
 			$this->session->set_flashdata('message', '<div class="alert alert-danger"> Kategori gagal dihapus </div>');
 			redirect('kategori');
 		}
+	}
+
+	public function detail_kategori()
+	{
+			$id_kategori = $this->uri->segment(3);
+			$data['kategori'] = $this->Barang_model->detail_kategori($id_kategori);
+			$data['barang'] = $this->Barang_model->data_barang($id_kategori);
+			$data['main_view'] = 'Kategori/detail_kategori_view';
+			$this->load->view('template', $data);
 	}
 }

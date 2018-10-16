@@ -4,7 +4,7 @@
           <?php echo $this->session->flashdata('message');?>
           <div class="box">
             <div class="box-header with-border">
-              <h3 class="box-title">DATA USER LOGIN</h3>
+              <h3 class="box-title">DATA AKTIVITAS / RIWAYAT <b style="text-transform: uppercase;"> <?php echo $user->username; ?> </b></h3>
             </div>
 
             
@@ -12,31 +12,31 @@
             <div class="box-body">
               <div class="table-responsive">
               <table id="example1" class="table table-hover table-striped table-condensed" style="text-transform: uppercase;">
-                
+               
                 <thead>
                 <tr>
-                  <th>No.</th>
-                  <th>Nama</th>
+                  <th>No. </th>
+                  <th>Waktu</th>
                   <th>Aksi</th>
+                  <th>Item</th>
+                  <th>Transfer Ke</th>
                 </tr>
                 </thead>
                 <tbody>
 
                 <?php 
-                $no = 0;
-                foreach ($user as $data) {
-                  echo '
-                  
-                <tr>
-                  <td>'.++$no.'</td>
-                  <td>'.$data->username.'</td>
-                  <td><a href="'.base_url().'admin/akses/'.$data->id_user.'" class="btn">Akses</a>
-                 </td>
-                
-                ' ;
-                
-              }
-              ?>
+                      $no = 0;
+                      foreach($log as $data):
+                      ;
+                    ?>
+                    <tr>
+                        <td><?php echo ++$no;?></td>
+                        <td><?php echo date('d-m-y h:ia', strtotime($data->waktu_log));?></td>
+                        <td><?php echo $data->aktivitas;?></td>
+                        <td><?php echo $data->nama_barang;?></td>
+                        <td><?php echo $data->to;?></td>
+                    </tr>
+                    <?php endforeach; ?>
                 </tbody>
               </table>
             </div>
@@ -52,5 +52,4 @@
     </section>
 
 
-  
-
+    
