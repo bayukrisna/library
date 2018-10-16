@@ -11,10 +11,6 @@ class Admin extends CI_Controller {
 			redirect('login');
 		}
 	}
-	public function kk(){
-		$data['main_view'] = 'kk';
-				$this->load->view('template', $data);
-	}
 	public function index()
 	{
 		if ($this->session->userdata('logged_in') == TRUE) {
