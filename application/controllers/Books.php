@@ -16,6 +16,62 @@ class Books extends CI_Controller {
 			$this->load->view('template', $data);
 	}
 
+	public function add_books(){
+		$data['main_view'] = 'Books/tambah_buku_view';
+		$data['getCG'] = $this->Books_model->getCG();
+		$this->load->view('template', $data);
+	}
+
+	public function get_dcg_by_cg($param = NULL){
+		$id_cg = $param;
+		$result = $this->Books_model->get_dcg_by_cg($id_cg);
+		$option = "";
+		
+		foreach ($result as $data) {
+			$option = 
+			$option .= "<option value='".$data->id_dcg."'>".$data->detail_cg."</option>";
+			
+		}
+		echo $option;
+	}
+
+	public function add_to_cart()
+	{
+			$a = count($this->cart->contents() +1);
+			$ea = $this->uri->segment(3);
+			$book_number = $this->input->post('book_number');
+			$product = $this->finance_model->find($book_number);
+			$data = array(
+						   'id' = $a,
+						   'book_number'      => $this->input->post('book_number'),
+						   'id_bookstatus'   => '1',
+						   'qty'     => 1,
+						   'price'     => 1,
+						   'id_number'   => $this->input->post('id_number'),
+						  
+						);
+
+			$this->cart->insert($data);
+			redirect(base_url('books/detail_cart/'.$ea));
+		
+	}
+
+	public function detail_cart()
+	{
+		$ea = $this->uri->segment(3);
+		$ya = $this->uri->segment(3);
+		$dataku = $this->Books_model->get_data_detail_cart($ya);
+		$data['data_pembayaran']= $this->finance_model->data_pembayaran_mahasiswa($ya);
+		$data['data_pembayaran2']= $this->finance_model->data_pembayaran_mahasiswa($ya);
+		$data['getTA'] = $this->biaya_sekolah_model->getTA();
+		$data['main_view'] = 'Finance/detail_pembayaran_view';
+		$this->load->view('template', $data);
+	
+			
+		
+		
+	}
+
 	/*
 
 	public function data_barang()

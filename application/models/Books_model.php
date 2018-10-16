@@ -15,7 +15,20 @@ class Books_model extends CI_Model {
                     ->join('catalogue_group','catalogue_group.id_cg=detail_catalogue_group.id_cg','left')
                     ->get('books')
                     ->result();
-   } /*
+   }
+
+   public function getCG(){
+     return $this->db->get('catalogue_group')
+                    ->result();
+   }
+
+   public function get_dcg_by_cg($id_cg){
+     return $this->db->where('id_cg', $id_cg)
+                    ->get('detail_catalogue_group')
+                    ->result();
+   }
+
+    /*
 
    public function data_barang_semua(){
      return $this->db->join('tb_ruang','tb_ruang.id_ruang=tb_barang.id_ruang')

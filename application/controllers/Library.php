@@ -13,9 +13,6 @@ class Library extends CI_Controller {
 		$this->load->view('template', $data);
 			
 	}
-	public function tambah_buku(){
-		$data['main_view'] = 'Library/tambah_buku_view';
-		$this->load->view('template', $data);
-	}
+	
 
 }
