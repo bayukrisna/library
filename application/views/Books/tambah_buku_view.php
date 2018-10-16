@@ -1,15 +1,13 @@
       <section class="content">
       <div class="row">
+        <?php echo form_open('books/simpan_buku', ' method="post" id="form_ajax" role="form" enctype="multipart/form-data" '); ?>
         <div class="col-xs-12">
           <?php echo $this->session->flashdata('message');?>
           <div class="box">
             <div class="box-header with-border">
               <h3 class="box-title">Tambah Buku</h3>
-              <?php $cart_check = $this->cart->contents(); ?>
-                
-                <button type="submit" class="btn btn-success pull-right" ><i class="fa fa-check"></i> Simpan </button>';
+                <button type="submit" class="btn btn-success pull-right" ><i class="fa fa-check"></i> Simpan </button>
                     
-            <?php echo form_close();?>
           
             </div>
 
@@ -96,7 +94,7 @@
                   <label for="inputEmail3" class="col-sm-3 control-label">Editor</label>
 
                   <div class="col-sm-8">
-                    <input type="text" class="form-control" id="edior" name="editor" placeholder="">
+                    <input type="text" class="form-control" id="editor" name="editor" placeholder="">
                   </div>
                 </div>
                 <div class="form-group">
@@ -111,13 +109,6 @@
 
                   <div class="col-sm-8">
                     <input type="text" class="form-control" id="isbn" name="isbn" placeholder="">
-                  </div>
-                </div>
-                <div class="form-group">
-                  <label for="inputPassword3" class="col-sm-3 control-label">Amount</label>
-
-                  <div class="col-sm-8">
-                    <input type="text" class="form-control" id="amount" name="amount" placeholder="">
                   </div>
                 </div>
                 <div class="form-group">
@@ -138,10 +129,10 @@
                       <div class="form-group" >
                         <label for="inputEmail3" class="col-sm-3 control-label">Book Number</label>
                         <div class="col-sm-6">
-                          <input type="text" class="form-control" id="book_number" placeholder="">
+                          <input type="text" class="form-control" id="book_number" placeholder="" name="book_number">
                         </div>
                         <div class="col-sm-1">
-                          <button class="btn btn-success"><i class="fa fa-check icon-white"></i></button>
+                          <button type="button" onclick="simpan_cart()" class="btn btn-success"><i class="fa fa-check icon-white"></i></button>
                         </div>
                       </div>
                   <thead>
@@ -152,20 +143,7 @@
                     <th>Aksi</th>
                   </tr>
                   </thead>
-                  <tbody>
-                    <?php 
-                          $i=0;
-                          foreach ($this->cart->contents() as $items) : 
-                          $i++;
-                        ?>
-                        <tr>
-                          <td><?= $i?></td>
-                          <td><?= $items['book_number'] ?></td>
-                          <td><?= $items['id_bookstatus'] ?></td>
-                          <td></td>
-                        </tr>
-                        
-                        <?php endforeach; ?>
+                  <tbody id="kk">
                   </tbody>
                 </table>
               </div>
@@ -179,12 +157,12 @@
                   <h3 class="box-title">Book Cover</h3>
                 </div>
                 <div class="form-group">
-                  <label for="inputPassword3" class="col-sm-3 control-label">Amount</label>
+                  <label for="inputPassword3" class="col-sm-3 control-label">Image</label>
 
                   <div class="col-sm-8">
-                    <input type="file"  id="" placeholder="">
+                    <input type="file" name="image" onchange="loadFile(event)"  id="image" placeholder="">
                     <br>
-                    <img src="http://icons.iconarchive.com/icons/harwen/simple/256/PNG-Image-icon.png" width="250px">
+                    <img src="http://icons.iconarchive.com/icons/harwen/simple/256/PNG-Image-icon.png" width="250px" id="output">
                   </div>
                 </div>
               </div>
@@ -196,6 +174,7 @@
         </div>
         <!-- /.col -->
       </div>
+      <?php echo form_close();?>
       <!-- /.row -->
     </section>
 
@@ -214,5 +193,35 @@
                     }
                 });
             }
+            function simpan_cart(){
+              var a = $('#form_ajax').serialize();
+              $.ajax(
+                {
+                  url : '<?php echo base_url(); ?>books/add_to_cart',
+                  type: 'post',
+                  data : $('#form_ajax').serialize(),
+                  success: function(msg){
+                    document.getElementById("book_number").value = '';
+                    $("#kk").html(msg);
+                  }
+                }
+              )
+            }
+            function delete_cart(p){
+              $.ajax(
+                {
+                  url: '<?php echo base_url(); ?>books/delete_cart/'+p,
+                  type: 'POST',
+                  success: function(msg){
+                    $("#kk").html(msg);
+                  }
+                }
+              )
+            }
 </script>
-        
+<script>
+  var loadFile = function(event) {
+    var output = document.getElementById('output');
+    output.src = URL.createObjectURL(event.target.files[0]);
+  };
+</script>
