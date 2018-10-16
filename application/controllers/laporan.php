@@ -15,8 +15,12 @@ class Laporan extends CI_Controller {
 
 	public function index()
 	{
+		if ($this->session->userdata('logged_in') == TRUE) {
 		$data['main_view'] = 'Laporan/laporan_tamu_view';
 		$this->load->view('template', $data);
+		} else {
+			redirect('login');
+		}
 	}
 
 	/////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
