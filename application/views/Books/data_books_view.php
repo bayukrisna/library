@@ -22,6 +22,7 @@
     <th width="10%" style="text-align:center">Subject Heading</th>
     <th width="15%" style="text-align:center">Author</th>
     <th width="15%" style="text-align:center">Publisher</th>
+    <th width="5%" style="text-align:center">Total</th>
     <th width="15%" style="text-align:center">Aksi</th>
   </tr>
   </thead>
@@ -30,15 +31,17 @@
         $no = 0;
         $alert = "'Anda yakin menghapus data ini ?'";
         foreach($books as $data):
+           $total_buku = $this->db->query("SELECT count(*) AS total FROM booknumber WHERE booknumber.id_number = '$data->id_number'")->row();
         ;
       ?>
       <tr>
       <td><?php echo ++$no;?></td>
-        <td><a href="#"><?php echo $data->id_number;?></a></td>
+        <td><a href="<?php echo base_url(); ?>books/book_detail/<?php echo $data->id_book; ?>"><?php echo $data->id_number;?></a></td>
         <td><?php echo $data->title;?></td>
         <td><?php echo $data->subject_heading;?></td>
         <td><?php echo $data->author;?></td>
         <td><?php echo $data->publisher;?></td>
+        <td style="text-align:center"><?php echo $total_buku->total;?></td>
         <td>
           
           

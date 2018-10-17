@@ -11,9 +11,18 @@ class Books extends CI_Controller {
 	}
 	public function index()
 	{
-
 			$data['books'] = $this->Books_model->data_books();
 			$data['main_view'] = 'Books/data_books_view';
+			$this->load->view('template', $data);
+	}
+
+	public function book_detail()
+	{
+			$id_book = $this->uri->segment(3);
+			$abc = $this->Books_model->get_id_number($id_book);
+			$data['books'] = $this->Books_model->book_detail($abc->id_number);
+			$data['detail'] = $this->Books_model->data_book_detail($abc->id_number);
+			$data['main_view'] = 'Books/detail_buku_view';
 			$this->load->view('template', $data);
 	}
 

@@ -14,8 +14,31 @@ class Books_model extends CI_Model {
      return $this->db->join('detail_catalogue_group','detail_catalogue_group.id_dcg=books.id_dcg','left')
                     ->join('catalogue_group','catalogue_group.id_cg=detail_catalogue_group.id_cg','left')
                     ->limit(5)
+                    ->order_by('id_book', 'DESC')
                     ->get('books')
                     ->result();
+   }
+
+   public function get_id_number($id_book){
+     return $this->db->where('id_book', $id_book)
+                    ->get('books')
+                    ->row();
+   }
+
+   public function data_book_detail($id_number){
+     return $this->db->join('bookstatus','bookstatus.id_bookstatus=booknumber.id_bookstatus')
+                    ->where('id_number', $id_number)
+                    ->order_by('book_number', 'ASC')
+                    ->get('booknumber')
+                    ->result();
+   }
+
+   public function book_detail($id_number){
+     return $this->db->join('detail_catalogue_group','detail_catalogue_group.id_dcg=books.id_dcg','left')
+                    ->join('catalogue_group','catalogue_group.id_cg=detail_catalogue_group.id_cg','left')
+                    ->where('id_number', $id_number)
+                    ->get('books')
+                    ->row();
    }
 
    public function getCG(){
@@ -34,14 +57,17 @@ class Books_model extends CI_Model {
             'id_number'                        => $this->input->post('id_number'),
             'subject_heading'                 => $this->input->post('subject_heading'),
             'classification'                 => $this->input->post('classification'),
-            'id_dcg'            => $this->input->post('id_dcg'),
             'title'         => $this->input->post('title'),
             'subtitle'         => $this->input->post('subtitle'),
             'author'         => $this->input->post('author'),
             'add_author'         => $this->input->post('add_author'),
+            'place'         => $this->input->post('place'),
+            'publisher'         => $this->input->post('publisher'),
             'editor'         => $this->input->post('editor'),
+            'edition'         => $this->input->post('edition'),
             'pub_year'         => $this->input->post('pub_year'),
             'isbn'         => $this->input->post('isbn'),
+            'id_dcg'            => $this->input->post('id_dcg'),
             'notes'         => $this->input->post('notes'),
             'file_name'         => $upload['file_name']
         );
