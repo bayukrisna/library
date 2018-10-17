@@ -11,13 +11,9 @@ class Books_model extends CI_Model {
   
 
    public function data_books(){
-<<<<<<< HEAD
-     return $this->db
-=======
      return $this->db->join('detail_catalogue_group','detail_catalogue_group.id_dcg=books.id_dcg','left')
                     ->join('catalogue_group','catalogue_group.id_cg=detail_catalogue_group.id_cg','left')
                     ->limit(5)
->>>>>>> 8a4cb2094383033596878bb664a24f9ba024f011
                     ->get('books')
                     ->result();
    }
