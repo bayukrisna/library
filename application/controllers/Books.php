@@ -51,7 +51,7 @@ class Books extends CI_Controller {
 			        'qty'     => 1,
 			        'price'   => 1,
 			        'name'    => 'buku',
-			        'book_number' => $book_number
+			        'book_number' => $book_number,
 			);
 			$this->cart->insert($data);
 			
@@ -95,7 +95,7 @@ class Books extends CI_Controller {
 		            'book_number'    => $item['book_number'],
 		            'id_bookstatus' => '1'
 		          );
-		          $this->db->insert('booknumber2', $data);
+		          $this->db->insert('booknumber', $data);
 		        }
 				$this->session->set_flashdata('message', '<div class="alert alert-success"> Data Model berhasil disimpan </div>');
             	redirect(base_url('books'));	
