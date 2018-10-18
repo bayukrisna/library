@@ -14,6 +14,7 @@ class Books_model extends CI_Model {
      return $this->db->join('detail_catalogue_group','detail_catalogue_group.id_dcg=books.id_dcg','left')
                     ->join('catalogue_group','catalogue_group.id_cg=detail_catalogue_group.id_cg','left')
                     ->order_by('id_book', 'DESC')
+                    ->limit(5)
                     ->get('books')
                     ->result();
    }
