@@ -97,6 +97,28 @@
                     <input type="text" class="form-control" id="editor" name="editor" placeholder="">
                   </div>
                 </div>
+
+                <div class="form-group" >
+                  <label for="inputEmail3" class="col-sm-3 control-label">Edition</label>
+
+                  <div class="col-sm-8">
+                    <input type="text" class="form-control" id="edition" name="edition" placeholder="">
+                  </div>
+                </div>
+                <div class="form-group" >
+                  <label for="inputEmail3" class="col-sm-3 control-label">Place</label>
+
+                  <div class="col-sm-8">
+                    <input type="text" class="form-control" id="place" name="place" placeholder="">
+                  </div>
+                </div>
+                <div class="form-group" >
+                  <label for="inputEmail3" class="col-sm-3 control-label">Publisher</label>
+
+                  <div class="col-sm-8">
+                    <input type="text" class="form-control" id="publisher" name="publisher" placeholder="">
+                  </div>
+                </div>
                 <div class="form-group">
                   <label for="inputPassword3" class="col-sm-3 control-label">Publication Year</label>
 
