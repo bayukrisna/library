@@ -22,6 +22,7 @@ class Books extends CI_Controller {
 			$abc = $this->Books_model->get_id_number($id_book);
 			$data['books'] = $this->Books_model->book_detail($abc->id_number);
 			$data['detail'] = $this->Books_model->data_book_detail($abc->id_number);
+			$data['getBookstatus'] = $this->Books_model->getBookstatus();
 			$data['main_view'] = 'Books/detail_buku_view';
 			$this->load->view('template', $data);
 	}
@@ -111,6 +112,40 @@ class Books extends CI_Controller {
 			}  else{
 				$this->session->set_flashdata('message', '<div class="alert alert-danger"> '.validation_errors().' </div>');
             	redirect(base_url('books'));	
+		}
+	}
+
+	public function save_one_book()
+	{
+		$id_book = $this->uri->segment(3);
+			if($this->Books_model->save_one_book() == TRUE){
+				$this->session->set_flashdata('message', '<div class="alert alert-success"> Add book success </div>');
+            	redirect('books/book_detail/'.$id_book);
+			}  else{
+				$this->session->set_flashdata('message', '<div class="alert alert-danger"> '.validation_errors().' </div>');
+            	redirect('books/book_detail/'.$id_book);
+		}
+	}
+
+	public function delete_checked(){
+		$id_book = $this->uri->segment(3);
+			foreach ($_POST['id'] as $id) {
+				$this->Books_model->delete_checked($id);
+			}
+			$this->session->set_flashdata('message', '<div class="alert alert-success"> Delete Book Item(s) Success </div>');
+			redirect('books/book_detail/'.$id_book);
+		}
+
+	public function edit_one_book()
+	{
+		$id_book = $this->uri->segment(3);
+		$no_inventory= $this->uri->segment(4);
+			if($this->Books_model->edit_one_book($no_inventory) == TRUE){
+				$this->session->set_flashdata('message', '<div class="alert alert-success"> Book item(s) edited </div>');
+            	redirect('books/book_detail/'.$id_book);
+			}  else{
+				$this->session->set_flashdata('message', '<div class="alert alert-danger"> '.validation_errors().' </div>');
+            	redirect('books/book_detail/'.$id_book);
 		}
 	}
 }

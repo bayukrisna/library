@@ -83,6 +83,52 @@ class Books_model extends CI_Model {
         }
 
     }
+
+    public function save_one_book()
+    {
+        $data = array(
+            'book_number'                        => $this->input->post('book_number'),
+            'id_bookstatus'                 => '1',
+            'id_number'            => $this->input->post('id_number'),
+        );
+    
+        $this->db->insert('booknumber', $data);
+
+        if($this->db->affected_rows() > 0){
+            
+                return true;
+        } else {
+            return false;
+            
+        }
+
+    }
+
+    public function delete_checked($id){
+    $this->db->where('no_inventory', $id);
+    $this->db->delete('booknumber');
+  }
+
+     public function getBookstatus(){
+        return $this->db->get('bookstatus')
+                    ->result();
+     }
+
+     public function edit_one_book($no_inventory){
+    $data = array(
+            'book_number'                   => $this->input->post('book_number'),
+            'id_bookstatus'                 => $this->input->post('id_bookstatus'),
+      );
+
+    if (!empty($data)) {
+            $this->db->where('no_inventory', $no_inventory)
+        ->update('booknumber', $data);
+
+          return true;
+        } else {
+            return null;
+        }
+  }
 }
 
 /* End of file prodi_model.php */
