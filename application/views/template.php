@@ -175,7 +175,20 @@ a:hover .tooltiptext {
         <li class="header">MAIN NAVIGATION</li>
          <li <?php if($this->uri->segment(1) == 'dashboard') echo 'class="active"'; else echo  '';?>><a href="<?php echo base_url(); ?>dashboard"><i class="fa fa-dashboard"></i><span>Dashboard</span></a></li>
         
-        <li class="treeview <?php if($this->uri->segment(1) == 'perusahaan' OR $this->uri->segment(2) == 'status' OR $this->uri->segment(1) == 'kategori' OR $this->uri->segment(1) == 'merk' OR $this->uri->segment(1) == 'model' OR $this->uri->segment(1) == 'supplier') echo 'active'; else echo  '';?>">
+        <li class="treeview <?php if($this->uri->segment(2) == 'catalogue' OR $this->uri->segment(1) == 'master' AND $this->uri->segment(2) == '') echo 'active'; else echo  '';?>">
+          <a href="#">
+            <i class="fa fa-dashboard"></i> <span>MASTER</span>
+            <span class="pull-right-container">
+              <i class="fa fa-angle-left pull-right"></i>
+            </span>
+          </a>
+          <ul class="treeview-menu">
+            <li <?php if($this->uri->segment(2) == 'catalogue') echo 'class="active"'; else echo  '';?>><a href="<?php echo base_url(); ?>master/catalogue"><i class="fa fa-circle-o"></i>CATALOGUE GROUP</a></li>
+            <li <?php if($this->uri->segment(1) == 'master' AND $this->uri->segment(2) == '') echo 'class="active"'; else echo  '';?>><a href="<?php echo base_url(); ?>master"><i class="fa fa-circle-o"></i>CATALOGUE GROUP TYPE</a></li>
+          </ul>
+        </li>
+
+        <li class="treeview <?php if($this->uri->segment(1) == 'books' AND $this->uri->segment(2) == '' OR $this->uri->segment(2) == 'add_books') echo 'active'; else echo  '';?>">
           <a href="#">
             <i class="fa fa-dashboard"></i> <span>BOOKS</span>
             <span class="pull-right-container">
@@ -183,75 +196,8 @@ a:hover .tooltiptext {
             </span>
           </a>
           <ul class="treeview-menu">
-            <li <?php if($this->uri->segment(1) == 'perusahaan') echo 'class="active"'; else echo  '';?>><a href="<?php echo base_url(); ?>books"><i class="fa fa-circle-o"></i>ALL BOOKS</a></li>
-            <li <?php if($this->uri->segment(2) == 'status') echo 'class="active"'; else echo  '';?>><a href="<?php echo base_url(); ?>barang/status"><i class="fa fa-circle-o"></i>STATUS</a></li>
-            <li <?php if($this->uri->segment(1) == 'kategori') echo 'class="active"'; else echo  '';?>><a href="<?php echo base_url(); ?>kategori"><i class="fa fa-circle-o"></i>KATEGORI BARANG</a></li>
-            <li <?php if($this->uri->segment(1) == 'merk') echo 'class="active"'; else echo  '';?>><a href="<?php echo base_url(); ?>merk"><i class="fa fa-circle-o"></i>MERK / BRAND</a></li>
-            <li <?php if($this->uri->segment(1) == 'model') echo 'class="active"'; else echo  '';?>><a href="<?php echo base_url(); ?>model"><i class="fa fa-circle-o"></i>MODEL / TIPE</a></li>
-            <li <?php if($this->uri->segment(1) == 'supplier') echo 'class="active"'; else echo  '';?>><a href="<?php echo base_url(); ?>supplier"><i class="fa fa-circle-o"></i>PEMASOK / SUPPLIER</a></li>
-
-          </ul>
-        </li>
-        <li class="treeview <?php if($this->uri->segment(2) == 'user_login' OR $this->uri->segment(2) == 'data_log' OR $this->uri->segment(1) == 'admin' && $this->uri->segment(2) == '') echo 'active'; else echo  '';?>">
-          <a href="#">
-            <i class="fa fa-dashboard"></i> <span>PENGGUNA (<i>USER</i>)</span>
-            <span class="pull-right-container">
-              <i class="fa fa-angle-left pull-right"></i>
-            </span>
-          </a>
-          <ul class="treeview-menu">
-            <li <?php if($this->uri->segment(1) == 'admin' && $this->uri->segment(2) == '') echo 'class="active"'; else echo  '';?>><a href="<?php echo base_url(); ?>admin"><i class="fa fa-circle-o"></i>SEMUA</a></li>
-            <li <?php if($this->uri->segment(2) == 'user_login') echo 'class="active"'; else echo  '';?>><a href="<?php echo base_url(); ?>admin/user_login"><i class="fa fa-circle-o"></i>USER LOGIN</a></li>
-            <li <?php if($this->uri->segment(2) == 'data_log') echo 'class="active"'; else echo  '';?>><a href="<?php echo base_url(); ?>admin/data_log"><i class="fa fa-circle-o"></i>AKTIVITAS USER</a></li>
-          </ul>
-        </li>
-        <li class="treeview <?php if($this->uri->segment(1) == 'lahan' OR $this->uri->segment(1) == 'gedung' OR $this->uri->segment(1) == 'ruang' ) echo 'active'; else echo  '';?>">
-          <a href="#">
-            <i class="fa fa-dashboard"></i> <span>PRASARANA</span>
-            <span class="pull-right-container">
-              <i class="fa fa-angle-left pull-right"></i>
-            </span>
-          </a>
-          <ul class="treeview-menu">
-            <li <?php if($this->uri->segment(1) == 'lahan') echo 'class="active"'; else echo  '';?>><a href="<?php echo base_url(); ?>lahan"><i class="fa fa-circle-o"></i>LAHAN</a></li>
-            <li <?php if($this->uri->segment(1) == 'gedung') echo 'class="active"'; else echo  '';?>><a href="<?php echo base_url(); ?>gedung"><i class="fa fa-circle-o"></i>GEDUNG / BANGUNAN</a></li>
-            <li <?php if($this->uri->segment(1) == 'ruang') echo 'class="active"'; else echo  '';?>><a href="<?php echo base_url(); ?>ruang"><i class="fa fa-circle-o"></i>RUANG</a></li>
-          </ul>
-        </li>
-        
-        <li class="treeview <?php if($this->uri->segment(2) == 'data_aset' OR $this->uri->segment(1) == 'barang' && $this->uri->segment(2) == '') echo 'active'; else echo  '';?>">
-          <a href="#">
-            <i class="fa fa-dashboard"></i> <span>SARANA</span>
-            <span class="pull-right-container">
-              <i class="fa fa-angle-left pull-right"></i>
-            </span>
-          </a>
-          <ul class="treeview-menu">
-            <li class="treeview <?php if($this->uri->segment(2) == 'data_aset' OR $this->uri->segment(1) == 'barang' && $this->uri->segment(2) == '') echo 'active'; else echo  '';?>">
-          <a href="#">
-            <i class="fa fa-circle-o"></i> <span>BARANG / ASET</span>
-            <span class="pull-right-container">
-              <i class="fa fa-angle-left"></i>
-            </span>
-          </a>
-          <ul class="treeview-menu">
-            <li <?php if($this->uri->segment(2) == 'data_aset') echo 'class="active"'; else echo  '';?>><a href="<?php echo base_url(); ?>barang/data_aset"><i class="fa fa-circle-o"></i>SEMUA</a></li>
-            <li <?php if($this->uri->segment(1) == 'barang' && $this->uri->segment(2) == '') echo 'class="active"'; else echo  '';?>><a href="<?php echo base_url(); ?>barang"><i class="fa fa-circle-o"></i>PER KATEGORI</a></li>
-          </ul>
-        </li>
-          </ul>
-        </li>
-    
-        <li class="treeview <?php if($this->uri->segment(2) == 'laporan_barang' OR $this->uri->segment(2) == 'laporan_pemeliharaan') echo 'active'; else echo  '';?>">
-          <a href="#">
-            <i class="fa fa-dashboard"></i> <span>LAPORAN</span>
-            <span class="pull-right-container">
-              <i class="fa fa-angle-left pull-right"></i>
-            </span>
-          </a>
-          <ul class="treeview-menu">
-            <li <?php if($this->uri->segment(2) == 'laporan_barang') echo 'class="active"'; else echo  '';?>><a href="<?php echo base_url(); ?>laporan/laporan_barang"><i class="fa fa-circle-o"></i>LAPORAN BARANG</a></li>
-            <li <?php if($this->uri->segment(2) == 'laporan_pemeliharaan') echo 'class="active"'; else echo  '';?>><a href="<?php echo base_url(); ?>laporan/laporan_pemeliharaan"><i class="fa fa-circle-o"></i>LAPORAN PEMELIHARAAN</a></li>
+            <li <?php if($this->uri->segment(1) == 'books' AND $this->uri->segment(2) == '') echo 'class="active"'; else echo  '';?>><a href="<?php echo base_url(); ?>books"><i class="fa fa-circle-o"></i>ALL BOOKS</a></li>
+            <li <?php if($this->uri->segment(2) == 'add_books') echo 'class="active"'; else echo  '';?>><a href="<?php echo base_url(); ?>books/add_books"><i class="fa fa-circle-o"></i>ADD BOOKS</a></li>
           </ul>
         </li>
         

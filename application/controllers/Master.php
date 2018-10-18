@@ -15,8 +15,7 @@ class Master extends CI_Controller {
 			$data['main_view'] = 'Master/detail_catalogue_view';
 			$this->load->view('template', $data);
 	}
-	//===================================================================================\\
-	//===================================================================================\\
+	
 	public function catalogue(){
 		$data['catalogue'] = $this->Master_model->getCG();
 		$data['main_view'] = 'Master/catalogue_view';

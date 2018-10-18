@@ -4,7 +4,7 @@
           <?php echo $this->session->flashdata('message');?>
           <div class="box">
             <div class="box-header with-border">
-              <h3 class="box-title">MASTER CATALOGUE</h3>
+              <h3 class="box-title">MASTER CATALOGUE GROUP TYPES</h3>
             </div>
 
             
@@ -13,7 +13,7 @@
               <div class="table-responsive">
               <table id="example1" class="table2 table-hover table-striped table-condensed" style="text-transform: uppercase;">
                 
-                <a href="" data-toggle="modal" data-target="#modal_tambah" class="btn btn-primary btn-sm btn-flat" ><i class="fa fa-plus"></i> Tambah</a> <br> <br>
+                <a href="" data-toggle="modal" data-target="#modal_tambah" class="btn btn-primary btn-sm btn-flat" ><i class="fa fa-plus"></i> Add</a> <br> <br>
               <thead>
               <tr>
                 <th width="1%" >No.</th>
