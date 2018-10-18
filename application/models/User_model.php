@@ -11,20 +11,20 @@ class User_model extends CI_Model {
 	}
     public function create_user($username) {
         $query = $this->db->select('*')
-                ->from('tb_user')
-                ->where('username', $username)
+                ->from('user')
+                ->where('name', $username)
                 ->get();
-         $s = $this->db->select('MAX(id_user) as id_user')->from('tb_user')->get()->row();
-        $kk = $s->id_user + 1;
+        // $s = $this->db->select('MAX(id_user) as id_user')->from('tb_user')->get()->row();
+        //$kk = $s->id_user + 1;
         if ($query->num_rows() != 1)
 
             {
                 $data = array(
-                    'username' => $username,
-                    'id_user' => $kk,
+                    'name' => $username,
+                    //'id_user' => $kk,
                 );
             
-                $this->db->insert('tb_user', $data);
+                $this->db->insert('user', $data);
                 return true;
             } else {
                  return false;

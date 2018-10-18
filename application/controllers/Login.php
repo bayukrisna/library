@@ -9,11 +9,7 @@ class Login extends CI_Controller {
 		$this->load->model('user_model');
 		$this->load->model('user_model');
 	}
-	public function tes(){
-		$c = $this->db->from('tb_user')->where('username', 'Bayu Krisna')->get()->row();
-		print_r($c);
-
-	}
+	
 	public function index()
 	{
 		$data['site_key'] = '6LcMU20UAAAAACiZUAOaCfw0YDu2rHirY7Z0DjNT';
@@ -58,7 +54,7 @@ class Login extends CI_Controller {
 
 				        foreach ($info as $sess) {
 				        	$kk = $sess['cn'][0];
-				        	$id_user = $this->db->from('tb_user')->where('username', $kk)->get()->row();
+				        	$user_id = $this->db->from('user')->where('name', $kk)->get()->row();
 				        	$userDn = $sess['memberof'][0];
 				            $ss = explode(",",$userDn);
 				            
@@ -66,14 +62,14 @@ class Login extends CI_Controller {
 			                $sess_data['username'] = $sess['cn'][0];
 			                $sess_data['group'] = substr($ss[0],3);
 			                $sess_data['email'] = $sess['mail'][0];
-			                $sess_data['id_user'] = $id_user->id_user;
+			                $sess_data['user_id'] = $user_id->user_id;
 
 			            }
 			            if($sess_data['group'] == 'IT' || $sess_data['group'] == 'ITGroup' || $sess_data['group'] == 'AcademicGroup' || $sess_data['group'] == 'AccountingGroup'){
-			            	$this->user_model->create_akses($sess_data['id_user']);
+			            	//$this->user_model->create_akses($sess_data['u']);
 			            	$this->session->set_userdata($sess_data);
 				            @ldap_close($ldap);
-				            redirect(base_url('dashboard'));	
+				            redirect(base_url('books/add_books'));	
 			            } else {
 			            	$this->session->set_flashdata('message', '<div class="alert alert-danger"><p>Anda Tidak Mendapatkan Akses </p></div>');
 							redirect(base_url('login'));
