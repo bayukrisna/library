@@ -83,4 +83,72 @@ class Master extends CI_Controller {
             	redirect('Master/detail_catalogue');
 		}
 	}
+	//===================================================================================\\
+	//===================================================================================\\
+	public function vendor(){
+		$data['vendor'] = $this->Master_model->getVendor();
+		$data['main_view'] = 'Master/vendor_view';
+		$this->load->view('template', $data);
+	}
+	public function add_vendor(){
+		if($this->Master_model->add_vendor() == TRUE){
+				$this->session->set_flashdata('message', '<div class="alert alert-success"> Success </div>');
+            	redirect('Master/vendor');
+			}  else{
+				$this->session->set_flashdata('message', '<div class="alert alert-danger"> '.validation_errors().' </div>');
+            	redirect('Master/vendor');
+		}
+	}
+	public function delete_vendor($id){
+		if ($this->db->where('id_vendor', $id)->delete('vendor') == TRUE) {
+			$this->session->set_flashdata('message', ' <div class="alert alert-success"> Deleted </div>');
+			redirect('Master/vendor');
+		} else {
+			$this->session->set_flashdata('message', '<div class="alert alert-danger"> '.validation_errors().' </div>');
+			redirect('Master/vendor');
+		}
+	}
+	public function edit_vendor(){
+		if($this->Master_model->edit_vendor() == TRUE){
+				$this->session->set_flashdata('message', '<div class="alert alert-success"> Success </div>');
+            	redirect('Master/vendor');
+			}  else{
+				$this->session->set_flashdata('message', '<div class="alert alert-danger"> '.validation_errors().' </div>');
+            	redirect('Master/vendor');
+		}
+	}
+	//===================================================================================\\
+	//===================================================================================\\
+	public function book_status(){
+		$data['book_status'] = $this->Master_model->getBookStatus();
+		$data['main_view'] = 'Master/book_status_view';
+		$this->load->view('template', $data);
+	}
+	public function add_book_status(){
+		if($this->Master_model->add_book_status() == TRUE){
+				$this->session->set_flashdata('message', '<div class="alert alert-success"> Success </div>');
+            	redirect('Master/book_status');
+			}  else{
+				$this->session->set_flashdata('message', '<div class="alert alert-danger"> '.validation_errors().' </div>');
+            	redirect('Master/book_status');
+		}
+	}
+	public function delete_book_status($id){
+		if ($this->db->where('id_bookstatus', $id)->delete('bookstatus') == TRUE) {
+			$this->session->set_flashdata('message', ' <div class="alert alert-success"> Deleted </div>');
+			redirect('Master/book_status');
+		} else {
+			$this->session->set_flashdata('message', '<div class="alert alert-danger"> '.validation_errors().' </div>');
+			redirect('Master/book_status');
+		}
+	}
+	public function edit_book_status(){
+		if($this->Master_model->edit_book_status() == TRUE){
+				$this->session->set_flashdata('message', '<div class="alert alert-success"> Success </div>');
+            	redirect('Master/book_status');
+			}  else{
+				$this->session->set_flashdata('message', '<div class="alert alert-danger"> '.validation_errors().' </div>');
+            	redirect('Master/book_status');
+		}
+	}
 }

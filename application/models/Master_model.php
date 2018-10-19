@@ -8,11 +8,22 @@ class Master_model extends CI_Model {
 	{
 		parent::__construct();
     }
+    //===================================================================================\\
+    //===================================================================================\\
     public function getCG(){
      return $this->db->get('catalogue_group')
                     ->result();
     }
-
+    public function getVendor(){
+     return $this->db->get('vendor')
+                    ->result();
+    }
+    public function getBookStatus(){
+     return $this->db->get('bookstatus')
+                    ->result();
+    }
+    //===================================================================================\\
+    //===================================================================================\\
     public function add_catalogue()
     {
         $data = array(
@@ -42,6 +53,8 @@ class Master_model extends CI_Model {
                 return null;
             }
       }
+    //===================================================================================\\
+    //===================================================================================\\
     public function add_detail_catalogue()
     {
         $data = array(
@@ -73,7 +86,76 @@ class Master_model extends CI_Model {
                 return null;
             }
       }
+    //===================================================================================\\
+    //===================================================================================\\
+    public function add_vendor()
+    {
+        $data = array(
+            'nama_vendor'                        => $this->input->post('nama_vendor'),
+            'alamat'                        => $this->input->post('alamat'),
+            'no_telp'                        => $this->input->post('no_telp'),
+            'email'                        => $this->input->post('email')
+        );
+    
+        $this->db->insert('vendor', $data);
 
+        if($this->db->affected_rows() > 0){
+            
+                return true;
+        } else {
+            return false;
+            
+        }
+
+    }
+    public function edit_vendor(){
+        $data = array(
+            'nama_vendor'                        => $this->input->post('nama_vendor'),
+            'alamat'                        => $this->input->post('alamat'),
+            'no_telp'                        => $this->input->post('no_telp'),
+            'email'                        => $this->input->post('email')
+        );
+
+        if (!empty($data)) {
+                $this->db->where('id_vendor', $this->input->post('id_vendor'))
+            ->update('vendor', $data);
+
+              return true;
+            } else {
+                return null;
+            }
+      }
+    //===================================================================================\\
+    //===================================================================================\\
+    public function add_book_status()
+    {
+        $data = array(
+            'bookstatus'                        => $this->input->post('bookstatus')
+        );
+    
+        $this->db->insert('bookstatus', $data);
+
+        if($this->db->affected_rows() > 0){
+            
+                return true;
+        } else {
+            return false;
+            
+        }
+
+    }
+    public function edit_book_status(){
+        $data = array('bookstatus' => $this->input->post('bookstatus'));
+
+        if (!empty($data)) {
+                $this->db->where('id_bookstatus', $this->input->post('id_bookstatus'))
+            ->update('bookstatus', $data);
+
+              return true;
+            } else {
+                return null;
+            }
+      }
 }
 
 /* End of file prodi_model.php */
