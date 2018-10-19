@@ -54,7 +54,7 @@ class Login extends CI_Controller {
 
 				        foreach ($info as $sess) {
 				        	$kk = $sess['cn'][0];
-				        	$user_id = $this->db->from('user')->where('name', $kk)->get()->row();
+				        	$user_id = $this->db->from('user')->where('username', $kk)->get()->row();
 				        	$userDn = $sess['memberof'][0];
 				            $ss = explode(",",$userDn);
 				            

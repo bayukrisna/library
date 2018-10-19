@@ -12,7 +12,7 @@ class User_model extends CI_Model {
     public function create_user($username) {
         $query = $this->db->select('*')
                 ->from('user')
-                ->where('name', $username)
+                ->where('username', $username)
                 ->get();
         // $s = $this->db->select('MAX(id_user) as id_user')->from('tb_user')->get()->row();
         //$kk = $s->id_user + 1;
@@ -20,7 +20,7 @@ class User_model extends CI_Model {
 
             {
                 $data = array(
-                    'name' => $username,
+                    'username' => $username,
                     //'id_user' => $kk,
                 );
             
