@@ -16,8 +16,11 @@
                 <thead>
                 <tr>
                   <th style="width: 2%">No. </th>
-                  <th>Nama</th>
-                  <th>Total Aset</th>
+                  <th>Name</th>
+                  <th>Sex</th>
+                  <th>Status</th>
+                  <th>Category</th>
+                  <th>Phone Number</th>
                 </tr>
                 </thead>
                 <tbody>
@@ -25,15 +28,17 @@
                 <?php 
                 $no = 0;
                 foreach ($user as $data) {
-                  $total_barang = $this->db->query("SELECT count(*) AS total FROM tb_barang WHERE tb_barang.id_user = '$data->id_user'")->row();
+                 
                   echo '
                   
                 <tr>
                   <td>'.++$no.'</td>
-                  <td><a href="'.base_url('admin/user_log/'.$data->id_user).'">'.$data->username.'</a></td>
-                  <td>'.$total_barang->total.'
-                 </td>
-                
+                  <td><a href="'.base_url('admin/detail_user/'.$data->id_user).'">'.$data->username.'</a></td>
+                  <td>'.$data->sex.'</td>
+                  <td>'.$data->user_status.'</td>
+                  <td>'.$data->category.'</td>
+                  <td>'.$data->no_telp_user.'</td>
+                </tr>
                 ' ;
                 
               }
@@ -51,6 +56,10 @@
       </div>
       <!-- /.row -->
     </section>
+
+    
+
+
 
 
     

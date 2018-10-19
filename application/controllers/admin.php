@@ -12,73 +12,44 @@ class Admin extends CI_Controller {
 		}
 	}
 	
-	public function index()
+	public function user()
 	{
 				$data['user'] = $this->User_model->data_user();
 				$data['main_view'] = 'Admin/user_view';
 				$this->load->view('template', $data);
-			
 	}
 
-	public function data_log()
-	{
-				$data['log'] = $this->User_model->data_log();
-				$data['main_view'] = 'Log/log_view';
-				$this->load->view('template', $data);
-			
-	}
-
-	public function user_log()
+	public function detail_user()
 	{
 				$id_user = $this->uri->segment(3);
 				$data['user'] = $this->User_model->detail_user($id_user);
-				$data['log'] = $this->User_model->user_log($id_user);
-				$data['main_view'] = 'Log/user_log_view';
+				$data['getUserStatus'] = $this->User_model->getUserStatus();
+				$data['main_view'] = 'Admin/detail_user_view';
 				$this->load->view('template', $data);
 	}
 
-	public function history_log()
-	{
-				$id_user = $this->uri->segment(3);
-				$data['user'] = $this->User_model->detail_user($id_user);
-				$data['log'] = $this->User_model->user_log($id_user);
-				$data['main_view'] = 'Log/user_log_view';
-				$this->load->view('template', $data);
+	public function get_category_by_status($param = NULL){
+		$id_us = $param;
+		$result = $this->User_model->get_category_by_status($id_us);
+		$option = "";
+		
+		foreach ($result as $data) {
+			$option = 
+			$option .= "<option value='".$data->id_uc."'>".$data->category."</option>";
 			
+		}
+		echo $option;
 	}
 
-	public function user_login()
-	{
-				$data['user'] = $this->User_model->data_user_login();
-				$data['main_view'] = 'Admin/user_login_view';
-				$this->load->view('template', $data);
-			
-	}
-	public function akses($id_user)
-	{
-		$data['cek'] = $this->db->where('id_user', $id_user)->get('tb_akses')->row();
-		$data['main_view'] = 'Admin/akses_user_view';
-		$this->load->view('template', $data);
-			
-	}
-	public function kk(){
-		$s = $this->db->select('MAX(id_user) as id_user')->from('tb_user')->get()->row();
-        $kk = $s->id_user + 1;
-        echo $kk;
-	}
-
-	public function update_akses()
+	public function edit_user()
 	{
 		$id_user = $this->uri->segment(3);
-			if($this->User_model->update_akses($id_user) == TRUE){
-				$this->session->set_flashdata('message', '<div class="alert alert-success"> Data akses user berhasil diubah </div>');
-            	redirect('admin/user_login');
+			if($this->User_model->edit_user($id_user) == TRUE){
+				$this->session->set_flashdata('message', '<div class="alert alert-success"> User Edited </div>');
+            	redirect('admin/detail_user/'.$id_user);
 			} else{
 				$this->session->set_flashdata('message', '<div class="alert alert-danger"> Username/password sudah ada. </div>');
-            	redirect('admin/user_login');
+            	redirect('admin/detail_user/'.$id_user);
 			} 
 	} 
-	public function calendar(){
-        
-    }
 }
