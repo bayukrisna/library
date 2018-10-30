@@ -36,7 +36,7 @@
                   ?>
                   <tr>
                   <td><?php echo ++$no;?></td>
-                    <td><?php echo $data->docTitle;?></td>
+                    <td><a href="" data-toggle="modal" data-target="#modal_view<?=$data->docId?>" ><?php echo $data->docTitle;?></a></td>
                     <td>
                       
                       
@@ -452,6 +452,81 @@
                 <div class="box-footer text-right">
                     <button type="submit" class="btn btn-success"><i class="fa fa-check icon-white"></i> Simpan</button>
                 </div>
+                </div>
+            </div>
+            </div>
+    </div>
+    <?php echo form_close();?>
+     <?php endforeach;?>
+     <?php echo form_close();?>
+     <?php 
+        foreach($document as $i):
+        ?>
+    <div class="modal fade" id="modal_view<?php echo $i->docId;?>" >
+            <div class="modal-dialog">
+            <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">x</button>
+                <h3 class="modal-title" id="myModalLabel">VIEW DOCUMENT</h3>
+            </div>
+                <div class="modal-body">
+                        <?php echo form_open('Material/edit_document', 'class="form-horizontal" method="post" role="form" enctype="multipart/form-data"'); ?>
+                <table class="table">
+                  <tr>
+                    <th class="col-sm-2" height="5px">Id Number</th>
+                    <td class="col-sm-3"><?= $i->docNumber; ?></td>
+                    <th class="col-sm-2">Edition</th>
+                    <td class="col-sm-3"><?= $i->docEdition; ?></td>
+                    <td width="10%" rowspan="3"><img src="<?php echo base_url();?>uploads/<?php echo $i->docImage; ?>" onerror="this.src='http://icons.iconarchive.com/icons/harwen/simple/256/PNG-Image-icon.png'" width="100px" id="output2"></td>
+                  </tr>
+                  <tr>
+                    <th height="5px">Subject Heading</th>
+                    <td><?= $i->docSubject; ?></td>
+                    <th>Place</th>
+                    <td><?= $i->docPlace; ?></td>
+                  </tr>
+                  <tr>
+                    <th>Classification</th>
+                    <td><?= $i->docClassification; ?></td>
+                    <th>Publisher</th>
+                    <td><?= $i->docEdition; ?></td>
+                  </tr>
+                  <tr>
+                    <th>Catalogue Groups</th>
+                    <td><?= $i->docNumber; ?></td>
+                    <th>Publication Year</th>
+                    <td><?= $i->docPubYear; ?></td>
+                  </tr>
+                  <tr>
+                    <th>Catalogue Groups Type</th>
+                    <td><?= $i->docNumber; ?></td>
+                    <th>Date Purchasing</th>
+                    <td><?= $i->docPurchaseDate; ?></td>
+                  </tr>
+                  <tr>
+                    <th>Title</th>
+                    <td><?= $i->docTitle; ?></td>
+                    <th>ISBN</th>
+                    <td><?= $i->docIsbn; ?></td>
+                  </tr>
+                  <tr>
+                    <th>Subtitle</th>
+                    <td><?= $i->docSubtitle; ?></td>
+                    <th>Notes</th>
+                    <td rowspan="2"><?= $i->docNotes; ?></td>
+                  </tr>
+                  <tr>
+                    <th>Author</th>
+                    <td><?= $i->docNumber; ?></td>
+                  </tr>
+                  <tr>
+                    <th>Additional Author</th>
+                    <td><?= $i->docAddAuthor; ?></td>
+                    <th>Editor</th>
+                    <td><?= $i->docEditor; ?></td>
+                  </tr>
+                </table>
+                
                 </div>
             </div>
             </div>

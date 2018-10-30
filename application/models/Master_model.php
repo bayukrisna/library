@@ -35,7 +35,7 @@ class Master_model extends CI_Model {
                     ->result();
     }
     public function getDocument(){
-     return $this->db->limit(500)
+     return $this->db->limit(5)
                     ->join('detail_catalogue_group', 'detail_catalogue_group.dcgId=document.dcgId', 'left')
                     ->order_by('docId', 'asc')
                     ->get('document')
