@@ -14,20 +14,48 @@ class Master_model extends CI_Model {
      return $this->db->get('catalogue_group')
                     ->result();
     }
+    public function getDCG(){
+     return $this->db->get('detail_catalogue_group')
+                    ->result();
+    }
+    public function getCampus(){
+     return $this->db->get('campus')
+                    ->result();
+    }
     public function getVendor(){
      return $this->db->get('vendor')
                     ->result();
     }
-    public function getBookStatus(){
-     return $this->db->get('bookstatus')
+    public function getStatus(){
+     return $this->db->get('status')
                     ->result();
     }
+    public function getLocker(){
+     return $this->db->get('locker')
+                    ->result();
+    }
+    public function getDocument(){
+     return $this->db->limit(500)
+                    ->join('detail_catalogue_group', 'detail_catalogue_group.dcgId=document.dcgId', 'left')
+                    ->order_by('docId', 'asc')
+                    ->get('document')
+                    ->result();
+    }
+    public function getCD(){
+     return $this->db->get('cd')
+                    ->result();
+    }
+    public function get_dcg_by_cg($cgId){
+     return $this->db->where('cgId', $cgId)
+                    ->get('detail_catalogue_group')
+                    ->result();
+   }
     //===================================================================================\\
     //===================================================================================\\
     public function add_catalogue()
     {
         $data = array(
-            'catalogue_group'                        => $this->input->post('catalogue_group')
+            'cgName'                        => $this->input->post('cgName')
         );
     
         $this->db->insert('catalogue_group', $data);
@@ -42,24 +70,24 @@ class Master_model extends CI_Model {
 
     }
     public function edit_catalogue(){
-        $data = array('catalogue_group' => $this->input->post('catalogue_group'));
+        $data = array('cgName' => $this->input->post('cgName'));
 
         if (!empty($data)) {
-                $this->db->where('id_cg', $this->input->post('id_cg'))
+                $this->db->where('cgId', $this->input->post('cgId'))
             ->update('catalogue_group', $data);
 
               return true;
             } else {
                 return null;
             }
-      }
+    }
     //===================================================================================\\
     //===================================================================================\\
     public function add_detail_catalogue()
     {
         $data = array(
-            'detail_cg'                        => $this->input->post('detail_cg'),
-            'id_cg'                        => $this->input->post('id_cg')
+            'dcgName'                        => $this->input->post('dcgName'),
+            'cgId'                        => $this->input->post('cgId')
         );
     
         $this->db->insert('detail_catalogue_group', $data);
@@ -74,11 +102,11 @@ class Master_model extends CI_Model {
 
     }
     public function edit_detail_catalogue(){
-        $data = array('id_cg' => $this->input->post('id_cg'),
-                      'detail_cg' => $this->input->post('detail_cg'));
+        $data = array('cgId' => $this->input->post('cgId'),
+                      'dcgName' => $this->input->post('dcgName'));
 
         if (!empty($data)) {
-                $this->db->where('id_dcg', $this->input->post('id_dcg'))
+                $this->db->where('dcgId', $this->input->post('dcgId'))
             ->update('detail_catalogue_group', $data);
 
               return true;
@@ -91,10 +119,10 @@ class Master_model extends CI_Model {
     public function add_vendor()
     {
         $data = array(
-            'nama_vendor'                        => $this->input->post('nama_vendor'),
-            'alamat'                        => $this->input->post('alamat'),
-            'no_telp'                        => $this->input->post('no_telp'),
-            'email'                        => $this->input->post('email')
+            'vendorName'                        => $this->input->post('vendorName'),
+            'vendorAddress'                        => $this->input->post('vendorAddress'),
+            'vendorPhone'                        => $this->input->post('vendorPhone'),
+            'vendorEmail'                        => $this->input->post('vendorEmail')
         );
     
         $this->db->insert('vendor', $data);
@@ -110,14 +138,14 @@ class Master_model extends CI_Model {
     }
     public function edit_vendor(){
         $data = array(
-            'nama_vendor'                        => $this->input->post('nama_vendor'),
-            'alamat'                        => $this->input->post('alamat'),
-            'no_telp'                        => $this->input->post('no_telp'),
-            'email'                        => $this->input->post('email')
+            'vendorName'                        => $this->input->post('vendorName'),
+            'vendorAddress'                        => $this->input->post('vendorAddress'),
+            'vendorPhone'                        => $this->input->post('vendorPhone'),
+            'vendorEmail'                        => $this->input->post('vendorEmail')
         );
 
         if (!empty($data)) {
-                $this->db->where('id_vendor', $this->input->post('id_vendor'))
+                $this->db->where('vendorId', $this->input->post('vendorId'))
             ->update('vendor', $data);
 
               return true;
@@ -127,13 +155,13 @@ class Master_model extends CI_Model {
       }
     //===================================================================================\\
     //===================================================================================\\
-    public function add_book_status()
+    public function add_status()
     {
         $data = array(
-            'bookstatus'                        => $this->input->post('bookstatus')
+            'statusName'                        => $this->input->post('statusName')
         );
     
-        $this->db->insert('bookstatus', $data);
+        $this->db->insert('status', $data);
 
         if($this->db->affected_rows() > 0){
             
@@ -144,18 +172,86 @@ class Master_model extends CI_Model {
         }
 
     }
-    public function edit_book_status(){
-        $data = array('bookstatus' => $this->input->post('bookstatus'));
+    public function edit_status(){
+        $data = array('statusName' => $this->input->post('statusName'));
 
         if (!empty($data)) {
-                $this->db->where('id_bookstatus', $this->input->post('id_bookstatus'))
-            ->update('bookstatus', $data);
+                $this->db->where('statusId', $this->input->post('statusId'))
+            ->update('status', $data);
 
               return true;
             } else {
                 return null;
             }
       }
+    //===================================================================================\\
+    //===================================================================================\\
+    public function add_campus()
+    {
+        $data = array(
+            'campusName'                        => $this->input->post('campusName')
+        );
+    
+        $this->db->insert('campus', $data);
+
+        if($this->db->affected_rows() > 0){
+            
+                return true;
+        } else {
+            return false;
+            
+        }
+
+    }
+    public function edit_campus(){
+        $data = array('campusName' => $this->input->post('campusName'));
+
+        if (!empty($data)) {
+                $this->db->where('campusId', $this->input->post('campusId'))
+            ->update('campus', $data);
+
+              return true;
+            } else {
+                return null;
+            }
+      }
+    //===================================================================================\\
+    //===================================================================================\\
+    public function add_key()
+    {
+        $data = array(
+            'no_key'                        => $this->input->post('no_key'),
+            'campusId'                        => $this->input->post('campusId'),
+            'status'                        => '1'
+        );
+    
+        $this->db->insert('key', $data);
+
+        if($this->db->affected_rows() > 0){
+            
+                return true;
+        } else {
+            return false;
+            
+        }
+
+    }
+    public function edit_key(){
+        $data = array(
+            'no_key'                        => $this->input->post('no_key'),
+            'campusId'                        => $this->input->post('campusId'),
+            'status'                        => $this->input->post('status')
+        );
+
+        if (!empty($data)) {
+                $this->db->where('id_key', $this->input->post('id_key'))
+            ->update('key', $data);
+
+              return true;
+            } else {
+                return null;
+            }
+    }
 }
 
 /* End of file prodi_model.php */

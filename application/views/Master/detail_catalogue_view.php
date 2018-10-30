@@ -31,14 +31,14 @@
                   ?>
                   <tr>
                   <td><?php echo ++$no;?></td>
-                    <td><?php echo $data->catalogue_group;?></td>
-                    <td><?php echo $data->detail_cg;?></td>
+                    <td><?php echo $data->cgName;?></td>
+                    <td><?php echo $data->dcgName;?></td>
                     <td>
                       
                       
-                    <a href="" data-toggle="modal" data-target="#modal_edit<?=$data->id_dcg?>" class="btn btn-warning btn-xs btn-flat" ><i class="glyphicon glyphicon-pencil"></i><span class="tooltiptext">Edit</span></a>
+                    <a href="" data-toggle="modal" data-target="#modal_edit<?=$data->dcgId?>" class="btn btn-warning btn-xs btn-flat" ><i class="glyphicon glyphicon-pencil"></i><span class="tooltiptext">Edit</span></a>
 
-                    <a href="<?= base_url('Master/delete_detail_catalogue/'.$data->id_dcg); ?>" onclick="return confirm(<?= $alert; ?>)" class="btn btn-danger btn-xs btn-flat" ><i class="glyphicon glyphicon-trash"></i><span class="tooltiptext">Hapus</span></a>
+                    <a href="<?= base_url('Master/delete_detail_catalogue/'.$data->dcgId); ?>" onclick="return confirm(<?= $alert; ?>)" class="btn btn-danger btn-xs btn-flat" ><i class="glyphicon glyphicon-trash"></i><span class="tooltiptext">Hapus</span></a>
 
                     </td>
                     
@@ -70,13 +70,13 @@
                 <div class="form-group ">
                     <label for="name" class="col-md-4 control-label">Catalogue Group</label>
                     <div class="col-md-7 col-sm-12 required">
-                        <select class="select2" style="width:100%" name="id_cg" id="id_cg">
+                        <select class="select2" style="width:100%" name="cgId" id="cgId">
                                   <option value="" selected="selected"> Choose Catalogue Group </option>
                                       <?php 
 
                                     foreach($getCG as $row)
                                     { 
-                                      echo '<option value="'.$row->id_cg.'">'.$row->catalogue_group.'</option>';
+                                      echo '<option value="'.$row->cgId.'">'.$row->cgName.'</option>';
                                     }
                                     ?>
                               </select>
@@ -87,7 +87,7 @@
                   <label for="inputEmail3" class="col-sm-4 control-label">Catalogue Group Types</label>
 
                   <div class="col-md-7">
-                    <input type="text" class="form-control" id="detail_cg" name="detail_cg" placeholder="">
+                    <input type="text" class="form-control" id="dcgName" name="dcgName" placeholder="">
                   </div>
                 </div><!-- Manufacturer -->
                 <div class="box-footer text-right">
@@ -101,7 +101,7 @@
         <?php 
         foreach($catalogue as $i):
         ?>
-  <div class="modal fade" id="modal_edit<?= $i->id_dcg?>" >
+  <div class="modal fade" id="modal_edit<?= $i->dcgId?>" >
             <div class="modal-dialog">
             <div class="modal-content">
             <div class="modal-header">
@@ -113,17 +113,17 @@
                 <div class="form-group ">
                     <label for="name" class="col-md-4 control-label">Catalogue Group</label>
                     <div class="col-md-7 col-sm-12 required">
-                        <select class="select2" style="width:100%" name="id_cg" id="id_cg">
+                        <select class="select2" style="width:100%" name="cgId" id="cgId">
                                   <option value="" selected="selected"> Choose Catalogue Group </option>
                                       <?php 
 
                                     foreach($getCG as $row)
                                     { 
                                       $a = '';
-                                      if($row->id_cg == $i->id_cg){
+                                      if($row->cgId == $i->cgId){
                                         $a = 'selected=""';
                                       }
-                                      echo '<option '.$a.' value="'.$row->id_cg.'">'.$row->catalogue_group.'</option>';
+                                      echo '<option '.$a.' value="'.$row->cgId.'">'.$row->cgName.'</option>';
                                     }
                                     ?>
                               </select>
@@ -134,8 +134,8 @@
                   <label for="inputEmail3" class="col-sm-4 control-label">Catalogue Group Types</label>
 
                   <div class="col-md-7">
-                    <input type="hidden" name="id_dcg" value="<?php echo $i->id_dcg ?>">
-                    <input type="text" class="form-control" id="detail_cg" name="detail_cg" placeholder="" value="<?php echo $i->detail_cg ?>">
+                    <input type="hidden" name="dcgId" value="<?php echo $i->dcgId ?>">
+                    <input type="text" class="form-control" id="dcgName" name="dcgName" placeholder="" value="<?php echo $i->dcgName ?>">
                   </div>
                 </div><!-- Manufacturer -->
                 <div class="box-footer text-right">

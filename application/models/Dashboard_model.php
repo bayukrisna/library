@@ -11,25 +11,17 @@ class Dashboard_model extends CI_Model {
 	}
 
      public function dashboard_admin(){
-     	$t_perusahaan = $this->db->select('count(*) as total')
-	                ->get('tb_kategori')
+     	$t_document = $this->db->select('count(*) as total')
+	                ->get('books')
 	                ->row();
-	    $t_barang = $this->db->select('count(*) as total')
-	                ->get('tb_barang')
+	    $t_late = $this->db->select('count(*) as total')
+	    			->where('due_date <', date('Y-m-d'))
+	    			->where('date_return')
+	                ->get('detail_of_borrow')
 	                ->row();
-	    $t_merk = $this->db->select('count(*) as total')
-	                ->get('tb_merk')
-	                ->row();
-	    $t_model = $this->db->select('count(*) as total')
-	                ->get('tb_model')
-	                ->row();
-
 	    return array(
-	      't_perusahaan' => $t_perusahaan->total,
-	      't_barang' => $t_barang->total,
-	      't_merk' => $t_merk->total,
-	      't_model' => $t_model->total
-
+	      't_document' => $t_document->total,
+	      't_late' => $t_late->total
 	      );
 	  }
 	public function data_log(){

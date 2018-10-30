@@ -17,9 +17,9 @@
               <thead>
               <tr>
                 <th width="1%" >No.</th>
-                <th width="10%" >Vendor</th>
-                <th width="10%" >Alamat</th>
-                <th width="10%" >No Telp</th>
+                <th width="10%" >Vendor Name</th>
+                <th width="10%" >Address</th>
+                <th width="10%" >Phone Number</th>
                 <th width="15%" >Email</th>
                 <th width="1%">Aksi</th>
               </tr>
@@ -33,16 +33,16 @@
                   ?>
                   <tr>
                   <td><?php echo ++$no;?></td>
-                    <td><?php echo $data->nama_vendor;?></td>
-                    <td><?php echo $data->alamat;?></td>
-                    <td><?php echo $data->no_telp;?></td>
-                    <td><?php echo $data->email;?></td>
+                    <td><?php echo $data->vendorName;?></td>
+                    <td><?php echo $data->vendorAddress;?></td>
+                    <td><?php echo $data->vendorPhone;?></td>
+                    <td><?php echo $data->vendorEmail;?></td>
                     <td>
                       
                       
-                    <a href="" data-toggle="modal" data-target="#modal_edit<?=$data->id_vendor?>" class="btn btn-warning btn-xs btn-flat" ><i class="glyphicon glyphicon-pencil"></i><span class="tooltiptext">Edit</span></a>
+                    <a href="" data-toggle="modal" data-target="#modal_edit<?=$data->vendorId?>" class="btn btn-warning btn-xs btn-flat" ><i class="glyphicon glyphicon-pencil"></i><span class="tooltiptext">Edit</span></a>
 
-                    <a href="<?= base_url('Master/delete_vendor/'.$data->id_vendor); ?>" onclick="return confirm(<?= $alert; ?>)" class="btn btn-danger btn-xs btn-flat" ><i class="glyphicon glyphicon-trash"></i><span class="tooltiptext">Hapus</span></a>
+                    <a href="<?= base_url('Master/delete_vendor/'.$data->vendorId); ?>" onclick="return confirm(<?= $alert; ?>)" class="btn btn-danger btn-xs btn-flat" ><i class="glyphicon glyphicon-trash"></i><span class="tooltiptext">Hapus</span></a>
 
                     </td>
                     
@@ -67,40 +67,40 @@
             <div class="modal-content">
             <div class="modal-header">
                 <button type="button" class="close" data-dismiss="modal" aria-hidden="true">x</button>
-                <h3 class="modal-title" id="myModalLabel">TAMBAH VENDOR</h3>
+                <h3 class="modal-title" id="myModalLabel">ADD VENDOR</h3>
             </div>
                 <div class="modal-body">
                         <?php echo form_open('Master/add_vendor', 'class="form-horizontal" method="post" role="form" enctype="multipart/form-data"'); ?>
                 <div class="form-group ">
-                    <label for="name" class="col-md-3 control-label">Nama Vendor</label>
+                    <label for="name" class="col-md-3 control-label">Vendor Name</label>
                     <div class="col-md-7 col-sm-12 required">
-                        <input class="form-control" type="text" name="nama_vendor" value="" required="" />
+                        <input class="form-control" type="text" name="vendorName" value="" required="" />
                         
                     </div>
                 </div>
                 <div class="form-group ">
-                    <label for="name" class="col-md-3 control-label">Alamat</label>
+                    <label for="name" class="col-md-3 control-label">Address</label>
                     <div class="col-md-7 col-sm-12 required">
-                        <input class="form-control" type="text" name="alamat" value="" required="" />
+                        <input class="form-control" type="text" name="vendorAddress" value="" required="" />
                         
                     </div>
                 </div>
                 <div class="form-group ">
-                    <label for="name" class="col-md-3 control-label">No Telp</label>
+                    <label for="name" class="col-md-3 control-label">Phone Number</label>
                     <div class="col-md-7 col-sm-12 required">
-                        <input class="form-control" type="text" name="no_telp" value="" required="" />
+                        <input class="form-control" type="text" name="vendorPhone" value="" required="" />
                         
                     </div>
                 </div>
                 <div class="form-group ">
                     <label for="name" class="col-md-3 control-label">Email</label>
                     <div class="col-md-7 col-sm-12 required">
-                        <input class="form-control" type="email" name="email" value="" required="" />
+                        <input class="form-control" type="email" name="vendorEmail" value="" required="" />
                         
                     </div>
                 </div>
                 <div class="box-footer text-right">
-                    <button type="submit" class="btn btn-success"><i class="fa fa-check icon-white"></i> Simpan</button>
+                    <button type="submit" class="btn btn-success"><i class="fa fa-check icon-white"></i> Save</button>
                 </div>
                 </div>
             </div>
@@ -110,7 +110,7 @@
      <?php 
         foreach($vendor as $i):
         ?>
-    <div class="modal fade" id="modal_edit<?php echo $i->id_vendor;?>" >
+    <div class="modal fade" id="modal_edit<?php echo $i->vendorId;?>" >
             <div class="modal-dialog">
             <div class="modal-content">
             <div class="modal-header">
@@ -120,36 +120,36 @@
                 <div class="modal-body">
                         <?php echo form_open('Master/edit_vendor', 'class="form-horizontal" method="post" role="form" enctype="multipart/form-data"'); ?>
                 <div class="form-group ">
-                    <label for="name" class="col-md-3 control-label">Nama Vendor</label>
+                    <label for="name" class="col-md-3 control-label">Vendor Name</label>
                     <div class="col-md-7 col-sm-12 required">
-                        <input type="hidden" name="id_vendor" value="<?php echo $i->id_vendor ?>">
-                        <input class="form-control" type="text" name="nama_vendor" value="<?php echo $i->nama_vendor ?>" required="" />
+                        <input type="hidden" name="vendorId" value="<?php echo $i->vendorId ?>">
+                        <input class="form-control" type="text" name="vendorName" value="<?php echo $i->vendorName ?>" required="" />
                         
                     </div>
                 </div>
                 <div class="form-group ">
-                    <label for="name" class="col-md-3 control-label">Alamat</label>
+                    <label for="name" class="col-md-3 control-label">Address</label>
                     <div class="col-md-7 col-sm-12 required">
-                        <input class="form-control" type="text" name="alamat" value="<?php echo $i->alamat ?>" required="" />
+                        <input class="form-control" type="text" name="vendorAddress" value="<?php echo $i->vendorAddress ?>" required="" />
                         
                     </div>
                 </div>
                 <div class="form-group ">
-                    <label for="name" class="col-md-3 control-label">No Telp</label>
+                    <label for="name" class="col-md-3 control-label">Phone Number</label>
                     <div class="col-md-7 col-sm-12 required">
-                        <input class="form-control" type="text" name="no_telp" value="<?php echo $i->no_telp ?>" required="" />
+                        <input class="form-control" type="text" name="vendorPhone" value="<?php echo $i->vendorPhone ?>" required="" />
                         
                     </div>
                 </div>
                 <div class="form-group ">
                     <label for="name" class="col-md-3 control-label">Email</label>
                     <div class="col-md-7 col-sm-12 required">
-                        <input class="form-control" type="text" name="email" value="<?php echo $i->email ?>" required="" />
+                        <input class="form-control" type="text" name="vendorEmail" value="<?php echo $i->vendorEmail ?>" required="" />
                         
                     </div>
                 </div>
                 <div class="box-footer text-right">
-                    <button type="submit" class="btn btn-success"><i class="fa fa-check icon-white"></i> Simpan</button>
+                    <button type="submit" class="btn btn-success"><i class="fa fa-check icon-white"></i> Save</button>
                 </div>
                 </div>
             </div>

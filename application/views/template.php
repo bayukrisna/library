@@ -175,7 +175,7 @@ a:hover .tooltiptext {
         <li class="header">MAIN NAVIGATION</li>
          <li <?php if($this->uri->segment(1) == 'dashboard') echo 'class="active"'; else echo  '';?>><a href="<?php echo base_url(); ?>dashboard"><i class="fa fa-dashboard"></i><span>Dashboard</span></a></li>
         
-        <li class="treeview <?php if($this->uri->segment(2) == 'catalogue' OR $this->uri->segment(1) == 'master' OR $this->uri->segment(2) == 'detail_catalogue' OR $this->uri->segment(2) == 'vendor' AND $this->uri->segment(2) == '') echo 'active'; else echo  '';?>">
+        <li class="treeview <?php if($this->uri->segment(2) == 'catalogue' OR $this->uri->segment(1) == 'master' OR $this->uri->segment(2) == 'detail_catalogue' OR $this->uri->segment(2) == 'vendor' OR $this->uri->segment(2) == 'status' OR $this->uri->segment(2) == 'campus' AND $this->uri->segment(2) == '') echo 'active'; else echo  '';?>">
           <a href="#">
             <i class="fa fa-dashboard"></i> <span>MASTER</span>
             <span class="pull-right-container">
@@ -186,31 +186,33 @@ a:hover .tooltiptext {
             <li <?php if($this->uri->segment(2) == 'catalogue') echo 'class="active"'; else echo  '';?>><a href="<?php echo base_url(); ?>master/catalogue"><i class="fa fa-circle-o"></i>CATALOGUE GROUP</a></li>
             <li <?php if($this->uri->segment(2) == 'detail_catalogue') echo 'class="active"'; else echo  '';?>><a href="<?php echo base_url(); ?>master/detail_catalogue"><i class="fa fa-circle-o"></i>DETAIL CATALOGUE</a></li>
             <li <?php if($this->uri->segment(2) == 'vendor') echo 'class="active"'; else echo  '';?>><a href="<?php echo base_url(); ?>master/vendor"><i class="fa fa-circle-o"></i>VENDOR</a></li>
-            
+            <li <?php if($this->uri->segment(2) == 'status') echo 'class="active"'; else echo  '';?>><a href="<?php echo base_url(); ?>master/status"><i class="fa fa-circle-o"></i>STATUS</a></li>
+            <li <?php if($this->uri->segment(2) == 'campus') echo 'class="active"'; else echo  '';?>><a href="<?php echo base_url(); ?>master/campus"><i class="fa fa-circle-o"></i>CAMPUS</a></li>
           </ul>
         </li>
 
-        <li class="treeview <?php if($this->uri->segment(1) == 'books' AND $this->uri->segment(2) == '' OR $this->uri->segment(2) == 'add_books') echo 'active'; else echo  '';?>">
+        <li class="treeview <?php if($this->uri->segment(2) == 'document' OR $this->uri->segment(2) == 'locker' OR $this->uri->segment(2) == 'cd') echo 'active'; else echo  '';?>">
           <a href="#">
-            <i class="fa fa-dashboard"></i> <span>BOOKS</span>
+            <i class="fa fa-dashboard"></i> <span>MATERIAL</span>
             <span class="pull-right-container">
               <i class="fa fa-angle-left pull-right"></i>
             </span>
           </a>
           <ul class="treeview-menu">
-            <li <?php if($this->uri->segment(1) == 'books' AND $this->uri->segment(2) == '') echo 'class="active"'; else echo  '';?>><a href="<?php echo base_url(); ?>books"><i class="fa fa-circle-o"></i>ALL BOOKS</a></li>
-            <li <?php if($this->uri->segment(2) == 'add_books') echo 'class="active"'; else echo  '';?>><a href="<?php echo base_url(); ?>books/add_books"><i class="fa fa-circle-o"></i>ADD BOOKS</a></li>
+            <li <?php if($this->uri->segment(2) == 'document') echo 'class="active"'; else echo  '';?>><a href="<?php echo base_url(); ?>Material/document"><i class="fa fa-circle-o"></i>DOCUMENTS</a></li>
+            <li <?php if($this->uri->segment(2) == 'cd') echo 'class="active"'; else echo  '';?>><a href="<?php echo base_url(); ?>Material/cd"><i class="fa fa-circle-o"></i>CD</a></li>
+            <li <?php if($this->uri->segment(2) == 'locker') echo 'class="active"'; else echo  '';?>><a href="<?php echo base_url(); ?>Material/locker"><i class="fa fa-circle-o"></i>LOCKER</a></li>
           </ul>
         </li>
         <li class="treeview <?php if($this->uri->segment(1) == 'Anggota' AND $this->uri->segment(2) == '' OR $this->uri->segment(2) == 'detail_anggota') echo 'active'; else echo  '';?>">
           <a href="#">
-            <i class="fa fa-dashboard"></i> <span>Transaction</span>
+            <i class="fa fa-dashboard"></i> <span>TRANSACTION</span>
             <span class="pull-right-container">
               <i class="fa fa-angle-left pull-right"></i>
             </span>
           </a>
           <ul class="treeview-menu">
-            <li <?php if($this->uri->segment(1) == 'Anggota' OR $this->uri->segment(2) == 'detail_anggota') echo 'class="active"'; else echo  '';?>><a href="<?php echo base_url(); ?>Anggota"><i class="fa fa-circle-o"></i>Member</a></li>
+            <li <?php if($this->uri->segment(1) == 'Transaction' OR $this->uri->segment(2) == 'detail_anggota') echo 'class="active"'; else echo  '';?>><a href="<?php echo base_url(); ?>Transaction"><i class="fa fa-circle-o"></i>MEMBER</a></li>
           </ul>
         </li>
         

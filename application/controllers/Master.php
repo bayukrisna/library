@@ -52,7 +52,7 @@ class Master extends CI_Controller {
 	//===================================================================================\\
 	public function detail_catalogue(){
 		$data['getCG'] = $this->Master_model->getCG();
-		$data['catalogue'] = $this->db->join('catalogue_group', 'catalogue_group.id_cg = detail_catalogue_group.id_cg')->get('detail_catalogue_group')->result();
+		$data['catalogue'] = $this->db->join('catalogue_group', 'catalogue_group.cgId = detail_catalogue_group.cgId')->get('detail_catalogue_group')->result();
 		$data['main_view'] = 'Master/detail_catalogue_view';
 		$this->load->view('template', $data);
 	}
@@ -119,36 +119,106 @@ class Master extends CI_Controller {
 	}
 	//===================================================================================\\
 	//===================================================================================\\
-	public function book_status(){
-		$data['book_status'] = $this->Master_model->getBookStatus();
-		$data['main_view'] = 'Master/book_status_view';
+	public function status(){
+		$data['status'] = $this->Master_model->getStatus();
+		$data['main_view'] = 'Master/status_view';
 		$this->load->view('template', $data);
 	}
-	public function add_book_status(){
-		if($this->Master_model->add_book_status() == TRUE){
+	public function add_status(){
+		if($this->Master_model->add_status() == TRUE){
 				$this->session->set_flashdata('message', '<div class="alert alert-success"> Success </div>');
-            	redirect('Master/book_status');
+            	redirect('Master/status');
 			}  else{
 				$this->session->set_flashdata('message', '<div class="alert alert-danger"> '.validation_errors().' </div>');
-            	redirect('Master/book_status');
+            	redirect('Master/status');
 		}
 	}
-	public function delete_book_status($id){
-		if ($this->db->where('id_bookstatus', $id)->delete('bookstatus') == TRUE) {
+	public function delete_status($id){
+		if ($this->db->where('statusId', $id)->delete('status') == TRUE) {
 			$this->session->set_flashdata('message', ' <div class="alert alert-success"> Deleted </div>');
-			redirect('Master/book_status');
+			redirect('Master/status');
 		} else {
 			$this->session->set_flashdata('message', '<div class="alert alert-danger"> '.validation_errors().' </div>');
-			redirect('Master/book_status');
+			redirect('Master/status');
 		}
 	}
-	public function edit_book_status(){
-		if($this->Master_model->edit_book_status() == TRUE){
+	public function edit_status(){
+		if($this->Master_model->edit_status() == TRUE){
 				$this->session->set_flashdata('message', '<div class="alert alert-success"> Success </div>');
-            	redirect('Master/book_status');
+            	redirect('Master/status');
 			}  else{
 				$this->session->set_flashdata('message', '<div class="alert alert-danger"> '.validation_errors().' </div>');
-            	redirect('Master/book_status');
+            	redirect('Master/status');
+		}
+	}
+	//===================================================================================\\
+	//===================================================================================\\
+	public function campus(){
+		$data['campus'] = $this->Master_model->getCampus();
+		$data['main_view'] = 'Master/campus_view';
+		$this->load->view('template', $data);
+	}
+	public function add_campus(){
+		if($this->Master_model->add_campus() == TRUE){
+				$this->session->set_flashdata('message', '<div class="alert alert-success"> Success </div>');
+            	redirect('Master/campus');
+			}  else{
+				$this->session->set_flashdata('message', '<div class="alert alert-danger"> '.validation_errors().' </div>');
+            	redirect('Master/campus');
+		}
+	}
+	public function delete_campus($id){
+		if ($this->db->where('campusId', $id)->delete('campus') == TRUE) {
+			$this->session->set_flashdata('message', ' <div class="alert alert-success"> Deleted </div>');
+			redirect('Master/campus');
+		} else {
+			$this->session->set_flashdata('message', '<div class="alert alert-danger"> '.validation_errors().' </div>');
+			redirect('Master/campus');
+		}
+	}
+	public function edit_campus(){
+		if($this->Master_model->edit_campus() == TRUE){
+				$this->session->set_flashdata('message', '<div class="alert alert-success"> Success </div>');
+            	redirect('Master/campus');
+			}  else{
+				$this->session->set_flashdata('message', '<div class="alert alert-danger"> '.validation_errors().' </div>');
+            	redirect('Master/campus');
+		}
+	}
+	//===================================================================================\\
+	//===================================================================================\\
+	public function key(){
+		$data['getStatus'] = $this->Master_model->getStatus();
+		$data['getCampus'] = $this->Master_model->getCampus();
+		$data['key'] = $this->Master_model->getKey();
+		$data['main_view'] = 'Master/key_view';
+		$this->load->view('template', $data);
+	}
+	public function add_key(){
+		if($this->Master_model->add_key() == TRUE){
+				$this->session->set_flashdata('message', '<div class="alert alert-success"> Success </div>');
+            	redirect('Master/key');
+			}  else{
+				$this->session->set_flashdata('message', '<div class="alert alert-danger"> '.validation_errors().' </div>');
+            	redirect('Master/key');
+		}
+	}
+	public function delete_key($id){
+		if ($this->db->where('id_key', $id)->delete('key') == TRUE) {
+			$this->session->set_flashdata('message', ' <div class="alert alert-success"> Deleted </div>');
+			redirect('Master/key');
+		} else {
+			$this->session->set_flashdata('message', '<div class="alert alert-danger"> '.validation_errors().' </div>');
+			redirect('Master/key');
+		}
+	}
+	public function edit_key(){
+		if($this->Master_model->edit_key() == TRUE){
+				$this->session->set_flashdata('message', '<div class="alert alert-success"> Success </div>');
+            	redirect('Master/key');
+			}  else{
+				$this->session->set_flashdata('message', '<div class="alert alert-danger"> '.validation_errors().' </div>');
+            	redirect('Master/key');
 		}
 	}
 }
