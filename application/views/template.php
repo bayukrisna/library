@@ -153,7 +153,7 @@ a:hover .tooltiptext {
                   <a href="<?php echo base_url(); ?>admin/user_log/<?php echo $this->session->userdata('id_user'); ?>" class="btn btn-default fa fa-detail">History</a>
                 </div>
                 <div class="pull-right">
-                  <a href="<?php echo base_url(); ?>login/logout" class="btn btn-default fa fa-sign-out">Logout</a>
+                  <a href="<?php echo base_url(); ?>user/logout" class="btn btn-default fa fa-sign-out">Logout</a>
                 </div>
               </li>
             </ul>
