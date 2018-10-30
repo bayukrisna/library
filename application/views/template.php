@@ -281,7 +281,15 @@ a:hover .tooltiptext {
       "info": true,
       "autoWidth": false
     });
+    
   });
+</script>
+<script>
+    $(function () {
+      <?php foreach($document as $i): ?>
+    $("#mm<?= $i->docId ?>").DataTable();
+    <?php endforeach;?>
+    });
 </script>
 
 

@@ -4,6 +4,12 @@
     margin: 30px auto;
 }
 </style>
+<style type="text/css">
+.modal-dialog2 {
+    width: 60%;
+    margin: 40px auto;
+}
+</style>
       <section class="content">
       <div class="row">
         <div class="col-xs-12">
@@ -39,7 +45,7 @@
                     <td><a href="" data-toggle="modal" data-target="#modal_view<?=$data->docId?>" ><?php echo $data->docTitle;?></a></td>
                     <td>
                       
-                      
+                    <a href="" data-toggle="modal" data-target="#modal_add<?=$data->docId?>" class="btn btn-primary btn-xs btn-flat" ><i class="fa fa-plus"></i><span class="tooltiptext">Add</span></a>  
                     <a href="" data-toggle="modal" data-target="#modal_edit<?=$data->docId?>" class="btn btn-warning btn-xs btn-flat" ><i class="glyphicon glyphicon-pencil"></i><span class="tooltiptext">Edit</span></a>
 
                     <a href="<?= base_url('Material/delete_document/'.$data->docId); ?>" onclick="return confirm(<?= $alert; ?>)" class="btn btn-danger btn-xs btn-flat" ><i class="glyphicon glyphicon-trash"></i><span class="tooltiptext">Hapus</span></a>
@@ -457,8 +463,7 @@
             </div>
     </div>
     <?php echo form_close();?>
-     <?php endforeach;?>
-     <?php echo form_close();?>
+    <?php endforeach;?>
      <?php 
         foreach($document as $i):
         ?>
@@ -533,6 +538,137 @@
     </div>
     <?php echo form_close();?>
      <?php endforeach;?>
+     <?php 
+        foreach($document as $i):
+        ?>
+    <div class="modal fade" id="modal_add<?php echo $i->docId;?>" >
+            <div class="modal-dialog">
+            <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">x</button>
+                <h3 class="modal-title" id="myModalLabel">ADD DOCUMENT</h3>
+            </div>
+                <div class="modal-body">
+                        <?php echo form_open('Material/add_document_number', 'id="form_ajax2" class="form-horizontal" method="post" role="form" enctype="multipart/form-data"'); ?>
+                    <?php echo $this->session->flashdata('message2');?>
+                    <div class="box">
+                    <div class="box-body">
+                <div class="col-sm-3">
+                  <input type="hidden" name="docId" placeholder="Document Number" value="<?= $i->docId?>">
+                  <input class="form-control" type="text" name="dnNumber" id="dnNumber2" placeholder="Document Number" >
+                </div>
+                <div class="col-sm-3">
+                  <select style="width: 100%" name="dnType" id="dnType" class="select2">
+                            <option value="original">Original</option>
+                            <option value="copy">Copy</option>
+                  </select>
+                </div>
+                        <div class="col-sm-3">
+                          <input class="form-control" type="text" name="dnNotes" id="dnNotes2">
+                        </div>
+                        <div class="col-sm-1">
+                          <button type="button" onclick="simpan_cart2()" class="btn btn-success"><i class="fa fa-check icon-white"></i></button>
+                        </div>
+                </div>
+                </div>
+                <?php $a = count($this->cart->contents());
+                  if($a == 0){
+                    $m = 'none';
+                  } else {
+                    $m = null;
+                  } ?>
+                <table id="mkm" class="table table-bordered table-striped table-hover" style="text-transform: uppercase; display: <?= $m ?>">
+                  <thead>
+                  <tr>
+                    <th>No. </th>
+                    <th>No. Document</th>
+                    <th>Type</th>
+                    <th>Notes</th>
+                    <th>Aksi</th>
+                  </tr>
+                  </thead>
+                  <tbody id="kks">
+                  </tbody>
+                </table>
+            <table id="mm<?= $i->docId;?>" class="table2 table-hover table-striped table-condensed" style="text-transform: uppercase;">
+              <thead>
+              <tr>
+                <th width="1%" >No.</th>
+                <th width="15%" >Number</th>
+                <th width="1%">Aksi</th>
+              </tr>
+              </thead>
+              <tbody>
+                <?php 
+                    $no = 0;
+                    $alert = "'Anda yakin menghapus data ini ?'";
+                    $number = $this->db->where('docId', $i->docId)->get('document_number')->result();
+                    foreach($number as $data):
+                    ;
+                  ?>
+                  <tr>
+                    <td><?= ++$no;?></td>
+                    <td><?= $data->dnNumber;?></td>
+                    <td><a href="" data-toggle="modal" data-target="#modal_edit_number<?=$data->dnId?>" class="btn btn-warning btn-xs btn-flat" ><i class="glyphicon glyphicon-pencil"></i><span class="tooltiptext">Edit</span></a>
+
+                    <a href="<?= base_url('Material/delete_document_number/'.$data->dnNumber); ?>" onclick="return confirm(<?= $alert; ?>)" class="btn btn-danger btn-xs btn-flat" ><i class="glyphicon glyphicon-trash"></i><span class="tooltiptext">Hapus</span></a></td>
+                </tr>
+              <?php endforeach;?>
+              </tbody>
+              </table>
+                <div class="box-footer text-right">
+                    <button type="submit" class="btn btn-success"><i class="fa fa-check icon-white"></i> Simpan</button>
+                </div>
+                </div>
+            </div>
+            </div>
+    </div>
+    <?php echo form_close();?>
+    <?php endforeach;?>
+    <?php 
+        $number = $this->db->get('document_number')->result();
+        foreach($number as $i):
+        ?>
+    <div class="modal fade" id="modal_edit_number<?php echo $i->dnId;?>" >
+            <div class="modal-dialog2">
+            <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">x</button>
+                <h3 class="modal-title" id="myModalLabel">EDIT DOCUMENT</h3>
+            </div>
+                <div class="modal-body">
+                        <?php echo form_open('Material/edit_document_number', 'class="form-horizontal" method="post" role="form" enctype="multipart/form-data"'); ?>
+                      <div class="form-group" >
+                        <label for="inputEmail3" class="col-sm-4 control-label">Document Number</label>
+                        <div class="col-sm-6">
+                          <input type="text" class="form-control" id="dnNumber" placeholder="" name="dnNumber" value="<?= $i->dnNumber;?>">
+                        </div>
+                      </div>
+                      <div class="form-group" >
+                        <label for="inputEmail3" class="col-sm-4 control-label">Type</label>
+                        <div class="col-sm-6">
+                          <select style="width: 100%" name="dnType" id="dnType" class="select2">
+                            <option value="original">Original</option>
+                            <option value="copy">Copy</option>
+                          </select>
+                        </div>
+                      </div>
+                      <div class="form-group" >
+                        <label for="inputEmail3" class="col-sm-4 control-label">Notes</label>
+                        <div class="col-sm-6">
+                          <input type="text" class="form-control" id="dnNotes" placeholder="" name="dnNotes" value="<?= $i->dnNotes;?>">
+                        </div>
+                      </div>
+                </div>
+                <div class="box-footer text-right">
+                    <button type="submit" class="btn btn-success"><i class="fa fa-check icon-white"></i> Simpan</button>
+                </div>
+                </div>
+            </div>
+            </div>
+    </div>
+    <?php echo form_close();?>
+    <?php endforeach;?>
 <script type="text/javascript">
             function get_dcg(p) {
                 var cgId = p;
@@ -575,6 +711,22 @@
                 }
               )
             }
+            function simpan_cart2(){
+              var a = $('#form_ajax2').serialize();
+              $.ajax(
+                {
+                  url : '<?php echo base_url(); ?>Material/add_to_cart2',
+                  type: 'post',
+                  data : $('#form_ajax2').serialize(),
+                  success: function(msg){
+                    document.getElementById("dnNumber2").value = '';
+                    document.getElementById("dnNotes2").value = '';
+                    document.getElementById("mkm").style.display = null;
+                    $("#kks").html(msg);
+                  }
+                }
+              )
+            }
             function delete_cart(p){
               $.ajax(
                 {
@@ -582,10 +734,17 @@
                   type: 'POST',
                   success: function(msg){
                     $("#kk").html(msg);
+                    $("#kks").html(msg);
                   }
                 }
               )
             }
+</script>
+<script>
+$(document).ready(function(){
+    // Show the Modal on load
+    
+});
 </script>
 <script>
   var loadFile = function(event) {
@@ -597,5 +756,3 @@
     output.src = URL.createObjectURL(event.target.files[0]);
   };
 </script>
-
-

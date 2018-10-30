@@ -58,6 +58,26 @@ class Material extends CI_Controller {
             	redirect(base_url('Material/document'));	
 		}
 	}
+	public function add_document_number()
+	{
+		foreach($this->cart->contents() as $item){
+			          $data = array(
+			            'docId'    => $item['docId'],
+			            'dnNumber'    => $item['dnNumber'],
+			            'statusId'    => '1',
+			            'dnCondition'    => '1',
+			            'dnType'    => $item['dnType'],
+			            'dnNotes'    => $item['dnNotes'],
+			          );
+			          $this->db->insert('document_number', $data);
+			        }
+		$this->cart->destroy();
+				$this->session->set_flashdata('message', '<div class="alert alert-success"> Data Model berhasil disimpan </div>');
+            	redirect(base_url('Material/document'));	
+	}
+	public function destroy(){
+		$this->cart->destroy();
+	}
 	public function edit_document(){
 		$config['upload_path'] = './uploads/';
         $config['allowed_types'] = 'jpg|png|jpeg';
@@ -81,6 +101,15 @@ class Material extends CI_Controller {
 			redirect('Material/document');
 		}
 	}
+	public function delete_document_number($id){
+		if ($this->db->where('dnNumber', $id)->delete('document_number') == TRUE) {
+			$this->session->set_flashdata('message', ' <div class="alert alert-success"> Deleted </div>');
+			redirect('Material/document');
+		} else {
+			$this->session->set_flashdata('message', '<div class="alert alert-danger"> '.validation_errors().' </div>');
+			redirect('Material/document');
+		}
+	}
 	public function add_to_cart()
 	{
 			$a = count($this->cart->contents())+1;	
@@ -90,6 +119,24 @@ class Material extends CI_Controller {
 			        'price'   => 1,
 			        'name'    => 'buku',
 			        'dnNumber' => $this->input->post('dnNumber'),
+			        'dnType' => $this->input->post('dnType'),
+			        'dnNotes' => $this->input->post('dnNotes'),
+			);
+			$this->cart->insert($data);
+			
+			$this->show_cart();
+		
+	}
+	public function add_to_cart2()
+	{
+			$a = count($this->cart->contents())+1;	
+			$data = array(
+			        'id'      => $a,
+			        'qty'     => 1,
+			        'price'   => 1,
+			        'name'    => 'buku',
+			        'dnNumber' => $this->input->post('dnNumber'),
+			        'docId' => $this->input->post('docId'),
 			        'dnType' => $this->input->post('dnType'),
 			        'dnNotes' => $this->input->post('dnNotes'),
 			);
