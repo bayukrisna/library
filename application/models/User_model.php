@@ -9,26 +9,26 @@ class User_model extends CI_Model {
 	{
 		parent::__construct();
 	}
-    public function create_user($username) {
-        $query = $this->db->select('*')
-                ->from('user')
-                ->where('username', $username)
-                ->get();
-        // $s = $this->db->select('MAX(id_user) as id_user')->from('tb_user')->get()->row();
-        //$kk = $s->id_user + 1;
-        if ($query->num_rows() != 1)
 
-            {
-                $data = array(
-                    'username' => $username,
-                    //'id_user' => $kk,
-                );
+    public function create_user()
+    {        
+        $data = array(
+            'userUsername'      => $this->input->post('userUsername', TRUE),
+            'sexId'     => $this->input->post('sexId', TRUE),
+            'userAddress'     => $this->input->post('userAddress', TRUE),
+            'userCity'     => $this->input->post('userCity', TRUE),
+            'userEmail'      => $this->input->post('userEmail', TRUE),
+            'userPhone'      => $this->input->post('userPhone', TRUE),
+            'ucId'      => $this->input->post('ucId', TRUE),
+            'campusId' => $this->input->post('campusId', TRUE)
             
-                $this->db->insert('user', $data);
+        );
+        $this->db->insert('user', $data);
+        if($this->db->affected_rows() > 0){
                 return true;
-            } else {
-                 return false;
-            }
+        } else {
+            return false;
+        }
     }
 
 
@@ -45,8 +45,13 @@ class User_model extends CI_Model {
                     ->result();
    }
 
-   public function get_category_by_status($id_us){
-     return $this->db->where('id_us', $id_us)
+   public function getCampus(){
+     return $this->db->get('campus')
+                    ->result();
+   }
+
+   public function get_uc_by_us($usId){
+     return $this->db->where('usId', $usId)
                     ->get('user_category')
                     ->result();
    }
