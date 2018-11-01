@@ -101,8 +101,8 @@
                   <!-- <header>
                     <h4 style="text-align: center;"><b>Transaksi</b></h4>
                   </header> -->
-                  <input type="text" name="transId" value="<?= $noTrans ?>">
-                  <input type="text" name="userId" value="<?= $this->uri->segment(3) ?>">
+                  <input type="hidden" name="transId" value="<?= $noTrans ?>">
+                  <input type="hidden" name="userId" value="<?= $this->uri->segment(3) ?>">
                   <thead>
                   <tr>
                     <th width="5%">#</th>

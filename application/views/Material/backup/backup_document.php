@@ -42,9 +42,11 @@
                   ?>
                   <tr>
                   <td><?php echo ++$no;?></td>
-                    <td><a href="<?= base_url('Material/document_detail/'.$data->docId); ?>"  ><?php echo $data->docTitle;?></a></td>
+                    <td><a href="" data-toggle="modal" data-target="#modal_view<?=$data->docId?>" ><?php echo $data->docTitle;?></a></td>
                     <td>
-                    <a href="<?= base_url('Material/document_edit/'.$data->docId); ?>" class="btn btn-warning btn-xs btn-flat" ><i class="glyphicon glyphicon-pencil"></i><span class="tooltiptext">Edit</span></a>
+                      
+                    <a href="" data-toggle="modal" data-target="#modal_add<?=$data->docId?>" class="btn btn-primary btn-xs btn-flat" ><i class="fa fa-plus"></i><span class="tooltiptext">Add</span></a>  
+                    <a href="" data-toggle="modal" data-target="#modal_edit<?=$data->docId?>" class="btn btn-warning btn-xs btn-flat" ><i class="glyphicon glyphicon-pencil"></i><span class="tooltiptext">Edit</span></a>
 
                     <a href="<?= base_url('Material/delete_document/'.$data->docId); ?>" onclick="return confirm(<?= $alert; ?>)" class="btn btn-danger btn-xs btn-flat" ><i class="glyphicon glyphicon-trash"></i><span class="tooltiptext">Hapus</span></a>
 
@@ -281,7 +283,191 @@
             </div>
     </div>
     <?php echo form_close();?>
-    <div class="modal fade" id="modal_view" >
+     <?php 
+        foreach($document as $i):
+        ?>
+    <div class="modal fade" id="modal_edit<?php echo $i->docId;?>" >
+            <div class="modal-dialog">
+            <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">x</button>
+                <h3 class="modal-title" id="myModalLabel">EDIT DOCUMENT</h3>
+            </div>
+                <div class="modal-body">
+                        <?php echo form_open('Material/edit_document', 'class="form-horizontal" method="post" role="form" enctype="multipart/form-data"'); ?>
+              <div class="col-md-6">
+                <div class="form-group" >
+                  <label for="inputEmail3" class="col-sm-3 control-label">Id Number</label>
+
+                  <div class="col-sm-8">
+                    <input type="hidden" class="form-control" id="docId" name="docId" placeholder="" value="<?= $i->docId; ?>">
+                    <input type="text" class="form-control" id="docNumber" name="docNumber" placeholder="" value="<?= $i->docNumber; ?>">
+                  </div>
+                </div>
+                <div class="form-group">
+                  <label for="inputPassword3" class="col-sm-3 control-label">Subject Heading</label>
+
+                  <div class="col-sm-8">
+                    <input type="text" class="form-control" id="docSubject" name="docSubject" placeholder="" value="<?= $i->docSubject; ?>" >
+                  </div>
+                </div>
+                <div class="form-group" >
+                  <label for="inputEmail3" class="col-sm-3 control-label">Classification</label>
+
+                  <div class="col-sm-8">
+                    <input type="text" class="form-control" id="docClassification" name="docClassification" placeholder="" value="<?= $i->docClassification; ?>">
+                  </div>
+                </div>
+                <div class="form-group">
+                  <label for="inputPassword3" class="col-sm-3 control-label">Catalogue Groups</label>
+
+                  <div class="col-sm-8">
+                    <select class="select2" style="width:100%" name="cgId" id="editCgId" onchange="return get_dcg2(this.value)">
+                                  <option value="" selected="selected"> Choose Catalogue Group </option>
+                                      <?php 
+
+                                    foreach($getCG as $row)
+                                    { 
+                                      $a = '';
+                                      if($row->cgId == $i->cgId){
+                                        $a = 'selected=" "';
+                                      }
+                                      echo '<option '.$a.' value="'.$row->cgId.'">'.$row->cgName.'</option>';
+                                    }
+                                    ?>
+                              </select>
+                  </div>
+                </div>
+                <div class="form-group">
+                  <label for="inputPassword3" class="col-sm-3 control-label">Catalogue Group Types</label>
+
+                  <div class="col-sm-8">
+                    <select class="select2" style="width:100%" name="dcgId" id="editDcgId">
+                                  <?php 
+
+                                    foreach($getDCG as $row)
+                                    { 
+                                      $a = '';
+                                      if($row->dcgId == $i->dcgId){
+                                        $a = 'selected=" "';
+                                      }
+                                      echo '<option '.$a.' value="'.$row->dcgId.'">'.$row->dcgName.'</option>';
+                                    }
+                                    ?>
+                                     
+                              </select>
+                  </div>
+                </div>
+                <div class="form-group" >
+                  <label for="inputEmail3" class="col-sm-3 control-label">Title</label>
+
+                  <div class="col-sm-8">
+                    <input type="text" class="form-control" id="docTitle" name="docTitle" placeholder="" value="<?= $i->docTitle; ?>">
+                  </div>
+                </div>
+                <div class="form-group">
+                  <label for="inputPassword3" class="col-sm-3 control-label">Subtitle</label>
+
+                  <div class="col-sm-8">
+                    <input type="text" class="form-control" id="docSubtitle" name="docSubtitle" placeholder="" value="<?= $i->docSubtitle; ?>">
+                  </div>
+                </div>
+                <div class="form-group" >
+                  <label for="inputEmail3" class="col-sm-3 control-label">Author</label>
+
+                  <div class="col-sm-8">
+                    <input type="text" class="form-control" id="docAuthor" name="docAuthor" placeholder="" value="<?= $i->docAuthor; ?>">
+                  </div>
+                </div>
+                <div class="form-group">
+                  <label for="inputPassword3" class="col-sm-3 control-label">Additional Author</label>
+
+                  <div class="col-sm-8">
+                    <input type="text" class="form-control" id="docAddAuthor" name="docAddAuthor" placeholder="" value="<?= $i->docAddAuthor; ?>">
+                  </div>
+                </div>
+                <div class="form-group" >
+                  <label for="inputEmail3" class="col-sm-3 control-label">Editor</label>
+
+                  <div class="col-sm-8">
+                    <input type="text" class="form-control" id="docEditor" name="docEditor" placeholder="" value="<?= $i->docEditor; ?>">
+                  </div>
+                </div>
+              </div>
+              <div class="col-md-6">
+                <div class="form-group" >
+                  <label for="inputEmail3" class="col-sm-3 control-label">Edition</label>
+
+                  <div class="col-sm-8">
+                    <input type="text" class="form-control" id="docEdition" name="docEdition" placeholder="" value="<?= $i->docEdition; ?>">
+                  </div>
+                </div>
+                <div class="form-group" >
+                  <label for="inputEmail3" class="col-sm-3 control-label">Place</label>
+
+                  <div class="col-sm-8">
+                    <input type="text" class="form-control" id="docPlace" name="docPlace" placeholder="" value="<?= $i->docPlace; ?>">
+                  </div>
+                </div>
+                <div class="form-group" >
+                  <label for="inputEmail3" class="col-sm-3 control-label">Publisher</label>
+
+                  <div class="col-sm-8">
+                    <input type="text" class="form-control" id="docPublisher" name="docPublisher" placeholder="" value="<?= $i->docPublisher; ?>">
+                  </div>
+                </div>
+                <div class="form-group">
+                  <label for="inputPassword3" class="col-sm-3 control-label">Publication Year</label>
+
+                  <div class="col-sm-8">
+                    <input type="text" class="form-control" id="docPubYear" name="docPubYear" placeholder="" value="<?= $i->docPubYear; ?>">
+                  </div>
+                </div>
+                <div class="form-group">
+                  <label for="inputPassword3" class="col-sm-3 control-label">Date Purchasing</label>
+
+                  <div class="col-sm-8">
+                    <input type="text" class="form-control" id="docPurchaseDate" name="docPurchaseDate" placeholder="" value="<?= $i->docPurchaseDate; ?>">
+                  </div>
+                </div>
+                <div class="form-group" >
+                  <label for="inputEmail3" class="col-sm-3 control-label">ISBN</label>
+
+                  <div class="col-sm-8">
+                    <input type="text" class="form-control" id="docIsbn" name="docIsbn" placeholder="" value="<?= $i->docIsbn; ?>">
+                  </div>
+                </div>
+                <div class="form-group">
+                  <label for="inputPassword3" class="col-sm-3 control-label">Notes</label>
+
+                  <div class="col-sm-8">
+                    <textarea class="form-control" rows="3" id="docNotes" name="docNotes"><?= $i->docNotes; ?></textarea>
+                  </div>
+                </div>
+                <div class="form-group">
+                  <label for="inputPassword3" class="col-sm-3 control-label">Image</label>
+
+                  <div class="col-sm-8">
+                    <input type="file" name="image" onchange="loadFile2(event)"  id="image" placeholder="">
+                    <input type="hidden" name="docImage" placeholder="" value="<?= $i->docImage; ?>">
+                    <br>
+                    <img src="<?php echo base_url();?>uploads/<?php echo $i->docImage; ?>" onerror="this.src='http://icons.iconarchive.com/icons/harwen/simple/256/PNG-Image-icon.png'" width="250px" id="output2">
+                  </div>
+                </div>
+              </div>
+                <div class="box-footer text-right">
+                    <button type="submit" class="btn btn-success"><i class="fa fa-check icon-white"></i> Simpan</button>
+                </div>
+                </div>
+            </div>
+            </div>
+    </div>
+    <?php echo form_close();?>
+    <?php endforeach;?>
+     <?php 
+        foreach($document as $i):
+        ?>
+    <div class="modal fade" id="modal_view<?php echo $i->docId;?>" >
             <div class="modal-dialog">
             <div class="modal-content">
             <div class="modal-header">
@@ -351,10 +537,139 @@
             </div>
     </div>
     <?php echo form_close();?>
+     <?php endforeach;?>
+     <?php 
+        foreach($document as $i):
+        ?>
+    <div class="modal fade" id="modal_add<?php echo $i->docId;?>" >
+            <div class="modal-dialog">
+            <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">x</button>
+                <h3 class="modal-title" id="myModalLabel">ADD DOCUMENT</h3>
+            </div>
+                <div class="modal-body">
+                        <?php echo form_open('Material/add_document_number', 'id="form_ajax2" class="form-horizontal" method="post" role="form" enctype="multipart/form-data"'); ?>
+                    <?php echo $this->session->flashdata('message2');?>
+                    <div class="box">
+                    <div class="box-body">
+                <div class="col-sm-3">
+                  <input type="hidden" name="docId" placeholder="Document Number" value="<?= $i->docId?>">
+                  <input class="form-control" type="text" name="dnNumber" id="dnNumber2" placeholder="Document Number" >
+                </div>
+                <div class="col-sm-3">
+                  <select style="width: 100%" name="dnType" id="dnType" class="select2">
+                            <option value="original">Original</option>
+                            <option value="copy">Copy</option>
+                  </select>
+                </div>
+                        <div class="col-sm-3">
+                          <input class="form-control" type="text" name="dnNotes" id="dnNotes2">
+                        </div>
+                        <div class="col-sm-1">
+                          <button type="button" onclick="simpan_cart2()" class="btn btn-success"><i class="fa fa-check icon-white"></i></button>
+                        </div>
+                </div>
+                </div>
+                <?php $a = count($this->cart->contents());
+                  if($a == 0){
+                    $m = 'none';
+                  } else {
+                    $m = null;
+                  } ?>
+                <table id="mkm" class="table table-bordered table-striped table-hover" style="text-transform: uppercase; display: <?= $m ?>">
+                  <thead>
+                  <tr>
+                    <th>No. </th>
+                    <th>No. Document</th>
+                    <th>Type</th>
+                    <th>Notes</th>
+                    <th>Aksi</th>
+                  </tr>
+                  </thead>
+                  <tbody id="kks">
+                  </tbody>
+                </table>
+            <table id="mm<?= $i->docId;?>" class="table2 table-hover table-striped table-condensed" style="text-transform: uppercase;">
+              <thead>
+              <tr>
+                <th width="1%" >No.</th>
+                <th width="15%" >Number</th>
+                <th width="1%">Aksi</th>
+              </tr>
+              </thead>
+              <tbody>
+                <?php 
+                    $no = 0;
+                    $alert = "'Anda yakin menghapus data ini ?'";
+                    $number = $this->db->where('docId', $i->docId)->get('document_number')->result();
+                    foreach($number as $data):
+                    ;
+                  ?>
+                  <tr>
+                    <td><?= ++$no;?></td>
+                    <td><?= $data->dnNumber;?></td>
+                    <td><a href="" data-toggle="modal" data-target="#modal_edit_number<?=$data->dnId?>" class="btn btn-warning btn-xs btn-flat" ><i class="glyphicon glyphicon-pencil"></i><span class="tooltiptext">Edit</span></a>
+
+                    <a href="<?= base_url('Material/delete_document_number/'.$data->dnNumber); ?>" onclick="return confirm(<?= $alert; ?>)" class="btn btn-danger btn-xs btn-flat" ><i class="glyphicon glyphicon-trash"></i><span class="tooltiptext">Hapus</span></a></td>
+                </tr>
+              <?php endforeach;?>
+              </tbody>
+              </table>
+                <div class="box-footer text-right">
+                    <button type="submit" class="btn btn-success"><i class="fa fa-check icon-white"></i> Simpan</button>
+                </div>
+                </div>
+            </div>
+            </div>
+    </div>
+    <?php echo form_close();?>
+    <?php endforeach;?>
+    <?php 
+        $number = $this->db->get('document_number')->result();
+        foreach($number as $i):
+        ?>
+    <div class="modal fade" id="modal_edit_number<?php echo $i->dnId;?>" >
+            <div class="modal-dialog2">
+            <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">x</button>
+                <h3 class="modal-title" id="myModalLabel">EDIT DOCUMENT</h3>
+            </div>
+                <div class="modal-body">
+                        <?php echo form_open('Material/edit_document_number', 'class="form-horizontal" method="post" role="form" enctype="multipart/form-data"'); ?>
+                      <div class="form-group" >
+                        <label for="inputEmail3" class="col-sm-4 control-label">Document Number</label>
+                        <div class="col-sm-6">
+                          <input type="text" class="form-control" id="dnNumber" placeholder="" name="dnNumber" value="<?= $i->dnNumber;?>">
+                        </div>
+                      </div>
+                      <div class="form-group" >
+                        <label for="inputEmail3" class="col-sm-4 control-label">Type</label>
+                        <div class="col-sm-6">
+                          <select style="width: 100%" name="dnType" id="dnType" class="select2">
+                            <option value="original">Original</option>
+                            <option value="copy">Copy</option>
+                          </select>
+                        </div>
+                      </div>
+                      <div class="form-group" >
+                        <label for="inputEmail3" class="col-sm-4 control-label">Notes</label>
+                        <div class="col-sm-6">
+                          <input type="text" class="form-control" id="dnNotes" placeholder="" name="dnNotes" value="<?= $i->dnNotes;?>">
+                        </div>
+                      </div>
+                </div>
+                <div class="box-footer text-right">
+                    <button type="submit" class="btn btn-success"><i class="fa fa-check icon-white"></i> Simpan</button>
+                </div>
+                </div>
+            </div>
+            </div>
+    </div>
+    <?php echo form_close();?>
+    <?php endforeach;?>
 <script type="text/javascript">
-  function test(p){
-    alert(p);
-  }
             function get_dcg(p) {
                 var cgId = p;
 
@@ -424,6 +739,12 @@
                 }
               )
             }
+</script>
+<script>
+$(document).ready(function(){
+    // Show the Modal on load
+    
+});
 </script>
 <script>
   var loadFile = function(event) {

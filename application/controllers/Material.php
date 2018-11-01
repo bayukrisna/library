@@ -26,6 +26,22 @@ class Material extends CI_Controller {
 			$data['main_view'] = 'Material/document_view';
 			$this->load->view('template', $data);
 	}
+	public function document_detail($docId)
+	{
+			$data['getCG'] = $this->Master_model->getCG();
+			$data['getDCG'] = $this->Master_model->getDCG();
+			$data['document'] = $this->db->where('document.docId', $docId)->join('detail_catalogue_group', 'detail_catalogue_group.dcgId=document.dcgId')->join('catalogue_group', 'catalogue_group.cgId=detail_catalogue_group.cgId')->get('document')->row();
+			$data['main_view'] = 'Material/document/document_detail_view';
+			$this->load->view('template', $data);
+	}
+	public function document_edit($docId)
+	{
+			$data['getCG'] = $this->Master_model->getCG();
+			$data['getDCG'] = $this->Master_model->getDCG();
+			$data['document'] = $this->db->where('docId', $docId)->join('detail')->get('document')->row();
+			$data['main_view'] = 'Material/document/document_edit_view';
+			$this->load->view('template', $data);
+	}
 	public function add_document()
 	{
 		$docId = $this->db->select('max(docId) as total')
@@ -60,20 +76,14 @@ class Material extends CI_Controller {
 	}
 	public function add_document_number()
 	{
-		foreach($this->cart->contents() as $item){
-			          $data = array(
-			            'docId'    => $item['docId'],
-			            'dnNumber'    => $item['dnNumber'],
-			            'statusId'    => '1',
-			            'dnCondition'    => '1',
-			            'dnType'    => $item['dnType'],
-			            'dnNotes'    => $item['dnNotes'],
-			          );
-			          $this->db->insert('document_number', $data);
-			        }
-		$this->cart->destroy();
-				$this->session->set_flashdata('message', '<div class="alert alert-success"> Data Model berhasil disimpan </div>');
-            	redirect(base_url('Material/document'));	
+		$docId = $this->input->post('docId');
+		if($this->Material_model->add_document_number() == TRUE){
+				$this->session->set_flashdata('message', '<div class="alert alert-success"> Success </div>');
+            	redirect('Material/document_detail/'.$docId);
+			}  else{
+				$this->session->set_flashdata('message', '<div class="alert alert-danger"> '.validation_errors().' </div>');
+            	redirect('Material/document_detail/'.$docId);
+		}
 	}
 	public function destroy(){
 		$this->cart->destroy();
@@ -91,6 +101,16 @@ class Material extends CI_Controller {
             	redirect('Material/document');
 		}
 	}
+	public function edit_document_number(){
+		$docId = $this->input->post('docId');
+		if($this->Material_model->edit_document_number() == TRUE){
+				$this->session->set_flashdata('message', '<div class="alert alert-success"> Success </div>');
+            	redirect('Material/document_detail/'.$docId);
+			}  else{
+				$this->session->set_flashdata('message', '<div class="alert alert-danger"> '.validation_errors().' </div>');
+            	redirect('Material/document_detail/'.$docId);
+		}
+	}
 	public function delete_document($id){
 		if ($this->db->where('docId', $id)->delete('document') == TRUE) {
 			$this->db->where('docId', $id)->delete('document_number');
@@ -101,13 +121,13 @@ class Material extends CI_Controller {
 			redirect('Material/document');
 		}
 	}
-	public function delete_document_number($id){
-		if ($this->db->where('dnNumber', $id)->delete('document_number') == TRUE) {
+	public function delete_document_number($id, $docId){
+		if ($this->db->where('dnId', $id)->delete('document_number') == TRUE) {
 			$this->session->set_flashdata('message', ' <div class="alert alert-success"> Deleted </div>');
-			redirect('Material/document');
+			redirect('Material/document_detail/'.$docId);
 		} else {
 			$this->session->set_flashdata('message', '<div class="alert alert-danger"> '.validation_errors().' </div>');
-			redirect('Material/document');
+			redirect('Material/document_detail/'.$docId);
 		}
 	}
 	public function add_to_cart()

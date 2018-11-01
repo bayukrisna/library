@@ -44,6 +44,28 @@ class Material_model extends CI_Model {
         }
 
     }
+    public function add_document_number()
+    {
+        $data = array(
+            'docId'                        => $this->input->post('docId'),
+            'dnNumber'                        => $this->input->post('dnNumber'),
+            'statusId'                        => '1',
+            'dnCondition'                        => '1',
+            'dnType'                        => $this->input->post('dnType'),
+            'dnNotes'                        => $this->input->post('dnNotes'),
+        );
+    
+        $this->db->insert('document_number', $data);
+
+        if($this->db->affected_rows() > 0){
+            
+                return true;
+        } else {
+            return false;
+            
+        }
+
+    }
     public function edit_document($upload){
         if($upload['file_name'] != null){
           $a =  $upload['file_name']; 
@@ -73,6 +95,23 @@ class Material_model extends CI_Model {
         if (!empty($data)) {
                 $this->db->where('docId', $this->input->post('docId'))
             ->update('document', $data);
+
+              return true;
+            } else {
+                return null;
+            }
+    }
+    public function edit_document_number(){
+        $data = array(
+            'dnNumber'                        => $this->input->post('dnNumber'),
+            'statusId'                        => $this->input->post('statusId'),
+            'dnCondition'                        => $this->input->post('dnCondition'),
+            'dnType'                        => $this->input->post('dnType'),
+            'dnNotes'                        => $this->input->post('dnNotes')
+        );
+        if (!empty($data)) {
+                $this->db->where('dnId', $this->input->post('dnId'))
+            ->update('document_number', $data);
 
               return true;
             } else {
