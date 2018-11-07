@@ -22,6 +22,7 @@ class Material extends CI_Controller {
 	{
 			$data['getCG'] = $this->Master_model->getCG();
 			$data['getDCG'] = $this->Master_model->getDCG();
+			$data['getCampus'] = $this->Master_model->getCampus();
 			$data['document'] = $this->Master_model->getDocument();
 			$data['main_view'] = 'Material/document_view';
 			$this->load->view('template', $data);
@@ -30,6 +31,7 @@ class Material extends CI_Controller {
 	{
 			$data['getCG'] = $this->Master_model->getCG();
 			$data['getDCG'] = $this->Master_model->getDCG();
+			$data['getCampus'] = $this->Master_model->getCampus();
 			$data['document'] = $this->db->where('document.docId', $docId)->join('detail_catalogue_group', 'detail_catalogue_group.dcgId=document.dcgId')->join('catalogue_group', 'catalogue_group.cgId=detail_catalogue_group.cgId')->get('document')->row();
 			$data['main_view'] = 'Material/document/document_detail_view';
 			$this->load->view('template', $data);
@@ -38,7 +40,7 @@ class Material extends CI_Controller {
 	{
 			$data['getCG'] = $this->Master_model->getCG();
 			$data['getDCG'] = $this->Master_model->getDCG();
-			$data['document'] = $this->db->where('docId', $docId)->join('detail')->get('document')->row();
+			$data['document'] = $this->db->where('docId', $docId)->get('document')->row();
 			$data['main_view'] = 'Material/document/document_edit_view';
 			$this->load->view('template', $data);
 	}
@@ -60,6 +62,7 @@ class Material extends CI_Controller {
 			            'statusId'    => '1',
 			            'dnCondition'    => '1',
 			            'dnType'    => $item['dnType'],
+			            'campusId'    => $item['campusId'],
 			            'dnNotes'    => $item['dnNotes'],
 			          );
 			          $this->db->insert('document_number', $data);
@@ -140,6 +143,7 @@ class Material extends CI_Controller {
 			        'name'    => 'buku',
 			        'dnNumber' => $this->input->post('dnNumber'),
 			        'dnType' => $this->input->post('dnType'),
+			        'campusId' => $this->input->post('campusId'),
 			        'dnNotes' => $this->input->post('dnNotes'),
 			);
 			$this->cart->insert($data);
@@ -158,6 +162,7 @@ class Material extends CI_Controller {
 			        'dnNumber' => $this->input->post('dnNumber'),
 			        'docId' => $this->input->post('docId'),
 			        'dnType' => $this->input->post('dnType'),
+			        'campusId' => $this->input->post('campusId'),
 			        'dnNotes' => $this->input->post('dnNotes'),
 			);
 			$this->cart->insert($data);
@@ -194,6 +199,7 @@ class Material extends CI_Controller {
 	//===================================================================================\\
 	public function locker(){
 		$data['locker'] = $this->Master_model->getLocker();
+		$data['getCampus'] = $this->Master_model->getCampus();
 		$data['main_view'] = 'Material/locker_view';
 		$this->load->view('template', $data);
 	}

@@ -139,21 +139,20 @@ a:hover .tooltiptext {
               <!-- User image -->
               <li class="user-header" style="background-color: maroon">
                 <img src="<?php echo base_url(); ?>/assets/img/JIC-WHITE-02.png" class="img-circle" alt="User Image">
-
                 <p>
-                  <?php echo $this->session->userdata('username'); ?>
-                  <small>JIC | SISTEM SARANA & PRASARANA</small>
+                  <?php echo $this->session->userdata('group'); ?>
+                  <small>JIC | Library</small>
                 </p>
               </li>
               <!-- Menu Body -->
               
               <!-- Menu Footer-->
               <li class="user-footer">
-                <div class="pull-left">
+                <div class="pull-left" style="display: none">
                   <a href="<?php echo base_url(); ?>admin/user_log/<?php echo $this->session->userdata('id_user'); ?>" class="btn btn-default fa fa-detail">History</a>
                 </div>
                 <div class="pull-right">
-                  <a href="<?php echo base_url(); ?>user/logout" class="btn btn-default fa fa-sign-out">Logout</a>
+                  <a href="<?php echo base_url(); ?>login/logout" class="btn btn-default fa fa-sign-out">Logout</a>
                 </div>
               </li>
             </ul>
@@ -175,7 +174,7 @@ a:hover .tooltiptext {
         <li class="header">MAIN NAVIGATION</li>
          <li <?php if($this->uri->segment(1) == 'dashboard') echo 'class="active"'; else echo  '';?>><a href="<?php echo base_url(); ?>dashboard"><i class="fa fa-dashboard"></i><span>Dashboard</span></a></li>
         
-        <li class="treeview <?php if($this->uri->segment(2) == 'catalogue' OR $this->uri->segment(1) == 'master' OR $this->uri->segment(2) == 'detail_catalogue' OR $this->uri->segment(2) == 'vendor' OR $this->uri->segment(2) == 'status' OR $this->uri->segment(2) == 'campus' AND $this->uri->segment(2) == '') echo 'active'; else echo  '';?>">
+        <li class="treeview <?php if($this->uri->segment(2) == 'catalogue' OR $this->uri->segment(2) == 'member' OR $this->uri->segment(1) == 'master' OR $this->uri->segment(2) == 'detail_catalogue' OR $this->uri->segment(2) == 'vendor' OR $this->uri->segment(2) == 'status' OR $this->uri->segment(2) == 'campus' AND $this->uri->segment(2) == '') echo 'active'; else echo  '';?>">
           <a href="#">
             <i class="fa fa-dashboard"></i> <span>MASTER</span>
             <span class="pull-right-container">
@@ -183,6 +182,7 @@ a:hover .tooltiptext {
             </span>
           </a>
           <ul class="treeview-menu">
+            <li <?php if($this->uri->segment(2) == 'member') echo 'class="active"'; else echo  '';?>><a href="<?php echo base_url(); ?>master/member"><i class="fa fa-circle-o"></i>MEMBER</a></li>
             <li <?php if($this->uri->segment(2) == 'catalogue') echo 'class="active"'; else echo  '';?>><a href="<?php echo base_url(); ?>master/catalogue"><i class="fa fa-circle-o"></i>CATALOGUE GROUP</a></li>
             <li <?php if($this->uri->segment(2) == 'detail_catalogue') echo 'class="active"'; else echo  '';?>><a href="<?php echo base_url(); ?>master/detail_catalogue"><i class="fa fa-circle-o"></i>DETAIL CATALOGUE</a></li>
             <li <?php if($this->uri->segment(2) == 'vendor') echo 'class="active"'; else echo  '';?>><a href="<?php echo base_url(); ?>master/vendor"><i class="fa fa-circle-o"></i>VENDOR</a></li>
@@ -204,7 +204,7 @@ a:hover .tooltiptext {
             <li <?php if($this->uri->segment(2) == 'locker') echo 'class="active"'; else echo  '';?>><a href="<?php echo base_url(); ?>Material/locker"><i class="fa fa-circle-o"></i>LOCKER</a></li>
           </ul>
         </li>
-        <li class="treeview <?php if($this->uri->segment(1) == 'Anggota' AND $this->uri->segment(2) == '' OR $this->uri->segment(2) == 'detail_anggota') echo 'active'; else echo  '';?>">
+        <li class="treeview <?php if($this->uri->segment(1) == 'Transaction') echo 'active'; else echo  '';?>">
           <a href="#">
             <i class="fa fa-dashboard"></i> <span>TRANSACTION</span>
             <span class="pull-right-container">
@@ -412,8 +412,8 @@ a:hover .tooltiptext {
 
 <!-- iCheck 1.0.1 -->
 <script src="<?php echo base_url(); ?>assets/plugins/iCheck/icheck.min.js"></script>
-<!-- FastClick -->
 
+<!-- FastClick -->
 <script>
   $(function () {
     //Initialize Select2 Elements

@@ -12,16 +12,22 @@ class Dashboard_model extends CI_Model {
 
      public function dashboard_admin(){
      	$t_document = $this->db->select('count(*) as total')
-	                ->get('books')
+	                ->get('document')
 	                ->row();
-	    $t_late = $this->db->select('count(*) as total')
-	    			->where('due_date <', date('Y-m-d'))
-	    			->where('date_return')
-	                ->get('detail_of_borrow')
+		$t_document_number = $this->db->select('count(*) as total')
+	                ->get('document_number')
+	                ->row();	                
+	    $t_cd = $this->db->select('count(*) as total')
+	                ->get('cd')
+	                ->row();
+	    $t_user = $this->db->select('count(*) as total')
+	                ->get('user')
 	                ->row();
 	    return array(
 	      't_document' => $t_document->total,
-	      't_late' => $t_late->total
+	      't_document_number' => $t_document_number->total,
+	      't_cd' => $t_cd->total,
+	      't_user' => $t_user->total
 	      );
 	  }
 	public function data_log(){

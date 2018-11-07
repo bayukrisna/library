@@ -14,7 +14,7 @@ class Transaction_model extends CI_Model {
      $this->db->select('*');
      $this->db->from('user');
      $this->db->like('user.userUsername',$nama);
-     $this->db->or_like('user.userId',$nama);
+     $this->db->or_like('user.userStudentId',$nama);
      $query = $this->db->get();
      return $query->result();
     }
@@ -45,7 +45,7 @@ class Transaction_model extends CI_Model {
     }
     public function data_book_user($id_user){
         return $this->db->join('transaction_detail', 'transaction_detail.transId = transaction.transId', 'left')
-                        ->join('document_number', 'document_number.dnId = transaction_detail.docId', 'left')
+                        ->join('document_number', 'document_number.dnId = transaction_detail.dnId', 'left')
                         ->join('document', 'document.docId = document_number.docId', 'left')
                         ->join('cd', 'cd.cdId = transaction_detail.cdId', 'left')
                         ->join('locker', 'locker.lockerId = transaction_detail.lockerId', 'left')
@@ -67,7 +67,7 @@ class Transaction_model extends CI_Model {
         $data = array(
             'transId' => $this->input->post('transId'),
             'userId' => $this->input->post('userId'),
-            'transBorrowingDate' => date('Y-m-d')
+            'transBorrowingDate' => $this->input->post('borrow_date')
         );
     
         $this->db->insert('transaction', $data);
@@ -113,18 +113,20 @@ class Transaction_model extends CI_Model {
             'tdStatus' => $this->input->post('tdStatus'),
             'tdNotes' => $this->input->post('tdNotes')
         );
-        // $data2 = array('id_bs' => '2');
-        // $data3 = array('id_bookstatus' => '1');
+        if($this->input->post('filter') == 'doc'){
+            $statusBook = array('statusId' => '1', 'dnCondition' => '2', 'dnNotes' => $this->input->post('notes'));
+            $this->db->where('dnId', $this->input->post('nomor'))
+            ->update('document_number', $statusBook);
+        } else if($this->input->post('filter') == 'locker'){
+            $locker = array('statusId' => '1', 'lockerNotes' => $this->input->post('notes'));
+            $this->db->where('lockerId', $this->input->post('nomor'))
+            ->update('locker', $locker);
+        }
 
         $this->db->where('tdId', $this->input->post('tdId'))
             ->update('transaction_detail', $data);
 
         if($this->db->affected_rows() > 0){
-            // $this->db->where('id_detail_borrow', $this->input->post('id_detail_borrow'))
-            // ->update('detail_of_borrow', $data2);
-
-            // $this->db->where('no_inventory', $data['no_inventory'])
-            // ->update('booknumber', $data3);
                 return true;
         } else {
             return false;

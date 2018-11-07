@@ -145,7 +145,7 @@
                   <label for="inputPassword3" class="col-sm-3 control-label">Date Purchasing</label>
 
                   <div class="col-sm-8">
-                    <input type="text" class="form-control" id="docPurchaseDate" name="docPurchaseDate" placeholder="" value="<?= $document->docPurchaseDate; ?>">
+                    <input type="date" class="form-control" id="docPurchaseDate" name="docPurchaseDate" placeholder="" value="<?= $document->docPurchaseDate; ?>">
                   </div>
                 </div>
                 <div class="form-group" >

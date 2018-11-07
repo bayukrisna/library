@@ -1,3 +1,4 @@
+      
       <section class="content">
       <div class="row">
         <div class="col-xs-12">
@@ -5,6 +6,7 @@
           <div class="box">
             <div class="box-header with-border">
               <h3 class="box-title">LOCKER KEY</h3>
+              
             </div>
 
             
@@ -19,6 +21,7 @@
                 <th width="1%" >No.</th>
                 <th width="10%" >Locker Number</th>
                 <th width="10%" >Locker Notes</th>
+                <th width="10%" >Status</th>
                 <th width="1%">Aksi</th>
               </tr>
               </thead>
@@ -33,6 +36,7 @@
                   <td><?php echo ++$no;?></td>
                     <td><?php echo $data->lockerNumber;?></td>
                     <td><?php echo $data->lockerNotes;?></td>
+                    <td><?php echo $data->statusId;?></td>
                     <td>
                       
                       
@@ -74,6 +78,25 @@
                         
                     </div>
                 </div>
+                <div class="form-group" >
+                        <label for="inputEmail3" class="col-sm-3 control-label">Campus Location</label>
+                        <div class="col-sm-7">
+                          <select style="width: 100%" name="campusId" id="campusId" class="select2">
+                            <option value="" selected="selected"> Choose Campus Location </option>
+                                      <?php 
+                                      $a = $this->session->userdata('campusId');
+                                    foreach($getCampus as $row)
+                                    { 
+                                      $c = '';
+                                      if($row->campusId == $a){
+                                        $c = 'selected=" "';
+                                      }
+                                      echo '<option '.$c.' value="'.$row->campusId.'">'.$row->campusName.'</option>';
+                                    }
+                                    ?>
+                          </select>
+                        </div>
+                </div>
                 <div class="form-group ">
                     <label for="name" class="col-md-3 control-label">Notes</label>
                     <div class="col-md-7 col-sm-12 required">
@@ -109,10 +132,39 @@
                         
                     </div>
                 </div>
+                <div class="form-group" >
+                        <label for="inputEmail3" class="col-sm-3 control-label">Campus Location</label>
+                        <div class="col-sm-7">
+                          <select style="width: 100%" name="campusId" id="campusId" class="select2">
+                            <option value="" selected="selected"> Choose Campus Location </option>
+                                      <?php 
+                                      $a = $this->session->userdata('campusId');
+                                    foreach($getCampus as $row)
+                                    { 
+                                      $c = '';
+                                      if($row->campusId == $i->campusId){
+                                        $c = 'selected=" "';
+                                      }
+                                      echo '<option '.$c.' value="'.$row->campusId.'">'.$row->campusName.'</option>';
+                                    }
+                                    ?>
+                          </select>
+                        </div>
+                </div>
+                <div class="form-group" >
+                        <label for="inputEmail3" class="col-sm-3 control-label">Status</label>
+                        <div class="col-sm-7">
+                          <select style="width: 100%" name="statusId" id="statusId" class="select2">
+                            <option value="1" <?php if($i->statusId == '1'){echo 'selected=""';} ?> > Available </option>
+                            <option value="2" <?php if($i->statusId == '2'){echo 'selected=""';} ?>> Non Available </option>
+                            <option value="3" <?php if($i->statusId == '3'){echo 'selected=""';} ?>> Lost </option>
+                          </select>
+                        </div>
+                </div>
                 <div class="form-group ">
                     <label for="name" class="col-md-3 control-label">Notes</label>
                     <div class="col-md-7 col-sm-12 required">
-                        <input class="form-control" type="text" name="lockerNotes" value="<?php echo $i->lockerNotes ?>" required="" />
+                        <input class="form-control" type="text" name="lockerNotes" value="<?php echo $i->lockerNotes ?>"  />
                         
                     </div>
                 </div>
@@ -126,5 +178,45 @@
     <?php echo form_close();?>
      <?php endforeach;?>
 
+<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Submit Masukan Paket </h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <form>
+          <div class="form-group">
+            <label for="recipient-name" class="form-control-label">Nama Paket:</label>
+            <input type="text" class="form-control" id="recipient-name">
+          </div>
+          <div class="form-group">
+            <label for="message-text" class="form-control-label">Kesan Belajar:</label>
+            <textarea class="form-control" id="message-text"></textarea>
+          </div>
+        </form>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+        <button type="button" class="btn btn-primary">Send message</button>
+      </div>
+    </div>
+  </div>
+</div>
+<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.11.0/umd/popper.min.js" integrity="sha384-b/U6ypiBEHpOf/4+1nzFpr53nxSS+GLCkfwBdFNTxtclqqenISfwAzpKaMNFNmj4" crossorigin="anonymous"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta/js/bootstrap.min.js" integrity="sha384-h0AbiXch4ZDo7tp9hKZ4TsHbi047NrKGLO3SEJAg45jXxnGIfYzk4Si90RDIqNm1" crossorigin="anonymous"></script>
+<script>
+  $('#exampleModal').on('show.bs.modal', function (event) {
+    var button = $(event.relatedTarget) 
+    var recipient = button.data('id')
+    var modal = $(this)
 
+    modal.find('.modal-body #recipient-name').val(recipient)
+    modal.find('.modal-body #message-text').val(recipient)
+  })
+</script>
 

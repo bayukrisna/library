@@ -221,4 +221,67 @@ class Master extends CI_Controller {
             	redirect('Master/key');
 		}
 	}
+	//===================================================================================\\
+	//===================================================================================\\
+	public function member(){
+		$data['member'] = $this->Master_model->getMember();
+		$data['getUserStatus'] = $this->Master_model->getUserStatus();
+		$data['getCampus'] = $this->Master_model->getCampus();
+		$data['main_view'] = 'Master/member_view';
+		$this->load->view('template', $data);
+	}
+	public function member_edit($id){
+		$data['member'] = $this->db->where('userId', $id)->join('user_category', 'user_category.ucId=user.ucId')->get('user')->row();
+		$data['getUserStatus'] = $this->Master_model->getUserStatus();
+		$data['getUC'] = $this->Master_model->get_uc_by_us($data['member']->usId);
+		$data['getCampus'] = $this->Master_model->getCampus();
+		$data['main_view'] = 'Master/Member/member_edit_view';
+		$this->load->view('template', $data);
+	}
+	public function add_member(){
+		$config['upload_path'] = './uploads/';
+        $config['allowed_types'] = 'jpg|png|jpeg';
+        $this->load->library('upload', $config);
+        $this->upload->do_upload('image');
+		if($this->Master_model->add_member($this->upload->data()) == TRUE){
+				$this->session->set_flashdata('message', '<div class="alert alert-success"> Success </div>');
+            	redirect('Master/member');
+			}  else{
+				$this->session->set_flashdata('message', '<div class="alert alert-danger"> '.validation_errors().' </div>');
+            	redirect('Master/member');
+		}
+	}
+	public function delete_member($id){
+		if ($this->db->where('userId', $id)->delete('user') == TRUE) {
+			$this->session->set_flashdata('message', ' <div class="alert alert-success"> Deleted </div>');
+			redirect('Master/member');
+		} else {
+			$this->session->set_flashdata('message', '<div class="alert alert-danger"> '.validation_errors().' </div>');
+			redirect('Master/member');
+		}
+	}
+	public function edit_member(){
+		$config['upload_path'] = './uploads/';
+        $config['allowed_types'] = 'jpg|png|jpeg';
+        $this->load->library('upload', $config);
+        $this->upload->do_upload('image');
+		if($this->Master_model->edit_member($this->upload->data()) == TRUE){
+				$this->session->set_flashdata('message', '<div class="alert alert-success"> Success </div>');
+            	redirect('Master/member');
+			}  else{
+				$this->session->set_flashdata('message', '<div class="alert alert-danger"> '.validation_errors().' </div>');
+            	redirect('Master/member');
+		}
+	}
+	public function get_uc_by_us($param = NULL) {
+		$usId = $param;
+		$result = $this->Master_model->get_uc_by_us($usId);
+		$option = "";
+		$option .= '<option value=""> Choose Cathegory </option>';
+		foreach ($result as $data) {
+			$option .= "<option value='".$data->ucId."' >".$data->ucCategory."</option>";
+		}
+		echo $option;
+
+	}
 }

@@ -5,6 +5,7 @@
           <div class="box">
             <div class="box-header with-border">
               <h3 class="box-title">DOCUMENT</h3>
+              <a href="<?= base_url('Material/document_edit/'.$this->uri->segment('3')); ?>" class="btn btn-warning btn-xs pull-right" ><i class="glyphicon glyphicon-pencil"></i><span class="tooltiptext">Edit</span></a>
             </div>
 
             
@@ -130,8 +131,8 @@
                       <div class="form-group" >
                         <label for="inputEmail3" class="col-sm-4 control-label">Document Number</label>
                         <div class="col-sm-6">
-                          <input type="text" name="docId" value="<?= $data->docId; ?>">
-                          <input type="text" name="dnId" value="<?= $i->dnId; ?>">
+                          <input type="hidden" name="docId" value="<?= $data->docId; ?>">
+                          <input type="hidden" name="dnId" value="<?= $i->dnId; ?>">
                           <input type="text" class="form-control" id="dnNumber" placeholder="" name="dnNumber" value="<?= $i->dnNumber;?>">
                         </div>
                       </div>
@@ -141,6 +142,25 @@
                           <select style="width: 100%" name="dnType" id="dnType" class="select2">
                             <option value="original" <?php if($i->dnType == 'original'){echo 'selected=" "';}?>>Original</option>
                             <option value="copy" <?php if($i->dnType == 'copy'){echo 'selected=" "';}?>>Copy</option>
+                          </select>
+                        </div>
+                      </div>
+                      <div class="form-group" >
+                        <label for="inputEmail3" class="col-sm-4 control-label">Campus Location</label>
+                        <div class="col-sm-6">
+                          <select style="width: 100%" name="campusId" id="campusId" class="select2">
+                            <option value="" selected="selected"> Choose Campus Location </option>
+                                      <?php 
+                                      $a = $this->session->userdata('campusId');
+                                    foreach($getCampus as $row)
+                                    { 
+                                      $c = '';
+                                      if($row->campusId == $i->campusId){
+                                        $c = 'selected=" "';
+                                      }
+                                      echo '<option '.$c.' value="'.$row->campusId.'">'.$row->campusName.'</option>';
+                                    }
+                                    ?>
                           </select>
                         </div>
                       </div>
@@ -155,7 +175,7 @@
                         </div>
                       </div>
                       <div class="form-group" >
-                        <label for="inputEmail3" class="col-sm-4 control-label">Status</label>
+                        <label for="inputEmail3" class="col-sm-4 control-label">Condition</label>
                         <div class="col-sm-6">
                           <select class="select2" style="width: 100%" name="dnCondition">
                             <option value="1" <?php if($i->dnCondition == '1'){echo 'selected=" "';}?> >New</option>
@@ -194,7 +214,7 @@
                <div class="form-group" >
                         <label for="inputEmail3" class="col-sm-4 control-label">Document Number</label>
                         <div class="col-sm-6">
-                          <input type="text" name="docId" value="<?= $document->docId?>">
+                          <input type="hidden" name="docId" value="<?= $document->docId?>">
                           <input type="text" class="form-control" id="dnNumber" placeholder="" name="dnNumber">
                         </div>
                       </div>
@@ -204,6 +224,25 @@
                           <select style="width: 100%" name="dnType" id="dnType" class="select2">
                             <option value="original">Original</option>
                             <option value="copy">Copy</option>
+                          </select>
+                        </div>
+                      </div>
+                      <div class="form-group" >
+                        <label for="inputEmail3" class="col-sm-4 control-label">Campus Location</label>
+                        <div class="col-sm-6">
+                          <select style="width: 100%" name="campusId" id="campusId" class="select2">
+                            <option value="" selected="selected"> Choose Campus Location </option>
+                                      <?php 
+                                      $a = $this->session->userdata('campusId');
+                                    foreach($getCampus as $row)
+                                    { 
+                                      $c = '';
+                                      if($row->campusId == $a){
+                                        $c = 'selected=" "';
+                                      }
+                                      echo '<option '.$c.' value="'.$row->campusId.'">'.$row->campusName.'</option>';
+                                    }
+                                    ?>
                           </select>
                         </div>
                       </div>

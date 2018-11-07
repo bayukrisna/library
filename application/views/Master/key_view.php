@@ -82,10 +82,14 @@
                         <select class="select2" style="width:100%" name="campusId" id="campusId">
                             <option value="" selected="selected"> Choose Campus Location </option>
                                       <?php 
-
+                                      $a = $this->session->userdata('campusId');
                                     foreach($getCampus as $row)
                                     { 
-                                      echo '<option value="'.$row->campusId.'">'.$row->campusName.'</option>';
+                                      $c = '';
+                                      if($row->campusId == $i->campusId){
+                                        $c = 'selected=" "';
+                                      }
+                                      echo '<option '.$c.' value="'.$row->campusId.'">'.$row->campusName.'</option>';
                                     }
                                     ?>
                         </select>

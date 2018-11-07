@@ -78,7 +78,6 @@
                 <div class="col-md-6">
               <div class="form-group" >
                   <label for="inputEmail3" class="col-sm-3 control-label">Id Number</label>
-
                   <div class="col-sm-8">
                     <input type="text" class="form-control" id="docNumber" name="docNumber" placeholder="">
                   </div>
@@ -191,7 +190,7 @@
                   <label for="inputPassword3" class="col-sm-3 control-label">Date Purchasing</label>
 
                   <div class="col-sm-8">
-                    <input type="text" class="form-control" id="docPurchaseDate" name="docPurchaseDate" placeholder="">
+                    <input type="date" class="form-control" id="docPurchaseDate" name="docPurchaseDate" placeholder="">
                   </div>
                 </div>
                 <div class="form-group" >
@@ -228,6 +227,25 @@
                           <select style="width: 100%" name="dnType" id="dnType" class="select2">
                             <option value="original">Original</option>
                             <option value="copy">Copy</option>
+                          </select>
+                        </div>
+                      </div>
+                      <div class="form-group" >
+                        <label for="inputEmail3" class="col-sm-4 control-label">Campus Location</label>
+                        <div class="col-sm-6">
+                          <select style="width: 100%" name="campusId" id="campusId" class="select2">
+                            <option value="" selected="selected"> Choose Campus Location </option>
+                                      <?php 
+                                      $a = $this->session->userdata('campusId');
+                                    foreach($getCampus as $row)
+                                    { 
+                                      $c = '';
+                                      if($row->campusId == $a){
+                                        $c = 'selected=" "';
+                                      }
+                                      echo '<option '.$c.' value="'.$row->campusId.'">'.$row->campusName.'</option>';
+                                    }
+                                    ?>
                           </select>
                         </div>
                       </div>

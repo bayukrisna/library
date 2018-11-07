@@ -5,12 +5,12 @@
             <div class="form-horizontal">
             <div class="box-body">
                 <table class="table" align="center">
-                  <h4 align="center"><b><?= $data->userUsername; ?></b></h4>
+                  <h4 align="center"><b><?= $data->userUsername; ?>(<?= $data->userStudentId; ?>)</b></h4>
                   <tr>
                     <td width="60px">Status </td><td>: <?= $data->userStatus; ?></td>
                     <td width="10px">Sex </td><td>: <?= $data->sexName; ?></td>
                     <td width="102px">Address </td><td>: <?= $data->userAddress; ?></td>
-                    <td rowspan="3" width="100px"><img height="100" width="100" class="pull-right" width="40%" src="<?php echo base_url(); ?>uploads/" alt="Photo" onerror="this.src='<?php echo base_url();?>uploads/book.jpg'" src="#" alt="Your Image" ></td>
+                    <td rowspan="3" width="100px"><img height="100" width="100" class="pull-right" width="40%" src="<?php echo base_url(); ?>uploads/<?=$data->userImage ?>" alt="Photo" onerror="this.src='<?php echo base_url();?>uploads/book.jpg'" src="#" alt="Your Image" ></td>
                   </tr>
                   <tr>
                     <td>City</td><td>: <?= $data->userCity; ?></td>
@@ -63,12 +63,12 @@
                       if($items->cdId != null){
                         $title = 'CD';
                         $no = $items->cdNumber;
-                      } else if($items->docId != null){
+                      } else if($items->dnId != null){
                         $title = $items->docTitle;
                         $no = $items->docNumber.'-'.$items->dnNumber;
                       } else {
                         $title = 'Locker Key';
-                        $no = $items->lockerId;
+                        $no = $items->lockerNumber;
                       }
                     ?>
                   <tr>
@@ -103,12 +103,22 @@
                   </header> -->
                   <input type="hidden" name="transId" value="<?= $noTrans ?>">
                   <input type="hidden" name="userId" value="<?= $this->uri->segment(3) ?>">
+                  <?php $cart_check = $this->cart->contents();
+                  if(!empty($cart_check)) {?>
+                  <div class="form-group ">
+                      <label for="name" class="col-md-3 control-label">Borrow Date</label>
+                      <div class="col-md-7 col-sm-12 required">
+                          <input type="date" name="borrow_date" class="form-control" value="<?= date('Y-m-d') ?>">
+                      </div>
+                  </div>
+                  
+                  <?php } ?> 
+                  
                   <thead>
                   <tr>
                     <th width="5%">#</th>
-                    <th>Type</th>
+                    <th width="10%">Type</th>
                     <th>No</th>
-                    <th>Date of Borrow</th>
                     <th>Due Date</th>
                     <th width="5%"></th>
                   </tr>
@@ -118,11 +128,16 @@
                       $i=0;
                       foreach ($this->cart->contents() as $items) :
                       if($items['filter'] == 'cd'){
-                        $no = $items['cdId'];
+                        $cd = $this->db->where('cdId', $items['cdId'])->get('cd')->row();
+                        $no = $cd->cdNumber;
                       } else if($items['filter'] == 'doc'){
-                        $no = $items['docId'];
+                        $doc = $this->db->where('dnId', $items['dnId'])
+                                ->join('document', 'document.docId=document_number.docId')
+                                ->get('document_number')->row();
+                        $no = $doc->docNumber.'-'.$doc->dnNumber;
                       } else if($items['filter'] == 'locker'){
-                        $no = $items['lockerId'];
+                        $locker = $this->db->where('lockerId', $items['lockerId'])->get('locker')->row();
+                        $no = $locker->lockerNumber;
                       }
                       $i++;
                     ?>
@@ -130,7 +145,6 @@
                     <td><?= $i?></td>
                     <td><?= $items['filter']?></td>
                     <td><?= $no ?></td>
-                    <td><?= date('Y-m-d') ?></td>
                     <td><?= $items['due_date'] ?></td>
                     <td><button  type="button" title="Delete data" class="btn btn-xs btn-danger fa fa-close" onclick="delete_cart(this.value)" value="<?= $items['rowid']?>"></button></td>
                   </tr>
@@ -144,10 +158,10 @@
           <div align="center">
           <?php $cart_check = $this->cart->contents();
                 if(empty($cart_check)) {
-                echo '<button type="submit" class="btn btn-success" disabled> Simpan </button>';
+                echo '<button type="submit" class="btn btn-success" disabled> Save </button>';
                 
                 } else {
-                  echo '<button type="submit" class="btn btn-success" > Simpan </button>';
+                  echo '<button type="submit" class="btn btn-success" > Save </button>';
 
                 } ?> 
             </div>
@@ -161,7 +175,7 @@
               <div class="modal-content">
                 <div class="modal-header">
                   <button type="button" class="close" data-dismiss="modal" aria-hidden="true">x</button>
-                  <h3 class="modal-title" id="myModalLabel">ADD BOOK</h3>
+                  <h3 class="modal-title" id="myModalLabel">ADD TRANSACTION</h3>
                 </div>
                 <div class="modal-body">
                   <form id="form_ajax" class="form-horizontal" method="post" role="form" enctype="multipart/form-data">
@@ -205,6 +219,7 @@
                       <label for="name" class="col-md-3 control-label">Book</label>
                       <div class="col-md-7 col-sm-12 required">
                         <select class="select2" style="width:100%" name="id_number" id="id_number" onchange="book_number(this.value)">
+                          <option></option>
                           <?php foreach ($getBook as $row) {
                             echo '<option value="'.$row->docId.'">'.$row->docTitle.'</option>';
                           }
@@ -215,7 +230,7 @@
                   <div class="form-group ">
                       <label for="name" class="col-md-3 control-label">Book Number</label>
                       <div class="col-md-7 col-sm-12 required">
-                        <select class="select2" style="width:100%" name="bookNumber" id="bookNumber" >
+                        <select class="select2" style="width:100%" name="dnId" id="dnId" >
                         </select>
                       </div>
                   </div>
@@ -227,7 +242,7 @@
                       </div>
                   </div>
                   <div class="box-footer text-right">
-                    <button type="button" onclick="simpan_cart()" class="btn btn-success"><i class="fa fa-plus icon-white"> Renewal </i></button>
+                    <button type="button" onclick="simpan_cart()" class="btn btn-success"><i class="fa fa-plus icon-white"> Save </i></button>
                   </div> 
 
                 </div>
@@ -272,19 +287,38 @@
           $datetime2 = date_create($i->tdDueDate);
           $interval = date_diff($datetime1, $datetime2);
           $due_date = $interval->format('%a');
+          if($i->cdId != null){
+                        $title = 'cd';
+                        $no = $i->cdId;
+                        $col = 'cdId';
+                        $notes = $i->cdNotes;
+                      } else if($i->dnId != null){
+                        $title = 'doc';
+                        $no = $i->dnId;
+                        $col = 'dnId';
+                        $notes = $i->dnNotes;
+                      } else {
+                        $title = 'locker';
+                        $no = $i->lockerId;
+                        $col = 'lockerId';
+                        $notes = $i->lockerNotes;
+                      }
+          $riwayat = $this->db->where($col, $no)->where('tdNotes !=', ' ')->get('transaction_detail')->result();
         ?>
         <div class="modal fade" id="modal_deduct<?= $i->tdId?>" >
             <div class="modal-dialog">
               <div class="modal-content">
                 <div class="modal-header">
                   <button type="button" class="close" data-dismiss="modal" aria-hidden="true">x</button>
-                  <h3 class="modal-title" id="myModalLabel">RETURN BOOK</h3>
+                  <h3 class="modal-title" id="myModalLabel">RETURN BOOK <?= $no ?></h3>
                 </div>
                 <div class="modal-body">
                   <?php echo form_open('Transaction/simpan_deduct/'.$this->uri->segment(3), ' method="post" class="form-horizontal" role="form" enctype="multipart/form-data" '); ?>
                   <div class="form-group ">
                       <label for="name" class="col-md-3 control-label">Id User</label>
                       <div class="col-md-7 col-sm-12 required">
+                        <input type="hidden" name="filter" value="<?= $title; ?>">
+                        <input type="hidden" name="nomor" value="<?= $no; ?>">
                           <input type="text" name="userId" class="form-control" value="<?= $i->userId?>" readonly>
                           <input type="hidden" name="tdId" class="form-control" value="<?= $i->tdId?>" readonly>
                       </div>
@@ -309,6 +343,12 @@
                       <label for="name" class="col-md-3 control-label">Deduct</label>
                       <div class="col-md-7 col-sm-12 required">
                           <textarea name="tdNotes" class="form-control" rows="3"></textarea>
+                      </div>
+                  </div>
+                  <div class="form-group ">
+                      <label for="name" class="col-md-3 control-label">History</label>
+                      <div class="col-md-7 col-sm-12 required">
+                          <textarea name="notes" class="form-control" rows="3" ><?= $notes;  ?></textarea>
                       </div>
                   </div>
                   <div class="box-footer text-right">
@@ -349,7 +389,7 @@
                     type: 'GET',
                     dataType: 'html',
                     success: function(msg) {
-                        $("#bookNumber").html(msg);
+                        $("#dnId").html(msg);
 
                     }
                 });

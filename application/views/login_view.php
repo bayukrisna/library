@@ -18,7 +18,7 @@
           <div class="panel panel-default">
             <div class="panel-heading"><h4>Sistem Informasi Akademik</h4></div>
               <div class="panel-body">
-              <form action="<?php echo base_url('user/login'); ?>" name="form-login" id="form-login" method="post" onsubmit="return validateForm()">
+              <form action="<?php echo base_url('login/login'); ?>" name="form-login" id="form-login" method="post" onsubmit="return validateForm()">
                 <div class="input-group">
                   <span class="input-group-addon"><i class="glyphicon glyphicon-envelope"></i></span>
                   <input type="text" id="username" name="username" autofocus value="" required="" placeholder="Username" class="form-control" />

@@ -18,12 +18,26 @@ class Master_model extends CI_Model {
      return $this->db->get('detail_catalogue_group')
                     ->result();
     }
+    public function getUserStatus(){
+     return $this->db->get('user_status')
+                    ->result();
+   }
+   public function get_uc_by_us($usId){
+     return $this->db->where('usId', $usId)
+                    ->get('user_category')
+                    ->result();
+   }
     public function getCampus(){
      return $this->db->get('campus')
                     ->result();
     }
     public function getVendor(){
      return $this->db->get('vendor')
+                    ->result();
+    }
+    public function getMember(){
+     return $this->db->join('sex', 'sex.sexId=user.sexId')
+                    ->get('user')
                     ->result();
     }
     public function getStatus(){
@@ -34,10 +48,15 @@ class Master_model extends CI_Model {
      return $this->db->get('locker')
                     ->result();
     }
+    public function getLockerAvailable(){
+     return $this->db->where('statusId', '1')
+                    ->get('locker')
+                    ->result();
+    }
     public function getDocument(){
      return $this->db
                     ->join('detail_catalogue_group', 'detail_catalogue_group.dcgId=document.dcgId', 'left')
-                    ->order_by('docId', 'asc')
+                    ->order_by('docId', 'desc')
                     ->get('document')
                     ->result();
     }
@@ -252,6 +271,62 @@ class Master_model extends CI_Model {
                 return null;
             }
     }
+    //===================================================================================\\
+    //===================================================================================\\
+    public function add_member($upload)
+    {
+        $data = array(
+            'userStudentId'                        => $this->input->post('userStudentId'),
+            'userUsername'                        => $this->input->post('userUsername'),
+            'sexId'                        => $this->input->post('sexId'),
+            'userAddress'                        => $this->input->post('userAddress'),
+            'userCity'                        => $this->input->post('userCity'),
+            'userEmail'                        => $this->input->post('userEmail'),
+            'userPhone'                        => $this->input->post('userPhone'),
+            'ucId'                        => $this->input->post('ucId'),
+            'campusId'                        => $this->input->post('campusId'),
+            'userImage'                        => $upload['file_name']
+        );
+    
+        $this->db->insert('user', $data);
+
+        if($this->db->affected_rows() > 0){
+            
+                return true;
+        } else {
+            return false;
+            
+        }
+
+    }
+    public function edit_member($upload){
+        if($upload['file_name'] != null){
+          $a =  $upload['file_name']; 
+        } else {
+            $a = $this->input->post('userImage');
+        }
+        $data = array(
+            'userStudentId'                        => $this->input->post('userStudentId'),
+            'userUsername'                        => $this->input->post('userUsername'),
+            'sexId'                        => $this->input->post('sexId'),
+            'userAddress'                        => $this->input->post('userAddress'),
+            'userCity'                        => $this->input->post('userCity'),
+            'userEmail'                        => $this->input->post('userEmail'),
+            'userPhone'                        => $this->input->post('userPhone'),
+            'ucId'                        => $this->input->post('ucId'),
+            'campusId'                        => $this->input->post('campusId'),
+            'userImage'                        => $a
+        );
+
+        if (!empty($data)) {
+                $this->db->where('userId', $this->input->post('userId'))
+            ->update('user', $data);
+
+              return true;
+            } else {
+                return null;
+            }
+      }
 }
 
 /* End of file prodi_model.php */

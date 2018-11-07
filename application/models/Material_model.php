@@ -52,6 +52,7 @@ class Material_model extends CI_Model {
             'statusId'                        => '1',
             'dnCondition'                        => '1',
             'dnType'                        => $this->input->post('dnType'),
+            'campusId'                        => $this->input->post('campusId'),
             'dnNotes'                        => $this->input->post('dnNotes'),
         );
     
@@ -107,6 +108,7 @@ class Material_model extends CI_Model {
             'statusId'                        => $this->input->post('statusId'),
             'dnCondition'                        => $this->input->post('dnCondition'),
             'dnType'                        => $this->input->post('dnType'),
+            'campusId'                        => $this->input->post('campusId'),
             'dnNotes'                        => $this->input->post('dnNotes')
         );
         if (!empty($data)) {
@@ -124,7 +126,9 @@ class Material_model extends CI_Model {
     {
         $data = array(
             'lockerNumber'                        => $this->input->post('lockerNumber'),
-            'lockerNotes'                        => $this->input->post('lockerNotes')
+            'campusId'                        => $this->input->post('campusId'),
+            'lockerNotes'                        => $this->input->post('lockerNotes'),
+            'statusId'                        => '1'
         );
     
         $this->db->insert('locker', $data);
@@ -141,7 +145,9 @@ class Material_model extends CI_Model {
     public function edit_locker(){
         $data = array(
             'lockerNumber'                        => $this->input->post('lockerNumber'),
-            'lockerNotes'                        => $this->input->post('lockerNotes')
+            'campusId'                        => $this->input->post('campusId'),
+            'lockerNotes'                        => $this->input->post('lockerNotes'),
+            'statusId'                        => $this->input->post('statusId')
         );
         if (!empty($data)) {
                 $this->db->where('lockerId', $this->input->post('lockerId'))
