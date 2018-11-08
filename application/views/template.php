@@ -215,6 +215,29 @@ a:hover .tooltiptext {
             <li <?php if($this->uri->segment(1) == 'Transaction' OR $this->uri->segment(2) == 'detail_anggota') echo 'class="active"'; else echo  '';?>><a href="<?php echo base_url(); ?>Transaction"><i class="fa fa-circle-o"></i>MEMBER</a></li>
           </ul>
         </li>
+        <li class="treeview <?php if($this->uri->segment(1) == 'Report') echo 'active'; else echo  '';?>">
+          <a href="#">
+            <i class="fa fa-dashboard"></i> <span>REPORT</span>
+            <span class="pull-right-container">
+              <i class="fa fa-angle-left pull-right"></i>
+            </span>
+          </a>
+          <ul class="treeview-menu">
+            <li <?php if($this->uri->segment(2) == 'book_report') echo 'class="active"'; else echo  '';?>><a href="<?php echo base_url(); ?>Report/book_report"><i class="fa fa-circle-o"></i>Book Report</a></li>
+          </ul>
+          <ul class="treeview-menu">
+            <li <?php if($this->uri->segment(2) == 'borrowing_report') echo 'class="active"'; else echo  '';?>><a href="<?php echo base_url(); ?>Report/borrowing_report"><i class="fa fa-circle-o"></i>Borrowing Report</a></li>
+          </ul>
+          <ul class="treeview-menu">
+            <li <?php if($this->uri->segment(2) == 'return_report') echo 'class="active"'; else echo  '';?>><a href="<?php echo base_url(); ?>Report/return_report"><i class="fa fa-circle-o"></i>Return Report</a></li>
+          </ul>
+          <ul class="treeview-menu">
+            <li <?php if($this->uri->segment(2) == 'lost_report') echo 'class="active"'; else echo  '';?>><a href="<?php echo base_url(); ?>Report/lost_report"><i class="fa fa-circle-o"></i>Lost Book Report</a></li>
+          </ul>
+          <ul class="treeview-menu">
+            <li <?php if($this->uri->segment(2) == 'deduct_report') echo 'class="active"'; else echo  '';?>><a href="<?php echo base_url(); ?>Report/deduct_report"><i class="fa fa-circle-o"></i>Deduct Report</a></li>
+          </ul>
+        </li>
         
        
       </ul>

@@ -9,6 +9,9 @@ class Material extends CI_Controller {
 		$this->load->model('Material_model');
 		$this->load->model('Master_model');
 		$this->load->helper(array('url','download'));
+		if ($this->session->userdata('logged_in') != TRUE) {
+			redirect(base_url('login'));
+		}
 	}
 	public function index()
 	{

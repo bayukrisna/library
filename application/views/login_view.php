@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title>STIE Jakarta International College</title>
+    <title>Jakarta International College</title>
     <link href='logo.png' rel='shortcut icon'>
     <link rel="stylesheet" type="text/css" href="<?php echo base_url(); ?>assets/css/bootstrap.min.css">
     <link rel="stylesheet" type="text/css" href="<?php echo base_url(); ?>assets/css/style.css">
@@ -16,7 +16,7 @@
           <?php echo $this->session->flashdata('message'); ?>
           <?php echo $this->session->flashdata('message2'); ?>
           <div class="panel panel-default">
-            <div class="panel-heading"><h4>Sistem Informasi Akademik</h4></div>
+            <div class="panel-heading"><h4>E-Library</h4></div>
               <div class="panel-body">
               <form action="<?php echo base_url('login/login'); ?>" name="form-login" id="form-login" method="post" onsubmit="return validateForm()">
                 <div class="input-group">
@@ -29,7 +29,7 @@
                   <input type="password" id="password" name="password" autofocus value="" required="" placeholder="Password" class="form-control" />
                 </div>
                 <br>
-                <div class="g-recaptcha" data-sitekey="6LdJNXEUAAAAAFTF9Mli1NghDiiTI9doXUlREvh3"></div>
+                <div class="g-recaptcha" data-sitekey="<?= $site_key; ?>"></div>
                 <font color="red"><span id="myspan"> </font></span>
                 <br>
                 <input type="submit" name="submit" value="LOGIN" class="btn btn-block btn-sm btn-primary">

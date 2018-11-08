@@ -36,7 +36,9 @@ class Master_model extends CI_Model {
                     ->result();
     }
     public function getMember(){
-     return $this->db->join('sex', 'sex.sexId=user.sexId')
+     return $this->db->join('user_category', 'user_category.ucId=user.ucId')
+                    ->join('user_status', 'user_status.usId=user_category.usId')
+                    ->join('sex', 'sex.sexId=user.sexId')
                     ->get('user')
                     ->result();
     }

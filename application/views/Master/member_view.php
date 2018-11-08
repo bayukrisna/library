@@ -27,7 +27,8 @@
                 <th width="10%" >Gender</th>
                 <th width="10%" >Address</th>
                 <th width="15%" >City</th>
-                <th width="1%">Aksi</th>
+                <th width="15%" >Status</th>
+                <th width="5%">Aksi</th>
               </tr>
               </thead>
               <tbody>
@@ -43,6 +44,7 @@
                     <td><?php echo $data->sexName;?></td>
                     <td><?php echo $data->userAddress;?></td>
                     <td><?php echo $data->userCity;?></td>
+                    <td><?php echo $data->userStatus;?></td>
                     <td>
                       
                       

@@ -7,6 +7,9 @@ class Dashboard extends CI_Controller {
 	{
 		parent::__construct();
 		$this->load->model('Dashboard_model');
+		if ($this->session->userdata('logged_in') != TRUE) {
+			redirect(base_url('login'));
+		}
 	}
 	
 	public function index()
