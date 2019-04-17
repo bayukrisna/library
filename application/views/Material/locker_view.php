@@ -12,7 +12,7 @@
             
             <!-- /.box-header -->
             <div class="box-body">
-              <div class="table-responsive">
+              <div class="table-responsive" style=" overflow-x: hidden; overflow-y: hidden;">
               <table id="example1" class="table2 table-hover table-striped table-condensed" style="text-transform: uppercase;">
                 
                 <a href="" data-toggle="modal" data-target="#modal_tambah" class="btn btn-primary btn-sm btn-flat" ><i class="fa fa-plus"></i> Add</a> <br> <br>
@@ -30,6 +30,13 @@
                     $no = 0;
                     $alert = "'Anda yakin menghapus data ini ?'";
                     foreach($locker as $data):
+                      if($data->statusId == '1'){
+                        $data->statusId = 'Available';
+                      } else if($data->statusId == '2'){
+                        $data->statusId = 'Non Available';
+                      } else {
+                        $data->statusId = 'Lost';
+                      }
                     ;
                   ?>
                   <tr>
@@ -71,13 +78,6 @@
             </div>
                 <div class="modal-body">
                         <?php echo form_open('Material/add_locker', 'class="form-horizontal" method="post" role="form" enctype="multipart/form-data"'); ?>
-                <div class="form-group ">
-                    <label for="name" class="col-md-3 control-label">Locker Number</label>
-                    <div class="col-md-7 col-sm-12 required">
-                        <input class="form-control" type="text" name="lockerNumber" value="" required="" />
-                        
-                    </div>
-                </div>
                 <div class="form-group" >
                         <label for="inputEmail3" class="col-sm-3 control-label">Campus Location</label>
                         <div class="col-sm-7">
@@ -98,6 +98,13 @@
                         </div>
                 </div>
                 <div class="form-group ">
+                    <label for="name" class="col-md-3 control-label">Locker Number</label>
+                    <div class="col-md-7 col-sm-12 required">
+                        <input onblur="validasi(this.value)" class="form-control" type="text" name="lockerNumber" value="" required="" />
+                        <span id="user-availability-status"></span>  
+                    </div>
+                </div>
+                <div class="form-group ">
                     <label for="name" class="col-md-3 control-label">Notes</label>
                     <div class="col-md-7 col-sm-12 required">
                         <textarea class="form-control" rows="4" name="lockerNotes"></textarea>
@@ -105,7 +112,7 @@
                     </div>
                 </div>
                 <div class="box-footer text-right">
-                    <button type="submit" class="btn btn-success"><i class="fa fa-check icon-white"></i> Save</button>
+                    <button type="submit" id="myBtn" class="btn btn-success"><i class="fa fa-check icon-white"></i> Save</button>
                 </div>
                 </div>
             </div>
@@ -161,7 +168,7 @@
                     </div>
                 </div>
                 <div class="box-footer text-right">
-                    <button type="submit" class="btn btn-success"><i class="fa fa-check icon-white"></i> Save</button>
+                    <button type="submit"  class="btn btn-success"><i class="fa fa-check icon-white"></i> Save</button>
                 </div>
                 </div>
             </div>
@@ -188,5 +195,20 @@
     $('#statusId').val(status).trigger('change');
     $('#campusId2').val(campus).trigger('change');
   })
+</script>
+<script type="text/javascript">
+  function validasi(p){
+    $.ajax({
+                    url: '<?php echo base_url(); ?>Material/cek_locker/',
+                    data: 'lockerNumber='+p+'&campusId='+$("#campusId").val(),
+                    type: 'POST',
+                    dataType: 'html',
+                    success:function(data){
+                    $("#user-availability-status").html(data);
+                    },
+                    error:function (){}
+                });
+
+  }
 </script>
 

@@ -11,8 +11,14 @@ class Login extends CI_Controller {
 	
 	public function index()
 	{
+		if ($this->session->userdata('logged_in') == TRUE) {
+			redirect(base_url('dashboard'));
+		}
 		$data['site_key'] = '6LcMU20UAAAAACiZUAOaCfw0YDu2rHirY7Z0DjNT';
 		$this->load->view('login_view', $data);
+	}
+	public function mkm(){
+		echo md5('asdasd');
 	}
 
 	public function login()
@@ -71,11 +77,11 @@ class Login extends CI_Controller {
 			            }
 			            
 			            	$this->session->set_userdata($sess_data);
-				            @ldap_close($ldap);
+				            @ldap_close($ldap);				            
 				            redirect(base_url('dashboard'));	
 			          }     
 				    } else {
-				        $this->session->set_flashdata('message', '<div class="alert alert-danger"><p>Username atau Password Salah</p></div>');
+				        $this->session->set_flashdata('message', '<div class="alert alert-danger"><p>LDAP Error</p></div>');
 						redirect(base_url('login'));
 				    }
 	        } else {

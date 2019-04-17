@@ -46,6 +46,10 @@ class Master_model extends CI_Model {
      return $this->db->get('status')
                     ->result();
     }
+    public function getDashboard(){
+     return $this->db->get('dashboard')
+                    ->result();
+    }
     public function getLocker(){
      return $this->db->get('locker')
                     ->result();
@@ -143,7 +147,8 @@ class Master_model extends CI_Model {
             'vendorName'                        => $this->input->post('vendorName'),
             'vendorAddress'                        => $this->input->post('vendorAddress'),
             'vendorPhone'                        => $this->input->post('vendorPhone'),
-            'vendorEmail'                        => $this->input->post('vendorEmail')
+            'vendorEmail'                        => $this->input->post('vendorEmail'),
+            'vendorWebsite'                        => $this->input->post('vendorWebsite'),
         );
     
         $this->db->insert('vendor', $data);
@@ -162,7 +167,9 @@ class Master_model extends CI_Model {
             'vendorName'                        => $this->input->post('vendorName'),
             'vendorAddress'                        => $this->input->post('vendorAddress'),
             'vendorPhone'                        => $this->input->post('vendorPhone'),
-            'vendorEmail'                        => $this->input->post('vendorEmail')
+            'vendorEmail'                        => $this->input->post('vendorEmail'),
+            'vendorWebsite'                        => $this->input->post('vendorWebsite'),
+
         );
 
         if (!empty($data)) {
@@ -199,6 +206,83 @@ class Master_model extends CI_Model {
         if (!empty($data)) {
                 $this->db->where('statusId', $this->input->post('statusId'))
             ->update('status', $data);
+
+              return true;
+            } else {
+                return null;
+            }
+      }
+    //===================================================================================\\
+    //===================================================================================\\
+    public function add_content()
+    {
+        $config['upload_path'] = './uploads/';
+        $config['allowed_types'] = '*';
+
+        $this->load->library('upload', $config);
+        ////foto
+        if (!$this->upload->do_upload('foto')) {
+            $a = '';
+          } else {
+            $fileData = $this->upload->data();
+            $a = $fileData['file_name'];
+            $config['image_library']='gd2';
+            $config['source_image']='./uploads/'.$a;
+            $config['create_thumb']= FALSE;
+            $config['maintain_ratio']= FALSE;
+            $config['quality']= '50%';
+            $config['width']= 1200;
+            $config['height']= 700;
+            $config['new_image']= './uploads/'.$a;
+            $this->load->library('image_lib', $config);
+            $this->image_lib->resize();
+          }
+        $data = array(
+            'image'                        => $a,
+            'position'                        => $this->input->post('position')
+        );
+    
+        $this->db->insert('dashboard', $data);
+
+        if($this->db->affected_rows() > 0){
+            
+                return true;
+        } else {
+            return false;
+            
+        }
+
+    }
+    public function edit_content(){
+        $config['upload_path'] = './uploads/';
+        $config['allowed_types'] = '*';
+        $position = $this->input->post('position');
+        $this->load->library('upload', $config);
+        ////foto
+        if (!$this->upload->do_upload('foto')) {
+            $a = $this->input->post('images');
+          } else {
+            $fileData = $this->upload->data();
+            $a = $fileData['file_name'];
+            $config['image_library']='gd2';
+            $config['source_image']='./uploads/'.$a;
+            $config['create_thumb']= FALSE;
+            $config['maintain_ratio']= FALSE;
+            $config['quality']= '50%';
+            $config['width']= 1200;
+            $config['height']= 700;
+            $config['new_image']= './uploads/'.$a;
+            $this->load->library('image_lib', $config);
+            $this->image_lib->resize();
+          }
+        $data = array(
+            'image'                        => $a,
+            'position'                        => $position
+        );
+
+        if (!empty($data)) {
+                $this->db->where('id', $this->input->post('id'))
+            ->update('dashboard', $data);
 
               return true;
             } else {

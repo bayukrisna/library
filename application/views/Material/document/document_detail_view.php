@@ -18,7 +18,7 @@
                     <td class="col-sm-3"><?= $document->docNumber; ?></td>
                     <th class="col-sm-2">Edition</th>
                     <td class="col-sm-3"><?= $document->docEdition; ?></td>
-                    <td width="10%" rowspan="3"><img src="<?php echo base_url();?>uploads/<?php echo $document->docImage; ?>" onerror="this.src='http://icons.iconarchive.com/icons/harwen/simple/256/PNG-Image-icon.png'" width="100px" id="output2"></td>
+                    <td width="10%" rowspan="3"><img src="<?php echo base_url();?>uploads/<?php echo $document->docImage; ?>" onerror="this.src='<?= base_url('assets/img/no image.png')?>'" width="100px" id="output2"></td>
                   </tr>
                   <tr>
                     <th height="5px">Subject Heading</th>
@@ -30,7 +30,7 @@
                     <th>Classification</th>
                     <td><?= $document->docClassification; ?></td>
                     <th>Publisher</th>
-                    <td><?= $document->docEdition; ?></td>
+                    <td><?= $document->docPublisher; ?></td>
                   </tr>
                   <tr>
                     <th>Catalogue Groups</th>
@@ -66,6 +66,16 @@
                     <th>Editor</th>
                     <td><?= $document->docEditor; ?></td>
                   </tr>
+                  <tr>
+                    <th>Tags</th>
+                    <td>
+                      <?php 
+                      $array_like = explode(',', $document->docTags);
+                      foreach($array_like as $key => $value) {?>
+                          <span class="tag label label-info"><?= $value ?></span>
+                      <?php } ?>
+                      </td>
+                  </tr>
                 </table>
             </div>
             </div>
@@ -79,19 +89,33 @@
               <thead>
               <tr>
                 <th width="1%" >No.</th>
-                <th width="15%" >Number</th>
-                <th width="15%" >Status</th>
-                <th width="15%" >Condition</th>
+                <th width="1%" >Number</th>
+                <th width="5%" >Status</th>
+                <th width="5%" >Condition</th>
                 <th width="15%" >Notes</th>
-                <th width="2%">Aksi</th>
+                <th width="10%" >Purchase Date</th>
+                <th width="5%" >Vendor</th>
+                <th width="10%" >Campus Location</th>
+                <th width="5%">Aksi</th>
               </tr>
               </thead>
               <tbody>
                 <?php 
                     $no = 0;
                     $alert = "'Anda yakin menghapus data ini ?'";
-                    $number = $this->db->where('docId', $document->docId)->get('document_number')->result();
+                    $number = $this->db->where('docId', $document->docId)
+                                      /*->where('document_number.campusId', $this->session->userdata('campusId'))*/
+                                      ->join('vendor', 'vendor.vendorId = document_number.vendorId', 'left')
+                                      ->join('campus', 'campus.campusId = document_number.campusId', 'left')
+                                      ->get('document_number')->result();
                     foreach($number as $data):
+                      if($data->statusId == '1'){
+                        $data->statusId = 'Available';
+                      } else if($data->statusId == '2'){
+                        $data->statusId = 'Non Available';
+                      } else {
+                        $data->statusId = 'Lost';
+                      }
                     ;
                   ?>
                   <tr>
@@ -100,6 +124,9 @@
                     <td><?= $data->statusId;?></td>
                     <td><?= $data->dnCondition;?></td>
                     <td><?= $data->dnNotes;?></td>
+                    <td><?= date('d-m-Y',strtotime($data->dnPurchaseDate));?></td>
+                    <td><?= $data->vendorName;?></td>
+                    <td><?= $data->campusName;?></td>
                     <td><a href="" data-toggle="modal" data-target="#modal_edit_number<?=$data->dnId?>" class="btn btn-warning btn-xs btn-flat" ><i class="glyphicon glyphicon-pencil"></i><span class="tooltiptext">Edit</span></a>
 
                     <a href="<?= base_url('Material/delete_document_number/'.$data->dnId.'/'.$data->docId); ?>" onclick="return confirm(<?= $alert; ?>)" class="btn btn-danger btn-xs btn-flat" ><i class="glyphicon glyphicon-trash"></i><span class="tooltiptext">Hapus</span></a></td>
@@ -184,6 +211,34 @@
                         </div>
                       </div>
                       <div class="form-group" >
+                        <label for="inputEmail3" class="col-sm-4 control-label">Vendor</label>
+                        <div class="col-sm-6">
+                          <select name="vendorId" class="form-control" id="vendorId">
+                            <?php foreach ($getVendor as $vendor) {
+                              if($i->vendorId == $vendor->vendorId){
+                                $c = 'selected=""';
+                              } else {
+                                $c = '';
+                              }
+                              ?>
+                                <option value="<?= $vendor->vendorId ?>" <?= $c; ?> ><?= $vendor->vendorName?></option>
+                            <?php } ?>
+                          </select>
+                        </div>
+                      </div>
+                      <div class="form-group" >
+                        <label for="inputEmail3" class="col-sm-4 control-label">Purchase Date</label>
+                        <div class="col-sm-6">
+                          <input type="date" name="dnPurchaseDate" class="form-control" id="dnPurchaseDate" value="<?= $i->dnPurchaseDate ?>">
+                        </div>
+                      </div>
+                      <div class="form-group" >
+                        <label for="inputEmail3" class="col-sm-4 control-label">Cost</label>
+                        <div class="col-sm-6">
+                          <input type="text" name="dnCost" class="form-control" id="dnCost" value="<?= $i->dnCost ?>">
+                        </div>
+                      </div>
+                      <div class="form-group" >
                         <label for="inputEmail3" class="col-sm-4 control-label">Notes</label>
                         <div class="col-sm-6">
                           <textarea class="form-control" name="dnNotes" id="dnNotes"><?= $i->dnNotes;?></textarea>
@@ -214,8 +269,9 @@
                <div class="form-group" >
                         <label for="inputEmail3" class="col-sm-4 control-label">Document Number</label>
                         <div class="col-sm-6">
-                          <input type="hidden" name="docId" value="<?= $document->docId?>">
-                          <input type="text" class="form-control" id="dnNumber" placeholder="" name="dnNumber">
+                          <input type="hidden" id="docIdVal" name="docId" value="<?= $document->docId?>">
+                          <input type="text" class="form-control" id="dnNumberVal" placeholder="" name="dnNumber" onblur="validasi()">
+                          <span id="user-availability-status"></span>  
                         </div>
                       </div>
                       <div class="form-group" >
@@ -230,7 +286,7 @@
                       <div class="form-group" >
                         <label for="inputEmail3" class="col-sm-4 control-label">Campus Location</label>
                         <div class="col-sm-6">
-                          <select style="width: 100%" name="campusId" id="campusId" class="select2">
+                          <select style="width: 100%" name="campusId" id="campusIdVal" class="select2">
                             <option value="" selected="selected"> Choose Campus Location </option>
                                       <?php 
                                       $a = $this->session->userdata('campusId');
@@ -247,16 +303,53 @@
                         </div>
                       </div>
                       <div class="form-group" >
+                        <label for="inputEmail3" class="col-sm-4 control-label">Vendor</label>
+                        <div class="col-sm-6">
+                          <select name="vendorId" class="form-control" id="vendorId">
+                            <?php foreach ($getVendor as $vendor) {?>
+                                <option value="<?= $vendor->vendorId ?>"><?= $vendor->vendorName?></option>
+                            <?php } ?>
+                          </select>
+                        </div>
+                      </div>
+                      <div class="form-group" >
+                        <label for="inputEmail3" class="col-sm-4 control-label">Purchase Date</label>
+                        <div class="col-sm-6">
+                          <input type="date" name="dnPurchaseDate" class="form-control" id="dnPurchaseDate">
+                        </div>
+                      </div><div class="form-group" >
+                        <label for="inputEmail3" class="col-sm-4 control-label">Cost</label>
+                        <div class="col-sm-6">
+                          <input type="text" name="dnCost" class="form-control" id="dnCost">
+                        </div>
+                      </div>
+                      <div class="form-group" >
                         <label for="inputEmail3" class="col-sm-4 control-label">Notes</label>
                         <div class="col-sm-6">
                           <input type="text" class="form-control" id="dnNotes" placeholder="" name="dnNotes">
                         </div>
                       </div>
                 <div class="box-footer text-right">
-                    <button type="submit" class="btn btn-success"><i class="fa fa-check icon-white"></i> Simpan</button>
+                    <button type="submit" id="myBtn" class="btn btn-success"><i class="fa fa-check icon-white"></i> Save</button>
                 </div>
                 </div>
             </div>
             </div>
     </div>
     <?php echo form_close();?>
+    <script type="text/javascript">
+  function validasi(){
+    $.ajax({
+                    url: '<?php echo base_url(); ?>Material/cek_document/',
+                    data: 'docId='+$("#docIdVal").val()+'&campusId='+$("#campusIdVal").val()+'&dnNumber='+$("#dnNumberVal").val(),
+                    type: 'POST',
+                    dataType: 'html',
+                    success:function(data){
+                    $("#user-availability-status").html(data);
+
+                    },
+                    error:function (){}
+                });
+
+  }
+</script>

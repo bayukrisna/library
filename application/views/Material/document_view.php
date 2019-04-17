@@ -22,39 +22,24 @@
             
             <!-- /.box-header -->
             <div class="box-body">
-              <div class="table-responsive">
-              <table id="example1" class="table2 table-hover table-striped table-condensed" style="text-transform: uppercase;">
-                
-                <a href="" data-toggle="modal" data-target="#modal_tambah" class="btn btn-primary btn-sm btn-flat" ><i class="fa fa-plus"></i> Add</a> <br> <br>
-              <thead>
-              <tr>
-                <th width="1%" >No.</th>
-                <th width="15%" >Title</th>
-                <th width="1%">Aksi</th>
-              </tr>
-              </thead>
-              <tbody>
-                <?php 
-                    $no = 0;
-                    $alert = "'Anda yakin menghapus data ini ?'";
-                    foreach($document as $data):
-                    ;
-                  ?>
-                  <tr>
-                  <td><?php echo ++$no;?></td>
-                    <td><a href="<?= base_url('Material/document_detail/'.$data->docId); ?>"  ><?php echo $data->docTitle;?></a></td>
-                    <td>
-                    <a href="<?= base_url('Material/document_edit/'.$data->docId); ?>" class="btn btn-warning btn-xs btn-flat" ><i class="glyphicon glyphicon-pencil"></i><span class="tooltiptext">Edit</span></a>
-
-                    <a href="<?= base_url('Material/delete_document/'.$data->docId); ?>" onclick="return confirm(<?= $alert; ?>)" class="btn btn-danger btn-xs btn-flat" ><i class="glyphicon glyphicon-trash"></i><span class="tooltiptext">Hapus</span></a>
-
-                    </td>
-                    
+              <div class="table-responsive" style=" overflow-x: hidden; overflow-y: hidden;">
+                <table id="table" class="table2 table-hover table-striped table-condensed"   style="text-transform: uppercase;">
+                  <a href="" data-toggle="modal" data-target="#modal_tambah" class="btn btn-primary btn-sm btn-flat" ><i class="fa fa-plus"></i> Add</a> <br> <br>
+            <thead>
+                <tr>
+                    <th>No</th>
+                    <th>No Inventory</th>
+                    <th>Tags</th>
+                    <th>Title</th>
+                    <th>Author</th>
+                    <th>Qty</th>
+                    <th>Aksi</th>
                 </tr>
-            <?php endforeach; ?>
+            </thead>
+            <tbody>
+            </tbody>
+        </table>
               
-              </tbody>
-              </table>
             </div>
             </div>
             
@@ -79,7 +64,8 @@
               <div class="form-group" >
                   <label for="inputEmail3" class="col-sm-3 control-label">Id Number</label>
                   <div class="col-sm-8">
-                    <input type="text" class="form-control" id="docNumber" name="docNumber" placeholder="">
+                    <input type="text" onkeyup="cek_document(this.value)" class="form-control" id="docNumber" name="docNumber" placeholder="">
+                    <span id="span_document"></span>
                   </div>
                 </div>
                 <div class="form-group">
@@ -120,6 +106,13 @@
                                   <option value="" selected="selected"> Choose Catalogue Group First </option>
                                      
                               </select>
+                  </div>
+                </div>
+                <div class="form-group" >
+                  <label for="inputEmail3" class="col-sm-3 control-label">Tags</label>
+
+                  <div class="col-sm-8">
+                    <input type="text" name="docTags" value="" data-role="tagsinput" class="form-control" />
                   </div>
                 </div>
                 <div class="form-group" >
@@ -250,6 +243,28 @@
                         </div>
                       </div>
                       <div class="form-group" >
+                        <label for="inputEmail3" class="col-sm-4 control-label">Vendor</label>
+                        <div class="col-sm-6">
+                          <select name="vendorId" class="form-control" id="vendorId">
+                            <?php foreach ($getVendor as $vendor) {?>
+                                <option value="<?= $vendor->vendorId ?>"><?= $vendor->vendorName?></option>
+                            <?php } ?>
+                          </select>
+                        </div>
+                      </div>
+                      <div class="form-group" >
+                        <label for="inputEmail3" class="col-sm-4 control-label">Purchase Date</label>
+                        <div class="col-sm-6">
+                          <input type="date" name="dnPurchaseDate" class="form-control" id="dnPurchaseDate">
+                        </div>
+                      </div>
+                      </div><div class="form-group" >
+                        <label for="inputEmail3" class="col-sm-4 control-label">Cost</label>
+                        <div class="col-sm-6">
+                          <input type="text" name="dnCost" class="form-control" id="dnCost">
+                        </div>
+                      </div>
+                      <div class="form-group" >
                         <label for="inputEmail3" class="col-sm-4 control-label">Notes</label>
                         <div class="col-sm-6">
                           <input type="text" class="form-control" id="dnNotes" placeholder="" name="dnNotes">
@@ -286,13 +301,22 @@
                   <div class="col-sm-8">
                     <input type="file" name="image" onchange="loadFile(event)"  id="image" placeholder="">
                     <br>
-                    <img src="http://icons.iconarchive.com/icons/harwen/simple/256/PNG-Image-icon.png" width="250px" id="output">
+                    <img src="<?= base_url('assets/img/no image.png')?>" width="250px" id="output">
                   </div>
                 </div>
               </div>
+              <div class="col-md-12">
+                <label class="col-md-2">Description</label>
+              <textarea rows="6" class="form-control" name="docDescription">
+                
+              </textarea>
+
             </div>
+            <br>
+            </div>
+            
                 <div class="box-footer text-right">
-                    <button type="submit" class="btn btn-success"><i class="fa fa-check icon-white"></i> Simpan</button>
+                    <button id="myBtn" type="submit" class="btn btn-success"><i class="fa fa-check icon-white"></i> Save</button>
                 </div>
                 </div>
             </div>
@@ -314,7 +338,7 @@
                     <td class="col-sm-3"><?= $i->docNumber; ?></td>
                     <th class="col-sm-2">Edition</th>
                     <td class="col-sm-3"><?= $i->docEdition; ?></td>
-                    <td width="10%" rowspan="3"><img src="<?php echo base_url();?>uploads/<?php echo $i->docImage; ?>" onerror="this.src='http://icons.iconarchive.com/icons/harwen/simple/256/PNG-Image-icon.png'" width="100px" id="output2"></td>
+                    <td width="10%" rowspan="3"><img src="<?php echo base_url();?>uploads/<?php echo $i->docImage; ?>" onerror="this.src='<?= base_url('assets/img/no image.png')?>'" width="100px" id="output2"></td>
                   </tr>
                   <tr>
                     <th height="5px">Subject Heading</th>
@@ -373,6 +397,18 @@
   function test(p){
     alert(p);
   }
+            function cek_document(p) {
+                $.ajax({
+                    url: '<?php echo base_url(); ?>Material/cek_no_inventory',
+                    data: 'docNumber='+p,
+                    type: 'GET',
+                    dataType: 'html',
+                    success: function(msg) {
+                        $("#span_document").html(msg);
+
+                    }
+                });
+            }
             function get_dcg(p) {
                 var cgId = p;
 
@@ -409,6 +445,9 @@
                   success: function(msg){
                     document.getElementById("dnNumber").value = '';
                     document.getElementById("dnNotes").value = '';
+                    document.getElementById("dnPurchaseDate").value = '';
+                    document.getElementById("vendorId").value = '';
+                    document.getElementById("dnCost").value = '';
                     $("#kk").html(msg);
                   }
                 }
@@ -452,4 +491,34 @@
     var output = document.getElementById('output2');
     output.src = URL.createObjectURL(event.target.files[0]);
   };
+</script>
+<script src="<?php echo base_url(); ?>assets/plugins/jQuery/jquery-2.2.3.min.js"></script>
+<script type="text/javascript">
+    var table;
+    $(document).ready(function() {
+
+        //datatables
+        table = $('#table').DataTable({ 
+
+            "processing": true, 
+            "serverSide": true, 
+            "order": [], 
+            
+            "ajax": {
+                "url": "<?php echo site_url('material/get_data_document')?>",
+                "type": "POST"
+            },
+
+            
+            "columnDefs": [
+            { 
+                "targets": [ 0,4,5 ], 
+                "orderable": false, 
+            },
+            ],
+
+        });
+
+    });
+
 </script>

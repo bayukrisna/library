@@ -34,7 +34,7 @@ class Master extends CI_Controller {
 		}
 	}
 	public function delete_catalogue($id){
-		if ($this->db->where('id_cg', $id)->delete('catalogue_group') == TRUE) {
+		if ($this->db->where('cgId', $id)->delete('catalogue_group') == TRUE) {
 			$this->session->set_flashdata('message', ' <div class="alert alert-success"> Deleted </div>');
 			redirect('Master/catalogue');
 		} else {
@@ -69,7 +69,7 @@ class Master extends CI_Controller {
 		}
 	}
 	public function delete_detail_catalogue($id){
-		if ($this->db->where('id_dcg', $id)->delete('detail_catalogue_group') == TRUE) {
+		if ($this->db->where('dcgId', $id)->delete('detail_catalogue_group') == TRUE) {
 			$this->session->set_flashdata('message', ' <div class="alert alert-success"> Deleted </div>');
 			redirect('Master/detail_catalogue');
 		} else {
@@ -233,6 +233,14 @@ class Master extends CI_Controller {
 		$data['main_view'] = 'Master/member_view';
 		$this->load->view('template', $data);
 	}
+	public function member_view($id){
+		$data['member'] = $this->db->where('userId', $id)->join('user_category', 'user_category.ucId=user.ucId')->get('user')->row();
+		$data['getUserStatus'] = $this->Master_model->getUserStatus();
+		$data['getUC'] = $this->Master_model->get_uc_by_us($data['member']->usId);
+		$data['getCampus'] = $this->Master_model->getCampus();
+		$data['main_view'] = 'Master/Member/member_detail_view';
+		$this->load->view('template', $data);
+	}
 	public function member_edit($id){
 		$data['member'] = $this->db->where('userId', $id)->join('user_category', 'user_category.ucId=user.ucId')->get('user')->row();
 		$data['getUserStatus'] = $this->Master_model->getUserStatus();
@@ -265,7 +273,7 @@ class Master extends CI_Controller {
 	}
 	public function edit_member(){
 		$config['upload_path'] = './uploads/';
-        $config['allowed_types'] = 'jpg|png|jpeg';
+        $config['allowed_types'] = '*';
         $this->load->library('upload', $config);
         $this->upload->do_upload('image');
 		if($this->Master_model->edit_member($this->upload->data()) == TRUE){
@@ -275,6 +283,54 @@ class Master extends CI_Controller {
 				$this->session->set_flashdata('message', '<div class="alert alert-danger"> '.validation_errors().' </div>');
             	redirect('Master/member');
 		}
+	}
+	//===================================================================================\\
+	//===================================================================================\\
+	public function content(){
+		$data['dashboard'] = $this->Master_model->getDashboard();
+		$data['main_view'] = 'Master/content_view';
+		$this->load->view('template', $data);
+	}
+	public function add_content(){
+		if($this->Master_model->add_content() == TRUE){
+				$this->session->set_flashdata('message', '<div class="alert alert-success"> Success </div>');
+            	redirect('Master/content');
+			}  else{
+				$this->session->set_flashdata('message', '<div class="alert alert-danger"> '.validation_errors().' </div>');
+            	redirect('Master/status');
+		}
+	}
+	public function delete_content($id){
+		if ($this->db->where('id', $id)->delete('dashboard') == TRUE) {
+			$this->session->set_flashdata('message', ' <div class="alert alert-success"> Deleted </div>');
+			redirect('Master/content');
+		} else {
+			$this->session->set_flashdata('message', '<div class="alert alert-danger"> '.validation_errors().' </div>');
+			redirect('Master/content');
+		}
+	}
+	public function edit_content(){
+		if($this->Master_model->edit_content() == TRUE){
+				$this->session->set_flashdata('message', '<div class="alert alert-success"> Success </div>');
+            	redirect('Master/content');
+			}  else{
+				$this->session->set_flashdata('message', '<div class="alert alert-danger"> '.validation_errors().' </div>');
+            	redirect('Master/content');
+		}
+	}
+	public function cek_student(){
+		$userStudentId = $this->input->get('userStudentId');
+		$a = $this->db->where('userStudentId', $userStudentId)->get('user');
+		if ($a->num_rows() > 0)
+                {
+                    echo '<span class="label label-danger">Student Id Duplicate</span><script>document.getElementById("myBtn").disabled = true;</script>';
+
+                } else{
+                echo '<script>document.getElementById("myBtn").disabled = false;</script>';
+                
+                }
+		
+
 	}
 	public function get_uc_by_us($param = NULL) {
 		$usId = $param;

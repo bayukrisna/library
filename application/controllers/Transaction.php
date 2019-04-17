@@ -12,12 +12,71 @@ class Transaction extends CI_Controller {
 			redirect(base_url('login'));
 		}
 	}
+	public function cek_booked(){
+		$docId = $this->input->get('id');
+		$a = $this->db->where('srStatus', '2')
+						->where('student_request.docId', $docId)
+						->join('document', 'document.docId = student_request.docId')
+						->join('user', 'user.userId = student_request.userId')
+						->get('student_request')->result();
+		if(count($a) > 0){
+			foreach ($a as $data) {
+				echo $data->userUsername.' | ';
+			}
+		} else {
+			echo 'Nothing';
+		}
+	}
 	public function index()
 	{
 		$this->destroy();
 		$data['main_view'] = 'Transaction/anggota_view';
 		$this->load->view('template', $data);
 			
+	}
+	public function list_request(){
+		$data['data'] = $this->db->join('document', 'document.docId = student_request.docId')
+								->join('user', 'user.userId = student_request.userId')
+								->get('student_request')->result();
+		$data['main_view'] = 'Transaction/request_view';
+		$this->load->view('template', $data);	
+	}
+	public function save_request(){
+        $data = array(
+            'srStatus'                        => $this->input->post('srStatus'),
+            'srMaxDate'                        => $this->input->post('srMaxDate'),
+            'srInformation'                        => $this->input->post('srInformation')
+        );
+        if(!empty($data)){
+            $this->db->where('srId', $this->input->post('srId'))
+            ->update('student_request', $data);
+            $this->session->set_flashdata('message', '<div class="alert alert-success"> Success </div><br>');
+            	redirect(base_url('Transaction/list_request'));
+        } else {
+            $this->session->set_flashdata('message', '<div class="alert alert-danger"> '.validation_errors().' </div><br>');
+            redirect(base_url('Transaction/list_request'));
+            
+        }
+	}
+	public function save_edit_request($srId, $srStatus){
+        $data = array(
+            'srStatus'                        => $srStatus            
+        );
+        if($this->session->userdata('group') == 'Student'){
+        	$link = 'Student/list_request';
+        } else {
+        	$link = 'Transaction/list_request';
+        }
+        if(!empty($data)){
+            $this->db->where('srId', $srId)
+            ->update('student_request', $data);
+            $this->session->set_flashdata('message', '<div class="alert alert-success"> Success </div><br>');
+            	redirect(base_url($link));
+        } else {
+            $this->session->set_flashdata('message', '<div class="alert alert-danger"> '.validation_errors().' </div><br>');
+            redirect(base_url($link));
+            
+        }
 	}
 	public function autocomplete_user(){
 		if(isset($_GET['term'])){
@@ -56,11 +115,19 @@ class Transaction extends CI_Controller {
 		          	$col = 'lockerId';
 		          	$col2 = $item['lockerId'];
 		          	$this->db->where('lockerId', $col2)->update('locker', $data2);
+		          } else if($item['filter'] == 'cd'){
+		          	$data2 = array('statusId' => '2' );
+		          	$col = 'cdId';
+		          	$col2 = $item['cdId'];
+		          	// $this->db->where('lockerId', $col2)->update('locker', $data2);
+		          	$this->db->set('cdQty', 'cdQty-1', FALSE)
+							 ->where('cdId', $col2)
+							 ->update('cd');
 		          }
 		          $data = array(
 		          	'transId'    => $this->input->post('transId'),
 		          	$col 		=> $col2,
-		            'tdDueDate'    => $item['due_date'],
+		            'tdDueDate'    => date('Y-m-d', strtotime($item['due_date'])),
 		            'conditionId' => '1',
 		            'tdStatus' => '1'
 		          );
@@ -104,13 +171,28 @@ class Transaction extends CI_Controller {
             	redirect('Transaction/detail_anggota/'.$id);
 		}
 	}
+	public function getBookTags(){
+		$param = $this->input->get('tags');
+		$array_like = explode(',', $param);
+		foreach($array_like as $key => $value) {
+		    $this->db->like('docTags', $value);
+		}
+		$result = $this->db->get('document')->result();
+		$option = "";
+		$option .= "<option>-- Choose Document --</option>";
+		
+		foreach ($result as $data) {
+			$option .= "<option value='".$data->docId."'>".$data->docNumber." - ".$data->docTitle."</option>";
+			
+		}
+		echo $option;
+	}
 	public function getBookNumber(){
 		$param = $this->input->get('id');
 		$result = $this->Transaction_model->getBookNumber($param);
 		$option = "";
 		
 		foreach ($result as $data) {
-			$option = 
 			$option .= "<option value='".$data->dnId."'>".$data->dnNumber."</option>";
 			
 		}
@@ -130,7 +212,7 @@ class Transaction extends CI_Controller {
 			        'cdId' => $this->input->post('cdId'),
 			        'lockerId' => $this->input->post('lockerId'),
 			        'filter' => $this->input->post('filter'),
-			        'due_date' => $this->input->post('due_date'),
+			        'due_date' => date('d M Y', strtotime($this->input->post('due_date'))),
 			);
 			$this->cart->insert($data);
 	}

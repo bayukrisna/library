@@ -10,7 +10,7 @@
             <div class="form-horizontal">
             <div class="box-body">
                 <div class="form-group">
-                  <label for="inputEmail3" class="col-sm-2 control-label">Student Name</label>
+                  <label for="inputEmail3" class="col-sm-2 control-label">Library Member</label>
                   <div class="col-sm-6">
                     <div class="input-group input-group-sm">
                         <input  type="text" class="form-control" id="username" name="username" value="">
@@ -41,6 +41,7 @@
       select: function(event, ui){
         $('#username').val(ui.item.label);
         $('#id_user').val(ui.item.id);
+        window.location = '<?php echo base_url(); ?>Transaction/detail_anggota/'+ui.item.id;
         
       }
     });    

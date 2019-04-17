@@ -13,7 +13,7 @@
             <!-- form start -->
             <form class="form-horizontal">
               <div class="box-body">
-                <div class="form-group">
+                <div class="form-group" style="display: none">
                   <label for="inputEmail3" class="col-sm-2 control-label">Name</label>
 
                   <div class="col-sm-10">
@@ -40,10 +40,10 @@
                   <label for="inputEmail3" class="col-sm-2 control-label">End</label>
 
                   <div class="col-sm-10">
-                    <div class="col-sm-4">
+                    <div class="col-sm-6">
                       <input type="date" name="end" class="form-control" id="end">
                     <br>
-                  <p class="btn btn-info" onclick="tampil()">Tampilkan</p>
+                  <p class="btn btn-info" onclick="tampil()">Search</p>
 
                 </div>
                     <br>
@@ -61,23 +61,25 @@
           </div>
       <div class="box">
         <div class="box-body" id="employee_table">
-          
+          <div class="col-md-12">
             <table id="example" class="">
               <thead>
                   <tr>
                       <th width="1%">No</th>
                       <th>Name</th>
                       <th>Title</th>
+                      <th>Doc Number</th>
                       <th>Condition</th>
                       <th>Borrow Date</th>
                       <th>Due Date</th>
                   </tr>
               </thead>
           </table>
+          </div>
           
         </div>
       </div>
-      <button type="button" onclick="cek()" name="" id="" class="btn btn-success">Export Excel </button>  
+      <!-- <button type="button" onclick="cek()" name="" id="" class="btn btn-success">Export Excel </button>   -->
     </div>
   </div>
 </section>
@@ -94,6 +96,9 @@
     });    
   });
     function tampil(){
+      var table = $('#example').DataTable();
+      table.destroy();
+      $("#example").find("tbody").find("tr").remove();
         $.ajax({
                     url: '<?php echo base_url(); ?>Report/show_borrowing/',
                     data: 'userId='+document.getElementById("userId").value+'&start='+document.getElementById("start").value+'&end='+document.getElementById("end").value,
@@ -105,6 +110,7 @@
                         deferRender:    true,
                         scrollCollapse: true,
                         scroller:       true,
+                        "ordering": false,
                         "autoWidth": true
                     } );
                     },

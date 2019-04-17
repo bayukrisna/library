@@ -140,7 +140,7 @@
                     <br>
                     <input type="hidden" name="userImage" placeholder="" value="<?= $member->userImage; ?>">
                     <br>
-                    <img src="<?php echo base_url();?>uploads/<?php echo $member->userImage; ?>" onerror="this.src='http://icons.iconarchive.com/icons/harwen/simple/256/PNG-Image-icon.png'" width="250px" id="output">
+                    <img src="<?php echo base_url();?>uploads/<?php echo $member->userImage; ?>" onerror="this.src='<?= base_url('assets/img/no image.png')?>'" width="250px" id="output">
                   </div>
                 </div>
                 </div>

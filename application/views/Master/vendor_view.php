@@ -21,6 +21,7 @@
                 <th width="10%" >Address</th>
                 <th width="10%" >Phone Number</th>
                 <th width="15%" >Email</th>
+                <th width="15%" >Website</th>
                 <th width="1%">Aksi</th>
               </tr>
               </thead>
@@ -37,6 +38,7 @@
                     <td><?php echo $data->vendorAddress;?></td>
                     <td><?php echo $data->vendorPhone;?></td>
                     <td><?php echo $data->vendorEmail;?></td>
+                    <td><?php echo $data->vendorWebsite;?></td>
                     <td>
                       
                       
@@ -99,6 +101,13 @@
                         
                     </div>
                 </div>
+                <div class="form-group ">
+                    <label for="name" class="col-md-3 control-label">Website</label>
+                    <div class="col-md-7 col-sm-12 required">
+                        <input class="form-control" type="text" name="vendorWebsite" value="" required="" />
+                        
+                    </div>
+                </div>
                 <div class="box-footer text-right">
                     <button type="submit" class="btn btn-success"><i class="fa fa-check icon-white"></i> Save</button>
                 </div>
@@ -145,6 +154,13 @@
                     <label for="name" class="col-md-3 control-label">Email</label>
                     <div class="col-md-7 col-sm-12 required">
                         <input class="form-control" type="text" name="vendorEmail" value="<?php echo $i->vendorEmail ?>" required="" />
+                        
+                    </div>
+                </div>
+                <div class="form-group ">
+                    <label for="name" class="col-md-3 control-label">Website</label>
+                    <div class="col-md-7 col-sm-12 required">
+                        <input class="form-control" type="text" name="vendorWebsite" value="<?php echo $i->vendorWebsite ?>" required="" />
                         
                     </div>
                 </div>

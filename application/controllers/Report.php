@@ -88,7 +88,6 @@ class Report extends CI_Controller {
                         ->join('cd', 'cd.cdId = transaction_detail.cdId', 'left')
                         ->join('locker', 'locker.lockerId = transaction_detail.lockerId', 'left')
                         ->join('user', 'user.userId = transaction.userId', 'left')
-                        ->where('transaction.userId', $id_user)
                         ->where('transBorrowingDate >=' , $start)
                         ->where('transBorrowingDate <=' , $end)
                         ->get('transaction')
@@ -96,7 +95,7 @@ class Report extends CI_Controller {
                 $c = 0;
         foreach ($a as $key) {
 			
-			$arrayName[] = array(++$c,$key->userUsername,$key->docTitle,$key->conditionId,$key->transBorrowingDate,$key->tdDueDate);	
+			$arrayName[] = array(++$c,$key->userUsername,$key->docTitle,$key->dnNumber,$key->conditionId,$key->transBorrowingDate,$key->tdDueDate);	
 		}
 		echo json_encode($arrayName);
 		
@@ -148,14 +147,15 @@ class Report extends CI_Controller {
                         ->join('cd', 'cd.cdId = transaction_detail.cdId', 'left')
                         ->join('locker', 'locker.lockerId = transaction_detail.lockerId', 'left')
                         ->join('user', 'user.userId = transaction.userId', 'left')
+                        ->join('vendor', 'vendor.vendorId = document_number.vendorId', 'left')
                         ->where('transaction.userId', $id_user)
-                        ->where('tdStatus', '2')
+                        ->where('tdStatus', '3')
                         ->get('transaction')
                         ->result();
                 $c = 0;
         foreach ($a as $key) {
-			
-			$arrayName[] = array(++$c,$key->userUsername,$key->docTitle,$key->conditionId,$key->tdNotes);	
+			$key->dnPurchaseDate = date('d-m-Y',strtotime($key->dnPurchaseDate));
+			$arrayName[] = array(++$c,$key->userUsername,$key->docTitle,$key->conditionId,$key->tdNotes,$key->dnPurchaseDate,$key->vendorName);	
 		}
 		echo json_encode($arrayName);
 		
@@ -221,6 +221,7 @@ class Report extends CI_Controller {
                   <th width="1%">No</th>
                       <th>Name</th>
                       <th>Title</th>
+                      <th>Doc Number</th>
                       <th>Condition</th>
                       <th>Borrow Date</th>
                       <th>Due Date</th>
@@ -236,7 +237,6 @@ class Report extends CI_Controller {
                         ->join('cd', 'cd.cdId = transaction_detail.cdId', 'left')
                         ->join('locker', 'locker.lockerId = transaction_detail.lockerId', 'left')
                         ->join('user', 'user.userId = transaction.userId', 'left')
-                        ->where('transaction.userId', $id_user)
                         ->where('transBorrowingDate >=' , $start)
                         ->where('transBorrowingDate <=' , $end)
                         ->get('transaction')
@@ -248,6 +248,7 @@ class Report extends CI_Controller {
 						<td>'.$i++.'</td>
 						<td>'.$a->userUsername.'</td>
 						<td>'.$a->docTitle.'</td>
+						<td>'.$a->dnNumber.'</td>
 						<td>'.$a->conditionId.'</td>
 						<td>'.$a->transBorrowingDate.'</td>
 						<td>'.$a->tdDueDate.'</td>
@@ -353,6 +354,8 @@ class Report extends CI_Controller {
                       <th>Title</th>
                       <th>Condition</th>
                       <th>Notes</th>
+                      <th>Purchase Date</th>
+                      <th>Vendor</th>
 
                 </tr>
               </thead>';
@@ -363,19 +366,23 @@ class Report extends CI_Controller {
                         ->join('cd', 'cd.cdId = transaction_detail.cdId', 'left')
                         ->join('locker', 'locker.lockerId = transaction_detail.lockerId', 'left')
                         ->join('user', 'user.userId = transaction.userId', 'left')
+                        ->join('vendor', 'vendor.vendorId = document_number.vendorId', 'left')
                         ->where('transaction.userId', $id_user)
-                        ->where('tdStatus', '2')
+                        ->where('tdStatus', '3')
                         ->get('transaction')
                         ->result();
 		$option = "";
           $i = 1;
 		foreach ($b as $a) {
+			$a->dnPurchaseDate = date('d-m-Y',strtotime($a->dnPurchaseDate));
 			$option .= '<table><tr>
 						<td>'.$i++.'</td>
 						<td>'.$a->userUsername.'</td>
 						<td>'.$a->docTitle.'</td>
 						<td>'.$a->conditionId.'</td>
 						<td>'.$a->tdNotes.'</td>
+						<td>'.$a->dnPurchaseDate.'</td>
+						<td>'.$a->vendorName.'</td>
 						</tr></table>';
 			
 		}

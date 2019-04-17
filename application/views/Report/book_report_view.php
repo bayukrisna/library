@@ -28,7 +28,7 @@
 </section>
 <script src="<?php echo base_url(); ?>assets/plugins/jQuery/jquery-2.2.3.min.js"></script>
 <script type="text/javascript">
- $(document).ready(function() {
+    $(document).ready(function() {
         $('#example').DataTable( {
             data:           <?= $book; ?>,  
             deferRender:    true,

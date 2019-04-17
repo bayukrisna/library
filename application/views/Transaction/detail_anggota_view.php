@@ -5,22 +5,22 @@
             <div class="form-horizontal">
             <div class="box-body">
                 <table class="table" align="center">
-                  <h4 align="center"><b><?= $data->userUsername; ?>(<?= $data->userStudentId; ?>)</b></h4>
+                  <h4 align="center"><b><?= $data->userUsername; ?> - [<?= $data->userStudentId; ?>]</b></h4>
                   <tr>
-                    <td width="60px">Status </td><td>: <?= $data->userStatus; ?></td>
-                    <td width="10px">Sex </td><td>: <?= $data->sexName; ?></td>
-                    <td width="102px">Address </td><td>: <?= $data->userAddress; ?></td>
-                    <td rowspan="3" width="100px"><img height="100" width="100" class="pull-right" width="40%" src="<?php echo base_url(); ?>uploads/<?=$data->userImage ?>" alt="Photo" onerror="this.src='<?php echo base_url();?>uploads/book.jpg'" src="#" alt="Your Image" ></td>
+                    <td width="60px"><b>Status</b> </td><td>: <?= $data->userStatus; ?></td>
+                    <td width="10px"><b>Sex</b> </td><td>: <?= $data->sexName; ?></td>
+                    <td width="102px"><b>Address</b> </td><td>: <?= $data->userAddress; ?></td>
+                    <td rowspan="3" width="100px"><img height="100" width="100" class="pull-right" width="40%" src="<?php echo base_url(); ?>uploads/<?=$data->userImage ?>" alt="Photo" onerror="this.src='<?= base_url('assets/img/no image.png')?>'" src="#" alt="Your Image" ></td>
                   </tr>
                   <tr>
-                    <td>City</td><td>: <?= $data->userCity; ?></td>
-                    <td>Zip</td><td>: </td>
-                    <td>Email</td><td>: <?= $data->userEmail; ?></td>
+                    <td><b>City</b></td><td>: <?= $data->userCity; ?></td>
+                    <td><b>Zip</b></td><td>: </td>
+                    <td><b>Email</b></td><td>: <?= $data->userEmail; ?></td>
                   </tr>
                   <tr>
-                    <td>Phone</td><td>: <?= $data->userPhone; ?></td>
-                    <td>Mobile</td><td>: </td>
-                    <td>User Category</td><td>: <?= $data->ucCategory; ?></td>
+                    <td><b>Phone</b></td><td>: <?= $data->userPhone; ?></td>
+                    <td><b>Mobile</b></td><td>: </td>
+                    <td><b>User Category</b></td><td>: <?= $data->ucCategory; ?></td>
                   </tr>
                 </table>
               </div>
@@ -30,13 +30,84 @@
           <div class="alert alert-success" id="success" style="display:none;">
             <strong>Success !!!</strong>
           </div>
+<?php 
+  $list_req = $this->db->where('user.userId', $data->userId)
+                ->where('srStatus', '2')
+                ->or_where('srStatus', '7')
+                ->join('document', 'document.docId = student_request.docId')
+                ->join('user', 'user.userId = student_request.userId')
+                ->get('student_request')->result();
+?>
+          <div class="box" style="display: <?php if(count($list_req) == 0){echo 'none';} ?>">
+            <div class="form-horizontal">
+            <div class="box-body">
+                <table id="example1" class="table2 table-hover table-striped table-condensed" >
+                  <header>
+                    <h4 style="text-align: center;"><b>Request </b></h4>
+                  </header>
+                  <hr>
+                  <thead>
+                      <tr>
+                          <th width="5%">#</th>
+                          <th>Name</th>
+                          <th>No Inventory</th>
+                          <th>Title</th>
+                          <th>Author</th>
+                          <th>Date Request</th>
+                          <th>Max Date</th>
+                          <th>Information</th>
+                          <th>Status</th>
+                          <th>Action</th>
+                      </tr>
+                  </thead>
+                  <tbody>
+                    <?php $a = 0; foreach ($list_req as $key) { 
+                      if($key->srStatus == '1'){
+                        $srStatus = 'Pending';
+                      } else if($key->srStatus == '2'){
+                        $srStatus = 'Accepted';
+                      } else if($key->srStatus == '3'){
+                        $srStatus = 'Rejected';
+                      } else if($key->srStatus == '4'){
+                        $srStatus = 'OK';
+                      } else if($key->srStatus == '5'){
+                        $srStatus = 'Expired';
+                      } else if($key->srStatus == '6'){
+                        $srStatus = 'Canceled';
+                      } else if($key->srStatus == '7'){
+                        $srStatus = 'list';
+                      }
+                      ?>
+                      <tr>
+                        <td><?= ++$a ?></td>
+                        <td><a href="<?= base_url('Master/member_view/'.$key->userId) ?>"><?php echo $key->userUsername;?></a></td>
+                        <td><?= $key->docNumber ?></td>
+                        <td><a href="<?= base_url('Material/document_detail/'.$key->docId) ?>"><?php echo $key->docTitle;?></a></td>
+                        <td><?= $key->docAuthor ?></td>
+                        <td><?= date('d M Y', strtotime($key->srDate)) ?></td>
+                        <td><?= date('d M Y', strtotime($key->srMaxDate)) ?></td>
+                        <td><?= $key->srInformation ?></td>
+                        <td><?= $srStatus ?></td>
+                        <td><?php if($key->srStatus == '1'){ ?>
+                          <a onclick="show_modal('<?= $key->srId; ?>')"  class="btn btn-warning btn-xs btn-flat glyphicon glyphicon-pencil"><span class="tooltiptext">Action</span></a>
+                        <?php } else if($key->srStatus == '2'){?>
+                          <a onclick="user_request('<?= $key->docId ?>', '<?= $key->srId ?>')" class="btn btn-success btn-xs btn-flat fa fa-check"><span class="tooltiptext">OK</span></a>
+                        <?php } ?>
+                          </td>
+                      </tr>
+                    <?php } ?>
+                  </tbody>
+                </table>
+              </div>
+            </div>
+            <!-- /.box-body -->
+          </div>
           <div class="box">
             <div class="form-horizontal">
             <div class="box-body">
                 <table id="example1" class="table2 table-hover table-striped table-condensed" >
                   <header>
-                    <button class="btn btn-primary pull-right" data-toggle="modal" data-target="#modal_tambah">Tambah</button>
-                    <h4 style="text-align: center;"><b>Riwayat Peminjaman</b></h4>
+                    <h4 style="text-align: center;"><b>History</b></h4>
                   </header>
                   <hr>
                   <thead>
@@ -70,15 +141,24 @@
                         $title = 'Locker Key';
                         $no = $items->lockerNumber;
                       }
+                      if($items->tdStatus == '1'){
+                        $items->tdStatus1 = 'Borrowed';
+                      } else if($items->tdStatus == '2'){
+                        $items->tdStatus1 = 'Returned';
+                      } else if($items->tdStatus == '3'){
+                        $items->tdStatus1 = 'Deduct';
+                      } else if($items->tdStatus == '4'){
+                        $items->tdStatus1 = 'Lost';
+                      }
                     ?>
                   <tr>
                     <td><?= $i?></td>
                     <td><?= $items->transId ?></td>
                     <td><?= $title ?></td>
                     <td><?= $no?></td>
-                    <td><?= $items->transBorrowingDate?></td>
-                    <td <?php if($due_date < 0 && $items->tdStatus == '1'){echo 'style="color: red"';} ?>><?= $items->tdDueDate?></td>
-                    <td><?= $items->tdStatus?></td>
+                    <td><?= date('d M Y', strtotime($items->transBorrowingDate)) ?></td>
+                    <td <?php if($due_date < 0 && $items->tdStatus == '1'){echo 'style="color: red"';} ?>><?= date('d M Y', strtotime($items->tdDueDate))?></td>
+                    <td><?= $items->tdStatus1?></td>
                     <td> <?php if($items->tdStatus == '1'){ ?>  <!-- <a href="<?= base_url('Transaction/simpan_return/'.$this->uri->segment(3).'/'.$items->tdId.'/'.$items->docId);?>"  class="btn btn-primary btn-xs btn-flat" ><i class="fa fa-reply"></i><span class="tooltiptext">Return</span></a> -->
                         <a href="" data-toggle="modal" data-target="#modal_deduct<?=$items->tdId?>" class="btn btn-primary btn-xs btn-flat" ><i class="fa fa-reply"></i><span class="tooltiptext">Return</span></a>
                         <a href="" data-toggle="modal" data-target="#modal_renewal<?=$items->tdId?>" class="btn btn-success btn-xs btn-flat" ><i class="fa  fa-recycle"></i><span class="tooltiptext">Renewal</span></a>
@@ -98,21 +178,33 @@
             <div class="form-horizontal">
             <div class="box-body">
                 <table class="table table-striped tab">
-                  <!-- <header>
-                    <h4 style="text-align: center;"><b>Transaksi</b></h4>
-                  </header> -->
+                  <header>
+                  <button type="button" class="btn btn-primary pull-right" onclick="show_modal()">Add</button>
+                  </header>
                   <input type="hidden" name="transId" value="<?= $noTrans ?>">
                   <input type="hidden" name="userId" value="<?= $this->uri->segment(3) ?>">
                   <?php $cart_check = $this->cart->contents();
                   if(!empty($cart_check)) {?>
                   <div class="form-group ">
-                      <label for="name" class="col-md-3 control-label">Borrow Date</label>
+                      <label for="name" style="text-align: left" class="col-md-2 control-label" >Borrowing Date</label>
                       <div class="col-md-7 col-sm-12 required">
-                          <input type="date" name="borrow_date" class="form-control" value="<?= date('Y-m-d') ?>">
+                          <input style="margin-left: -70px" type="date" name="borrow_date" class="form-control" value="<?= date('Y-m-d') ?>">
                       </div>
                   </div>
                   
-                  <?php } ?> 
+                  <?php } else { 
+                    $ui = array('srStatus' => '2');
+                    if($this->db->where('userId', $data->userId)->where('srStatus', '7')->get('student_request')->num_rows() > 0){
+                      $this->db->where('userId', $data->userId)
+                            ->where('srStatus', '7')
+                  ->update('student_request', $ui);  
+                      $yourURL= base_url('Transaction/detail_anggota/'.$data->userId);
+                      echo ("<script>location.href='$yourURL'</script>");
+                    }
+                    
+                  
+
+                   } ?> 
                   
                   <thead>
                   <tr>
@@ -161,7 +253,7 @@
                 echo '<button type="submit" class="btn btn-success" disabled> Save </button>';
                 
                 } else {
-                  echo '<button type="submit" class="btn btn-success" > Save </button>';
+                  echo '<button type="submit" class="btn btn-success" autofocus="" > Save </button>';
 
                 } ?> 
             </div>
@@ -179,17 +271,18 @@
                 </div>
                 <div class="modal-body">
                   <form id="form_ajax" class="form-horizontal" method="post" role="form" enctype="multipart/form-data">
-                  <div class="form-group ">
+                  <div class="form-group request">
                       <label for="name" class="col-md-3 control-label">Filter</label>
                       <div class="col-md-7 col-sm-12 required">
                         <select class="select2" style="width:100%" name="filter" id="filter" onchange="filterku(this.value)" required="">
-                          <option value=" ">Choose Filter</option>
+                          <option value="">Choose Filter</option>
                           <option value="doc">Document</option>
                           <option value="cd">CD</option>
                           <option value="locker">Locker Key</option>
                         </select>
                       </div>
                   </div>
+                  <input type="hidden" id="srId">
                   <div class="form-group" style="display: none; " id="filterCD">
                       <label for="name" class="col-md-3 control-label">CD</label>
                       <div class="col-md-7 col-sm-12 required">
@@ -215,13 +308,22 @@
                       </div>
                   </div>
                 <div id="filterDoc" style="display: none;">
-                  <div class="form-group ">
+                  <div class="form-group request">
+                      <label for="name" class="col-md-3 control-label">Tags</label>
+                      <div class="col-md-7 col-sm-12 required">
+                          <input type="text" name="tags" id="tags" value="" data-role="tagsinput" class="form-control" />
+                      </div>
+                      <div class="col-md-2">
+                          <button type="button" onclick="book_tags()" class="btn btn-sm">Filter</button>
+                      </div>
+                  </div>
+                  <div class="form-group">
                       <label for="name" class="col-md-3 control-label">Book</label>
                       <div class="col-md-7 col-sm-12 required">
                         <select class="select2" style="width:100%" name="id_number" id="id_number" onchange="book_number(this.value)">
                           <option></option>
                           <?php foreach ($getBook as $row) {
-                            echo '<option value="'.$row->docId.'">'.$row->docTitle.'</option>';
+                            echo '<option value="'.$row->docId.'">'.$row->docNumber.' - '.$row->docTitle.'</option>';
                           }
                           ?>
                         </select>
@@ -232,6 +334,12 @@
                       <div class="col-md-7 col-sm-12 required">
                         <select class="select2" style="width:100%" name="dnId" id="dnId" >
                         </select>
+                      </div>
+                  </div>
+                  <div class="form-group">
+                      <label for="name" class="col-md-3 control-label">Booked By</label>
+                      <div class="col-md-7 col-sm-12 required">
+                        <label class="control-label" id="cek-booked"></label>
                       </div>
                   </div>
                 </div>
@@ -345,7 +453,7 @@
                           <textarea name="tdNotes" class="form-control" rows="3"></textarea>
                       </div>
                   </div>
-                  <div class="form-group ">
+                  <div class="form-group">
                       <label for="name" class="col-md-3 control-label">History</label>
                       <div class="col-md-7 col-sm-12 required">
                           <textarea name="notes" class="form-control" rows="3" ><?= $notes;  ?></textarea>
@@ -361,6 +469,26 @@
         </div>
         <?php echo form_close();?>
          <?php endforeach;?>
+<script type="text/javascript">
+  function user_request(param1 = '', srId = ''){
+    $('.request').each(function(i, obj) {
+      document.getElementsByClassName("request")[i].style.display = "none";
+    });
+    $("#modal_tambah").modal('show');
+    $('#filter').val('doc').trigger('change');
+    $('#id_number').val(param1).trigger('change');
+    $('#srId').val(srId);
+  }
+  function show_modal(){
+    $("#form_ajax")[0].reset();
+    $('.request').each(function(i, obj) {
+      document.getElementsByClassName("request")[i].style.display = "";
+    });
+    $("#modal_tambah").modal('show');
+    $('#filter').val('').trigger('change');
+    $('#id_number').val('').trigger('change');
+  }
+</script>
         <script type="text/javascript">
           function filterku(p) {
               if(p == 'doc'){
@@ -381,6 +509,19 @@
                 document.getElementById("filterLocker").style.display = 'none';
               }
             }
+          function book_tags() {
+            var p = document.getElementById("tags").value;
+                $.ajax({
+                    url: '<?php echo base_url(); ?>Transaction/getBookTags/',
+                    data: 'tags='+p,
+                    type: 'GET',
+                    dataType: 'html',
+                    success: function(msg) {
+                        $("#id_number").html(msg);
+                        console.log(msg);
+                    }
+                });
+            }
           function book_number(p) {
 
                 $.ajax({
@@ -390,18 +531,37 @@
                     dataType: 'html',
                     success: function(msg) {
                         $("#dnId").html(msg);
+                        cek_booked(p);
+                    }
+                });
+            }
+          function cek_booked(p) {
+                $.ajax({
+                    url: '<?php echo base_url(); ?>Transaction/cek_booked/',
+                    data: 'id='+p,
+                    type: 'GET',
+                    dataType: 'html',
+                    success: function(msg) {
+                        $("#cek-booked").html(msg);
 
                     }
                 });
             }
           function simpan_cart(){
               var a = '<?= $this->uri->segment(3)?>';
+              var srId = $('#srId').val();
               $.ajax(
                 {
                   url : '<?php echo base_url(); ?>Transaction/add_to_cart',
                   type: 'post',
                   data : $('#form_ajax').serialize(),
                   success: function(msg){
+                    if(srId != ''){
+                      $.ajax(
+                        {url: "<?= base_url('Transaction/save_edit_request/"+srId+"/7') ?>", 
+                        success: function(result){
+                      }});
+                    }
                     window.location = '<?php echo base_url(); ?>Transaction/detail_anggota/'+a;
                   }
                 }

@@ -16,7 +16,7 @@
             
             <!-- /.box-header -->
             <div class="box-body">
-              <div class="table-responsive">
+              <div class="table-responsive" style="overflow-x: hidden;">
               <table id="example1" class="table2 table-hover table-striped table-condensed" style="text-transform: uppercase;">
                 
                 <a href="" data-toggle="modal" data-target="#modal_tambah" class="btn btn-primary btn-sm btn-flat" ><i class="fa fa-plus"></i> Add</a> <br> <br>
@@ -24,10 +24,10 @@
               <tr>
                 <th width="1%" >No.</th>
                 <th width="10%" >Name</th>
-                <th width="10%" >Gender</th>
+                <th width="1%" >Gender</th>
                 <th width="10%" >Address</th>
-                <th width="15%" >City</th>
-                <th width="15%" >Status</th>
+                <th width="5%" >City</th>
+                <th width="5%" >Status</th>
                 <th width="5%">Aksi</th>
               </tr>
               </thead>
@@ -40,7 +40,7 @@
                   ?>
                   <tr>
                   <td><?php echo ++$no;?></td>
-                    <td><?php echo $data->userUsername;?></td>
+                    <td><a href="<?= base_url('Master/member_view/'.$data->userId) ?>"><?php echo $data->userUsername;?></a></td>
                     <td><?php echo $data->sexName;?></td>
                     <td><?php echo $data->userAddress;?></td>
                     <td><?php echo $data->userCity;?></td>
@@ -83,8 +83,8 @@
                     <div class="form-group ">
                         <label for="name" class="col-md-3 control-label">Student Id</label>
                         <div class="col-md-7 col-sm-12 required">
-                            <input class="form-control" type="text" name="userStudentId" value="" required="" />
-                            
+                            <input onkeyup="cek_student(this.value)" class="form-control" type="text" name="userStudentId" value="" required="" />
+                            <span id="span_student"></span>
                         </div>
                     </div>
                     <div class="form-group ">
@@ -185,12 +185,12 @@
                   <div class="col-sm-8">
                     <input type="file" name="image" onchange="loadFile(event)"  id="image" placeholder="">
                     <br>
-                    <img src="http://icons.iconarchive.com/icons/harwen/simple/256/PNG-Image-icon.png" width="100px" id="output">
+                    <img src="<?= base_url('assets/img/no image.png')?>" width="100px" id="output">
                   </div>
                 </div>
                 </div>
                 <div class="box-footer text-right">
-                    <button type="submit" class="btn btn-success"><i class="fa fa-check icon-white"></i> Save</button>
+                    <button id="myBtn" type="submit" class="btn btn-success"><i class="fa fa-check icon-white"></i> Save</button>
                 </div>
                 </div>
             </div>
@@ -322,6 +322,18 @@
                     dataType: 'html',
                     success: function(msg) {
                         $("#ucId").html(msg);
+
+                    }
+                });
+            }
+            function cek_student(p) {
+                $.ajax({
+                    url: '<?php echo base_url(); ?>Master/cek_student',
+                    data: 'userStudentId='+p,
+                    type: 'GET',
+                    dataType: 'html',
+                    success: function(msg) {
+                        $("#span_student").html(msg);
 
                     }
                 });

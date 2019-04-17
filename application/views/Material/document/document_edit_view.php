@@ -40,7 +40,7 @@
                   <label for="inputPassword3" class="col-sm-3 control-label">Catalogue Groups</label>
 
                   <div class="col-sm-8">
-                    <select class="select2" style="width:100%" name="cgId" id="editCgId" onchange="return get_dcg2(this.value)">
+                    <select class="select2" style="width:100%" name="cgId" id="cgId" onchange="return get_dcg(this.value)">
                                   <option value="" selected="selected"> Choose Catalogue Group </option>
                                       <?php 
 
@@ -60,7 +60,7 @@
                   <label for="inputPassword3" class="col-sm-3 control-label">Catalogue Group Types</label>
 
                   <div class="col-sm-8">
-                    <select class="select2" style="width:100%" name="dcgId" id="editDcgId">
+                    <select class="select2" style="width:100%" name="dcgId" id="dcgId">
                                   <?php 
 
                                     foreach($getDCG as $row)
@@ -74,6 +74,13 @@
                                     ?>
                                      
                               </select>
+                  </div>
+                </div>
+                <div class="form-group" >
+                  <label for="inputEmail3" class="col-sm-3 control-label">Tags</label>
+
+                  <div class="col-sm-8">
+                    <input type="text" name="docTags" value="<?= $document->docTags; ?>" data-role="tagsinput" class="form-control" />
                   </div>
                 </div>
                 <div class="form-group" >
@@ -163,6 +170,13 @@
                   </div>
                 </div>
                 <div class="form-group">
+                  <label for="inputPassword3" class="col-sm-3 control-label">Description</label>
+
+                  <div class="col-sm-8">
+                    <textarea class="form-control" rows="6" id="docDescription" name="docDescription"><?= $document->docDescription; ?></textarea>
+                  </div>
+                </div>
+                <div class="form-group">
                   <label for="inputPassword3" class="col-sm-3 control-label">Image</label>
 
                   <div class="col-sm-8">
@@ -186,6 +200,19 @@
       <!-- /.row -->
     </section>
     <script>
+      function get_dcg(p) {
+                var cgId = p;
+
+                $.ajax({
+                    url: '<?php echo base_url(); ?>material/get_dcg_by_cg/'+cgId,
+                    type: 'GET',
+                    dataType: 'html',
+                    success: function(msg) {
+                        $("#dcgId").html(msg);
+
+                    }
+                });
+            }
   var loadFile = function(event) {
     var output = document.getElementById('output');
     output.src = URL.createObjectURL(event.target.files[0]);

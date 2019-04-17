@@ -12,6 +12,119 @@ class Material extends CI_Controller {
 		if ($this->session->userdata('logged_in') != TRUE) {
 			redirect(base_url('login'));
 		}
+		error_reporting('0');
+	}
+	public function kop(){
+		print_r($this->cart->contents());
+	}
+	function get_data_document()
+	{
+		$list = $this->Material_model->get_datatables();
+		$data = array();
+		$no = $_POST['start'];
+		$alert = "'Anda yakin menghapus data ini ?'";
+		foreach ($list as $field) {
+			$a = $this->db->where('docId', $field->docId)->get('document_number')->num_rows();
+			/*$ini_tag = '';
+
+			$tags = $field->docTags;
+			if($tags != ''){
+				$tags = explode(",",$tags);
+			
+				foreach ($tags as $tagsx) {
+					$ini_tag .= '<span class="label label-info" style="margin-left:2px">'.$tagsx.'</span>';
+				}
+			}*/
+			$no++;
+			$row = array();
+			$row[] = $no;
+			$row[] = $field->docNumber;
+			$row[] = $field->docTags;
+			$row[] = '<a href="'.base_url("Material/document_detail/".$field->docId).'">'.$field->docTitle.'</a> ';
+			$row[] = $field->docAuthor;
+			$row[] = $a;
+			$row[] = '<a href="'.base_url("Material/document_edit/".$field->docId).'" class="btn btn-warning btn-xs btn-flat"><i class="glyphicon glyphicon-pencil"></i><span class="tooltiptext">Edit</span></a>
+			<a href="'.base_url("Material/delete_document/".$field->docId).'" onclick="return confirm('.$alert.')" class="btn btn-danger btn-xs btn-flat" ><i class="glyphicon glyphicon-trash"></i><span class="tooltiptext">Hapus</span></a>
+
+			';
+
+			/*<a href="<?= base_url('Material/delete_document/'.$data->docId); ?>" onclick="return confirm(<?= $alert; ?>)" class="btn btn-danger btn-xs btn-flat" ><i class="glyphicon glyphicon-trash"></i><span class="tooltiptext">Hapus</span></a>*/
+
+			$data[] = $row;
+		}
+
+		$output = array(
+			"draw" => $_POST['draw'],
+			"recordsTotal" => $this->Material_model->count_all(),
+			"recordsFiltered" => $this->Material_model->count_filtered(),
+			"data" => $data,
+		);
+		//output dalam format JSON
+		echo json_encode($output);
+	}
+	public function mkl(){
+		$a = $this->db->get('document')->result();
+		foreach ($a as $data ) {
+			$b = $this->db->where('docId', $data->docId)->get('document_number')->num_rows();
+			// echo $b.'<br>';
+			if($b === 0){
+				$datass = array('docId' => $data->docId,
+								 'dnNumber' => '1',
+								 'statusId' => '1',
+								 'dnCondition' => '1',
+								 'dnType' => 'original',
+								 'dnNotes' => '',
+								 'campusId' => '1' );
+				$this->db->insert('document_number', $datass);
+				// echo $data->docId.'<br>';
+			}
+			
+		}
+		echo 'Success';
+	}
+	public function cek_locker(){
+		$lockerNumber = $this->input->post('lockerNumber');
+		$campusId = $this->input->post('campusId');
+		$a = $this->db->where('lockerNumber', $lockerNumber)->where('campusId', $campusId)->get('locker');
+		if ($a->num_rows() > 0)
+                {
+                    echo '<span class="label label-danger">Locker Not Available</span><script>document.getElementById("myBtn").disabled = true;</script>';
+
+                } else{
+                echo '<span class="label label-success"> Locker Available.</span><script>document.getElementById("myBtn").disabled = false;</script>';
+                
+                }
+		
+
+	}
+	public function cek_document(){
+		$docId = $this->input->post('docId');
+		$dnNumber = $this->input->post('dnNumber');
+		$campusId = $this->input->post('campusId');
+
+		$a = $this->db->where('docId', $docId)->where('dnNumber', $dnNumber)->where('campusId', $campusId)->get('document_number');
+		if ($a->num_rows() > 0)
+                {
+                    echo '<span class="label label-danger">Doc Number Not Available</span><script>document.getElementById("myBtn").disabled = true;</script>';
+
+                } else{
+                echo '<span class="label label-success"> Doc Number Available.</span><script>document.getElementById("myBtn").disabled = false;</script>';
+                
+                }
+	}
+	public function cek_no_inventory(){
+		$docNumber = $this->input->get('docNumber');
+		$a = $this->db->where('docNumber', $docNumber)->get('document');
+		if ($a->num_rows() > 0)
+                {
+                    echo '<span class="label label-danger">No Inventory Duplicate</span><script>document.getElementById("myBtn").disabled = true;</script>';
+
+                } else{
+                echo '<script>document.getElementById("myBtn").disabled = false;</script>';
+                
+                }
+		
+
 	}
 	public function index()
 	{
@@ -23,27 +136,30 @@ class Material extends CI_Controller {
 	//===================================================================================\\
 	public function document()
 	{
+			$this->cart->destroy();
 			$data['getCG'] = $this->Master_model->getCG();
 			$data['getDCG'] = $this->Master_model->getDCG();
 			$data['getCampus'] = $this->Master_model->getCampus();
+			$data['getVendor'] = $this->Master_model->getVendor();
 			$data['document'] = $this->Master_model->getDocument();
 			$data['main_view'] = 'Material/document_view';
 			$this->load->view('template', $data);
 	}
 	public function document_detail($docId)
 	{
+			$data['getVendor'] = $this->Master_model->getVendor();
 			$data['getCG'] = $this->Master_model->getCG();
 			$data['getDCG'] = $this->Master_model->getDCG();
 			$data['getCampus'] = $this->Master_model->getCampus();
-			$data['document'] = $this->db->where('document.docId', $docId)->join('detail_catalogue_group', 'detail_catalogue_group.dcgId=document.dcgId')->join('catalogue_group', 'catalogue_group.cgId=detail_catalogue_group.cgId')->get('document')->row();
+			$data['document'] = $this->db->where('document.docId', $docId)->join('detail_catalogue_group', 'detail_catalogue_group.dcgId=document.dcgId', 'left')->join('catalogue_group', 'catalogue_group.cgId=detail_catalogue_group.cgId', 'left')->get('document')->row();
 			$data['main_view'] = 'Material/document/document_detail_view';
 			$this->load->view('template', $data);
 	}
 	public function document_edit($docId)
 	{
 			$data['getCG'] = $this->Master_model->getCG();
-			$data['getDCG'] = $this->Master_model->getDCG();
-			$data['document'] = $this->db->where('docId', $docId)->get('document')->row();
+			$data['document'] = $this->db->where('document.docId', $docId)->join('detail_catalogue_group', 'detail_catalogue_group.dcgId=document.dcgId', 'left')->join('catalogue_group', 'catalogue_group.cgId=detail_catalogue_group.cgId', 'left')->get('document')->row();
+			$data['getDCG'] = $this->Master_model->get_dcg_by_cg($data['document']->cgId);
 			$data['main_view'] = 'Material/document/document_edit_view';
 			$this->load->view('template', $data);
 	}
@@ -67,12 +183,15 @@ class Material extends CI_Controller {
 			            'dnType'    => $item['dnType'],
 			            'campusId'    => $item['campusId'],
 			            'dnNotes'    => $item['dnNotes'],
+			            'dnPurchaseDate'    => $item['dnPurchaseDate'],
+			            'vendorId'    => $item['vendorId'],
+			            'dnCost'    => $item['dnCost'],
 			          );
 			          $this->db->insert('document_number', $data);
 			        }
 				} 
 		        $this->cart->destroy();
-				$this->session->set_flashdata('message', '<div class="alert alert-success"> Data Model berhasil disimpan </div>');
+				$this->session->set_flashdata('message', '<div class="alert alert-success"> Success </div>');
             	redirect(base_url('Material/document'));	
 			}  else{
 				$this->cart->destroy();
@@ -148,7 +267,21 @@ class Material extends CI_Controller {
 			        'dnType' => $this->input->post('dnType'),
 			        'campusId' => $this->input->post('campusId'),
 			        'dnNotes' => $this->input->post('dnNotes'),
+			        'dnPurchaseDate' => $this->input->post('dnPurchaseDate'),
+			        'vendorId' => $this->input->post('vendorId'),
+			        'dnCost' => $this->input->post('dnCost'),
 			);
+			foreach ($this->cart->contents() as $key) {
+				if($key['dnNumber'] == $this->input->post('dnNumber')){
+					$this->show_cart();
+					echo '<script type="text/javascript">
+    alert("Duplicate");
+</script>';
+					return false;
+				} else {
+
+				}
+			}
 			$this->cart->insert($data);
 			
 			$this->show_cart();

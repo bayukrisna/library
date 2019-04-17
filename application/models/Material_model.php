@@ -8,6 +8,11 @@ class Material_model extends CI_Model {
 	{
 		parent::__construct();
 	}
+    var $table = 'document'; //nama tabel dari database
+    var $column_order = array(null, 'docNumber','docTags','docTitle','docAuthor', null, null); //field yang ada di table user
+    var $column_search = array('docNumber','docTags','docTitle','docAuthor'); //field yang diizin untuk pencarian 
+    var $order = array('docId' => 'asc');
+
     //===================================================================================\\
     //===================================================================================\\
     public function add_document($upload, $docId)
@@ -19,6 +24,7 @@ class Material_model extends CI_Model {
             'docClassification'                 => $this->input->post('docClassification'),
             'docTitle'         => $this->input->post('docTitle'),
             'docSubtitle'         => $this->input->post('docSubtitle'),
+            'docTags'         => $this->input->post('docTags'),
             'docAuthor'         => $this->input->post('docAuthor'),
             'docAddAuthor'         => $this->input->post('docAddAuthor'),
             'docPlace'         => $this->input->post('docPlace'),
@@ -30,6 +36,7 @@ class Material_model extends CI_Model {
             'docIsbn'         => $this->input->post('docIsbn'),
             'dcgId'            => $this->input->post('dcgId'),
             'docNotes'         => $this->input->post('docNotes'),
+            'docDescription'         => $this->input->post('docDescription'),
             'docImage'         => $upload['file_name']
         );
     
@@ -54,6 +61,9 @@ class Material_model extends CI_Model {
             'dnType'                        => $this->input->post('dnType'),
             'campusId'                        => $this->input->post('campusId'),
             'dnNotes'                        => $this->input->post('dnNotes'),
+            'dnPurchaseDate'                        => $this->input->post('dnPurchaseDate'),
+            'vendorId'                        => $this->input->post('vendorId'),
+            'dnCost'                        => $this->input->post('dnCost'),
         );
     
         $this->db->insert('document_number', $data);
@@ -80,6 +90,7 @@ class Material_model extends CI_Model {
             'docTitle'         => $this->input->post('docTitle'),
             'docSubtitle'         => $this->input->post('docSubtitle'),
             'docAuthor'         => $this->input->post('docAuthor'),
+            'docTags'         => $this->input->post('docTags'),
             'docAddAuthor'         => $this->input->post('docAddAuthor'),
             'docPlace'         => $this->input->post('docPlace'),
             'docPublisher'         => $this->input->post('docPublisher'),
@@ -90,6 +101,7 @@ class Material_model extends CI_Model {
             'docIsbn'         => $this->input->post('docIsbn'),
             'dcgId'            => $this->input->post('dcgId'),
             'docNotes'         => $this->input->post('docNotes'),
+            'docDescription'         => $this->input->post('docDescription'),
             'docImage'         => $a
         );
 
@@ -109,7 +121,10 @@ class Material_model extends CI_Model {
             'dnCondition'                        => $this->input->post('dnCondition'),
             'dnType'                        => $this->input->post('dnType'),
             'campusId'                        => $this->input->post('campusId'),
-            'dnNotes'                        => $this->input->post('dnNotes')
+            'dnNotes'                        => $this->input->post('dnNotes'),
+            'dnCost'                        => $this->input->post('dnCost'),
+            'dnPurchaseDate'                        => $this->input->post('dnPurchaseDate'),
+            'vendorId'                        => $this->input->post('vendorId'),
         );
         if (!empty($data)) {
                 $this->db->where('dnId', $this->input->post('dnId'))
@@ -219,6 +234,69 @@ class Material_model extends CI_Model {
             } else {
                 return null;
             }
+    }
+
+    ///////////////////////////////
+    //////////////////////////////
+    private function _get_datatables_query()
+    {
+        
+        $this->db->from('document');
+
+        $i = 0;
+    
+        foreach ($this->column_search as $item) // loop column 
+        {
+            if($_POST['search']['value']) // if datatable send POST for search
+            {
+                
+                if($i===0) // first loop
+                {
+                    $this->db->group_start(); // open bracket. query Where with OR clause better with bracket. because maybe can combine with other WHERE with AND.
+                    $this->db->like($item, $_POST['search']['value']);
+                }
+                else
+                {
+                    $this->db->or_like($item, $_POST['search']['value']);
+                }
+
+                if(count($this->column_search) - 1 == $i) //last loop
+                    $this->db->group_end(); //close bracket
+            }
+            $i++;
+        }
+        
+        if(isset($_POST['order'])) // here order processing
+        {
+            $this->db->order_by($this->column_order[$_POST['order']['0']['column']], $_POST['order']['0']['dir']);
+        } 
+        else if(isset($this->order))
+        {
+            $order = $this->order;
+            $this->db->order_by(key($order), $order[key($order)]);
+        }
+    }
+
+    function get_datatables()
+    {
+        $this->_get_datatables_query();
+        if($_POST['length'] != -1)
+        $this->db->limit($_POST['length'], $_POST['start']);
+        $query = $this->db->get();
+        return $query->result();
+    }
+
+    function count_filtered()
+    {
+        $this->_get_datatables_query();
+        $query = $this->db->get();
+        return $query->num_rows();
+    }
+
+    public function count_all()
+    {
+        $this->db->from($this->table);
+        return $this->db->count_all_results();
     }
 }
 

@@ -71,12 +71,16 @@ class Transaction_model extends CI_Model {
         );
     
         $this->db->insert('transaction', $data);
-        if($this->db->affected_rows() > 0){
+        $datas['srStatus'] = '4';
+        $this->db->where('userId', $this->input->post('userId'))
+            ->where('srStatus', '7')
+            ->update('student_request', $datas);
+        /*if($this->db->affected_rows() > 0){*/
             return true;
-        } else {
+        /*} else {
             return false;
             
-        }
+        }*/
 
     }
     public function simpan_renewal(){
@@ -121,6 +125,10 @@ class Transaction_model extends CI_Model {
             $locker = array('statusId' => '1', 'lockerNotes' => $this->input->post('notes'));
             $this->db->where('lockerId', $this->input->post('nomor'))
             ->update('locker', $locker);
+        } else if($this->input->post('filter') == 'cd'){
+            $this->db->set('cdQty', 'cdQty+1', FALSE)
+                             ->where('cdId', $this->input->post('nomor'))
+                             ->update('cd');
         }
 
         $this->db->where('tdId', $this->input->post('tdId'))

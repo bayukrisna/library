@@ -21,7 +21,7 @@
                       <input type="text" name="username" class="form-control" id="username">
                       <input type="hidden" name="userId" class="form-control" id="userId">
                     <br>
-                  <p class="btn btn-info" onclick="tampil()">Tampilkan</p>
+                  <p class="btn btn-info" onclick="tampil()">Search</p>
 
                 </div>
                     <br>
@@ -71,20 +71,28 @@
       }
     });    
   });
+  
     function tampil(){
+      var table = $('#example').DataTable();
+      table.destroy();
+      $("#example").find("tbody").find("tr").remove();
         $.ajax({
                     url: '<?php echo base_url(); ?>Report/show_return/',
                     data: 'userId='+document.getElementById("userId").value,
                     type: 'POST',
                     dataType: 'json',
                     success:function(msg){
-                    $('#example').DataTable( {
-                        data:           msg,  
-                        deferRender:    true,
-                        scrollCollapse: true,
-                        scroller:       true,
-                        "autoWidth": true
-                    } );
+                    if(msg != ''){
+                      $('#example').DataTable( {
+                          data:           msg,  
+                          deferRender:    true,
+                          scrollCollapse: true,
+                          scroller:       true,
+                          "autoWidth": true
+                      } );  
+                    }
+
+                    
                     },
                     error:function (){}
                 });

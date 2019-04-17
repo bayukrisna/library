@@ -21,7 +21,7 @@
                       <input type="text" name="username" class="form-control" id="username">
                       <input type="hidden" name="userId" class="form-control" id="userId">
                     <br>
-                  <p class="btn btn-info" onclick="tampil()">Tampilkan</p>
+                  <p class="btn btn-info" onclick="tampil()">Search</p>
 
                 </div>
                     <br>
@@ -48,6 +48,8 @@
                       <th>Title</th>
                       <th>Condition</th>
                       <th>Notes</th>
+                      <th>Purchase Date</th>
+                      <th>Vendor</th>
                   </tr>
               </thead>
           </table>
@@ -71,6 +73,9 @@
     });    
   });
     function tampil(){
+      var table = $('#example').DataTable();
+      table.destroy();
+      $("#example").find("tbody").find("tr").remove();
         $.ajax({
                     url: '<?php echo base_url(); ?>Report/show_deduct/',
                     data: 'userId='+document.getElementById("userId").value,
